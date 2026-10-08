@@ -1,0 +1,45 @@
+{
+  "when": "2026-08-26T11:45:00.739Z",
+  "summary": {
+    "PASS": 5,
+    "BUG": 0
+  },
+  "rows": [
+    {
+      "id": "A5.H1",
+      "rule": "Hotel autocomplete",
+      "how": "GET autocomplete q=pune",
+      "status": "PASS",
+      "notes": "http=200 totalElements=17 content=17"
+    },
+    {
+      "id": "A5.H2",
+      "rule": "Hotel search Mumbai",
+      "how": "POST /v1/hotels/search",
+      "status": "PASS",
+      "notes": "http=200 totalResults=0 available=0 results=0"
+    },
+    {
+      "id": "A5.F1",
+      "rule": "Flight airports",
+      "how": "GET airports BOM",
+      "status": "PASS",
+      "notes": "http=200 n=7"
+    },
+    {
+      "id": "A5.F2",
+      "rule": "Flight OW search",
+      "how": "POST /v1/flights/search",
+      "status": "PASS",
+      "notes": "http=200 options=0"
+    },
+    {
+      "id": "A5.C1",
+      "rule": "Cab status readable",
+      "how": "GET /v1/airportServices/cabs/{BR}/status",
+      "status": "PASS",
+      "notes": "http=200 status=Driver arrived"
+    }
+  ],
+  "hotelSearchNote": "No hotels found for this date range. Please try searching different dates."
+}

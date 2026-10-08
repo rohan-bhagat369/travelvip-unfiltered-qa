@@ -1,0 +1,249 @@
+{
+  "out": {
+    "ranAt": "2026-09-07T07:38:31.557Z",
+    "baseUrl": "https://api-staging.travelvip.ai",
+    "br": "BR1788766708272500",
+    "status": "Confirmed",
+    "otp": "4892",
+    "extraKmRate": 24,
+    "airportCode": "DEL",
+    "pickup": {
+      "name": "Vasant Kunj, Delhi",
+      "address": null,
+      "city": "Delhi",
+      "airportCode": null,
+      "latitude": 28.5201,
+      "longitude": 77.1591
+    },
+    "drop": {
+      "name": "IGI Airport-T1",
+      "address": null,
+      "city": "Delhi",
+      "airportCode": "DEL",
+      "latitude": 28.5588,
+      "longitude": 77.0814
+    },
+    "vehicle": {
+      "type": "SEDAN",
+      "category": "ECONOMY",
+      "model": "Dzire or Similar",
+      "makeYear": 2016,
+      "seatingCapacity": 2,
+      "luggageCapacity": 2,
+      "airConditioned": true,
+      "fuelType": "CNG",
+      "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+      "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+      "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+    },
+    "operator": {
+      "name": "Carzonrent",
+      "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+      "rating": 4.6,
+      "ratingCount": 377
+    },
+    "progress": {
+      "cabAssigned": false,
+      "cabLeftForPickup": false,
+      "cabReachedSource": false,
+      "cabTripStarted": false,
+      "cabTripEnd": false
+    },
+    "salesSummary": {
+      "basePrice": 411,
+      "subTotal": 411,
+      "tax": 20.58,
+      "convenienceFee": 21.58,
+      "totalAmount": 453.16,
+      "totalDiscount": 0,
+      "currency": "INR"
+    },
+    "fare": {
+      "vehicle": {
+        "type": "SEDAN",
+        "category": "ECONOMY",
+        "filterTag": "Sedan",
+        "filterTagImage": "https://img.travelx.ai/icons/New/Sedan.png",
+        "model": "Dzire or Similar",
+        "makeYear": 2016,
+        "seatingCapacity": 2,
+        "luggageCapacity": 2,
+        "airConditioned": true,
+        "fuelType": "CNG",
+        "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+        "imageApp": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+        "imageMobile": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+      },
+      "operator": {
+        "name": "Carzonrent",
+        "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+        "rating": 4.6,
+        "ratingCount": 377
+      }
+    },
+    "sql": {
+      "cab": "SELECT bic.id, bic.provider_booking_id, bic.otp,\n  bic.vehicle_type, bic.vehicle_model, bic.operator_name, bic.extra_km_rate,\n  bic.total_travelled_km, bic.total_travelled_fare,\n  bic.extra_travelled_km, bic.extra_travelled_fare, bic.night_charges, bic.reason\nFROM booking b\nJOIN booking_item bi ON bi.booking_id = b.id AND bi.service_type = 'cabs'\nJOIN booking_item_cab bic ON bic.booking_item_id = bi.id\nWHERE b.booking_reference = 'BR1788766708272500'",
+      "locations": "SELECT location_type, address, airport_code, latitude, longitude\nFROM booking_item_cab_location\nWHERE booking_item_cab_id = (\n  SELECT bic.id FROM booking b\n  JOIN booking_item bi ON bi.booking_id = b.id AND bi.service_type = 'cabs'\n  JOIN booking_item_cab bic ON bic.booking_item_id = bi.id\n  WHERE b.booking_reference = 'BR1788766708272500'\n)",
+      "trip": "SELECT event, provider_timestamp, provider_datetime, latitude, longitude\nFROM booking_item_cab_trip\nWHERE booking_item_cab_id = (\n  SELECT bic.id FROM booking b\n  JOIN booking_item bi ON bi.booking_id = b.id AND bi.service_type = 'cabs'\n  JOIN booking_item_cab bic ON bic.booking_item_id = bi.id\n  WHERE b.booking_reference = 'BR1788766708272500'\n)\nORDER BY event"
+    }
+  },
+  "status": {
+    "statusCode": 200,
+    "bookingReferenceId": "BR1788766708272500",
+    "status": "Confirmed",
+    "contact": {
+      "name": "Pratik Patil",
+      "email": "chaitanya@travelvip.ai",
+      "countryCode": "+91",
+      "mobile": "9921862715"
+    },
+    "details": {
+      "journeyType": "AIRPORT",
+      "travelType": "DEPARTURE",
+      "airportCode": "DEL",
+      "pickupDatetime": "2026-09-16T18:35:58+00:00",
+      "distanceKm": 15,
+      "durationMin": 15,
+      "extraKmRate": 24,
+      "freeCancellationTillMin": 30,
+      "pickup": {
+        "name": "Vasant Kunj, Delhi",
+        "address": null,
+        "city": "Delhi",
+        "airportCode": null,
+        "latitude": 28.5201,
+        "longitude": 77.1591
+      },
+      "drop": {
+        "name": "IGI Airport-T1",
+        "address": null,
+        "city": "Delhi",
+        "airportCode": "DEL",
+        "latitude": 28.5588,
+        "longitude": 77.0814
+      },
+      "vehicle": {
+        "type": "SEDAN",
+        "category": "ECONOMY",
+        "model": "Dzire or Similar",
+        "makeYear": 2016,
+        "seatingCapacity": 2,
+        "luggageCapacity": 2,
+        "airConditioned": true,
+        "fuelType": "CNG",
+        "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+        "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+        "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+      },
+      "operator": {
+        "name": "Carzonrent",
+        "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+        "rating": 4.6,
+        "ratingCount": 377
+      },
+      "otp": "4892",
+      "assignment": null,
+      "progress": {
+        "cabAssigned": false,
+        "cabLeftForPickup": false,
+        "cabReachedSource": false,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    },
+    "_meta": {
+      "correlation_id": "69bb4338-0e5c-459b-b661-8d03c845027f"
+    }
+  },
+  "detail": {
+    "statusCode": 200,
+    "bookingReferenceId": "BR1788766708272500",
+    "status": "Confirmed",
+    "contact": {
+      "name": "Pratik Patil",
+      "email": "chaitanya@travelvip.ai",
+      "countryCode": "+91",
+      "mobile": "9921862715"
+    },
+    "details": {
+      "journeyType": "AIRPORT",
+      "travelType": "DEPARTURE",
+      "airportCode": "DEL",
+      "pickupDatetime": "2026-09-16T18:35:58+00:00",
+      "distanceKm": 15,
+      "durationMin": 15,
+      "extraKmRate": 24,
+      "freeCancellationTillMin": 30,
+      "pickup": {
+        "name": "Vasant Kunj, Delhi",
+        "address": null,
+        "city": "Delhi",
+        "airportCode": null,
+        "latitude": 28.5201,
+        "longitude": 77.1591
+      },
+      "drop": {
+        "name": "IGI Airport-T1",
+        "address": null,
+        "city": "Delhi",
+        "airportCode": "DEL",
+        "latitude": 28.5588,
+        "longitude": 77.0814
+      },
+      "vehicle": {
+        "type": "SEDAN",
+        "category": "ECONOMY",
+        "model": "Dzire or Similar",
+        "makeYear": 2016,
+        "seatingCapacity": 2,
+        "luggageCapacity": 2,
+        "airConditioned": true,
+        "fuelType": "CNG",
+        "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+        "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+        "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+      },
+      "operator": {
+        "name": "Carzonrent",
+        "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+        "rating": 4.6,
+        "ratingCount": 377
+      },
+      "inclusions": [
+        "15 Kms Ride",
+        "GST Included ₹20.58"
+      ],
+      "exclusions": [
+        "Toll Charges",
+        "Waiting Charges (after 20 mins) ₹100/30 mins",
+        "Extra Km Fare (₹24/Km)",
+        "Airport parking charges may apply as per destination airport rules.",
+        "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+        "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+      ],
+      "otp": "4892",
+      "assignment": null,
+      "progress": {
+        "cabAssigned": false,
+        "cabLeftForPickup": false,
+        "cabReachedSource": false,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    },
+    "salesSummary": {
+      "basePrice": 411,
+      "subTotal": 411,
+      "tax": 20.58,
+      "convenienceFee": 21.58,
+      "totalAmount": 453.16,
+      "totalDiscount": 0,
+      "currency": "INR"
+    },
+    "_meta": {
+      "correlation_id": "69bb4338-0e5c-459b-b661-8d03c845027f"
+    }
+  }
+}

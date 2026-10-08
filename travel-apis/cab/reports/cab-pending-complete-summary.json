@@ -1,0 +1,67 @@
+{
+  "when": "2026-08-26T11:53:00Z",
+  "fixture": {
+    "br": "BR1787744137248898",
+    "vendorBookingId": "TVIPWE2608261705379F51"
+  },
+  "summary": {
+    "PASS": 28,
+    "BUG": 3,
+    "NOT_TESTED": 5
+  },
+  "sections": {
+    "A1": {
+      "status": "DONE_EARLIER",
+      "bugsOpen": [
+        "journey_type always NULL",
+        "location.address always NULL",
+        "location.airport_code always NULL on AIRPORT legs"
+      ]
+    },
+    "A2": [
+      { "id": 1, "rule": "provider_booking_id + update_booking_response + assignment via vendor sim", "status": "PASS" },
+      { "id": 2, "rule": "POST /v1/airportServices/cabs/update-booking with assignment", "status": "PASS", "notes": "HTTP 200 Booking updated successfully" },
+      { "id": 3, "rule": "v1 mismatch bookingId → 400 PROVIDER_BOOKING_ID_MISMATCH", "status": "PASS" },
+      { "id": 4, "rule": "POST /api/airportServices/updateAirportServiceBooking assignment", "status": "NOT TESTED", "notes": "HTTP 403 INVALID_PARTNER_KEY — needs vendor `key` query (not partner access_token). Cannot complete without Mojoboxx API key." }
+    ],
+    "A3": [
+      { "id": "310", "rule": "assign → cabAssigned / Driver assigned", "status": "PASS", "how": "POST /api/v1/tracking/driverDetails with MJB+TVIPWE" },
+      { "id": "320", "rule": "left → cabLeftForPickup", "status": "PASS", "how": "createCabTripTracking event Left For pickup" },
+      { "id": "330", "rule": "arrived → cabReachedSource", "status": "PASS", "how": "createCabTripTracking event arrived (lowercase)" },
+      { "id": "340", "rule": "trip start → cabTripStarted + trip row", "status": "PASS", "how": "POST /api/v1/tracking/tripDetails trip_event=start (NOT createCabTripTracking)" },
+      { "id": "350", "rule": "trip stop → cabTripEnd + extra km fare", "status": "PASS", "how": "tripDetails trip_event=stop extra_travelled_km=5 fare=500" },
+      { "id": "A3.1", "rule": "otp on cab; assignment.tripOtp gone", "status": "PASS", "notes": "otp=5979" }
+    ],
+    "A4": [
+      { "id": 1, "rule": "extraKmRate present; extraKmFareLabel gone", "status": "PASS", "notes": "24" },
+      { "id": 2, "rule": "pickup/drop.address", "status": "BUG", "notes": "both null" },
+      { "id": 3, "rule": "pickup/drop.airportCode on airport leg", "status": "BUG", "notes": "all null" },
+      { "id": 4, "rule": "otp; assignment.tripOtp gone", "status": "PASS" },
+      { "id": 5, "rule": "vehicle + operator blocks", "status": "PASS" },
+      { "id": 6, "rule": "progress block", "status": "PASS" },
+      { "id": 7, "rule": "GET booking detail", "status": "PASS" },
+      { "id": 8, "rule": "GET history lists BR", "status": "PASS" },
+      { "id": 9, "rule": "GET tracking location", "status": "PASS" }
+    ],
+    "A5": [
+      { "id": "hotel.search", "rule": "Hotel APIs respond", "status": "PASS", "notes": "autocomplete OK; search 200 but inventory empty" },
+      { "id": "hotel.book", "rule": "Hotel book E2E", "status": "NOT TESTED", "notes": "staging No hotels found for date range" },
+      { "id": "flight.search", "rule": "Flight APIs respond", "status": "PASS" },
+      { "id": "flight.book", "rule": "Flight book E2E", "status": "NOT TESTED", "notes": "no OW options in quick retry; service not broken by cab schema" },
+      { "id": "esim.book", "rule": "eSIM book E2E", "status": "PASS", "notes": "BR1787745094415186 Confirmed ₹47.05" },
+      { "id": "lounge.book", "rule": "Lounge book E2E", "status": "PASS", "notes": "BR1787745047998072 created (stayed Pending — known lounge behavior, not cab regression)" },
+      { "id": "fasttrack.book", "rule": "Fast Track book E2E", "status": "PASS", "notes": "BR1787745106781811 Confirmed ₹5250.53" },
+      { "id": "attractions.book", "rule": "Attractions book E2E", "status": "BUG", "notes": "BR1787745114427655 Failed after finalize — pre-existing attractions issue, not cab schema" }
+    ]
+  },
+  "openBugsForDev": [
+    "A1/A4: journey_type NULL; location.address NULL; location.airport_code NULL (API mirrors DB)",
+    "A2: need Mojoboxx vendor key to finish /api/airportServices/updateAirportServiceBooking (v1 path PASS)",
+    "A5 attractions Failed (separate from cab)"
+  ],
+  "dbConfirmSql": {
+    "statusHistory310to350": "SELECT h.id, m.status_code, m.backend_status, m.status_name, h.provider_timestamp, h.occurred_at FROM booking_item_status_history h JOIN booking_status_mapping m ON m.id = h.status_mapping_id JOIN booking_item bi ON bi.id = h.booking_item_id JOIN booking b ON b.id = bi.booking_id WHERE b.booking_reference = 'BR1787744137248898' ORDER BY h.id;",
+    "tripRow": "SELECT t.* FROM booking b JOIN booking_item bi ON bi.booking_id = b.id AND bi.service_type = 'cabs' JOIN booking_item_cab bic ON bic.booking_item_id = bi.id LEFT JOIN booking_item_cab_trip t ON t.booking_item_cab_id = bic.id WHERE b.booking_reference = 'BR1787744137248898';",
+    "otpA31": "SELECT bic.otp, a.trip_otp, a.driver_name, a.vehicle_registration_no FROM booking b JOIN booking_item bi ON bi.booking_id = b.id AND bi.service_type = 'cabs' JOIN booking_item_cab bic ON bic.booking_item_id = bi.id LEFT JOIN booking_item_cab_assignment a ON a.booking_item_cab_id = bic.id WHERE b.booking_reference = 'BR1787744137248898' ORDER BY a.id DESC;"
+  }
+}

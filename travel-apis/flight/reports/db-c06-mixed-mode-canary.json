@@ -1,0 +1,72 @@
+{
+  "ranAt": "2026-08-12T11:11:09.509Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "C06",
+  "checks": [
+    "V076",
+    "V077"
+  ],
+  "note": "Return leg already ONLINE-cancelled (cr 320). This step cancels onward via paxwise list.",
+  "fixture": {
+    "br": "BR1786532280192377",
+    "beforeStatus": "Partially cancelled",
+    "onwardPnr": "I55IRY",
+    "returnPnr": "F9JCUZ",
+    "pax": [
+      {
+        "paxId": "PAX1",
+        "name": "Vivek Kapoor"
+      }
+    ],
+    "priorOnlineCancel": {
+      "crId": 320,
+      "pnr": "F9JCUZ",
+      "journeyId": 214
+    }
+  },
+  "steps": [
+    {
+      "step": "PENALTY",
+      "pnr": "I55IRY",
+      "cancellationPaxList": [
+        "PAX1"
+      ],
+      "http": 200,
+      "status": "Penalty Check Failed",
+      "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786532280192377\",\"pnr\":\"I55IRY\",\"cancellationRequest\":{\"status\":\"Penalty Check Failed\",\"message\":\"RIYA cancel failed: Riya API call failed\",\"createdAt\":\"2026-08-12T11:11:01Z\"},\"paxScope\":{\"scope\":\"FULL_PAX\",\"cancellationPaxList\":[\"PAX1\"],\"totalPaxOnPnr\":1,\"cancelledPaxCount\":1,\"prorated\":false}},\"_meta\":{\"correlation_id\":\"9753db7f-7783-423f-afe3-2a3297399ff9\"}}"
+    },
+    {
+      "step": "CANCEL",
+      "pnr": "I55IRY",
+      "cancellationPaxList": [
+        "PAX1"
+      ],
+      "http": 200,
+      "status": "Cancellation Failed",
+      "paxScope": {
+        "scope": "FULL_PAX",
+        "cancellationPaxList": [
+          "PAX1"
+        ],
+        "totalPaxOnPnr": 1,
+        "cancelledPaxCount": 1,
+        "prorated": false
+      },
+      "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786532280192377\",\"pnr\":\"I55IRY\",\"cancellationRequest\":{\"status\":\"Cancellation Failed\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":9517,\"message\":\"RIYA cancel failed: Riya API call failed\",\"createdAt\":\"2026-08-12T11:11:03Z\"},\"paxScope\":{\"scope\":\"FULL_PAX\",\"cancellationPaxList\":[\"PAX1\"],\"totalPaxOnPnr\":1,\"cancelledPaxCount\":1,\"prorated\":false}},\"_meta\":{\"correlation_id\":\"9753db7f-7783-423f-afe3-2a3297399ff9\"}}"
+    }
+  ],
+  "afterStatus": "Partially cancelled",
+  "afterLegs": [
+    {
+      "direction": "ONWARD",
+      "pnr": "I55IRY",
+      "onlineCancellation": true
+    },
+    {
+      "direction": "RETURN",
+      "pnr": "F9JCUZ",
+      "onlineCancellation": true
+    }
+  ],
+  "dbSql": "USE travelx;\nSET @br := 'BR1786532280192377';\n\n-- V076: expect 2 cancellation_request rows — one ONLINE (return), one OFFLINE (onward)\nSELECT cr.id, cr.pnr, cr.flight_journey_id, fj.direction,\n       cr.cancellation_type, cr.mode, cr.status, cr.created_at\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nLEFT JOIN flight_journey fj ON fj.id = cr.flight_journey_id\nWHERE b.booking_reference = @br\nORDER BY cr.id;\n\n-- V077: both requests same booking_item\nSELECT cr.id, cr.booking_item_id, cr.pnr, cr.mode, cr.flight_journey_id\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cr.id;\n\nSELECT b.booking_reference, b.cancelled_at, bi.id AS booking_item_id,\n       bsm.backend_status, bsm.user_status\nFROM booking b\nJOIN booking_item bi ON bi.booking_id = b.id\nLEFT JOIN booking_status_mapping bsm ON bsm.id = bi.current_status_mapping_id\nWHERE b.booking_reference = @br;"
+}

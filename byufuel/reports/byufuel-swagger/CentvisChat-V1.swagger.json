@@ -1,0 +1,5964 @@
+{
+  "x-generator": "NSwag v14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Centvis Chat Endpoints",
+    "description": "Centvis Chat Api",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://d-byufuel-api.azurewebsites.net"
+    }
+  ],
+  "paths": {
+    "/api/members": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Create Member",
+        "description": "Creates a new Member",
+        "operationId": "Chat_CentvisChatMemberTableCreateEndpoint",
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreMemberTableMemberResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/message-members": {
+      "post": {
+        "tags": [
+          "Message-Members"
+        ],
+        "summary": "Create MessageMember",
+        "description": "Creates a new MessageMember",
+        "operationId": "Chat_CentvisChatApiMessageMemberTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateMessageMemberRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableCreateMessageMemberRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableMessageMemberResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Message-Members"
+        ],
+        "summary": "Get All  MessageMembers",
+        "description": "Get All MessageMembers",
+        "operationId": "Chat_CentvisChatApiMessageMemberTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableMessageMemberResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/message-members/{messageMemberId}": {
+      "delete": {
+        "tags": [
+          "Message-Members"
+        ],
+        "summary": "Delete MessageMember By Id",
+        "description": "Deletes an MessageMember by Id",
+        "operationId": "Chat_CentvisChatApiMessageMemberTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "messageMemberId",
+            "in": "path",
+            "required": true,
+            "description": "MessageMember Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Message-Members"
+        ],
+        "summary": "Get MessageMember By Id",
+        "description": "Retrieves an MessageMember by Id",
+        "operationId": "Chat_CentvisChatApiMessageMemberTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "messageMemberId",
+            "in": "path",
+            "required": true,
+            "description": "MessageMember Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableMessageMemberResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Message-Members"
+        ],
+        "summary": "Update MessageMember",
+        "description": "Update MessageMember",
+        "operationId": "Chat_CentvisChatApiMessageMemberTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "messageMemberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateMessageMemberRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableUpdateMessageMemberRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/message-members/search": {
+      "get": {
+        "tags": [
+          "Message-Members"
+        ],
+        "summary": "Search MessageMembers",
+        "description": "Search MessageMembers",
+        "operationId": "Chat_CentvisChatApiMessageMemberTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfMessageMemberResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/messages": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Create Message",
+        "description": "Creates a new Message",
+        "operationId": "Chat_CentvisChatApiMessageTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateMessageRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreMessageTableCreateMessageRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreMessageTableMessageResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Get All  Messages",
+        "description": "Get All Messages",
+        "operationId": "Chat_CentvisChatApiMessageTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisChatCoreMessageTableMessageResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/messages/{messageId}": {
+      "delete": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Delete Message By Id",
+        "description": "Deletes an Message by Id",
+        "operationId": "Chat_CentvisChatApiMessageTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "description": "Message Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Get Message By Id",
+        "description": "Retrieves an Message by Id",
+        "operationId": "Chat_CentvisChatApiMessageTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "description": "Message Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreMessageTableMessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Update Message",
+        "description": "Update Message",
+        "operationId": "Chat_CentvisChatApiMessageTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateMessageRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreMessageTableUpdateMessageRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/messages/GetUnReadMessageCount": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Get UnRead Message count By logged in User Id",
+        "description": "Get UnRead Message count By logged in User Id",
+        "operationId": "Chat_CentvisChatApiMessageTableGetUnReadCountEndpoint",
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/messages/search": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Search  Messages",
+        "description": "Search Messages",
+        "operationId": "Chat_CentvisChatApiMessageTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfMessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/members/{memberId}": {
+      "get": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Get Member By Id",
+        "description": "Retrieves an Member by Id",
+        "operationId": "Chat_CentvisChatApiMemberTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "description": "Member Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreMemberTableMemberResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Delete by Member Id",
+        "description": "Deletes Member Id",
+        "operationId": "Chat_CentvisChatApiMemberDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "description": "Member Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/groups/chat-settings/avatar": {
+      "patch": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Update Chat Setting Avatar",
+        "description": "Update Chat Setting Avatar",
+        "operationId": "Chat_CentvisChatApiGroupUpdateChatAvatarEndpoint",
+        "requestBody": {
+          "x-name": "UpdateChatSettingAvatar",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreGroupTableUpdateChatSettingAvatar"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/groups": {
+      "post": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Create Group",
+        "description": "Creates a new Group",
+        "operationId": "Chat_CentvisChatApiGroupTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateGroupRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreGroupTableCreateGroupRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreGroupTableGroupResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Get All  Groups",
+        "description": "Get All Groups",
+        "operationId": "Chat_CentvisChatApiGroupTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisChatCoreGroupTableGroupResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/groups/{groupId}": {
+      "delete": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Delete Group By Id",
+        "description": "Deletes an Group by Id",
+        "operationId": "Chat_CentvisChatApiGroupTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "description": "Group Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Get Group By Id",
+        "description": "Retrieves an Group by Id",
+        "operationId": "Chat_CentvisChatApiGroupTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "description": "Group Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreGroupTableGroupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Update Group",
+        "description": "Update Group",
+        "operationId": "Chat_CentvisChatApiGroupTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateGroupRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreGroupTableUpdateGroupRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/groups/search": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Search  Groups",
+        "description": "Search Groups",
+        "operationId": "Chat_CentvisChatApiGroupTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfGroupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/conversations": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Create Conversation",
+        "description": "Creates a new Conversation",
+        "operationId": "Chat_CentvisChatApiConversationTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateConversationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreConversationTableCreateConversationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreConversationTableConversationMembersResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Get All  Conversations",
+        "description": "Get All Conversations",
+        "operationId": "Chat_CentvisChatApiConversationTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisChatCoreConversationTableConversationResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/conversations/general": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Create General Conversation",
+        "description": "Creates a new General Conversation",
+        "operationId": "Chat_CentvisChatApiConversationTableCreateGeneralConversationEndpoint",
+        "requestBody": {
+          "x-name": "CreateConversationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreConversationTableCreateConversationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreConversationTableConversationMembersResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/conversations/{conversationId}": {
+      "delete": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Delete Conversation By Id",
+        "description": "Deletes an Conversation by Id",
+        "operationId": "Chat_CentvisChatApiConversationTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "description": "Conversation Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Get Conversation By Id",
+        "description": "Retrieves an Conversation by Id",
+        "operationId": "Chat_CentvisChatApiConversationTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "description": "Conversation Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreConversationTableConversationDetailResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Update Conversation",
+        "description": "Update Conversation",
+        "operationId": "Chat_CentvisChatApiConversationTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateConversationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreConversationTableUpdateConversationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/conversations/search": {
+      "get": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Search  Conversations",
+        "description": "Search Conversations",
+        "operationId": "Chat_CentvisChatApiConversationTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfConversationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/conversations/participants": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Create Group Conversation with Participants",
+        "description": "Create Group Conversation with Participants",
+        "operationId": "Chat_CentvisChatApiConversationCreateConversationWithParticipantsEndpoint",
+        "requestBody": {
+          "x-name": "CreateConversationWithParticipantsRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreConversationTableCreateConversationWithParticipantsRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreConversationTableConversationMembersResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/chat-settings": {
+      "post": {
+        "tags": [
+          "Chat-Settings"
+        ],
+        "summary": "Create ChatSetting",
+        "description": "Creates a new ChatSetting",
+        "operationId": "Chat_CentvisChatApiChatSettingTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateChatSettingRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreChatSettingTableCreateChatSettingRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreChatSettingTableChatSettingResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Chat-Settings"
+        ],
+        "summary": "Get All  ChatSettings",
+        "description": "Get All ChatSettings",
+        "operationId": "Chat_CentvisChatApiChatSettingTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisChatCoreChatSettingTableChatSettingResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/chat-settings/{chatSettingId}": {
+      "delete": {
+        "tags": [
+          "Chat-Settings"
+        ],
+        "summary": "Delete ChatSetting By Id",
+        "description": "Deletes an ChatSetting by Id",
+        "operationId": "Chat_CentvisChatApiChatSettingTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "chatSettingId",
+            "in": "path",
+            "required": true,
+            "description": "ChatSetting Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Chat-Settings"
+        ],
+        "summary": "Get ChatSetting By Id",
+        "description": "Retrieves an ChatSetting by Id",
+        "operationId": "Chat_CentvisChatApiChatSettingTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "chatSettingId",
+            "in": "path",
+            "required": true,
+            "description": "ChatSetting Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisChatCoreChatSettingTableChatSettingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Chat-Settings"
+        ],
+        "summary": "Update ChatSetting",
+        "description": "Update ChatSetting",
+        "operationId": "Chat_CentvisChatApiChatSettingTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "chatSettingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateChatSettingRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisChatCoreChatSettingTableUpdateChatSettingRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/chat-settings/search": {
+      "get": {
+        "tags": [
+          "Chat-Settings"
+        ],
+        "summary": "Search  ChatSettings",
+        "description": "Search ChatSettings",
+        "operationId": "Chat_CentvisChatApiChatSettingTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfChatSettingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/call-log-wf-audits": {
+      "get": {
+        "tags": [
+          "Call-Log-Wf-Audits"
+        ],
+        "summary": "Get All  CallLogWFAudits",
+        "description": "Get All CallLogWFAudits",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogWFAuditTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogWFAuditTableCallLogWFAuditResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/call-logs/call-ans-by-agent": {
+      "post": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Call Answered By Agent webhook",
+        "description": "Call Answered By Agent webhook",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableCallAnsweredByAgentEndpoint",
+        "requestBody": {
+          "x-name": "CallAnsweredByAgentRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallAnsweredByAgentRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/call-logs/call-ans-by-customer": {
+      "post": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Call Call Answered By Customer webhook",
+        "description": "Call Call Answered By Customer webhook",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableCallAnsweredByCustomerEndpoint",
+        "requestBody": {
+          "x-name": "CallAnsweredByCustomerRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallAnsweredByCustomerRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/call-logs/call-connected-to-agent": {
+      "post": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Call Connected to Agent webhook",
+        "description": "Call Connected to Agent webhook",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableCallConnectedtoAgentEndpoint",
+        "requestBody": {
+          "x-name": "CallConnectedtoAgentRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallConnectedtoAgentRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/call-logs/callhangup": {
+      "post": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Call CallHangup webhook",
+        "description": "Call CallHangup webhook",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableCallHangupEndpoint",
+        "requestBody": {
+          "x-name": "CallHangupMissesOrAnsweredRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallHangupMissesOrAnsweredRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/call-logs/call-missed-by-agent": {
+      "post": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Call Missed By Agent webhook",
+        "description": "Call Missed By Agent webhook",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableCallMissedByAgentEndpoint",
+        "requestBody": {
+          "x-name": "CallMissedByAgentRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallMissedByAgentRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/call-logs/call-missed-by-customer": {
+      "post": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Call Missed By Customer webhook",
+        "description": "Call Missed By Customer webhook",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableCallMissedByCustomerEndpoint",
+        "requestBody": {
+          "x-name": "CallMissedByCustomerRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallMissedByCustomerRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/call-logs/call-received-on-server": {
+      "post": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Call Received on Server webhook",
+        "description": "Call Received on Server webhook",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableCallReceivedonServerEndpoint",
+        "requestBody": {
+          "x-name": "CallReceivedonServerRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallReceivedonServerRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/call-logs": {
+      "post": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Create or Update CallLog",
+        "description": "Creates or Update new CallLog",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateCallLogRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCreateCallLogRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallLogResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Get All  CallLogs",
+        "description": "Get All CallLogs",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden"
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallLogResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/call-logs/{callLogId}": {
+      "get": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Get CallLog By Id",
+        "description": "Retrieves an CallLog by Id",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "callLogId",
+            "in": "path",
+            "required": true,
+            "description": "CallLog Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden"
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallLogResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/call-logs/search": {
+      "get": {
+        "tags": [
+          "Call-Logs"
+        ],
+        "summary": "Search  CallLogs",
+        "description": "Search CallLogs",
+        "operationId": "Chat_CentvisByufuelChatApiCallLogTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden"
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfCallLogResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CentvisChatCoreMemberTableMemberResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "groupId": {
+            "type": "string",
+            "nullable": true
+          },
+          "conversationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "userEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userType": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "MicrosoftAspNetCoreMvcProblemDetails": {
+        "type": "object",
+        "additionalProperties": {
+          "nullable": true
+        },
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisChatCoreMemberTableCreateMemberRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreMemberTableMemberRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreMemberTableMemberRequest": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "CentvisChatCoreMessageMemberTableMessageMemberResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableBaseMessageMemberEncrypt"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "createdBy": {
+                "type": "string"
+              },
+              "deletedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "deletedBy": {
+                "type": "string",
+                "nullable": true
+              },
+              "id": {
+                "type": "string"
+              },
+              "isDeleted": {
+                "type": "boolean"
+              },
+              "modifiedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "modifiedBy": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisChatCoreMessageMemberTableBaseMessageMemberEncrypt": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "CentvisChatCoreMessageMemberTableCreateMessageMemberRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableBaseMessageMemberRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreMessageMemberTableBaseMessageMemberRequest": {
+        "required": [
+          "isDeleted"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableBaseMessageMemberEncrypt"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "properties": {
+              "deletedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "deletedBy": {
+                "type": "string",
+                "maxLength": 225,
+                "minLength": 0,
+                "nullable": true
+              },
+              "isDeleted": {
+                "type": "boolean",
+                "minLength": 1,
+                "nullable": false
+              }
+            }
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsFilteringOrderingRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfMessageMemberResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfMessageMemberResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfMessageMemberResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableMessageMemberResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisFrameworkCoreEndpointsPagedRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsFilteringOrderingRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreMessageMemberTableUpdateMessageMemberRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreMessageMemberTableBaseMessageMemberRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreMessageTableMessageResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "conversationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "senderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "filePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileExtension": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisChatCoreMessageTableCreateMessageRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreMessageTableBaseMessageRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreMessageTableBaseMessageRequest": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "required": [
+          "isDeleted"
+        ],
+        "properties": {
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "maxLength": 225,
+            "minLength": 0,
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "minLength": 1,
+            "nullable": false
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 2147483647,
+            "minLength": 0,
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfMessageResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfMessageResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfMessageResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreMessageTableMessageResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisChatCoreMessageTableUpdateMessageRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreMessageTableBaseMessageRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreGroupTableUpdateChatSettingAvatar": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "avatar": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisChatCoreGroupTableGroupResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "createdLocalDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdUTCDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "operationalAreaId": {
+            "type": "string",
+            "nullable": true
+          },
+          "operationalAreaName": {
+            "type": "string",
+            "nullable": true
+          },
+          "members": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreMemberTableMemberResponse"
+            }
+          },
+          "avatarFilepath": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarFilename": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisChatCoreGroupTableCreateGroupRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreGroupTableBaseGroupRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreGroupTableBaseGroupRequest": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "createdLocalDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdUTCDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "maxLength": 225,
+            "minLength": 0,
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 0,
+            "nullable": true
+          },
+          "status": {
+            "type": "boolean",
+            "minLength": 1,
+            "nullable": false
+          }
+        }
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfGroupResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfGroupResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfGroupResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreGroupTableGroupResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisChatCoreGroupTableUpdateGroupRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreGroupTableBaseGroupRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreConversationTableConversationMembersResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupId": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "lastMessageSenderFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageSenderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageSenderLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageText": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "module": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreMemberTableMemberResponse"
+            }
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreMessageTableMessageResponse"
+            }
+          },
+          "groupName": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisChatCoreConversationTableCreateConversationRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreConversationTableBaseConversationRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreConversationTableBaseConversationRequest": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "properties": {
+          "referenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "module": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 0
+          }
+        }
+      },
+      "CentvisChatCoreConversationTableConversationResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupId": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "lastMessageSenderFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageSenderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageSenderLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageText": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageType": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "module": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "unReadMessageCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "senderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "senderName": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverId": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverName": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupName": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupAvatarFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupAvatarCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "members": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreMemberTableMemberResponse"
+            }
+          },
+          "receiverAvatarFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverAvatarCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "userType": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverUserType": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisChatCoreConversationTableConversationDetailResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupId": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "lastMessageSenderFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageSenderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageSenderLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageText": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastMessageTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "module": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreMessageTableMessageResponse"
+            }
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreMemberTableMemberResponse"
+            }
+          },
+          "groupName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "userType": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfConversationResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfConversationResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfConversationResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreConversationTableConversationResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisChatCoreConversationTableUpdateConversationRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreConversationTableBaseConversationRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreConversationTableCreateConversationWithParticipantsRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "referenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "module": {
+            "type": "string"
+          }
+        }
+      },
+      "CentvisChatCoreChatSettingTableChatSettingResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
+          "chatGroupId": {
+            "type": "string",
+            "nullable": true
+          },
+          "chatGroupName": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "supportEmails": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisChatCoreChatSettingTableCreateChatSettingRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreChatSettingTableBaseChatSettingRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisChatCoreChatSettingTableBaseChatSettingRequest": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "required": [
+          "isDeleted"
+        ],
+        "properties": {
+          "chatGroupName": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 0,
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "maxLength": 225,
+            "minLength": 0,
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "minLength": 1,
+            "nullable": false
+          },
+          "supportEmails": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 0,
+            "nullable": true
+          }
+        }
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfChatSettingResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfChatSettingResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfChatSettingResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisChatCoreChatSettingTableChatSettingResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisChatCoreChatSettingTableUpdateChatSettingRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisChatCoreChatSettingTableBaseChatSettingRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogWFAuditTableCallLogWFAuditResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogWFAuditTableBaseWFAuditEncrypted"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "auditAction": {
+                "type": "string",
+                "nullable": true
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "createdBy": {
+                "type": "string"
+              },
+              "fromStateCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "fromStateName": {
+                "type": "string",
+                "nullable": true
+              },
+              "id": {
+                "type": "string"
+              },
+              "submissionComments": {
+                "type": "string",
+                "nullable": true
+              },
+              "toStateCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "toStateName": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogWFAuditTableBaseWFAuditEncrypted": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "properties": {
+          "fromStateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "toStateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceId": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisByufuelChatCoreCallLogTableCallAnsweredByAgentRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCustomParams"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_to_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "caller_id_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "answered_agent_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_id": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_status": {
+                "type": "string",
+                "nullable": true
+              },
+              "direction": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogTableCustomParams": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "customerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceId": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisByufuelChatCoreCallLogTableCallAnsweredByCustomerRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCustomParams"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_to_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "caller_id_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "direction": {
+                "type": "string",
+                "nullable": true
+              },
+              "answered_agent_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_status": {
+                "type": "string",
+                "nullable": true
+              },
+              "customer_no_with_prefix": {
+                "type": "string",
+                "nullable": true
+              },
+              "customer_ring_time": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogTableCallConnectedtoAgentRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCustomParams"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "call_id": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_to_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "caller_id_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_date": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_time": {
+                "type": "string",
+                "nullable": true
+              },
+              "direction": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_flow": {
+                "type": "string",
+                "nullable": true
+              },
+              "lead_fields": {
+                "type": "string",
+                "nullable": true
+              },
+              "agent": {
+                "type": "string",
+                "nullable": true
+              },
+              "agent_name": {
+                "type": "string",
+                "nullable": true
+              },
+              "agent_number": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogTableCallHangupMissesOrAnsweredRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCustomParams"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_to_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "caller_id_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "answer_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "end_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "hangup_cause": {
+                "type": "string",
+                "nullable": true
+              },
+              "billsec": {
+                "type": "string",
+                "nullable": true
+              },
+              "digits_dialed": {
+                "type": "string",
+                "nullable": true
+              },
+              "direction": {
+                "type": "string",
+                "nullable": true
+              },
+              "duration": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_status": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_id": {
+                "type": "string",
+                "nullable": true
+              },
+              "outbound_sec": {
+                "type": "string",
+                "nullable": true
+              },
+              "agent_ring_time": {
+                "type": "string",
+                "nullable": true
+              },
+              "agent_transfer_ring_time": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_connected": {
+                "type": "string",
+                "nullable": true
+              },
+              "aws_call_recording_identifier": {
+                "type": "string",
+                "nullable": true
+              },
+              "customer_no_with_prefix": {
+                "type": "string",
+                "nullable": true
+              },
+              "reason_key": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogTableCallMissedByAgentRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCustomParams"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_to_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "caller_id_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "customer_number_with_prefix": {
+                "type": "string",
+                "nullable": true
+              },
+              "customer_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "answered_agent_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "answered_agent_name": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "answer_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "end_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "hangup_cause": {
+                "type": "string",
+                "nullable": true
+              },
+              "billsec": {
+                "type": "string",
+                "nullable": true
+              },
+              "duration": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_date": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_time": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_connected": {
+                "type": "boolean",
+                "nullable": true
+              },
+              "call_status": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_id": {
+                "type": "string",
+                "nullable": true
+              },
+              "end_time": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogTableCallMissedByCustomerRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCustomParams"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_to_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "caller_id_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "customer_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "answer_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "end_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "hangup_cause": {
+                "type": "string",
+                "nullable": true
+              },
+              "billsec": {
+                "type": "string",
+                "nullable": true
+              },
+              "direction": {
+                "type": "string",
+                "nullable": true
+              },
+              "duration": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_status": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_id": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogTableCallReceivedonServerRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCustomParams"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_to_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "caller_id_number": {
+                "type": "string",
+                "nullable": true
+              },
+              "start_stamp": {
+                "type": "string",
+                "nullable": true
+              },
+              "call_id": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogTableCallLogResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableBaseCallLogEncrypted"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "callerId": {
+                "type": "string",
+                "nullable": true
+              },
+              "callFrom": {
+                "type": "string",
+                "nullable": true
+              },
+              "callId": {
+                "type": "string",
+                "nullable": true
+              },
+              "callTo": {
+                "type": "string",
+                "nullable": true
+              },
+              "duration": {
+                "type": "number",
+                "format": "decimal",
+                "nullable": true
+              },
+              "endTime": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "id": {
+                "type": "string"
+              },
+              "startTime": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "callLogStatus": {
+                "type": "string",
+                "nullable": true
+              },
+              "fromUserName": {
+                "type": "string",
+                "nullable": true
+              },
+              "toUserName": {
+                "type": "string",
+                "nullable": true
+              },
+              "fromUserTypeName": {
+                "type": "string",
+                "nullable": true
+              },
+              "toUserTypeName": {
+                "type": "string",
+                "nullable": true
+              },
+              "operationalAreaName": {
+                "type": "string",
+                "nullable": true
+              },
+              "allowedStates": {
+                "type": "array",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreWorkflowWorkflowStatusResponse"
+                }
+              },
+              "workflowId": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "workflowStatusCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "workflowStatusId": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "workflowStatusName": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisFrameworkCoreWorkflowWorkflowStatusResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "actionDisplayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "actionName": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "isSelfTransition": {
+            "type": "boolean"
+          },
+          "noAction": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "postActions": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "statusCode": {
+            "type": "string"
+          },
+          "statusId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "statusName": {
+            "type": "string"
+          },
+          "transitionScreen": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisByufuelChatCoreCallLogTableBaseCallLogEncrypted": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "CentvisByufuelChatCoreCallLogTableCreateCallLogRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableBaseCallLogRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisByufuelChatCoreCallLogTableBaseCallLogRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableBaseCallLogEncrypted"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "properties": {
+              "callerId": {
+                "type": "string",
+                "nullable": true
+              },
+              "callFrom": {
+                "type": "string",
+                "nullable": true
+              },
+              "callId": {
+                "type": "string"
+              },
+              "callTo": {
+                "type": "string",
+                "nullable": true
+              },
+              "duration": {
+                "type": "number",
+                "format": "decimal",
+                "nullable": true
+              },
+              "endTime": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "startTime": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "callLogStatus": {
+                "type": "string",
+                "nullable": true
+              },
+              "referenceId": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfCallLogResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfCallLogResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfCallLogResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisByufuelChatCoreCallLogTableCallLogResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://d-byufuel-auth.azurewebsites.net/realms/byufuel-dev/protocol/openid-connect/auth",
+            "tokenUrl": "https://d-byufuel-auth.azurewebsites.net/realms/byufuel-dev/protocol/openid-connect/token",
+            "refreshUrl": "https://d-byufuel-auth.azurewebsites.net/realms/byufuel-dev/protocol/openid-connect/token",
+            "scopes": {
+              "openid": "openid",
+              "profile": "profile",
+              "email": "email",
+              "roles": "roles",
+              "offline_access": "offline_access",
+              "byufuel-api": "byufuel-api"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "tajDubai": {
+    "bookable": true,
+    "isTajDubaiByName": true,
+    "hotelName": "Taj Dubai",
+    "br": "BR1786025482997711",
+    "status": "Confirmed",
+    "entityId": "2869073",
+    "checkin": "2026-08-20",
+    "checkout": "2026-08-22"
+  },
+  "reschedule": {
+    "newBr": "BR1786025505648441",
+    "newStatus": "Confirmed"
+  },
+  "pendingOpenBugs": [
+    {
+      "id": "T3",
+      "title": "2nd cancel → BOOKING_ALREADY_CANCELLED?",
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786025482997711\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":181.92,\"createdAt\":\"2026-08-06T14:11:39Z\"}},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"e41c4251-d55e-4a55-bf58-492bf3384a56\"}}"
+    },
+    {
+      "id": "T4",
+      "title": "Other path cancel → BOOKING_ALREADY_CANCELLED?",
+      "http": 400,
+      "code": "BOOKING_NOT_CANCELLABLE",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_CANCELLABLE\",\"message\":\"Booking can only be cancelled when status is Confirmed\",\"details\":\"Booking 'BR1786025482997711' is in status 'Cancelled'\",\"timestamp\":\"2026-08-06T14:11:44Z\",\"request_id\":\"req-1786025503151\",\"currentStatus\":\"Cancelled\"},\"_meta\":{\"correlation_id\":\"e41c4251-d55e-4a55-bf58-492bf3384a56\"}}"
+    }
+  ],
+  "checks": [
+    {
+      "id": "T1",
+      "title": "Taj Dubai bookable on api-staging",
+      "passed": true,
+      "bookable": true,
+      "isTajDubai": true,
+      "hotelName": "Taj Dubai",
+      "br": "BR1786025482997711",
+      "status": "Confirmed",
+      "entityId": "2869073",
+      "checkin": "2026-08-20",
+      "checkout": "2026-08-22",
+      "note": "Confirmed as Taj Dubai",
+      "at": "2026-08-06T14:11:38.939Z"
+    },
+    {
+      "id": "T2",
+      "title": "Cancel Confirmed hotel",
+      "passed": true,
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786025482997711\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":181.92,\"createdAt\":\"2026-08-06T14:11:39Z\"}},\"_meta\":{\"correlation_id\":\"e41c4251-d55e-4a55-bf58-492bf3384a56\"}}",
+      "at": "2026-08-06T14:11:42.933Z"
+    },
+    {
+      "id": "T3",
+      "title": "2nd cancel → BOOKING_ALREADY_CANCELLED?",
+      "passed": false,
+      "http": 200,
+      "code": null,
+      "duplicate": true,
+      "snippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786025482997711\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":181.92,\"createdAt\":\"2026-08-06T14:11:39Z\"}},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"e41c4251-d55e-4a55-bf58-492bf3384a56\"}}",
+      "at": "2026-08-06T14:11:43.151Z"
+    },
+    {
+      "id": "T4",
+      "title": "Other path cancel → BOOKING_ALREADY_CANCELLED?",
+      "passed": false,
+      "http": 400,
+      "code": "BOOKING_NOT_CANCELLABLE",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_CANCELLABLE\",\"message\":\"Booking can only be cancelled when status is Confirmed\",\"details\":\"Booking 'BR1786025482997711' is in status 'Cancelled'\",\"timestamp\":\"2026-08-06T14:11:44Z\",\"request_id\":\"req-1786025503151\",\"currentStatus\":\"Cancelled\"},\"_meta\":{\"correlation_id\":\"e41c4251-d55e-4a55-bf58-492bf3384a56\"}}",
+      "at": "2026-08-06T14:11:43.265Z"
+    },
+    {
+      "id": "T5",
+      "title": "Reschedule happy path",
+      "passed": true,
+      "originalBr": "BR1786025482997711",
+      "newBr": "BR1786025505648441",
+      "status": "Confirmed",
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786025505648441\",\"_meta\":{\"correlation_id\":\"e41c4251-d55e-4a55-bf58-492bf3384a56\"}}",
+      "at": "2026-08-06T14:12:02.003Z"
+    }
+  ]
+}

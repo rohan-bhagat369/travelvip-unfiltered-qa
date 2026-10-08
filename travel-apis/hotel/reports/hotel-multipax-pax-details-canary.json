@@ -1,0 +1,75 @@
+{
+  "ranAt": "2026-09-04T14:28:37.635Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "occupancy": {
+    "adults": 3,
+    "children": 2,
+    "childrenAges": [
+      5,
+      9
+    ]
+  },
+  "existingBr": "BR1788514429404003",
+  "summary": {
+    "PASS": 4,
+    "BUG": 1,
+    "NOT TESTED": 0
+  },
+  "rows": [
+    {
+      "id": "EXISTING-BR-DETAIL",
+      "rule": "Booking detail for Confirmed multipax BR returns all pax + child ages",
+      "how": "GET /v1/hotels/bookings/BR1788514429404003",
+      "expected": "3 adults + 2 children with ages (or occupancy summary)",
+      "actual": "HTTP 200 guests=0 adults=0 children=0 ages=[] guests=[]",
+      "status": "BUG",
+      "note": ""
+    },
+    {
+      "id": "NEG-LEAD-ONLY",
+      "rule": "Search 3ADT+2CHD then finalize with only lead guest → reject",
+      "how": "Hotel Grand Executive entity=70495065; guests.length=1 vs search adults=3 children=2",
+      "expected": "HTTP 400 VALIDATION_ERROR; no BR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR br=null {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests' must contain 3 Adult guests to match the booked occupancy; 1 sent\",\"'rooms[0].guests' must contain 2 Child guests to match the booked occupancy; 0 sent\"],\"timestamp\":\"2026-09-04T14:28:",
+      "status": "PASS",
+      "note": "",
+      "payloadGuests": [
+        {
+          "title": "Mr",
+          "firstName": "Rohan",
+          "lastName": "Bhagat",
+          "type": "Adult",
+          "isLead": true
+        }
+      ]
+    },
+    {
+      "id": "POS-FULL-MULTIPAX",
+      "rule": "Search+finalize 3ADT+2CHD full guests; detail lists all pax + ages",
+      "how": "Hotel Grand Executive; finalize 3ADT+2CHD; GET bookings/{BR}",
+      "expected": "Confirmed; detail guests include 3 Adult + 2 Child with ages 5,9",
+      "actual": "HTTP 200 br=BR1788532098507201 bookStatus=Confirmed detailGuests=5 adults=3 children=2 ages=[] [{\"title\":\"Mr\",\"firstName\":\"Rohan\",\"lastName\":\"Bhagat\",\"type\":\"Adult\"},{\"title\":\"Ms\",\"firstName\":\"Anita\",\"lastName\":\"Sharma\",\"type\":\"Adult\"},{\"title\":\"Mr\",\"firstName\":\"Amit\",\"lastName\":\"Kumar\",\"type\":\"Adult\"},{\"title\":\"Mstr\",\"firstName\":\"Aarav\",\"lastName\":\"Sharma\",\"type\":\"Child\"},{\"title\":\"Mstr\",\"firstName\":\"Diya\",\"lastName\":\"Sharma\",\"type\":\"Child\"",
+      "status": "PASS",
+      "note": "",
+      "br": "BR1788532098507201",
+      "hotel": "Hotel Grand Executive",
+      "detailSnippet": "{\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00010938\",\"checkIn\":\"2026-10-09\",\"checkInTime\":\"12:00 PM\",\"checkOut\":\"2026-10-10\",\"checkOutTime\":\"11:00 AM\",\"bookingDate\":\"2026-09-04T14:28:18Z\",\"noOfRooms\":1,\"message\":\"Successful\",\"hotelDetails\":{\"hotelName\":\"Hotel Grand Executive\",\"city\":\"Mumbai\",\"address\":\"Lawrence Compound behind Khira Nagar\",\"contactNumber\":null,\"amenities\":[{\"key\":\"Change of towels (on request)\",\"value\":null},{\"key\":\"Wheelchair accessible – no\",\"value\":null},{\"key\":\"No acc"
+    },
+    {
+      "id": "NEG-UNDERCOUNT-ADULTS",
+      "rule": "Finalize with 2 adults 0 children vs search 3ADT+2CHD",
+      "how": "Hotel Vertigo Suite; guests=2ADT only",
+      "expected": "HTTP 400 VALIDATION_ERROR; no BR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR br=null {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests' must contain 3 Adult guests to match the booked occupancy; 2 sent\",\"'rooms[0].guests' must contain 2 Child guests to match the booked occupancy; 0 sent\"],",
+      "status": "PASS"
+    },
+    {
+      "id": "NEG-CHILD-NO-AGE",
+      "rule": "Child guest missing age rejected",
+      "how": "Hotel Vertigo Suite; Child without age field",
+      "expected": "HTTP 400 VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR br=null {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[3].age' is required for a Child\"],\"timestamp\":\"2026-09-04T14:28:36Z\",\"request_id\":\"req-1788532117534\"},\"_meta\":{\"correlation_id\":\"888119eb-a68c-4b48-b6d8-0",
+      "status": "PASS"
+    }
+  ]
+}

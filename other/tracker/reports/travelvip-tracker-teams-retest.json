@@ -1,0 +1,60 @@
+{
+  "ranAt": "2026-09-10T12:45:00+05:30",
+  "url": "https://tracker.travelvip.ai",
+  "user": "rohan@travelvip.ai",
+  "deployFocus": "Teams (+ projects/sprints sidebar) retest after deploy",
+  "fixtureCreated": {
+    "key": "ENG-12",
+    "title": "QA retest: teams deploy smoke",
+    "status": "Todo",
+    "team": "ENG"
+  },
+  "observedWorkspace": {
+    "teams": [{ "key": "ENG", "name": "Engineering", "all": 6, "active": 5, "backlog": 1 }],
+    "projects": ["AMCB", "Scandid", "TravelVIP", "TravelVIP › Flights", "TravelVIP › Hotels", "TravelVIP › Lounges"],
+    "sprints": ["Sept Sprint 1"],
+    "createTeamUi": "not found (no /teams, /settings; palette 'team'/'create' No matches)"
+  },
+  "cases": [
+    { "id": 1, "rule": "Logged in session still valid", "how": "rohan@travelvip.ai avatar RO", "status": "PASS" },
+    { "id": 2, "rule": "TEAMS sidebar: ENG Active filter", "how": "teamId + status=todo,in_progress,in_review → 4 then 5 after ENG-12; keys ENG-11,9,8,4 (+12)", "status": "PASS" },
+    { "id": 3, "rule": "TEAMS sidebar: ENG Backlog filter", "how": "status=backlog → ENG-2 only", "status": "PASS" },
+    { "id": 4, "rule": "TEAMS sidebar: All ENG", "how": "teamId only → count matches All ENG; parent + nested keys", "status": "PASS" },
+    { "id": 5, "rule": "PROJECTS: TravelVIP › Flights filter", "how": "→ ENG-8 only (count 1)", "status": "PASS" },
+    { "id": 6, "rule": "PROJECTS: TravelVIP parent filter", "how": "→ ENG-9, ENG-8, ENG-4 (includes Flights child); sidebar TravelVIP=2 excludes child count", "status": "PASS" },
+    { "id": 7, "rule": "SPRINTS: Sept Sprint 1 filter", "how": "→ ENG-9, ENG-4 (count 2)", "status": "PASS" },
+    { "id": 8, "rule": "New task defaults to ENG team badge", "how": "New task modal shows ENG + Create", "status": "PASS" },
+    { "id": 9, "rule": "Create task after teams deploy", "how": "ENG-12 QA retest: teams deploy smoke → Todo", "status": "PASS" },
+    { "id": 10, "rule": "Board columns after deploy", "how": "Backlog/Todo/In Progress populated; Synced", "status": "PASS" },
+    { "id": 11, "rule": "List nested subtasks under parent", "how": "ENG-8/ENG-11 row.leaf indented under ENG-2 when Subtasks shown", "status": "PASS" },
+    { "id": 12, "rule": "Title search", "how": "q=Signoz / prior Subtask searches", "status": "PASS" },
+    { "id": 13, "rule": "Cmd+K palette jumps to team/project", "how": "Go to ENG / AMCB / TravelVIP / Flights…", "status": "PASS" },
+    { "id": 14, "rule": "Search by task key (ENG-12 / ENG-2 / ENG-3)", "how": "q=ENG-12 → No tasks match these filters", "status": "BUG" },
+    { "id": 15, "rule": "Create / manage additional teams in UI", "how": "/teams 404, /settings 404, palette no Create team; only ENG present", "status": "NOT TESTED" },
+    { "id": 16, "rule": "Multi-team switch (2+ teams)", "how": "Only ENG exists in workspace", "status": "NOT TESTED" },
+    { "id": 17, "rule": "Board shows nested subtask cards", "how": "Board top-level only; subtasks via list/detail", "status": "NOT TESTED" }
+  ],
+  "score": { "PASS": 13, "BUG": 1, "NOT TESTED": 3 },
+  "bugs": [
+    {
+      "id": "T-SEARCH-KEY",
+      "status": "OPEN",
+      "expected": "q=ENG-12 finds the task by key",
+      "actual": "/tasks?q=ENG-12 empty state No tasks match these filters",
+      "alsoTried": ["ENG-2", "ENG-3"]
+    }
+  ],
+  "fixedSinceLastRun": [
+    {
+      "id": "T-LIST-SUBTASKS",
+      "was": "BUG",
+      "now": "PASS",
+      "note": "Subtasks render as indented row.leaf under parent when Subtasks toggle on"
+    }
+  ],
+  "notes": [
+    "Deploy added rich PROJECTS + SPRINTS sidebar; TEAMS scoping works for the single ENG team.",
+    "No UI found yet to create a second team — if that was in scope, it may still be incomplete or admin-only elsewhere.",
+    "Left fixture ENG-12 in Todo for team to keep or cancel."
+  ]
+}

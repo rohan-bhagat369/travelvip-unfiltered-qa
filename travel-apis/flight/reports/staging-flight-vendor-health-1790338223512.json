@@ -1,0 +1,210 @@
+{
+  "at": "2026-09-25T12:12:28.709Z",
+  "base": "https://api-staging.travelvip.ai",
+  "days": 45,
+  "returnOffset": 7,
+  "summary": {
+    "PASS": 3,
+    "PARTIAL": 3,
+    "BUG": 0,
+    "NOT TESTED": 0
+  },
+  "rows": [
+    {
+      "id": "DOM-OW",
+      "label": "Domestic OW DEL→BOM",
+      "journey": "ONE_WAY",
+      "route": "DEL-BOM",
+      "dateOnward": "2026-11-09",
+      "dateReturn": null,
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 1,
+      "elapsedMs": 214,
+      "onwardCount": 20,
+      "returnCount": 0,
+      "airlines": [
+        "6E",
+        "AI"
+      ],
+      "returnAirlines": [],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "6E 6E 46",
+        "AI AI 1785",
+        "AI AI 1777"
+      ],
+      "pricingOk": true,
+      "pricingCode": null,
+      "pricingMessage": null,
+      "priceId": "price_9e78bd80b5c148e38faaebd1957215a7",
+      "status": "PASS"
+    },
+    {
+      "id": "DOM-RT",
+      "label": "Domestic RT DEL↔BOM",
+      "journey": "ROUND_TRIP",
+      "route": "DEL-BOM-DEL",
+      "dateOnward": "2026-11-09",
+      "dateReturn": "2026-11-16",
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 2,
+      "elapsedMs": 14938,
+      "onwardCount": 20,
+      "returnCount": 20,
+      "airlines": [
+        "6E",
+        "AI"
+      ],
+      "returnAirlines": [
+        "AI"
+      ],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "6E 6E 46",
+        "AI AI 1785",
+        "AI AI 1777"
+      ],
+      "pricingOk": true,
+      "pricingCode": null,
+      "pricingMessage": null,
+      "priceId": "price_da2a261fc2c14a23839975613a7b1592",
+      "pricedPair": "6E 6E 46 + AI AI 2677",
+      "status": "PASS"
+    },
+    {
+      "id": "INTL-OW",
+      "label": "Intl OW DEL→DXB",
+      "journey": "ONE_WAY",
+      "route": "DEL-DXB",
+      "dateOnward": "2026-11-09",
+      "dateReturn": null,
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 1,
+      "elapsedMs": 12024,
+      "onwardCount": 4,
+      "returnCount": 0,
+      "airlines": [
+        "EK"
+      ],
+      "returnAirlines": [],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "EK EK 517",
+        "EK EK 513",
+        "EK EK 511"
+      ],
+      "pricingOk": false,
+      "pricingCode": "VENDOR_ERROR",
+      "pricingMessage": "Pricing failed.",
+      "priceId": null,
+      "status": "PARTIAL"
+    },
+    {
+      "id": "INTL-RT",
+      "label": "Intl RT DEL↔DXB",
+      "journey": "ROUND_TRIP",
+      "route": "DEL-DXB-DEL",
+      "dateOnward": "2026-11-09",
+      "dateReturn": "2026-11-16",
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 1,
+      "elapsedMs": 13030,
+      "onwardCount": 7,
+      "returnCount": 7,
+      "airlines": [
+        "EK",
+        "SQ"
+      ],
+      "returnAirlines": [
+        "EK",
+        "SQ"
+      ],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "EK EK 517",
+        "EK EK 513",
+        "EK EK 511"
+      ],
+      "pricingOk": false,
+      "pricingCode": "VENDOR_ERROR",
+      "pricingMessage": "Pricing failed.",
+      "priceId": null,
+      "pricedPair": "EK EK 517 + EK EK 2124",
+      "status": "PARTIAL"
+    },
+    {
+      "id": "DOM-OW-2",
+      "label": "Domestic OW BOM→BLR",
+      "journey": "ONE_WAY",
+      "route": "BOM-BLR",
+      "dateOnward": "2026-11-09",
+      "dateReturn": null,
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 4,
+      "elapsedMs": 27293,
+      "onwardCount": 20,
+      "returnCount": 0,
+      "airlines": [
+        "AI"
+      ],
+      "returnAirlines": [],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "AI AI 2857",
+        "AI AI 639",
+        "AI AI 435 / AI AI 2562"
+      ],
+      "pricingOk": true,
+      "pricingCode": null,
+      "pricingMessage": null,
+      "priceId": "price_12a6f4df13ab4a87b2e8da6e2328f2ea",
+      "status": "PASS"
+    },
+    {
+      "id": "INTL-OW-2",
+      "label": "Intl OW BOM→DXB",
+      "journey": "ONE_WAY",
+      "route": "BOM-DXB",
+      "dateOnward": "2026-11-09",
+      "dateReturn": null,
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 1,
+      "elapsedMs": 10933,
+      "onwardCount": 5,
+      "returnCount": 0,
+      "airlines": [
+        "EK"
+      ],
+      "returnAirlines": [],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "EK EK 503",
+        "EK EK 507",
+        "EK EK 509"
+      ],
+      "pricingOk": false,
+      "pricingCode": "VENDOR_ERROR",
+      "pricingMessage": "Pricing failed.",
+      "priceId": null,
+      "status": "PARTIAL"
+    }
+  ]
+}

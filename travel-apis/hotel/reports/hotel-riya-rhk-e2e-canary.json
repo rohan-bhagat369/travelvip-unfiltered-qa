@@ -1,0 +1,560 @@
+{
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "at": "2026-08-12T16:08:38.291Z",
+  "score": {
+    "PASS": 35,
+    "BUG": 0,
+    "NOT_TESTED": 2
+  },
+  "rhkRoomsFound": 0,
+  "rhkConfirmed": null,
+  "rhkFailed": null,
+  "riyaConfirmed": null,
+  "priorRiyaFailed": null,
+  "rows": [
+    {
+      "section": "RIYA-Confirmed",
+      "rule": "Booking Confirmed",
+      "how": "history/book",
+      "expected": "Confirmed",
+      "status": "PASS",
+      "actual": "br=BR1786547445661796 hotel=Treebo Diamond Residency - DDPK Inn",
+      "at": "2026-08-12T15:56:34.502Z"
+    },
+    {
+      "section": "RIYA-Confirmed",
+      "rule": "status salesSummary all properties + price math",
+      "how": "GET status",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "base=4003.74 tax=201.7 fee=0 disc=0 total=4205.44 INR gst=0 other=201.7",
+      "salesSummary": {
+        "baseFare": 4003.74,
+        "tax": 201.7,
+        "convenienceFee": 0,
+        "totalAmount": 4205.44,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 201.7
+        }
+      },
+      "at": "2026-08-12T15:56:34.502Z"
+    },
+    {
+      "section": "RIYA-Confirmed",
+      "rule": "details salesSummary all properties + price math",
+      "how": "GET details",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "base=4003.74 tax=201.7 fee=0 disc=0 total=4205.44 INR gst=0 other=201.7",
+      "salesSummary": {
+        "baseFare": 4003.74,
+        "tax": 201.7,
+        "convenienceFee": 0,
+        "totalAmount": 4205.44,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 201.7
+        }
+      },
+      "at": "2026-08-12T15:56:34.502Z"
+    },
+    {
+      "section": "RIYA-Confirmed",
+      "rule": "status vs details prices match",
+      "how": "Compare",
+      "expected": "same",
+      "status": "PASS",
+      "actual": "st=4205.44 det=4205.44",
+      "at": "2026-08-12T15:56:34.502Z"
+    },
+    {
+      "section": "RIYA-Confirmed",
+      "rule": "message null on success",
+      "how": "Inspect",
+      "expected": "null",
+      "status": "PASS",
+      "actual": "status=null details=null",
+      "at": "2026-08-12T15:56:34.502Z"
+    },
+    {
+      "section": "RIYA-Failed",
+      "rule": "Booking Failed",
+      "how": "book/history",
+      "expected": "Failed",
+      "status": "PASS",
+      "actual": "br=BR1786549983702929 hotel=Hiltop Hotel",
+      "at": "2026-08-12T15:56:34.959Z"
+    },
+    {
+      "section": "RIYA-Failed",
+      "rule": "status message NOT null",
+      "how": "GET status",
+      "expected": "provider reason",
+      "status": "PASS",
+      "actual": "\"Aadhaar Seeding is UnSuccessful\"",
+      "at": "2026-08-12T15:56:34.960Z"
+    },
+    {
+      "section": "RIYA-Failed",
+      "rule": "details message NOT null",
+      "how": "GET details",
+      "expected": "provider reason",
+      "status": "PASS",
+      "actual": "\"Aadhaar Seeding is UnSuccessful\"",
+      "at": "2026-08-12T15:56:34.960Z"
+    },
+    {
+      "section": "RIYA-Failed",
+      "rule": "status & details message match",
+      "how": "Compare",
+      "expected": "same",
+      "status": "PASS",
+      "actual": "s=Aadhaar Seeding is UnSuccessful | d=Aadhaar Seeding is UnSuccessful",
+      "at": "2026-08-12T15:56:34.960Z"
+    },
+    {
+      "section": "RIYA-Failed",
+      "rule": "status salesSummary on Failed",
+      "how": "GET status",
+      "expected": "schema+math",
+      "status": "PASS",
+      "actual": "total=13489.69 gst=0 other=2105.94",
+      "salesSummary": {
+        "baseFare": 11383.75,
+        "tax": 2105.94,
+        "convenienceFee": 0,
+        "totalAmount": 13489.69,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 2105.94
+        }
+      },
+      "at": "2026-08-12T15:56:34.960Z"
+    },
+    {
+      "section": "RIYA-Failed",
+      "rule": "details salesSummary on Failed",
+      "how": "GET details",
+      "expected": "schema+math",
+      "status": "PASS",
+      "actual": "total=13489.69 gst=0 other=2105.94",
+      "salesSummary": {
+        "baseFare": 11383.75,
+        "tax": 2105.94,
+        "convenienceFee": 0,
+        "totalAmount": 13489.69,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 2105.94
+        }
+      },
+      "at": "2026-08-12T15:56:34.960Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786547947718879 status salesSummary",
+      "how": "GET status",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":9226.55,\"tax\":2046.4,\"convenienceFee\":0,\"totalAmount\":11272.95,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":2046.4}}",
+      "hotel": "Taj Dubai",
+      "sales": {
+        "baseFare": 9226.55,
+        "tax": 2046.4,
+        "convenienceFee": 0,
+        "totalAmount": 11272.95,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 2046.4
+        }
+      },
+      "at": "2026-08-12T15:47:44.951Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786547947718879 details salesSummary",
+      "how": "GET details",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":9226.55,\"tax\":2046.4,\"convenienceFee\":0,\"totalAmount\":11272.95,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":2046.4}}",
+      "hotel": "Taj Dubai",
+      "sales": {
+        "baseFare": 9226.55,
+        "tax": 2046.4,
+        "convenienceFee": 0,
+        "totalAmount": 11272.95,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 2046.4
+        }
+      },
+      "at": "2026-08-12T15:47:44.951Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786547947718879 message null",
+      "how": "Inspect message",
+      "expected": "null on success",
+      "status": "PASS",
+      "actual": "status=null details=null",
+      "at": "2026-08-12T15:47:44.951Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786547947718879 status=details totals",
+      "how": "Compare",
+      "expected": "match",
+      "status": "PASS",
+      "actual": "st=11272.95 det=11272.95",
+      "at": "2026-08-12T15:47:44.951Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786547445661796 status salesSummary",
+      "how": "GET status",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":4003.74,\"tax\":201.7,\"convenienceFee\":0,\"totalAmount\":4205.44,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":201.7}}",
+      "hotel": "Treebo Diamond Residency - DDPK Inn",
+      "sales": {
+        "baseFare": 4003.74,
+        "tax": 201.7,
+        "convenienceFee": 0,
+        "totalAmount": 4205.44,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 201.7
+        }
+      },
+      "at": "2026-08-12T15:47:45.120Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786547445661796 details salesSummary",
+      "how": "GET details",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":4003.74,\"tax\":201.7,\"convenienceFee\":0,\"totalAmount\":4205.44,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":201.7}}",
+      "hotel": "Treebo Diamond Residency - DDPK Inn",
+      "sales": {
+        "baseFare": 4003.74,
+        "tax": 201.7,
+        "convenienceFee": 0,
+        "totalAmount": 4205.44,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 201.7
+        }
+      },
+      "at": "2026-08-12T15:47:45.120Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786547445661796 message null",
+      "how": "Inspect message",
+      "expected": "null on success",
+      "status": "PASS",
+      "actual": "status=null details=null",
+      "at": "2026-08-12T15:47:45.120Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786547445661796 status=details totals",
+      "how": "Compare",
+      "expected": "match",
+      "status": "PASS",
+      "actual": "st=4205.44 det=4205.44",
+      "at": "2026-08-12T15:47:45.120Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786536500416168 status salesSummary",
+      "how": "GET status",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":10285.19,\"tax\":1542.78,\"convenienceFee\":0,\"totalAmount\":11827.97,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":1542.78}}",
+      "hotel": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+      "sales": {
+        "baseFare": 10285.19,
+        "tax": 1542.78,
+        "convenienceFee": 0,
+        "totalAmount": 11827.97,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 1542.78
+        }
+      },
+      "at": "2026-08-12T15:47:45.302Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786536500416168 details salesSummary",
+      "how": "GET details",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":10285.19,\"tax\":1542.78,\"convenienceFee\":0,\"totalAmount\":11827.97,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":1542.78}}",
+      "hotel": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+      "sales": {
+        "baseFare": 10285.19,
+        "tax": 1542.78,
+        "convenienceFee": 0,
+        "totalAmount": 11827.97,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 1542.78
+        }
+      },
+      "at": "2026-08-12T15:47:45.303Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786536500416168 message null",
+      "how": "Inspect message",
+      "expected": "null on success",
+      "status": "PASS",
+      "actual": "status=null details=null",
+      "at": "2026-08-12T15:47:45.303Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786536500416168 status=details totals",
+      "how": "Compare",
+      "expected": "match",
+      "status": "PASS",
+      "actual": "st=11827.97 det=11827.97",
+      "at": "2026-08-12T15:47:45.303Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786528522623648 status salesSummary",
+      "how": "GET status",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":7004.9,\"tax\":359.96,\"convenienceFee\":0,\"totalAmount\":7364.86,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":359.96}}",
+      "hotel": "Hiltop Hotel",
+      "sales": {
+        "baseFare": 7004.9,
+        "tax": 359.96,
+        "convenienceFee": 0,
+        "totalAmount": 7364.86,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 359.96
+        }
+      },
+      "at": "2026-08-12T15:47:45.477Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786528522623648 details salesSummary",
+      "how": "GET details",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":7004.9,\"tax\":359.96,\"convenienceFee\":0,\"totalAmount\":7364.86,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":359.96}}",
+      "hotel": "Hiltop Hotel",
+      "sales": {
+        "baseFare": 7004.9,
+        "tax": 359.96,
+        "convenienceFee": 0,
+        "totalAmount": 7364.86,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 359.96
+        }
+      },
+      "at": "2026-08-12T15:47:45.477Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786528522623648 message null",
+      "how": "Inspect message",
+      "expected": "null on success",
+      "status": "PASS",
+      "actual": "status=null details=null",
+      "at": "2026-08-12T15:47:45.477Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786528522623648 status=details totals",
+      "how": "Compare",
+      "expected": "match",
+      "status": "PASS",
+      "actual": "st=7364.86 det=7364.86",
+      "at": "2026-08-12T15:47:45.477Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786527210977304 status salesSummary",
+      "how": "GET status",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":4000,\"tax\":600,\"convenienceFee\":0,\"totalAmount\":4600,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":600}}",
+      "hotel": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+      "sales": {
+        "baseFare": 4000,
+        "tax": 600,
+        "convenienceFee": 0,
+        "totalAmount": 4600,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 600
+        }
+      },
+      "at": "2026-08-12T15:47:45.644Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786527210977304 details salesSummary",
+      "how": "GET details",
+      "expected": "full schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":4000,\"tax\":600,\"convenienceFee\":0,\"totalAmount\":4600,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":600}}",
+      "hotel": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+      "sales": {
+        "baseFare": 4000,
+        "tax": 600,
+        "convenienceFee": 0,
+        "totalAmount": 4600,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 600
+        }
+      },
+      "at": "2026-08-12T15:47:45.644Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786527210977304 message null",
+      "how": "Inspect message",
+      "expected": "null on success",
+      "status": "PASS",
+      "actual": "status=null details=null",
+      "at": "2026-08-12T15:47:45.644Z"
+    },
+    {
+      "section": "Confirmed-History",
+      "rule": "BR1786527210977304 status=details totals",
+      "how": "Compare",
+      "expected": "match",
+      "status": "PASS",
+      "actual": "st=4600 det=4600",
+      "at": "2026-08-12T15:47:45.644Z"
+    },
+    {
+      "section": "RIYA-Confirmed",
+      "rule": "Booking Confirmed (history)",
+      "how": "history BR1786536500416168",
+      "expected": "Confirmed",
+      "status": "PASS",
+      "actual": "br=BR1786536500416168 Keys Prima by Lemon Tree Hotels, Pimpri Pune (supplier inferred from prior RIYA inventory)",
+      "at": "2026-08-12T16:00:22.334Z"
+    },
+    {
+      "section": "RIYA-Confirmed",
+      "rule": "status salesSummary",
+      "how": "GET status",
+      "expected": "schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":10285.19,\"tax\":1542.78,\"convenienceFee\":0,\"totalAmount\":11827.97,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":1542.78}}",
+      "sales": {
+        "baseFare": 10285.19,
+        "tax": 1542.78,
+        "convenienceFee": 0,
+        "totalAmount": 11827.97,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 1542.78
+        }
+      },
+      "at": "2026-08-12T16:00:22.334Z"
+    },
+    {
+      "section": "RIYA-Confirmed",
+      "rule": "details salesSummary",
+      "how": "GET details",
+      "expected": "schema+math",
+      "status": "PASS",
+      "actual": "{\"baseFare\":10285.19,\"tax\":1542.78,\"convenienceFee\":0,\"totalAmount\":11827.97,\"totalDiscount\":0,\"currency\":\"INR\",\"taxBreakup\":{\"gst\":0,\"otherTaxes\":1542.78}}",
+      "sales": {
+        "baseFare": 10285.19,
+        "tax": 1542.78,
+        "convenienceFee": 0,
+        "totalAmount": 11827.97,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 1542.78
+        }
+      },
+      "at": "2026-08-12T16:00:22.334Z"
+    },
+    {
+      "section": "RIYA-Confirmed",
+      "rule": "message null",
+      "how": "Inspect",
+      "expected": "null",
+      "status": "PASS",
+      "actual": "{\"s\":null,\"d\":null}",
+      "at": "2026-08-12T16:00:22.334Z"
+    },
+    {
+      "section": "RHK-Confirmed",
+      "rule": "Obtain Confirmed",
+      "how": "fresh RHK non-Taj",
+      "expected": "Confirmed",
+      "status": "NOT TESTED",
+      "actual": "no Confirmed",
+      "at": "2026-08-12T16:08:38.290Z"
+    },
+    {
+      "section": "RHK-Failed",
+      "rule": "Obtain Failed",
+      "how": "fresh RHK non-Taj",
+      "expected": "Failed+message",
+      "status": "NOT TESTED",
+      "actual": "no RHK inventory found outside Taj Dubai",
+      "at": "2026-08-12T16:08:38.290Z"
+    }
+  ],
+  "bugs": [],
+  "evidence": {
+    "rhkConfirmedNonTaj": null,
+    "rhkFailedNonTaj": null
+  },
+  "rhkHunt": {
+    "candidates": 0,
+    "attempts": []
+  }
+}

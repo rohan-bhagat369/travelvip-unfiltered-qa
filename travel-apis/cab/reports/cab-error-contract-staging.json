@@ -1,0 +1,3702 @@
+{
+  "source": "Cab-API-Error-Contract.pdf",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "generatedAt": "2026-09-11T15:15:32.484Z",
+  "tags": [
+    "VALIDATE",
+    "FILTERS",
+    "LIVE"
+  ],
+  "catalogSize": 46,
+  "counts": {
+    "PASS": 42,
+    "BUG": 3,
+    "NOT TESTED": 1
+  },
+  "rows": [
+    {
+      "id": "LOC-1",
+      "section": "1",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/locations",
+      "how": "Either 'query' or both 'latitude' and 'longitude' required",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Either 'query' or both 'latitude' and 'longitude' parameters are required",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Either 'query' or both 'latitude' and 'longitude' parameters are required",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:13Z",
+          "request_id": "req-1789139714183"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "LOC-2",
+      "section": "1",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/locations",
+      "how": "Both 'latitude' and 'longitude' required when searching by coordinates",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Both 'latitude' and 'longitude' are required when searching by coordinates",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Both 'latitude' and 'longitude' are required when searching by coordinates",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:13Z",
+          "request_id": "req-1789139714242"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "LOC-3",
+      "section": "1",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/locations",
+      "how": "'latitude' and 'longitude' must be numeric decimal degrees",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "'latitude' and 'longitude' must be numeric decimal degrees",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "'latitude' and 'longitude' must be numeric decimal degrees",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:13Z",
+          "request_id": "req-1789139714557"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "LOC-4",
+      "section": "1",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/locations",
+      "how": "'latitude' between -90..90 and 'longitude' between -180..180",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "'latitude' must be between -90 and 90 and 'longitude' between -180 and 180",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "'latitude' must be between -90 and 90 and 'longitude' between -180 and 180",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:13Z",
+          "request_id": "req-1789139714637"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-1",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "Request body missing or not valid JSON",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Request body is missing or not valid JSON. Send a JSON object with journeyType, travelType, pickup, drop and pickupDatetime.",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Request body is missing or not valid JSON. Send a JSON object with journeyType, travelType, pickup, drop and pickupDatetime.",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:13Z",
+          "request_id": "req-1789139714690"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-2",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "Missing required field journeyType",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Missing required field 'journeyType'. journeyType, travelType, pickup, drop and pickupDatetime are all mandatory.",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Missing required field 'journeyType'. journeyType, travelType, pickup, drop and pickupDatetime are all mandatory.",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:13Z",
+          "request_id": "req-1789139714758"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-3",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "Invalid journeyType — Allowed AIRPORT, RENTAL, OUTSTATION",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid journeyType 'TAXI'. Allowed values are AIRPORT, RENTAL or OUTSTATION.",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid journeyType 'TAXI'. Allowed values are AIRPORT, RENTAL or OUTSTATION.",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:13Z",
+          "request_id": "req-1789139714830"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-4",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "Invalid travelType — Allowed DEPARTURE, ARRIVAL",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid travelType 'INVALID'. Allowed values are DEPARTURE (city to airport) or ARRIVAL (airport to city).",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid travelType 'INVALID'. Allowed values are DEPARTURE (city to airport) or ARRIVAL (airport to city).",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:14Z",
+          "request_id": "req-1789139714898"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-5",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "airportCode mandatory when journeyType is AIRPORT",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Missing required field 'airportCode'. airportCode is mandatory when journeyType is AIRPORT.",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Missing required field 'airportCode'. airportCode is mandatory when journeyType is AIRPORT.",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:14Z",
+          "request_id": "req-1789139714957"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-6",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "Invalid coordinates for pickup/drop",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid coordinates for pickup: latitude must be between -90 and 90 and longitude between -180 and 180 (got latitude 999, longitude 77.1591).",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid coordinates for pickup: latitude must be between -90 and 90 and longitude between -180 and 180 (got latitude 999, longitude 77.1591).",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:14Z",
+          "request_id": "req-1789139715017"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-7",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "distanceKm must be 0 or more (not negative)",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid distanceKm '-5'. It must be 0 or more, not a negative value.",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid distanceKm '-5'. It must be 0 or more, not a negative value.",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:14Z",
+          "request_id": "req-1789139715083"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-8",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "pickupDatetime in the past rejected",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2020-01-01T10:00:00Z is in the past. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-11T17:15:14Z (now 2026-09-11T15:15:14Z).",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2020-01-01T10:00:00Z is in the past. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-11T17:15:14Z (now 2026-09-11T15:15:14Z).",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:14Z",
+          "request_id": "req-1789139715157"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-9",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "RENTAL pickup and drop must be same location",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "BUG",
+      "body": {
+        "currency": "INR",
+        "cabs": [
+          {
+            "searchId": "d3d85d5a-8d32-4aaa-8665-439267cac763|d8374ba04b6ee890217f1b4f1b1945f03de62b6fc5069cdf7586a5ce7b7d0ff3",
+            "cabId": "62ce92b0-0868-40e7-8544-5311962ba9e8",
+            "fareId": "72",
+            "vehicle": {
+              "type": "HATCHBACK",
+              "category": "ECONOMY",
+              "filterTag": "Hatchback",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Hatchback.png",
+              "model": "WagonR or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 1,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 3.2,
+              "ratingCount": 403
+            },
+            "trip": {
+              "distanceKm": 20,
+              "durationMin": 120,
+              "extraKmFareLabel": "INR 15/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "20 Kms Ride",
+              "Driver Allowance (₹250)"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹15/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 1737,
+              "taxes": 99,
+              "convenienceFee": 91.8,
+              "totalAmount": 1927.8,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFknQ9mZ8heEGPxngwP2CVl8PKCzT4+7EImK2ZBiA1uPouJXFRtLxOuhy0vOR3DrNM7E4dhJ00Srx/Bp38odUV3nCaiVw3fm1aBkbpYyptv1E7Mvrz76MQQ+7J5Vix3fybrqVkEXLVlLChLe9A6ht2NRhxVHvCd01mB0VvbUxmeRkgi6saSk9FuPEOfCaFmbS/cncDvmpatiDW40/XwGJ4HUQfTL11oZqVoM/RPbj84S+fOgCGiobKJcsKj9gj4DGmju5CiGOKJqQS/Qo126XWAMCfltGajRVSTvqoQXxSELw0QPdvJGzpjz5im3H/utLrAdEI8lHU+7VnaoBe+08CME/OtHqu2NdSm/qBrbtMppSYixtBCbeVtxbKM0U5A2mDiVB7/mxLGO1c7XS/QJ1rLVQAiFrQAmhCDmpBQ182/9uq",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1789141484640,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "21e16ce1-a7ac-4680-9833-2b89ef606fd4|d8374ba04b6ee890217f1b4f1b1945f03de62b6fc5069cdf7586a5ce7b7d0ff3",
+            "cabId": "c3ecc5d8-7b2e-4192-951b-18eeac63b47a",
+            "fareId": "72",
+            "vehicle": {
+              "type": "HATCHBACK",
+              "category": "ECONOMY",
+              "filterTag": "Hatchback",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Hatchback.png",
+              "model": "WagonR or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 1,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 3.2,
+              "ratingCount": 403
+            },
+            "trip": {
+              "distanceKm": 20,
+              "durationMin": 120,
+              "extraKmFareLabel": "INR 15/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "20 Kms Ride",
+              "Driver Allowance (₹250)"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹15/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 2034,
+              "taxes": 114,
+              "convenienceFee": 107.4,
+              "totalAmount": 2255.4,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkgbGwmRLFlWGWx9eDS1bLx19Xb9NN/AoH6WSx4Mx4oWnAYOyyivff6IuAP/Pix2mvhHjwAcHeyORx5YFPGVOsUfq1USGdAYyLLkhJe5tjiDz5O3r0lOj0Dyvv48U8+ul/U7TtxdzubX0Mwy5ZeIdolxInKiZfVNTKCKZIssR4pzltLr4nx9+Xq3blqL7JS03xflobyHeH8E6DZPSrIXEcNnKGvmKkPCO3S2YBq17lvN+fEQ2euPVqVpop3Q8j2euVEJP7cC7t1x+sX+q7lGKRNsFhuZX5nSma5ei2VxCYZRiSc2NOrzEu0DJzSZkcMUML5HX4oclYMvdteY6a+xrdDTVK41nz+aSANLPSRvSIoON+8RRhRP0LKaHXECZpv1FfDQRnvr1SL87wVdQDaJv2M0EQ3XooA2k+YtCzoaGCqgL",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1789141484641,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "be32666d-17e3-4f64-8526-9112b15646f2|d8374ba04b6ee890217f1b4f1b1945f03de62b6fc5069cdf7586a5ce7b7d0ff3",
+            "cabId": "e3b73480-44a9-4d7a-b0d4-cd0ddfccbde1",
+            "fareId": "74",
+            "vehicle": {
+              "type": "SUV",
+              "category": "ECONOMY",
+              "filterTag": "SUV",
+              "filterTagImage": "https://img.travelx.ai/icons/New/SUV.png",
+              "model": "Ertiga or Similar",
+              "seatingCapacity": 3,
+              "luggageCapacity": 3,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 3.2,
+              "ratingCount": 403
+            },
+            "trip": {
+              "distanceKm": 20,
+              "durationMin": 120,
+              "extraKmFareLabel": "INR 16.25/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "20 Kms Ride",
+              "Driver Allowance (₹250)"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹16.25/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 2332,
+              "taxes": 129,
+              "convenienceFee": 123.05,
+              "totalAmount": 2584.05,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFklp5tPobslKqUxol57C8+Pld2QSVBCBb0jfX8T69zPddAYOyyivff6IuAP/Pix2mvrUQQlkcMEopyCCMpar6utHq1USGdAYyLLkhJe5tjiDz5O3r0lOj0Dyvv48U8+ul/U7TtxdzubX0Mwy5ZeIdolxInKiZfVNTKCKZIssR4pzltLr4nx9+Xq3blqL7JS03xcGIQrzHqfi6VAmvqs615KPcipkVYzGGJib0swBfFyijZA9WqX+nNCUrkFsEccGddEWsUYADIMyL+f6eYF+bPR8FhuZX5nSma5ei2VxCYZRiSc2NOrzEu0DJzSZkcMUML5HX4oclYMvdteY6a+xrdDTVK41nz+aSANLPSRvSIoON+8RRhRP0LKaHXECZpv1FfDQRnvr1SL87wVdQDaJv2M0EQ3XooA2k+YtCzoaGCqgL",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1789141484639,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "557fab7d-c6d1-4d69-a936-82b05762fcad|d8374ba04b6ee890217f1b4f1b1945f03de62b6fc5069cdf7586a5ce7b7d0ff3",
+            "cabId": "928f5e19-22b0-47aa-a17c-230f10e236da",
+            "fareId": "73",
+            "vehicle": {
+              "type": "SEDAN",
+              "category": "ECONOMY",
+              "filterTag": "Sedan",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Sedan.png",
+              "model": "Dzire or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 2,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 3.2,
+              "ratingCount": 403
+            },
+            "trip": {
+              "distanceKm": 20,
+              "durationMin": 120,
+              "extraKmFareLabel": "INR 13.5/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "20 Kms Ride",
+              "Driver Allowance (₹250)"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹13.5/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 2392,
+              "taxes": 132,
+              "convenienceFee": 126.2,
+              "totalAmount": 2650.2,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkioItDzZ1TB426DS99E9x/15bYY4e+FnPNoHhhRCZvofAYOyyivff6IuAP/Pix2mvtikn+fL6WyCBVjfRc3PoDDq1USGdAYyLLkhJe5tjiDz5O3r0lOj0Dyvv48U8+ul/U7TtxdzubX0Mwy5ZeIdolxInKiZfVNTKCKZIssR4pzltLr4nx9+Xq3blqL7JS03xdqslAjMV6RJ3KAF8JsZ2Be5k+kpeIOtBGeDDJCgTY6Qyk3ndO8gIPVd0IdlOR9ml0JP7cC7t1x+sX+q7lGKRNsFhuZX5nSma5ei2VxCYZRiSc2NOrzEu0DJzSZkcMUML5HX4oclYMvdteY6a+xrdDTVK41nz+aSANLPSRvSIoON+8RRhRP0LKaHXECZpv1FfDQRnvr1SL87wVdQDaJv2M0EQ3XooA2k+YtCzoaGCqgL",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1789141484638,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "6b99074e-070c-4b90-b1b0-94e3b75bfab7|d8374ba04b6ee890217f1b4f1b1945f03de62b6fc5069cdf7586a5ce7b7d0ff3",
+            "cabId": "64a7a19c-0cb1-41ae-be0a-cd482363c571",
+            "fareId": "73",
+            "vehicle": {
+              "type": "SEDAN",
+              "category": "ECONOMY",
+              "filterTag": "Sedan",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Sedan.png",
+              "model": "Dzire or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 2,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 3.2,
+              "ratingCount": 403
+            },
+            "trip": {
+              "distanceKm": 20,
+              "durationMin": 120,
+              "extraKmFareLabel": "INR 13.5/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "20 Kms Ride",
+              "Driver Allowance (₹250)"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹13.5/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 2485,
+              "taxes": 137,
+              "convenienceFee": 131.1,
+              "totalAmount": 2753.1,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkmpRWCsRSa1weajIKnTjjdlTEXZGhZV6DZZYKzKUuCIhAYOyyivff6IuAP/Pix2mvma+g/9HjTNL+47M6jAjupPq1USGdAYyLLkhJe5tjiDz5O3r0lOj0Dyvv48U8+ul/U7TtxdzubX0Mwy5ZeIdolxInKiZfVNTKCKZIssR4pzltLr4nx9+Xq3blqL7JS03xdLoVO6ED4PT/iQxlTeIF4Mkr+3SK1pKL5iBU4GgSTENcoa982pxoMcUpMj37eXqIkJP7cC7t1x+sX+q7lGKRNsFhuZX5nSma5ei2VxCYZRiSc2NOrzEu0DJzSZkcMUML5HX4oclYMvdteY6a+xrdDTVK41nz+aSANLPSRvSIoON+8RRhRP0LKaHXECZpv1FfDQRnvr1SL87wVdQDaJv2M0EQ3XooA2k+YtCzoaGCqgL",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1789141484638,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "67cd5c2e-4203-4b76-a6fd-8f6ea593824c|d8374ba04b6ee890217f1b4f1b1945f03de62b6fc5069cdf7586a5ce7b7d0ff3",
+            "cabId": "3390497c-d99d-4384-b5ec-9dc646409d76",
+            "fareId": "73",
+            "vehicle": {
+              "type": "SEDAN",
+              "category": "ECONOMY",
+              "filterTag": "Sedan",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Sedan.png",
+              "model": "Dzire or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 2,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 3.2,
+              "ratingCount": 403
+            },
+            "trip": {
+              "distanceKm": 20,
+              "durationMin": 120,
+              "extraKmFareLabel": "INR 13.5/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "20 Kms Ride",
+              "Driver Allowance (₹250)"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹13.5/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 2766,
+              "taxes": 151,
+              "convenienceFee": 145.85,
+              "totalAmount": 3062.85,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkl1OS2Eymj274HFpF7lH/zucIaGhP7BhyVHXX9HrBQ1pAYOyyivff6IuAP/Pix2mvrtGfK34qNsrv48/alTiMIHq1USGdAYyLLkhJe5tjiDz5O3r0lOj0Dyvv48U8+ul/U7TtxdzubX0Mwy5ZeIdolxInKiZfVNTKCKZIssR4pzltLr4nx9+Xq3blqL7JS03xandkJI+j/BiTJx+I22WgWL7mjDha/K4bhXtJRKSC5hQvnTgStvfivj7Ubye7uZKkUWsUYADIMyL+f6eYF+bPR8FhuZX5nSma5ei2VxCYZRiSc2NOrzEu0DJzSZkcMUML5HX4oclYMvdteY6a+xrdDTVK41nz+aSANLPSRvSIoON+8RRhRP0LKaHXECZpv1FfDQRnvr1SL87wVdQDaJv2M0EQ3XooA2k+YtCzoaGCqgL",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1789141484639,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "ed1538ea-9c7e-4f68-bbee-8f72fb24a295|d8374ba04b6ee890217f1b4f1b1945f03de62b6fc5069cdf7586a5ce7b7d0ff3",
+            "cabId": "d8222721-2c90-4a35-9f97-1d022fb1c5da",
+            "fareId": "72",
+            "vehicle": {
+              "type": "HATCHBACK",
+              "category": "ECONOMY",
+              "filterTag": "Hatchback",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Hatchback.png",
+              "model": "WagonR or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 1,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 3.2,
+              "ratingCount": 403
+            },
+            "trip": {
+              "distanceKm": 20,
+              "durationMin": 120,
+              "extraKmFareLabel": "INR 15/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "20 Kms Ride",
+              "Driver Allowance (₹250)"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹15/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 2785,
+              "taxes": 152,
+              "convenienceFee": 146.85,
+              "totalAmount": 3083.85,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkqSmheE7IfKMnBER8dVAc711Gi/0ekXmkJ16r/GVeVW5AYOyyivff6IuAP/Pix2mvjvS02Ak7nEi+l3+8pdJoRrq1USGdAYyLLkhJe5tjiDz5O3r0lOj0Dyvv48U8+ul/U7TtxdzubX0Mwy5ZeIdolxInKiZfVNTKCKZIssR4pzltLr4nx9+Xq3blqL7JS03xZsxxA//PmBNZ1O1dBIbEvPBp8NGbcSDQJ87fXwmS1ev+4pXfqhV9m92zJdxNPpGr0WsUYADIMyL+f6eYF+bPR8FhuZX5nSma5ei2VxCYZRiSc2NOrzEu0DJzSZkcMUML5HX4oclYMvdteY6a+xrdDTVK41nz+aSANLPSRvSIoON+8RRhRP0LKaHXECZpv1FfDQRnvr1SL87wVdQDaJv2M0EQ3XooA2k+YtCzoaGCqgL",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1789141484641,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "8448b485-f59d-4491-b1c0-e63cb4ec8102|d8374ba04b6ee890217f1b4f1b1945f03de62b6fc5069cdf7586a5ce7b7d0ff3",
+            "cabId": "61ad9a20-3bf1-4a4e-81e3-d3c46bfafb71",
+            "fareId": "74",
+            "vehicle": {
+              "type": "SUV",
+              "category": "ECONOMY",
+              "filterTag": "SUV",
+              "filterTagImage": "https://img.travelx.ai/icons/New/SUV.png",
+              "model": "Ertiga or Similar",
+              "seatingCapacity": 3,
+              "luggageCapacity": 3,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 3.2,
+              "ratingCount": 403
+            },
+            "trip": {
+              "distanceKm": 20,
+              "durationMin": 120,
+              "extraKmFareLabel": "INR 19.75/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "20 Kms Ride",
+              "Driver Allowance (₹250)"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹19.75/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 3043,
+              "taxes": 165,
+              "convenienceFee": 160.4,
+              "totalAmount": 3368.4,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFktSAgz/d94UNA4IlV3Y3sQcY1L8wUBHxfJItqJMn3eNV+sfy4BH3dz/j6bbIsErWiJDMqpBo0BHKMOlYRNtGrFrq1USGdAYyLLkhJe5tjiDz5O3r0lOj0Dyvv48U8+ul/U7TtxdzubX0Mwy5ZeIdolxInKiZfVNTKCKZIssR4pzltLr4nx9+Xq3blqL7JS03xcO0jooH4CJBxmdWBq1NgjOPnv9DHjNJVQ9gDXV7Aw1pU03niBkAkHP74Ifch2qAokJP7cC7t1x+sX+q7lGKRNsFhuZX5nSma5ei2VxCYZRiSc2NOrzEu0DJzSZkcMUML5HX4oclYMvdteY6a+xrdDTVK41nz+aSANLPSRvSIoON+8RRhRP0LKaHXECZpv1FfDQRnvr1SL87wVdQDaJv2M0EQ3XooA2k+YtCzoaGCqgL",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1789141484640,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "ec33bb11-f14e-408b-a419-b18fc0c0706d|d8374ba04b6ee890217f1b4f1b1945f03de62b6fc5069cdf7586a5ce7b7d0ff3",
+            "cabId": "5b4a5779-d01e-4592-9325-57aec48600a0",
+            "fareId": "74",
+            "vehicle": {
+              "type": "SUV",
+              "category": "ECONOMY",
+              "filterTag": "SUV",
+              "filterTagImage": "https://img.travelx.ai/icons/New/SUV.png",
+              "model": "Ertiga or Similar",
+              "seatingCapacity": 3,
+              "luggageCapacity": 3,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 3.2,
+              "ratingCount": 403
+            },
+            "trip": {
+              "distanceKm": 20,
+              "durationMin": 120,
+              "extraKmFareLabel": "INR 19.75/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "20 Kms Ride",
+              "Driver Allowance (₹250)"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹19.75/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 3915,
+              "taxes": 208,
+              "convenienceFee": 206.15,
+              "totalAmount": 4329.15,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFks4csrrpxXZsohvgb17C5cBAR8aoFOSsZJdIEK3HyhqGiXvNwx8C4cbsyvd0JEiqEqECBmsyCz1mEo8B3HMXj2Tq1USGdAYyLLkhJe5tjiDz5O3r0lOj0Dyvv48U8+ul/U7TtxdzubX0Mwy5ZeIdolxInKiZfVNTKCKZIssR4pzltLr4nx9+Xq3blqL7JS03xdUvEHB7aGVcqTHLpi3jcsSKnG38MR9GzhaVhgfdFfksCGEO3HiFi0a4Ggvvg/eFq0WsUYADIMyL+f6eYF+bPR8FhuZX5nSma5ei2VxCYZRiSc2NOrzEu0DJzSZkcMUML5HX4oclYMvdteY6a+xrdDTVK41nz+aSANLPSRvSIoON+8RRhRP0LKaHXECZpv1FfDQRnvr1SL87wVdQDaJv2M0EQ3XooA2k+YtCzoaGCqgL",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1789141484640,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          }
+        ],
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "SR-10",
+      "section": "2",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/search",
+      "how": "RENTAL_PACKAGE_MISMATCH with availablePackages",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "RENTAL_PACKAGE_MISMATCH",
+      "actualHttp": 400,
+      "actualCode": "RENTAL_PACKAGE_MISMATCH",
+      "actualMessage": "Invalid rental package: 5 hr / 55 km does not match any available package. Choose one of the available packages.",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "RENTAL_PACKAGE_MISMATCH",
+          "message": "Invalid rental package: 5 hr / 55 km does not match any available package. Choose one of the available packages.",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:24Z",
+          "request_id": "req-1789139725772",
+          "availablePackages": [
+            {
+              "durationMin": 120,
+              "distanceKm": 20
+            },
+            {
+              "durationMin": 240,
+              "distanceKm": 40
+            },
+            {
+              "durationMin": 360,
+              "distanceKm": 60
+            },
+            {
+              "durationMin": 480,
+              "distanceKm": 80
+            },
+            {
+              "durationMin": 600,
+              "distanceKm": 100
+            },
+            {
+              "durationMin": 720,
+              "distanceKm": 120
+            }
+          ]
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FR-1",
+      "section": "3",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/fare",
+      "how": "searchId is required (empty body)",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "searchId is required",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "searchId is required",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139725846"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FR-2",
+      "section": "3",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/fare",
+      "how": "searchId is required (empty string)",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "searchId is required",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "searchId is required",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726082"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FR-3",
+      "section": "3",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/fare",
+      "how": "Invalid/expired searchId rejected",
+      "note": "PDF said provider fail may be 200 []; staging/canary return 400 INVALID_SEARCH_ID",
+      "expectHttp": 400,
+      "expectCode": "INVALID_SEARCH_ID",
+      "actualHttp": 400,
+      "actualCode": "INVALID_SEARCH_ID",
+      "actualMessage": "searchId is not valid or has expired",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "INVALID_SEARCH_ID",
+          "message": "searchId is not valid or has expired",
+          "details": "Send a searchId returned by /search; a fare quote is short-lived",
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726150"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FB-1",
+      "section": "4",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/finalize-booking",
+      "how": "Request body must be a non-empty JSON object",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Request body must be a non-empty JSON object",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Request body must be a non-empty JSON object",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726218"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FB-2",
+      "section": "4",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/finalize-booking",
+      "how": "Invalid bookingReference",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid bookingReference",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid bookingReference",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726294"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FB-3",
+      "section": "4",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/finalize-booking",
+      "how": "Invalid priceId must not create bookingRefId",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid bookingReference",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid bookingReference",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726374"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FB-4",
+      "section": "4",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/finalize-booking",
+      "how": "Invalid passenger/contact email",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid bookingReference",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid bookingReference",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726447"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "UB-1",
+      "section": "5",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "Request body is required",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Request body is required",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Request body is required",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726520"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "UB-2",
+      "section": "5",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "bookingRefId is required",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "bookingRefId is required",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "bookingRefId is required",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726592"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "UB-3",
+      "section": "5",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "Invalid status — Allowed CONFIRMED, CANCELLED, FAILED",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid status \"CANCELED\"",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid status \"CANCELED\"",
+          "details": "Allowed values: CONFIRMED, CANCELLED, FAILED.",
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726684"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "UB-4",
+      "section": "5",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "BOOKING_NOT_FOUND for fake BR",
+      "note": "",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:25Z",
+          "request_id": "req-1789139726754"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "UB-5",
+      "section": "5",
+      "tag": "LIVE",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "PROVIDER_BOOKING_ID_MISMATCH",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "PROVIDER_BOOKING_ID_MISMATCH",
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": "Booking updated successfully",
+      "status": "BUG",
+      "body": {
+        "status": 200,
+        "message": "Booking updated successfully",
+        "bookingId": "8021",
+        "bookingReference": "BR1789139728482504",
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "WH-1",
+      "section": "6",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/partner-webhook",
+      "how": "Request body is required (valid Basic Auth)",
+      "note": "Set CAB_WEBHOOK_USER + CAB_WEBHOOK_PASS",
+      "expectHttp": null,
+      "expectCode": null,
+      "actualHttp": null,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "NOT TESTED",
+      "body": null
+    },
+    {
+      "id": "WH-2",
+      "section": "6",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/partner-webhook",
+      "how": "INVALID_WEBHOOK_CREDENTIALS or WEBHOOK_IP_NOT_ALLOWED",
+      "note": "Accept 401 INVALID_WEBHOOK_CREDENTIALS or 403 WEBHOOK_IP_NOT_ALLOWED",
+      "expectHttp": [
+        401,
+        403
+      ],
+      "expectCode": null,
+      "actualHttp": 401,
+      "actualCode": "INVALID_WEBHOOK_CREDENTIALS",
+      "actualMessage": "Invalid webhook credentials",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "INVALID_WEBHOOK_CREDENTIALS",
+          "message": "Invalid webhook credentials",
+          "details": "Webhook Basic Auth credentials are missing or incorrect",
+          "timestamp": "2026-09-11T15:15:28Z",
+          "request_id": null
+        },
+        "_meta": {
+          "correlation_id": "9d186dfe-595b-42ec-9490-5aea5114c497"
+        }
+      }
+    },
+    {
+      "id": "ST-1",
+      "section": "7",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/{id}/status",
+      "how": "bookingId is not a valid booking reference",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "bookingId is not a valid booking reference",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "bookingId is not a valid booking reference",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:28Z",
+          "request_id": "req-1789139729678"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "ST-2",
+      "section": "7",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/{id}/status",
+      "how": "BOOKING_NOT_FOUND",
+      "note": "",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:28Z",
+          "request_id": "req-1789139729758"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "DT-1",
+      "section": "8",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/booking/{id}",
+      "how": "bookingId is not a valid booking reference",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "bookingId is not a valid booking reference",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "bookingId is not a valid booking reference",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:28Z",
+          "request_id": "req-1789139729818"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "DT-2",
+      "section": "8",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/booking/{id}",
+      "how": "BOOKING_NOT_FOUND",
+      "note": "",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:28Z",
+          "request_id": "req-1789139729876"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "TR-1",
+      "section": "9",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/tracking/{id}/location",
+      "how": "bookingId is not a valid booking reference",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "bookingId is not a valid booking reference",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "bookingId is not a valid booking reference",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:29Z",
+          "request_id": "req-1789139729934"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "TR-2",
+      "section": "9",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/tracking/{id}/location",
+      "how": "BOOKING_NOT_FOUND",
+      "note": "",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:29Z",
+          "request_id": "req-1789139730000"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "HI-1",
+      "section": "10",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/booking/history",
+      "how": "userId is required",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "BUG",
+      "body": {
+        "status": 0,
+        "totalCount": 201,
+        "page": 0,
+        "perPage": 10,
+        "bookings": [
+          {
+            "bookingReferenceId": "BR1789139728482504",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-20T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138901852218",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-11T23:16:22+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "122785",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138888579291",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-11T23:06:22+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "590528",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138762335211",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-14T17:59:20+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "276325",
+              "assignment": {
+                "driverName": "Driver378171",
+                "driverMobile": "9876530289",
+                "vehicleRegistrationNo": "DL70A3844",
+                "trackingUrl": null,
+                "assignedAt": "2026-09-11 14:59:33",
+                "driver": {
+                  "name": "Driver378171",
+                  "mobile": "9876530289",
+                  "image": "378171",
+                  "chauffeurId": "378171",
+                  "isReassigned": false
+                },
+                "vehicle": {
+                  "name": "SWIFT",
+                  "color": "white",
+                  "type": "SWIFT",
+                  "registrationNo": "DL70A3844",
+                  "vehicleId": "688275"
+                },
+                "partner": "TRAVELVIP",
+                "isReassigned": false,
+                "syncedAt": null
+              },
+              "progress": {
+                "cabAssigned": true,
+                "cabLeftForPickup": true,
+                "cabReachedSource": true,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138741124468",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-14T16:58:59+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "821489",
+              "assignment": {
+                "driverName": "Driver814962",
+                "driverMobile": "9876580248",
+                "vehicleRegistrationNo": "DL80A6358",
+                "trackingUrl": null,
+                "assignedAt": "2026-09-11 14:59:12",
+                "driver": {
+                  "name": "Driver814962",
+                  "mobile": "9876580248",
+                  "image": "814962",
+                  "chauffeurId": "814962",
+                  "isReassigned": false
+                },
+                "vehicle": {
+                  "name": "SWIFT",
+                  "color": "white",
+                  "type": "SWIFT",
+                  "registrationNo": "DL80A6358",
+                  "vehicleId": "515485"
+                },
+                "partner": "TRAVELVIP",
+                "isReassigned": false,
+                "syncedAt": null
+              },
+              "progress": {
+                "cabAssigned": true,
+                "cabLeftForPickup": true,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138722459926",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-14T15:58:40+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "313968",
+              "assignment": {
+                "driverName": "Driver311231",
+                "driverMobile": "9876562908",
+                "vehicleRegistrationNo": "DL99A9930",
+                "trackingUrl": null,
+                "assignedAt": "2026-09-11 14:58:53",
+                "driver": {
+                  "name": "Driver311231",
+                  "mobile": "9876562908",
+                  "image": "311231",
+                  "chauffeurId": "311231",
+                  "isReassigned": false
+                },
+                "vehicle": {
+                  "name": "SWIFT",
+                  "color": "white",
+                  "type": "SWIFT",
+                  "registrationNo": "DL99A9930",
+                  "vehicleId": "152463"
+                },
+                "partner": "TRAVELVIP",
+                "isReassigned": false,
+                "syncedAt": null
+              },
+              "progress": {
+                "cabAssigned": true,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138705594788",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-14T14:58:23+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "190367",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138446237416",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-10-19T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "597195",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138433594733",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-10-16T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "158529",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138426562206",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-10-13T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "478853",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          }
+        ],
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "HI-2",
+      "section": "10",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/booking/history",
+      "how": "page/perpage clamped (not rejected)",
+      "note": "",
+      "expectHttp": 200,
+      "expectCode": null,
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "PASS",
+      "body": {
+        "status": 0,
+        "totalCount": 201,
+        "page": 0,
+        "perPage": 10,
+        "bookings": [
+          {
+            "bookingReferenceId": "BR1789139728482504",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-20T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138901852218",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-11T23:16:22+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "122785",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138888579291",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-11T23:06:22+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "590528",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138762335211",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-14T17:59:20+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "276325",
+              "assignment": {
+                "driverName": "Driver378171",
+                "driverMobile": "9876530289",
+                "vehicleRegistrationNo": "DL70A3844",
+                "trackingUrl": null,
+                "assignedAt": "2026-09-11 14:59:33",
+                "driver": {
+                  "name": "Driver378171",
+                  "mobile": "9876530289",
+                  "image": "378171",
+                  "chauffeurId": "378171",
+                  "isReassigned": false
+                },
+                "vehicle": {
+                  "name": "SWIFT",
+                  "color": "white",
+                  "type": "SWIFT",
+                  "registrationNo": "DL70A3844",
+                  "vehicleId": "688275"
+                },
+                "partner": "TRAVELVIP",
+                "isReassigned": false,
+                "syncedAt": null
+              },
+              "progress": {
+                "cabAssigned": true,
+                "cabLeftForPickup": true,
+                "cabReachedSource": true,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138741124468",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-14T16:58:59+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "821489",
+              "assignment": {
+                "driverName": "Driver814962",
+                "driverMobile": "9876580248",
+                "vehicleRegistrationNo": "DL80A6358",
+                "trackingUrl": null,
+                "assignedAt": "2026-09-11 14:59:12",
+                "driver": {
+                  "name": "Driver814962",
+                  "mobile": "9876580248",
+                  "image": "814962",
+                  "chauffeurId": "814962",
+                  "isReassigned": false
+                },
+                "vehicle": {
+                  "name": "SWIFT",
+                  "color": "white",
+                  "type": "SWIFT",
+                  "registrationNo": "DL80A6358",
+                  "vehicleId": "515485"
+                },
+                "partner": "TRAVELVIP",
+                "isReassigned": false,
+                "syncedAt": null
+              },
+              "progress": {
+                "cabAssigned": true,
+                "cabLeftForPickup": true,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138722459926",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-14T15:58:40+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "313968",
+              "assignment": {
+                "driverName": "Driver311231",
+                "driverMobile": "9876562908",
+                "vehicleRegistrationNo": "DL99A9930",
+                "trackingUrl": null,
+                "assignedAt": "2026-09-11 14:58:53",
+                "driver": {
+                  "name": "Driver311231",
+                  "mobile": "9876562908",
+                  "image": "311231",
+                  "chauffeurId": "311231",
+                  "isReassigned": false
+                },
+                "vehicle": {
+                  "name": "SWIFT",
+                  "color": "white",
+                  "type": "SWIFT",
+                  "registrationNo": "DL99A9930",
+                  "vehicleId": "152463"
+                },
+                "partner": "TRAVELVIP",
+                "isReassigned": false,
+                "syncedAt": null
+              },
+              "progress": {
+                "cabAssigned": true,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138705594788",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-14T14:58:23+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "190367",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138446237416",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-10-19T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "597195",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138433594733",
+            "status": "Cancelled",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-10-16T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "158529",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1789138426562206",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715",
+              "gender": "male"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-10-13T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageMobileUrl": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.2,
+                "ratingCount": 403
+              },
+              "otp": "478853",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          }
+        ],
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "CA-1",
+      "section": "11",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/bookings/{id}/cancel",
+      "how": "bookingId is not a valid booking reference",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "bookingId is not a valid booking reference",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "bookingId is not a valid booking reference",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:29Z",
+          "request_id": "req-1789139730849"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "CA-2",
+      "section": "11",
+      "tag": "VALIDATE",
+      "api": "GET /v1/airportServices/cabs/bookings/{id}/cancel",
+      "how": "BOOKING_NOT_FOUND",
+      "note": "",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:30Z",
+          "request_id": "req-1789139730918"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "CA-3",
+      "section": "11",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/bookings/{id}/cancel",
+      "how": "Invalid cancelledBy — Allowed USER, ADMIN, SYSTEM",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid cancelledBy \"AGENT\"",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid cancelledBy \"AGENT\"",
+          "details": "Allowed values: USER, ADMIN, SYSTEM.",
+          "timestamp": "2026-09-11T15:15:30Z",
+          "request_id": "req-1789139730976"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "CA-4",
+      "section": "11",
+      "tag": "VALIDATE",
+      "api": "POST /v1/airportServices/cabs/bookings/{id}/cancel",
+      "how": "cancellationReason max 500 characters",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "'cancellationReason' must be a string of at most 500 characters",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "'cancellationReason' must be a string of at most 500 characters",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:30Z",
+          "request_id": "req-1789139731047"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "CA-5",
+      "section": "11",
+      "tag": "LIVE",
+      "api": "GET /v1/airportServices/cabs/bookings/{id}/cancel",
+      "how": "Confirmed BR BR1789139728482504",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": null,
+      "actualHttp": 400,
+      "actualCode": "CANCELLATION_FAILED",
+      "actualMessage": "No booking found for the given bookingId",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "CANCELLATION_FAILED",
+          "message": "No booking found for the given bookingId",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:30Z",
+          "request_id": "req-1789139731234",
+          "bookingRefId": "BR1789139728482504",
+          "type": "cancel",
+          "result": {
+            "bookingStatus": "FAILED"
+          }
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FLT-LOC-Q",
+      "section": "F",
+      "tag": "FILTERS",
+      "api": "GET /v1/airportServices/cabs/locations",
+      "how": "query=Delhi returns airport terminals",
+      "note": "",
+      "expectHttp": 200,
+      "expectCode": null,
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "PASS",
+      "body": {
+        "locations": [
+          {
+            "referenceId": "26",
+            "airportCode": "DEL",
+            "airportName": "Indira Gandhi International Airport (DEL)",
+            "terminalId": "T1",
+            "name": "IGI Airport-T1",
+            "city": "Delhi",
+            "address": "IGI Airport-T1",
+            "displayName": "T1 , IGI Airport-T1 , Delhi",
+            "latitude": 28.5627225,
+            "longitude": 77.1171405
+          },
+          {
+            "referenceId": "27",
+            "airportCode": "DEL",
+            "airportName": "Indira Gandhi International Airport (DEL)",
+            "terminalId": "T2",
+            "name": "IGI Airport-T2",
+            "city": "Delhi",
+            "address": "IGI Airport-T2",
+            "displayName": "T2 , IGI Airport-T2 , Delhi",
+            "latitude": 28.5584867,
+            "longitude": 77.0872235
+          },
+          {
+            "referenceId": "28",
+            "airportCode": "DEL",
+            "airportName": "Indira Gandhi International Airport (DEL)",
+            "terminalId": "T3",
+            "name": "IGI Airport-T3",
+            "city": "Delhi",
+            "address": "IGI Airport-T3",
+            "displayName": "T3 , IGI Airport-T3 , Delhi",
+            "latitude": 28.5550838,
+            "longitude": 77.0818266
+          },
+          {
+            "referenceId": "89",
+            "airportCode": "HDO",
+            "airportName": "Hindon Airport (HDO)",
+            "terminalId": "T1",
+            "name": "Hindon Airport",
+            "city": "Ghaziabad",
+            "address": "Hindon Airport",
+            "displayName": "T1 , Hindon Airport , Ghaziabad",
+            "latitude": 28.7052478,
+            "longitude": 77.3423036
+          }
+        ],
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FLT-LOC-XY",
+      "section": "F",
+      "tag": "FILTERS",
+      "api": "GET /v1/airportServices/cabs/locations",
+      "how": "lat+long returns nearby airports",
+      "note": "",
+      "expectHttp": 200,
+      "expectCode": null,
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "PASS",
+      "body": {
+        "locations": [
+          {
+            "referenceId": "69",
+            "airportCode": "PNQ",
+            "airportName": "Pune International Airport (PNQ)",
+            "terminalId": "T1",
+            "name": "Pune International Airport",
+            "city": "Pune",
+            "address": "Pune International Airport",
+            "displayName": "T1 , Pune International Airport , Pune",
+            "latitude": 18.579343,
+            "longitude": 73.9063419
+          },
+          {
+            "referenceId": "90",
+            "airportCode": "NMI",
+            "airportName": "Navi Mumbai International Airport (NMI)",
+            "terminalId": "T1",
+            "name": "Navi Mumbai International Airport",
+            "city": "Navi Mumbai",
+            "address": "Navi Mumbai International Airport",
+            "displayName": "T1 , Navi Mumbai International Airport , Navi Mumbai",
+            "latitude": 18.9943152,
+            "longitude": 73.0626862
+          },
+          {
+            "referenceId": "58",
+            "airportCode": "BOM",
+            "airportName": "Chhatrapati Shivaji Maharaj International Airport (BOM)",
+            "terminalId": "T2",
+            "name": "CSMI Airport-T2",
+            "city": "Mumbai",
+            "address": "CSMI Airport-T2",
+            "displayName": "T2 , CSMI Airport-T2 , Mumbai",
+            "latitude": 19.0974203,
+            "longitude": 72.8720327
+          },
+          {
+            "referenceId": "57",
+            "airportCode": "BOM",
+            "airportName": "Chhatrapati Shivaji Maharaj International Airport (BOM)",
+            "terminalId": "T1",
+            "name": "CSMI Airport-T1",
+            "city": "Mumbai",
+            "address": "CSMI Airport-T1",
+            "displayName": "T1 , CSMI Airport-T1 , Mumbai",
+            "latitude": 19.0928174,
+            "longitude": 72.8545117
+          },
+          {
+            "referenceId": "74",
+            "airportCode": "SAG",
+            "airportName": "Shirdi International Airport (SAG)",
+            "terminalId": "T1",
+            "name": "Shirdi International Airport",
+            "city": "Shirdi",
+            "address": "Shirdi International Airport",
+            "displayName": "T1 , Shirdi International Airport , Shirdi",
+            "latitude": 19.6923876,
+            "longitude": 74.3914915
+          },
+          {
+            "referenceId": "61",
+            "airportCode": "ISK",
+            "airportName": "Nashik Airport (ISK)",
+            "terminalId": "T1",
+            "name": "Nashik Airport",
+            "city": "Nashik",
+            "address": "Nashik Airport",
+            "displayName": "T1 , Nashik Airport , Nashik",
+            "latitude": 20.1131586,
+            "longitude": 73.8939328
+          },
+          {
+            "referenceId": "9",
+            "airportCode": "IXU",
+            "airportName": "Aurangabad Airport (IXU)",
+            "terminalId": "T1",
+            "name": "Aurangabad Airport",
+            "city": "Aurangabad",
+            "address": "Aurangabad Airport",
+            "displayName": "T1 , Aurangabad Airport , Aurangabad",
+            "latitude": 19.8642263,
+            "longitude": 75.3961317
+          },
+          {
+            "referenceId": "105",
+            "airportCode": "KLH",
+            "airportName": "Kolhapur Airport (KLH)",
+            "terminalId": "T1",
+            "name": "Kolhapur Airport",
+            "city": "Kolhapur",
+            "address": "Kolhapur Airport",
+            "displayName": "T1 , Kolhapur Airport , Kolhapur",
+            "latitude": 16.6647506,
+            "longitude": 74.2872359
+          },
+          {
+            "referenceId": "13",
+            "airportCode": "IXG",
+            "airportName": "Belgaum Airport (IXG)",
+            "terminalId": "T1",
+            "name": "Belgaum Airport",
+            "city": "Belagavi",
+            "address": "Belgaum Airport",
+            "displayName": "T1 , Belgaum Airport , Belagavi",
+            "latitude": 15.8632302,
+            "longitude": 74.6113479
+          },
+          {
+            "referenceId": "77",
+            "airportCode": "STV",
+            "airportName": "Surat International Airport (STV)",
+            "terminalId": "T1",
+            "name": "Surat International Airport",
+            "city": "Surat",
+            "address": "Surat International Airport",
+            "displayName": "T1 , Surat International Airport , Surat",
+            "latitude": 21.1213374,
+            "longitude": 72.7422424
+          },
+          {
+            "referenceId": "33",
+            "airportCode": "GOX",
+            "airportName": "Mopa Airport (GOX)",
+            "terminalId": "T1",
+            "name": "Mopa Airport",
+            "city": "Goa",
+            "address": "Mopa Airport",
+            "displayName": "T1 , Mopa Airport , Goa",
+            "latitude": 15.7312475,
+            "longitude": 73.8643496
+          },
+          {
+            "referenceId": "34",
+            "airportCode": "GOI",
+            "airportName": "Dabolim Airport (GOI)",
+            "terminalId": "T1",
+            "name": "Dabolim Airport",
+            "city": "Goa",
+            "address": "Dabolim Airport",
+            "displayName": "T1 , Dabolim Airport , Goa",
+            "latitude": 15.3804965,
+            "longitude": 73.8305903
+          },
+          {
+            "referenceId": "37",
+            "airportCode": "HBX",
+            "airportName": "Hubli Airport (HBX)",
+            "terminalId": "T1",
+            "name": "Hubli Airport",
+            "city": "Hubli",
+            "address": "Hubli Airport",
+            "displayName": "T1 , Hubli Airport , Hubli",
+            "latitude": 15.3574651,
+            "longitude": 75.0848701
+          },
+          {
+            "referenceId": "91",
+            "airportCode": "DIU",
+            "airportName": "Diu Airport (DIU)",
+            "terminalId": "T1",
+            "name": "Diu Airport",
+            "city": "Daman and Diu",
+            "address": "Diu Airport",
+            "displayName": "T1 , Diu Airport , Daman and Diu",
+            "latitude": 20.7133189,
+            "longitude": 70.9225044
+          },
+          {
+            "referenceId": "17",
+            "airportCode": "BHU",
+            "airportName": "Bhavnagar Airport (BHU)",
+            "terminalId": "T1",
+            "name": "Bhavnagar Airport",
+            "city": "Bhavnagar",
+            "address": "Bhavnagar Airport",
+            "displayName": "T1 , Bhavnagar Airport , Bhavnagar",
+            "latitude": 21.7540494,
+            "longitude": 72.1834267
+          },
+          {
+            "referenceId": "84",
+            "airportCode": "BDQ",
+            "airportName": "Vadodara Airport (BDQ)",
+            "terminalId": "T1",
+            "name": "Vadodara Airport",
+            "city": "Vadodara",
+            "address": "Vadodara Airport",
+            "displayName": "T1 , Vadodara Airport , Vadodara",
+            "latitude": 22.333876,
+            "longitude": 73.2267454
+          },
+          {
+            "referenceId": "87",
+            "airportCode": "VDY",
+            "airportName": "Jindal Vijaynagar Airport (VDY)",
+            "terminalId": "T1",
+            "name": "Jindal Vijaynagar Airport",
+            "city": "VijayNagar",
+            "address": "Jindal Vijaynagar Airport",
+            "displayName": "T1 , Jindal Vijaynagar Airport , VijayNagar",
+            "latitude": 15.1786452,
+            "longitude": 76.6281519
+          },
+          {
+            "referenceId": "38",
+            "airportCode": "HYD",
+            "airportName": "Rajiv Gandhi International Airport (HYD)",
+            "terminalId": "T1",
+            "name": "RGI Airport",
+            "city": "Hyderabad",
+            "address": "RGI Airport",
+            "displayName": "T1 , RGI Airport , Hyderabad",
+            "latitude": 17.2360037,
+            "longitude": 78.4243153
+          },
+          {
+            "referenceId": "39",
+            "airportCode": "IDR",
+            "airportName": "Devi Ahilya Bai Holkar Airport (IDR)",
+            "terminalId": "T1",
+            "name": "Devi Ahilya Bai Holkar Airport",
+            "city": "Indore",
+            "address": "Devi Ahilya Bai Holkar Airport",
+            "displayName": "T1 , Devi Ahilya Bai Holkar Airport , Indore",
+            "latitude": 22.728251,
+            "longitude": 75.8039595
+          },
+          {
+            "referenceId": "3",
+            "airportCode": "AMD",
+            "airportName": "Sardar Vallabhbhai Patel International Airport (AMD)",
+            "terminalId": "T1",
+            "name": "Sardar Vallabhbhai Patel International Airport",
+            "city": "Ahmedabad",
+            "address": "Sardar Vallabhbhai Patel International Airport",
+            "displayName": "T1 , Sardar Vallabhbhai Patel International Airport , Ahmedabad",
+            "latitude": 23.0746063,
+            "longitude": 72.6213139
+          },
+          {
+            "referenceId": "97",
+            "airportCode": "HSR",
+            "airportName": "Rajkot International Airport (HSR)",
+            "terminalId": "T1",
+            "name": "Rajkot International Airport (Hirasar)",
+            "city": "Hirasar",
+            "address": "Rajkot International Airport (Hirasar)",
+            "displayName": "T1 , Rajkot International Airport , Hirasar",
+            "latitude": 22.3820553,
+            "longitude": 71.0317159
+          },
+          {
+            "referenceId": "106",
+            "airportCode": "KJB",
+            "airportName": "Kurnool Airport (KJB)",
+            "terminalId": "T1",
+            "name": "Kurnool Airport",
+            "city": "Kurnool",
+            "address": "Kurnool Airport",
+            "displayName": "T1 , Kurnool Airport , Kurnool",
+            "latitude": 15.7136398,
+            "longitude": 78.1622375
+          },
+          {
+            "referenceId": "75",
+            "airportCode": "RQY",
+            "airportName": "Rashtrakavi Kuvempu Airport (Shivamogga Airport) (RQY)",
+            "terminalId": "T1",
+            "name": "Rashtrakavi Kuvempu Airport (Shivamogga Airport)",
+            "city": "Shivamogga",
+            "address": "Rashtrakavi Kuvempu Airport (Shivamogga Airport)",
+            "displayName": "T1 , Rashtrakavi Kuvempu Airport (Shivamogga Airport) , Shivamogga",
+            "latitude": 13.8578514,
+            "longitude": 75.6028824
+          },
+          {
+            "referenceId": "66",
+            "airportCode": "PBD",
+            "airportName": "Porbandar Airport (PBD)",
+            "terminalId": "T1",
+            "name": "Porbandar Airport",
+            "city": "Porbandar",
+            "address": "Porbandar Airport",
+            "displayName": "T1 , Porbandar Airport , Porbandar",
+            "latitude": 21.6477058,
+            "longitude": 69.6583844
+          },
+          {
+            "referenceId": "60",
+            "airportCode": "NAG",
+            "airportName": "Dr Babasaheb Ambedkar International Airport (NAG)",
+            "terminalId": "T1",
+            "name": "Dr Babasaheb Ambedkar International Airport",
+            "city": "Nagpur",
+            "address": "Dr Babasaheb Ambedkar International Airport",
+            "displayName": "T1 , Dr Babasaheb Ambedkar International Airport , Nagpur",
+            "latitude": 21.0903471,
+            "longitude": 79.0547228
+          },
+          {
+            "referenceId": "56",
+            "airportCode": "IXE",
+            "airportName": "Mangalore International Airport (IXE)",
+            "terminalId": "T1",
+            "name": "Mangalore International Airport",
+            "city": "Mangalore",
+            "address": "Mangalore International Airport",
+            "displayName": "T1 , Mangalore International Airport , Mangalore",
+            "latitude": 12.9538643,
+            "longitude": 74.885357
+          },
+          {
+            "referenceId": "18",
+            "airportCode": "BHO",
+            "airportName": "Raja Bhoj Airport (BHO)",
+            "terminalId": "T1",
+            "name": "Raja Bhoj Airport",
+            "city": "Bhopal",
+            "address": "Raja Bhoj Airport",
+            "displayName": "T1 , Raja Bhoj Airport , Bhopal",
+            "latitude": 23.2914528,
+            "longitude": 77.3359007
+          },
+          {
+            "referenceId": "47",
+            "airportCode": "IXY",
+            "airportName": "Kandla Airport (IXY)",
+            "terminalId": "T1",
+            "name": "Kandla Airport",
+            "city": "Kandla",
+            "address": "Kandla Airport",
+            "displayName": "T1 , Kandla Airport , Kandla",
+            "latitude": 23.109776,
+            "longitude": 70.1020808
+          },
+          {
+            "referenceId": "83",
+            "airportCode": "UDR",
+            "airportName": "Maharana Pratap Airport (UDR)",
+            "terminalId": "T1",
+            "name": "Maharana Pratap Airport",
+            "city": "Udaipur",
+            "address": "Maharana Pratap Airport",
+            "displayName": "T1 , Maharana Pratap Airport , Udaipur",
+            "latitude": 24.6184526,
+            "longitude": 73.8985269
+          },
+          {
+            "referenceId": "103",
+            "airportCode": "CDP",
+            "airportName": "Kadapa Airport (CDP)",
+            "terminalId": "T1",
+            "name": "Kadapa Airport",
+            "city": "Kadapa",
+            "address": "Kadapa Airport",
+            "displayName": "T1 , Kadapa Airport , Kadapa",
+            "latitude": 14.51423,
+            "longitude": 78.7697839
+          }
+        ],
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FLT-LOC-AIR",
+      "section": "F",
+      "tag": "FILTERS",
+      "api": "GET /v1/airportServices/cabs/locations",
+      "how": "airportCode alone rejected (need query or lat+long)",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Either 'query' or both 'latitude' and 'longitude' parameters are required",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Either 'query' or both 'latitude' and 'longitude' parameters are required",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:30Z",
+          "request_id": "req-1789139731768"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FLT-PLACE-OK",
+      "section": "F",
+      "tag": "FILTERS",
+      "api": "GET /v1/airportServices/cabs/places/autocomplete",
+      "how": "searchText returns suggestions",
+      "note": "",
+      "expectHttp": 200,
+      "expectCode": null,
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "PASS",
+      "body": {
+        "suggestions": [
+          {
+            "placePrediction": {
+              "placeId": "ChIJtYQU5kbBwjsRsLO0qPcsSLY",
+              "text": {
+                "text": "Viman Nagar, Pune, Maharashtra, India",
+                "matches": [
+                  {
+                    "endOffset": 11
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "placePrediction": {
+              "placeId": "EkRWaW1hbiBOYWdhciBSb2FkLCBDbG92ZXIgUGFyaywgVmltYW4gTmFnYXIsIFB1bmUsIE1haGFyYXNodHJhLCBJbmRpYSIuKiwKFAoSCf3Q0-g4wcI7Efc3xKknOviWEhQKEgknw38HR8HCOxE5uHsT-K0aYQ",
+              "text": {
+                "text": "Viman Nagar Road, Clover Park, Viman Nagar, Pune, Maharashtra, India",
+                "matches": [
+                  {
+                    "endOffset": 11
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "placePrediction": {
+              "placeId": "ChIJP9oLIHVoOToR4mytCNv7Pj8",
+              "text": {
+                "text": "Viman Nagar, Kakani Nagar, Visakhapatnam, Andhra Pradesh, India",
+                "matches": [
+                  {
+                    "endOffset": 11
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "placePrediction": {
+              "placeId": "EkVWaW1hbiBOYWdhciBSb2FkLCBTYWtvcmUgTmFnYXIsIFZpbWFuIE5hZ2FyLCBQdW5lLCBNYWhhcmFzaHRyYSwgSW5kaWEiLiosChQKEgnLEfYrRMHCOxExSeuM_j3dNhIUChIJ6z7IzDjBwjsRCRKZDcqdzX0",
+              "text": {
+                "text": "Viman Nagar Road, Sakore Nagar, Viman Nagar, Pune, Maharashtra, India",
+                "matches": [
+                  {
+                    "endOffset": 11
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "placePrediction": {
+              "placeId": "ChIJmVK46xu_wjsRGoVb7luvIEg",
+              "text": {
+                "text": "Viman Nagar, Ward No. 8, Sanjay Nagar Pashan, Pashan, Pune, Maharashtra, India",
+                "matches": [
+                  {
+                    "endOffset": 11
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    },
+    {
+      "id": "FLT-PLACE-MISS",
+      "section": "F",
+      "tag": "FILTERS",
+      "api": "GET /v1/airportServices/cabs/places/autocomplete",
+      "how": "searchText required",
+      "note": "",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "searchText parameter is required",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "searchText parameter is required",
+          "details": null,
+          "timestamp": "2026-09-11T15:15:31Z",
+          "request_id": "req-1789139732371"
+        },
+        "_meta": {
+          "correlation_id": "fc66475c-cbb5-4cab-a11b-07aa1527fad3"
+        }
+      }
+    }
+  ]
+}

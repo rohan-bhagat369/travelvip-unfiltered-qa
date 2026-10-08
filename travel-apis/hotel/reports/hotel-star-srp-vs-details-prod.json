@@ -1,0 +1,2063 @@
+{
+  "ranAt": "2026-08-27T14:46:03.331Z",
+  "baseUrl": "https://api.travelvip.ai",
+  "tierId": "19597201",
+  "checkin": "2026-09-23",
+  "checkout": "2026-09-24",
+  "starsTested": [
+    4,
+    5,
+    3
+  ],
+  "detailLimitPerCityStar": 6,
+  "note": "Search + details only. No book. Star on SRP must equal star on details after bucket/vendor fix.",
+  "counts": {
+    "PASS": 48,
+    "BUG": 0,
+    "NOT_TESTED": 0
+  },
+  "mismatchCount": 0,
+  "mismatches": [],
+  "rows": [
+    {
+      "id": 1,
+      "section": "SRP",
+      "rule": "Delhi: all SRP hotels are 4★ after filter",
+      "how": "fq df_long_star_rating:[4]",
+      "expected": "every results[].starRating === 4",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Transit stay:4 | KONNECT INN - POD HOTEL:4 | The Venue by JMD:4",
+      "city": "Delhi",
+      "star": 4,
+      "mismatchSample": []
+    },
+    {
+      "id": 2,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Delhi: 4★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 4★ SRP",
+      "expected": "details.starRating === srp.starRating === 4",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Delhi",
+      "star": 4,
+      "pairs": [
+        {
+          "id": "71367533",
+          "name": "Transit stay",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Transit stay",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72348081",
+          "name": "KONNECT INN - POD HOTEL",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "KONNECT INN - POD HOTEL",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70524349",
+          "name": "The Venue by JMD",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Foxoso Venue Hotel Delhi Airport",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39646912",
+          "name": "Hotel Eurostar International",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Eurostar International",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71072579",
+          "name": "ALPHA STAY",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Alpha Stay",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39319845",
+          "name": "Hindustan By Backpackers Heaven Near Connaught Place",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "New Hindustan By Backpackers Heaven",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "section": "SRP",
+      "rule": "Delhi: all SRP hotels are 5★ after filter",
+      "how": "fq df_long_star_rating:[5]",
+      "expected": "every results[].starRating === 5",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=The  Metrostay Pod Hotel :5 | Hotel Pink City Delhi:5 | Sharda inn:5",
+      "city": "Delhi",
+      "star": 5,
+      "mismatchSample": []
+    },
+    {
+      "id": 4,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Delhi: 5★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 5★ SRP",
+      "expected": "details.starRating === srp.starRating === 5",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Delhi",
+      "star": 5,
+      "pairs": [
+        {
+          "id": "70523371",
+          "name": "The  Metrostay Pod Hotel ",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "The Metrostay Delhi",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39723184",
+          "name": "Hotel Pink City Delhi",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Pink City",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72380979",
+          "name": "Sharda inn",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "SHARDA INN",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71360857",
+          "name": "Hotel Mother Palace",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Mother Palace",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72394034",
+          "name": "Hotel Hilife",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Hilife",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70500975",
+          "name": "HOTEL J R INTERNATIONAL",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Hotel J.R. International",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "section": "SRP",
+      "rule": "Delhi: all SRP hotels are 3★ after filter",
+      "how": "fq df_long_star_rating:[3]",
+      "expected": "every results[].starRating === 3",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Plazzo Prime Plaza:3 | FRAZYONE HOSTEL:3 | Transit POD Stay – New Delhi | Airport Transit:3",
+      "city": "Delhi",
+      "star": 3,
+      "mismatchSample": []
+    },
+    {
+      "id": 6,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Delhi: 3★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 3★ SRP",
+      "expected": "details.starRating === srp.starRating === 3",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Delhi",
+      "star": 3,
+      "pairs": [
+        {
+          "id": "70440667",
+          "name": "Plazzo Prime Plaza",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Plazzo Prime Plaza",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "50350635",
+          "name": "FRAZYONE HOSTEL",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Frazyone Hostel",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72390430",
+          "name": "Transit POD Stay – New Delhi | Airport Transit",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Transit POD Stay",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72390384",
+          "name": "A One Hostel",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "A ONE HOSTEL",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72420098",
+          "name": "ROYAL RESIDENCY",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "HOTEL ROYAL RESIDENCY",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71359568",
+          "name": "Hotel Reflection Suites",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Reflection Suites",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "section": "SRP",
+      "rule": "Mumbai: all SRP hotels are 4★ after filter",
+      "how": "fq df_long_star_rating:[4]",
+      "expected": "every results[].starRating === 4",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=THE HOSTELLER MUMBAI, INTERNATIONAL AIRP:4 | Hotel National Residency:4 | HOTEL SAI GRAND RESIDENCY:4",
+      "city": "Mumbai",
+      "star": 4,
+      "mismatchSample": []
+    },
+    {
+      "id": 8,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Mumbai: 4★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 4★ SRP",
+      "expected": "details.starRating === srp.starRating === 4",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Mumbai",
+      "star": 4,
+      "pairs": [
+        {
+          "id": "70692312",
+          "name": "THE HOSTELLER MUMBAI, INTERNATIONAL AIRP",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "The Hosteller Mumbai, International Airport",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16320317",
+          "name": "Hotel National Residency",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel National Residency",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "51125120",
+          "name": "HOTEL SAI GRAND RESIDENCY",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "HOTEL SAI GRAND RESIDENCY",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39470185",
+          "name": "GATEWAY SUITES",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Gateway Suites",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71358342",
+          "name": "Hotel Lotus Grand ",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Lotus Grand ",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70512026",
+          "name": "Hotel Grace Executive",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Grace Executive",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "section": "SRP",
+      "rule": "Mumbai: all SRP hotels are 5★ after filter",
+      "how": "fq df_long_star_rating:[5]",
+      "expected": "every results[].starRating === 5",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Perfect Dormitory:5 | Stay Villa Hostel For Male and Female:5 | Sulu Stay Inn Near Mumbai International Airport:5",
+      "city": "Mumbai",
+      "star": 5,
+      "mismatchSample": []
+    },
+    {
+      "id": 10,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Mumbai: 5★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 5★ SRP",
+      "expected": "details.starRating === srp.starRating === 5",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Mumbai",
+      "star": 5,
+      "pairs": [
+        {
+          "id": "31325671",
+          "name": "Perfect Dormitory",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Perfect Dormitory",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16795954",
+          "name": "Stay Villa Hostel For Male and Female",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Stay Villa Hostel For Male and Female",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70870021",
+          "name": "Sulu Stay Inn Near Mumbai International Airport",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Sulu Stay Inn Near Mumbai International Airport",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "55506388",
+          "name": "GoSolo Stays",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Gosolo Stays",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "62004436",
+          "name": "Cabinstay Airport",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "CABIN STAY AIRPORT-THE HUBZ",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39782342",
+          "name": "Hotel janata",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Janata",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "section": "SRP",
+      "rule": "Mumbai: all SRP hotels are 3★ after filter",
+      "how": "fq df_long_star_rating:[3]",
+      "expected": "every results[].starRating === 3",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=AFRA DORMITORY:3 | Rest Inn Hostel Dormitory:3 | negasi dormitory:3",
+      "city": "Mumbai",
+      "star": 3,
+      "mismatchSample": []
+    },
+    {
+      "id": 12,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Mumbai: 3★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 3★ SRP",
+      "expected": "details.starRating === srp.starRating === 3",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Mumbai",
+      "star": 3,
+      "pairs": [
+        {
+          "id": "41631156",
+          "name": "AFRA DORMITORY",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "AFRA DORMITORY",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "51359546",
+          "name": "Rest Inn Hostel Dormitory",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Rest Inn Hostel Dormitory",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "63121252",
+          "name": "negasi dormitory",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Negasi Dormitory",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "31427360",
+          "name": "Noor Dormitory",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Noor Dormitory Sakinaka",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72383340",
+          "name": "Basera Dormitory and Separate Cabins for Groups",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Basera Dormitory and Separate Cabins",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39928756",
+          "name": "Hotel Crystal Inn",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Crystal Inn",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "section": "SRP",
+      "rule": "Bangalore: all SRP hotels are 4★ after filter",
+      "how": "fq df_long_star_rating:[4]",
+      "expected": "every results[].starRating === 4",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=MAYUR PARADISE:4 | The Signature Inn Hotel:4 | SSN HomeStays in Bangalore Near La Casa:4",
+      "city": "Bangalore",
+      "star": 4,
+      "mismatchSample": []
+    },
+    {
+      "id": 14,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Bangalore: 4★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 4★ SRP",
+      "expected": "details.starRating === srp.starRating === 4",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Bangalore",
+      "star": 4,
+      "pairs": [
+        {
+          "id": "17347075",
+          "name": "MAYUR PARADISE",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Mayur Paradise",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15608058",
+          "name": "The Signature Inn Hotel",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "The Signature Inn",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "53730080",
+          "name": "SSN HomeStays in Bangalore Near La Casa",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "SSN HomeStays in Bangalore Near La Casa",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15782807",
+          "name": "Hotel Surya Residency Majestic",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Surya Residency Majestic",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71081068",
+          "name": "Green Valley Suites",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Green Valley Suites",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "32761899",
+          "name": "Orange Corner Bangalore international airport",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Orange Corner Bangalore international airport",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "section": "SRP",
+      "rule": "Bangalore: all SRP hotels are 5★ after filter",
+      "how": "fq df_long_star_rating:[5]",
+      "expected": "every results[].starRating === 5",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Century Gardens:5 | LUTINO HOTELS:5 | Lavish Residencey:5",
+      "city": "Bangalore",
+      "star": 5,
+      "mismatchSample": []
+    },
+    {
+      "id": 16,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Bangalore: 5★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 5★ SRP",
+      "expected": "details.starRating === srp.starRating === 5",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Bangalore",
+      "star": 5,
+      "pairs": [
+        {
+          "id": "72407276",
+          "name": "Century Gardens",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Century Gardens",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72228660",
+          "name": "LUTINO HOTELS",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "LUTINO HOTELS",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70999462",
+          "name": "Lavish Residencey",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Lavish Residencey",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71366370",
+          "name": "Lexus Lodge",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Lexus Lodge",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72468871",
+          "name": "Hotel Aura Residency",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Aura Residency",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72469814",
+          "name": "Aurelia INN - JP Nagar",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Aurelia INN - JP Nagar",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "section": "SRP",
+      "rule": "Bangalore: all SRP hotels are 3★ after filter",
+      "how": "fq df_long_star_rating:[3]",
+      "expected": "every results[].starRating === 3",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample= Zylo Indiranagar:3 | Loop by Zolo Silk Board, Bangalore:3 | Sampada Homestay:3",
+      "city": "Bangalore",
+      "star": 3,
+      "mismatchSample": []
+    },
+    {
+      "id": 18,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Bangalore: 3★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 3★ SRP",
+      "expected": "details.starRating === srp.starRating === 3",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Bangalore",
+      "star": 3,
+      "pairs": [
+        {
+          "id": "55395580",
+          "name": " Zylo Indiranagar",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Zylo Indiranagar",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72392840",
+          "name": "Loop by Zolo Silk Board, Bangalore",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Loop by Zolo Silk Board, Bangalore",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16086448",
+          "name": "Sampada Homestay",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Sampada Homestay",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72394389",
+          "name": "SM Stay Inn",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "SM Stay Inn",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "54083455",
+          "name": "Snore Summore",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "SNORE SUMMORE, HOSTEL IN KORAMANGALA",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70448178",
+          "name": "BLR Pods",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Blr Pods",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "section": "SRP",
+      "rule": "Chennai: all SRP hotels are 4★ after filter",
+      "how": "fq df_long_star_rating:[4]",
+      "expected": "every results[].starRating === 4",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=ANL Residency:4 | Smart Home Service Appts by Stayz Royale:4 | Inn10 By Blessings Hospitality:4",
+      "city": "Chennai",
+      "star": 4,
+      "mismatchSample": []
+    },
+    {
+      "id": 20,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Chennai: 4★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 4★ SRP",
+      "expected": "details.starRating === srp.starRating === 4",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Chennai",
+      "star": 4,
+      "pairs": [
+        {
+          "id": "71358790",
+          "name": "ANL Residency",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "ANL Residency",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72334210",
+          "name": "Smart Home Service Appts by Stayz Royale",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Smart Home Service Appts by Stayz Royale",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70596973",
+          "name": "Inn10 By Blessings Hospitality",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Inn10 By Blessings Hospitality",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16147759",
+          "name": "Simsan Hotel",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Simsan Hotel",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16306923",
+          "name": "Hotel White Park",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel White Park",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "32718407",
+          "name": "Hotel Grand Gaayatris",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Grand Gaayatris",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "section": "SRP",
+      "rule": "Chennai: all SRP hotels are 5★ after filter",
+      "how": "fq df_long_star_rating:[5]",
+      "expected": "every results[].starRating === 5",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=CAYZEN:5 | Sunlight Residency:5 | SUN CLASSIC RESIDENCY:5",
+      "city": "Chennai",
+      "star": 5,
+      "mismatchSample": []
+    },
+    {
+      "id": 22,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Chennai: 5★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 5★ SRP",
+      "expected": "details.starRating === srp.starRating === 5",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Chennai",
+      "star": 5,
+      "pairs": [
+        {
+          "id": "70771259",
+          "name": "CAYZEN",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "CAYZEN",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15617961",
+          "name": "Sunlight Residency",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Sunlight Residency",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72407832",
+          "name": "SUN CLASSIC RESIDENCY",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "SUN CLASSIC RESIDENCY",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70524081",
+          "name": "SAI LAKSHMI PAVANAM",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "SAI LAKSHMI PAVANAM",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70523735",
+          "name": "PRC Residency",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "PRC RESIDENCY",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15362575",
+          "name": "Park Plaza Chennai OMR",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Park Plaza Chennai OMR",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "section": "SRP",
+      "rule": "Chennai: all SRP hotels are 3★ after filter",
+      "how": "fq df_long_star_rating:[3]",
+      "expected": "every results[].starRating === 3",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=THE WHITEGLOW PREMIUM:3 | Aum karthikeya residency:3 | New Regency:3",
+      "city": "Chennai",
+      "star": 3,
+      "mismatchSample": []
+    },
+    {
+      "id": 24,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Chennai: 3★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 3★ SRP",
+      "expected": "details.starRating === srp.starRating === 3",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Chennai",
+      "star": 3,
+      "pairs": [
+        {
+          "id": "72382755",
+          "name": "THE WHITEGLOW PREMIUM",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "THE WHITEGLOW PREMIUM",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "41308464",
+          "name": "Aum karthikeya residency",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Aum Karthikeya",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15701011",
+          "name": "New Regency",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "New Regency",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15599185",
+          "name": "Hotel Shriram",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Shriram",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15300111",
+          "name": "Hotel adithya",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Adithya",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15339135",
+          "name": "The Mount Regency",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "The Mount Regency",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "section": "SRP",
+      "rule": "Pune: all SRP hotels are 4★ after filter",
+      "how": "fq df_long_star_rating:[4]",
+      "expected": "every results[].starRating === 4",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=HOTEL SILVER KEY NEAR ARUP HOSPITAL:4 | Panshet Camping:4 | Hotel RutuGandh Heritage:4",
+      "city": "Pune",
+      "star": 4,
+      "mismatchSample": []
+    },
+    {
+      "id": 26,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Pune: 4★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 4★ SRP",
+      "expected": "details.starRating === srp.starRating === 4",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Pune",
+      "star": 4,
+      "pairs": [
+        {
+          "id": "70501622",
+          "name": "HOTEL SILVER KEY NEAR ARUP HOSPITAL",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": null,
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "41631790",
+          "name": "Panshet Camping",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Panshet Camping",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39659818",
+          "name": "Hotel RutuGandh Heritage",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Rutugandh Heritage",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15662669",
+          "name": "Hotel Jagannath",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Jagannath",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72407301",
+          "name": "Urban Villa , Baner",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Urban Villa , Baner",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "38272476",
+          "name": "StayBird - Nest, A Premium Residences",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Staybird Nest A Premium Residences",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "section": "SRP",
+      "rule": "Pune: all SRP hotels are 5★ after filter",
+      "how": "fq df_long_star_rating:[5]",
+      "expected": "every results[].starRating === 5",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Hotel Embassy:5 | Boutique Stay  by One Tree, Kharadi Pune:5 | Majestic Inn:5",
+      "city": "Pune",
+      "star": 5,
+      "mismatchSample": []
+    },
+    {
+      "id": 28,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Pune: 5★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 5★ SRP",
+      "expected": "details.starRating === srp.starRating === 5",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Pune",
+      "star": 5,
+      "pairs": [
+        {
+          "id": "70512779",
+          "name": "Hotel Embassy",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Embassy",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72382745",
+          "name": "Boutique Stay  by One Tree, Kharadi Pune",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Boutique Stay by One Tree at Kharadi",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71316697",
+          "name": "Majestic Inn",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Majestic Inn",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72467402",
+          "name": "Casa Vista| Airport view| Boho theme| luxe",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Casa Vista| Airport view| Boho theme| luxe",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72405865",
+          "name": "Orraica Stays Neon Hometels",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Orraica Stays Neon Hometels",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16794804",
+          "name": "Emerald Vista Luxury Suites",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Emerald Vista Luxury Suites",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "section": "SRP",
+      "rule": "Pune: all SRP hotels are 3★ after filter",
+      "how": "fq df_long_star_rating:[3]",
+      "expected": "every results[].starRating === 3",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Hoshtel99 - Prime - Stay & Cowork - A Backpacker Hostel:3 | Fabhotel Dsp:3 | The Hosteller Panshet:3",
+      "city": "Pune",
+      "star": 3,
+      "mismatchSample": []
+    },
+    {
+      "id": 30,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Pune: 3★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 3★ SRP",
+      "expected": "details.starRating === srp.starRating === 3",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Pune",
+      "star": 3,
+      "pairs": [
+        {
+          "id": "39065394",
+          "name": "Hoshtel99 - Prime - Stay & Cowork - A Backpacker Hostel",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "HOSHTEL99 - PRIME - Stay, Cowork & Connect",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72471835",
+          "name": "Fabhotel Dsp",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Fabhotel Dsp",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71002761",
+          "name": "The Hosteller Panshet",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "The Hosteller Panshet, Lakeview",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70694296",
+          "name": "Coliwo Trois (Kharadi)",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Coliwo Trois - Kharadi",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72420257",
+          "name": "Fabhotel Swapanpurti Sai Avenue",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Fabhotel Swapanpurti Sai Avenue",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71200403",
+          "name": "Fabhotel Gandharva Inn",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Fabhotel Gandharva Inn",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "section": "SRP",
+      "rule": "Hyderabad: all SRP hotels are 4★ after filter",
+      "how": "fq df_long_star_rating:[4]",
+      "expected": "every results[].starRating === 4",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Hotel Sitara:4 | Ohris Baseraa Inn:4 | Hotel Signature Airport zone hyderabad:4",
+      "city": "Hyderabad",
+      "star": 4,
+      "mismatchSample": []
+    },
+    {
+      "id": 32,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Hyderabad: 4★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 4★ SRP",
+      "expected": "details.starRating === srp.starRating === 4",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Hyderabad",
+      "star": 4,
+      "pairs": [
+        {
+          "id": "39759653",
+          "name": "Hotel Sitara",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Ramoji Film City Hotel Sitara",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15498367",
+          "name": "Ohris Baseraa Inn",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "OHRIS BASERAA INN",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39931069",
+          "name": "Hotel Signature Airport zone hyderabad",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "HOTEL SIGNATURE AIRPORT ZONE SHAMSHABAD",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "30959074",
+          "name": "Hotel Elite By Signature Group",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Elite By Signature Group",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "41572423",
+          "name": "The Balcony Hotel",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "The Balcony Hotel",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15600551",
+          "name": "Hotel Nera Regency",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Nera Regency",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "section": "SRP",
+      "rule": "Hyderabad: all SRP hotels are 5★ after filter",
+      "how": "fq df_long_star_rating:[5]",
+      "expected": "every results[].starRating === 5",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Olive-2 Coliving PG:5 | VIBES 1:5 | White Fern Stays:5",
+      "city": "Hyderabad",
+      "star": 5,
+      "mismatchSample": []
+    },
+    {
+      "id": 34,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Hyderabad: 5★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 5★ SRP",
+      "expected": "details.starRating === srp.starRating === 5",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Hyderabad",
+      "star": 5,
+      "pairs": [
+        {
+          "id": "71384273",
+          "name": "Olive-2 Coliving PG",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Olive-2 Coliving PG",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72403401",
+          "name": "VIBES 1",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "VIBES 1",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "41546281",
+          "name": "White Fern Stays",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "White Fern Stays",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72380774",
+          "name": "BAEL TREE HOTEL",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "BAEL TREE HOTEL",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70880015",
+          "name": "ORION Studio service Apartments",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "ORION Studio service Apartments",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "38807316",
+          "name": "Hotel TARA International",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Hotel TARA International",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "section": "SRP",
+      "rule": "Hyderabad: all SRP hotels are 3★ after filter",
+      "how": "fq df_long_star_rating:[3]",
+      "expected": "every results[].starRating === 3",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Hotel Lotus Grand Ameerpet:3 | Slackpackr Hyderabad:3 | White Ridge Hotel-Kphb:3",
+      "city": "Hyderabad",
+      "star": 3,
+      "mismatchSample": []
+    },
+    {
+      "id": 36,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Hyderabad: 3★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 3★ SRP",
+      "expected": "details.starRating === srp.starRating === 3",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Hyderabad",
+      "star": 3,
+      "pairs": [
+        {
+          "id": "72383157",
+          "name": "Hotel Lotus Grand Ameerpet",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Lotus Grand Ameerpet",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "28053310",
+          "name": "Slackpackr Hyderabad",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Slackpackr Begumpet Hyderabad",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72381200",
+          "name": "White Ridge Hotel-Kphb",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "White Ridge Hotel-Kphb",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70457409",
+          "name": "FabHotel De Alphabet",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "FabHotel De Alphabet",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16196947",
+          "name": "Hotel Maya Deluxe",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Maya Deluxe",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "41616852",
+          "name": "Zostel Hyderabad",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Zostel Hyderabad",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "section": "SRP",
+      "rule": "Goa: all SRP hotels are 4★ after filter",
+      "how": "fq df_long_star_rating:[4]",
+      "expected": "every results[].starRating === 4",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=Easy Hostels:4 | The Country House:4 | SinQ Edge, Dona Paula:4",
+      "city": "Goa",
+      "star": 4,
+      "mismatchSample": []
+    },
+    {
+      "id": 38,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Goa: 4★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 4★ SRP",
+      "expected": "details.starRating === srp.starRating === 4",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Goa",
+      "star": 4,
+      "pairs": [
+        {
+          "id": "37758000",
+          "name": "Easy Hostels",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Easy Hostels",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "17288826",
+          "name": "The Country House",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "The Country House",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15740776",
+          "name": "SinQ Edge, Dona Paula",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "SinQ Edge, Dona Paula",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70779459",
+          "name": "Minimalist Panjim",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Minimalist, Panjim",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15649348",
+          "name": "Varanda Do Mar Hotel",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Varanda Do Mar Hotel",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39815491",
+          "name": "Golden Landmark Green Valley Beach Resort",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Golden Landmark Green Valley Beach Resort",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "section": "SRP",
+      "rule": "Goa: all SRP hotels are 5★ after filter",
+      "how": "fq df_long_star_rating:[5]",
+      "expected": "every results[].starRating === 5",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=The Fern Kadamba Hotel And Spa:5 | Ocean Suite:5 | Chances Resort & Casino:5",
+      "city": "Goa",
+      "star": 5,
+      "mismatchSample": []
+    },
+    {
+      "id": 40,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Goa: 5★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 5★ SRP",
+      "expected": "details.starRating === srp.starRating === 5",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Goa",
+      "star": 5,
+      "pairs": [
+        {
+          "id": "39642376",
+          "name": "The Fern Kadamba Hotel And Spa",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "The Fern Kadamba Hotel And Spa",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39723264",
+          "name": "Ocean Suite",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "OCEAN SUITE",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39654418",
+          "name": "Chances Resort & Casino",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Chances Resort & Casino",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70489167",
+          "name": "Novotel Goa Panjim",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Novotel Goa Panjim",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "70496832",
+          "name": "Miros (Formerly Imperial Goa)",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Miros (Formerly Imperial Goa)",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "38906785",
+          "name": "Vivanta Goa, Panaji",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Vivanta Goa, Panaji",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "section": "SRP",
+      "rule": "Goa: all SRP hotels are 3★ after filter",
+      "how": "fq df_long_star_rating:[3]",
+      "expected": "every results[].starRating === 3",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=The Hosteller Goa, Old Goa:3 | goSTOPS PLUS Goa, Panaji:3 | Viva Guest House:3",
+      "city": "Goa",
+      "star": 3,
+      "mismatchSample": []
+    },
+    {
+      "id": 42,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Goa: 3★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 3★ SRP",
+      "expected": "details.starRating === srp.starRating === 3",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Goa",
+      "star": 3,
+      "pairs": [
+        {
+          "id": "70750317",
+          "name": "The Hosteller Goa, Old Goa",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "The Hosteller Goa, Old Goa",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71214505",
+          "name": "goSTOPS PLUS Goa, Panaji",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "goSTOPS PLUS Goa, Panaji",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15533575",
+          "name": "Viva Guest House",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Viva Guest House",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15480933",
+          "name": "The Menino Regency",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "The Menino Regency",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72451448",
+          "name": "Fabhotel 4 Pillar's - Nr Big Daddy Casino, Panaji",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Fabhotel 4 Pillar's - Nr Big Daddy Casino, Panaji",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "15142525",
+          "name": "Hotel Travellers Inn",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Travellers Inn",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "section": "SRP",
+      "rule": "Ahmedabad: all SRP hotels are 4★ after filter",
+      "how": "fq df_long_star_rating:[4]",
+      "expected": "every results[].starRating === 4",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=hotel the lead:4 | Hotel HR Sky:4 | Tribecca Select:4",
+      "city": "Ahmedabad",
+      "star": 4,
+      "mismatchSample": []
+    },
+    {
+      "id": 44,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Ahmedabad: 4★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 4★ SRP",
+      "expected": "details.starRating === srp.starRating === 4",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Ahmedabad",
+      "star": 4,
+      "pairs": [
+        {
+          "id": "71357799",
+          "name": "hotel the lead",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "hotel the lead",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72472725",
+          "name": "Hotel HR Sky",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel HR Sky",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39641382",
+          "name": "Tribecca Select",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Tribecca Select",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "41286291",
+          "name": "Ginger Ahmedabad Rto Circle",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Ginger Ahmedabad Rto Circle",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16020973",
+          "name": "Regenta Inn Ranip Ahmedabad",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Regenta Inn Ranip Ahmedabad",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16330151",
+          "name": "Hotel Royal Square By Sky Stays",
+          "srpStar": 4,
+          "detailsStar": 4,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Royal Square By Sky Stays",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "section": "SRP",
+      "rule": "Ahmedabad: all SRP hotels are 5★ after filter",
+      "how": "fq df_long_star_rating:[5]",
+      "expected": "every results[].starRating === 5",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=HOTEL SUNRISE ROOMS:5 | HOTEL ROYAL SQUARE :5 | Hotel Adhyay Palace Ahmedabad Gujarat:5",
+      "city": "Ahmedabad",
+      "star": 5,
+      "mismatchSample": []
+    },
+    {
+      "id": 46,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Ahmedabad: 5★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 5★ SRP",
+      "expected": "details.starRating === srp.starRating === 5",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Ahmedabad",
+      "star": 5,
+      "pairs": [
+        {
+          "id": "71357922",
+          "name": "HOTEL SUNRISE ROOMS",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "HOTEL SUNRISE ROOMS",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "71360651",
+          "name": "HOTEL ROYAL SQUARE ",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "HOTEL ROYAL SQUARE ",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72464699",
+          "name": "Hotel Adhyay Palace Ahmedabad Gujarat",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Adhyay Palace Ahmedabad Gujarat",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "16025751",
+          "name": "BloomSuites l Ahmedabad",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "BloomSuites l Ahmedabad",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "39629601",
+          "name": "Pride Plaza Hotel Ahmedabad",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Pride Plaza Hotel Ahmedabad",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "41628859",
+          "name": "Vivanta Ahmedabad SG Highway",
+          "srpStar": 5,
+          "detailsStar": 5,
+          "detailsHttp": 200,
+          "detailsName": "Vivanta Ahmedabad, SG Highway",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "section": "SRP",
+      "rule": "Ahmedabad: all SRP hotels are 3★ after filter",
+      "how": "fq df_long_star_rating:[3]",
+      "expected": "every results[].starRating === 3",
+      "status": "PASS",
+      "actual": "n=12 mismatches=0 sample=HOTEL DIVYA PALACE:3 | CITY DORMITORY:3 | HOTEL STAY INN:3",
+      "city": "Ahmedabad",
+      "star": 3,
+      "mismatchSample": []
+    },
+    {
+      "id": 48,
+      "section": "SRP_VS_DETAILS",
+      "rule": "Ahmedabad: 3★ SRP starRating matches Hotel Details",
+      "how": "details for first 6 hotels from 3★ SRP",
+      "expected": "details.starRating === srp.starRating === 3",
+      "status": "PASS",
+      "actual": "checked=6 ok=6 bugs=0",
+      "city": "Ahmedabad",
+      "star": 3,
+      "pairs": [
+        {
+          "id": "16180055",
+          "name": "HOTEL DIVYA PALACE",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "HOTEL DIVYA PALACE",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72405279",
+          "name": "CITY DORMITORY",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "CITY DORMITORY",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72471924",
+          "name": "HOTEL STAY INN",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "HOTEL STAY INN",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "72313335",
+          "name": "HOTEL PHILIPS",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "HOTEL PHILIPS",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "50939441",
+          "name": "Hotel Bhavya Regency",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "Hotel Bhavya Regency",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        },
+        {
+          "id": "53730830",
+          "name": "FabHotel Vishwa Palace",
+          "srpStar": 3,
+          "detailsStar": 3,
+          "detailsHttp": 200,
+          "detailsName": "HOTEL VISHWA PALACE",
+          "matchSrpDetails": true,
+          "matchesFilter": true
+        }
+      ]
+    }
+  ]
+}

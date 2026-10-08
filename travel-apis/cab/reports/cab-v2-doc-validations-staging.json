@@ -1,0 +1,1753 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "generatedAt": "2026-08-31T12:44:51.603Z",
+  "fixture": {
+    "br": "BR1788180288608962",
+    "vendorId": null
+  },
+  "counts": {
+    "PASS": 12,
+    "NOT TESTED": 2,
+    "BUG": 6
+  },
+  "rows": [
+    {
+      "id": "UB-1",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "empty body {}",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Request body is required",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Request body is required",
+          "details": null,
+          "timestamp": "2026-08-31T12:44:49Z",
+          "request_id": "req-1788180288388"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "UB-2",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "omit bookingRefId { status: CONFIRMED }",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "bookingRefId is required",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "bookingRefId is required",
+          "details": null,
+          "timestamp": "2026-08-31T12:44:49Z",
+          "request_id": "req-1788180288498"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "UB-3",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "invalid status CANCELED",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid status \"CANCELED\"",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid status \"CANCELED\"",
+          "details": "Allowed values: CONFIRMED, CANCELLED, FAILED.",
+          "timestamp": "2026-08-31T12:44:49Z",
+          "request_id": "req-1788180288779"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "UB-4",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "fake bookingRefId",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-08-31T12:44:49Z",
+          "request_id": "req-1788180288860"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "UB-5",
+      "api": "POST /v1/airportServices/cabs/update-booking",
+      "how": "PROVIDER_BOOKING_ID_MISMATCH",
+      "status": "NOT TESTED",
+      "note": "Set CAB_BOOKING_REF + CAB_VENDOR_BOOKING_ID"
+    },
+    {
+      "id": "WH-1",
+      "api": "POST /v1/airportServices/cabs/partner-webhook",
+      "how": "empty body no webhook creds in env",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 401,
+      "actualCode": "INVALID_WEBHOOK_CREDENTIALS",
+      "status": "NOT TESTED",
+      "note": "Set CAB_WEBHOOK_USER + CAB_WEBHOOK_PASS",
+      "body": {
+        "error": {
+          "code": "INVALID_WEBHOOK_CREDENTIALS",
+          "message": "Invalid webhook credentials",
+          "details": "Webhook Basic Auth credentials are missing or incorrect",
+          "timestamp": "2026-08-31T12:44:49Z",
+          "request_id": null
+        },
+        "_meta": {
+          "correlation_id": "c1021385-40e8-45a9-bf3b-8e76443f3355"
+        }
+      }
+    },
+    {
+      "id": "WH-2",
+      "api": "POST /v1/airportServices/cabs/partner-webhook",
+      "how": "wrong Basic Auth",
+      "expectHttp": [
+        401,
+        403
+      ],
+      "expectCode": "INVALID_WEBHOOK_CREDENTIALS",
+      "actualHttp": 401,
+      "actualCode": "INVALID_WEBHOOK_CREDENTIALS",
+      "actualMessage": "Invalid webhook credentials",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "INVALID_WEBHOOK_CREDENTIALS",
+          "message": "Invalid webhook credentials",
+          "details": "Webhook Basic Auth credentials are missing or incorrect",
+          "timestamp": "2026-08-31T12:44:49Z",
+          "request_id": null
+        },
+        "_meta": {
+          "correlation_id": "2f1ea556-242f-464b-a734-b7bd6eabf418"
+        }
+      },
+      "altCodes": [
+        "WEBHOOK_IP_NOT_ALLOWED"
+      ]
+    },
+    {
+      "id": "ST-1",
+      "api": "GET /v1/airportServices/cabs/<script>/status",
+      "how": "invalid ref HTML",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 404,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "BUG",
+      "body": {
+        "status": 404,
+        "info": "Page not found"
+      }
+    },
+    {
+      "id": "ST-2",
+      "api": "GET /v1/airportServices/cabs/ROHAN/status",
+      "how": "fake ROHAN",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-08-31T12:44:50Z",
+          "request_id": "req-1788180289382"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "DT-1",
+      "api": "GET /v1/airportServices/cabs/booking/<script>",
+      "how": "invalid ref HTML",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 404,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "BUG",
+      "body": {
+        "status": 404,
+        "info": "Page not found"
+      }
+    },
+    {
+      "id": "DT-2",
+      "api": "GET /v1/airportServices/cabs/booking/ROHAN",
+      "how": "fake ROHAN",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-08-31T12:44:50Z",
+          "request_id": "req-1788180289547"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "TR-1",
+      "api": "GET /v1/airportServices/cabs/tracking/<script>/location",
+      "how": "invalid ref HTML",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 404,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "BUG",
+      "body": {
+        "status": 404,
+        "info": "Page not found"
+      }
+    },
+    {
+      "id": "TR-2",
+      "api": "GET /v1/airportServices/cabs/tracking/ROHAN/location",
+      "how": "fake ROHAN",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-08-31T12:44:50Z",
+          "request_id": "req-1788180289715"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "HI-1",
+      "api": "GET /v1/airportServices/cabs/booking/history",
+      "how": "omit userId",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "BUG",
+      "body": {
+        "status": 0,
+        "totalCount": 93,
+        "page": 0,
+        "perPage": 10,
+        "bookings": [
+          {
+            "bookingReferenceId": "BR1788180288608962",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175922151318",
+            "status": "Failed",
+            "contact": {
+              "name": "Ashish Sharma",
+              "email": "ashish.s@mufintech.com",
+              "countryCode": "+91",
+              "mobile": "7078930605"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-04T11:31:00+00:00",
+              "distanceKm": 10,
+              "durationMin": 24,
+              "extraKmRate": 24,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": "FLEXI",
+              "pickup": {
+                "name": "Vasant Kunj",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5247418,
+                "longitude": 77.1554539
+              },
+              "drop": {
+                "name": "Terminal 3",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5550838,
+                "longitude": 77.0844015
+              },
+              "vehicle": {
+                "type": "SEDAN",
+                "category": "ECONOMY",
+                "model": "Dzire or Similar",
+                "makeYear": 2016,
+                "seatingCapacity": 2,
+                "luggageCapacity": 2,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+              },
+              "operator": {
+                "name": "Carzonrent",
+                "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "rating": 3.1,
+                "ratingCount": 131
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175174668270",
+            "status": "Failed",
+            "contact": {
+              "name": "Ashish Sharma",
+              "email": "ashish.s@mufintech.com",
+              "countryCode": "+91",
+              "mobile": "7078930605"
+            },
+            "details": {
+              "journeyType": "OUTSTATION",
+              "travelType": "DEPARTURE",
+              "airportCode": null,
+              "pickupDatetime": "2026-09-03T11:19:00+00:00",
+              "distanceKm": 5,
+              "durationMin": 12,
+              "extraKmRate": 11,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj",
+                "address": null,
+                "city": "New Delhi",
+                "airportCode": null,
+                "latitude": 28.5247418,
+                "longitude": 77.1554539
+              },
+              "drop": {
+                "name": "Vasant Vihar",
+                "address": null,
+                "city": "New Delhi",
+                "airportCode": null,
+                "latitude": 28.5602839,
+                "longitude": 77.1617881
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175161693282",
+            "status": "Failed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175156457569",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175094667832",
+            "status": "Failed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175088916107",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175008193463",
+            "status": "Failed",
+            "contact": {
+              "name": "Ashish Sharma",
+              "email": "ashish.s@mufintech.com",
+              "countryCode": "+91",
+              "mobile": "7078930605"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-02T11:16:00+00:00",
+              "distanceKm": 10,
+              "durationMin": 22,
+              "extraKmRate": 24,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": "FLEXI",
+              "pickup": {
+                "name": "Vasant Kunj",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5247418,
+                "longitude": 77.1554539
+              },
+              "drop": {
+                "name": "Terminal 3",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5550838,
+                "longitude": 77.0844015
+              },
+              "vehicle": {
+                "type": "SEDAN",
+                "category": "ECONOMY",
+                "model": "Dzire or Similar",
+                "makeYear": 2016,
+                "seatingCapacity": 2,
+                "luggageCapacity": 2,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+              },
+              "operator": {
+                "name": "Carzonrent",
+                "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "rating": 3.1,
+                "ratingCount": 131
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788174622444353",
+            "status": "Failed",
+            "contact": {
+              "name": "Ashish Sharma",
+              "email": "ashish.s@mufintech.com",
+              "countryCode": "+91",
+              "mobile": "7078930605"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-03T11:10:00+00:00",
+              "distanceKm": 10,
+              "durationMin": 22,
+              "extraKmRate": 24,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": "FLEXI",
+              "pickup": {
+                "name": "Vasant Kunj",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5247418,
+                "longitude": 77.1554539
+              },
+              "drop": {
+                "name": "Terminal 3",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5550838,
+                "longitude": 77.0844015
+              },
+              "vehicle": {
+                "type": "SEDAN",
+                "category": "ECONOMY",
+                "model": "Dzire or Similar",
+                "makeYear": 2016,
+                "seatingCapacity": 2,
+                "luggageCapacity": 2,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+              },
+              "operator": {
+                "name": "Carzonrent",
+                "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "rating": 3.1,
+                "ratingCount": 131
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788161104490249",
+            "status": "Pending",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-25T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 24,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "SEDAN",
+                "category": "ECONOMY",
+                "model": "Dzire or Similar",
+                "makeYear": 2016,
+                "seatingCapacity": 2,
+                "luggageCapacity": 2,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+              },
+              "operator": {
+                "name": "Carzonrent",
+                "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "rating": 3.1,
+                "ratingCount": 131
+              },
+              "otp": "4056",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          }
+        ],
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "HI-2",
+      "api": "GET /v1/airportServices/cabs/booking/history",
+      "how": "page=-1 perpage=0 clamped not rejected",
+      "expectHttp": 200,
+      "actualHttp": 200,
+      "status": "PASS",
+      "body": {
+        "status": 0,
+        "totalCount": 93,
+        "page": 0,
+        "perPage": 10,
+        "bookings": [
+          {
+            "bookingReferenceId": "BR1788180288608962",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175922151318",
+            "status": "Failed",
+            "contact": {
+              "name": "Ashish Sharma",
+              "email": "ashish.s@mufintech.com",
+              "countryCode": "+91",
+              "mobile": "7078930605"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-04T11:31:00+00:00",
+              "distanceKm": 10,
+              "durationMin": 24,
+              "extraKmRate": 24,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": "FLEXI",
+              "pickup": {
+                "name": "Vasant Kunj",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5247418,
+                "longitude": 77.1554539
+              },
+              "drop": {
+                "name": "Terminal 3",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5550838,
+                "longitude": 77.0844015
+              },
+              "vehicle": {
+                "type": "SEDAN",
+                "category": "ECONOMY",
+                "model": "Dzire or Similar",
+                "makeYear": 2016,
+                "seatingCapacity": 2,
+                "luggageCapacity": 2,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+              },
+              "operator": {
+                "name": "Carzonrent",
+                "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "rating": 3.1,
+                "ratingCount": 131
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175174668270",
+            "status": "Failed",
+            "contact": {
+              "name": "Ashish Sharma",
+              "email": "ashish.s@mufintech.com",
+              "countryCode": "+91",
+              "mobile": "7078930605"
+            },
+            "details": {
+              "journeyType": "OUTSTATION",
+              "travelType": "DEPARTURE",
+              "airportCode": null,
+              "pickupDatetime": "2026-09-03T11:19:00+00:00",
+              "distanceKm": 5,
+              "durationMin": 12,
+              "extraKmRate": 11,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj",
+                "address": null,
+                "city": "New Delhi",
+                "airportCode": null,
+                "latitude": 28.5247418,
+                "longitude": 77.1554539
+              },
+              "drop": {
+                "name": "Vasant Vihar",
+                "address": null,
+                "city": "New Delhi",
+                "airportCode": null,
+                "latitude": 28.5602839,
+                "longitude": 77.1617881
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175161693282",
+            "status": "Failed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175156457569",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175094667832",
+            "status": "Failed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175088916107",
+            "status": "Confirmed",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-09T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 18,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "HATCHBACK",
+                "category": "ECONOMY",
+                "model": "WagonR or Similar",
+                "makeYear": null,
+                "seatingCapacity": 2,
+                "luggageCapacity": 1,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+              },
+              "operator": {
+                "name": "Gozo Cabs",
+                "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                "rating": 3.3,
+                "ratingCount": 285
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788175008193463",
+            "status": "Failed",
+            "contact": {
+              "name": "Ashish Sharma",
+              "email": "ashish.s@mufintech.com",
+              "countryCode": "+91",
+              "mobile": "7078930605"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-02T11:16:00+00:00",
+              "distanceKm": 10,
+              "durationMin": 22,
+              "extraKmRate": 24,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": "FLEXI",
+              "pickup": {
+                "name": "Vasant Kunj",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5247418,
+                "longitude": 77.1554539
+              },
+              "drop": {
+                "name": "Terminal 3",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5550838,
+                "longitude": 77.0844015
+              },
+              "vehicle": {
+                "type": "SEDAN",
+                "category": "ECONOMY",
+                "model": "Dzire or Similar",
+                "makeYear": 2016,
+                "seatingCapacity": 2,
+                "luggageCapacity": 2,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+              },
+              "operator": {
+                "name": "Carzonrent",
+                "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "rating": 3.1,
+                "ratingCount": 131
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788174622444353",
+            "status": "Failed",
+            "contact": {
+              "name": "Ashish Sharma",
+              "email": "ashish.s@mufintech.com",
+              "countryCode": "+91",
+              "mobile": "7078930605"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-03T11:10:00+00:00",
+              "distanceKm": 10,
+              "durationMin": 22,
+              "extraKmRate": 24,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": "FLEXI",
+              "pickup": {
+                "name": "Vasant Kunj",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5247418,
+                "longitude": 77.1554539
+              },
+              "drop": {
+                "name": "Terminal 3",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5550838,
+                "longitude": 77.0844015
+              },
+              "vehicle": {
+                "type": "SEDAN",
+                "category": "ECONOMY",
+                "model": "Dzire or Similar",
+                "makeYear": 2016,
+                "seatingCapacity": 2,
+                "luggageCapacity": 2,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+              },
+              "operator": {
+                "name": "Carzonrent",
+                "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "rating": 3.1,
+                "ratingCount": 131
+              },
+              "otp": null,
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          },
+          {
+            "bookingReferenceId": "BR1788161104490249",
+            "status": "Pending",
+            "contact": {
+              "name": "Pratik Patil",
+              "email": "chaitanya@travelvip.ai",
+              "countryCode": "+91",
+              "mobile": "9921862715"
+            },
+            "details": {
+              "journeyType": "AIRPORT",
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-09-25T18:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmRate": 24,
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": null,
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "address": null,
+                "city": "Delhi",
+                "airportCode": "DEL",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "SEDAN",
+                "category": "ECONOMY",
+                "model": "Dzire or Similar",
+                "makeYear": 2016,
+                "seatingCapacity": 2,
+                "luggageCapacity": 2,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageAppUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+              },
+              "operator": {
+                "name": "Carzonrent",
+                "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                "rating": 3.1,
+                "ratingCount": 131
+              },
+              "otp": "4056",
+              "assignment": null,
+              "progress": {
+                "cabAssigned": false,
+                "cabLeftForPickup": false,
+                "cabReachedSource": false,
+                "cabTripStarted": false,
+                "cabTripEnd": false
+              },
+              "trip": null
+            }
+          }
+        ],
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "CA-1",
+      "api": "GET /v1/airportServices/cabs/bookings/<script>/cancel",
+      "how": "invalid ref HTML",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 404,
+      "actualCode": null,
+      "actualMessage": null,
+      "status": "BUG",
+      "body": {
+        "status": 404,
+        "info": "Page not found"
+      }
+    },
+    {
+      "id": "CA-2",
+      "api": "GET /v1/airportServices/cabs/bookings/ROHAN/cancel",
+      "how": "fake ROHAN",
+      "expectHttp": 404,
+      "expectCode": "BOOKING_NOT_FOUND",
+      "actualHttp": 404,
+      "actualCode": "BOOKING_NOT_FOUND",
+      "actualMessage": "Booking not found",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "BOOKING_NOT_FOUND",
+          "message": "Booking not found",
+          "details": null,
+          "timestamp": "2026-08-31T12:44:51Z",
+          "request_id": "req-1788180290516"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "CA-3",
+      "api": "POST /v1/airportServices/cabs/bookings/{id}/cancel",
+      "how": "invalid cancelledBy AGENT",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid cancelledBy \"AGENT\"",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid cancelledBy \"AGENT\"",
+          "details": "Allowed values: USER, ADMIN, SYSTEM.",
+          "timestamp": "2026-08-31T12:44:51Z",
+          "request_id": "req-1788180290616"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "CA-4",
+      "api": "POST /v1/airportServices/cabs/bookings/{id}/cancel",
+      "how": "cancellationReason 501 chars",
+      "expectHttp": 400,
+      "expectCode": "VALIDATION_ERROR",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "'cancellationReason' must be a string of at most 500 characters",
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "'cancellationReason' must be a string of at most 500 characters",
+          "details": null,
+          "timestamp": "2026-08-31T12:44:52Z",
+          "request_id": "req-1788180291355"
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    },
+    {
+      "id": "CA-5",
+      "api": "GET /v1/airportServices/cabs/bookings/{id}/cancel",
+      "how": "Pending BR BR1788180288608962",
+      "expectHttp": 400,
+      "expectCode": "BOOKING_NOT_CANCELLABLE",
+      "actualHttp": 400,
+      "actualCode": "CANCELLATION_FAILED",
+      "actualMessage": "Booking cancellation unsuccessful",
+      "status": "BUG",
+      "body": {
+        "error": {
+          "code": "CANCELLATION_FAILED",
+          "message": "Booking cancellation unsuccessful",
+          "details": null,
+          "timestamp": "2026-08-31T12:44:52Z",
+          "request_id": "req-1788180291447",
+          "bookingRefId": "BR1788180288608962",
+          "type": "cancel",
+          "result": {
+            "bookingStatus": "FAILED"
+          }
+        },
+        "_meta": {
+          "correlation_id": "d0cb759e-d28a-49eb-82f3-d196744140ab"
+        }
+      }
+    }
+  ]
+}

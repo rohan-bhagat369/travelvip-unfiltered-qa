@@ -1,0 +1,200 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "maxFare": 8000,
+  "airlinesTried": [
+    "SG",
+    "6E",
+    "IX",
+    "AI",
+    "UK",
+    "QP",
+    "I5"
+  ],
+  "works": [
+    "AI"
+  ],
+  "fails": [
+    {
+      "airline": "6E",
+      "reason": "VENDOR_OFFLINE_ONLY",
+      "message": "Requested PNR cancellation is unavailable online. Kindly proceed with offline cancellation."
+    },
+    {
+      "airline": "IX",
+      "reason": "WAITING",
+      "message": "Your requested PNR is waiting for cancellation. Kindly contact customer care."
+    }
+  ],
+  "rows": [
+    {
+      "airlinePref": "SG",
+      "searched": false,
+      "booked": false,
+      "result": "NO_INVENTORY"
+    },
+    {
+      "airlinePref": "6E",
+      "searched": true,
+      "booked": true,
+      "priced": {
+        "route": "DEL-BOM",
+        "total": 1300,
+        "itinAirline": "6E",
+        "days": 35
+      },
+      "br": "BR1786015377524920",
+      "bookStatus": "Confirmed",
+      "pnrs": [
+        "FVRVRV"
+      ],
+      "airlinesOnTicket": [
+        "6E"
+      ],
+      "penalty": {
+        "ok": false,
+        "reason": "VENDOR_OFFLINE_ONLY",
+        "status": "Penalty Check Failed",
+        "message": "Requested PNR cancellation is unavailable online. Kindly proceed with offline cancellation."
+      },
+      "cancel": {
+        "ok": false,
+        "reason": "VENDOR_OFFLINE_ONLY",
+        "status": "Cancellation Failed",
+        "message": "Requested PNR cancellation is unavailable online. Kindly proceed with offline cancellation."
+      },
+      "penaltyRaw": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786015377524920\",\"pnr\":\"FVRVRV\",\"cancellationRequest\":{\"status\":\"Penalty Check Failed\",\"message\":\"Requested PNR cancellation is unavailable online. Kindly proceed with offline cancellation.\",\"createdAt\":\"2026-08",
+      "cancelRaw": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786015377524920\",\"pnr\":\"FVRVRV\",\"cancellationRequest\":{\"status\":\"Cancellation Failed\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":950,\"message\":\"Requested PNR cancellation is unavailable online. Kindly p",
+      "statusAfterCancel": "Confirmed",
+      "webhooks": [
+        {
+          "created": "2026-08-06T11:23:07.234Z",
+          "status": "booking.cancellation_failed"
+        },
+        {
+          "created": "2026-08-06T11:23:07.169Z",
+          "status": "booking.confirmed"
+        },
+        {
+          "created": "2026-08-06T11:23:07.090Z",
+          "status": "booking.pending"
+        }
+      ],
+      "cancelableOnline": false,
+      "result": "CANCEL_FAIL:VENDOR_OFFLINE_ONLY"
+    },
+    {
+      "airlinePref": "IX",
+      "searched": true,
+      "booked": true,
+      "priced": {
+        "route": "DEL-BOM",
+        "total": 2288,
+        "itinAirline": "IX",
+        "days": 35
+      },
+      "br": "BR1786015490629561",
+      "bookStatus": "Confirmed",
+      "pnrs": [
+        "VV2JWY"
+      ],
+      "airlinesOnTicket": [
+        "IX"
+      ],
+      "penalty": {
+        "ok": false,
+        "reason": "CANCEL_FAILED",
+        "status": "Penalty Check Failed",
+        "message": "Unable to get Penalty details. Kindly contact customer care."
+      },
+      "cancel": {
+        "ok": false,
+        "reason": "WAITING",
+        "status": "Cancellation Failed",
+        "message": "Your requested PNR is waiting for cancellation. Kindly contact customer care."
+      },
+      "penaltyRaw": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786015490629561\",\"pnr\":\"VV2JWY\",\"cancellationRequest\":{\"status\":\"Penalty Check Failed\",\"message\":\"Unable to get Penalty details. Kindly contact customer care.\",\"createdAt\":\"2026-08-06T11:25:05Z\"}},\"_meta\":{\"corr",
+      "cancelRaw": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786015490629561\",\"pnr\":\"VV2JWY\",\"cancellationRequest\":{\"status\":\"Cancellation Failed\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":1938,\"message\":\"Your requested PNR is waiting for cancellation. Kindly co",
+      "statusAfterCancel": "Confirmed",
+      "webhooks": [
+        {
+          "created": "2026-08-06T11:25:06.893Z",
+          "status": "booking.cancellation_failed"
+        },
+        {
+          "created": "2026-08-06T11:25:06.800Z",
+          "status": "booking.confirmed"
+        },
+        {
+          "created": "2026-08-06T11:25:06.714Z",
+          "status": "booking.pending"
+        }
+      ],
+      "cancelableOnline": false,
+      "result": "CANCEL_FAIL:WAITING"
+    },
+    {
+      "airlinePref": "AI",
+      "searched": true,
+      "booked": true,
+      "priced": {
+        "route": "DEL-BOM",
+        "total": 7056,
+        "itinAirline": "AI",
+        "days": 35
+      },
+      "br": "BR1786015616687710",
+      "bookStatus": "Confirmed",
+      "pnrs": [
+        "8K7YV5"
+      ],
+      "airlinesOnTicket": [
+        "AI"
+      ],
+      "penalty": {
+        "ok": true,
+        "reason": "ACCEPTED",
+        "status": "Penalty Fetched",
+        "message": "No estimated cancellation and refund amount available"
+      },
+      "cancel": {
+        "ok": true,
+        "reason": "ACCEPTED",
+        "status": "Cancellation Requested",
+        "message": "No estimated cancellation and refund amount available"
+      },
+      "penaltyRaw": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786015616687710\",\"pnr\":\"8K7YV5\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"message\":\"No estimated cancellation and refund amount available\",\"createdAt\":\"2026-08-06T11:27:41Z\"}},\"_meta\":{\"correlation_id\":",
+      "cancelRaw": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786015616687710\",\"pnr\":\"8K7YV5\",\"cancellationRequest\":{\"status\":\"Cancellation Requested\",\"message\":\"No estimated cancellation and refund amount available\",\"createdAt\":\"2026-08-06T11:27:41Z\"}},\"_meta\":{\"correlati",
+      "statusAfterCancel": "Confirmed",
+      "webhooks": [
+        {
+          "created": "2026-08-06T11:28:07.294Z",
+          "status": "booking.cancellation_requested"
+        },
+        {
+          "created": "2026-08-06T11:28:07.207Z",
+          "status": "booking.confirmed"
+        }
+      ],
+      "cancelableOnline": true,
+      "result": "CANCEL_WORKS"
+    },
+    {
+      "airlinePref": "UK",
+      "searched": false,
+      "booked": false,
+      "result": "NO_INVENTORY"
+    },
+    {
+      "airlinePref": "QP",
+      "searched": false,
+      "booked": false,
+      "result": "NO_INVENTORY"
+    },
+    {
+      "airlinePref": "I5",
+      "searched": false,
+      "booked": false,
+      "result": "NO_INVENTORY"
+    }
+  ]
+}

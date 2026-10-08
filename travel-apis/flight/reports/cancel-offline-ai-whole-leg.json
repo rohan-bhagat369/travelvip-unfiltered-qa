@@ -1,0 +1,175 @@
+{
+  "ranAt": "2026-08-13T00:57:25.374Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "fixture": {
+    "br": "BR1786582484518327",
+    "status": "Confirmed",
+    "onlineCancellation": false,
+    "pnr": "9NB2HJ",
+    "airline": "AI",
+    "flight": "AI 2832",
+    "passengers": [
+      {
+        "paxId": "PAX1"
+      }
+    ],
+    "itinerary": [
+      {
+        "direction": "ONWARD",
+        "pnr": "9NB2HJ",
+        "onlineCancellation": false,
+        "airline": "AI"
+      }
+    ]
+  },
+  "scenarios": {
+    "2": {
+      "request": {
+        "action": "CANCEL",
+        "pnr": "9NB2HJ",
+        "cancellationReason": "2 offline whole-leg AI",
+        "remarks": "requested by partner"
+      },
+      "http": 200,
+      "response": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786582484518327",
+          "pnr": "9NB2HJ",
+          "cancellationRequest": {
+            "status": "Cancellation Requested",
+            "message": "No estimated cancellation and refund amount available",
+            "createdAt": "2026-08-13T00:57:24Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "faafaa6b-1ba3-4a19-8563-cac2e660c7f4"
+        }
+      }
+    },
+    "2a": {
+      "request": {
+        "action": "PENALTY",
+        "pnr": "9NB2HJ",
+        "cancellationReason": "2a offline whole-leg AI"
+      },
+      "http": 200,
+      "response": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786582484518327",
+          "pnr": "9NB2HJ",
+          "cancellationRequest": {
+            "status": "Penalty Fetched",
+            "message": "No estimated cancellation and refund amount available",
+            "createdAt": "2026-08-13T00:57:22Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "faafaa6b-1ba3-4a19-8563-cac2e660c7f4"
+        }
+      }
+    }
+  },
+  "afterStatus": "Confirmed",
+  "table": [
+    {
+      "rule": "2/2a fixture onlineCancellation=false",
+      "expected": "false",
+      "actual": "false",
+      "status": "PASS"
+    },
+    {
+      "rule": "2a PENALTY: HTTP",
+      "expected": "200",
+      "actual": "200",
+      "status": "PASS"
+    },
+    {
+      "rule": "2a PENALTY: status",
+      "expected": "Penalty Fetched",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "2a PENALTY: estimates present",
+      "expected": "charge+refund",
+      "actual": "undefined/undefined",
+      "status": "BUG"
+    },
+    {
+      "rule": "2a PENALTY: summary shape",
+      "expected": "no detailed fields",
+      "actual": "clean",
+      "status": "PASS"
+    },
+    {
+      "rule": "2a PENALTY: no cancellationPaxList echo",
+      "expected": "absent",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "2a PENALTY: no refundSummary/tx",
+      "expected": "absent",
+      "actual": "rs=false tx=false",
+      "status": "PASS"
+    },
+    {
+      "rule": "2 CANCEL: HTTP",
+      "expected": "200",
+      "actual": "200",
+      "status": "PASS"
+    },
+    {
+      "rule": "2 CANCEL: status",
+      "expected": "Cancellation Requested",
+      "actual": "Cancellation Requested",
+      "status": "PASS"
+    },
+    {
+      "rule": "2 CANCEL: estimates present",
+      "expected": "charge+refund",
+      "actual": "undefined/undefined",
+      "status": "BUG"
+    },
+    {
+      "rule": "2 CANCEL: summary shape",
+      "expected": "no detailed fields",
+      "actual": "clean",
+      "status": "PASS"
+    },
+    {
+      "rule": "2 CANCEL: no cancellationPaxList echo",
+      "expected": "absent",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "2 CANCEL: no refundSummary/tx",
+      "expected": "absent",
+      "actual": "rs=false tx=false",
+      "status": "PASS"
+    },
+    {
+      "rule": "2 vs 2a same estimates",
+      "expected": "match",
+      "actual": "pen undefined/undefined vs can undefined/undefined",
+      "status": "BUG"
+    },
+    {
+      "rule": "2 is request path (not Cancelled)",
+      "expected": "Cancellation Requested; no tx",
+      "actual": "Cancellation Requested; tx=false",
+      "status": "PASS"
+    }
+  ],
+  "score": {
+    "PASS": 12,
+    "BUG": 3,
+    "NOT_TESTED": 0
+  },
+  "note": "PENALTY≠CANCEL on online detailed path is EXPECTED (not a bug)"
+}

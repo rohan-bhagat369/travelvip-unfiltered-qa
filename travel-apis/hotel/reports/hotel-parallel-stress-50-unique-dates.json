@@ -1,0 +1,1430 @@
+{
+  "at": "2026-09-08T10:18:26.574Z",
+  "noBook": true,
+  "parallel": 50,
+  "uniqueDates": true,
+  "city": "Paris",
+  "entityId": "437227:FR",
+  "note": "50 CITY searches in parallel, each with a different checkin/checkout. Throughput = N / wall_seconds.",
+  "runs": [
+    {
+      "label": "preprod",
+      "base": "https://preprod-api.travelvip.ai",
+      "dateNote": "50 unique date pairs (2027-02-05 … 2027-05-14)",
+      "uniqueDates": true,
+      "n": 50,
+      "wallMs": 85640,
+      "wallSec": 85.64,
+      "success": 50,
+      "failed": 0,
+      "emptyResults": 37,
+      "successRatePct": 100,
+      "broke": false,
+      "throughputRps": 0.584,
+      "latencyMs": {
+        "min": 15558,
+        "p50": 83431,
+        "p90": 85585,
+        "p95": 85611,
+        "p99": 85628,
+        "max": 85628,
+        "avg": 73119,
+        "allMin": 15558,
+        "allMax": 85628
+      },
+      "totals": {
+        "min": 36,
+        "max": 2052,
+        "spreadPct": 98.2
+      },
+      "shapes": {
+        "EARLY": 11,
+        "EMPTY": 37,
+        "FULL": 2
+      },
+      "fromCache": {
+        "true": 1,
+        "false": 12,
+        "other": 37
+      },
+      "failures": [],
+      "sampleOk": [
+        {
+          "idx": 0,
+          "dates": {
+            "checkin": "2027-02-05",
+            "checkout": "2027-02-06"
+          },
+          "ms": 15657,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": false
+        },
+        {
+          "idx": 1,
+          "dates": {
+            "checkin": "2027-02-07",
+            "checkout": "2027-02-08"
+          },
+          "ms": 33842,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": false
+        },
+        {
+          "idx": 2,
+          "dates": {
+            "checkin": "2027-02-09",
+            "checkout": "2027-02-10"
+          },
+          "ms": 82397,
+          "total": null,
+          "n": 0,
+          "shape": "EMPTY",
+          "fromCache": null
+        },
+        {
+          "idx": 3,
+          "dates": {
+            "checkin": "2027-02-11",
+            "checkout": "2027-02-12"
+          },
+          "ms": 16724,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": false
+        },
+        {
+          "idx": 4,
+          "dates": {
+            "checkin": "2027-02-13",
+            "checkout": "2027-02-14"
+          },
+          "ms": 81381,
+          "total": null,
+          "n": 0,
+          "shape": "EMPTY",
+          "fromCache": null
+        }
+      ],
+      "correlationId": "434b8e24-fc40-4eff-aedc-c4858b0a93d7",
+      "dateList": [
+        {
+          "checkin": "2027-02-05",
+          "checkout": "2027-02-06"
+        },
+        {
+          "checkin": "2027-02-07",
+          "checkout": "2027-02-08"
+        },
+        {
+          "checkin": "2027-02-09",
+          "checkout": "2027-02-10"
+        },
+        {
+          "checkin": "2027-02-11",
+          "checkout": "2027-02-12"
+        },
+        {
+          "checkin": "2027-02-13",
+          "checkout": "2027-02-14"
+        },
+        {
+          "checkin": "2027-02-15",
+          "checkout": "2027-02-16"
+        },
+        {
+          "checkin": "2027-02-17",
+          "checkout": "2027-02-18"
+        },
+        {
+          "checkin": "2027-02-19",
+          "checkout": "2027-02-20"
+        },
+        {
+          "checkin": "2027-02-21",
+          "checkout": "2027-02-22"
+        },
+        {
+          "checkin": "2027-02-23",
+          "checkout": "2027-02-24"
+        },
+        {
+          "checkin": "2027-02-25",
+          "checkout": "2027-02-26"
+        },
+        {
+          "checkin": "2027-02-27",
+          "checkout": "2027-02-28"
+        },
+        {
+          "checkin": "2027-03-01",
+          "checkout": "2027-03-02"
+        },
+        {
+          "checkin": "2027-03-03",
+          "checkout": "2027-03-04"
+        },
+        {
+          "checkin": "2027-03-05",
+          "checkout": "2027-03-06"
+        },
+        {
+          "checkin": "2027-03-07",
+          "checkout": "2027-03-08"
+        },
+        {
+          "checkin": "2027-03-09",
+          "checkout": "2027-03-10"
+        },
+        {
+          "checkin": "2027-03-11",
+          "checkout": "2027-03-12"
+        },
+        {
+          "checkin": "2027-03-13",
+          "checkout": "2027-03-14"
+        },
+        {
+          "checkin": "2027-03-15",
+          "checkout": "2027-03-16"
+        },
+        {
+          "checkin": "2027-03-17",
+          "checkout": "2027-03-18"
+        },
+        {
+          "checkin": "2027-03-19",
+          "checkout": "2027-03-20"
+        },
+        {
+          "checkin": "2027-03-21",
+          "checkout": "2027-03-22"
+        },
+        {
+          "checkin": "2027-03-23",
+          "checkout": "2027-03-24"
+        },
+        {
+          "checkin": "2027-03-25",
+          "checkout": "2027-03-26"
+        },
+        {
+          "checkin": "2027-03-27",
+          "checkout": "2027-03-28"
+        },
+        {
+          "checkin": "2027-03-29",
+          "checkout": "2027-03-30"
+        },
+        {
+          "checkin": "2027-03-31",
+          "checkout": "2027-04-01"
+        },
+        {
+          "checkin": "2027-04-02",
+          "checkout": "2027-04-03"
+        },
+        {
+          "checkin": "2027-04-04",
+          "checkout": "2027-04-05"
+        },
+        {
+          "checkin": "2027-04-06",
+          "checkout": "2027-04-07"
+        },
+        {
+          "checkin": "2027-04-08",
+          "checkout": "2027-04-09"
+        },
+        {
+          "checkin": "2027-04-10",
+          "checkout": "2027-04-11"
+        },
+        {
+          "checkin": "2027-04-12",
+          "checkout": "2027-04-13"
+        },
+        {
+          "checkin": "2027-04-14",
+          "checkout": "2027-04-15"
+        },
+        {
+          "checkin": "2027-04-16",
+          "checkout": "2027-04-17"
+        },
+        {
+          "checkin": "2027-04-18",
+          "checkout": "2027-04-19"
+        },
+        {
+          "checkin": "2027-04-20",
+          "checkout": "2027-04-21"
+        },
+        {
+          "checkin": "2027-04-22",
+          "checkout": "2027-04-23"
+        },
+        {
+          "checkin": "2027-04-24",
+          "checkout": "2027-04-25"
+        },
+        {
+          "checkin": "2027-04-26",
+          "checkout": "2027-04-27"
+        },
+        {
+          "checkin": "2027-04-28",
+          "checkout": "2027-04-29"
+        },
+        {
+          "checkin": "2027-04-30",
+          "checkout": "2027-05-01"
+        },
+        {
+          "checkin": "2027-05-02",
+          "checkout": "2027-05-03"
+        },
+        {
+          "checkin": "2027-05-04",
+          "checkout": "2027-05-05"
+        },
+        {
+          "checkin": "2027-05-06",
+          "checkout": "2027-05-07"
+        },
+        {
+          "checkin": "2027-05-08",
+          "checkout": "2027-05-09"
+        },
+        {
+          "checkin": "2027-05-10",
+          "checkout": "2027-05-11"
+        },
+        {
+          "checkin": "2027-05-12",
+          "checkout": "2027-05-13"
+        },
+        {
+          "checkin": "2027-05-14",
+          "checkout": "2027-05-15"
+        }
+      ],
+      "resultsCount": 50
+    }
+  ],
+  "raw": [
+    {
+      "label": "preprod",
+      "base": "https://preprod-api.travelvip.ai",
+      "dateNote": "50 unique date pairs (2027-02-05 … 2027-05-14)",
+      "uniqueDates": true,
+      "n": 50,
+      "wallMs": 85640,
+      "wallSec": 85.64,
+      "success": 50,
+      "failed": 0,
+      "emptyResults": 37,
+      "successRatePct": 100,
+      "broke": false,
+      "throughputRps": 0.584,
+      "latencyMs": {
+        "min": 15558,
+        "p50": 83431,
+        "p90": 85585,
+        "p95": 85611,
+        "p99": 85628,
+        "max": 85628,
+        "avg": 73119,
+        "allMin": 15558,
+        "allMax": 85628
+      },
+      "totals": {
+        "min": 36,
+        "max": 2052,
+        "spreadPct": 98.2
+      },
+      "shapes": {
+        "EARLY": 11,
+        "EMPTY": 37,
+        "FULL": 2
+      },
+      "fromCache": {
+        "true": 1,
+        "false": 12,
+        "other": 37
+      },
+      "failures": [],
+      "sampleOk": [
+        {
+          "idx": 0,
+          "dates": {
+            "checkin": "2027-02-05",
+            "checkout": "2027-02-06"
+          },
+          "ms": 15657,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": false
+        },
+        {
+          "idx": 1,
+          "dates": {
+            "checkin": "2027-02-07",
+            "checkout": "2027-02-08"
+          },
+          "ms": 33842,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": false
+        },
+        {
+          "idx": 2,
+          "dates": {
+            "checkin": "2027-02-09",
+            "checkout": "2027-02-10"
+          },
+          "ms": 82397,
+          "total": null,
+          "n": 0,
+          "shape": "EMPTY",
+          "fromCache": null
+        },
+        {
+          "idx": 3,
+          "dates": {
+            "checkin": "2027-02-11",
+            "checkout": "2027-02-12"
+          },
+          "ms": 16724,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": false
+        },
+        {
+          "idx": 4,
+          "dates": {
+            "checkin": "2027-02-13",
+            "checkout": "2027-02-14"
+          },
+          "ms": 81381,
+          "total": null,
+          "n": 0,
+          "shape": "EMPTY",
+          "fromCache": null
+        }
+      ],
+      "results": [
+        {
+          "idx": 0,
+          "dates": {
+            "checkin": "2027-02-05",
+            "checkout": "2027-02-06"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 15657,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "f9582c87-c4f2-4404-9f47-4395037fc100",
+          "err": null
+        },
+        {
+          "idx": 1,
+          "dates": {
+            "checkin": "2027-02-07",
+            "checkout": "2027-02-08"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 33842,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "e0c21859-bf33-44b0-ac6a-bf4a68be7bff",
+          "err": null
+        },
+        {
+          "idx": 2,
+          "dates": {
+            "checkin": "2027-02-09",
+            "checkout": "2027-02-10"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 82397,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 3,
+          "dates": {
+            "checkin": "2027-02-11",
+            "checkout": "2027-02-12"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 16724,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "2cd8bed0-264f-418e-b763-000bc535653d",
+          "err": null
+        },
+        {
+          "idx": 4,
+          "dates": {
+            "checkin": "2027-02-13",
+            "checkout": "2027-02-14"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 81381,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 5,
+          "dates": {
+            "checkin": "2027-02-15",
+            "checkout": "2027-02-16"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 81380,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 6,
+          "dates": {
+            "checkin": "2027-02-17",
+            "checkout": "2027-02-18"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 24633,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "0d742e34-0eb8-474f-a00f-216add540483",
+          "err": null
+        },
+        {
+          "idx": 7,
+          "dates": {
+            "checkin": "2027-02-19",
+            "checkout": "2027-02-20"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 82397,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 8,
+          "dates": {
+            "checkin": "2027-02-21",
+            "checkout": "2027-02-22"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85622,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 9,
+          "dates": {
+            "checkin": "2027-02-23",
+            "checkout": "2027-02-24"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 38164,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "5f7e50ef-69f2-4f18-8c73-2d43f61ec741",
+          "err": null
+        },
+        {
+          "idx": 10,
+          "dates": {
+            "checkin": "2027-02-25",
+            "checkout": "2027-02-26"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 33846,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "2a34561d-7e28-4120-b590-6b83f103b7a8",
+          "err": null
+        },
+        {
+          "idx": 11,
+          "dates": {
+            "checkin": "2027-02-27",
+            "checkout": "2027-02-28"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 83440,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 12,
+          "dates": {
+            "checkin": "2027-03-01",
+            "checkout": "2027-03-02"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 24887,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "f15db149-75e9-4813-b1cb-b84883f53c99",
+          "err": null
+        },
+        {
+          "idx": 13,
+          "dates": {
+            "checkin": "2027-03-03",
+            "checkout": "2027-03-04"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 78198,
+          "total": 36,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "f8c89793-1060-4e98-b4d2-c66a1519a928",
+          "err": null
+        },
+        {
+          "idx": 14,
+          "dates": {
+            "checkin": "2027-03-05",
+            "checkout": "2027-03-06"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 15558,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "d89e28f4-8091-4ba1-9e03-3ace1be49b22",
+          "err": null
+        },
+        {
+          "idx": 15,
+          "dates": {
+            "checkin": "2027-03-07",
+            "checkout": "2027-03-08"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 65828,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "3bbed27d-8979-4490-a112-08629de20f74",
+          "err": null
+        },
+        {
+          "idx": 16,
+          "dates": {
+            "checkin": "2027-03-09",
+            "checkout": "2027-03-10"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84565,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 17,
+          "dates": {
+            "checkin": "2027-03-11",
+            "checkout": "2027-03-12"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84473,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 18,
+          "dates": {
+            "checkin": "2027-03-13",
+            "checkout": "2027-03-14"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 78320,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "1fee4e4c-305d-4813-b52e-0fb1c9d610e2",
+          "err": null
+        },
+        {
+          "idx": 19,
+          "dates": {
+            "checkin": "2027-03-15",
+            "checkout": "2027-03-16"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 83438,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 20,
+          "dates": {
+            "checkin": "2027-03-17",
+            "checkout": "2027-03-18"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 83431,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 21,
+          "dates": {
+            "checkin": "2027-03-19",
+            "checkout": "2027-03-20"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85584,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 22,
+          "dates": {
+            "checkin": "2027-03-21",
+            "checkout": "2027-03-22"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 82392,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 23,
+          "dates": {
+            "checkin": "2027-03-23",
+            "checkout": "2027-03-24"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 82393,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 24,
+          "dates": {
+            "checkin": "2027-03-25",
+            "checkout": "2027-03-26"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 83410,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 25,
+          "dates": {
+            "checkin": "2027-03-27",
+            "checkout": "2027-03-28"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 83418,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 26,
+          "dates": {
+            "checkin": "2027-03-29",
+            "checkout": "2027-03-30"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 83429,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 27,
+          "dates": {
+            "checkin": "2027-03-31",
+            "checkout": "2027-04-01"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 83424,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 28,
+          "dates": {
+            "checkin": "2027-04-02",
+            "checkout": "2027-04-03"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84475,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 29,
+          "dates": {
+            "checkin": "2027-04-04",
+            "checkout": "2027-04-05"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 83425,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 30,
+          "dates": {
+            "checkin": "2027-04-06",
+            "checkout": "2027-04-07"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 80875,
+          "total": 1862,
+          "n": 20,
+          "fromCache": false,
+          "shape": "FULL",
+          "requestId": "1f125aaa-13c0-4b8d-b4e4-bdb531ba8b55",
+          "err": null
+        },
+        {
+          "idx": 31,
+          "dates": {
+            "checkin": "2027-04-08",
+            "checkout": "2027-04-09"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85585,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 32,
+          "dates": {
+            "checkin": "2027-04-10",
+            "checkout": "2027-04-11"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85582,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 33,
+          "dates": {
+            "checkin": "2027-04-12",
+            "checkout": "2027-04-13"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84518,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 34,
+          "dates": {
+            "checkin": "2027-04-14",
+            "checkout": "2027-04-15"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84560,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 35,
+          "dates": {
+            "checkin": "2027-04-16",
+            "checkout": "2027-04-17"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84562,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 36,
+          "dates": {
+            "checkin": "2027-04-18",
+            "checkout": "2027-04-19"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84561,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 37,
+          "dates": {
+            "checkin": "2027-04-20",
+            "checkout": "2027-04-21"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84560,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 38,
+          "dates": {
+            "checkin": "2027-04-22",
+            "checkout": "2027-04-23"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84562,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 39,
+          "dates": {
+            "checkin": "2027-04-24",
+            "checkout": "2027-04-25"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84556,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 40,
+          "dates": {
+            "checkin": "2027-04-26",
+            "checkout": "2027-04-27"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85026,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 41,
+          "dates": {
+            "checkin": "2027-04-28",
+            "checkout": "2027-04-29"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85583,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 42,
+          "dates": {
+            "checkin": "2027-04-30",
+            "checkout": "2027-05-01"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84560,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 43,
+          "dates": {
+            "checkin": "2027-05-02",
+            "checkout": "2027-05-03"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 35173,
+          "total": 2052,
+          "n": 20,
+          "fromCache": true,
+          "shape": "FULL",
+          "requestId": "2e5be668-d408-4899-a727-adfae07a6446",
+          "err": null
+        },
+        {
+          "idx": 44,
+          "dates": {
+            "checkin": "2027-05-04",
+            "checkout": "2027-05-05"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85607,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 45,
+          "dates": {
+            "checkin": "2027-05-06",
+            "checkout": "2027-05-07"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85611,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 46,
+          "dates": {
+            "checkin": "2027-05-08",
+            "checkout": "2027-05-09"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84560,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 47,
+          "dates": {
+            "checkin": "2027-05-10",
+            "checkout": "2027-05-11"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85628,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 48,
+          "dates": {
+            "checkin": "2027-05-12",
+            "checkout": "2027-05-13"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 84560,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        },
+        {
+          "idx": 49,
+          "dates": {
+            "checkin": "2027-05-14",
+            "checkout": "2027-05-15"
+          },
+          "ok": true,
+          "http": 200,
+          "ms": 85607,
+          "total": null,
+          "n": 0,
+          "fromCache": null,
+          "shape": "EMPTY",
+          "requestId": null,
+          "err": null
+        }
+      ],
+      "correlationId": "434b8e24-fc40-4eff-aedc-c4858b0a93d7",
+      "dateList": [
+        {
+          "checkin": "2027-02-05",
+          "checkout": "2027-02-06"
+        },
+        {
+          "checkin": "2027-02-07",
+          "checkout": "2027-02-08"
+        },
+        {
+          "checkin": "2027-02-09",
+          "checkout": "2027-02-10"
+        },
+        {
+          "checkin": "2027-02-11",
+          "checkout": "2027-02-12"
+        },
+        {
+          "checkin": "2027-02-13",
+          "checkout": "2027-02-14"
+        },
+        {
+          "checkin": "2027-02-15",
+          "checkout": "2027-02-16"
+        },
+        {
+          "checkin": "2027-02-17",
+          "checkout": "2027-02-18"
+        },
+        {
+          "checkin": "2027-02-19",
+          "checkout": "2027-02-20"
+        },
+        {
+          "checkin": "2027-02-21",
+          "checkout": "2027-02-22"
+        },
+        {
+          "checkin": "2027-02-23",
+          "checkout": "2027-02-24"
+        },
+        {
+          "checkin": "2027-02-25",
+          "checkout": "2027-02-26"
+        },
+        {
+          "checkin": "2027-02-27",
+          "checkout": "2027-02-28"
+        },
+        {
+          "checkin": "2027-03-01",
+          "checkout": "2027-03-02"
+        },
+        {
+          "checkin": "2027-03-03",
+          "checkout": "2027-03-04"
+        },
+        {
+          "checkin": "2027-03-05",
+          "checkout": "2027-03-06"
+        },
+        {
+          "checkin": "2027-03-07",
+          "checkout": "2027-03-08"
+        },
+        {
+          "checkin": "2027-03-09",
+          "checkout": "2027-03-10"
+        },
+        {
+          "checkin": "2027-03-11",
+          "checkout": "2027-03-12"
+        },
+        {
+          "checkin": "2027-03-13",
+          "checkout": "2027-03-14"
+        },
+        {
+          "checkin": "2027-03-15",
+          "checkout": "2027-03-16"
+        },
+        {
+          "checkin": "2027-03-17",
+          "checkout": "2027-03-18"
+        },
+        {
+          "checkin": "2027-03-19",
+          "checkout": "2027-03-20"
+        },
+        {
+          "checkin": "2027-03-21",
+          "checkout": "2027-03-22"
+        },
+        {
+          "checkin": "2027-03-23",
+          "checkout": "2027-03-24"
+        },
+        {
+          "checkin": "2027-03-25",
+          "checkout": "2027-03-26"
+        },
+        {
+          "checkin": "2027-03-27",
+          "checkout": "2027-03-28"
+        },
+        {
+          "checkin": "2027-03-29",
+          "checkout": "2027-03-30"
+        },
+        {
+          "checkin": "2027-03-31",
+          "checkout": "2027-04-01"
+        },
+        {
+          "checkin": "2027-04-02",
+          "checkout": "2027-04-03"
+        },
+        {
+          "checkin": "2027-04-04",
+          "checkout": "2027-04-05"
+        },
+        {
+          "checkin": "2027-04-06",
+          "checkout": "2027-04-07"
+        },
+        {
+          "checkin": "2027-04-08",
+          "checkout": "2027-04-09"
+        },
+        {
+          "checkin": "2027-04-10",
+          "checkout": "2027-04-11"
+        },
+        {
+          "checkin": "2027-04-12",
+          "checkout": "2027-04-13"
+        },
+        {
+          "checkin": "2027-04-14",
+          "checkout": "2027-04-15"
+        },
+        {
+          "checkin": "2027-04-16",
+          "checkout": "2027-04-17"
+        },
+        {
+          "checkin": "2027-04-18",
+          "checkout": "2027-04-19"
+        },
+        {
+          "checkin": "2027-04-20",
+          "checkout": "2027-04-21"
+        },
+        {
+          "checkin": "2027-04-22",
+          "checkout": "2027-04-23"
+        },
+        {
+          "checkin": "2027-04-24",
+          "checkout": "2027-04-25"
+        },
+        {
+          "checkin": "2027-04-26",
+          "checkout": "2027-04-27"
+        },
+        {
+          "checkin": "2027-04-28",
+          "checkout": "2027-04-29"
+        },
+        {
+          "checkin": "2027-04-30",
+          "checkout": "2027-05-01"
+        },
+        {
+          "checkin": "2027-05-02",
+          "checkout": "2027-05-03"
+        },
+        {
+          "checkin": "2027-05-04",
+          "checkout": "2027-05-05"
+        },
+        {
+          "checkin": "2027-05-06",
+          "checkout": "2027-05-07"
+        },
+        {
+          "checkin": "2027-05-08",
+          "checkout": "2027-05-09"
+        },
+        {
+          "checkin": "2027-05-10",
+          "checkout": "2027-05-11"
+        },
+        {
+          "checkin": "2027-05-12",
+          "checkout": "2027-05-13"
+        },
+        {
+          "checkin": "2027-05-14",
+          "checkout": "2027-05-15"
+        }
+      ]
+    }
+  ]
+}

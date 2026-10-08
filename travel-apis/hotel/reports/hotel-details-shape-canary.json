@@ -1,0 +1,232 @@
+{
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "at": "2026-08-15T14:43:13.617Z",
+  "query": {
+    "lang": "en",
+    "currency": "INR"
+  },
+  "searchBody": {
+    "checkin": "2026-09-12",
+    "checkout": "2026-09-13",
+    "entityId": "39627872",
+    "nationality": "IN",
+    "type": "HOTEL",
+    "rooms": [
+      {
+        "adults": 1,
+        "children": 0,
+        "childrenAges": []
+      }
+    ]
+  },
+  "autocomplete": {
+    "http": 200,
+    "keys": [
+      "content",
+      "pageable",
+      "totalElements",
+      "totalPages",
+      "first",
+      "last",
+      "empty",
+      "_meta"
+    ],
+    "slim": {
+      "bytes": 205,
+      "json": {
+        "content": [],
+        "pageable": {
+          "pageNumber": 0,
+          "pageSize": 0,
+          "offset": 0
+        },
+        "totalElements": 0,
+        "totalPages": 0,
+        "first": false,
+        "last": false,
+        "empty": true,
+        "_meta": {
+          "correlation_id": "e2b3d840-7993-46c6-a43a-c7b9e52b72e6"
+        }
+      }
+    }
+  },
+  "search": {
+    "http": 200,
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000",
+      "cache-control": "no-cache, private",
+      "content-length": "67",
+      "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self';",
+      "content-type": "application/json",
+      "date": "Sat, 15 Aug 2026 14:43:12 GMT",
+      "referrer-policy": "same-origin",
+      "server": "Apache/2.4.52 (Ubuntu)",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+      "vary": "Authorization",
+      "via": "1.1 google",
+      "x-content-type-options": "nosniff",
+      "x-correlation-id": "e2b3d840-7993-46c6-a43a-c7b9e52b72e6",
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "keys": [
+      "_meta"
+    ],
+    "slim": {
+      "bytes": 67,
+      "json": {
+        "_meta": {
+          "correlation_id": "e2b3d840-7993-46c6-a43a-c7b9e52b72e6"
+        }
+      }
+    }
+  },
+  "details": {
+    "http": 200,
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "cache-control": "no-cache, private",
+      "content-length": "67",
+      "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self';",
+      "content-type": "application/json",
+      "date": "Sat, 15 Aug 2026 14:43:12 GMT",
+      "referrer-policy": "same-origin",
+      "server": "Apache/2.4.52 (Ubuntu)",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+      "vary": "Authorization",
+      "via": "1.1 google",
+      "x-content-type-options": "nosniff",
+      "x-correlation-id": "e2b3d840-7993-46c6-a43a-c7b9e52b72e6",
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "keys": [
+      "_meta"
+    ],
+    "slim": {
+      "bytes": 67,
+      "json": {
+        "_meta": {
+          "correlation_id": "e2b3d840-7993-46c6-a43a-c7b9e52b72e6"
+        }
+      }
+    }
+  },
+  "cityAreaSearch": {
+    "http": 400,
+    "keys": [
+      "error",
+      "_meta"
+    ],
+    "resultsLen": null,
+    "slim": {
+      "bytes": 254,
+      "json": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Validation failed",
+          "details": [
+            "Please select a destination to search."
+          ],
+          "timestamp": "2026-08-15T14:43:13Z",
+          "request_id": "req-1786804993149"
+        },
+        "_meta": {
+          "correlation_id": "e2b3d840-7993-46c6-a43a-c7b9e52b72e6"
+        }
+      }
+    }
+  },
+  "previousBooking": {
+    "br": "BR1786788719398621",
+    "statusHttp": 200,
+    "statusKeys": [
+      "bookingReferenceId",
+      "status",
+      "confirmationNumber",
+      "checkin",
+      "checkout",
+      "checkinTime",
+      "checkoutTime",
+      "message",
+      "hotelDetails",
+      "roomDetails",
+      "rooms",
+      "salesSummary",
+      "_meta"
+    ],
+    "statusSlim": {
+      "bytes": 765,
+      "json": {
+        "bookingReferenceId": "BR1786788719398621",
+        "status": "Confirmed",
+        "confirmationNumber": "SNHAPI00010708",
+        "checkin": "2026-09-12",
+        "checkout": "2026-09-13",
+        "checkinTime": "2:00 PM",
+        "checkoutTime": "11:00 AM",
+        "message": "Successful",
+        "hotelDetails": {
+          "name": "Hiltop Hotel",
+          "address": "43. Sir Pochkhanwala Road",
+          "contact": null
+        },
+        "roomDetails": {
+          "name": [
+            "Basic Studio"
+          ],
+          "title": "Basic Studio",
+          "mealType": "Breakfast Included",
+          "roomType": "Basic Studio"
+        },
+        "rooms": [
+          {
+            "guestNames": [
+              {
+                "title": "Mr",
+                "firstName": "Rohan",
+                "lastName": "Bhagat",
+                "type": "Adult"
+              }
+            ]
+          }
+        ],
+        "salesSummary": {
+          "baseFare": 7004.9,
+          "tax": 359.96,
+          "convenienceFee": 0,
+          "totalAmount": 7364.86,
+          "totalDiscount": 0,
+          "currency": "INR",
+          "taxBreakup": {
+            "gst": 0,
+            "otherTaxes": 359.96
+          }
+        },
+        "_meta": {
+          "correlation_id": "e2b3d840-7993-46c6-a43a-c7b9e52b72e6"
+        }
+      }
+    },
+    "detailHttp": 200,
+    "detailKeys": [
+      "status",
+      "confirmationNumber",
+      "checkIn",
+      "checkInTime",
+      "checkOut",
+      "checkOutTime",
+      "bookingDate",
+      "noOfRooms",
+      "message",
+      "hotelDetails",
+      "roomDetails",
+      "rooms",
+      "salesSummary",
+      "_meta"
+    ],
+    "detailSlim": {
+      "bytes": 4504,
+      "json": "{\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00010708\",\"checkIn\":\"2026-09-12\",\"checkInTime\":\"2:00 PM\",\"checkOut\":\"2026-09-13\",\"checkOutTime\":\"11:00 AM\",\"bookingDate\":\"2026-08-15T10:11:59Z\",\"noOfRooms\":1,\"message\":\"Successful\",\"hotelDetails\":{\"hotelName\":\"Hiltop Hotel\",\"city\":\"Mumbai\",\"address\":\"43. Sir Pochkhanwala Road\",\"contactNumber\":null,\"amenities\":[{\"key\":\"Dry cleaning/laundry service\",\"value\":null},{\"key\":\"Banquet hall\",\"value\":null},{\"key\":\"Wheelchair accessible – no\",\"value\":null},{\"key\":\"Luggage storage\",\"value\":null},{\"key\":\"Number of meeting rooms - 3\",\"value\":null},{\"key\":\"Business center\",\"value\":null}],\"image\":\"https://static-images.webbeds.com/0/image/ba52053b-4fd3-48ac-a583-d85a9fe52d2c.jpg\",\"rateConditions\":[\"Check-in between 2:00 PM - 5:00 AM\",\"Check-out before 11:00 AM\",\"<ul>  <li>Extra-person charges may apply and vary depending on property policy</li><li>Government-issued photo identification and a credit card, debit card, or cash deposit may be required at check-in for incidental charges</li><li>Special requests are subject to availability upon check-in and may incur additional charges; special requests cannot be guaranteed</li><li>This property accepts credit cards; cash is not accepted</li><li>Please note that cultural norms and guest policies may differ by country and by property; the policies listed are provided by the property</li>  </ul>\",\"To make arrangements for check-in please contact the property ahead of time using the information on the booking confirmation. If you are planning to arrive after midnight please contact the property in advance using the information on the booking confirmation. Guests must contact the property in advance for check-in instructions. Front desk staff will greet guests on arrival at the property. For any questions, please contact the property using the information on the booking confirmation. Information provided by the property may be translated using automated translation tools. Couples are required to present proof of marriage at check-in when sharing a room.\",\"<ul>  <li>Couples wishing to share a room must provide proof of marriage. </li><li>The property has connecting/adjoining rooms, which are subject to availability and can be requested by contacting the property using the number on the booking confirmation. </li><li>No pets and no service animals are allowed at this property. </li><li>Contactless check-out is available.</li> </ul>\",\"<ul> <li>Crib (infant bed) fee: INR 2469.0 per day<…"
+    }
+  }
+}

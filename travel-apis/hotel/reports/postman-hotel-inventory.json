@@ -1,0 +1,203 @@
+[
+  {
+    "name": "AutoComplete",
+    "folder": "vgm/Hotel",
+    "method": "GET",
+    "path": "/v1/hotels/autocomplete",
+    "topKeys": [],
+    "body": null,
+    "examples": [
+      "AutoComplete"
+    ]
+  },
+  {
+    "name": "Hotel Search",
+    "folder": "vgm/Hotel",
+    "method": "POST",
+    "path": "/v1/hotels/search",
+    "topKeys": [
+      "checkin",
+      "checkout",
+      "entityId",
+      "nationality",
+      "type",
+      "rooms"
+    ],
+    "body": {
+      "checkin": "14-09-2026",
+      "checkout": "2026-08-23",
+      "entityId": "2823286",
+      "nationality": "IN",
+      "type": "HOTEL",
+      "rooms": [
+        {
+          "adults": 1,
+          "children": 1,
+          "childrenAges": [
+            9
+          ]
+        }
+      ]
+    },
+    "examples": [
+      "Hotel Search"
+    ]
+  },
+  {
+    "name": "Hotel Detail",
+    "folder": "vgm/Hotel",
+    "method": "POST",
+    "path": "/v1/hotels/details",
+    "topKeys": [
+      "checkin",
+      "checkout",
+      "entityId",
+      "nationality",
+      "rooms"
+    ],
+    "body": {
+      "checkin": "2026-08-22",
+      "checkout": "2026-08-23",
+      "entityId": "ry-39627872",
+      "nationality": "IN",
+      "rooms": [
+        {
+          "adults": 1,
+          "children": 0,
+          "childrenAges": []
+        }
+      ]
+    },
+    "examples": [
+      "Hotel Detail"
+    ]
+  },
+  {
+    "name": "Hotel Prebook",
+    "folder": "vgm/Hotel",
+    "method": "POST",
+    "path": "/v1/hotels/prebook",
+    "topKeys": [
+      "bookingCode",
+      "requestId"
+    ],
+    "body": {
+      "bookingCode": "39627872!TB!RIYA!TB!c0b4b6b2-890f-493c-a77f-4dd5845d50ca~89f8ff08-c782-4c89-918d-fa2e14709b85~de5e9035-8e66-40a6-9ac7-cc6fa54a8496~dd7e160b-7421-48d4-b3f1-058763f272e9~bf54ac52-12e7-4f0f-a88c-ab6864b03c42",
+      "requestId": "bf54ac52-12e7-4f0f-a88c-ab6864b03c42"
+    },
+    "examples": [
+      "Hotel Prebook"
+    ]
+  },
+  {
+    "name": "Finalize booking",
+    "folder": "vgm/Hotel",
+    "method": "POST",
+    "path": "/v1/hotels/finalize-booking",
+    "topKeys": [
+      "bookingContext",
+      "bookingCode",
+      "requestId",
+      "checkin",
+      "checkout",
+      "gstDetails",
+      "rooms",
+      "contact"
+    ],
+    "body": {
+      "bookingContext": "0svuXSujlI9rEkVKcLFZe3LrdCLjlMQbzuaJXGx6mcK9ppvFcewkF6RRo9iwO7dN9p0tDQehWvFCrlpvYWeOpm0tQD9Tr7RXLz435FUZvfAccecNv079dYnacc35eR0aLnd+ee99iHpzc9FezJY7xcLvNSDu5joy5cnp3ePGqZuzb8JR0NpefJcUHpnUaFisKs25hbmsxEjFjI9/sBZ3oyLfuKTAZKMbYE/RnzFfcCjNi3N63AY8P4AVsY8hAwmO3ciY6uzRiKeHce2SadwaOC9BkNewNdau4TOL3tfHBHItKsQHd0H5/Fj2gLizG2Ai2PbjTtqlUo4fvZMyI6g+0PXDavre1dPXPWngRL+7utI=",
+      "bookingCode": "39627872!TB!RIYA!TB!c0b4b6b2-890f-493c-a77f-4dd5845d50ca~89f8ff08-c782-4c89-918d-fa2e14709b85~de5e9035-8e66-40a6-9ac7-cc6fa54a8496~dd7e160b-7421-48d4-b3f1-058763f272e9~bf54ac52-12e7-4f0f-a88c-ab6864b03c42",
+      "requestId": "bf54ac52-12e7-4f0f-a88c-ab6864b03c42",
+      "checkin": "2026-08-22",
+      "checkout": "2026-08-23",
+      "gstDetails": {
+        "gstNumber": "27AABCT1429B1Z1",
+        "gstCompanyName": "TravelVIP Technologies Pvt Ltd",
+        "gstAddress": "Office No 401, Tower B, Business Bay, Pune, Maharashtra 411014",
+        "gstEmailID": "accounts@travelvip.in",
+        "gstMobileNumber": "9921862715"
+      },
+      "rooms": [
+        {
+          "guests": [
+            {
+              "title": "Mr",
+              "firstName": "Atul",
+              "lastName": "Ugale",
+              "type": "Adult",
+              "isLead": true
+            }
+          ]
+        }
+      ],
+      "contact": {
+        "email": "chaitanya@scandid.in",
+        "countryCode": "+91",
+        "mobile": "9876543210",
+        "panCardNumber": "ADDPU6247P",
+        "panCardName": "Atul Prabhakar Ugale"
+      }
+    },
+    "examples": [
+      "Finalize booking without Child",
+      "Finalize booking with Child",
+      "Rescheduling",
+      "Finalize booking with gstinfo"
+    ]
+  },
+  {
+    "name": "Fetch Hotel Booking status",
+    "folder": "vgm/Hotel",
+    "method": "GET",
+    "path": "/v1/hotels/bookings/BR1786473421508054/status",
+    "topKeys": [],
+    "body": null,
+    "examples": [
+      "Fetch Hotel Booking status"
+    ]
+  },
+  {
+    "name": "Fetch Hotel Booking Details",
+    "folder": "vgm/Hotel",
+    "method": "GET",
+    "path": "/v1/hotels/bookings/BR1784541712924930",
+    "topKeys": [],
+    "body": null,
+    "examples": [
+      "Fetch Hotel Booking Details"
+    ]
+  },
+  {
+    "name": "Fetch Hotel Booking History",
+    "folder": "vgm/Hotel",
+    "method": "GET",
+    "path": "/v1/hotels/bookings/history",
+    "topKeys": [],
+    "body": null,
+    "examples": [
+      "Fetch Hotel Booking History"
+    ]
+  },
+  {
+    "name": "Panalty Check",
+    "folder": "vgm/Hotel",
+    "method": "GET",
+    "path": "/v1/hotels/bookings/:bookingId/penalty-check",
+    "topKeys": [],
+    "body": null,
+    "examples": [
+      "Panalty Check"
+    ]
+  },
+  {
+    "name": "Cancel Booking",
+    "folder": "vgm/Hotel",
+    "method": "GET",
+    "path": "/v1/hotels/bookings/BR1786019809729390/cancel",
+    "topKeys": [],
+    "body": null,
+    "examples": [
+      "Cancel Booking"
+    ]
+  }
+]

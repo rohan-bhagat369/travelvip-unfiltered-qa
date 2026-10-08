@@ -1,0 +1,186 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "original": "BR1786024380681089",
+  "newBr": "BR1786024428802726",
+  "totals": {
+    "total": 13,
+    "passed": 8,
+    "failed": 5
+  },
+  "failed": [
+    {
+      "id": "B4",
+      "title": "GET cancel unknown → BOOKING_NOT_FOUND",
+      "passed": false,
+      "http": 200,
+      "code": "BOOKING_NOT_FOUND",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR0000000000000000'\",\"timestamp\":\"2026-08-06T13:51:28Z\",\"request_id\":\"req-1786024287201\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:52:57.735Z"
+    },
+    {
+      "id": "B5",
+      "title": "POST /api cancel unknown → BOOKING_NOT_FOUND",
+      "passed": false,
+      "http": 200,
+      "code": "BOOKING_NOT_FOUND",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR0000000000000000'\",\"timestamp\":\"2026-08-06T13:51:34Z\",\"request_id\":\"req-1786024293729\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:52:57.907Z"
+    },
+    {
+      "id": "B8",
+      "title": "2nd POST same path → BOOKING_ALREADY_CANCELLED?",
+      "expected": "HTTP 400 + BOOKING_ALREADY_CANCELLED",
+      "passed": false,
+      "http": 200,
+      "code": null,
+      "duplicate": true,
+      "snippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786024380681089\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":181.92,\"createdAt\":\"2026-08-06T13:53:18Z\"}},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:53:21.904Z"
+    },
+    {
+      "id": "B9",
+      "title": "GET after POST cancel → BOOKING_ALREADY_CANCELLED?",
+      "expected": "HTTP 400 + BOOKING_ALREADY_CANCELLED",
+      "passed": false,
+      "http": 400,
+      "code": "BOOKING_NOT_CANCELLABLE",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_CANCELLABLE\",\"message\":\"Booking can only be cancelled when status is Confirmed\",\"details\":\"Booking 'BR1786024380681089' is in status 'Cancelled'\",\"timestamp\":\"2026-08-06T13:53:22Z\",\"request_id\":\"req-1786024401904\",\"currentStatus\":\"Cancelled\"},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:53:22.014Z"
+    },
+    {
+      "id": "B10",
+      "title": "POST /api after POST cancel → BOOKING_ALREADY_CANCELLED?",
+      "expected": "HTTP 400 + BOOKING_ALREADY_CANCELLED",
+      "passed": false,
+      "http": 400,
+      "code": "BOOKING_NOT_CANCELLABLE",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_CANCELLABLE\",\"message\":\"Booking can only be cancelled when status is Confirmed\",\"details\":\"Booking 'BR1786024380681089' is in status 'Cancelled'\",\"timestamp\":\"2026-08-06T13:53:23Z\",\"request_id\":\"req-1786024402014\",\"currentStatus\":\"Cancelled\"},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:53:22.312Z"
+    }
+  ],
+  "results": [
+    {
+      "id": "B1",
+      "title": "empty reschedulingReferenceId → VALIDATION_ERROR",
+      "passed": true,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"'reschedulingReferenceId' must be a non-empty string when provided\",\"details\":null,\"timestamp\":\"2026-08-06T13:52:55Z\",\"request_id\":\"req-1786024374443\"},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:52:54.522Z"
+    },
+    {
+      "id": "B2",
+      "title": ">100 char reschedulingReferenceId → VALIDATION_ERROR",
+      "passed": true,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"'reschedulingReferenceId' must not exceed 100 characters\",\"details\":null,\"timestamp\":\"2026-08-06T13:52:56Z\",\"request_id\":\"req-1786024376101\"},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:52:56.183Z"
+    },
+    {
+      "id": "B3",
+      "title": "number reschedulingReferenceId → VALIDATION_ERROR",
+      "passed": true,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"'reschedulingReferenceId' must be a non-empty string when provided\",\"details\":null,\"timestamp\":\"2026-08-06T13:52:58Z\",\"request_id\":\"req-1786024377548\"},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:52:57.628Z"
+    },
+    {
+      "id": "B4",
+      "title": "GET cancel unknown → BOOKING_NOT_FOUND",
+      "passed": false,
+      "http": 200,
+      "code": "BOOKING_NOT_FOUND",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR0000000000000000'\",\"timestamp\":\"2026-08-06T13:51:28Z\",\"request_id\":\"req-1786024287201\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:52:57.735Z"
+    },
+    {
+      "id": "B5",
+      "title": "POST /api cancel unknown → BOOKING_NOT_FOUND",
+      "passed": false,
+      "http": 200,
+      "code": "BOOKING_NOT_FOUND",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR0000000000000000'\",\"timestamp\":\"2026-08-06T13:51:34Z\",\"request_id\":\"req-1786024293729\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:52:57.907Z"
+    },
+    {
+      "id": "B6",
+      "title": "POST /api cancel missing bookingId → VALIDATION_ERROR",
+      "passed": true,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"bookingId is required\",\"details\":\"Field 'bookingId' is required\",\"timestamp\":\"2026-08-06T13:52:58Z\",\"request_id\":\"req-1786024377989\"},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:52:58.070Z"
+    },
+    {
+      "id": "B0",
+      "title": "Book confirmed hotel",
+      "passed": true,
+      "br": "BR1786024380681089",
+      "status": "Confirmed",
+      "at": "2026-08-06T13:53:17.602Z"
+    },
+    {
+      "id": "B7",
+      "title": "POST cancel confirmed",
+      "passed": true,
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786024380681089\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":181.92,\"createdAt\":\"2026-08-06T13:53:18Z\"}},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:53:21.702Z"
+    },
+    {
+      "id": "B8",
+      "title": "2nd POST same path → BOOKING_ALREADY_CANCELLED?",
+      "expected": "HTTP 400 + BOOKING_ALREADY_CANCELLED",
+      "passed": false,
+      "http": 200,
+      "code": null,
+      "duplicate": true,
+      "snippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786024380681089\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":181.92,\"createdAt\":\"2026-08-06T13:53:18Z\"}},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:53:21.904Z"
+    },
+    {
+      "id": "B9",
+      "title": "GET after POST cancel → BOOKING_ALREADY_CANCELLED?",
+      "expected": "HTTP 400 + BOOKING_ALREADY_CANCELLED",
+      "passed": false,
+      "http": 400,
+      "code": "BOOKING_NOT_CANCELLABLE",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_CANCELLABLE\",\"message\":\"Booking can only be cancelled when status is Confirmed\",\"details\":\"Booking 'BR1786024380681089' is in status 'Cancelled'\",\"timestamp\":\"2026-08-06T13:53:22Z\",\"request_id\":\"req-1786024401904\",\"currentStatus\":\"Cancelled\"},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:53:22.014Z"
+    },
+    {
+      "id": "B10",
+      "title": "POST /api after POST cancel → BOOKING_ALREADY_CANCELLED?",
+      "expected": "HTTP 400 + BOOKING_ALREADY_CANCELLED",
+      "passed": false,
+      "http": 400,
+      "code": "BOOKING_NOT_CANCELLABLE",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_CANCELLABLE\",\"message\":\"Booking can only be cancelled when status is Confirmed\",\"details\":\"Booking 'BR1786024380681089' is in status 'Cancelled'\",\"timestamp\":\"2026-08-06T13:53:23Z\",\"request_id\":\"req-1786024402014\",\"currentStatus\":\"Cancelled\"},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:53:22.312Z"
+    },
+    {
+      "id": "B11",
+      "title": "cancel while Pending → BOOKING_NOT_CANCELLABLE",
+      "passed": true,
+      "http": 400,
+      "code": "BOOKING_NOT_CANCELLABLE",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_CANCELLABLE\",\"message\":\"Booking can only be cancelled when status is Confirmed\",\"details\":\"Booking 'BR1786024404893261' is in status 'Pending'\",\"timestamp\":\"2026-08-06T13:53:25Z\",\"request_id\":\"req-1786024404404\",\"currentStatus\":\"Pending\"},\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "pendingBr": "BR1786024404893261",
+      "at": "2026-08-06T13:53:24.514Z"
+    },
+    {
+      "id": "B12",
+      "title": "reschedule happy path",
+      "passed": true,
+      "http": 200,
+      "code": null,
+      "newBr": "BR1786024428802726",
+      "originalBr": "BR1786024380681089",
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786024428802726\",\"_meta\":{\"correlation_id\":\"8e6dc54f-14dd-4d70-bf13-edde7567d1ae\"}}",
+      "at": "2026-08-06T13:53:47.591Z"
+    }
+  ]
+}

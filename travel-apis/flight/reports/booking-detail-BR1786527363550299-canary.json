@@ -1,0 +1,479 @@
+{
+  "summary": {
+    "baseUrl": "https://canary-api.travelvip.ai",
+    "bookingReference": "BR1786527363550299",
+    "bookingStatus": "Confirmed",
+    "statusApi": "Confirmed",
+    "journeyType": "ONE_WAY",
+    "passengers": [
+      {
+        "paxId": "PAX1",
+        "type": "ADULT",
+        "title": "Mr",
+        "name": "Chaitanya Patil",
+        "dob": "2001-05-29"
+      },
+      {
+        "paxId": "PAX2",
+        "type": "ADULT",
+        "title": "Mr",
+        "name": "Chaita Patil",
+        "dob": "2002-10-29"
+      }
+    ],
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "LBJ54D",
+        "legNumber": 1,
+        "totalStops": 0,
+        "totalDurationMinutes": 135,
+        "onlineCancellation": true,
+        "refundable": true,
+        "refundText": "Refundable",
+        "segments": [
+          {
+            "seq": 1,
+            "flight": "SG SG 164",
+            "airline": "SPICEJET AIRLINES",
+            "route": "BOM→DEL",
+            "dep": "2026-09-10T23:30",
+            "arr": "2026-09-11T01:45",
+            "from": {
+              "time": "2026-09-10T23:30",
+              "terminal": "1",
+              "airportCode": "BOM",
+              "airportName": "Chhatrapati Shivaji International Airport",
+              "city": "Mumbai",
+              "country": "India"
+            },
+            "to": {
+              "time": "2026-09-11T01:45",
+              "terminal": "1D",
+              "airportCode": "DEL",
+              "airportName": "Indira Gandhi International Airport",
+              "city": "New Delhi",
+              "country": "India"
+            },
+            "durationMinutes": 135,
+            "cabinClass": "ECONOMY",
+            "baggage": {
+              "checkIn": "15KG",
+              "cabin": "7 Kg"
+            }
+          }
+        ]
+      }
+    ],
+    "pnrs": [
+      "LBJ54D"
+    ],
+    "salesSummary": {
+      "basePrice": 4000,
+      "subTotal": 4000,
+      "tax": 2146,
+      "convenienceFee": 0,
+      "totalAmount": 6146,
+      "totalDiscount": 0,
+      "currency": "INR",
+      "campaignId": null
+    },
+    "contact": null,
+    "cancellationRequest": [],
+    "onlineCancellation": true,
+    "topKeys": [
+      "status",
+      "bookingResponse",
+      "_meta"
+    ],
+    "bookingResponseKeys": [
+      "bookingReferenceId",
+      "bookingType",
+      "summary",
+      "itinerary",
+      "passengers",
+      "salesSummary",
+      "contactDetails",
+      "userId",
+      "onlineCancellation",
+      "gstBreakup",
+      "cancellationRequest"
+    ]
+  },
+  "status": {
+    "status": "Confirmed",
+    "bookingResponse": {
+      "bookingReferenceId": "BR1786527363550299",
+      "bookingType": "TICKET",
+      "summary": {
+        "tripType": "O",
+        "totalPassengers": 2,
+        "journeys": 1,
+        "bookingDate": "2026-08-12T09:36:03",
+        "isFlexiCancel": 0
+      },
+      "itinerary": [
+        {
+          "direction": "ONWARD",
+          "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+          "legNumber": 1,
+          "totalStops": 0,
+          "totalDurationMinutes": 135,
+          "refundable": true,
+          "refundText": "Refundable",
+          "segments": [
+            {
+              "segmentId": "SEG_1",
+              "segmentNumber": 1,
+              "segmentReference": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+              "flightNumber": "SG 164",
+              "airlineCode": "SG",
+              "airline": {
+                "code": "SG",
+                "name": "SPICEJET AIRLINES",
+                "logo": "https://img.travelx.ai/cstx_images/airline/logo/spicejet_airlines_fv.png"
+              },
+              "operatingCarrier": null,
+              "cabinClass": "ECONOMY",
+              "aircraft": "Boeing 73H",
+              "durationMinutes": 135,
+              "stops": 0,
+              "vendorFlightId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+              "baggage": {
+                "checkIn": "15KG",
+                "cabin": "7 Kg"
+              },
+              "departure": {
+                "time": "2026-09-10T23:30",
+                "terminal": "1",
+                "airportCode": "BOM",
+                "airportName": "Chhatrapati Shivaji International Airport",
+                "city": "Mumbai",
+                "country": "India"
+              },
+              "arrival": {
+                "time": "2026-09-11T01:45",
+                "terminal": "1D",
+                "airportCode": "DEL",
+                "airportName": "Indira Gandhi International Airport",
+                "city": "New Delhi",
+                "country": "India"
+              }
+            }
+          ],
+          "onlineCancellation": true,
+          "cancellationPolicies": [
+            {
+              "label": "More than 24 hrs before departure",
+              "hoursBeforeDeparture": 24,
+              "window": "BEFORE",
+              "fromDateTime": "2026-08-12T09:36",
+              "endDateTime": "2026-09-09T23:30",
+              "chargeType": "FIXED",
+              "cancellationCharge": 599,
+              "currency": "INR"
+            },
+            {
+              "label": "Within 24 hrs before departure",
+              "hoursBeforeDeparture": 24,
+              "window": "WITHIN",
+              "fromDateTime": "2026-09-09T23:30",
+              "endDateTime": "2026-09-10T23:30",
+              "chargeType": "FIXED",
+              "cancellationCharge": 599,
+              "currency": "INR"
+            }
+          ],
+          "mandatorySsr": {
+            "meal": false,
+            "seat": false,
+            "baggage": false,
+            "types": []
+          },
+          "pnr": "LBJ54D"
+        }
+      ],
+      "passengers": [
+        {
+          "paxId": "PAX1",
+          "paxType": "ADULT",
+          "profile": {
+            "title": "Mr",
+            "firstName": "Chaitanya",
+            "lastName": "Patil",
+            "dob": "2001-05-29"
+          },
+          "passport": {
+            "number": null,
+            "expiry": null,
+            "issuedDate": null,
+            "issuedCountryCode": null
+          },
+          "pnrs": [
+            {
+              "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+              "pnr": "LBJ54D",
+              "eticketNumber": "BX12HH00881-1"
+            }
+          ],
+          "ssr": {
+            "baggage": [],
+            "meal": [],
+            "seat": []
+          },
+          "PaxAncillary": []
+        },
+        {
+          "paxId": "PAX2",
+          "paxType": "ADULT",
+          "profile": {
+            "title": "Mr",
+            "firstName": "Chaita",
+            "lastName": "Patil",
+            "dob": "2002-10-29"
+          },
+          "passport": {
+            "number": null,
+            "expiry": null,
+            "issuedDate": null,
+            "issuedCountryCode": null
+          },
+          "pnrs": [
+            {
+              "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+              "pnr": "LBJ54D",
+              "eticketNumber": "BX12HH00881-2"
+            }
+          ],
+          "ssr": {
+            "baggage": [],
+            "meal": [],
+            "seat": []
+          },
+          "PaxAncillary": []
+        }
+      ],
+      "salesSummary": {
+        "basePrice": 4000,
+        "subTotal": 4000,
+        "tax": 2146,
+        "convenienceFee": 0,
+        "totalAmount": 6146,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "campaignId": null
+      },
+      "contactDetails": {
+        "email": "chaitanya@scandid.in",
+        "countryCode": "+91",
+        "mobile": "9921862715"
+      },
+      "userId": 20688,
+      "onlineCancellation": true,
+      "gstBreakup": [
+        {
+          "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+          "code": "CGST27",
+          "amount": 136
+        },
+        {
+          "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+          "code": "SGST27",
+          "amount": 136
+        }
+      ],
+      "cancellationRequest": []
+    },
+    "_meta": {
+      "correlation_id": "c7d2cd09-22c2-4f3b-b094-ca2edac1fddf"
+    }
+  },
+  "detail": {
+    "status": "Confirmed",
+    "bookingResponse": {
+      "bookingReferenceId": "BR1786527363550299",
+      "bookingType": "TICKET",
+      "summary": {
+        "tripType": "O",
+        "totalPassengers": 2,
+        "journeys": 1,
+        "bookingDate": "2026-08-12T09:36:03",
+        "isFlexiCancel": 0
+      },
+      "itinerary": [
+        {
+          "direction": "ONWARD",
+          "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+          "legNumber": 1,
+          "totalStops": 0,
+          "totalDurationMinutes": 135,
+          "refundable": true,
+          "refundText": "Refundable",
+          "segments": [
+            {
+              "segmentId": "SEG_1",
+              "segmentNumber": 1,
+              "segmentReference": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+              "flightNumber": "SG 164",
+              "airlineCode": "SG",
+              "airline": {
+                "code": "SG",
+                "name": "SPICEJET AIRLINES",
+                "logo": "https://img.travelx.ai/cstx_images/airline/logo/spicejet_airlines_fv.png"
+              },
+              "operatingCarrier": null,
+              "cabinClass": "ECONOMY",
+              "aircraft": "Boeing 73H",
+              "durationMinutes": 135,
+              "stops": 0,
+              "vendorFlightId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+              "baggage": {
+                "checkIn": "15KG",
+                "cabin": "7 Kg"
+              },
+              "departure": {
+                "time": "2026-09-10T23:30",
+                "terminal": "1",
+                "airportCode": "BOM",
+                "airportName": "Chhatrapati Shivaji International Airport",
+                "city": "Mumbai",
+                "country": "India"
+              },
+              "arrival": {
+                "time": "2026-09-11T01:45",
+                "terminal": "1D",
+                "airportCode": "DEL",
+                "airportName": "Indira Gandhi International Airport",
+                "city": "New Delhi",
+                "country": "India"
+              }
+            }
+          ],
+          "onlineCancellation": true,
+          "cancellationPolicies": [
+            {
+              "label": "More than 24 hrs before departure",
+              "hoursBeforeDeparture": 24,
+              "window": "BEFORE",
+              "fromDateTime": "2026-08-12T09:36",
+              "endDateTime": "2026-09-09T23:30",
+              "chargeType": "FIXED",
+              "cancellationCharge": 599,
+              "currency": "INR"
+            },
+            {
+              "label": "Within 24 hrs before departure",
+              "hoursBeforeDeparture": 24,
+              "window": "WITHIN",
+              "fromDateTime": "2026-09-09T23:30",
+              "endDateTime": "2026-09-10T23:30",
+              "chargeType": "FIXED",
+              "cancellationCharge": 599,
+              "currency": "INR"
+            }
+          ],
+          "mandatorySsr": {
+            "meal": false,
+            "seat": false,
+            "baggage": false,
+            "types": []
+          },
+          "pnr": "LBJ54D"
+        }
+      ],
+      "passengers": [
+        {
+          "paxId": "PAX1",
+          "paxType": "ADULT",
+          "profile": {
+            "title": "Mr",
+            "firstName": "Chaitanya",
+            "lastName": "Patil",
+            "dob": "2001-05-29"
+          },
+          "passport": {
+            "number": null,
+            "expiry": null,
+            "issuedDate": null,
+            "issuedCountryCode": null
+          },
+          "pnrs": [
+            {
+              "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+              "pnr": "LBJ54D",
+              "eticketNumber": "BX12HH00881-1"
+            }
+          ],
+          "ssr": {
+            "baggage": [],
+            "meal": [],
+            "seat": []
+          },
+          "PaxAncillary": []
+        },
+        {
+          "paxId": "PAX2",
+          "paxType": "ADULT",
+          "profile": {
+            "title": "Mr",
+            "firstName": "Chaita",
+            "lastName": "Patil",
+            "dob": "2002-10-29"
+          },
+          "passport": {
+            "number": null,
+            "expiry": null,
+            "issuedDate": null,
+            "issuedCountryCode": null
+          },
+          "pnrs": [
+            {
+              "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+              "pnr": "LBJ54D",
+              "eticketNumber": "BX12HH00881-2"
+            }
+          ],
+          "ssr": {
+            "baggage": [],
+            "meal": [],
+            "seat": []
+          },
+          "PaxAncillary": []
+        }
+      ],
+      "salesSummary": {
+        "basePrice": 4000,
+        "subTotal": 4000,
+        "tax": 2146,
+        "convenienceFee": 0,
+        "totalAmount": 6146,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "campaignId": null
+      },
+      "contactDetails": {
+        "email": "chaitanya@scandid.in",
+        "countryCode": "+91",
+        "mobile": "9921862715"
+      },
+      "userId": 20688,
+      "onlineCancellation": true,
+      "gstBreakup": [
+        {
+          "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+          "code": "CGST27",
+          "amount": 136
+        },
+        {
+          "legId": "SG164-BOM-DEL-2026-09-10T23:30-2026-09-11T01:45",
+          "code": "SGST27",
+          "amount": 136
+        }
+      ],
+      "cancellationRequest": []
+    },
+    "_meta": {
+      "correlation_id": "c7d2cd09-22c2-4f3b-b094-ca2edac1fddf"
+    }
+  }
+}

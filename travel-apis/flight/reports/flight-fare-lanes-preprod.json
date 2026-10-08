@@ -1,0 +1,1226 @@
+{
+  "meta": {
+    "baseUrl": "https://preprod-api.travelvip.ai",
+    "tierId": 19597201,
+    "partnerId": "vgm",
+    "correlationId": "ca22093d-a8c4-446f-b650-080893e199de",
+    "route": {
+      "origin": "DEL",
+      "destination": "BOM"
+    },
+    "days": 35,
+    "noBook": true,
+    "branch": "feat/v2-fare-lanes",
+    "startedAt": "2026-09-07T13:45:20.430Z",
+    "finishedAt": "2026-09-07T13:46:08.142Z",
+    "summary": {
+      "PASS": 49,
+      "BUG": 2,
+      "NOT_TESTED": 6
+    }
+  },
+  "rows": [
+    {
+      "section": "A",
+      "id": "A-1",
+      "rule": "omitted / \"\" / NORMAL / normal → 200 identical",
+      "how": "4 OW searches",
+      "status": "PASS",
+      "expected": "200 identical results",
+      "actual": "omitted:http=200 n=20 cats=NORMAL | empty:http=200 n=20 cats=NORMAL | NORMAL:http=200 n=20 cats=NORMAL | normal:http=200 n=20 cats=NORMAL",
+      "note": "fingerprints match"
+    },
+    {
+      "section": "A",
+      "id": "A-2-NORMAL",
+      "rule": "alone NORMAL → only that fareCategory",
+      "how": "fareType=NORMAL",
+      "status": "PASS",
+      "expected": "only NORMAL",
+      "actual": "http=200 n=20 cats=NORMAL leak="
+    },
+    {
+      "section": "A",
+      "id": "A-2-CORPORATE",
+      "rule": "alone CORPORATE → only that fareCategory",
+      "how": "fareType=CORPORATE",
+      "status": "PASS",
+      "expected": "only CORPORATE",
+      "actual": "http=200 n=20 cats=CORPORATE leak="
+    },
+    {
+      "section": "A",
+      "id": "A-2-SME",
+      "rule": "alone SME → only that fareCategory",
+      "how": "fareType=SME",
+      "status": "PASS",
+      "expected": "only SME",
+      "actual": "http=200 n=20 cats=SME leak="
+    },
+    {
+      "section": "A",
+      "id": "A-2-STUDENT",
+      "rule": "alone STUDENT → only that fareCategory",
+      "how": "fareType=STUDENT",
+      "status": "PASS",
+      "expected": "only STUDENT",
+      "actual": "http=200 n=20 cats=STUDENT leak="
+    },
+    {
+      "section": "A",
+      "id": "A-2-DEFENCE",
+      "rule": "alone DEFENCE → only that fareCategory",
+      "how": "fareType=DEFENCE",
+      "status": "PASS",
+      "expected": "only DEFENCE",
+      "actual": "http=200 n=6 cats=DEFENCE leak="
+    },
+    {
+      "section": "A",
+      "id": "A-2-SENIOR_CITIZEN",
+      "rule": "alone SENIOR_CITIZEN → only that fareCategory",
+      "how": "fareType=SENIOR_CITIZEN",
+      "status": "PASS",
+      "expected": "only SENIOR_CITIZEN",
+      "actual": "http=200 n=20 cats=SENIOR_CITIZEN leak="
+    },
+    {
+      "section": "A",
+      "id": "A-3a",
+      "rule": "multi CORPORATE,NORMAL → all categories present",
+      "how": "fareType=CORPORATE,NORMAL",
+      "status": "PASS",
+      "expected": "CORPORATE,NORMAL",
+      "actual": "found=CORPORATE,NORMAL n=20"
+    },
+    {
+      "section": "A",
+      "id": "A-3b",
+      "rule": "multi NORMAL,SME → all categories present",
+      "how": "fareType=NORMAL,SME",
+      "status": "PASS",
+      "expected": "NORMAL,SME",
+      "actual": "found=NORMAL,SME n=20"
+    },
+    {
+      "section": "A",
+      "id": "A-3c",
+      "rule": "multi NORMAL,SME,CORPORATE → all categories present",
+      "how": "fareType=NORMAL,SME,CORPORATE",
+      "status": "PASS",
+      "expected": "NORMAL,SME,CORPORATE",
+      "actual": "found=CORPORATE,NORMAL,SME n=20"
+    },
+    {
+      "section": "A",
+      "id": "A-4a",
+      "rule": "NORMAL , SME (spaces) trimmed",
+      "how": "fareType with spaces",
+      "status": "PASS",
+      "expected": "NORMAL+SME",
+      "actual": "NORMAL,SME"
+    },
+    {
+      "section": "A",
+      "id": "A-4b",
+      "rule": "CORPORATE,CORPORATE collapses",
+      "how": "duplicate token",
+      "status": "PASS",
+      "expected": "only CORPORATE",
+      "actual": "CORPORATE"
+    },
+    {
+      "section": "A",
+      "id": "A-5a",
+      "rule": "BUSINESS → 400 INVALID_FARE_TYPE",
+      "how": "unknown token",
+      "status": "PASS",
+      "expected": "400 INVALID_FARE_TYPE",
+      "actual": "http=400 code=INVALID_FARE_TYPE",
+      "payload": {
+        "fareType": "BUSINESS"
+      },
+      "response": {
+        "code": "INVALID_FARE_TYPE",
+        "message": "Unsupported fareType: BUSINESS. Supported: NORMAL, senior_citizen, SME, corporate, student, flexi_cancel, defence",
+        "details": null,
+        "timestamp": "2026-09-07T13:45:23Z",
+        "request_id": "req-1788788723558"
+      }
+    },
+    {
+      "section": "A",
+      "id": "A-5b",
+      "rule": "NORMAL,BUSINESS → 400 INVALID_FARE_TYPE",
+      "how": "mixed unknown",
+      "status": "PASS",
+      "expected": "400 INVALID_FARE_TYPE",
+      "actual": "http=400 code=INVALID_FARE_TYPE",
+      "payload": {
+        "fareType": "NORMAL,BUSINESS"
+      },
+      "response": {
+        "code": "INVALID_FARE_TYPE",
+        "message": "Unsupported fareType: BUSINESS. Supported: NORMAL, senior_citizen, SME, corporate, student, flexi_cancel, defence",
+        "details": null,
+        "timestamp": "2026-09-07T13:45:23Z",
+        "request_id": "req-1788788723634"
+      }
+    },
+    {
+      "section": "A",
+      "id": "A-6a",
+      "rule": "flexi_cancel alone → 200",
+      "how": "deprecated alone",
+      "status": "PASS",
+      "expected": "200",
+      "actual": "http=200 code=null"
+    },
+    {
+      "section": "A",
+      "id": "A-6b",
+      "rule": "flexi_cancel + other → 400 INVALID_FARE_TYPE",
+      "how": "both orders",
+      "status": "PASS",
+      "expected": "400 INVALID_FARE_TYPE both orders",
+      "actual": "NORMAL,flexi=400/INVALID_FARE_TYPE; flexi,SME=400/INVALID_FARE_TYPE"
+    },
+    {
+      "section": "B",
+      "id": "B-1",
+      "rule": "NORMAL only — no CORP/SME leak",
+      "how": "fareType=NORMAL",
+      "status": "PASS",
+      "expected": "only NORMAL",
+      "actual": "cats=NORMAL leak="
+    },
+    {
+      "section": "B",
+      "id": "B-2",
+      "rule": "CORPORATE only — no normal leak",
+      "how": "fareType=CORPORATE",
+      "status": "PASS",
+      "expected": "only CORPORATE",
+      "actual": "cats=CORPORATE leak="
+    },
+    {
+      "section": "B",
+      "id": "B-3",
+      "rule": "All pages: every fare has fareCategory; no dual category",
+      "how": "paginate NORMAL,SME,CORPORATE",
+      "status": "PASS",
+      "expected": "non-null fareCategory; one category per searchId",
+      "actual": "fares=734 null=0 dual=false"
+    },
+    {
+      "section": "B",
+      "id": "B-4",
+      "rule": "fareCategories facet matches fares offered across pages",
+      "how": "compare facet vs all pages",
+      "status": "PASS",
+      "expected": "facet option counts align with options offering each category",
+      "actual": "{\"facet\":[{\"value\":\"CORPORATE\",\"count\":30},{\"value\":\"NORMAL\",\"count\":183},{\"value\":\"SME\",\"count\":153}],\"offeredOpt\":{\"CORPORATE\":30,\"NORMAL\":183,\"SME\":153},\"mismatches\":[]}"
+    },
+    {
+      "section": "B",
+      "id": "B-5",
+      "rule": "IX / Air India Express corporate present",
+      "how": "CORPORATE search prefer IX",
+      "status": "PASS",
+      "expected": "IX fare with fareCategory=CORPORATE",
+      "actual": "IX CORPORATE VALUE sid=srch_df0e6b2ac6294f2caaff91fa8f52be5c"
+    },
+    {
+      "section": "B",
+      "id": "B-6",
+      "rule": "Watch logs for v2.corpFare unclassified",
+      "how": "server logs not accessible from B2B client",
+      "status": "NOT TESTED",
+      "expected": "no unclassified drops",
+      "actual": "no log access from this harness"
+    },
+    {
+      "section": "C",
+      "id": "C-1",
+      "rule": "One card with 2+ categories, distinct searchIds",
+      "how": "inspect multi-category option",
+      "status": "PASS",
+      "expected": "one card, both fares, distinct searchIds",
+      "actual": "{\"airlines\":\"IX\",\"fares\":[{\"cat\":\"CORPORATE\",\"fareType\":\"CORPORATE VALUE\",\"searchId\":\"srch_df0e6b2ac6294f2caaff91fa8f52be5c\",\"price\":6168},{\"cat\":\"NORMAL\",\"fareType\":\"VALUE\",\"searchId\":\"srch_bf796056f14a453d8c838e2fa3369b88\",\"price\":6539},{\"cat\":\"NORMAL\",\"fareType\":\"CLASSIC\",\"searchId\":\"srch_81a87ae973a542e6bde90b0931775059\",\"price\":7065},{\"cat\":\"NORMAL\",\"fareType\":\"FLEX\",\"searchId\":\"srch_1157d5c2261a47258d41239d1bb785cd\",\"price\":7485}],\"searchIds\":[\"srch_df0e6b2ac6294f2caaff91fa8f52be5c\",\"srch_bf796056f14a453d8c838e2fa3369b88\",\"srch_81a87ae973a542e6bde90b0931775059\",\"srch_1157d5c2261a47258d41239d1bb785cd\"]}"
+    },
+    {
+      "section": "C",
+      "id": "C-2",
+      "rule": "displayPricing equals cheapest fare",
+      "how": "same card",
+      "status": "PASS",
+      "expected": "display≈6168",
+      "actual": "display=6168 fares=6168,6539,7065,7485"
+    },
+    {
+      "section": "C",
+      "id": "C-3",
+      "rule": "Page 0 cheapest-first across categories",
+      "how": "inspect order",
+      "status": "PASS",
+      "expected": "sorted by price across cats (not cat blocks)",
+      "actual": "switches=3 nonDec=true cats=CORPORATE,NORMAL"
+    },
+    {
+      "section": "C",
+      "id": "C-4",
+      "rule": "Sum of options across pages = totalResults",
+      "how": "paginate perpage=10",
+      "status": "PASS",
+      "expected": "sum=totalResults",
+      "actual": "sum=183 total=183 pages=10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,3"
+    },
+    {
+      "section": "C",
+      "id": "C-5",
+      "rule": "Cached size=5 vs size=50: same totalResults; cards keep categories",
+      "how": "perpage 5 then 50",
+      "status": "PASS",
+      "expected": "identical totalResults; categories on size=5 cards",
+      "actual": "{\"t5\":183,\"t50\":183,\"n5\":5,\"n50\":50,\"multiOnSmall\":true,\"cats5\":[\"CORPORATE\",\"NORMAL\",\"SME\"]}"
+    },
+    {
+      "section": "C",
+      "id": "C-6",
+      "rule": "appliedFilters fareCategories=[\"CORPORATE\"] prunes fares",
+      "how": "filter CORPORATE",
+      "status": "PASS",
+      "expected": "only CORPORATE in fares[]",
+      "actual": "{\"n\":20,\"cats\":[\"CORPORATE\"],\"bad\":0,\"facet\":[{\"value\":\"CORPORATE\",\"count\":30},{\"value\":\"NORMAL\",\"count\":183},{\"value\":\"SME\",\"count\":153}]}"
+    },
+    {
+      "section": "C",
+      "id": "C-7",
+      "rule": "fareCategories=[\"\"] treated as no filter",
+      "how": "empty string filter",
+      "status": "PASS",
+      "expected": "full multi-category set",
+      "actual": "n=20 cats=CORPORATE,NORMAL,SME"
+    },
+    {
+      "section": "C",
+      "id": "C-8",
+      "rule": "Single-fare-type: progress.lanesTotal/lanesReady null",
+      "how": "NORMAL only",
+      "status": "PASS",
+      "expected": "null/null",
+      "actual": "lanesTotal=null lanesReady=null"
+    },
+    {
+      "section": "D",
+      "id": "D-1",
+      "rule": "RT NORMAL,SME — select SME onward → both dirs SME",
+      "how": "re-search with selectedSearchIds",
+      "status": "PASS",
+      "expected": "ONWARD+RETURN only SME",
+      "actual": "{\"onward\":[\"SME\"],\"ret\":[\"SME\"]}"
+    },
+    {
+      "section": "D",
+      "id": "D-2",
+      "rule": "RT — select NORMAL onward → both dirs NORMAL",
+      "how": "re-search",
+      "status": "PASS",
+      "expected": "only NORMAL",
+      "actual": "{\"onward\":[\"NORMAL\"],\"ret\":[\"NORMAL\"]}"
+    },
+    {
+      "section": "D",
+      "id": "D-3",
+      "rule": "Select using fare-level searchId from fares[]",
+      "how": "fare.searchId not card",
+      "status": "PASS",
+      "expected": "narrowing works with fare searchId",
+      "actual": "returnCats=SME"
+    },
+    {
+      "section": "D",
+      "id": "D-4",
+      "rule": "Cross-category RT pair → pricing INVALID_COMBINATION",
+      "how": "CORP onward + NORMAL return",
+      "status": "PASS",
+      "expected": "400 INVALID_COMBINATION",
+      "actual": "http=400 code=INVALID_COMBINATION",
+      "response": {
+        "code": "INVALID_COMBINATION",
+        "message": "Selected flights come from different searches and cannot be booked together. Select onward and return from the same fare type.",
+        "details": null,
+        "timestamp": "2026-09-07T13:45:30Z",
+        "request_id": "req-1788788730754",
+        "search_again": 1
+      }
+    },
+    {
+      "section": "D",
+      "id": "D-5",
+      "rule": "Cross pair → details + fareRules INVALID_COMBINATION",
+      "how": "same pair",
+      "status": "PASS",
+      "expected": "INVALID_COMBINATION both",
+      "actual": "details=400/INVALID_COMBINATION rules=400/INVALID_COMBINATION"
+    },
+    {
+      "section": "D",
+      "id": "D-6",
+      "rule": "Same-category RT → pricing succeeds",
+      "how": "SME pair",
+      "status": "PASS",
+      "expected": "200",
+      "actual": "http=200 code=null"
+    },
+    {
+      "section": "D",
+      "id": "D-7",
+      "rule": "Legs from two different searches rejected",
+      "how": "A onward + B return",
+      "status": "BUG",
+      "expected": "4xx reject",
+      "actual": "http=200 code=null"
+    },
+    {
+      "section": "D",
+      "id": "D-8",
+      "rule": "Intl RT select onward, re-search, price succeeds",
+      "how": "DEL→DXB NORMAL",
+      "status": "PASS",
+      "expected": "200 pricing",
+      "actual": "http=200 code=null returnN=4"
+    },
+    {
+      "section": "D",
+      "id": "D-9",
+      "rule": "Book domestic RT end to end",
+      "how": "SKIP — no book",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "D",
+      "id": "D-10",
+      "rule": "Book intl RT end to end",
+      "how": "SKIP — no book",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "E",
+      "id": "E-1",
+      "rule": "Corporate searchId → details/pricing/fareRules 200",
+      "how": "from mixed search",
+      "status": "PASS",
+      "expected": "all 200 (rules may VENDOR_ERROR)",
+      "actual": "{\"det\":200,\"price\":200,\"rules\":200,\"total\":6168}"
+    },
+    {
+      "section": "E",
+      "id": "E-2",
+      "rule": "Normal fare from same card prices as normal (≠ corporate)",
+      "how": "same card two fares",
+      "status": "PASS",
+      "expected": "both 200; prices can differ",
+      "actual": "{\"tN\":6539,\"tC\":6168,\"nOk\":true,\"cOk\":true}",
+      "note": "prices differ"
+    },
+    {
+      "section": "E",
+      "id": "E-3",
+      "rule": "All six fare types through details/pricing/fareRules",
+      "how": "per-token OW",
+      "status": "PASS",
+      "expected": "200 per available type",
+      "actual": "[{\"token\":\"NORMAL\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"CORPORATE\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"SME\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"STUDENT\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"DEFENCE\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"SENIOR_CITIZEN\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null}]"
+    },
+    {
+      "section": "E",
+      "id": "E-4",
+      "rule": "SME → fareRules (corporate rules branch)",
+      "how": "SME searchId",
+      "status": "PASS",
+      "expected": "200 or documented VENDOR_ERROR",
+      "actual": "http=200 code=null"
+    },
+    {
+      "section": "E",
+      "id": "E-5",
+      "rule": "SME pricing flexiCancelFee is 0",
+      "how": "SME searchId",
+      "status": "PASS",
+      "expected": "flexiCancelFee 0 or absent",
+      "actual": "flexi=0 http=200"
+    },
+    {
+      "section": "E",
+      "id": "E-6",
+      "rule": "pricing → refresh-token → selection/pricing category survives",
+      "how": "B2B paths",
+      "status": "NOT TESTED",
+      "actual": "[{\"name\":\"refresh-token\",\"http\":404,\"code\":null},{\"name\":\"selection-pricing\",\"http\":404,\"code\":null}]"
+    },
+    {
+      "section": "E",
+      "id": "E-7",
+      "rule": "ssr + seatmap on priced selection",
+      "how": "after pricing",
+      "status": "PASS",
+      "expected": "no 500",
+      "actual": "{\"priceOk\":true,\"ssr\":200,\"seat\":200,\"ssrCode\":null,\"seatCode\":null}"
+    },
+    {
+      "section": "F",
+      "id": "F-1",
+      "rule": "No fareType — works; combinationRefs absent",
+      "how": "omit fareType",
+      "status": "PASS",
+      "expected": "200 + no combinationRefs",
+      "actual": "{\"http\":200,\"n\":20,\"hasCombinationRefs\":false,\"cats\":[\"NORMAL\"]}"
+    },
+    {
+      "section": "F",
+      "id": "F-2",
+      "rule": "OW every main fare type correct",
+      "how": "NORMAL/CORP/SME",
+      "status": "PASS",
+      "actual": "[{\"token\":\"NORMAL\",\"ok\":true,\"found\":[\"NORMAL\"],\"leak\":[],\"n\":20},{\"token\":\"CORPORATE\",\"ok\":true,\"found\":[\"CORPORATE\"],\"leak\":[],\"n\":20},{\"token\":\"SME\",\"ok\":true,\"found\":[\"SME\"],\"leak\":[],\"n\":20}]"
+    },
+    {
+      "section": "F",
+      "id": "F-3",
+      "rule": "combinationRefs absent on search/details/pricing/fareRules",
+      "how": "scan responses",
+      "status": "PASS",
+      "actual": "[{\"kind\":\"search\",\"has\":false},{\"kind\":\"details\",\"has\":false},{\"kind\":\"pricing\",\"has\":false},{\"kind\":\"fareRules\",\"has\":false}]"
+    },
+    {
+      "section": "F",
+      "id": "F-4",
+      "rule": "preferences airlines/maxStops applied across categories",
+      "how": "6E nonstop multi-lane",
+      "status": "BUG",
+      "expected": "only 6E nonstop",
+      "actual": "{\"n\":20,\"badAirline\":0,\"badStops\":3,\"cats\":[\"NORMAL\",\"SME\"]}"
+    },
+    {
+      "section": "F",
+      "id": "F-5",
+      "rule": "Filters excluding everything → 200 empty + facets, not 404",
+      "how": "airlines ZZ",
+      "status": "PASS",
+      "expected": "200 empty list",
+      "actual": "{\"http\":200,\"code\":null,\"n\":0,\"hasFilters\":true}"
+    },
+    {
+      "section": "F",
+      "id": "F-6",
+      "rule": "No flights route → NO_FLIGHTS_FOUND",
+      "how": "TEZ→HJR",
+      "status": "PASS",
+      "expected": "4xx NO_FLIGHTS_FOUND",
+      "actual": "http=400 code=NO_FLIGHTS_FOUND"
+    },
+    {
+      "section": "F",
+      "id": "F-7",
+      "rule": "V1 flight flows untouched",
+      "how": "out of B2B v2 scope this run",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "F",
+      "id": "F-8",
+      "rule": "Book OW end to end",
+      "how": "SKIP — no book",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "X",
+      "id": "X-1",
+      "rule": "GARBAGE / SMEE → INVALID_FARE_TYPE (no silent NORMAL)",
+      "how": "typos",
+      "status": "PASS",
+      "expected": "400 INVALID_FARE_TYPE",
+      "actual": "{\"GARBAGE\":{\"http\":400,\"code\":\"INVALID_FARE_TYPE\"},\"SMEE\":{\"http\":400,\"code\":\"INVALID_FARE_TYPE\"}}"
+    },
+    {
+      "section": "X",
+      "id": "X-2",
+      "rule": "SME fares can have label Corporate but fareCategory=SME",
+      "how": "classification vs label",
+      "status": "PASS",
+      "expected": "all fareCategory=SME",
+      "actual": "{\"n\":20,\"labelCorporateAsSme\":20,\"sample\":[\"Corporate\",\"Corporate\",\"Corporate\"]}"
+    }
+  ],
+  "dumps": {
+    "correlationId": "ca22093d-a8c4-446f-b650-080893e199de",
+    "startedAt": "2026-09-07T13:45:20.430Z",
+    "A1": [
+      {
+        "label": "omitted",
+        "http": 200,
+        "ok": true,
+        "n": 20,
+        "fp": "6E:6E 324:NORMAL:6540|NORMAL:6698||6E:6E 353:NORMAL:6540|NORMAL:6698||6E:6E 5096:NORMAL:6452|NORMAL:6767||6E:6E 6022:NORMAL:6540|NORMAL:6698||6E:6E 6047:NORMAL:6540|NORMAL:6698||6E:6E 6107:NORMAL:6540|NORMAL:6698||6E:6E 6318:NORMAL:6540|NORMAL:6698||6E:6E 6328:NORMAL:6540|NORMAL:6698||6E:6E 6470:NORMAL:6539|NORMAL:6854||6E:6E 6676:NORMAL:6540|NORMAL:6698||IX:IX 1056:NORMAL:6539|NORMAL:7065|NORMAL:7485||IX:IX 1165-IX 1027:NORMAL:6296|NORMAL:6539|NORMAL:7169|NORMAL:7799||IX:IX 1235:NORMAL:6539|NORMAL:7065|NORMAL:7485||IX:IX 1392-IX 1027:NORMAL:6296|NORMAL:6539|NORMAL:7169|NORMAL:7799||IX:IX 1782-IX 1671:NORMAL:6296|NORMAL:6800|NORMAL:7430|NORMAL:8060",
+        "cats": [
+          "NORMAL"
+        ],
+        "error": null
+      },
+      {
+        "label": "empty",
+        "http": 200,
+        "ok": true,
+        "n": 20,
+        "fp": "6E:6E 324:NORMAL:6540|NORMAL:6698||6E:6E 353:NORMAL:6540|NORMAL:6698||6E:6E 5096:NORMAL:6452|NORMAL:6767||6E:6E 6022:NORMAL:6540|NORMAL:6698||6E:6E 6047:NORMAL:6540|NORMAL:6698||6E:6E 6107:NORMAL:6540|NORMAL:6698||6E:6E 6318:NORMAL:6540|NORMAL:6698||6E:6E 6328:NORMAL:6540|NORMAL:6698||6E:6E 6470:NORMAL:6539|NORMAL:6854||6E:6E 6676:NORMAL:6540|NORMAL:6698||IX:IX 1056:NORMAL:6539|NORMAL:7065|NORMAL:7485||IX:IX 1165-IX 1027:NORMAL:6296|NORMAL:6539|NORMAL:7169|NORMAL:7799||IX:IX 1235:NORMAL:6539|NORMAL:7065|NORMAL:7485||IX:IX 1392-IX 1027:NORMAL:6296|NORMAL:6539|NORMAL:7169|NORMAL:7799||IX:IX 1782-IX 1671:NORMAL:6296|NORMAL:6800|NORMAL:7430|NORMAL:8060",
+        "cats": [
+          "NORMAL"
+        ],
+        "error": null
+      },
+      {
+        "label": "NORMAL",
+        "http": 200,
+        "ok": true,
+        "n": 20,
+        "fp": "6E:6E 324:NORMAL:6540|NORMAL:6698||6E:6E 353:NORMAL:6540|NORMAL:6698||6E:6E 5096:NORMAL:6452|NORMAL:6767||6E:6E 6022:NORMAL:6540|NORMAL:6698||6E:6E 6047:NORMAL:6540|NORMAL:6698||6E:6E 6107:NORMAL:6540|NORMAL:6698||6E:6E 6318:NORMAL:6540|NORMAL:6698||6E:6E 6328:NORMAL:6540|NORMAL:6698||6E:6E 6470:NORMAL:6539|NORMAL:6854||6E:6E 6676:NORMAL:6540|NORMAL:6698||IX:IX 1056:NORMAL:6539|NORMAL:7065|NORMAL:7485||IX:IX 1165-IX 1027:NORMAL:6296|NORMAL:6539|NORMAL:7169|NORMAL:7799||IX:IX 1235:NORMAL:6539|NORMAL:7065|NORMAL:7485||IX:IX 1392-IX 1027:NORMAL:6296|NORMAL:6539|NORMAL:7169|NORMAL:7799||IX:IX 1782-IX 1671:NORMAL:6296|NORMAL:6800|NORMAL:7430|NORMAL:8060",
+        "cats": [
+          "NORMAL"
+        ],
+        "error": null
+      },
+      {
+        "label": "normal",
+        "http": 200,
+        "ok": true,
+        "n": 20,
+        "fp": "6E:6E 324:NORMAL:6540|NORMAL:6698||6E:6E 353:NORMAL:6540|NORMAL:6698||6E:6E 5096:NORMAL:6452|NORMAL:6767||6E:6E 6022:NORMAL:6540|NORMAL:6698||6E:6E 6047:NORMAL:6540|NORMAL:6698||6E:6E 6107:NORMAL:6540|NORMAL:6698||6E:6E 6318:NORMAL:6540|NORMAL:6698||6E:6E 6328:NORMAL:6540|NORMAL:6698||6E:6E 6470:NORMAL:6539|NORMAL:6854||6E:6E 6676:NORMAL:6540|NORMAL:6698||IX:IX 1056:NORMAL:6539|NORMAL:7065|NORMAL:7485||IX:IX 1165-IX 1027:NORMAL:6296|NORMAL:6539|NORMAL:7169|NORMAL:7799||IX:IX 1235:NORMAL:6539|NORMAL:7065|NORMAL:7485||IX:IX 1392-IX 1027:NORMAL:6296|NORMAL:6539|NORMAL:7169|NORMAL:7799||IX:IX 1782-IX 1671:NORMAL:6296|NORMAL:6800|NORMAL:7430|NORMAL:8060",
+        "cats": [
+          "NORMAL"
+        ],
+        "error": null
+      }
+    ],
+    "A2": [
+      {
+        "token": "NORMAL",
+        "http": 200,
+        "ok": true,
+        "n": 20,
+        "found": [
+          "NORMAL"
+        ],
+        "leak": [],
+        "error": null
+      },
+      {
+        "token": "CORPORATE",
+        "http": 200,
+        "ok": true,
+        "n": 20,
+        "found": [
+          "CORPORATE"
+        ],
+        "leak": [],
+        "error": null
+      },
+      {
+        "token": "SME",
+        "http": 200,
+        "ok": true,
+        "n": 20,
+        "found": [
+          "SME"
+        ],
+        "leak": [],
+        "error": null
+      },
+      {
+        "token": "STUDENT",
+        "http": 200,
+        "ok": true,
+        "n": 20,
+        "found": [
+          "STUDENT"
+        ],
+        "leak": [],
+        "error": null
+      },
+      {
+        "token": "DEFENCE",
+        "http": 200,
+        "ok": true,
+        "n": 6,
+        "found": [
+          "DEFENCE"
+        ],
+        "leak": [],
+        "error": null
+      },
+      {
+        "token": "SENIOR_CITIZEN",
+        "http": 200,
+        "ok": true,
+        "n": 20,
+        "found": [
+          "SENIOR_CITIZEN"
+        ],
+        "leak": [],
+        "error": null
+      }
+    ],
+    "A3": [
+      {
+        "id": "A-3a",
+        "ft": "CORPORATE,NORMAL",
+        "need": [
+          "CORPORATE",
+          "NORMAL"
+        ],
+        "http": 200,
+        "n": 20,
+        "found": [
+          "CORPORATE",
+          "NORMAL"
+        ],
+        "missing": []
+      },
+      {
+        "id": "A-3b",
+        "ft": "NORMAL,SME",
+        "need": [
+          "NORMAL",
+          "SME"
+        ],
+        "http": 200,
+        "n": 20,
+        "found": [
+          "NORMAL",
+          "SME"
+        ],
+        "missing": []
+      },
+      {
+        "id": "A-3c",
+        "ft": "NORMAL,SME,CORPORATE",
+        "need": [
+          "NORMAL",
+          "SME",
+          "CORPORATE"
+        ],
+        "http": 200,
+        "n": 20,
+        "found": [
+          "CORPORATE",
+          "NORMAL",
+          "SME"
+        ],
+        "missing": []
+      }
+    ],
+    "A4": {
+      "space": {
+        "http": 200,
+        "cats": [
+          "NORMAL",
+          "SME"
+        ]
+      },
+      "dup": {
+        "http": 200,
+        "cats": [
+          "CORPORATE"
+        ]
+      }
+    },
+    "A5": {
+      "BUSINESS": {
+        "http": 400,
+        "code": "INVALID_FARE_TYPE",
+        "msg": "Unsupported fareType: BUSINESS. Supported: NORMAL, senior_citizen, SME, corporate, student, flexi_cancel, defence"
+      },
+      "NORMAL,BUSINESS": {
+        "http": 400,
+        "code": "INVALID_FARE_TYPE",
+        "msg": "Unsupported fareType: BUSINESS. Supported: NORMAL, senior_citizen, SME, corporate, student, flexi_cancel, defence"
+      }
+    },
+    "A6": {
+      "alone": {
+        "http": 200,
+        "code": null,
+        "n": 20
+      },
+      "withNormal": {
+        "http": 400,
+        "code": "INVALID_FARE_TYPE"
+      },
+      "withSme": {
+        "http": 400,
+        "code": "INVALID_FARE_TYPE"
+      }
+    },
+    "B_setup": {
+      "normalCats": [
+        "NORMAL"
+      ],
+      "corpCats": [
+        "CORPORATE"
+      ],
+      "mixedCats": [
+        "CORPORATE",
+        "NORMAL",
+        "SME"
+      ],
+      "mixedFacet": [
+        {
+          "value": "CORPORATE",
+          "count": 30
+        },
+        {
+          "value": "NORMAL",
+          "count": 183
+        },
+        {
+          "value": "SME",
+          "count": 153
+        }
+      ],
+      "totalResults": {
+        "ONWARD": 183
+      }
+    },
+    "B3": {
+      "pages": 10,
+      "fareCount": 734,
+      "nullCats": 0,
+      "dual": false,
+      "cats": [
+        "CORPORATE",
+        "NORMAL",
+        "SME"
+      ]
+    },
+    "B4": {
+      "facet": [
+        {
+          "value": "CORPORATE",
+          "count": 30
+        },
+        {
+          "value": "NORMAL",
+          "count": 183
+        },
+        {
+          "value": "SME",
+          "count": 153
+        }
+      ],
+      "offeredOpt": {
+        "CORPORATE": 30,
+        "NORMAL": 183,
+        "SME": 153
+      },
+      "mismatches": []
+    },
+    "B5": {
+      "found": true,
+      "airline": "IX",
+      "fareTypeLabel": "CORPORATE VALUE"
+    },
+    "C1": {
+      "airlines": "IX",
+      "fares": [
+        {
+          "cat": "CORPORATE",
+          "fareType": "CORPORATE VALUE",
+          "searchId": "srch_df0e6b2ac6294f2caaff91fa8f52be5c",
+          "price": 6168
+        },
+        {
+          "cat": "NORMAL",
+          "fareType": "VALUE",
+          "searchId": "srch_bf796056f14a453d8c838e2fa3369b88",
+          "price": 6539
+        },
+        {
+          "cat": "NORMAL",
+          "fareType": "CLASSIC",
+          "searchId": "srch_81a87ae973a542e6bde90b0931775059",
+          "price": 7065
+        },
+        {
+          "cat": "NORMAL",
+          "fareType": "FLEX",
+          "searchId": "srch_1157d5c2261a47258d41239d1bb785cd",
+          "price": 7485
+        }
+      ],
+      "searchIds": [
+        "srch_df0e6b2ac6294f2caaff91fa8f52be5c",
+        "srch_bf796056f14a453d8c838e2fa3369b88",
+        "srch_81a87ae973a542e6bde90b0931775059",
+        "srch_1157d5c2261a47258d41239d1bb785cd"
+      ]
+    },
+    "C3": {
+      "switches": 3,
+      "nonDecreasing": true,
+      "sampleCats": [
+        "CORPORATE",
+        "CORPORATE",
+        "CORPORATE",
+        "CORPORATE",
+        "NORMAL",
+        "NORMAL",
+        "CORPORATE",
+        "NORMAL",
+        "NORMAL",
+        "NORMAL"
+      ],
+      "samplePrices": [
+        6168,
+        6296,
+        6296,
+        6296,
+        6452,
+        6539,
+        6539,
+        6540,
+        6540,
+        6540
+      ]
+    },
+    "C4": {
+      "totalResults": 183,
+      "sum": 183,
+      "pages": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        3
+      ],
+      "lastEmpty": false
+    },
+    "C5": {
+      "t5": 183,
+      "t50": 183,
+      "n5": 5,
+      "n50": 50,
+      "multiOnSmall": true,
+      "cats5": [
+        "CORPORATE",
+        "NORMAL",
+        "SME"
+      ]
+    },
+    "C6": {
+      "n": 20,
+      "cats": [
+        "CORPORATE"
+      ],
+      "bad": 0,
+      "facet": [
+        {
+          "value": "CORPORATE",
+          "count": 30
+        },
+        {
+          "value": "NORMAL",
+          "count": 183
+        },
+        {
+          "value": "SME",
+          "count": 153
+        }
+      ]
+    },
+    "C7": {
+      "n": 20,
+      "cats": [
+        "CORPORATE",
+        "NORMAL",
+        "SME"
+      ]
+    },
+    "C8": {
+      "single": {
+        "lanesTotal": null,
+        "lanesReady": null,
+        "state": "COMPLETE"
+      },
+      "multiProgress": {
+        "partial": false,
+        "state": "COMPLETE",
+        "pollAfterMs": 0,
+        "message": null,
+        "lanesTotal": null,
+        "lanesReady": null
+      }
+    },
+    "D1": {
+      "onwardCats": [
+        "SME"
+      ],
+      "returnCats": [
+        "SME"
+      ],
+      "pick": "srch_2583bdf3a2e9400b8b6b880d162e5f7e"
+    },
+    "D2": {
+      "onwardCats": [
+        "NORMAL"
+      ],
+      "returnCats": [
+        "NORMAL"
+      ]
+    },
+    "D4": {
+      "corpSid": "srch_3af157aee62744ef8e0caefb73f930e8",
+      "normalRetSid": "srch_a34b16ed5410428dbc1cd34ea1ad8abb",
+      "http": 400,
+      "code": "INVALID_COMBINATION",
+      "body": {
+        "code": "INVALID_COMBINATION",
+        "message": "Selected flights come from different searches and cannot be booked together. Select onward and return from the same fare type.",
+        "details": null,
+        "timestamp": "2026-09-07T13:45:30Z",
+        "request_id": "req-1788788730754",
+        "search_again": 1
+      }
+    },
+    "D5": {
+      "details": {
+        "http": 400,
+        "code": "INVALID_COMBINATION"
+      },
+      "rules": {
+        "http": 400,
+        "code": "INVALID_COMBINATION"
+      }
+    },
+    "D6": {
+      "http": 200,
+      "code": null,
+      "priceId": "price_7d02ac922c55486e9d278e0b1f06b0a2"
+    },
+    "D7": {
+      "http": 200,
+      "code": null,
+      "aOn": "srch_5b96c3158cf1417397be1d147ab1e692",
+      "bRet": "srch_a34b16ed5410428dbc1cd34ea1ad8abb"
+    },
+    "D8": {
+      "onwardN": 20,
+      "returnN": 4,
+      "onSid": "srch_1eb58e8c83204b7289b91cc57dd841a8",
+      "retSid": "srch_027a7c5272494740b8c1380384059a3a",
+      "price": {
+        "http": 200,
+        "code": null,
+        "priceId": "price_61d53761e18e4cba87c13e2c0077fd64"
+      }
+    },
+    "E1": {
+      "det": 200,
+      "price": 200,
+      "rules": 200,
+      "total": 6168
+    },
+    "E2": {
+      "tN": 6539,
+      "tC": 6168,
+      "nOk": true,
+      "cOk": true
+    },
+    "E3": [
+      {
+        "token": "NORMAL",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "code": null
+      },
+      {
+        "token": "CORPORATE",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "code": null
+      },
+      {
+        "token": "SME",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "code": null
+      },
+      {
+        "token": "STUDENT",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "code": null
+      },
+      {
+        "token": "DEFENCE",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "code": null
+      },
+      {
+        "token": "SENIOR_CITIZEN",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "code": null
+      }
+    ],
+    "E4": {
+      "http": 200,
+      "code": null,
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"timingReference\":\"xFBwd9swD5nsgoc+C32daktVhBB8/IhUy3yiL5/K9sArWfTUQ4cM314NeSyZw31M5MhRC7UArWXXTDYYuvjDezACLl0Ht1gaEnWe3nXYOv7lrohUZLew8vADlI0Yo9qfLPLKVLYcUecVIRljZ3EYe8ZE/v29Pdw5YxW0dT8IhbgKsy9BNlkNFGVtFoK8Jh9xbREthHN+vDiq6Npo201LnQ==\",\"selection\":{\"selectedSearchIds\":[\"src"
+    },
+    "E5": {
+      "http": 200,
+      "flexiCancelFee": 0
+    },
+    "E6": [
+      {
+        "name": "refresh-token",
+        "http": 404,
+        "code": null
+      },
+      {
+        "name": "selection-pricing",
+        "http": 404,
+        "code": null
+      }
+    ],
+    "E7": {
+      "priceOk": true,
+      "ssr": 200,
+      "seat": 200,
+      "ssrCode": null,
+      "seatCode": null
+    },
+    "F1": {
+      "http": 200,
+      "n": 20,
+      "hasCombinationRefs": false,
+      "cats": [
+        "NORMAL"
+      ]
+    },
+    "F2": [
+      {
+        "token": "NORMAL",
+        "ok": true,
+        "found": [
+          "NORMAL"
+        ],
+        "leak": [],
+        "n": 20
+      },
+      {
+        "token": "CORPORATE",
+        "ok": true,
+        "found": [
+          "CORPORATE"
+        ],
+        "leak": [],
+        "n": 20
+      },
+      {
+        "token": "SME",
+        "ok": true,
+        "found": [
+          "SME"
+        ],
+        "leak": [],
+        "n": 20
+      }
+    ],
+    "F3": [
+      {
+        "kind": "search",
+        "has": false
+      },
+      {
+        "kind": "details",
+        "has": false
+      },
+      {
+        "kind": "pricing",
+        "has": false
+      },
+      {
+        "kind": "fareRules",
+        "has": false
+      }
+    ],
+    "F4": {
+      "n": 20,
+      "badAirline": 0,
+      "badStops": 3,
+      "cats": [
+        "NORMAL",
+        "SME"
+      ]
+    },
+    "F5": {
+      "http": 200,
+      "code": null,
+      "n": 0,
+      "hasFilters": true
+    },
+    "F6": {
+      "http": 400,
+      "code": "NO_FLIGHTS_FOUND",
+      "n": 0
+    },
+    "X1": {
+      "GARBAGE": {
+        "http": 400,
+        "code": "INVALID_FARE_TYPE"
+      },
+      "SMEE": {
+        "http": 400,
+        "code": "INVALID_FARE_TYPE"
+      }
+    },
+    "X2": {
+      "n": 20,
+      "labelCorporateAsSme": 20,
+      "sample": [
+        "Corporate",
+        "Corporate",
+        "Corporate"
+      ]
+    },
+    "finishedAt": "2026-09-07T13:46:08.142Z"
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "ranAt": "2026-09-02T11:30:29.585Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "partnerId": "vgm",
+  "readOnly": true,
+  "noBook": true,
+  "counts": {
+    "PASS": 14,
+    "BUG": 3,
+    "NOT TESTED": 0
+  },
+  "rows": [
+    {
+      "section": "FILTERS",
+      "n": 1,
+      "id": "NF-01",
+      "rule": "per_page=20 returns up to 20 rows",
+      "how": "GET ?page=1&per_page=20",
+      "status": "PASS",
+      "actual": "http=200 perPage=20 entries=20"
+    },
+    {
+      "section": "FILTERS",
+      "n": 2,
+      "id": "NF-02",
+      "rule": "per_page=21 capped → 400 VALIDATION_ERROR",
+      "how": "GET ?per_page=21",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR"
+    },
+    {
+      "section": "FILTERS",
+      "n": 3,
+      "id": "NF-03",
+      "rule": "per_page=0 → 400 VALIDATION_ERROR",
+      "how": "GET ?per_page=0",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR"
+    },
+    {
+      "section": "FILTERS",
+      "n": 4,
+      "id": "NF-04",
+      "rule": "from+to date window filters feed",
+      "how": "GET ?from=2025-01-01&to=2026-12-31",
+      "status": "PASS",
+      "actual": "http=200 entries=15 allInRange=true"
+    },
+    {
+      "section": "FILTERS",
+      "n": 5,
+      "id": "NF-05",
+      "rule": "invalid from → 400 VALIDATION_ERROR",
+      "how": "GET ?from=not-a-date",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR"
+    },
+    {
+      "section": "FILTERS",
+      "n": 6,
+      "id": "NF-06",
+      "rule": "invalid to → 400 VALIDATION_ERROR",
+      "how": "GET ?to=2026-13-40",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR"
+    },
+    {
+      "section": "FILTERS",
+      "n": 9,
+      "id": "NF-09",
+      "rule": "unknown type → 400 VALIDATION_ERROR",
+      "how": "GET ?type=GARBAGE",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR"
+    },
+    {
+      "section": "TXID",
+      "n": 11,
+      "id": "TX-01",
+      "rule": "Feed exposes transactionId on activity rows (PaymentTransaction id)",
+      "how": "scan all pages",
+      "status": "PASS",
+      "actual": "withTx=50/128"
+    },
+    {
+      "section": "TXID",
+      "n": 12,
+      "id": "TX-02",
+      "rule": "booking_payment rows have transactionId when completed",
+      "how": "scan booking_payment",
+      "status": "BUG",
+      "actual": "bpWithTx=50/53"
+    },
+    {
+      "section": "TXID",
+      "n": 13,
+      "id": "TX-03",
+      "rule": "refund rows resolve holdId/refund id → transactionId",
+      "how": "scan refund rows",
+      "status": "BUG",
+      "actual": "refundWithTx=0/69"
+    },
+    {
+      "section": "REF",
+      "n": 14,
+      "id": "RF-01",
+      "rule": "refund feed rows carry reference (cancellation/booking ref)",
+      "how": "scan refunds",
+      "status": "PASS",
+      "actual": "withRef=24/69 sample=[\"41\",\"40\"]"
+    },
+    {
+      "section": "REF",
+      "n": 15,
+      "id": "RF-02",
+      "rule": "booking_payment rows carry reference (bookingId on hold)",
+      "how": "scan booking_payment",
+      "status": "BUG",
+      "actual": "withRef=0/53"
+    },
+    {
+      "section": "LEAK",
+      "n": 16,
+      "id": "LK-01",
+      "rule": "Detail does not expose wallet internals (holdId/walletId/bookingId)",
+      "how": "GET detail",
+      "status": "PASS",
+      "actual": "http=200 forbiddenKeys= reference=41"
+    },
+    {
+      "section": "E2E",
+      "n": 17,
+      "id": "E2E-07",
+      "rule": "Feed id matches detail id and category",
+      "how": "feed→detail",
+      "status": "PASS",
+      "actual": "feed=696a57fa-6d5e-443c-a121-bcc937f835df detail=696a57fa-6d5e-443c-a121-bcc937f835df"
+    },
+    {
+      "section": "FILTERS",
+      "id": "NF-07",
+      "rule": "type=credit filters credit rows only",
+      "how": "GET ?type=credit",
+      "status": "PASS",
+      "actual": "all 20 rows kind=credit; filters.type echoed"
+    },
+    {
+      "section": "FILTERS",
+      "id": "NF-08",
+      "rule": "type=debit filters debit rows only",
+      "how": "GET ?type=debit",
+      "status": "PASS",
+      "actual": "all 20 rows kind=debit"
+    },
+    {
+      "section": "FILTERS",
+      "id": "NF-07b",
+      "rule": "type=refund rejected (type is credit/debit/all not category)",
+      "how": "GET ?type=refund",
+      "status": "PASS",
+      "actual": "400 VALIDATION_ERROR: type must be one of all,credit,debit"
+    }
+  ],
+  "correctedAt": "2026-09-02T11:31:10.225Z"
+}

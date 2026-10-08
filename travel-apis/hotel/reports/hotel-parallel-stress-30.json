@@ -1,0 +1,511 @@
+{
+  "at": "2026-09-08T10:14:53.039Z",
+  "noBook": true,
+  "parallel": 30,
+  "city": "Paris",
+  "entityId": "437227:FR",
+  "note": "30 identical CITY searches fired via Promise.all. Throughput = N / wall_seconds.",
+  "runs": [
+    {
+      "label": "preprod",
+      "base": "https://preprod-api.travelvip.ai",
+      "dates": {
+        "checkin": "2026-12-29",
+        "checkout": "2026-12-30"
+      },
+      "n": 30,
+      "wallMs": 25321,
+      "wallSec": 25.32,
+      "success": 30,
+      "failed": 0,
+      "successRatePct": 100,
+      "broke": false,
+      "throughputRps": 1.185,
+      "latencyMs": {
+        "min": 24902,
+        "p50": 25101,
+        "p90": 25197,
+        "p95": 25289,
+        "p99": 25312,
+        "max": 25312,
+        "avg": 25100,
+        "allMin": 24902,
+        "allMax": 25312
+      },
+      "totals": {
+        "min": 37,
+        "max": 37,
+        "spreadPct": 0
+      },
+      "shapes": {
+        "EARLY": 30
+      },
+      "fromCache": {
+        "true": 29,
+        "false": 1,
+        "other": 0
+      },
+      "failures": [],
+      "sampleOk": [
+        {
+          "idx": 0,
+          "ms": 24932,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": false
+        },
+        {
+          "idx": 1,
+          "ms": 25198,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": true
+        },
+        {
+          "idx": 2,
+          "ms": 25110,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": true
+        }
+      ],
+      "correlationId": "bcfcece4-4043-4b37-aef1-3ae599c25909",
+      "resultsCount": 30
+    }
+  ],
+  "raw": [
+    {
+      "label": "preprod",
+      "base": "https://preprod-api.travelvip.ai",
+      "dates": {
+        "checkin": "2026-12-29",
+        "checkout": "2026-12-30"
+      },
+      "n": 30,
+      "wallMs": 25321,
+      "wallSec": 25.32,
+      "success": 30,
+      "failed": 0,
+      "successRatePct": 100,
+      "broke": false,
+      "throughputRps": 1.185,
+      "latencyMs": {
+        "min": 24902,
+        "p50": 25101,
+        "p90": 25197,
+        "p95": 25289,
+        "p99": 25312,
+        "max": 25312,
+        "avg": 25100,
+        "allMin": 24902,
+        "allMax": 25312
+      },
+      "totals": {
+        "min": 37,
+        "max": 37,
+        "spreadPct": 0
+      },
+      "shapes": {
+        "EARLY": 30
+      },
+      "fromCache": {
+        "true": 29,
+        "false": 1,
+        "other": 0
+      },
+      "failures": [],
+      "sampleOk": [
+        {
+          "idx": 0,
+          "ms": 24932,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": false
+        },
+        {
+          "idx": 1,
+          "ms": 25198,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": true
+        },
+        {
+          "idx": 2,
+          "ms": 25110,
+          "total": 37,
+          "n": 20,
+          "shape": "EARLY",
+          "fromCache": true
+        }
+      ],
+      "results": [
+        {
+          "idx": 0,
+          "ok": true,
+          "http": 200,
+          "ms": 24932,
+          "total": 37,
+          "n": 20,
+          "fromCache": false,
+          "shape": "EARLY",
+          "requestId": "df9f2549-1527-402d-bddd-629741728754",
+          "err": null
+        },
+        {
+          "idx": 1,
+          "ok": true,
+          "http": 200,
+          "ms": 25198,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "85b7b788-0e95-411d-9bc9-547a95ac05cb",
+          "err": null
+        },
+        {
+          "idx": 2,
+          "ok": true,
+          "http": 200,
+          "ms": 25110,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "e9659ee2-961b-403c-9616-36f51148d6cb",
+          "err": null
+        },
+        {
+          "idx": 3,
+          "ok": true,
+          "http": 200,
+          "ms": 25099,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "423ff383-6a3d-4c91-9918-a91f07deb885",
+          "err": null
+        },
+        {
+          "idx": 4,
+          "ok": true,
+          "http": 200,
+          "ms": 25100,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "b10ece99-9cd7-4260-887c-0d6de39756e8",
+          "err": null
+        },
+        {
+          "idx": 5,
+          "ok": true,
+          "http": 200,
+          "ms": 25106,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "e74fe215-06a3-4a54-9212-c0aa318b46de",
+          "err": null
+        },
+        {
+          "idx": 6,
+          "ok": true,
+          "http": 200,
+          "ms": 25165,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "2d98fe6c-48bc-49db-bb5d-6fdfa21b6488",
+          "err": null
+        },
+        {
+          "idx": 7,
+          "ok": true,
+          "http": 200,
+          "ms": 24944,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "3521d1de-af6f-44d9-9a9c-37b04ae2b72a",
+          "err": null
+        },
+        {
+          "idx": 8,
+          "ok": true,
+          "http": 200,
+          "ms": 25187,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "b1e8a06b-22bc-4595-8812-1dba8f8aa854",
+          "err": null
+        },
+        {
+          "idx": 9,
+          "ok": true,
+          "http": 200,
+          "ms": 25106,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "3054156b-97a4-4ec2-bbc2-b5908c6ab3ce",
+          "err": null
+        },
+        {
+          "idx": 10,
+          "ok": true,
+          "http": 200,
+          "ms": 24911,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "938a61f9-5d47-4b6c-b6af-6c58b5cf60dc",
+          "err": null
+        },
+        {
+          "idx": 11,
+          "ok": true,
+          "http": 200,
+          "ms": 24902,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "63dedb53-4915-433f-bdd5-04638a272553",
+          "err": null
+        },
+        {
+          "idx": 12,
+          "ok": true,
+          "http": 200,
+          "ms": 25106,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "811bca41-c367-452c-9bbf-faa3435e9d98",
+          "err": null
+        },
+        {
+          "idx": 13,
+          "ok": true,
+          "http": 200,
+          "ms": 25075,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "16fc30ea-f2b8-4f76-82bd-11b9b6524d32",
+          "err": null
+        },
+        {
+          "idx": 14,
+          "ok": true,
+          "http": 200,
+          "ms": 25185,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "cd390be2-466e-42fd-b5fb-1a92cafa9207",
+          "err": null
+        },
+        {
+          "idx": 15,
+          "ok": true,
+          "http": 200,
+          "ms": 25000,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "0588dc94-b469-4d56-a296-6a26addab70f",
+          "err": null
+        },
+        {
+          "idx": 16,
+          "ok": true,
+          "http": 200,
+          "ms": 25312,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "fd19b5e4-a52f-424d-be1c-3d96e7f24476",
+          "err": null
+        },
+        {
+          "idx": 17,
+          "ok": true,
+          "http": 200,
+          "ms": 25070,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "bf541717-4c0f-4f43-8284-d045c088f6ad",
+          "err": null
+        },
+        {
+          "idx": 18,
+          "ok": true,
+          "http": 200,
+          "ms": 25074,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "749fc449-119e-4d5a-824e-4fd52d432b58",
+          "err": null
+        },
+        {
+          "idx": 19,
+          "ok": true,
+          "http": 200,
+          "ms": 25289,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "3294592f-9cde-4ec9-97ea-5b820bc8c4ec",
+          "err": null
+        },
+        {
+          "idx": 20,
+          "ok": true,
+          "http": 200,
+          "ms": 25189,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "877f240e-91ae-4004-a399-4b418e01d121",
+          "err": null
+        },
+        {
+          "idx": 21,
+          "ok": true,
+          "http": 200,
+          "ms": 25159,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "5ffe2e69-2f93-4f4b-a432-55ebdbac2ff1",
+          "err": null
+        },
+        {
+          "idx": 22,
+          "ok": true,
+          "http": 200,
+          "ms": 25073,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "ea4d1c84-0253-468e-a16c-90c770178a23",
+          "err": null
+        },
+        {
+          "idx": 23,
+          "ok": true,
+          "http": 200,
+          "ms": 25093,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "6e36b53d-ebf1-4695-b375-23c594c43db2",
+          "err": null
+        },
+        {
+          "idx": 24,
+          "ok": true,
+          "http": 200,
+          "ms": 25103,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "621a197f-67a0-4386-99ab-cf1be696dfef",
+          "err": null
+        },
+        {
+          "idx": 25,
+          "ok": true,
+          "http": 200,
+          "ms": 25100,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "94373bdc-2561-4ea1-b467-dba621607595",
+          "err": null
+        },
+        {
+          "idx": 26,
+          "ok": true,
+          "http": 200,
+          "ms": 25101,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "34840696-77ce-4e07-9ecf-21ab48050ebc",
+          "err": null
+        },
+        {
+          "idx": 27,
+          "ok": true,
+          "http": 200,
+          "ms": 25101,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "b1b97bb7-cce7-4d8e-8728-45e229144968",
+          "err": null
+        },
+        {
+          "idx": 28,
+          "ok": true,
+          "http": 200,
+          "ms": 25000,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "2f253f6a-0201-456a-86e1-7dc001ee2bc6",
+          "err": null
+        },
+        {
+          "idx": 29,
+          "ok": true,
+          "http": 200,
+          "ms": 25197,
+          "total": 37,
+          "n": 20,
+          "fromCache": true,
+          "shape": "EARLY",
+          "requestId": "cdfca420-7858-46dd-9394-87efe6f551a2",
+          "err": null
+        }
+      ],
+      "correlationId": "bcfcece4-4043-4b37-aef1-3ae599c25909"
+    }
+  ]
+}

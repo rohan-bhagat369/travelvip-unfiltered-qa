@@ -1,0 +1,328 @@
+{
+  "ranAt": "2026-08-03T12:49:29.240Z",
+  "env": "https://api-staging.travelvip.ai",
+  "checkin": "2026-08-28",
+  "checkout": "2026-08-30",
+  "howDisplayed": {
+    "searchList": [
+      "refundable (boolean)",
+      "refundableNotes (string[]) — human text like Free cancellation before DD-MM-YYYY",
+      "NO cancelPolicies ladder on city search cards"
+    ],
+    "detailsRooms": [
+      "rooms[].cancelPolicies[] { fromDate, chargeType, cancellationCharge }",
+      "rooms[].refundable",
+      "rooms[].refundableNotes",
+      "rooms[].benefitsIcon with Free cancellation key"
+    ],
+    "chargeTypeObserved": "Percent / PERCENT",
+    "fromDateFormat": "DD-MM-YYYY HH:mm:ss",
+    "howApplicableChargeIsDerived": "Latest cancelPolicies.fromDate <= now; use that cancellationCharge as %; else refundable true→0 / false→100"
+  },
+  "searchListSample": [
+    {
+      "id": "2578959",
+      "name": "Hotel Rajdeep",
+      "available": true,
+      "refundable": true,
+      "refundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "totalAmount": 3820.51,
+      "currency": "INR"
+    },
+    {
+      "id": "2943014",
+      "name": "Hotel Basera",
+      "available": true,
+      "refundable": true,
+      "refundableNotes": [
+        "Free cancellation before 27-08-2026"
+      ],
+      "totalAmount": 3911.47,
+      "currency": "INR"
+    },
+    {
+      "id": "2722452",
+      "name": "Hotel Swan Inn",
+      "available": true,
+      "refundable": true,
+      "refundableNotes": [
+        "Free cancellation before 28-08-2026"
+      ],
+      "totalAmount": 5003.05,
+      "currency": "INR"
+    },
+    {
+      "id": "2722396",
+      "name": "The Citiotel",
+      "available": true,
+      "refundable": true,
+      "refundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "totalAmount": 6367.52,
+      "currency": "INR"
+    },
+    {
+      "id": "2688620",
+      "name": "Rutugandh Heritage",
+      "available": true,
+      "refundable": false,
+      "refundableNotes": [],
+      "totalAmount": 3820.51,
+      "currency": "INR"
+    },
+    {
+      "id": "2943015",
+      "name": "Hotel Orchard Pune",
+      "available": true,
+      "refundable": true,
+      "refundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "totalAmount": 4548.23,
+      "currency": "INR"
+    },
+    {
+      "id": "2722415",
+      "name": "Tarawade Clarks Inn",
+      "available": true,
+      "refundable": true,
+      "refundableNotes": [
+        "Free cancellation before 25-08-2026"
+      ],
+      "totalAmount": 9187.41,
+      "currency": "INR"
+    },
+    {
+      "id": "2722593",
+      "name": "Kohinoor Executive",
+      "available": true,
+      "refundable": true,
+      "refundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "totalAmount": 8732.59,
+      "currency": "INR"
+    }
+  ],
+  "refundableDetailsSample": {
+    "hotelId": "2578959",
+    "hotelName": "Hotel Rajdeep",
+    "searchListFields": {
+      "refundable": true,
+      "refundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "totalAmount": 3820.51
+    },
+    "hotelSearchCard": {
+      "refundable": false,
+      "refundableNotes": null,
+      "available": false
+    },
+    "detailsHttp": 200,
+    "detailsOk": true,
+    "hotelLevel": {
+      "refundable": false,
+      "refundableNotes": null,
+      "rateConditions": null,
+      "roomCount": 0
+    },
+    "rooms": []
+  },
+  "otherDetailsSample": {
+    "hotelId": "2688620",
+    "hotelName": "Rutugandh Heritage",
+    "searchListFields": {
+      "refundable": false,
+      "refundableNotes": [],
+      "totalAmount": 3820.51
+    },
+    "hotelSearchCard": {
+      "refundable": false,
+      "refundableNotes": [],
+      "available": true,
+      "totalAmount": 3820.51
+    },
+    "detailsHttp": 200,
+    "detailsOk": true,
+    "hotelLevel": {
+      "refundable": false,
+      "refundableNotes": [],
+      "rateConditions": [
+        "<p>The Visa Is To Check At Hotel.</p>",
+        "<p>The No Show Is To Check At Hotel. Time: Not Present.</p>",
+        "<p>The Extra Bed Is Not Included. Price: 900.00. Currency: Inr. Price Unit: Per Guest Per Night. Amount: 1.</p>"
+      ],
+      "roomCount": 4
+    },
+    "rooms": [
+      {
+        "name": [
+          "Deluxe Double room (full double bed)",
+          "non-smoking"
+        ],
+        "roomType": "Rooms",
+        "mealType": "No Meal",
+        "bookingCode": "2688620!TB!RHK!TB!rh-rut...",
+        "refundable": false,
+        "refundableNotes": [],
+        "price": {
+          "baseFare": 3638.58,
+          "taxes": 181.93,
+          "convenienceFee": 0,
+          "totalAmount": 3820.51,
+          "currency": "INR",
+          "priceReference": null,
+          "currencyConversion": {
+            "source": "USD",
+            "destination": "INR",
+            "rate": 90.9645
+          }
+        },
+        "cancelPolicies": [
+          {
+            "fromDate": "03-08-2026 00:00:00",
+            "chargeType": "Percent",
+            "cancellationCharge": 100
+          }
+        ],
+        "benefitsIcon": [
+          {
+            "key": "Non-Refundable",
+            "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+          }
+        ],
+        "allBenefitKeys": [
+          "Room Only",
+          "Non-Refundable"
+        ]
+      },
+      {
+        "name": [
+          "Deluxe Double room (full double bed)",
+          "non-smoking"
+        ],
+        "roomType": "Rooms",
+        "mealType": "Breakfast Included",
+        "bookingCode": "2688620!TB!RHK!TB!rh-rut...",
+        "refundable": false,
+        "refundableNotes": [],
+        "price": {
+          "baseFare": 3985.15,
+          "taxes": 199.21,
+          "convenienceFee": 0,
+          "totalAmount": 4184.37,
+          "currency": "INR",
+          "priceReference": null,
+          "currencyConversion": {
+            "source": "USD",
+            "destination": "INR",
+            "rate": 90.9645
+          }
+        },
+        "cancelPolicies": [
+          {
+            "fromDate": "03-08-2026 00:00:00",
+            "chargeType": "Percent",
+            "cancellationCharge": 100
+          }
+        ],
+        "benefitsIcon": [
+          {
+            "key": "Non-Refundable",
+            "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+          }
+        ],
+        "allBenefitKeys": [
+          "Breakfast Included",
+          "Non-Refundable"
+        ]
+      },
+      {
+        "name": [
+          "Executive Double room (full double bed)",
+          "non-smoking"
+        ],
+        "roomType": "Rooms",
+        "mealType": "No Meal",
+        "bookingCode": "2688620!TB!RHK!TB!rh-rut...",
+        "refundable": false,
+        "refundableNotes": [],
+        "price": {
+          "baseFare": 3985.15,
+          "taxes": 199.21,
+          "convenienceFee": 0,
+          "totalAmount": 4184.37,
+          "currency": "INR",
+          "priceReference": null,
+          "currencyConversion": {
+            "source": "USD",
+            "destination": "INR",
+            "rate": 90.9645
+          }
+        },
+        "cancelPolicies": [
+          {
+            "fromDate": "03-08-2026 00:00:00",
+            "chargeType": "Percent",
+            "cancellationCharge": 100
+          }
+        ],
+        "benefitsIcon": [
+          {
+            "key": "Non-Refundable",
+            "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+          }
+        ],
+        "allBenefitKeys": [
+          "Room Only",
+          "Non-Refundable"
+        ]
+      },
+      {
+        "name": [
+          "Executive Double room (full double bed)",
+          "non-smoking"
+        ],
+        "roomType": "Rooms",
+        "mealType": "Breakfast Included",
+        "bookingCode": "2688620!TB!RHK!TB!rh-rut...",
+        "refundable": false,
+        "refundableNotes": [],
+        "price": {
+          "baseFare": 4331.73,
+          "taxes": 216.5,
+          "convenienceFee": 0,
+          "totalAmount": 4548.23,
+          "currency": "INR",
+          "priceReference": null,
+          "currencyConversion": {
+            "source": "USD",
+            "destination": "INR",
+            "rate": 90.9645
+          }
+        },
+        "cancelPolicies": [
+          {
+            "fromDate": "03-08-2026 00:00:00",
+            "chargeType": "Percent",
+            "cancellationCharge": 100
+          }
+        ],
+        "benefitsIcon": [
+          {
+            "key": "Non-Refundable",
+            "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+          }
+        ],
+        "allBenefitKeys": [
+          "Breakfast Included",
+          "Non-Refundable"
+        ]
+      }
+    ]
+  }
+}

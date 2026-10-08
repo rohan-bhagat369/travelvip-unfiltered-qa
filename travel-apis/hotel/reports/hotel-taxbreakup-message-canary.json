@@ -1,0 +1,276 @@
+{
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "at": "2026-08-12T15:25:39.018Z",
+  "confirmedBooking": {
+    "br": "BR1786547947718879",
+    "status": "Confirmed",
+    "source": "history"
+  },
+  "failedBooking": {
+    "br": "BR1786548333362747",
+    "status": "Failed",
+    "source": "fresh",
+    "hotelName": "Hiltop Hotel"
+  },
+  "score": {
+    "PASS": 7,
+    "BUG": 6,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "section": "Negative",
+      "rule": "1. Status unknown bookingId",
+      "how": "GET .../status BR91786548323702",
+      "expected": "HTTP 404 + error.code (BOOKING_NOT_FOUND)",
+      "status": "BUG",
+      "actual": "HTTP 200 code=- | body.status=404 message=Booking not found",
+      "responseSnippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "at": "2026-08-12T15:25:24.025Z",
+      "note": "HTTP 200 with body status:404 message Booking not found — not real HTTP 404 / error.code envelope"
+    },
+    {
+      "section": "Negative",
+      "rule": "2. Details unknown bookingId",
+      "how": "GET .../bookings/BR91786548323702",
+      "expected": "HTTP 404 + error.code (BOOKING_NOT_FOUND)",
+      "status": "BUG",
+      "actual": "HTTP 200 code=- | body.status=404 message=Booking not found",
+      "responseSnippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "at": "2026-08-12T15:25:24.025Z",
+      "note": "HTTP 200 with body status:404 message Booking not found — not real HTTP 404 / error.code envelope"
+    },
+    {
+      "section": "Negative",
+      "rule": "3. Status malformed bookingId",
+      "how": "GET .../status !!bad!!",
+      "expected": "HTTP 400 VALIDATION_ERROR envelope (or consistent error)",
+      "status": "BUG",
+      "actual": "HTTP 200 body={\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "responseSnippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "at": "2026-08-12T15:25:24.308Z"
+    },
+    {
+      "section": "Negative",
+      "rule": "4. Details malformed bookingId",
+      "how": "GET .../bookings/!!bad!!",
+      "expected": "HTTP 400 VALIDATION_ERROR envelope (or consistent error)",
+      "status": "BUG",
+      "actual": "HTTP 200 body={\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "responseSnippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "at": "2026-08-12T15:25:24.308Z"
+    },
+    {
+      "section": "Positive-Confirmed",
+      "rule": "Confirmed: details salesSummary.taxBreakup",
+      "how": "GET /hotels/bookings/{id}",
+      "expected": "salesSummary.taxBreakup.{gst,otherTaxes} present; gst+other≈tax",
+      "status": "PASS",
+      "actual": "gst=0 otherTaxes=2046.4 tax=2046.4 total=11272.95",
+      "salesSummary": {
+        "baseFare": 9226.55,
+        "tax": 2046.4,
+        "convenienceFee": 0,
+        "totalAmount": 11272.95,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 2046.4
+        }
+      },
+      "responseSnippet": "{\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00010626\",\"checkIn\":\"2026-08-23\",\"checkInTime\":\"14:00:00\",\"checkOut\":\"2026-08-24\",\"checkOutTime\":\"12:00:00\",\"bookingDate\":\"2026-08-12T15:19:07Z\",\"noOfRooms\":1,\"message\":null,\"hotelDetails\":{\"hotelName\":\"Taj Dubai\",\"city\":null,\"address\":null,\"contactNumber\":null,\"amenities\":[{\"key\":\"Free WiFi\",\"value\":\"https://img.travelx.ai/Hotel_Amenities/Internet.png\"},{\"key\":\"24-hour Reception\",\"value\":\"https://img.travelx.ai/Hotel_Amenities/Concierge.png\"},{\"key\":\"Currency Exchange\",\"value\":\"https://img.travelx.ai/Hotel_Amenities/Currency.svg\"},{\"key\":\"Laun",
+      "at": "2026-08-12T15:25:24.869Z"
+    },
+    {
+      "section": "Positive-Confirmed",
+      "rule": "Confirmed: status salesSummary.taxBreakup",
+      "how": "GET /hotels/bookings/{id}/status",
+      "expected": "salesSummary.taxBreakup.{gst,otherTaxes} present when salesSummary sent",
+      "status": "PASS",
+      "actual": "gst=0 otherTaxes=2046.4 tax=2046.4",
+      "salesSummary": {
+        "baseFare": 9226.55,
+        "tax": 2046.4,
+        "convenienceFee": 0,
+        "totalAmount": 11272.95,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 2046.4
+        }
+      },
+      "responseSnippet": "{\"bookingReferenceId\":\"BR1786547947718879\",\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00010626\",\"checkin\":\"2026-08-23\",\"checkout\":\"2026-08-24\",\"checkinTime\":\"14:00:00\",\"checkoutTime\":\"12:00:00\",\"message\":null,\"hotelDetails\":{\"name\":\"Taj Dubai\",\"address\":null,\"contact\":null},\"roomDetails\":{\"name\":[\"Luxury Room, 1 King Bed, City View\"],\"mealType\":\"No Meal\",\"roomType\":\"Luxury Room, 1 King Bed, City View\"},\"rooms\":[{\"guestNames\":[{\"title\":\"Mr\",\"firstName\":\"Atul\",\"lastName\":\"Ugale\",\"type\":\"Adul",
+      "at": "2026-08-12T15:25:24.869Z"
+    },
+    {
+      "section": "Positive-Confirmed",
+      "rule": "Confirmed: status message key present",
+      "how": "GET status Confirmed/Pending",
+      "expected": "message key present (may be null/empty on success)",
+      "status": "PASS",
+      "actual": "message=null",
+      "message": null,
+      "responseSnippet": "{\"bookingReferenceId\":\"BR1786547947718879\",\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00010626\",\"checkin\":\"2026-08-23\",\"checkout\":\"2026-08-24\",\"checkinTime\":\"14:00:00\",\"checkoutTime\":\"12:00:00\",\"message\":null,\"hotelDetails\":{\"name\":\"Taj Dubai\",\"address\":null,\"contact\":null},\"roomDetails\":{\"name\":[\"Luxury Room, 1 King Bed, City View\"],\"mealType\":\"No Meal\",\"roomType\":\"Luxury Room, 1 King Bed, ",
+      "at": "2026-08-12T15:25:24.869Z"
+    },
+    {
+      "section": "Positive-Confirmed",
+      "rule": "Confirmed: details message key present",
+      "how": "GET details Confirmed/Pending",
+      "expected": "message key present (may be null/empty on success)",
+      "status": "PASS",
+      "actual": "message=null",
+      "message": null,
+      "responseSnippet": "{\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00010626\",\"checkIn\":\"2026-08-23\",\"checkInTime\":\"14:00:00\",\"checkOut\":\"2026-08-24\",\"checkOutTime\":\"12:00:00\",\"bookingDate\":\"2026-08-12T15:19:07Z\",\"noOfRooms\":1,\"message\":null,\"hotelDetails\":{\"hotelName\":\"Taj Dubai\",\"city\":null,\"address\":null,\"contactNumber\":null,\"amenities\":[{\"key\":\"Free WiFi\",\"value\":\"https://img.travelx.ai/Hotel_Amenities/Internet",
+      "at": "2026-08-12T15:25:24.869Z"
+    },
+    {
+      "section": "Positive-Confirmed",
+      "rule": "Status vs Details tax consistency",
+      "how": "Compare salesSummary.tax",
+      "expected": "Same tax on status and details",
+      "status": "PASS",
+      "actual": "status.tax=2046.4 details.tax=2046.4",
+      "at": "2026-08-12T15:25:24.869Z"
+    },
+    {
+      "section": "Negative-Failed",
+      "rule": "Failed: details salesSummary.taxBreakup",
+      "how": "GET /hotels/bookings/{id}",
+      "expected": "salesSummary.taxBreakup.{gst,otherTaxes} present; gst+other≈tax",
+      "status": "PASS",
+      "actual": "gst=0 otherTaxes=1439.78 tax=1439.78 total=9222.56",
+      "salesSummary": {
+        "baseFare": 7782.78,
+        "tax": 1439.78,
+        "convenienceFee": 0,
+        "totalAmount": 9222.56,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 1439.78
+        }
+      },
+      "responseSnippet": "{\"status\":\"Failed\",\"confirmationNumber\":\"BR1786548333362747\",\"checkIn\":\"2026-08-19\",\"checkInTime\":\"2:00 PM\",\"checkOut\":\"2026-08-20\",\"checkOutTime\":\"11:00 AM\",\"bookingDate\":\"2026-08-12T15:25:33Z\",\"noOfRooms\":1,\"message\":null,\"hotelDetails\":{\"hotelName\":\"Hiltop Hotel\",\"city\":\"Mumbai\",\"address\":\"43. Sir Pochkhanwala Road\",\"contactNumber\":null,\"amenities\":[{\"key\":\"Dry cleaning/laundry service\",\"value\":null},{\"key\":\"Banquet hall\",\"value\":null},{\"key\":\"Wheelchair accessible – no\",\"value\":null},{\"key\":\"Luggage storage\",\"value\":null},{\"key\":\"Number of meeting rooms - 3\",\"value\":null},{\"key\":\"Business ",
+      "at": "2026-08-12T15:25:39.018Z"
+    },
+    {
+      "section": "Negative-Failed",
+      "rule": "Failed: status salesSummary.taxBreakup",
+      "how": "GET /hotels/bookings/{id}/status",
+      "expected": "salesSummary.taxBreakup.{gst,otherTaxes} present when salesSummary sent",
+      "status": "PASS",
+      "actual": "gst=0 otherTaxes=1439.78 tax=1439.78",
+      "salesSummary": {
+        "baseFare": 7782.78,
+        "tax": 1439.78,
+        "convenienceFee": 0,
+        "totalAmount": 9222.56,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 1439.78
+        }
+      },
+      "responseSnippet": "{\"bookingReferenceId\":\"BR1786548333362747\",\"status\":\"Failed\",\"confirmationNumber\":\"\",\"checkin\":\"2026-08-19\",\"checkout\":\"2026-08-20\",\"checkinTime\":\"2:00 PM\",\"checkoutTime\":\"11:00 AM\",\"message\":null,\"hotelDetails\":{\"name\":\"Hiltop Hotel\",\"address\":\"43. Sir Pochkhanwala Road\",\"contact\":null},\"roomDetails\":{\"name\":[\"Basic Studio\"],\"mealType\":\"Breakfast Included\",\"roomType\":\"Basic Studio\"},\"rooms\":[{\"guestNames\":[{\"title\":\"Mr\",\"firstName\":\"Rohan\",\"lastName\":\"Bhagat\",\"type\":\"Adult\"}]}],\"salesSummary\":{",
+      "at": "2026-08-12T15:25:39.018Z"
+    },
+    {
+      "section": "Negative-Failed",
+      "rule": "Failed: status message (failed reason)",
+      "how": "GET status when Failed",
+      "expected": "message key with provider failure reason",
+      "status": "BUG",
+      "actual": "message missing/empty; keys=bookingReferenceId,status,confirmationNumber,checkin,checkout,checkinTime,checkoutTime,message,hotelDetails,roomDetails,rooms,salesSummary,_meta",
+      "message": null,
+      "responseSnippet": "{\"bookingReferenceId\":\"BR1786548333362747\",\"status\":\"Failed\",\"confirmationNumber\":\"\",\"checkin\":\"2026-08-19\",\"checkout\":\"2026-08-20\",\"checkinTime\":\"2:00 PM\",\"checkoutTime\":\"11:00 AM\",\"message\":null,\"hotelDetails\":{\"name\":\"Hiltop Hotel\",\"address\":\"43. Sir Pochkhanwala Road\",\"contact\":null},\"roomDetails\":{\"name\":[\"Basic Studio\"],\"mealType\":\"Breakfast Included\",\"roomType\":\"Basic Studio\"},\"rooms\":[{\"guestNames\":[{\"title\":\"Mr\",\"firstName\":\"Rohan\",\"lastName\":\"Bhagat\",\"type\":\"Adult\"}]}],\"salesSummary\":{",
+      "at": "2026-08-12T15:25:39.018Z"
+    },
+    {
+      "section": "Negative-Failed",
+      "rule": "Failed: details message (failed reason)",
+      "how": "GET details when Failed",
+      "expected": "message key with provider failure reason",
+      "status": "BUG",
+      "actual": "message missing/empty; keys=status,confirmationNumber,checkIn,checkInTime,checkOut,checkOutTime,bookingDate,noOfRooms,message,hotelDetails,roomDetails,rooms,salesSummary,_meta",
+      "message": null,
+      "responseSnippet": "{\"status\":\"Failed\",\"confirmationNumber\":\"BR1786548333362747\",\"checkIn\":\"2026-08-19\",\"checkInTime\":\"2:00 PM\",\"checkOut\":\"2026-08-20\",\"checkOutTime\":\"11:00 AM\",\"bookingDate\":\"2026-08-12T15:25:33Z\",\"noOfRooms\":1,\"message\":null,\"hotelDetails\":{\"hotelName\":\"Hiltop Hotel\",\"city\":\"Mumbai\",\"address\":\"43. Sir Pochkhanwala Road\",\"contactNumber\":null,\"amenities\":[{\"key\":\"Dry cleaning/laundry service\",\"value\":null},{\"key\":\"Banquet hall\",\"value\":null},{\"key\":\"Wheelchair accessible – no\",\"value\":null},{\"key\":",
+      "at": "2026-08-12T15:25:39.018Z"
+    }
+  ],
+  "bugs": [
+    {
+      "section": "Negative",
+      "rule": "1. Status unknown bookingId",
+      "how": "GET .../status BR91786548323702",
+      "expected": "HTTP 404 + error.code (BOOKING_NOT_FOUND)",
+      "status": "BUG",
+      "actual": "HTTP 200 code=- | body.status=404 message=Booking not found",
+      "responseSnippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "at": "2026-08-12T15:25:24.025Z",
+      "note": "HTTP 200 with body status:404 message Booking not found — not real HTTP 404 / error.code envelope"
+    },
+    {
+      "section": "Negative",
+      "rule": "2. Details unknown bookingId",
+      "how": "GET .../bookings/BR91786548323702",
+      "expected": "HTTP 404 + error.code (BOOKING_NOT_FOUND)",
+      "status": "BUG",
+      "actual": "HTTP 200 code=- | body.status=404 message=Booking not found",
+      "responseSnippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "at": "2026-08-12T15:25:24.025Z",
+      "note": "HTTP 200 with body status:404 message Booking not found — not real HTTP 404 / error.code envelope"
+    },
+    {
+      "section": "Negative",
+      "rule": "3. Status malformed bookingId",
+      "how": "GET .../status !!bad!!",
+      "expected": "HTTP 400 VALIDATION_ERROR envelope (or consistent error)",
+      "status": "BUG",
+      "actual": "HTTP 200 body={\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "responseSnippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "at": "2026-08-12T15:25:24.308Z"
+    },
+    {
+      "section": "Negative",
+      "rule": "4. Details malformed bookingId",
+      "how": "GET .../bookings/!!bad!!",
+      "expected": "HTTP 400 VALIDATION_ERROR envelope (or consistent error)",
+      "status": "BUG",
+      "actual": "HTTP 200 body={\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "responseSnippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"3b721fd9-0d46-4bc2-9eef-883804afb50f\"}}",
+      "at": "2026-08-12T15:25:24.308Z"
+    },
+    {
+      "section": "Negative-Failed",
+      "rule": "Failed: status message (failed reason)",
+      "how": "GET status when Failed",
+      "expected": "message key with provider failure reason",
+      "status": "BUG",
+      "actual": "message missing/empty; keys=bookingReferenceId,status,confirmationNumber,checkin,checkout,checkinTime,checkoutTime,message,hotelDetails,roomDetails,rooms,salesSummary,_meta",
+      "message": null,
+      "responseSnippet": "{\"bookingReferenceId\":\"BR1786548333362747\",\"status\":\"Failed\",\"confirmationNumber\":\"\",\"checkin\":\"2026-08-19\",\"checkout\":\"2026-08-20\",\"checkinTime\":\"2:00 PM\",\"checkoutTime\":\"11:00 AM\",\"message\":null,\"hotelDetails\":{\"name\":\"Hiltop Hotel\",\"address\":\"43. Sir Pochkhanwala Road\",\"contact\":null},\"roomDetails\":{\"name\":[\"Basic Studio\"],\"mealType\":\"Breakfast Included\",\"roomType\":\"Basic Studio\"},\"rooms\":[{\"guestNames\":[{\"title\":\"Mr\",\"firstName\":\"Rohan\",\"lastName\":\"Bhagat\",\"type\":\"Adult\"}]}],\"salesSummary\":{",
+      "at": "2026-08-12T15:25:39.018Z"
+    },
+    {
+      "section": "Negative-Failed",
+      "rule": "Failed: details message (failed reason)",
+      "how": "GET details when Failed",
+      "expected": "message key with provider failure reason",
+      "status": "BUG",
+      "actual": "message missing/empty; keys=status,confirmationNumber,checkIn,checkInTime,checkOut,checkOutTime,bookingDate,noOfRooms,message,hotelDetails,roomDetails,rooms,salesSummary,_meta",
+      "message": null,
+      "responseSnippet": "{\"status\":\"Failed\",\"confirmationNumber\":\"BR1786548333362747\",\"checkIn\":\"2026-08-19\",\"checkInTime\":\"2:00 PM\",\"checkOut\":\"2026-08-20\",\"checkOutTime\":\"11:00 AM\",\"bookingDate\":\"2026-08-12T15:25:33Z\",\"noOfRooms\":1,\"message\":null,\"hotelDetails\":{\"hotelName\":\"Hiltop Hotel\",\"city\":\"Mumbai\",\"address\":\"43. Sir Pochkhanwala Road\",\"contactNumber\":null,\"amenities\":[{\"key\":\"Dry cleaning/laundry service\",\"value\":null},{\"key\":\"Banquet hall\",\"value\":null},{\"key\":\"Wheelchair accessible – no\",\"value\":null},{\"key\":",
+      "at": "2026-08-12T15:25:39.018Z"
+    }
+  ],
+  "summary": {
+    "taxBreakup": "PASS on Confirmed and Failed status+details; gst+otherTaxes equals tax",
+    "messageKey": "Key present on status+details; Confirmed message=null OK; Failed message=null BUG (no provider fail reason)",
+    "unknownId": "BUG: HTTP 200 + body status 404 instead of HTTP 404 error envelope"
+  }
+}

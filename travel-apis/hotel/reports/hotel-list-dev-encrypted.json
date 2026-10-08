@@ -1,0 +1,581 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "at": "2026-08-15T15:02:47.025Z",
+  "score": {
+    "PASS": 0,
+    "BUG": 8,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "rule": "1. Hilltop Hotel Mumbai (39627872) bookingCode no RIYA / encrypted",
+      "how": "POST /v1/hotels/details + prebook +28d",
+      "expected": "bookingCode encrypted, no RIYA, rooms returned",
+      "actual": "PLAINTEXT RIYA in bookingCode sample=39627872!TB!RIYA!TB!d2cdaf1e-3d56-4bd1-bb0f-3ff0c588aa9e~65b3f2fb-4064-4bed-b2e9-a410811da5ac~3f4294…",
+      "status": "BUG"
+    },
+    {
+      "rule": "2. Treebo Diamond Residency (39604638) bookingCode no RIYA / encrypted",
+      "how": "POST /v1/hotels/details + prebook +28d",
+      "expected": "bookingCode encrypted, no RIYA, rooms returned",
+      "actual": "PLAINTEXT RIYA in bookingCode sample=39604638!TB!RIYA!TB!3e8a34b1-00ab-4762-bd24-8622af7cd717~5f5f8030-7f33-472b-8b8f-3073e676c653~af50cf…",
+      "status": "BUG"
+    },
+    {
+      "rule": "3. New Vasantashram Boarding & Lodging, Mumbai (39626537) bookingCode no RIYA / encrypted",
+      "how": "POST /v1/hotels/details + prebook +28d",
+      "expected": "bookingCode encrypted, no RIYA, rooms returned",
+      "actual": "PLAINTEXT RIYA in bookingCode sample=39626537!TB!RIYA!TB!3372d018-a889-47af-bb8d-9fb0f120aae2~9ffdc334-7297-490c-a6ec-4cc6e8027983~f07890…",
+      "status": "BUG"
+    },
+    {
+      "rule": "4. Hotel Haveli, Pune (15599148) bookingCode no RIYA / encrypted",
+      "how": "POST /v1/hotels/details + prebook +28d",
+      "expected": "bookingCode encrypted, no RIYA, rooms returned",
+      "actual": "PLAINTEXT RIYA in bookingCode sample=15599148!TB!RIYA!TB!20ff455e-0341-4012-bee9-1d134881c4bb~50b81f24-1f5f-4084-8d11-77b6e3434634~42a2a1…",
+      "status": "BUG"
+    },
+    {
+      "rule": "5. Hotel Indie Stays, Mumbai (39613471) bookingCode no RIYA / encrypted",
+      "how": "POST /v1/hotels/details + prebook +28d",
+      "expected": "bookingCode encrypted, no RIYA, rooms returned",
+      "actual": "PLAINTEXT RIYA in bookingCode sample=39613471!TB!RIYA!TB!3cc98b2a-1799-4072-b705-9f738d016f57~36b4b39b-a190-4e36-a3c7-a109580e85e6~78292b…",
+      "status": "BUG"
+    },
+    {
+      "rule": "6. Tanvi Guest House, Mumbai (32923366) bookingCode no RIYA / encrypted",
+      "how": "POST /v1/hotels/details + prebook +28d",
+      "expected": "bookingCode encrypted, no RIYA, rooms returned",
+      "actual": "PLAINTEXT RIYA in bookingCode sample=32923366!TB!RIYA!TB!050dc288-9e1f-4513-b9e9-f82e63b2d12d~db4ae043-cfc4-4594-9b24-715ff25d5991~014312…",
+      "status": "BUG"
+    },
+    {
+      "rule": "7. Hotel National Residency, Mumbai (16320317) bookingCode no RIYA / encrypted",
+      "how": "POST /v1/hotels/details + prebook +28d",
+      "expected": "bookingCode encrypted, no RIYA, rooms returned",
+      "actual": "PLAINTEXT RIYA in bookingCode sample=16320317!TB!RIYA!TB!eea7c97f-cd49-45c7-8592-65595cf21793~a847b2c8-0919-4783-9f7c-85385c6c2497~60e288…",
+      "status": "BUG"
+    },
+    {
+      "rule": "8. Encrypted bookingCode E2E book on dest",
+      "how": "prebook → finalize → Confirmed on first hotel that prebooked",
+      "expected": "Confirmed booking using details bookingCode (no RIYA in code)",
+      "actual": "No Confirmed booking null",
+      "status": "BUG"
+    }
+  ],
+  "hotels": [
+    {
+      "entityId": "39627872",
+      "askedName": "Hilltop Hotel Mumbai",
+      "days": 28,
+      "checkin": "2026-09-12",
+      "checkout": "2026-09-13",
+      "searchHttp": 200,
+      "searchRooms": 0,
+      "detailsHttp": 200,
+      "detailsPayload": {
+        "bytes": 21527,
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "_meta"
+        ],
+        "emptyEnvelope": false
+      },
+      "hotelName": "Hilltop Hotel Mumbai",
+      "rooms": 5,
+      "panRooms": 5,
+      "gstRooms": 5,
+      "samples": [
+        {
+          "bookingCode": "39627872!TB!RIYA!TB!d2cdaf1e-3d56-4bd1-bb0f-3ff0c588aa9e~65b3f2fb-4064-4bed-b2e9-a410811da5ac~3f4294…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Basic Studio",
+          "amount": 7364.86,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        },
+        {
+          "bookingCode": "39627872!TB!RIYA!TB!d2cdaf1e-3d56-4bd1-bb0f-3ff0c588aa9e~fb71ceb4-7287-4548-99e0-6c1b492d8609~c4b75e…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Standard Double Room",
+          "amount": 10030.41,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        },
+        {
+          "bookingCode": "39627872!TB!RIYA!TB!d2cdaf1e-3d56-4bd1-bb0f-3ff0c588aa9e~9159c64a-5261-4d35-b0c8-87b3fbf5c0b9~f81aed…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Executive Room",
+          "amount": 11760.039999999999,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        }
+      ],
+      "allCodesEncrypted": false,
+      "anyRiyaInCode": true,
+      "requestId": "e90aa9c1-5995-4653-8298-0df6f7785527",
+      "prebookHttp": 200,
+      "prebookOk": true,
+      "prebookCode": {
+        "bookingCode": "39627872!TB!RIYA!TB!d2cdaf1e-3d56-4bd1-bb0f-3ff0c588aa9e~65b3f2fb-4064-4bed-b2e9-a410811da5ac~3f4294…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      },
+      "detailsCode": {
+        "bookingCode": "39627872!TB!RIYA!TB!d2cdaf1e-3d56-4bd1-bb0f-3ff0c588aa9e~65b3f2fb-4064-4bed-b2e9-a410811da5ac~3f4294…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      }
+    },
+    {
+      "entityId": "39604638",
+      "askedName": "Treebo Diamond Residency",
+      "days": 28,
+      "checkin": "2026-09-12",
+      "checkout": "2026-09-13",
+      "searchHttp": 200,
+      "searchRooms": 0,
+      "detailsHttp": 200,
+      "detailsPayload": {
+        "bytes": 11775,
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "_meta"
+        ],
+        "emptyEnvelope": false
+      },
+      "hotelName": "Treebo Diamond Residency - DDPK Inn",
+      "rooms": 3,
+      "panRooms": 3,
+      "gstRooms": 3,
+      "samples": [
+        {
+          "bookingCode": "39604638!TB!RIYA!TB!3e8a34b1-00ab-4762-bd24-8622af7cd717~5f5f8030-7f33-472b-8b8f-3073e676c653~af50cf…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Economy Room",
+          "amount": 2072.47,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        },
+        {
+          "bookingCode": "39604638!TB!RIYA!TB!3e8a34b1-00ab-4762-bd24-8622af7cd717~55acd426-fdb7-407e-a852-9e18fea47eb2~fa1901…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Standard Room",
+          "amount": 2175.22,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        },
+        {
+          "bookingCode": "39604638!TB!RIYA!TB!3e8a34b1-00ab-4762-bd24-8622af7cd717~3f7f5930-77ed-40d5-9d39-397bd2a006d9~1d90a4…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Deluxe Room",
+          "amount": 2277.97,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        }
+      ],
+      "allCodesEncrypted": false,
+      "anyRiyaInCode": true,
+      "requestId": "917deada-6e59-4dc3-986d-508661ac651f",
+      "prebookHttp": 200,
+      "prebookOk": true,
+      "prebookCode": {
+        "bookingCode": "39604638!TB!RIYA!TB!3e8a34b1-00ab-4762-bd24-8622af7cd717~5f5f8030-7f33-472b-8b8f-3073e676c653~af50cf…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      },
+      "detailsCode": {
+        "bookingCode": "39604638!TB!RIYA!TB!3e8a34b1-00ab-4762-bd24-8622af7cd717~5f5f8030-7f33-472b-8b8f-3073e676c653~af50cf…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      }
+    },
+    {
+      "entityId": "39626537",
+      "askedName": "New Vasantashram Boarding & Lodging, Mumbai",
+      "days": 28,
+      "checkin": "2026-09-12",
+      "checkout": "2026-09-13",
+      "searchHttp": 200,
+      "searchRooms": 0,
+      "detailsHttp": 200,
+      "detailsPayload": {
+        "bytes": 9686,
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "_meta"
+        ],
+        "emptyEnvelope": false
+      },
+      "hotelName": "New Vasantashram Boarding & Lodging",
+      "rooms": 2,
+      "panRooms": 2,
+      "gstRooms": 2,
+      "samples": [
+        {
+          "bookingCode": "39626537!TB!RIYA!TB!3372d018-a889-47af-bb8d-9fb0f120aae2~9ffdc334-7297-490c-a6ec-4cc6e8027983~f07890…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Basic Single Room",
+          "amount": 1104.83,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        },
+        {
+          "bookingCode": "39626537!TB!RIYA!TB!3372d018-a889-47af-bb8d-9fb0f120aae2~2c49679f-82f2-4af7-ba1c-f2e14fdf1f8d~6a230d…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Basic Double Room",
+          "amount": 2209.67,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        }
+      ],
+      "allCodesEncrypted": false,
+      "anyRiyaInCode": true,
+      "requestId": "38947a44-0428-4b58-a4e7-2c3a9c922b3b",
+      "prebookHttp": 200,
+      "prebookOk": true,
+      "prebookCode": {
+        "bookingCode": "39626537!TB!RIYA!TB!3372d018-a889-47af-bb8d-9fb0f120aae2~9ffdc334-7297-490c-a6ec-4cc6e8027983~f07890…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      },
+      "detailsCode": {
+        "bookingCode": "39626537!TB!RIYA!TB!3372d018-a889-47af-bb8d-9fb0f120aae2~9ffdc334-7297-490c-a6ec-4cc6e8027983~f07890…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      }
+    },
+    {
+      "entityId": "15599148",
+      "askedName": "Hotel Haveli, Pune",
+      "days": 28,
+      "checkin": "2026-09-12",
+      "checkout": "2026-09-13",
+      "searchHttp": 200,
+      "searchRooms": 0,
+      "detailsHttp": 200,
+      "detailsPayload": {
+        "bytes": 6215,
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "_meta"
+        ],
+        "emptyEnvelope": false
+      },
+      "hotelName": "Hotel Haveli",
+      "rooms": 1,
+      "panRooms": 1,
+      "gstRooms": 1,
+      "samples": [
+        {
+          "bookingCode": "15599148!TB!RIYA!TB!20ff455e-0341-4012-bee9-1d134881c4bb~50b81f24-1f5f-4084-8d11-77b6e3434634~42a2a1…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Deluxe Room",
+          "amount": 1068.29,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        }
+      ],
+      "allCodesEncrypted": false,
+      "anyRiyaInCode": true,
+      "requestId": "c6ca49b7-6b3e-4560-bc1d-1d93df452f17",
+      "prebookHttp": 200,
+      "prebookOk": true,
+      "prebookCode": {
+        "bookingCode": "15599148!TB!RIYA!TB!20ff455e-0341-4012-bee9-1d134881c4bb~50b81f24-1f5f-4084-8d11-77b6e3434634~42a2a1…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      },
+      "detailsCode": {
+        "bookingCode": "15599148!TB!RIYA!TB!20ff455e-0341-4012-bee9-1d134881c4bb~50b81f24-1f5f-4084-8d11-77b6e3434634~42a2a1…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      }
+    },
+    {
+      "entityId": "39613471",
+      "askedName": "Hotel Indie Stays, Mumbai",
+      "days": 28,
+      "checkin": "2026-09-12",
+      "checkout": "2026-09-13",
+      "searchHttp": 200,
+      "searchRooms": 0,
+      "detailsHttp": 200,
+      "detailsPayload": {
+        "bytes": 20175,
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "_meta"
+        ],
+        "emptyEnvelope": false
+      },
+      "hotelName": "Hotel Indie Stays",
+      "rooms": 7,
+      "panRooms": 7,
+      "gstRooms": 7,
+      "samples": [
+        {
+          "bookingCode": "39613471!TB!RIYA!TB!3cc98b2a-1799-4072-b705-9f738d016f57~36b4b39b-a190-4e36-a3c7-a109580e85e6~78292b…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Shared Dormitory, Mixed Dorm, City View (7 Beds)",
+          "amount": 1311.45,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        },
+        {
+          "bookingCode": "39613471!TB!RIYA!TB!3cc98b2a-1799-4072-b705-9f738d016f57~cf14ee87-4cd8-4f7c-aa69-efb77f084623~e357ce…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Shared Dormitory, Mixed Dorm, City View (8 Beds)",
+          "amount": 1311.45,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        },
+        {
+          "bookingCode": "39613471!TB!RIYA!TB!3cc98b2a-1799-4072-b705-9f738d016f57~3ac153b2-93d5-4e52-9f02-65d0b62dc63f~46e1dc…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Shared Dormitory, Mixed Dorm, City View (6 Beds)",
+          "amount": 1311.45,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        }
+      ],
+      "allCodesEncrypted": false,
+      "anyRiyaInCode": true,
+      "requestId": "59896f37-31fe-4c72-ab33-a7b01f5e70e2",
+      "prebookHttp": 200,
+      "prebookOk": true,
+      "prebookCode": {
+        "bookingCode": "39613471!TB!RIYA!TB!3cc98b2a-1799-4072-b705-9f738d016f57~36b4b39b-a190-4e36-a3c7-a109580e85e6~78292b…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      },
+      "detailsCode": {
+        "bookingCode": "39613471!TB!RIYA!TB!3cc98b2a-1799-4072-b705-9f738d016f57~36b4b39b-a190-4e36-a3c7-a109580e85e6~78292b…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      }
+    },
+    {
+      "entityId": "32923366",
+      "askedName": "Tanvi Guest House, Mumbai",
+      "days": 28,
+      "checkin": "2026-09-12",
+      "checkout": "2026-09-13",
+      "searchHttp": 200,
+      "searchRooms": 0,
+      "detailsHttp": 200,
+      "detailsPayload": {
+        "bytes": 7015,
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "_meta"
+        ],
+        "emptyEnvelope": false
+      },
+      "hotelName": "Tanvi Guest House",
+      "rooms": 1,
+      "panRooms": 1,
+      "gstRooms": 1,
+      "samples": [
+        {
+          "bookingCode": "32923366!TB!RIYA!TB!050dc288-9e1f-4513-b9e9-f82e63b2d12d~db4ae043-cfc4-4594-9b24-715ff25d5991~014312…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Deluxe Room",
+          "amount": 1390.5,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        }
+      ],
+      "allCodesEncrypted": false,
+      "anyRiyaInCode": true,
+      "requestId": "b4173593-3617-4967-bf7a-cea39b61d036",
+      "prebookHttp": 200,
+      "prebookOk": true,
+      "prebookCode": {
+        "bookingCode": "32923366!TB!RIYA!TB!050dc288-9e1f-4513-b9e9-f82e63b2d12d~db4ae043-cfc4-4594-9b24-715ff25d5991~014312…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      },
+      "detailsCode": {
+        "bookingCode": "32923366!TB!RIYA!TB!050dc288-9e1f-4513-b9e9-f82e63b2d12d~db4ae043-cfc4-4594-9b24-715ff25d5991~014312…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      }
+    },
+    {
+      "entityId": "16320317",
+      "askedName": "Hotel National Residency, Mumbai",
+      "days": 28,
+      "checkin": "2026-09-12",
+      "checkout": "2026-09-13",
+      "searchHttp": 200,
+      "searchRooms": 0,
+      "detailsHttp": 200,
+      "detailsPayload": {
+        "bytes": 5718,
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "_meta"
+        ],
+        "emptyEnvelope": false
+      },
+      "hotelName": "Hotel National Residency",
+      "rooms": 1,
+      "panRooms": 1,
+      "gstRooms": 1,
+      "samples": [
+        {
+          "bookingCode": "16320317!TB!RIYA!TB!eea7c97f-cd49-45c7-8592-65595cf21793~a847b2c8-0919-4783-9f7c-85385c6c2497~60e288…",
+          "encrypted": false,
+          "hasTbRiya": true,
+          "hasRiya": true,
+          "hasTb": true,
+          "title": "Double Room",
+          "amount": 1749.33,
+          "isPANMandatory": true,
+          "isGSTClaimable": true
+        }
+      ],
+      "allCodesEncrypted": false,
+      "anyRiyaInCode": true,
+      "requestId": "6386afa7-e26a-482f-b10a-b3d5332887dc",
+      "prebookHttp": 200,
+      "prebookOk": true,
+      "prebookCode": {
+        "bookingCode": "16320317!TB!RIYA!TB!eea7c97f-cd49-45c7-8592-65595cf21793~a847b2c8-0919-4783-9f7c-85385c6c2497~60e288…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      },
+      "detailsCode": {
+        "bookingCode": "16320317!TB!RIYA!TB!eea7c97f-cd49-45c7-8592-65595cf21793~a847b2c8-0919-4783-9f7c-85385c6c2497~60e288…",
+        "encrypted": false,
+        "hasTbRiya": true,
+        "hasRiya": true,
+        "hasTb": true
+      }
+    }
+  ],
+  "booked": null
+}

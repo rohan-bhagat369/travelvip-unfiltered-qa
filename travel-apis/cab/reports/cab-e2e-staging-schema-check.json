@@ -1,0 +1,802 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "counts": {
+    "PASS": 36,
+    "NOT TESTED": 8
+  },
+  "rows": [
+    {
+      "section": "E2E-AIRPORT",
+      "n": 1,
+      "rule": "Search returns cabs",
+      "how": "POST /v1/airportServices/cabs/search",
+      "status": "PASS",
+      "actual": "HTTP 200 cabs=5"
+    },
+    {
+      "section": "E2E-AIRPORT",
+      "n": 2,
+      "rule": "Fare returns bookingReference + priceId",
+      "how": "POST /v1/airportServices/cabs/fare",
+      "status": "PASS",
+      "actual": "HTTP 200 priceId=yes"
+    },
+    {
+      "section": "E2E-AIRPORT",
+      "n": 3,
+      "rule": "Finalize returns BR",
+      "how": "POST finalize-booking",
+      "status": "PASS",
+      "actual": "BR=BR1787652567247334 HTTP 200"
+    },
+    {
+      "section": "E2E-AIRPORT",
+      "n": 4,
+      "rule": "Status after book",
+      "how": "GET …/BR1787652567247334/status",
+      "status": "PASS",
+      "actual": "status=Confirmed"
+    },
+    {
+      "section": "E2E-AIRPORT",
+      "n": 5,
+      "rule": "Cancel",
+      "how": "GET …/cancel",
+      "status": "PASS",
+      "actual": "HTTP 200"
+    },
+    {
+      "section": "E2E-AIRPORT-A4",
+      "n": 1,
+      "rule": "extraKmRate present (rupees number)",
+      "how": "fare or status details",
+      "status": "PASS",
+      "actual": "extraKmRate=18 extraKmFareLabel=gone"
+    },
+    {
+      "section": "E2E-AIRPORT-A4",
+      "n": 2,
+      "rule": "pickup/drop.address fields",
+      "how": "status details",
+      "status": "NOT TESTED",
+      "actual": "pickup.address=no drop.address=no"
+    },
+    {
+      "section": "E2E-AIRPORT-A4",
+      "n": 3,
+      "rule": "airportCode on leg only (DEPARTURE → drop)",
+      "how": "status details",
+      "status": "NOT TESTED",
+      "actual": "pickup.airportCode=- drop.airportCode=- top=-"
+    },
+    {
+      "section": "E2E-AIRPORT-A4",
+      "n": 4,
+      "rule": "assignment.tripOtp must be gone",
+      "how": "status details",
+      "status": "PASS",
+      "actual": "assignment.tripOtp=absent details.otp=n/a"
+    },
+    {
+      "section": "E2E-AIRPORT-A4",
+      "n": 5,
+      "rule": "progress block present",
+      "how": "status details",
+      "status": "PASS",
+      "actual": "{\"cabAssigned\":false,\"cabLeftForPickup\":false,\"cabReachedSource\":false,\"cabTripStarted\":false,\"cabTripEnd\":false}"
+    },
+    {
+      "section": "E2E-AIRPORT-A4",
+      "n": 6,
+      "rule": "vehicle + operator blocks in fare",
+      "how": "/fare response",
+      "status": "PASS",
+      "actual": "vehicle=HATCHBACK/WagonR or Similar operator=Gozo Cabs"
+    },
+    {
+      "section": "ARRIVAL",
+      "n": 1,
+      "rule": "Search returns cabs",
+      "how": "POST /v1/airportServices/cabs/search",
+      "status": "PASS",
+      "actual": "HTTP 200 cabs=5"
+    },
+    {
+      "section": "ARRIVAL",
+      "n": 2,
+      "rule": "Fare returns bookingReference + priceId",
+      "how": "POST /v1/airportServices/cabs/fare",
+      "status": "PASS",
+      "actual": "HTTP 200 priceId=yes"
+    },
+    {
+      "section": "ARRIVAL",
+      "n": 3,
+      "rule": "Finalize returns BR",
+      "how": "POST finalize-booking",
+      "status": "PASS",
+      "actual": "BR=BR1787652572851730 HTTP 200"
+    },
+    {
+      "section": "ARRIVAL",
+      "n": 4,
+      "rule": "Status after book",
+      "how": "GET …/BR1787652572851730/status",
+      "status": "PASS",
+      "actual": "status=Confirmed"
+    },
+    {
+      "section": "ARRIVAL",
+      "n": 5,
+      "rule": "Cancel",
+      "how": "GET …/cancel",
+      "status": "PASS",
+      "actual": "HTTP 200"
+    },
+    {
+      "section": "ARRIVAL-A4",
+      "n": 1,
+      "rule": "extraKmRate present (rupees number)",
+      "how": "fare or status details",
+      "status": "PASS",
+      "actual": "extraKmRate=18 extraKmFareLabel=gone"
+    },
+    {
+      "section": "ARRIVAL-A4",
+      "n": 2,
+      "rule": "pickup/drop.address fields",
+      "how": "status details",
+      "status": "NOT TESTED",
+      "actual": "pickup.address=no drop.address=no"
+    },
+    {
+      "section": "ARRIVAL-A4",
+      "n": 3,
+      "rule": "airportCode on leg only (DEPARTURE → drop)",
+      "how": "status details",
+      "status": "NOT TESTED",
+      "actual": "pickup.airportCode=- drop.airportCode=- top=-"
+    },
+    {
+      "section": "ARRIVAL-A4",
+      "n": 4,
+      "rule": "assignment.tripOtp must be gone",
+      "how": "status details",
+      "status": "PASS",
+      "actual": "assignment.tripOtp=absent details.otp=n/a"
+    },
+    {
+      "section": "ARRIVAL-A4",
+      "n": 5,
+      "rule": "progress block present",
+      "how": "status details",
+      "status": "PASS",
+      "actual": "{\"cabAssigned\":false,\"cabLeftForPickup\":false,\"cabReachedSource\":false,\"cabTripStarted\":false,\"cabTripEnd\":false}"
+    },
+    {
+      "section": "ARRIVAL-A4",
+      "n": 6,
+      "rule": "vehicle + operator blocks in fare",
+      "how": "/fare response",
+      "status": "PASS",
+      "actual": "vehicle=HATCHBACK/WagonR or Similar operator=Gozo Cabs"
+    },
+    {
+      "section": "OUTSTATION",
+      "n": 1,
+      "rule": "Search returns cabs",
+      "how": "POST /v1/airportServices/cabs/search",
+      "status": "PASS",
+      "actual": "HTTP 200 cabs=3"
+    },
+    {
+      "section": "OUTSTATION",
+      "n": 2,
+      "rule": "Fare returns bookingReference + priceId",
+      "how": "POST /v1/airportServices/cabs/fare",
+      "status": "PASS",
+      "actual": "HTTP 200 priceId=yes"
+    },
+    {
+      "section": "OUTSTATION",
+      "n": 3,
+      "rule": "Finalize returns BR",
+      "how": "POST finalize-booking",
+      "status": "PASS",
+      "actual": "BR=BR1787652579383684 HTTP 200"
+    },
+    {
+      "section": "OUTSTATION",
+      "n": 4,
+      "rule": "Status after book",
+      "how": "GET …/BR1787652579383684/status",
+      "status": "PASS",
+      "actual": "status=Confirmed"
+    },
+    {
+      "section": "OUTSTATION",
+      "n": 5,
+      "rule": "Cancel",
+      "how": "GET …/cancel",
+      "status": "PASS",
+      "actual": "HTTP 200"
+    },
+    {
+      "section": "OUTSTATION-A4",
+      "n": 1,
+      "rule": "extraKmRate present (rupees number)",
+      "how": "fare or status details",
+      "status": "PASS",
+      "actual": "extraKmRate=13.5 extraKmFareLabel=gone"
+    },
+    {
+      "section": "OUTSTATION-A4",
+      "n": 2,
+      "rule": "pickup/drop.address fields",
+      "how": "status details",
+      "status": "NOT TESTED",
+      "actual": "pickup.address=no drop.address=no"
+    },
+    {
+      "section": "OUTSTATION-A4",
+      "n": 3,
+      "rule": "airportCode on leg only (DEPARTURE → drop)",
+      "how": "status details",
+      "status": "NOT TESTED",
+      "actual": "pickup.airportCode=- drop.airportCode=- top=-"
+    },
+    {
+      "section": "OUTSTATION-A4",
+      "n": 4,
+      "rule": "assignment.tripOtp must be gone",
+      "how": "status details",
+      "status": "PASS",
+      "actual": "assignment.tripOtp=absent details.otp=n/a"
+    },
+    {
+      "section": "OUTSTATION-A4",
+      "n": 5,
+      "rule": "progress block present",
+      "how": "status details",
+      "status": "PASS",
+      "actual": "{\"cabAssigned\":false,\"cabLeftForPickup\":false,\"cabReachedSource\":false,\"cabTripStarted\":false,\"cabTripEnd\":false}"
+    },
+    {
+      "section": "OUTSTATION-A4",
+      "n": 6,
+      "rule": "vehicle + operator blocks in fare",
+      "how": "/fare response",
+      "status": "PASS",
+      "actual": "vehicle=HATCHBACK/WagonR or Similar operator=Gozo Cabs"
+    },
+    {
+      "section": "RENTAL",
+      "n": 1,
+      "rule": "Search returns cabs",
+      "how": "POST /v1/airportServices/cabs/search",
+      "status": "PASS",
+      "actual": "HTTP 200 cabs=9"
+    },
+    {
+      "section": "RENTAL",
+      "n": 2,
+      "rule": "Fare returns bookingReference + priceId",
+      "how": "POST /v1/airportServices/cabs/fare",
+      "status": "PASS",
+      "actual": "HTTP 200 priceId=yes"
+    },
+    {
+      "section": "RENTAL",
+      "n": 3,
+      "rule": "Finalize returns BR",
+      "how": "POST finalize-booking",
+      "status": "PASS",
+      "actual": "BR=BR1787652591124211 HTTP 200"
+    },
+    {
+      "section": "RENTAL",
+      "n": 4,
+      "rule": "Status after book",
+      "how": "GET …/BR1787652591124211/status",
+      "status": "PASS",
+      "actual": "status=Confirmed"
+    },
+    {
+      "section": "RENTAL",
+      "n": 5,
+      "rule": "Cancel",
+      "how": "GET …/cancel",
+      "status": "PASS",
+      "actual": "HTTP 200"
+    },
+    {
+      "section": "RENTAL-A4",
+      "n": 1,
+      "rule": "extraKmRate present (rupees number)",
+      "how": "fare or status details",
+      "status": "PASS",
+      "actual": "extraKmRate=15 extraKmFareLabel=gone"
+    },
+    {
+      "section": "RENTAL-A4",
+      "n": 2,
+      "rule": "pickup/drop.address fields",
+      "how": "status details",
+      "status": "NOT TESTED",
+      "actual": "pickup.address=no drop.address=no"
+    },
+    {
+      "section": "RENTAL-A4",
+      "n": 3,
+      "rule": "airportCode on leg only (DEPARTURE → drop)",
+      "how": "status details",
+      "status": "NOT TESTED",
+      "actual": "pickup.airportCode=- drop.airportCode=- top=-"
+    },
+    {
+      "section": "RENTAL-A4",
+      "n": 4,
+      "rule": "assignment.tripOtp must be gone",
+      "how": "status details",
+      "status": "PASS",
+      "actual": "assignment.tripOtp=absent details.otp=n/a"
+    },
+    {
+      "section": "RENTAL-A4",
+      "n": 5,
+      "rule": "progress block present",
+      "how": "status details",
+      "status": "PASS",
+      "actual": "{\"cabAssigned\":false,\"cabLeftForPickup\":false,\"cabReachedSource\":false,\"cabTripStarted\":false,\"cabTripEnd\":false}"
+    },
+    {
+      "section": "RENTAL-A4",
+      "n": 6,
+      "rule": "vehicle + operator blocks in fare",
+      "how": "/fare response",
+      "status": "PASS",
+      "actual": "vehicle=HATCHBACK/WagonR or Similar operator=Gozo Cabs"
+    }
+  ],
+  "dumps": {
+    "e2eAirport": {
+      "journeyType": "AIRPORT",
+      "steps": [
+        {
+          "step": "Cab Search",
+          "ok": true,
+          "status": 200,
+          "cabCount": 5,
+          "searchId": "7e9744de-0477-40c3-9442-5852f0d7f41c|4d3e636e070b9ca3a0d1d8d1511f64b3131c3889685f05adb9e1934ba094d5cb"
+        },
+        {
+          "step": "Cab Fare",
+          "ok": true,
+          "status": 200,
+          "priceId": "f8ba7a6be68f4f079f1b1fee2ebce1ef"
+        },
+        {
+          "step": "Cab Book",
+          "ok": true,
+          "status": 200,
+          "bookingRefId": "BR1787652567247334"
+        },
+        {
+          "step": "Cab Booking Status",
+          "ok": true,
+          "status": 200,
+          "bookingStatus": "Confirmed"
+        },
+        {
+          "step": "Cab Cancel",
+          "ok": true,
+          "status": 200,
+          "cancelStatus": 400
+        }
+      ],
+      "searchBody": {
+        "journeyType": "AIRPORT",
+        "travelType": "DEPARTURE",
+        "airportCode": "DEL",
+        "pickup": {
+          "name": "Vasant Kunj, Delhi",
+          "city": "Delhi",
+          "latitude": 28.5201,
+          "longitude": 77.1591
+        },
+        "drop": {
+          "name": "IGI Airport-T1",
+          "city": "Delhi",
+          "latitude": 28.5588,
+          "longitude": 77.0814
+        },
+        "distanceKm": 15,
+        "durationMin": 15,
+        "pickupDatetime": "2026-09-03T18:35:58Z"
+      },
+      "bookingRefId": "BR1787652567247334",
+      "bookingStatus": "Confirmed",
+      "selectedCab": {
+        "searchId": "7e9744de-0477-40c3-9442-5852f0d7f41c|4d3e636e070b9ca3a0d1d8d1511f64b3131c3889685f05adb9e1934ba094d5cb",
+        "cabId": "b188b3e6-1280-467f-8a19-61f322dc9ce5",
+        "fareId": "72",
+        "vehicle": {
+          "type": "HATCHBACK",
+          "category": "ECONOMY",
+          "filterTag": "Hatchback",
+          "filterTagImage": "https://img.travelx.ai/icons/New/Hatchback.png",
+          "model": "WagonR or Similar",
+          "seatingCapacity": 2,
+          "luggageCapacity": 1,
+          "airConditioned": true,
+          "fuelType": "CNG",
+          "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+        },
+        "operator": {
+          "name": "Gozo Cabs",
+          "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "rating": 4.4,
+          "ratingCount": 212
+        },
+        "trip": {
+          "distanceKm": 15,
+          "durationMin": 15,
+          "extraKmFareLabel": "INR 18/Km",
+          "freeCancellationTillMin": 30
+        },
+        "inclusions": [
+          "15 Kms Ride"
+        ],
+        "exclusions": [
+          "Waiting Charges (after 30 mins) ₹100/30min",
+          "Toll Charges",
+          "Parking Charges (as applicable)",
+          "Extra Km Fare (₹18/Km)",
+          "Airport parking charges may apply as per destination airport rules.",
+          "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+          "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+        ],
+        "priceDetail": {
+          "baseFare": 623,
+          "taxes": 31,
+          "convenienceFee": 32.7,
+          "totalAmount": 686.7,
+          "currency": "INR",
+          "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkkZ1lYkSEPHm+EmoTepjl48j5pu29feE+2cZ3LR/V1OH9xN6cDxNfPjr5fMvcQutt6whJsYYAZBC+75XAK4TGPqGxj1YP65Il+DSNKxgz+dXnVFpZrOIDo4IjMxaVfnRvgHqZ/54PhWEwrjNq+ieF3dg8Q/4O2OOg3/dos8X4K6SI4isgn96Hd2KzJk7XrYvJxdhtx28OG59b+hi0GePOuB6+a0jb89ZLQXGBSFfxWwakXa+RCwXfJKn8+pSUFLsuPnrlHBin8JyMXofRrOvubgOfhDt186wNxKCGmRpLID4llWkNLw61BtZZFHZeoqL36BznXGCuarzO9GehMG2vnaLuyB4dcA7INSNOtnpIoVRirsbE5a50KVO6BlMozXTEyR/5dtxyI5SEP79DvDTykAh3C7KexFQokSSfOFp9UNN",
+          "gstAmount": 0,
+          "currencyConversion": {
+            "source": "INR",
+            "destination": "INR",
+            "rate": 1
+          }
+        },
+        "fareExpiryTime": 1787654326336,
+        "tags": [
+          "RECOMMENDED"
+        ]
+      }
+    },
+    "arrival": {
+      "br": "BR1787652572851730",
+      "fare": {
+        "vehicle": {
+          "type": "HATCHBACK",
+          "category": "ECONOMY",
+          "filterTag": "Hatchback",
+          "filterTagImage": "https://img.travelx.ai/icons/New/Hatchback.png",
+          "model": "WagonR or Similar",
+          "seatingCapacity": 2,
+          "luggageCapacity": 1,
+          "airConditioned": true,
+          "fuelType": "CNG",
+          "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+        },
+        "operator": {
+          "name": "Gozo Cabs",
+          "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "rating": 4.4,
+          "ratingCount": 212
+        }
+      },
+      "details": {
+        "journeyType": null,
+        "travelType": "ARRIVAL",
+        "airportCode": null,
+        "pickupDatetime": "2026-09-03T18:35:58+00:00",
+        "distanceKm": 15,
+        "durationMin": 15,
+        "extraKmRate": 18,
+        "freeCancellationTillMin": 30,
+        "cancellationRule": null,
+        "pickup": {
+          "name": "IGI Airport-T1",
+          "address": null,
+          "city": "Delhi",
+          "airportCode": null,
+          "latitude": 28.5588,
+          "longitude": 77.0814
+        },
+        "drop": {
+          "name": "Vasant Kunj, Delhi",
+          "address": null,
+          "city": "Delhi",
+          "airportCode": null,
+          "latitude": 28.5201,
+          "longitude": 77.1591
+        },
+        "vehicle": {
+          "type": "HATCHBACK",
+          "category": "ECONOMY",
+          "model": "WagonR or Similar",
+          "makeYear": null,
+          "seatingCapacity": 2,
+          "luggageCapacity": 1,
+          "airConditioned": true,
+          "fuelType": "CNG",
+          "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageAppUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageMobileUrl": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+        },
+        "operator": {
+          "name": "Gozo Cabs",
+          "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "rating": 4.4,
+          "ratingCount": 212
+        },
+        "otp": null,
+        "assignment": null,
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "trip": null
+      },
+      "cancelHttp": 200
+    },
+    "outstation": {
+      "journeyType": "OUTSTATION",
+      "steps": [
+        {
+          "step": "Cab Search",
+          "ok": true,
+          "status": 200,
+          "cabCount": 3,
+          "searchId": "3e54539c-d3ee-440e-b4e6-9c46a06b4423|49ee9781bedc0d484db1e12f16ddd0cbeedeb270c3b2dc3d3ac33fae3d77a84c"
+        },
+        {
+          "step": "Cab Fare",
+          "ok": true,
+          "status": 200,
+          "priceId": "33602468473843aa97164e6507ef8d55"
+        },
+        {
+          "step": "Cab Book",
+          "ok": true,
+          "status": 200,
+          "bookingRefId": "BR1787652579383684"
+        },
+        {
+          "step": "Cab Booking Status",
+          "ok": true,
+          "status": 200,
+          "bookingStatus": "Confirmed"
+        },
+        {
+          "step": "Cab Cancel",
+          "ok": true,
+          "status": 200,
+          "cancelStatus": 400
+        }
+      ],
+      "searchBody": {
+        "journeyType": "OUTSTATION",
+        "travelType": "DEPARTURE",
+        "pickup": {
+          "name": "Keshav Nagar, Pune",
+          "city": "Pune",
+          "latitude": 18.5518,
+          "longitude": 73.9467
+        },
+        "drop": {
+          "name": "Viman Nagar, Pune",
+          "city": "Pune",
+          "latitude": 18.5679,
+          "longitude": 73.9143
+        },
+        "distanceKm": 8,
+        "durationMin": 25,
+        "pickupDatetime": "2026-09-03T18:35:58Z"
+      },
+      "bookingRefId": "BR1787652579383684",
+      "bookingStatus": "Confirmed",
+      "selectedCab": {
+        "searchId": "3e54539c-d3ee-440e-b4e6-9c46a06b4423|49ee9781bedc0d484db1e12f16ddd0cbeedeb270c3b2dc3d3ac33fae3d77a84c",
+        "cabId": "9200055e-67f3-4adb-9cdc-0ad467fe4a56",
+        "fareId": "72",
+        "vehicle": {
+          "type": "HATCHBACK",
+          "category": "ECONOMY",
+          "filterTag": "Hatchback",
+          "filterTagImage": "https://img.travelx.ai/icons/New/Hatchback.png",
+          "model": "WagonR or Similar",
+          "seatingCapacity": 2,
+          "luggageCapacity": 1,
+          "airConditioned": true,
+          "fuelType": "CNG",
+          "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+        },
+        "operator": {
+          "name": "Gozo Cabs",
+          "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "rating": 4.4,
+          "ratingCount": 212
+        },
+        "trip": {
+          "distanceKm": 8,
+          "durationMin": 25,
+          "extraKmFareLabel": "INR 13.5/Km",
+          "freeCancellationTillMin": 30
+        },
+        "inclusions": [
+          "8 Kms Ride",
+          "Toll Charges",
+          "State Tax"
+        ],
+        "exclusions": [
+          "Waiting Charges (after 30 mins) ₹100/30min",
+          "Parking Charges (as applicable)",
+          "Extra Km Fare (₹13.5/Km)",
+          "Airport parking charges may apply as per destination airport rules.",
+          "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+          "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+        ],
+        "priceDetail": {
+          "baseFare": 483,
+          "taxes": 24,
+          "convenienceFee": 25.35,
+          "totalAmount": 532.35,
+          "currency": "INR",
+          "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkpyhJ1uySTzQiOycwcf0KXSQMPsApvMAuRIOmkgGp5NL39zBFq8nb9gb9AxTvsWWQ6whJsYYAZBC+75XAK4TGPqGxj1YP65Il+DSNKxgz+dXnVFpZrOIDo4IjMxaVfnRvgHqZ/54PhWEwrjNq+ieF3dg8Q/4O2OOg3/dos8X4K6SKDLN1Mws3Uuq+WYKq9h3z2PMhaxNbURDWmrNI7rxwi2r8zP0pE7R40/mQR+7vob6N5nDkZCY+W1Y6VmMHGLltfnrlHBin8JyMXofRrOvubgOfhDt186wNxKCGmRpLID4CJes3Oxmx5xcZDOeGHIkcGX2aYdIJvQIcB8H/ReoF1HOtHqu2NdSm/qBrbtMppSYixtBCbeVtxbKM0U5A2mDiUzOvDL+D+qV1dpqXm6bUUz+fDkqEeRkWK2Qu9Vk/DRF",
+          "gstAmount": 0,
+          "currencyConversion": {
+            "source": "INR",
+            "destination": "INR",
+            "rate": 1
+          }
+        },
+        "fareExpiryTime": 1787654338733,
+        "tags": [
+          "RECOMMENDED"
+        ]
+      }
+    },
+    "rental": {
+      "journeyType": "RENTAL",
+      "steps": [
+        {
+          "step": "Cab Search",
+          "ok": true,
+          "status": 200,
+          "cabCount": 9,
+          "searchId": "80422dd5-d196-4d7a-b7bd-caf6e493f967|a59457f3158bbb7c0fda1d44d8ffddbcbfd7b21e8562fb6be0c54a7a1b7b3010"
+        },
+        {
+          "step": "Cab Fare",
+          "ok": true,
+          "status": 200,
+          "priceId": "873018605df44465a6d83050f513ae47"
+        },
+        {
+          "step": "Cab Book",
+          "ok": true,
+          "status": 200,
+          "bookingRefId": "BR1787652591124211"
+        },
+        {
+          "step": "Cab Booking Status",
+          "ok": true,
+          "status": 200,
+          "bookingStatus": "Confirmed"
+        },
+        {
+          "step": "Cab Cancel",
+          "ok": true,
+          "status": 200,
+          "cancelStatus": 400
+        }
+      ],
+      "searchBody": {
+        "journeyType": "RENTAL",
+        "travelType": "DEPARTURE",
+        "pickup": {
+          "name": "Keshav Nagar, Pune",
+          "city": "Pune",
+          "latitude": 18.5518,
+          "longitude": 73.9467
+        },
+        "drop": {
+          "name": "Keshav Nagar, Pune",
+          "city": "Pune",
+          "latitude": 18.5518,
+          "longitude": 73.9467
+        },
+        "distanceKm": 20,
+        "durationMin": 120,
+        "pickupDatetime": "2026-09-03T18:35:58Z"
+      },
+      "bookingRefId": "BR1787652591124211",
+      "bookingStatus": "Confirmed",
+      "selectedCab": {
+        "searchId": "80422dd5-d196-4d7a-b7bd-caf6e493f967|a59457f3158bbb7c0fda1d44d8ffddbcbfd7b21e8562fb6be0c54a7a1b7b3010",
+        "cabId": "d2092f4a-d4f5-4e25-96ce-f41f195c5b4e",
+        "fareId": "72",
+        "vehicle": {
+          "type": "HATCHBACK",
+          "category": "ECONOMY",
+          "filterTag": "Hatchback",
+          "filterTagImage": "https://img.travelx.ai/icons/New/Hatchback.png",
+          "model": "WagonR or Similar",
+          "seatingCapacity": 2,
+          "luggageCapacity": 1,
+          "airConditioned": true,
+          "fuelType": "CNG",
+          "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+        },
+        "operator": {
+          "name": "Gozo Cabs",
+          "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+          "rating": 4.4,
+          "ratingCount": 212
+        },
+        "trip": {
+          "distanceKm": 20,
+          "durationMin": 120,
+          "extraKmFareLabel": "INR 15/Km",
+          "freeCancellationTillMin": 30
+        },
+        "inclusions": [
+          "20 Kms Ride",
+          "Driver Allowance (₹250)"
+        ],
+        "exclusions": [
+          "Waiting Charges (after 30 mins) ₹100/30min",
+          "Toll Charges",
+          "Parking Charges (as applicable)",
+          "Extra Km Fare (₹15/Km)",
+          "Airport parking charges may apply as per destination airport rules.",
+          "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+          "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+        ],
+        "priceDetail": {
+          "baseFare": 1206,
+          "taxes": 73,
+          "convenienceFee": 63.95,
+          "totalAmount": 1342.95,
+          "currency": "INR",
+          "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkpH2il7qgoPDOjmp8Ci/6BU46FjHupj3OK0/jxf03zw7mkTw0vQxVTEVwXfLeu70mO/iOUR3dwelXleftzAzTdKaiVw3fm1aBkbpYyptv1E7Mvrz76MQQ+7J5Vix3fybrqVkEXLVlLChLe9A6ht2NRhxVHvCd01mB0VvbUxmeRkgi6saSk9FuPEOfCaFmbS/cgaXdxE3EFS+gV+uRcxVPuCaiGVOqfGGvQd4pLHtqBpjcbLD79+VmQcaixdJSxM/Q+5CiGOKJqQS/Qo126XWAMCfltGajRVSTvqoQXxSELw0QPdvJGzpjz5im3H/utLrAdEI8lHU+7VnaoBe+08CME/OtHqu2NdSm/qBrbtMppSYixtBCbeVtxbKM0U5A2mDiUzOvDL+D+qV1dpqXm6bUUwhdBrXO07kgnW6uYDfREFk",
+          "gstAmount": 0,
+          "currencyConversion": {
+            "source": "INR",
+            "destination": "INR",
+            "rate": 1
+          }
+        },
+        "fareExpiryTime": 1787654349786,
+        "tags": [
+          "RECOMMENDED"
+        ]
+      }
+    }
+  }
+}

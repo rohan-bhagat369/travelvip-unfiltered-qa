@@ -1,0 +1,252 @@
+{
+  "at": "2026-09-28T13:57:09.424Z",
+  "base": "https://api.travelvip.ai",
+  "noBook": true,
+  "summary": {
+    "PASS": 11,
+    "BUG": 0,
+    "NOT_TESTED": 1,
+    "hits": 35,
+    "rateLimited": false
+  },
+  "rows": [
+    {
+      "id": "D-1",
+      "rule": "RT NORMAL,SME — select SME onward → both dirs SME",
+      "status": "PASS",
+      "expected": "ONWARD+RETURN only SME",
+      "actual": "{\"sid\":\"srch_1d2eedda05e147a58f2958022eceb77b\",\"onwardCats\":[\"SME\"],\"returnCats\":[\"SME\"],\"http\":200,\"state\":\"COMPLETE\",\"returnN\":20}"
+    },
+    {
+      "id": "D-2",
+      "rule": "RT — select NORMAL onward → both dirs NORMAL",
+      "status": "PASS",
+      "expected": "only NORMAL",
+      "actual": "{\"sid\":\"srch_12341a1e3aa14c9897d33e01601d4c70\",\"onwardCats\":[\"NORMAL\"],\"returnCats\":[\"NORMAL\"],\"http\":200,\"state\":\"COMPLETE\",\"returnN\":20}"
+    },
+    {
+      "id": "D-6",
+      "rule": "Same-category RT → pricing succeeds",
+      "status": "PASS",
+      "expected": "200",
+      "actual": "{\"label\":\"SME\",\"http\":200,\"code\":null,\"priceId\":\"price_48f56f4ed40b48819e74dd93ef3c79fb\"}"
+    },
+    {
+      "id": "D-4",
+      "rule": "Cross-category RT pair → pricing INVALID_COMBINATION",
+      "status": "PASS",
+      "expected": "400 INVALID_COMBINATION",
+      "actual": "{\"http\":400,\"code\":\"INVALID_COMBINATION\"}"
+    },
+    {
+      "id": "D-5",
+      "rule": "Cross pair → details + fareRules INVALID_COMBINATION",
+      "status": "PASS",
+      "expected": "INVALID_COMBINATION both",
+      "actual": "{\"details\":{\"http\":400,\"code\":\"INVALID_COMBINATION\"},\"rules\":{\"http\":400,\"code\":\"INVALID_COMBINATION\"}}"
+    },
+    {
+      "id": "D-8",
+      "rule": "Intl RT select onward, re-search, price succeeds",
+      "status": "NOT TESTED",
+      "actual": "{\"onward\":true,\"returnN\":0}"
+    },
+    {
+      "id": "E-1",
+      "rule": "Corporate searchId → details/pricing/fareRules 200",
+      "status": "PASS",
+      "expected": "all 200 (rules may VENDOR_ERROR)",
+      "actual": "{\"token\":\"CORPORATE\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"rulesCode\":null,\"priceId\":\"price_406b9e98867b476faa190a199180c664\",\"bookingContext\":\"6ZRw60l04RNqT91A495M+m8lLORq7QgMGTZah/LK020iShYVruWGsFLZOHgIFJEHfEmSKpGfp/8YakxGrJdVYEZ7zXpFEiKMSBVQtxuaMEZW5bPaA2TJ7XIln4xxR03SK2t6zQGVQsJhuPVTcexGWnJK+qQJR4ESWCWCMYy2wrXGXrDmDGOs7wwjdSG31FD7OXd/cYjWFzLPwFz6JzO74AJMLpJ0XnCmi70cznR5cazePhQ18uL1wvs1DIaNrio9oxnA+mIe1frDphPvFN2RgNAFP+68B12a/v+riRc/jGYgfQeLvpzHkUGSeCQ/NJ/D8Muh8GoP6swBJKQUA8p059wIURT8DbF09QQnOOzalHm6FDQH7tPJyPS8HyLnp/HzXifREDVb+/84vIwNfCrKA0eC2NjVp14aJTdPXvKCxL1BP1w5Rxl3tmhUVtpxsHjjJ6xIKm2qzar5Uv+j3o/gByj0CPAQStHvXad0eJnSi/cOUWGAu2KRm3QdGA+FVP5rD86/klDiDn3lvHUxPzMi0lc1ujQ6GVfnywSZ/Elqp1KRX4r2JZf77/Kn6iamuejFZ9qzSZ0IYT4rIW+NpDztKnSl3X7tVXkz6SkG4listhw1aIZzwDAQY6PUDfUBlljDKy7+UfhxO8JMKLzo/KRlM42PLmd8s/l8j3ktK0jRovYTrZ85AdM46W3mO+PAfytFGTouMfC4C54BcVbs87xk5bKLYsUn7DRR/WjYESXoRDe3FpoavlM3jxd3I/lN91axpfh8rcx+Cat2tKI/YnJmE0DmEAU2NFFFxlLz2RmicAfjYR6UMZCKzUCPIcDwLNJQZ4uHAElXG1u0LAsIuQtM9SQTLs46MfsqPWD2tZlRsfJsaqKSsccYWTwVH39GWCCAGBF2nOv8dlQ6KeBN6aYmMw554v6qSxMTbiQIkNtt4OLBACRlV4mIJo3hYXHfNpCsghVKQbpWlkdNp7MciOc1JRYnHWfTYoLuzmsaecuVSQO1w4a6fxHq6CPZlglOflszev0ZF8f05Pfd/NkWdDpxww==\",\"flexi\":0,\"total\":7293}"
+    },
+    {
+      "id": "E-2",
+      "rule": "Normal fare pricing 200",
+      "status": "PASS",
+      "actual": "{\"normal\":6698,\"corporate\":7293,\"price\":200}"
+    },
+    {
+      "id": "E-3",
+      "rule": "Six fare types through details/pricing/fareRules (no extra searches)",
+      "status": "PASS",
+      "expected": "200 for each type present in the one search",
+      "actual": "[{\"token\":\"NORMAL\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"rulesCode\":null,\"priceId\":\"price_6e2cbb94492d4950bd348a319f373d03\",\"flexi\":0,\"total\":6698},{\"token\":\"CORPORATE\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"rulesCode\":null,\"priceId\":\"price_406b9e98867b476faa190a199180c664\",\"flexi\":0,\"total\":7293},{\"token\":\"SME\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"rulesCode\":null,\"priceId\":\"price_a3153a787e1a4e83b72f1199fe26271a\",\"flexi\":0,\"total\":6802},{\"token\":\"STUDENT\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"rulesCode\":null,\"priceId\":\"price_260f4eb016104625bcc52c95284b83a6\",\"flexi\":0,\"total\":6153},{\"token\":\"DEFENCE\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"rulesCode\":null,\"priceId\":\"price_10a9abbc320c4af9abb695c90134e901\",\"flexi\":0,\"total\":6237},{\"token\":\"SENIOR_CITIZEN\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"rulesCode\":null,\"priceId\":\"price_fb8cded7b4494c95abadee924bf269b1\",\"flexi\":0,\"total\":6153}]"
+    },
+    {
+      "id": "E-4",
+      "rule": "SME → fareRules (corporate rules branch)",
+      "status": "PASS",
+      "expected": "200 or VENDOR_ERROR",
+      "actual": "http=200 code=null"
+    },
+    {
+      "id": "E-5",
+      "rule": "SME pricing flexiCancelFee is 0",
+      "status": "PASS",
+      "expected": "flexiCancelFee 0 or absent",
+      "actual": "flexi=0 http=200"
+    },
+    {
+      "id": "E-7",
+      "rule": "ssr + seatmap on priced selection",
+      "status": "PASS",
+      "expected": "no 500",
+      "actual": "{\"ssr\":{\"http\":200,\"code\":null},\"seat\":{\"http\":200,\"code\":null}}"
+    }
+  ],
+  "dumps": {
+    "hits": 35,
+    "stopped": null,
+    "correlationId": "8bdcf152-1635-4bea-bb25-6737ec23a7cb",
+    "base": "https://api.travelvip.ai",
+    "rt": {
+      "http": 200,
+      "state": "COMPLETE",
+      "cats": [
+        "NORMAL",
+        "SME"
+      ],
+      "n": 50,
+      "sme": true,
+      "normal": true
+    },
+    "D1": {
+      "sid": "srch_1d2eedda05e147a58f2958022eceb77b",
+      "onwardCats": [
+        "SME"
+      ],
+      "returnCats": [
+        "SME"
+      ],
+      "http": 200,
+      "state": "COMPLETE",
+      "returnN": 20
+    },
+    "D2": {
+      "sid": "srch_12341a1e3aa14c9897d33e01601d4c70",
+      "onwardCats": [
+        "NORMAL"
+      ],
+      "returnCats": [
+        "NORMAL"
+      ],
+      "http": 200,
+      "state": "COMPLETE",
+      "returnN": 20
+    },
+    "D6": {
+      "label": "SME",
+      "http": 200,
+      "code": null,
+      "priceId": "price_48f56f4ed40b48819e74dd93ef3c79fb"
+    },
+    "D4": {
+      "http": 400,
+      "code": "INVALID_COMBINATION"
+    },
+    "D5": {
+      "details": {
+        "http": 400,
+        "code": "INVALID_COMBINATION"
+      },
+      "rules": {
+        "http": 400,
+        "code": "INVALID_COMBINATION"
+      }
+    },
+    "D8": {
+      "onward": true,
+      "returnN": 0
+    },
+    "ow": {
+      "http": 200,
+      "state": "COMPLETE",
+      "cats": [
+        "CORPORATE",
+        "DEFENCE",
+        "NORMAL",
+        "SENIOR_CITIZEN",
+        "SME",
+        "STUDENT"
+      ],
+      "n": 50
+    },
+    "E3": [
+      {
+        "token": "NORMAL",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "rulesCode": null,
+        "priceId": "price_6e2cbb94492d4950bd348a319f373d03",
+        "flexi": 0,
+        "total": 6698
+      },
+      {
+        "token": "CORPORATE",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "rulesCode": null,
+        "priceId": "price_406b9e98867b476faa190a199180c664",
+        "flexi": 0,
+        "total": 7293
+      },
+      {
+        "token": "SME",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "rulesCode": null,
+        "priceId": "price_a3153a787e1a4e83b72f1199fe26271a",
+        "flexi": 0,
+        "total": 6802
+      },
+      {
+        "token": "STUDENT",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "rulesCode": null,
+        "priceId": "price_260f4eb016104625bcc52c95284b83a6",
+        "flexi": 0,
+        "total": 6153
+      },
+      {
+        "token": "DEFENCE",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "rulesCode": null,
+        "priceId": "price_10a9abbc320c4af9abb695c90134e901",
+        "flexi": 0,
+        "total": 6237
+      },
+      {
+        "token": "SENIOR_CITIZEN",
+        "status": "PASS",
+        "det": 200,
+        "price": 200,
+        "rules": 200,
+        "rulesCode": null,
+        "priceId": "price_fb8cded7b4494c95abadee924bf269b1",
+        "flexi": 0,
+        "total": 6153
+      }
+    ],
+    "E7": {
+      "ssr": {
+        "http": 200,
+        "code": null
+      },
+      "seat": {
+        "http": 200,
+        "code": null
+      }
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "ranAt": "2026-08-12T20:58:23.436Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "S3 CORPORATE OW 2ADT full PNR cancel",
+  "fixture": {
+    "br": "BR1786568283637573",
+    "status": "Confirmed",
+    "pnr": "MU8SUJ",
+    "onlineCancellation": true,
+    "route": "DEL-BOM",
+    "fareType": "CORPORATE",
+    "totalAmount": 7952,
+    "airline": "6E"
+  },
+  "request": {
+    "action": "PENALTY/CANCEL",
+    "pnr": "MU8SUJ",
+    "cancellationPaxList": null
+  },
+  "penalty": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786568283637573",
+      "pnr": "MU8SUJ",
+      "cancellationRequest": {
+        "status": "Penalty Fetched",
+        "estimatedCancellationCharge": 2698,
+        "estimatedRefund": 5254,
+        "totalAmount": 7952,
+        "totalPenalty": 2698,
+        "perPax": {
+          "paxCount": 2,
+          "chargedPax": 2,
+          "amount": 3976,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 999,
+          "cancellationFee": 350,
+          "refund": 2627,
+          "penaltyBasis": "PROVIDER"
+        },
+        "createdAt": "2026-08-12T20:58:13Z"
+      }
+    },
+    "status": "Penalty Fetched",
+    "totalAmount": 7952,
+    "charge": 2698,
+    "refund": 5254,
+    "perPax": {
+      "paxCount": 2,
+      "chargedPax": 2,
+      "amount": 3976,
+      "convenienceFee": 0,
+      "ssr": 0,
+      "flexiCancelFee": 0,
+      "penalty": 999,
+      "cancellationFee": 350,
+      "refund": 2627,
+      "penaltyBasis": "PROVIDER"
+    },
+    "paxScope": null,
+    "message": null,
+    "error": null
+  },
+  "cancel": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786568283637573",
+      "pnr": "MU8SUJ",
+      "cancellationRequest": {
+        "status": "Cancelled",
+        "estimatedCancellationCharge": 2698,
+        "estimatedRefund": 5254,
+        "totalAmount": 7952,
+        "totalPenalty": 2698,
+        "perPax": {
+          "paxCount": 2,
+          "chargedPax": 2,
+          "amount": 3976,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 999,
+          "cancellationFee": 350,
+          "refund": 2627,
+          "penaltyBasis": "PROVIDER"
+        },
+        "createdAt": "2026-08-12T20:58:15Z"
+      },
+      "refundSummary": {
+        "amount": 5254,
+        "cancellationCharge": 2698,
+        "totalPenalty": 2698,
+        "cancellationChargeBreakup": {
+          "airlineCancellationFee": 1998,
+          "convenienceFee": 0,
+          "serviceFee": 700,
+          "flexicancelFee": 0
+        }
+      },
+      "transaction": {
+        "id": "597",
+        "amount": 5254,
+        "currency": "INR",
+        "paymentMethod": "wallet",
+        "type": "refund",
+        "status": "success",
+        "createdAt": "2026-08-12T20:58:22Z",
+        "completedAt": "2026-08-12T20:58:22Z"
+      }
+    },
+    "status": "Cancelled",
+    "totalAmount": 7952,
+    "charge": 2698,
+    "refund": 5254,
+    "perPax": {
+      "paxCount": 2,
+      "chargedPax": 2,
+      "amount": 3976,
+      "convenienceFee": 0,
+      "ssr": 0,
+      "flexiCancelFee": 0,
+      "penalty": 999,
+      "cancellationFee": 350,
+      "refund": 2627,
+      "penaltyBasis": "PROVIDER"
+    },
+    "paxScope": null,
+    "message": null,
+    "error": null
+  },
+  "afterStatus": "Cancelled",
+  "table": [
+    {
+      "rule": "S3 PENALTY full: paxScope absent (full PNR)",
+      "expected": "no paxScope",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 PENALTY full: amounts present",
+      "expected": "totalAmount, charge, refund numeric",
+      "actual": "total=7952 charge=2698 refund=5254 msg=",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 PENALTY full: refund = total − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=5254 total=7952 charge=2698",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 PENALTY full: perPax chargedPax=2 basis!=NONE",
+      "expected": "chargedPax=2 (or paxCount=2), penaltyBasis not NONE",
+      "actual": "{\"paxCount\":2,\"chargedPax\":2,\"amount\":3976,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":999,\"cancellationFee\":350,\"refund\":2627,\"penaltyBasis\":\"PROVIDER\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 PENALTY full: cancellationFee × chargedPax in charge",
+      "expected": "charge includes fee×2 (=700)",
+      "actual": "fee=350 charge=2698 penalty=999",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 PENALTY full: status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: paxScope absent (full PNR)",
+      "expected": "no paxScope",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: amounts present",
+      "expected": "totalAmount, charge, refund numeric",
+      "actual": "total=7952 charge=2698 refund=5254 msg=",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: refund = total − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=5254 total=7952 charge=2698",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: perPax chargedPax=2 basis!=NONE",
+      "expected": "chargedPax=2 (or paxCount=2), penaltyBasis not NONE",
+      "actual": "{\"paxCount\":2,\"chargedPax\":2,\"amount\":3976,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":999,\"cancellationFee\":350,\"refund\":2627,\"penaltyBasis\":\"PROVIDER\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: cancellationFee × chargedPax in charge",
+      "expected": "charge includes fee×2 (=700)",
+      "actual": "fee=350 charge=2698 penalty=999",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled",
+      "actual": "Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 final booking status",
+      "expected": "Cancelled or Cancellation Requested",
+      "actual": "Cancelled",
+      "status": "PASS"
+    }
+  ],
+  "score": {
+    "PASS": 13,
+    "BUG": 0
+  }
+}

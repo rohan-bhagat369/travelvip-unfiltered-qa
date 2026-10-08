@@ -1,0 +1,199 @@
+{
+  "at": "2026-09-22T11:02:16.058Z",
+  "base": "https://api-staging.travelvip.ai",
+  "days": 45,
+  "returnOffset": 7,
+  "summary": {
+    "PASS": 3,
+    "PARTIAL": 1,
+    "BUG": 0,
+    "NOT TESTED": 2
+  },
+  "rows": [
+    {
+      "id": "DOM-OW",
+      "label": "Domestic OW DEL→BOM",
+      "journey": "ONE_WAY",
+      "route": "DEL-BOM",
+      "dateOnward": "2026-11-06",
+      "dateReturn": null,
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 1,
+      "elapsedMs": 269,
+      "onwardCount": 20,
+      "returnCount": 0,
+      "airlines": [
+        "6E",
+        "AI",
+        "IX"
+      ],
+      "returnAirlines": [],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "6E 6E 46",
+        "IX IX 1235",
+        "IX IX 1049 / IX IX 1209"
+      ],
+      "pricingOk": true,
+      "pricingCode": null,
+      "pricingMessage": null,
+      "priceId": "price_24c7a980def8440daf0c2eff30470c2b",
+      "status": "PASS"
+    },
+    {
+      "id": "DOM-RT",
+      "label": "Domestic RT DEL↔BOM",
+      "journey": "ROUND_TRIP",
+      "route": "DEL-BOM-DEL",
+      "dateOnward": "2026-11-06",
+      "dateReturn": "2026-11-13",
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 1,
+      "elapsedMs": 13815,
+      "onwardCount": 20,
+      "returnCount": 20,
+      "airlines": [
+        "6E"
+      ],
+      "returnAirlines": [
+        "6E"
+      ],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "6E 6E 5175",
+        "6E 6E 873 / 6E 6E 5218",
+        "6E 6E 826 / 6E 6E 5351"
+      ],
+      "pricingOk": false,
+      "pricingCode": "VENDOR_ERROR",
+      "pricingMessage": "Pricing failed.",
+      "priceId": null,
+      "pricedPair": "6E 6E 5175 + 6E 6E 5171",
+      "status": "PARTIAL"
+    },
+    {
+      "id": "INTL-OW",
+      "label": "Intl OW DEL→DXB",
+      "journey": "ONE_WAY",
+      "route": "DEL-DXB",
+      "dateOnward": "2026-11-06",
+      "dateReturn": null,
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 1,
+      "elapsedMs": 13910,
+      "onwardCount": 20,
+      "returnCount": 0,
+      "airlines": [
+        "6E",
+        "EK"
+      ],
+      "returnAirlines": [],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "6E 6E 1461",
+        "6E 6E 1463",
+        "6E 6E 871 / 6E 6E 1485"
+      ],
+      "pricingOk": true,
+      "pricingCode": null,
+      "pricingMessage": null,
+      "priceId": "price_4b65ccf9bfee43f7b5249ed1d4e45239",
+      "status": "PASS"
+    },
+    {
+      "id": "INTL-RT",
+      "label": "Intl RT DEL↔DXB",
+      "journey": "ROUND_TRIP",
+      "route": "DEL-DXB-DEL",
+      "dateOnward": "2026-11-06",
+      "dateReturn": "2026-11-13",
+      "searchHttp": 400,
+      "searchOk": false,
+      "polls": 1,
+      "elapsedMs": 13535,
+      "onwardCount": 0,
+      "returnCount": 0,
+      "airlines": [],
+      "returnAirlines": [],
+      "errorCode": "NO_FLIGHTS_FOUND",
+      "errorMessage": "No flights available for given criteria",
+      "vendorNoise": [
+        "NO_FLIGHTS_FOUND"
+      ],
+      "sampleFlights": [],
+      "pricingOk": null,
+      "pricingCode": null,
+      "pricingMessage": null,
+      "priceId": null,
+      "status": "NOT TESTED"
+    },
+    {
+      "id": "DOM-OW-2",
+      "label": "Domestic OW BOM→BLR",
+      "journey": "ONE_WAY",
+      "route": "BOM-BLR",
+      "dateOnward": "2026-11-06",
+      "dateReturn": null,
+      "searchHttp": 400,
+      "searchOk": false,
+      "polls": 5,
+      "elapsedMs": 31487,
+      "onwardCount": 0,
+      "returnCount": 0,
+      "airlines": [],
+      "returnAirlines": [],
+      "errorCode": "NO_FLIGHTS_FOUND",
+      "errorMessage": "No flights available for given criteria",
+      "vendorNoise": [
+        "NO_FLIGHTS_FOUND"
+      ],
+      "sampleFlights": [],
+      "pricingOk": null,
+      "pricingCode": null,
+      "pricingMessage": null,
+      "priceId": null,
+      "status": "NOT TESTED"
+    },
+    {
+      "id": "INTL-OW-2",
+      "label": "Intl OW BOM→DXB",
+      "journey": "ONE_WAY",
+      "route": "BOM-DXB",
+      "dateOnward": "2026-11-06",
+      "dateReturn": null,
+      "searchHttp": 200,
+      "searchOk": true,
+      "polls": 1,
+      "elapsedMs": 12706,
+      "onwardCount": 20,
+      "returnCount": 0,
+      "airlines": [
+        "6E",
+        "EK"
+      ],
+      "returnAirlines": [],
+      "errorCode": null,
+      "errorMessage": null,
+      "vendorNoise": [],
+      "sampleFlights": [
+        "6E 6E 1501",
+        "6E 6E 1453",
+        "6E 6E 1455"
+      ],
+      "pricingOk": true,
+      "pricingCode": null,
+      "pricingMessage": null,
+      "priceId": "price_cce48e814c5d4629b192ced91306a067",
+      "status": "PASS"
+    }
+  ]
+}

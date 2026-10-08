@@ -1,0 +1,85 @@
+{
+  "ranAt": "2026-08-11T17:25:32.182Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "C04",
+  "checks": [
+    "V071",
+    "V072",
+    "V073"
+  ],
+  "note": "Paxwise cancellationPaxList on canary. Paste dbSql in phpMyAdmin (USE travelx if shared).",
+  "fixture": {
+    "br": "BR1786469117221405",
+    "status": "Confirmed",
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "F6ZLMA",
+        "onlineCancellation": true
+      }
+    ],
+    "pnrs": [
+      "F6ZLMA"
+    ],
+    "pax": [
+      "PAX1",
+      "PAX2"
+    ],
+    "pnr": "F6ZLMA",
+    "route": "MAA-BOM",
+    "journeyType": "ONE_WAY"
+  },
+  "cancelResults": [
+    {
+      "pnr": "F6ZLMA",
+      "http": 200,
+      "code": null,
+      "cancelStatus": "Cancellation Requested",
+      "paxScope": {
+        "scope": "PARTIAL_PAX",
+        "cancellationPaxList": [
+          "PAX2"
+        ],
+        "totalPaxOnPnr": 2,
+        "cancelledPaxCount": 1,
+        "prorated": true
+      },
+      "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786469117221405\",\"pnr\":\"F6ZLMA\",\"cancellationRequest\":{\"status\":\"Cancellation Requested\",\"message\":\"No estimated cancellation and refund amount available\",\"createdAt\":\"2026-08-11T17:25:25Z\"},\"paxScope\":{\"scope\":\"PARTIAL_PAX\",\"cancellationPaxList\":[\"PAX2\"],\"totalPaxOnPnr\":2,\"cancelledPaxCount\":1,\"prorated\":true}},\"_meta\":{\"correlation_id\":\"d6988b4a-58e2-4840-be2d-2b2d95efd019\"}}"
+    }
+  ],
+  "afterStatus": "Confirmed",
+  "afterPax": [
+    {
+      "paxId": "PAX1",
+      "name": "Kabir Mehta"
+    },
+    {
+      "paxId": "PAX2",
+      "name": "Arjun Nair"
+    }
+  ],
+  "afterLegs": [
+    {
+      "direction": "ONWARD",
+      "pnr": "F6ZLMA",
+      "onlineCancellation": true
+    }
+  ],
+  "dbSql": [
+    "USE travelx;  -- or canary DB name if different",
+    "SET @br := 'BR1786469117221405';",
+    "",
+    "-- booking + passengers",
+    "SELECT b.id, b.booking_reference, b.confirmed_at, b.cancelled_at\nFROM booking b WHERE b.booking_reference = @br;",
+    "SELECT bp.id, bp.pax_id, bp.is_lead, bp.first_name, bp.last_name\nFROM booking_passenger bp\nJOIN booking b ON b.id = bp.booking_id\nWHERE b.booking_reference = @br\nORDER BY bp.pax_id;",
+    "",
+    "-- V071: cancellation_request — expect PARTIAL / ONLINE, PAX2 scope",
+    "SELECT cr.id, cr.scope, cr.channel, cr.status, cr.pnr, cr.created_at\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cr.id DESC;",
+    "",
+    "-- V072: cancellation_passenger — expect ONLY PAX2 (not PAX1)",
+    "SELECT cp.id, cp.cancellation_request_id, cp.booking_passenger_id, bp.pax_id, bp.first_name\nFROM cancellation_passenger cp\nJOIN cancellation_request cr ON cr.id = cp.cancellation_request_id\nJOIN booking_passenger bp ON bp.id = cp.booking_passenger_id\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cp.id;",
+    "",
+    "-- V073: cells — PAX2 cancelled/marked; PAX1 still active (all legs)",
+    "SELECT bp.pax_id, fj.id AS journey_id, fj.sequence, fj.direction, fj.airline_pnr,\n       fjp.id AS cell_id, fjp.eticket_number, fjp.pnr_override\nFROM flight_journey_passenger fjp\nJOIN flight_journey fj ON fj.id = fjp.flight_journey_id\nJOIN booking_passenger bp ON bp.id = fjp.booking_passenger_id\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY fj.sequence, bp.pax_id;"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "at": "2026-08-16T11:30:30.403Z",
+  "note": "entityId taken only from GET /v1/hotels/autocomplete (page=0). search/details/prebook/finalize use that id as-is (includes :IN).",
+  "score": {
+    "PASS": 1,
+    "BUG": 0,
+    "NOT_TESTED": 0
+  },
+  "table": [
+    {
+      "n": 1,
+      "hotelAsked": "Hilltop Hotel Mumbai",
+      "autocompleteQ": "hiltop",
+      "entityIdFromAuto": "39627872:IN",
+      "autoTitle": "HILTOP HOTEL",
+      "hotelBooked": "Hilltop Hotel Mumbai",
+      "rooms": 5,
+      "bookingCode": "cut0IuOUxBvO5olcbHqZwl+FmPIz/XtqhgYINLhCDQrOKsXFp91IYHDMeZDxXTgwoVX9pOj7TdlgU0kr…",
+      "encrypted": true,
+      "hasRiya": false,
+      "br": "BR1786879812900124",
+      "confirmationNumber": "SNHAPI00010758",
+      "bookStatus": "Confirmed",
+      "status": "PASS"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Hilltop Hotel Mumbai",
+      "autocomplete": {
+        "q": "hiltop",
+        "page": 0,
+        "http": 200,
+        "total": 7,
+        "hotelHits": 7,
+        "picked": {
+          "entityId": "39627872:IN",
+          "title": "HILTOP HOTEL",
+          "type": "HOTEL",
+          "city": "MUMBAI",
+          "country": "India"
+        },
+        "alternatives": [
+          {
+            "entityId": "32388557:NL",
+            "title": "Hiltop",
+            "type": "HOTEL",
+            "city": "Domburg",
+            "country": "Netherlands"
+          },
+          {
+            "entityId": "41327317:IN",
+            "title": "Hotel Hiltop",
+            "type": "HOTEL",
+            "city": "Bokaro",
+            "country": "India"
+          },
+          {
+            "entityId": "39627872:IN",
+            "title": "HILTOP HOTEL",
+            "type": "HOTEL",
+            "city": "MUMBAI",
+            "country": "India"
+          },
+          {
+            "entityId": "71351270:US",
+            "title": "Hiltop Hotel",
+            "type": "HOTEL",
+            "city": "Bakersfield",
+            "country": "United States"
+          },
+          {
+            "entityId": "32545209:US",
+            "title": "Hiltop Hotel",
+            "type": "HOTEL",
+            "city": "BAKERSFIELD",
+            "country": "United States"
+          },
+          {
+            "entityId": "15563689:DZ",
+            "title": "Gorilla Guest Hiltop Hotel",
+            "type": "HOTEL",
+            "city": "Kabale",
+            "country": "Algeria"
+          }
+        ],
+        "riyaInAuto": false
+      },
+      "entityIdFromAuto": "39627872:IN",
+      "hotel": "Hilltop Hotel Mumbai",
+      "rooms": 5,
+      "pan": true,
+      "detailsCode": {
+        "sample": "cut0IuOUxBvO5olcbHqZwl+FmPIz/XtqhgYINLhCDQrOKsXFp91IYHDMeZDxXTgwoVX9pOj7TdlgU0kr…",
+        "encrypted": true,
+        "hasRiya": false
+      },
+      "prebookCode": {
+        "sample": "cut0IuOUxBvO5olcbHqZwl+FmPIz/XtqhgYINLhCDQrOKsXFp91IYHDMeZDxXTgwoVX9pOj7TdlgU0kr…",
+        "encrypted": true,
+        "hasRiya": false
+      },
+      "encryptPass": true,
+      "amount": 7364.86,
+      "checkin": "2026-09-13",
+      "br": "BR1786879812900124",
+      "confirmationNumber": "SNHAPI00010758",
+      "bookStatus": "Confirmed",
+      "step": "confirmed",
+      "hasRiya": false,
+      "encrypted": true,
+      "status": "PASS"
+    }
+  ]
+}

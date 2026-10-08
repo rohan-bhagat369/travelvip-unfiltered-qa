@@ -1,0 +1,47 @@
+{
+  "ranAt": "2026-08-12T12:02:53.411Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "R01",
+  "checks": [
+    "V085",
+    "V086",
+    "V087",
+    "V088"
+  ],
+  "fixture": {
+    "br": "BR1786536114252315",
+    "route": "DEL-BOM",
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "EBJFYT",
+        "onlineCancellation": true
+      },
+      {
+        "direction": "RETURN",
+        "pnr": "WC7SSG",
+        "onlineCancellation": true
+      }
+    ],
+    "onwardPnr": "EBJFYT",
+    "returnPnr": "WC7SSG",
+    "origin": "DEL",
+    "destination": "BOM",
+    "statusAfterCancel": "Partially cancelled"
+  },
+  "cancelResult": {
+    "http": 200,
+    "status": "Cancelled",
+    "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786536114252315\",\"pnr\":\"WC7SSG\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":9937,\"createdAt\":\"2026-08-12T12:02:19Z\"},\"refundSummary\":{\"amount\":9937,\"cancellationCharge\":350,\"cancellationChargeBreakup\":{\"airlineCancellationFee\":0,\"convenienceFee\":0,\"serviceFee\":350,\"flexicancelFee\":0}},\"transaction\":{\"id\":\"416\",\"amount\":9937,\"currency\":\"INR\",\"paymentMethod\":\"wallet\",\"type\":\"ref"
+  },
+  "reschedule": {
+    "http": 200,
+    "code": null,
+    "br": "BR1786536161742151",
+    "status": "Confirmed",
+    "pnr": "GDQM6K",
+    "days": 23,
+    "body": "{\"bookingReference\":\"BR1786536161742151\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"32385991-0735-439e-9677-4feb7ad6b154\"}}"
+  },
+  "dbSql": "USE travelx;\nSET @old := 'BR1786536114252315';\nSET @new := 'BR1786536161742151';\n\n-- Old booking journeys + cancel\nSELECT fj.id, fj.direction, fj.airline_pnr, fj.rescheduled_from_journey_id,\n       fj.current_status_mapping_id, bsm.status_code, bsm.backend_status\nFROM flight_journey fj\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nLEFT JOIN booking_status_mapping bsm ON bsm.id = fj.current_status_mapping_id\nWHERE b.booking_reference = @old\nORDER BY fj.sequence;\n\nSELECT cr.id, cr.pnr, cr.flight_journey_id, cr.cancellation_type, cr.mode, cr.status,\n       cr.cancellation_reason\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @old\nORDER BY cr.id DESC;\n\n-- New booking journeys (expect rescheduled_from_journey_id = old return id)\nSELECT fj.id, fj.direction, fj.airline_pnr, fj.rescheduled_from_journey_id\nFROM flight_journey fj\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @new\nORDER BY fj.sequence;\n\n-- Cells old vs new\nSELECT b.booking_reference, fj.direction, fj.airline_pnr, fjp.id AS cell_id, fjp.eticket_number\nFROM flight_journey_passenger fjp\nJOIN flight_journey fj ON fj.id = fjp.flight_journey_id\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference IN (@old, @new)\nORDER BY b.booking_reference, fj.sequence, fjp.id;"
+}

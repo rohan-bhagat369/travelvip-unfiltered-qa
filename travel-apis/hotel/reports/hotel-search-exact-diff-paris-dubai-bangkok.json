@@ -1,0 +1,2731 @@
+{
+  "at": "2026-09-08T08:23:46.967Z",
+  "noBook": true,
+  "bases": {
+    "preprod": "https://preprod-api.travelvip.ai",
+    "prod": "https://api.travelvip.ai"
+  },
+  "preCorrelation": "961940d9-3015-4b84-bddc-fea8a04fd410",
+  "prodCorrelation": "77cc08df-48c7-4f88-a358-9de622e23973",
+  "note": "Independent cold uses different dates per env. Shared final uses same dates warmed in parallel to compare response shape/inventory.",
+  "cities": [
+    {
+      "city": "Paris",
+      "entityId": "437227:FR",
+      "independentCold": {
+        "preprod": {
+          "dates": {
+            "checkin": "2026-12-22",
+            "checkout": "2026-12-24"
+          },
+          "series": [
+            {
+              "i": 0,
+              "ms": 11452,
+              "total": 37,
+              "n": 20,
+              "fromCache": false
+            },
+            {
+              "i": 1,
+              "ms": 1598,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1189,
+              "total": 77,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 1370,
+              "total": 77,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 1012,
+              "total": 2718,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 5,
+              "ms": 1007,
+              "total": 2718,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 11452,
+            "total": 37,
+            "n": 20,
+            "fromCache": false
+          },
+          "final": {
+            "i": 5,
+            "ms": 1007,
+            "total": 2718,
+            "n": 20,
+            "fromCache": true
+          }
+        },
+        "prod": {
+          "dates": {
+            "checkin": "2026-12-27",
+            "checkout": "2026-12-29"
+          },
+          "series": [
+            {
+              "i": 0,
+              "ms": 10561,
+              "total": 37,
+              "n": 20,
+              "fromCache": false
+            },
+            {
+              "i": 1,
+              "ms": 1218,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1269,
+              "total": 77,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 1537,
+              "total": 77,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 1260,
+              "total": 2519,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 5,
+              "ms": 1050,
+              "total": 2519,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 10561,
+            "total": 37,
+            "n": 20,
+            "fromCache": false
+          },
+          "final": {
+            "i": 5,
+            "ms": 1050,
+            "total": 2519,
+            "n": 20,
+            "fromCache": true
+          }
+        }
+      },
+      "sharedFinal": {
+        "dates": {
+          "checkin": "2027-01-31",
+          "checkout": "2027-02-02"
+        },
+        "preprod": {
+          "series": [
+            {
+              "i": 0,
+              "ms": 16635,
+              "total": 37,
+              "n": 20,
+              "fromCache": false
+            },
+            {
+              "i": 1,
+              "ms": 1215,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 2166,
+              "total": 76,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 1626,
+              "total": 2504,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 1278,
+              "total": 2504,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 16635,
+            "total": 37,
+            "n": 20,
+            "fromCache": false
+          },
+          "final": {
+            "i": 4,
+            "ms": 1278,
+            "total": 2504,
+            "n": 20,
+            "fromCache": true
+          },
+          "envelope": {
+            "page": 0,
+            "size": 20,
+            "offset": 0,
+            "totalResults": 2504,
+            "totalPages": 126,
+            "availableResults": 2504,
+            "last": false,
+            "currency": "INR",
+            "fromCache": true,
+            "priceRangeFilter": {
+              "key": "price_range",
+              "displayName": "Price Range",
+              "min": 3754.1000000000013,
+              "max": 20020707.520000003,
+              "currency": "INR"
+            },
+            "hasProgress": false,
+            "hasPartial": false
+          },
+          "keys": [
+            "_meta",
+            "availableResults",
+            "cacheTimeStamp",
+            "currency",
+            "filters",
+            "fromCache",
+            "last",
+            "offset",
+            "page",
+            "priceRangeFilter",
+            "requestId",
+            "results",
+            "size",
+            "sorts",
+            "totalPages",
+            "totalResults"
+          ],
+          "hotelKeys": [
+            "address",
+            "amenities",
+            "available",
+            "distance",
+            "id",
+            "image",
+            "isGSTClaimable",
+            "name",
+            "price",
+            "refundable",
+            "refundableNotes",
+            "starRating"
+          ],
+          "filters": [
+            {
+              "name": "Star Rating",
+              "indexField": "df_long_star_rating",
+              "facets": 3
+            },
+            {
+              "name": "Free cancellation",
+              "indexField": "Reservation policy",
+              "facets": 1
+            },
+            {
+              "name": "GST",
+              "indexField": "GST",
+              "facets": 1
+            },
+            {
+              "name": "Chain",
+              "indexField": "Chain",
+              "facets": 135
+            },
+            {
+              "name": "Property Type",
+              "indexField": "Property Type",
+              "facets": 13
+            }
+          ],
+          "sorts": [
+            "Price Low to High",
+            "Price High to Low"
+          ],
+          "top20": [
+            {
+              "id": "39780518",
+              "name": "Renaissance Paris Republique Hotel",
+              "star": 5,
+              "base": 60327.9,
+              "total": 60327.9,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "31315794",
+              "name": "Hotel Du Louvre, Part Of Hyatt",
+              "star": 5,
+              "base": 95784.58,
+              "total": 95784.58,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "41217332",
+              "name": "SO/ Paris Hotel",
+              "star": 5,
+              "base": 80778.16,
+              "total": 80778.16,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39981792",
+              "name": "MERCURE PARIS GARE DE LYON BASTILLE",
+              "star": 4,
+              "base": 29560,
+              "total": 29560,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "15449340",
+              "name": "Courtyard by Marriott Paris Gare de Lyon",
+              "star": 4,
+              "base": 33211.96,
+              "total": 36473.119999999995,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38620481",
+              "name": "Mercure Paris Notre Dame Saint Germain Des Pres",
+              "star": 4,
+              "base": 28661.44,
+              "total": 28661.44,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39677777",
+              "name": "Hotel Camille Paris Gare de Lyon, Tapestry Collection by Hilton",
+              "star": 4,
+              "base": 42389.46,
+              "total": 42389.46,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38757394",
+              "name": "Mercure Paris Montparnasse Raspail",
+              "star": 4,
+              "base": 28069.25,
+              "total": 28069.25,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39671902",
+              "name": "Novotel Paris Les Halles Hotel",
+              "star": 4,
+              "base": 45346.96,
+              "total": 45346.96,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38757454",
+              "name": "Mercure Paris La Sorbonne Saint Germain des Pres Hotel",
+              "star": 4,
+              "base": 39206.86,
+              "total": 43059.83,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "15760190",
+              "name": "The Hoxton - Paris",
+              "star": 4,
+              "base": 55997.94,
+              "total": 55997.94,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39773931",
+              "name": "Crowne Plaza Paris République By IHG",
+              "star": 4,
+              "base": 27336.95,
+              "total": 30018.14,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39680994",
+              "name": "Holiday Inn Paris Gare de Lyon Bastille By IHG",
+              "star": 4,
+              "base": 27406.08,
+              "total": 27406.08,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39714470",
+              "name": "InterContinental Paris Le Grand By IHG",
+              "star": 5,
+              "base": 101882.18,
+              "total": 111922.37,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39782627",
+              "name": "Park Hyatt Paris Vendome",
+              "star": 5,
+              "base": 289219.52,
+              "total": 289219.52,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39755858",
+              "name": "LE FROCHOT HOTEL PIGALLE",
+              "star": 5,
+              "base": 24783.12,
+              "total": 24783.12,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "71181623",
+              "name": "Sax Paris, LXR Hotels & Resorts",
+              "star": 5,
+              "base": 123977.14,
+              "total": 123977.14,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "32553824",
+              "name": "Le Royal Monceau Hotel Raffles Paris",
+              "star": 5,
+              "base": 194254.67,
+              "total": 216909.03000000003,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39690988",
+              "name": "Hyatt Paris Madeleine",
+              "star": 5,
+              "base": 84393.07,
+              "total": 84393.07,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39081977",
+              "name": "Sofitel Le Scribe Paris Opéra",
+              "star": 5,
+              "base": 99426.47,
+              "total": 99426.47,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            }
+          ]
+        },
+        "prod": {
+          "series": [
+            {
+              "i": 0,
+              "ms": 16957,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 1,
+              "ms": 1139,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 2233,
+              "total": 76,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 1440,
+              "total": 2504,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 1474,
+              "total": 2504,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 16957,
+            "total": 37,
+            "n": 20,
+            "fromCache": true
+          },
+          "final": {
+            "i": 4,
+            "ms": 1474,
+            "total": 2504,
+            "n": 20,
+            "fromCache": true
+          },
+          "envelope": {
+            "page": 0,
+            "size": 20,
+            "offset": 0,
+            "totalResults": 2504,
+            "totalPages": 126,
+            "availableResults": 2504,
+            "last": false,
+            "currency": "INR",
+            "fromCache": true,
+            "priceRangeFilter": {
+              "key": "price_range",
+              "displayName": "Price Range",
+              "min": 3754.1000000000013,
+              "max": 20020707.520000003,
+              "currency": "INR"
+            },
+            "hasProgress": false,
+            "hasPartial": false
+          },
+          "keys": [
+            "_meta",
+            "availableResults",
+            "cacheTimeStamp",
+            "currency",
+            "filters",
+            "fromCache",
+            "last",
+            "offset",
+            "page",
+            "priceRangeFilter",
+            "requestId",
+            "results",
+            "size",
+            "sorts",
+            "totalPages",
+            "totalResults"
+          ],
+          "hotelKeys": [
+            "address",
+            "amenities",
+            "available",
+            "distance",
+            "id",
+            "image",
+            "isGSTClaimable",
+            "name",
+            "price",
+            "refundable",
+            "refundableNotes",
+            "starRating"
+          ],
+          "filters": [
+            {
+              "name": "Star Rating",
+              "indexField": "df_long_star_rating",
+              "facets": 3
+            },
+            {
+              "name": "Free cancellation",
+              "indexField": "Reservation policy",
+              "facets": 1
+            },
+            {
+              "name": "GST",
+              "indexField": "GST",
+              "facets": 1
+            },
+            {
+              "name": "Chain",
+              "indexField": "Chain",
+              "facets": 135
+            },
+            {
+              "name": "Property Type",
+              "indexField": "Property Type",
+              "facets": 13
+            }
+          ],
+          "sorts": [
+            "Price Low to High",
+            "Price High to Low"
+          ],
+          "top20": [
+            {
+              "id": "39780518",
+              "name": "Renaissance Paris Republique Hotel",
+              "star": 5,
+              "base": 60327.9,
+              "total": 60327.9,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "31315794",
+              "name": "Hotel Du Louvre, Part Of Hyatt",
+              "star": 5,
+              "base": 95784.58,
+              "total": 95784.58,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "41217332",
+              "name": "SO/ Paris Hotel",
+              "star": 5,
+              "base": 80778.16,
+              "total": 80778.16,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39981792",
+              "name": "MERCURE PARIS GARE DE LYON BASTILLE",
+              "star": 4,
+              "base": 29560,
+              "total": 29560,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "15449340",
+              "name": "Courtyard by Marriott Paris Gare de Lyon",
+              "star": 4,
+              "base": 33211.96,
+              "total": 36473.119999999995,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38620481",
+              "name": "Mercure Paris Notre Dame Saint Germain Des Pres",
+              "star": 4,
+              "base": 28661.44,
+              "total": 28661.44,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39677777",
+              "name": "Hotel Camille Paris Gare de Lyon, Tapestry Collection by Hilton",
+              "star": 4,
+              "base": 42389.46,
+              "total": 42389.46,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38757394",
+              "name": "Mercure Paris Montparnasse Raspail",
+              "star": 4,
+              "base": 28069.25,
+              "total": 28069.25,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39671902",
+              "name": "Novotel Paris Les Halles Hotel",
+              "star": 4,
+              "base": 45346.96,
+              "total": 45346.96,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38757454",
+              "name": "Mercure Paris La Sorbonne Saint Germain des Pres Hotel",
+              "star": 4,
+              "base": 39206.86,
+              "total": 43059.83,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "15760190",
+              "name": "The Hoxton - Paris",
+              "star": 4,
+              "base": 55997.94,
+              "total": 55997.94,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39773931",
+              "name": "Crowne Plaza Paris République By IHG",
+              "star": 4,
+              "base": 27336.95,
+              "total": 30018.14,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39680994",
+              "name": "Holiday Inn Paris Gare de Lyon Bastille By IHG",
+              "star": 4,
+              "base": 27406.08,
+              "total": 27406.08,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39714470",
+              "name": "InterContinental Paris Le Grand By IHG",
+              "star": 5,
+              "base": 101882.18,
+              "total": 111922.37,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39782627",
+              "name": "Park Hyatt Paris Vendome",
+              "star": 5,
+              "base": 289219.52,
+              "total": 289219.52,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39755858",
+              "name": "LE FROCHOT HOTEL PIGALLE",
+              "star": 5,
+              "base": 24783.12,
+              "total": 24783.12,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "71181623",
+              "name": "Sax Paris, LXR Hotels & Resorts",
+              "star": 5,
+              "base": 123977.14,
+              "total": 123977.14,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "32553824",
+              "name": "Le Royal Monceau Hotel Raffles Paris",
+              "star": 5,
+              "base": 194254.67,
+              "total": 216909.03000000003,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39690988",
+              "name": "Hyatt Paris Madeleine",
+              "star": 5,
+              "base": 84393.07,
+              "total": 84393.07,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39081977",
+              "name": "Sofitel Le Scribe Paris Opéra",
+              "star": 5,
+              "base": 99426.47,
+              "total": 99426.47,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            }
+          ]
+        },
+        "diff": {
+          "topLevelKeys": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "hotelFields": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "filters": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "sorts": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "envelopeDiffs": [],
+          "top20Overlap": 20,
+          "top20OrderSame": true,
+          "onlyPreTop20": [],
+          "onlyProdTop20": [],
+          "priceDiffsOnOverlap": []
+        }
+      }
+    },
+    {
+      "city": "Dubai",
+      "entityId": "221688:AE",
+      "independentCold": {
+        "preprod": {
+          "dates": {
+            "checkin": "2027-01-02",
+            "checkout": "2027-01-04"
+          },
+          "series": [
+            {
+              "i": 0,
+              "ms": 10812,
+              "total": 38,
+              "n": 20,
+              "fromCache": false
+            },
+            {
+              "i": 1,
+              "ms": 1173,
+              "total": 38,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1260,
+              "total": 63,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 1114,
+              "total": 1063,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 941,
+              "total": 1063,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 10812,
+            "total": 38,
+            "n": 20,
+            "fromCache": false
+          },
+          "final": {
+            "i": 4,
+            "ms": 941,
+            "total": 1063,
+            "n": 20,
+            "fromCache": true
+          }
+        },
+        "prod": {
+          "dates": {
+            "checkin": "2027-01-07",
+            "checkout": "2027-01-09"
+          },
+          "series": [
+            {
+              "i": 0,
+              "ms": 17779,
+              "total": 37,
+              "n": 20,
+              "fromCache": false
+            },
+            {
+              "i": 1,
+              "ms": 6468,
+              "total": 1158,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1076,
+              "total": 1158,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 17779,
+            "total": 37,
+            "n": 20,
+            "fromCache": false
+          },
+          "final": {
+            "i": 2,
+            "ms": 1076,
+            "total": 1158,
+            "n": 20,
+            "fromCache": true
+          }
+        }
+      },
+      "sharedFinal": {
+        "dates": {
+          "checkin": "2027-02-11",
+          "checkout": "2027-02-13"
+        },
+        "preprod": {
+          "series": [
+            {
+              "i": 0,
+              "ms": 16406,
+              "total": 37,
+              "n": 20,
+              "fromCache": false
+            },
+            {
+              "i": 1,
+              "ms": 950,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1181,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 914,
+              "total": 920,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 1169,
+              "total": 920,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 16406,
+            "total": 37,
+            "n": 20,
+            "fromCache": false
+          },
+          "final": {
+            "i": 4,
+            "ms": 1169,
+            "total": 920,
+            "n": 20,
+            "fromCache": true
+          },
+          "envelope": {
+            "page": 0,
+            "size": 20,
+            "offset": 0,
+            "totalResults": 920,
+            "totalPages": 46,
+            "availableResults": 920,
+            "last": false,
+            "currency": "INR",
+            "fromCache": true,
+            "priceRangeFilter": {
+              "key": "price_range",
+              "displayName": "Price Range",
+              "min": 1771.14,
+              "max": 55943174.82,
+              "currency": "INR"
+            },
+            "hasProgress": false,
+            "hasPartial": false
+          },
+          "keys": [
+            "_meta",
+            "availableResults",
+            "cacheTimeStamp",
+            "currency",
+            "filters",
+            "fromCache",
+            "last",
+            "offset",
+            "page",
+            "priceRangeFilter",
+            "requestId",
+            "results",
+            "size",
+            "sorts",
+            "totalPages",
+            "totalResults"
+          ],
+          "hotelKeys": [
+            "address",
+            "amenities",
+            "available",
+            "distance",
+            "id",
+            "image",
+            "isGSTClaimable",
+            "name",
+            "price",
+            "refundable",
+            "refundableNotes",
+            "starRating"
+          ],
+          "filters": [
+            {
+              "name": "Star Rating",
+              "indexField": "df_long_star_rating",
+              "facets": 3
+            },
+            {
+              "name": "Free cancellation",
+              "indexField": "Reservation policy",
+              "facets": 1
+            },
+            {
+              "name": "GST",
+              "indexField": "GST",
+              "facets": 1
+            },
+            {
+              "name": "Chain",
+              "indexField": "Chain",
+              "facets": 71
+            },
+            {
+              "name": "Property Type",
+              "indexField": "Property Type",
+              "facets": 10
+            }
+          ],
+          "sorts": [
+            "Price Low to High",
+            "Price High to Low"
+          ],
+          "top20": [
+            {
+              "id": "38688667",
+              "name": "Hyatt Regency Dubai",
+              "star": 5,
+              "base": 11952.7,
+              "total": 11952.7,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39961925",
+              "name": "The Galleria Residence, Hyatt Regency Dubai",
+              "star": 5,
+              "base": 13385.7,
+              "total": 13385.7,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39600369",
+              "name": "Sheraton Dubai Creek Hotel & Towers",
+              "star": 5,
+              "base": 18950.33,
+              "total": 18950.33,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39969111",
+              "name": "Swissotel Al Ghurair",
+              "star": 5,
+              "base": 13870.9,
+              "total": 16908.13,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39969134",
+              "name": "Hyatt Place Dubai Wasl District",
+              "star": 4,
+              "base": 14978.41,
+              "total": 18261.27,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39969130",
+              "name": "Swissotel Living Al Ghurair Dubai",
+              "star": 4,
+              "base": 17656.9,
+              "total": 21533.83,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "37653873",
+              "name": "Al Seef Heritage Hotel Dubai, Curio Collection by Hilton",
+              "star": 4,
+              "base": 16007.25,
+              "total": 16007.25,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39999172",
+              "name": "Canopy by Hilton Dubai Al Seef",
+              "star": 4,
+              "base": 16007.25,
+              "total": 16007.25,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39606396",
+              "name": "Aparthotel Adagio Dubai Deira",
+              "star": 4,
+              "base": 14600.22,
+              "total": 17799.2,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "41261072",
+              "name": "Crowne Plaza Dubai Jumeirah By IHG",
+              "star": 5,
+              "base": 11890.22,
+              "total": 14488.14,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39683481",
+              "name": "Grand Mercure Dubai City ",
+              "star": 5,
+              "base": 9653.01,
+              "total": 11754.73,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "41491330",
+              "name": "Hyatt Regency Dubai Creek Heights Residences",
+              "star": 5,
+              "base": 30746.68,
+              "total": 30746.68,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39682184",
+              "name": "THE CANVAS HOTEL DUBAI - MGALLERY",
+              "star": 5,
+              "base": 19803.16,
+              "total": 19803.16,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39967701",
+              "name": "Pullman Dubai Creek City Centre",
+              "star": 5,
+              "base": 30782.59,
+              "total": 30782.59,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39973335",
+              "name": "Hyatt Regency Dubai Creek Heights",
+              "star": 5,
+              "base": 22218.48,
+              "total": 27107.15,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39522829",
+              "name": "Mövenpick Hotel & Apartments Bur Dubai",
+              "star": 5,
+              "base": 12909.88,
+              "total": 12909.88,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "61895085",
+              "name": "Marriott Marquis Dubai Creek",
+              "star": 5,
+              "base": 31435.86,
+              "total": 31435.86,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39354709",
+              "name": "Sheraton Grand Hotel, Dubai",
+              "star": 5,
+              "base": 42553.97,
+              "total": 42553.97,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38040865",
+              "name": "DoubleTree by Hilton Dubai M Square Hotel & Residences",
+              "star": 5,
+              "base": 35197.46,
+              "total": 35197.46,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "31250405",
+              "name": "Elara & Golf Villas - curated by Park Hyatt Dubai",
+              "star": 5,
+              "base": 404764.03,
+              "total": 425923.83,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            }
+          ]
+        },
+        "prod": {
+          "series": [
+            {
+              "i": 0,
+              "ms": 16429,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 1,
+              "ms": 930,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1071,
+              "total": 37,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 790,
+              "total": 920,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 1091,
+              "total": 920,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 16429,
+            "total": 37,
+            "n": 20,
+            "fromCache": true
+          },
+          "final": {
+            "i": 4,
+            "ms": 1091,
+            "total": 920,
+            "n": 20,
+            "fromCache": true
+          },
+          "envelope": {
+            "page": 0,
+            "size": 20,
+            "offset": 0,
+            "totalResults": 920,
+            "totalPages": 46,
+            "availableResults": 920,
+            "last": false,
+            "currency": "INR",
+            "fromCache": true,
+            "priceRangeFilter": {
+              "key": "price_range",
+              "displayName": "Price Range",
+              "min": 1771.14,
+              "max": 55943174.82,
+              "currency": "INR"
+            },
+            "hasProgress": false,
+            "hasPartial": false
+          },
+          "keys": [
+            "_meta",
+            "availableResults",
+            "cacheTimeStamp",
+            "currency",
+            "filters",
+            "fromCache",
+            "last",
+            "offset",
+            "page",
+            "priceRangeFilter",
+            "requestId",
+            "results",
+            "size",
+            "sorts",
+            "totalPages",
+            "totalResults"
+          ],
+          "hotelKeys": [
+            "address",
+            "amenities",
+            "available",
+            "distance",
+            "id",
+            "image",
+            "isGSTClaimable",
+            "name",
+            "price",
+            "refundable",
+            "refundableNotes",
+            "starRating"
+          ],
+          "filters": [
+            {
+              "name": "Star Rating",
+              "indexField": "df_long_star_rating",
+              "facets": 3
+            },
+            {
+              "name": "Free cancellation",
+              "indexField": "Reservation policy",
+              "facets": 1
+            },
+            {
+              "name": "GST",
+              "indexField": "GST",
+              "facets": 1
+            },
+            {
+              "name": "Chain",
+              "indexField": "Chain",
+              "facets": 71
+            },
+            {
+              "name": "Property Type",
+              "indexField": "Property Type",
+              "facets": 10
+            }
+          ],
+          "sorts": [
+            "Price Low to High",
+            "Price High to Low"
+          ],
+          "top20": [
+            {
+              "id": "38688667",
+              "name": "Hyatt Regency Dubai",
+              "star": 5,
+              "base": 11952.7,
+              "total": 11952.7,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39961925",
+              "name": "The Galleria Residence, Hyatt Regency Dubai",
+              "star": 5,
+              "base": 13385.7,
+              "total": 13385.7,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39600369",
+              "name": "Sheraton Dubai Creek Hotel & Towers",
+              "star": 5,
+              "base": 18950.33,
+              "total": 18950.33,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39969111",
+              "name": "Swissotel Al Ghurair",
+              "star": 5,
+              "base": 13870.9,
+              "total": 16908.13,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39969134",
+              "name": "Hyatt Place Dubai Wasl District",
+              "star": 4,
+              "base": 14978.41,
+              "total": 18261.27,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39969130",
+              "name": "Swissotel Living Al Ghurair Dubai",
+              "star": 4,
+              "base": 17656.9,
+              "total": 21533.83,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "37653873",
+              "name": "Al Seef Heritage Hotel Dubai, Curio Collection by Hilton",
+              "star": 4,
+              "base": 16007.25,
+              "total": 16007.25,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39999172",
+              "name": "Canopy by Hilton Dubai Al Seef",
+              "star": 4,
+              "base": 16007.25,
+              "total": 16007.25,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39606396",
+              "name": "Aparthotel Adagio Dubai Deira",
+              "star": 4,
+              "base": 14600.22,
+              "total": 17799.2,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "41261072",
+              "name": "Crowne Plaza Dubai Jumeirah By IHG",
+              "star": 5,
+              "base": 11890.22,
+              "total": 14488.14,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39683481",
+              "name": "Grand Mercure Dubai City ",
+              "star": 5,
+              "base": 9653.01,
+              "total": 11754.73,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "41491330",
+              "name": "Hyatt Regency Dubai Creek Heights Residences",
+              "star": 5,
+              "base": 30746.68,
+              "total": 30746.68,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39682184",
+              "name": "THE CANVAS HOTEL DUBAI - MGALLERY",
+              "star": 5,
+              "base": 19803.16,
+              "total": 19803.16,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39967701",
+              "name": "Pullman Dubai Creek City Centre",
+              "star": 5,
+              "base": 30782.59,
+              "total": 30782.59,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39973335",
+              "name": "Hyatt Regency Dubai Creek Heights",
+              "star": 5,
+              "base": 22218.48,
+              "total": 27107.15,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39522829",
+              "name": "Mövenpick Hotel & Apartments Bur Dubai",
+              "star": 5,
+              "base": 12909.88,
+              "total": 12909.88,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "61895085",
+              "name": "Marriott Marquis Dubai Creek",
+              "star": 5,
+              "base": 31435.86,
+              "total": 31435.86,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39354709",
+              "name": "Sheraton Grand Hotel, Dubai",
+              "star": 5,
+              "base": 42553.97,
+              "total": 42553.97,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38040865",
+              "name": "DoubleTree by Hilton Dubai M Square Hotel & Residences",
+              "star": 5,
+              "base": 35197.46,
+              "total": 35197.46,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "31250405",
+              "name": "Elara & Golf Villas - curated by Park Hyatt Dubai",
+              "star": 5,
+              "base": 404764.03,
+              "total": 425923.83,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            }
+          ]
+        },
+        "diff": {
+          "topLevelKeys": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "hotelFields": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "filters": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "sorts": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "envelopeDiffs": [],
+          "top20Overlap": 20,
+          "top20OrderSame": true,
+          "onlyPreTop20": [],
+          "onlyProdTop20": [],
+          "priceDiffsOnOverlap": []
+        }
+      }
+    },
+    {
+      "city": "Bangkok",
+      "entityId": "328619:TH",
+      "independentCold": {
+        "preprod": {
+          "dates": {
+            "checkin": "2027-01-13",
+            "checkout": "2027-01-15"
+          },
+          "series": [
+            {
+              "i": 0,
+              "ms": 10601,
+              "total": 38,
+              "n": 20,
+              "fromCache": false
+            },
+            {
+              "i": 1,
+              "ms": 1129,
+              "total": 38,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1244,
+              "total": 74,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 2363,
+              "total": 2180,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 875,
+              "total": 2180,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 10601,
+            "total": 38,
+            "n": 20,
+            "fromCache": false
+          },
+          "final": {
+            "i": 4,
+            "ms": 875,
+            "total": 2180,
+            "n": 20,
+            "fromCache": true
+          }
+        },
+        "prod": {
+          "dates": {
+            "checkin": "2027-01-18",
+            "checkout": "2027-01-20"
+          },
+          "series": [
+            {
+              "i": 0,
+              "ms": 14184,
+              "total": 38,
+              "n": 20,
+              "fromCache": false
+            },
+            {
+              "i": 1,
+              "ms": 920,
+              "total": 38,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1098,
+              "total": 74,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 1605,
+              "total": 2494,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 986,
+              "total": 2494,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 14184,
+            "total": 38,
+            "n": 20,
+            "fromCache": false
+          },
+          "final": {
+            "i": 4,
+            "ms": 986,
+            "total": 2494,
+            "n": 20,
+            "fromCache": true
+          }
+        }
+      },
+      "sharedFinal": {
+        "dates": {
+          "checkin": "2027-02-22",
+          "checkout": "2027-02-24"
+        },
+        "preprod": {
+          "series": [
+            {
+              "i": 0,
+              "ms": 10659,
+              "total": 38,
+              "n": 20,
+              "fromCache": false
+            },
+            {
+              "i": 1,
+              "ms": 1233,
+              "total": 38,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1367,
+              "total": 74,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 1167,
+              "total": 2512,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 924,
+              "total": 2512,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 10659,
+            "total": 38,
+            "n": 20,
+            "fromCache": false
+          },
+          "final": {
+            "i": 4,
+            "ms": 924,
+            "total": 2512,
+            "n": 20,
+            "fromCache": true
+          },
+          "envelope": {
+            "page": 0,
+            "size": 20,
+            "offset": 0,
+            "totalResults": 2512,
+            "totalPages": 126,
+            "availableResults": 2512,
+            "last": false,
+            "currency": "INR",
+            "fromCache": true,
+            "priceRangeFilter": {
+              "key": "price_range",
+              "displayName": "Price Range",
+              "min": 590.43,
+              "max": 181533.36,
+              "currency": "INR"
+            },
+            "hasProgress": false,
+            "hasPartial": false
+          },
+          "keys": [
+            "_meta",
+            "availableResults",
+            "cacheTimeStamp",
+            "currency",
+            "filters",
+            "fromCache",
+            "last",
+            "offset",
+            "page",
+            "priceRangeFilter",
+            "requestId",
+            "results",
+            "size",
+            "sorts",
+            "totalPages",
+            "totalResults"
+          ],
+          "hotelKeys": [
+            "address",
+            "amenities",
+            "available",
+            "distance",
+            "id",
+            "image",
+            "isGSTClaimable",
+            "name",
+            "price",
+            "refundable",
+            "refundableNotes",
+            "starRating"
+          ],
+          "filters": [
+            {
+              "name": "Star Rating",
+              "indexField": "df_long_star_rating",
+              "facets": 3
+            },
+            {
+              "name": "Free cancellation",
+              "indexField": "Reservation policy",
+              "facets": 1
+            },
+            {
+              "name": "GST",
+              "indexField": "GST",
+              "facets": 1
+            },
+            {
+              "name": "Chain",
+              "indexField": "Chain",
+              "facets": 84
+            },
+            {
+              "name": "Property Type",
+              "indexField": "Property Type",
+              "facets": 16
+            }
+          ],
+          "sorts": [
+            "Price Low to High",
+            "Price High to Low"
+          ],
+          "top20": [
+            {
+              "id": "39637311",
+              "name": "Renaissance Bangkok Ratchaprasong Hotel by Marriott",
+              "star": 5,
+              "base": 30039.99,
+              "total": 30039.99,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39660160",
+              "name": "Four Points by Sheraton Bangkok Ploenchit Sukhumvit",
+              "star": 5,
+              "base": 18605.84,
+              "total": 18605.84,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39592347",
+              "name": "DoubleTree by Hilton Bangkok Ploenchit",
+              "star": 5,
+              "base": 19634.12,
+              "total": 19634.12,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38475392",
+              "name": "InterContinental Bangkok by IHG",
+              "star": 5,
+              "base": 37553.39,
+              "total": 37553.39,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38475396",
+              "name": "The St. Regis Bangkok",
+              "star": 5,
+              "base": 65286.41,
+              "total": 76652.91,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39531770",
+              "name": "Kimpton Maa-Lai Bangkok by IHG",
+              "star": 5,
+              "base": 36578.01,
+              "total": 36578.01,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39669042",
+              "name": "Sindhorn Midtown Hotel Bangkok, Vignette Collection by IHG",
+              "star": 5,
+              "base": 23102.41,
+              "total": 23102.41,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39636190",
+              "name": "VIE Hotel Bangkok - MGallery",
+              "star": 5,
+              "base": 33513.56,
+              "total": 33513.56,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "72335665",
+              "name": "Andaz One Bangkok",
+              "star": 5,
+              "base": 62349.79,
+              "total": 62349.79,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "31352778",
+              "name": "Hotel Indigo Bangkok Wireless Road by IHG",
+              "star": 5,
+              "base": 22779.91,
+              "total": 22779.91,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39692789",
+              "name": "Hotel Muse Bangkok, Autograph Collection (Marriott International)",
+              "star": 5,
+              "base": 22401.22,
+              "total": 22401.22,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "17196228",
+              "name": "Conrad Bangkok",
+              "star": 5,
+              "base": 29063.77,
+              "total": 29063.77,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39647341",
+              "name": "Crowne Plaza Bangkok Lumpini Park by IHG",
+              "star": 5,
+              "base": 25612.86,
+              "total": 25612.86,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38735301",
+              "name": "JW Marriott Hotel Bangkok",
+              "star": 5,
+              "base": 30363.55,
+              "total": 35633.39,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39592148",
+              "name": "The Athenee Hotel, a Luxury Collection Hotel, Bangkok",
+              "star": 5,
+              "base": 42548.92,
+              "total": 42548.92,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39283725",
+              "name": "Mövenpick BDMS Wellness Resort Bangkok",
+              "star": 5,
+              "base": 21073.67,
+              "total": 24721.71,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39654575",
+              "name": "Novotel Bangkok On Siam Square",
+              "star": 5,
+              "base": 24042.17,
+              "total": 24042.17,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "15333759",
+              "name": "Park Hyatt Bangkok",
+              "star": 5,
+              "base": 61394.91,
+              "total": 61394.91,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39650619",
+              "name": "Grand Hyatt Erawan Bangkok",
+              "star": 5,
+              "base": 38289.86,
+              "total": 38289.86,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39522554",
+              "name": "Conrad Bangkok Residences",
+              "star": 5,
+              "base": 27645.1,
+              "total": 27645.1,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            }
+          ]
+        },
+        "prod": {
+          "series": [
+            {
+              "i": 0,
+              "ms": 10825,
+              "total": 38,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 1,
+              "ms": 1239,
+              "total": 38,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 2,
+              "ms": 1446,
+              "total": 74,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 3,
+              "ms": 1181,
+              "total": 2512,
+              "n": 20,
+              "fromCache": true
+            },
+            {
+              "i": 4,
+              "ms": 961,
+              "total": 2512,
+              "n": 20,
+              "fromCache": true
+            }
+          ],
+          "cold": {
+            "i": 0,
+            "ms": 10825,
+            "total": 38,
+            "n": 20,
+            "fromCache": true
+          },
+          "final": {
+            "i": 4,
+            "ms": 961,
+            "total": 2512,
+            "n": 20,
+            "fromCache": true
+          },
+          "envelope": {
+            "page": 0,
+            "size": 20,
+            "offset": 0,
+            "totalResults": 2512,
+            "totalPages": 126,
+            "availableResults": 2512,
+            "last": false,
+            "currency": "INR",
+            "fromCache": true,
+            "priceRangeFilter": {
+              "key": "price_range",
+              "displayName": "Price Range",
+              "min": 590.43,
+              "max": 181533.36,
+              "currency": "INR"
+            },
+            "hasProgress": false,
+            "hasPartial": false
+          },
+          "keys": [
+            "_meta",
+            "availableResults",
+            "cacheTimeStamp",
+            "currency",
+            "filters",
+            "fromCache",
+            "last",
+            "offset",
+            "page",
+            "priceRangeFilter",
+            "requestId",
+            "results",
+            "size",
+            "sorts",
+            "totalPages",
+            "totalResults"
+          ],
+          "hotelKeys": [
+            "address",
+            "amenities",
+            "available",
+            "distance",
+            "id",
+            "image",
+            "isGSTClaimable",
+            "name",
+            "price",
+            "refundable",
+            "refundableNotes",
+            "starRating"
+          ],
+          "filters": [
+            {
+              "name": "Star Rating",
+              "indexField": "df_long_star_rating",
+              "facets": 3
+            },
+            {
+              "name": "Free cancellation",
+              "indexField": "Reservation policy",
+              "facets": 1
+            },
+            {
+              "name": "GST",
+              "indexField": "GST",
+              "facets": 1
+            },
+            {
+              "name": "Chain",
+              "indexField": "Chain",
+              "facets": 84
+            },
+            {
+              "name": "Property Type",
+              "indexField": "Property Type",
+              "facets": 16
+            }
+          ],
+          "sorts": [
+            "Price Low to High",
+            "Price High to Low"
+          ],
+          "top20": [
+            {
+              "id": "39637311",
+              "name": "Renaissance Bangkok Ratchaprasong Hotel by Marriott",
+              "star": 5,
+              "base": 30039.99,
+              "total": 30039.99,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39660160",
+              "name": "Four Points by Sheraton Bangkok Ploenchit Sukhumvit",
+              "star": 5,
+              "base": 18605.84,
+              "total": 18605.84,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39592347",
+              "name": "DoubleTree by Hilton Bangkok Ploenchit",
+              "star": 5,
+              "base": 19634.12,
+              "total": 19634.12,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38475392",
+              "name": "InterContinental Bangkok by IHG",
+              "star": 5,
+              "base": 37553.39,
+              "total": 37553.39,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38475396",
+              "name": "The St. Regis Bangkok",
+              "star": 5,
+              "base": 65286.41,
+              "total": 76652.91,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39531770",
+              "name": "Kimpton Maa-Lai Bangkok by IHG",
+              "star": 5,
+              "base": 36578.01,
+              "total": 36578.01,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39669042",
+              "name": "Sindhorn Midtown Hotel Bangkok, Vignette Collection by IHG",
+              "star": 5,
+              "base": 23102.41,
+              "total": 23102.41,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39636190",
+              "name": "VIE Hotel Bangkok - MGallery",
+              "star": 5,
+              "base": 33513.56,
+              "total": 33513.56,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "72335665",
+              "name": "Andaz One Bangkok",
+              "star": 5,
+              "base": 62349.79,
+              "total": 62349.79,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "31352778",
+              "name": "Hotel Indigo Bangkok Wireless Road by IHG",
+              "star": 5,
+              "base": 22779.91,
+              "total": 22779.91,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39692789",
+              "name": "Hotel Muse Bangkok, Autograph Collection (Marriott International)",
+              "star": 5,
+              "base": 22401.22,
+              "total": 22401.22,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "17196228",
+              "name": "Conrad Bangkok",
+              "star": 5,
+              "base": 29063.77,
+              "total": 29063.77,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39647341",
+              "name": "Crowne Plaza Bangkok Lumpini Park by IHG",
+              "star": 5,
+              "base": 25612.86,
+              "total": 25612.86,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "38735301",
+              "name": "JW Marriott Hotel Bangkok",
+              "star": 5,
+              "base": 30363.55,
+              "total": 35633.39,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39592148",
+              "name": "The Athenee Hotel, a Luxury Collection Hotel, Bangkok",
+              "star": 5,
+              "base": 42548.92,
+              "total": 42548.92,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39283725",
+              "name": "Mövenpick BDMS Wellness Resort Bangkok",
+              "star": 5,
+              "base": 21073.67,
+              "total": 24721.71,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39654575",
+              "name": "Novotel Bangkok On Siam Square",
+              "star": 5,
+              "base": 24042.17,
+              "total": 24042.17,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "15333759",
+              "name": "Park Hyatt Bangkok",
+              "star": 5,
+              "base": 61394.91,
+              "total": 61394.91,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39650619",
+              "name": "Grand Hyatt Erawan Bangkok",
+              "star": 5,
+              "base": 38289.86,
+              "total": 38289.86,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            },
+            {
+              "id": "39522554",
+              "name": "Conrad Bangkok Residences",
+              "star": 5,
+              "base": 27645.1,
+              "total": 27645.1,
+              "available": true,
+              "propertyType": null,
+              "mealType": null,
+              "brand": null,
+              "chain": null
+            }
+          ]
+        },
+        "diff": {
+          "topLevelKeys": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "hotelFields": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "filters": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "sorts": {
+            "onlyPre": [],
+            "onlyProd": []
+          },
+          "envelopeDiffs": [],
+          "top20Overlap": 20,
+          "top20OrderSame": true,
+          "onlyPreTop20": [],
+          "onlyProdTop20": [],
+          "priceDiffsOnOverlap": []
+        }
+      }
+    }
+  ]
+}

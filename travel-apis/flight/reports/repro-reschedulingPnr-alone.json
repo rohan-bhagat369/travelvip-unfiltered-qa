@@ -1,0 +1,30 @@
+{
+  "verdict": {
+    "bugReproduced": true,
+    "classification": "NORMAL_BOOK_PATH (BUG)",
+    "expected": "400 VALIDATION_ERROR — reschedulingReferenceId required when reschedulingPnr present",
+    "actual": {
+      "http": 200,
+      "code": null,
+      "message": "Booking is processing",
+      "newBr": "BR1786009687617808"
+    },
+    "source": {
+      "br": "BR1786003631906129",
+      "pnr": "FVRVRV"
+    },
+    "priced": {
+      "route": "DEL-BOM",
+      "total": 1300,
+      "searchId": "srch_2fd2dec2c90144f28ed2cb0171d1a098"
+    }
+  },
+  "response": {
+    "bookingReference": "BR1786009687617808",
+    "status": "pending",
+    "message": "Booking is processing",
+    "_meta": {
+      "correlation_id": "14f6ce1c-d19d-48ac-9208-9a3f65231974"
+    }
+  }
+}

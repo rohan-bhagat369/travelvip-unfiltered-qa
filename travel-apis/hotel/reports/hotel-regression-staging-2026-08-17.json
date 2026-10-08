@@ -1,0 +1,208 @@
+{
+  "ranAt": "2026-08-17T07:53:49.303Z",
+  "elapsedMs": 14927,
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "tags": [
+    "SMOKE",
+    "ENCRYPT",
+    "CORR"
+  ],
+  "correlationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+  "suite": "Hotel B2B regression",
+  "bookingRefId": null,
+  "bookingStatus": null,
+  "stoppedOn": null,
+  "score": {
+    "PASS": 9,
+    "BUG": 0,
+    "NOT TESTED": 0,
+    "total": 9
+  },
+  "hops": [
+    {
+      "step": "autocomplete-city",
+      "path": "/v1/hotels/autocomplete",
+      "http": 200,
+      "ok": true,
+      "sentCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "responseCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "sentPinned": true,
+      "responseMatchesPinned": true,
+      "errorCode": null
+    },
+    {
+      "step": "autocomplete-hotel",
+      "path": "/v1/hotels/autocomplete",
+      "http": 200,
+      "ok": true,
+      "sentCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "responseCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "sentPinned": true,
+      "responseMatchesPinned": true,
+      "errorCode": null
+    },
+    {
+      "step": "autocomplete-mumbai",
+      "path": "/v1/hotels/autocomplete",
+      "http": 200,
+      "ok": true,
+      "sentCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "responseCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "sentPinned": true,
+      "responseMatchesPinned": true,
+      "errorCode": null
+    },
+    {
+      "step": "search-pid",
+      "path": "/v1/hotels/search",
+      "http": 200,
+      "ok": true,
+      "sentCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "responseCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "sentPinned": true,
+      "responseMatchesPinned": true,
+      "errorCode": null
+    },
+    {
+      "step": "listing-spec",
+      "path": "/api/hotels/v2/availability/listing",
+      "http": 404,
+      "ok": false,
+      "sentCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "responseCorrelationId": null,
+      "sentPinned": true,
+      "responseMatchesPinned": null,
+      "errorCode": null
+    },
+    {
+      "step": "encrypt-search",
+      "path": "/v1/hotels/search",
+      "http": 200,
+      "ok": true,
+      "sentCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "responseCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "sentPinned": true,
+      "responseMatchesPinned": true,
+      "errorCode": null
+    },
+    {
+      "step": "encrypt-details",
+      "path": "/v1/hotels/details",
+      "http": 200,
+      "ok": true,
+      "sentCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "responseCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "sentPinned": true,
+      "responseMatchesPinned": true,
+      "errorCode": null
+    },
+    {
+      "step": "encrypt-prebook",
+      "path": "/v1/hotels/prebook",
+      "http": 200,
+      "ok": true,
+      "sentCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "responseCorrelationId": "292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "sentPinned": true,
+      "responseMatchesPinned": true,
+      "errorCode": null
+    }
+  ],
+  "rows": [
+    {
+      "tag": "SMOKE",
+      "section": "catalog",
+      "id": 1,
+      "rule": "Autocomplete city q=pune",
+      "how": "GET /v1/hotels/autocomplete?q=pune",
+      "expected": "HTTP 200, content[]",
+      "actual": "HTTP 200 content=17",
+      "status": "PASS",
+      "responseSnippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Pune\",\"city\":null,\"state\":null,\"country\":\"India\",\"address\":null,\"entityId\":\"328605:IN\",\"latitude\":\"18.520433\",\"longitude\":\"73.856735\",\"cityCountry\":null,\"lastUpdate"
+    },
+    {
+      "tag": "SMOKE",
+      "section": "catalog",
+      "id": 2,
+      "rule": "Autocomplete hotel name q=hiltop",
+      "how": "GET /v1/hotels/autocomplete?q=hiltop",
+      "expected": "HTTP 200, HOTEL hit with entityId",
+      "actual": "HTTP 200 hits=7 entityId=39627872:IN",
+      "status": "PASS"
+    },
+    {
+      "tag": "SMOKE",
+      "section": "catalog",
+      "id": 3,
+      "rule": "Search with pid=vgm",
+      "how": "POST /v1/hotels/search pid=vgm CITY 357389:IN",
+      "expected": "HTTP 200 availability",
+      "actual": "HTTP 200 total=627 error=null",
+      "status": "PASS"
+    },
+    {
+      "tag": "SMOKE",
+      "section": "listing",
+      "id": 4,
+      "rule": "Spec listing URL still optional/404",
+      "how": "POST /api/hotels/v2/availability/listing",
+      "expected": "HTTP 200 or documented 404 (not 500)",
+      "actual": "HTTP 404 {\"status\":404,\"info\":\"Page not found\"}",
+      "status": "PASS",
+      "note": "Partner contract is POST /v1/hotels/search until spec path is deployed"
+    },
+    {
+      "tag": "ENCRYPT",
+      "section": "vendor",
+      "id": 1,
+      "rule": "Details bookingCode encrypted (no RIYA / !TB!)",
+      "how": "POST /v1/hotels/details Hilltop 39627872",
+      "expected": "no RIYA, no !TB!RIYA!TB!; looks encrypted",
+      "actual": "rooms=5 leak=0 sample=cut0IuOUxBvO5olcbHqZwns9wUf191289ZkAncNP2amYcVuR",
+      "status": "PASS"
+    },
+    {
+      "tag": "ENCRYPT",
+      "section": "vendor",
+      "id": 2,
+      "rule": "Prebook request/response codes encrypted",
+      "how": "POST /v1/hotels/prebook same bookingCode",
+      "expected": "code still encrypted; bookingContext present",
+      "actual": "preOk=true leak=0 {\"page\":0,\"size\":20,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39627872\",\"name\":\"Hiltop Hotel\",\"address\":\"43. Sir Pochkhanwala Road\"",
+      "status": "PASS"
+    },
+    {
+      "tag": "ENCRYPT",
+      "section": "vendor",
+      "id": 4,
+      "rule": "Scan details JSON bookingCodes for vendor strings",
+      "how": "walk details.results[].rooms[].bookingCode",
+      "expected": "no Riya token in codes",
+      "actual": "leakCount=0",
+      "status": "PASS"
+    },
+    {
+      "tag": "CORR",
+      "section": "corr",
+      "id": 1,
+      "rule": "Pin one UUID on hotel hops",
+      "how": "autocomplete-city, autocomplete-hotel, autocomplete-mumbai, search-pid, listing-spec, encrypt-search, encrypt-details, encrypt-prebook",
+      "expected": "request header sent (same UUID)",
+      "actual": "hops=8 sentPinned=8 corr=292c7521-4b23-457c-ae61-c7f322ea5ce5",
+      "status": "PASS"
+    },
+    {
+      "tag": "CORR",
+      "section": "corr",
+      "id": 2,
+      "rule": "Response _meta.correlation_id",
+      "how": "echo same UUID (or documented rewrite)",
+      "expected": "same UUID or documented gateway rewrite",
+      "actual": "echoed=7 missingEcho=1 rewrite=0",
+      "status": "PASS",
+      "note": ""
+    }
+  ],
+  "bugs": [],
+  "notTested": []
+}

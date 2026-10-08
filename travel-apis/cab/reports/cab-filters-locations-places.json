@@ -1,0 +1,305 @@
+{
+  "generatedAt": "2026-09-03T09:52:08.761Z",
+  "staging": {
+    "name": "staging",
+    "url": "https://api-staging.travelvip.ai",
+    "cases": [
+      {
+        "id": "LOC-q",
+        "note": "query text",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 0,
+          "sample": []
+        }
+      },
+      {
+        "id": "LOC-coords",
+        "note": "lat+long",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 30,
+          "sample": [
+            {
+              "name": "Pune International Airport",
+              "airportCode": "PNQ",
+              "city": "Pune",
+              "lat": 18.579343,
+              "lng": 73.9063419
+            },
+            {
+              "name": "Navi Mumbai International Airport",
+              "airportCode": "NMI",
+              "city": "Navi Mumbai",
+              "lat": 18.9943152,
+              "lng": 73.0626862
+            }
+          ]
+        }
+      },
+      {
+        "id": "LOC-airport",
+        "note": "airportCode filter",
+        "http": 400,
+        "code": "VALIDATION_ERROR",
+        "msg": "Either 'query' or both 'latitude' and 'longitude' parameters are required",
+        "summary": null
+      },
+      {
+        "id": "LOC-q-long",
+        "note": "query+longitude (postman)",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 0,
+          "sample": []
+        }
+      },
+      {
+        "id": "LOC-empty-q",
+        "note": "empty query",
+        "http": 400,
+        "code": "VALIDATION_ERROR",
+        "msg": "Either 'query' or both 'latitude' and 'longitude' parameters are required",
+        "summary": null
+      },
+      {
+        "id": "PLACE-ok",
+        "note": "valid searchText",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 0,
+          "sample": []
+        }
+      },
+      {
+        "id": "PLACE-empty",
+        "note": "empty searchText",
+        "http": 400,
+        "code": "VALIDATION_ERROR",
+        "msg": "searchText parameter is required",
+        "summary": null
+      },
+      {
+        "id": "PLACE-omit",
+        "note": "omit searchText",
+        "http": 400,
+        "code": "VALIDATION_ERROR",
+        "msg": "searchText parameter is required",
+        "summary": null
+      },
+      {
+        "id": "PLACE-html",
+        "note": "html searchText",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 0,
+          "sample": []
+        }
+      },
+      {
+        "id": "PLACE-details",
+        "note": "known placeId",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "keys": [
+            "name",
+            "city",
+            "latitude",
+            "longitude",
+            "_meta"
+          ],
+          "name": "Viman Nagar, Pune, Maharashtra, India"
+        }
+      },
+      {
+        "id": "SEARCH-ok",
+        "note": "AIRPORT DEL baseline",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "cabCount": 8,
+          "vehicleTypes": [
+            "SEDAN",
+            "HATCHBACK",
+            "SUV"
+          ],
+          "categories": [
+            "ECONOMY",
+            "PREMIUM"
+          ],
+          "hasFilters": false,
+          "filterKeys": [],
+          "topKeys": [
+            "currency",
+            "cabs",
+            "_meta"
+          ]
+        }
+      }
+    ]
+  },
+  "canary": {
+    "name": "canary",
+    "url": "https://canary-api.travelvip.ai",
+    "cases": [
+      {
+        "id": "LOC-q",
+        "note": "query text",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 0,
+          "sample": []
+        }
+      },
+      {
+        "id": "LOC-coords",
+        "note": "lat+long",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 30,
+          "sample": [
+            {
+              "name": "Pune International Airport",
+              "airportCode": "PNQ",
+              "city": "Pune",
+              "lat": 18.579343,
+              "lng": 73.9063419
+            },
+            {
+              "name": "Navi Mumbai International Airport",
+              "airportCode": "NMI",
+              "city": "Navi Mumbai",
+              "lat": 18.9943152,
+              "lng": 73.0626862
+            }
+          ]
+        }
+      },
+      {
+        "id": "LOC-airport",
+        "note": "airportCode filter",
+        "http": 400,
+        "code": "VALIDATION_ERROR",
+        "msg": "Either 'query' or both 'latitude' and 'longitude' parameters are required",
+        "summary": null
+      },
+      {
+        "id": "LOC-q-long",
+        "note": "query+longitude (postman)",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 0,
+          "sample": []
+        }
+      },
+      {
+        "id": "LOC-empty-q",
+        "note": "empty query",
+        "http": 400,
+        "code": "VALIDATION_ERROR",
+        "msg": "Either 'query' or both 'latitude' and 'longitude' parameters are required",
+        "summary": null
+      },
+      {
+        "id": "PLACE-ok",
+        "note": "valid searchText",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 0,
+          "sample": []
+        }
+      },
+      {
+        "id": "PLACE-empty",
+        "note": "empty searchText",
+        "http": 400,
+        "code": "VALIDATION_ERROR",
+        "msg": "searchText parameter is required",
+        "summary": null
+      },
+      {
+        "id": "PLACE-omit",
+        "note": "omit searchText",
+        "http": 400,
+        "code": "VALIDATION_ERROR",
+        "msg": "searchText parameter is required",
+        "summary": null
+      },
+      {
+        "id": "PLACE-html",
+        "note": "html searchText",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "count": 0,
+          "sample": []
+        }
+      },
+      {
+        "id": "PLACE-details",
+        "note": "known placeId",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "keys": [
+            "name",
+            "city",
+            "latitude",
+            "longitude",
+            "_meta"
+          ],
+          "name": "Viman Nagar, Pune, Maharashtra, India"
+        }
+      },
+      {
+        "id": "SEARCH-ok",
+        "note": "AIRPORT DEL baseline",
+        "http": 200,
+        "code": null,
+        "msg": null,
+        "summary": {
+          "cabCount": 8,
+          "vehicleTypes": [
+            "SEDAN",
+            "HATCHBACK",
+            "SUV"
+          ],
+          "categories": [
+            "ECONOMY",
+            "PREMIUM"
+          ],
+          "hasFilters": false,
+          "filterKeys": [],
+          "topKeys": [
+            "currency",
+            "cabs",
+            "_meta"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "ranAt": "2026-08-12T06:57:50.165Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "pending": {
+    "B08": {
+      "checks": [
+        "V033",
+        "V034",
+        "V035"
+      ],
+      "br": "BR1786476212954979",
+      "status": "NEED_DB_PASTE",
+      "api": {
+        "br": "BR1786476212954979",
+        "http": 200,
+        "status": "Confirmed",
+        "pnr": "U1RJSA",
+        "sentContact": {
+          "email": "cardholder.qa@example.com",
+          "mobile": "9000011122",
+          "countryCode": "+91",
+          "name": "Card Holder QA"
+        },
+        "sentPassenger": {
+          "firstName": "Suresh",
+          "lastName": "Patil ptua"
+        },
+        "apiContact": null,
+        "apiPax": {
+          "paxId": "PAX1",
+          "name": "Suresh Patil ptua",
+          "email": null,
+          "phone": null
+        },
+        "apiPreliminary": {
+          "V034": "API detail did not surface contact — DB still authoritative for V033–V035",
+          "V035": "Need DB notify_* vs passenger row"
+        }
+      }
+    },
+    "V042": {
+      "check": "V042",
+      "status": "RUN_SQL_IN_PHPMYADMIN",
+      "passIf": "no refresh% column on booking_item_flight"
+    },
+    "X01": {
+      "checks": [
+        "V094",
+        "V095"
+      ],
+      "br": "BR1786475320743051",
+      "status": "MANUAL_DUAL_UPDATE",
+      "bookingItemHint": "id from B07 SQL"
+    },
+    "R01": {
+      "checks": [
+        "V085",
+        "V086",
+        "V087",
+        "V088"
+      ],
+      "status": "RUN probe-db-r01-c09-canary.js then DB"
+    },
+    "C09": {
+      "check": "V084",
+      "status": "BLOCKED_UNLESS_CANCEL_OK",
+      "note": "needs supplier_refund_recovery after successful cancel"
+    }
+  },
+  "nextSteps": [
+    "1. Paste reports/db-pending-pack.sql in phpMyAdmin (travelx) — start with B08 + V042 blocks",
+    "2. Run: BASE_URL=https://canary-api.travelvip.ai FLIGHT_ISSUE_PID=vgm node scripts/probe-db-r01-c09-canary.js",
+    "3. Paste R01/C09 SQL results + X01 dual-UPDATE outcome back here"
+  ],
+  "sqlFile": "reports/db-pending-pack.sql"
+}

@@ -1,0 +1,200 @@
+{
+  "prefix": "qa-otel-eng22-flt-20260917h",
+  "leftover": [
+    {
+      "br": "BR1789649851314442",
+      "status": "Confirmed"
+    },
+    {
+      "br": "BR1789649858695278",
+      "status": "Failed"
+    }
+  ],
+  "booked": {
+    "br": "BR1789649933168677",
+    "classified": "Confirmed",
+    "pick": "6E 6E 46",
+    "detailsHttp": 200,
+    "cancelHttp": 400,
+    "afterCancel": "Confirmed",
+    "pnr": "FVRVRV"
+  },
+  "steps": [
+    {
+      "label": "leftover-BR1789649851314442",
+      "corr": "qa-otel-eng22-flt-20260917h-left-314442",
+      "http": 200,
+      "ok": true,
+      "clientMs": 147,
+      "errorCode": null,
+      "status": "Confirmed",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Confirmed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1789649851314442\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-09-17T12:57:31\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"IX1463-DEL-NMI-2"
+    },
+    {
+      "label": "detail-BR1789649851314442",
+      "corr": "qa-otel-eng22-flt-20260917h-det-314442",
+      "http": 200,
+      "ok": true,
+      "clientMs": 156,
+      "errorCode": null,
+      "status": "Confirmed",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Confirmed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1789649851314442\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-09-17T12:57:31\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"IX1463-DEL-NMI-2"
+    },
+    {
+      "label": "cancel-BR1789649851314442",
+      "corr": "qa-otel-eng22-flt-20260917h-can-314442",
+      "http": 400,
+      "ok": false,
+      "clientMs": 112,
+      "errorCode": "VALIDATION_ERROR",
+      "status": null,
+      "bookingRefId": null,
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid cancelledBy. Allowed values: USER, ADMIN, SYSTEM\",\"details\":\"Field 'cancelledBy' must be one of: USER, ADMIN, SYSTEM\",\"timestamp\":\"2026-09-17T12:58:34Z\",\"request_id\":\"req-1789649914621\"},\"_meta\":{\"correlation_id\":\"qa-otel-eng"
+    },
+    {
+      "label": "leftover-BR1789649858695278",
+      "corr": "qa-otel-eng22-flt-20260917h-left-695278",
+      "http": 200,
+      "ok": true,
+      "clientMs": 223,
+      "errorCode": null,
+      "status": "Failed",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Failed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1789649858695278\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-09-17T12:57:38\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"IX1463-DEL-NMI-2026"
+    },
+    {
+      "label": "search",
+      "corr": "qa-otel-eng22-flt-20260917h-search",
+      "http": 200,
+      "ok": true,
+      "clientMs": 16230,
+      "picks": 6,
+      "bodyPreview": "{\"pick\":\"6E 6E 46\",\"searchId\":\"srch_f7836bd2d3a444e7974f26e20e6db4a6\",\"skippedNmi\":true}"
+    },
+    {
+      "label": "details-6E 6E 46",
+      "corr": "qa-otel-eng22-flt-20260917h-details",
+      "http": 200,
+      "ok": true,
+      "clientMs": 207,
+      "errorCode": null,
+      "status": null,
+      "bookingRefId": null,
+      "bodyPreview": "{\"journeyType\":\"ONE_WAY\",\"timingReference\":\"BoGNqY+u5nZFcf/6vi3utLyjMIJB0o4R87vG2HDO0/7qkaUzrLBfCrquusPxoa4t82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7IhzqdQKvWdTx/kaw7/dq+jFoFOwiV7wg77LFfurqj0m5K2a953sDciJjdcSpINZDs"
+    },
+    {
+      "label": "pricing-6E 6E 46",
+      "corr": "qa-otel-eng22-flt-20260917h-pricing",
+      "http": 200,
+      "ok": true,
+      "clientMs": 1353,
+      "errorCode": null,
+      "status": null,
+      "bookingRefId": null,
+      "bodyPreview": "{\"priceId\":\"price_316d10e957504e4cb6a6554a68ba5be3\",\"timingReference\":\"wblfQgn5POEqQO/NeosvU8Fydf0BDkPUNtZgolCAKxKngreUqGcHsER323efor/UXZ4DtJMaVXTviwVsqpKggIZXp0a1TMhmCBq0gEWnicvTA7KVCg2dQbSNHV3eo7XP1eonlBidL5YpEkNlha8INI3B06i0lTkIqMcOa5OSzDcQw8n6knkva5z7XJBkKCpKpQB/2mycJm0mA/x8Q"
+    },
+    {
+      "label": "issue-6E 6E 46",
+      "corr": "qa-otel-eng22-flt-20260917h-issue",
+      "http": 200,
+      "ok": true,
+      "clientMs": 996,
+      "errorCode": null,
+      "status": "pending",
+      "bookingRefId": "BR1789649933168677",
+      "bodyPreview": "{\"bookingReference\":\"BR1789649933168677\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"qa-otel-eng22-flt-20260917h-issue\"}}"
+    },
+    {
+      "label": "status-BR1789649933168677-1",
+      "corr": "qa-otel-eng22-flt-20260917h-status-1",
+      "http": 200,
+      "ok": true,
+      "clientMs": 152,
+      "errorCode": null,
+      "status": "Pending",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Pending\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1789649933168677\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-09-17T12:58:53\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"6E46-DEL-BOM-2026-"
+    },
+    {
+      "label": "status-BR1789649933168677-2",
+      "corr": "qa-otel-eng22-flt-20260917h-status-2",
+      "http": 200,
+      "ok": true,
+      "clientMs": 146,
+      "errorCode": null,
+      "status": "Pending",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Pending\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1789649933168677\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-09-17T12:58:53\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"6E46-DEL-BOM-2026-"
+    },
+    {
+      "label": "status-BR1789649933168677-3",
+      "corr": "qa-otel-eng22-flt-20260917h-status-3",
+      "http": 200,
+      "ok": true,
+      "clientMs": 179,
+      "errorCode": null,
+      "status": "Pending",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Pending\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1789649933168677\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-09-17T12:58:53\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"6E46-DEL-BOM-2026-"
+    },
+    {
+      "label": "status-BR1789649933168677-4",
+      "corr": "qa-otel-eng22-flt-20260917h-status-4",
+      "http": 200,
+      "ok": true,
+      "clientMs": 161,
+      "errorCode": null,
+      "status": "Confirmed",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Confirmed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1789649933168677\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-09-17T12:58:53\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"6E46-DEL-BOM-202"
+    },
+    {
+      "label": "detail",
+      "corr": "qa-otel-eng22-flt-20260917h-detail",
+      "http": 200,
+      "ok": true,
+      "clientMs": 150,
+      "errorCode": null,
+      "status": "Confirmed",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Confirmed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1789649933168677\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-09-17T12:58:53\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"6E46-DEL-BOM-202"
+    },
+    {
+      "label": "penalty",
+      "corr": "qa-otel-eng22-flt-20260917h-penalty",
+      "http": 200,
+      "ok": true,
+      "clientMs": 1693,
+      "errorCode": null,
+      "status": 0,
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1789649933168677\",\"pnr\":\"FVRVRV\",\"cancellationRequest\":{\"status\":\"Penalty Check Failed\",\"message\":\"Requested PNR cancellation is unavailable online. Kindly proceed with offline cancellation.\",\"createdAt\":\"2026-09"
+    },
+    {
+      "label": "cancel",
+      "corr": "qa-otel-eng22-flt-20260917h-cancel",
+      "http": 400,
+      "ok": false,
+      "clientMs": 127,
+      "errorCode": "VALIDATION_ERROR",
+      "status": null,
+      "bookingRefId": null,
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid cancelledBy. Allowed values: USER, ADMIN, SYSTEM\",\"details\":\"Field 'cancelledBy' must be one of: USER, ADMIN, SYSTEM\",\"timestamp\":\"2026-09-17T12:59:05Z\",\"request_id\":\"req-1789649945255\"},\"_meta\":{\"correlation_id\":\"qa-otel-eng"
+    },
+    {
+      "label": "after-cancel",
+      "corr": "qa-otel-eng22-flt-20260917h-after-cancel",
+      "http": 200,
+      "ok": true,
+      "clientMs": 217,
+      "errorCode": null,
+      "status": "Confirmed",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Confirmed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1789649933168677\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-09-17T12:58:53\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"6E46-DEL-BOM-202"
+    }
+  ],
+  "verdict": "PASS",
+  "ended": "2026-09-17T12:59:05.599Z"
+}

@@ -1,0 +1,978 @@
+{
+  "ranAt": "2026-08-27T10:51:02.987Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "tierId": "19597201",
+  "checkin": "2026-09-23",
+  "checkout": "2026-09-24",
+  "note": "Search + details only. No book/prebook/finalize.",
+  "counts": {
+    "PASS": 20,
+    "BUG": 0,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "id": 1,
+      "section": "UNAVAIL",
+      "rule": "Sahara Star HOTEL search no-availability uses new shape",
+      "how": "POST /v1/hotels/search type=HOTEL entityId=39649446 adults=6 2026-09-23",
+      "expected": "HTTP 200; totalResults>=1; results[0].available===false; price===null; id/name present; NOT old empty+message only",
+      "status": "PASS",
+      "actual": "http=200 total=1 message=- available=false priceNull=true name=Sahara Star",
+      "responseHotel": {
+        "id": "39649446",
+        "name": "Sahara Star",
+        "starRating": 5,
+        "available": false,
+        "priceIsNull": true,
+        "totalAmount": null,
+        "refundable": false,
+        "isGSTClaimable": false,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "oldEmpty": false
+    },
+    {
+      "id": 2,
+      "section": "AVAIL_SEARCH",
+      "rule": "Sahara Star available (1ADT) still returns priced search hit",
+      "how": "HOTEL search adults=1",
+      "expected": "available!==false; price.totalAmount>=0",
+      "status": "PASS",
+      "actual": "http=200 available=true totalAmt=8628.64",
+      "hotel": {
+        "id": "39649446",
+        "name": "Sahara Star",
+        "starRating": 5,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 8628.64,
+        "refundable": true,
+        "isGSTClaimable": true,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      }
+    },
+    {
+      "id": 3,
+      "section": "AVAIL_DETAILS",
+      "rule": "Sahara Star details for available stay has rooms + prices",
+      "how": "POST /v1/hotels/details entityId=39649446",
+      "expected": "HTTP 200; results[0].rooms length>0; room prices >=0; hotel name present",
+      "status": "PASS",
+      "actual": "http=200 rooms=300 pricedOk=300 neg=0 name=Sahara Star hotelAvail=true",
+      "hotelPrice": {
+        "baseFare": 8628.64,
+        "taxes": 0,
+        "convenienceFee": 0,
+        "totalAmount": 8628.64,
+        "currency": "INR",
+        "priceReference": null,
+        "gstAmount": 0,
+        "currencyConversion": {
+          "source": "INR",
+          "destination": "INR",
+          "rate": 1
+        }
+      },
+      "roomSample": [
+        {
+          "title": "MERCURY CITY KING/TWIN",
+          "total": 8628.64,
+          "mealType": "Breakfast Included"
+        },
+        {
+          "title": "CITY, DOUBLE OR TWIN BED",
+          "total": 9618.75,
+          "mealType": "Breakfast Included"
+        },
+        {
+          "title": "Standard Room",
+          "total": 9691.86,
+          "mealType": "Breakfast Included"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "section": "CITY_SEARCH",
+      "rule": "Delhi: available listing fields intact",
+      "how": "CITY search 227760:IN",
+      "expected": "HTTP 200; available hotels have name/star/price/isGSTClaimable",
+      "status": "PASS",
+      "actual": "http=200 total=1570 page=20 avail=20 unavail=0 availOk=true",
+      "availableSample": [
+        {
+          "id": "72390430",
+          "name": "Transit POD Stay – New Delhi | Airport Transit",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 381.64000000000004,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "72390384",
+          "name": "A One Hostel",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 411.76,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 5,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "72459441",
+          "name": "GAVARI INDIA DELHI HOSTEL",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 421.35999999999996,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "unavailShapeOk": true
+    },
+    {
+      "id": 5,
+      "section": "CITY_DETAILS",
+      "rule": "Delhi: details OK for available hotel Transit POD Stay – New Delhi | Airport Transit",
+      "how": "POST /v1/hotels/details entityId=72390430",
+      "expected": "HTTP 200; hotel id/name/star; rooms[]>0 with non-negative prices; isGSTClaimable boolean",
+      "status": "PASS",
+      "actual": "http=200 idMatch=true rooms=1 pricedOk=1 neg=0 star=1 gst=false",
+      "searchHotel": {
+        "id": "72390430",
+        "name": "Transit POD Stay – New Delhi | Airport Transit",
+        "starRating": 3,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 381.64000000000004,
+        "refundable": true,
+        "isGSTClaimable": false,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "72390430",
+        "name": "Transit POD Stay",
+        "starRating": 1,
+        "available": true,
+        "isGSTClaimable": false,
+        "hotelTotal": 381.64000000000004
+      },
+      "roomSample": [
+        {
+          "title": "Deluxe Shared Dormitory, City View",
+          "total": 381.64000000000004,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "section": "CITY_SEARCH",
+      "rule": "Mumbai: available listing fields intact",
+      "how": "CITY search 357389:IN",
+      "expected": "HTTP 200; available hotels have name/star/price/isGSTClaimable",
+      "status": "PASS",
+      "actual": "http=200 total=964 page=20 avail=20 unavail=0 availOk=true",
+      "availableSample": [
+        {
+          "id": "41617696",
+          "name": "Indigo 66 - Boys Hostel near Seepz MIDC Andheri",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 338.37,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "15079424",
+          "name": "New Shahana - Hostel",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 332.28,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "31325671",
+          "name": "Perfect Dormitory",
+          "starRating": 5,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 379.73,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "unavailShapeOk": true
+    },
+    {
+      "id": 7,
+      "section": "CITY_DETAILS",
+      "rule": "Mumbai: details OK for available hotel Indigo 66 - Boys Hostel near Seepz MIDC Andheri",
+      "how": "POST /v1/hotels/details entityId=41617696",
+      "expected": "HTTP 200; hotel id/name/star; rooms[]>0 with non-negative prices; isGSTClaimable boolean",
+      "status": "PASS",
+      "actual": "http=200 idMatch=true rooms=1 pricedOk=1 neg=0 star=2 gst=false",
+      "searchHotel": {
+        "id": "41617696",
+        "name": "Indigo 66 - Boys Hostel near Seepz MIDC Andheri",
+        "starRating": 2,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 338.37,
+        "refundable": true,
+        "isGSTClaimable": false,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "41617696",
+        "name": "Indigo 66 - Boys Hostel near Seepz MIDC Andheri",
+        "starRating": 2,
+        "available": true,
+        "isGSTClaimable": false,
+        "hotelTotal": 338.37
+      },
+      "roomSample": [
+        {
+          "title": "Standard Room",
+          "total": 338.37,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "section": "CITY_SEARCH",
+      "rule": "Bangalore: available listing fields intact",
+      "how": "CITY search 341153:IN",
+      "expected": "HTTP 200; available hotels have name/star/price/isGSTClaimable",
+      "status": "PASS",
+      "actual": "http=200 total=1608 page=20 avail=20 unavail=0 availOk=true",
+      "availableSample": [
+        {
+          "id": "72256697",
+          "name": "Stopover Backpackers Stay",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 505.66,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 4,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "71197028",
+          "name": "Soloscape budget friendly backpackers hostel",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 497.86,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "72267327",
+          "name": "goSTOPS Bengaluru Jayanagar",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 530.33,
+          "refundable": false,
+          "isGSTClaimable": false,
+          "amenitiesCount": 4,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "unavailShapeOk": true
+    },
+    {
+      "id": 9,
+      "section": "CITY_DETAILS",
+      "rule": "Bangalore: details OK for available hotel Stopover Backpackers Stay",
+      "how": "POST /v1/hotels/details entityId=72256697",
+      "expected": "HTTP 200; hotel id/name/star; rooms[]>0 with non-negative prices; isGSTClaimable boolean",
+      "status": "PASS",
+      "actual": "http=200 idMatch=true rooms=7 pricedOk=7 neg=0 star=1 gst=true",
+      "searchHotel": {
+        "id": "72256697",
+        "name": "Stopover Backpackers Stay",
+        "starRating": 1,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 505.66,
+        "refundable": true,
+        "isGSTClaimable": false,
+        "amenitiesCount": 4,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "72256697",
+        "name": "Stopover Backpackers Stay",
+        "starRating": 1,
+        "available": true,
+        "isGSTClaimable": true,
+        "hotelTotal": 490.94
+      },
+      "roomSample": [
+        {
+          "title": "Standard Shared Dormitory",
+          "total": 490.94,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Standard Shared Dormitory, Women only",
+          "total": 490.94,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Standard Shared Dormitory, Garden View",
+          "total": 490.94,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "section": "CITY_SEARCH",
+      "rule": "Chennai: available listing fields intact",
+      "how": "CITY search 228269:IN",
+      "expected": "HTTP 200; available hotels have name/star/price/isGSTClaimable",
+      "status": "PASS",
+      "actual": "http=200 total=677 page=20 avail=20 unavail=0 availOk=true",
+      "availableSample": [
+        {
+          "id": "72382755",
+          "name": "THE WHITEGLOW PREMIUM",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 526.94,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 0,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "41308464",
+          "name": "Aum karthikeya residency",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 672.87,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "15789163",
+          "name": "Thaj Regency",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 758.2,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 0,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "unavailShapeOk": true
+    },
+    {
+      "id": 11,
+      "section": "CITY_DETAILS",
+      "rule": "Chennai: details OK for available hotel THE WHITEGLOW PREMIUM",
+      "how": "POST /v1/hotels/details entityId=72382755",
+      "expected": "HTTP 200; hotel id/name/star; rooms[]>0 with non-negative prices; isGSTClaimable boolean",
+      "status": "PASS",
+      "actual": "http=200 idMatch=true rooms=2 pricedOk=2 neg=0 star=3 gst=false",
+      "searchHotel": {
+        "id": "72382755",
+        "name": "THE WHITEGLOW PREMIUM",
+        "starRating": 3,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 526.94,
+        "refundable": true,
+        "isGSTClaimable": false,
+        "amenitiesCount": 0,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "72382755",
+        "name": "THE WHITEGLOW PREMIUM",
+        "starRating": 3,
+        "available": true,
+        "isGSTClaimable": false,
+        "hotelTotal": 317.81
+      },
+      "roomSample": [
+        {
+          "title": "Deluxe Double",
+          "total": 317.81,
+          "mealType": "Breakfast Included"
+        },
+        {
+          "title": "Family Suite",
+          "total": 536.1400000000001,
+          "mealType": "Breakfast Included"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "section": "CITY_SEARCH",
+      "rule": "Pune: available listing fields intact",
+      "how": "CITY search 328605:IN",
+      "expected": "HTTP 200; available hotels have name/star/price/isGSTClaimable",
+      "status": "PASS",
+      "actual": "http=200 total=510 page=20 avail=20 unavail=0 availOk=true",
+      "availableSample": [
+        {
+          "id": "51962885",
+          "name": "Backpackers hostel",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 566.27,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "70456961",
+          "name": "Galaxy Executive",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 640.22,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 3,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "39065394",
+          "name": "Hoshtel99 - Prime - Stay & Cowork - A Backpacker Hostel",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 762.11,
+          "refundable": false,
+          "isGSTClaimable": false,
+          "amenitiesCount": 1,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "unavailShapeOk": true
+    },
+    {
+      "id": 13,
+      "section": "CITY_DETAILS",
+      "rule": "Pune: details OK for available hotel Backpackers hostel",
+      "how": "POST /v1/hotels/details entityId=51962885",
+      "expected": "HTTP 200; hotel id/name/star; rooms[]>0 with non-negative prices; isGSTClaimable boolean",
+      "status": "PASS",
+      "actual": "http=200 idMatch=true rooms=2 pricedOk=2 neg=0 star=3 gst=false",
+      "searchHotel": {
+        "id": "51962885",
+        "name": "Backpackers hostel",
+        "starRating": 1,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 566.27,
+        "refundable": true,
+        "isGSTClaimable": false,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "51962885",
+        "name": "Backpackers hostel",
+        "starRating": 3,
+        "available": true,
+        "isGSTClaimable": false,
+        "hotelTotal": 566.27
+      },
+      "roomSample": [
+        {
+          "title": "Bed in 6 Bed Male Dormitory",
+          "total": 566.27,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Bed in 8 Bed Male Dormitory",
+          "total": 566.27,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "section": "CITY_SEARCH",
+      "rule": "Hyderabad: available listing fields intact",
+      "how": "CITY search 227706:IN",
+      "expected": "HTTP 200; available hotels have name/star/price/isGSTClaimable",
+      "status": "PASS",
+      "actual": "http=200 total=853 page=20 avail=20 unavail=0 availOk=true",
+      "availableSample": [
+        {
+          "id": "72383157",
+          "name": "Hotel Lotus Grand Ameerpet",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 197.66,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 2,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "72310812",
+          "name": "Deccan Dormitory",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 553.37,
+          "refundable": false,
+          "isGSTClaimable": false,
+          "amenitiesCount": 4,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "30702352",
+          "name": "Kygo hostels",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 664.91,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "unavailShapeOk": true
+    },
+    {
+      "id": 15,
+      "section": "CITY_DETAILS",
+      "rule": "Hyderabad: details OK for available hotel Hotel Lotus Grand Ameerpet",
+      "how": "POST /v1/hotels/details entityId=72383157",
+      "expected": "HTTP 200; hotel id/name/star; rooms[]>0 with non-negative prices; isGSTClaimable boolean",
+      "status": "PASS",
+      "actual": "http=200 idMatch=true rooms=2 pricedOk=2 neg=0 star=3 gst=false",
+      "searchHotel": {
+        "id": "72383157",
+        "name": "Hotel Lotus Grand Ameerpet",
+        "starRating": 3,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 197.66,
+        "refundable": true,
+        "isGSTClaimable": false,
+        "amenitiesCount": 2,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "72383157",
+        "name": "Hotel Lotus Grand Ameerpet",
+        "starRating": 3,
+        "available": true,
+        "isGSTClaimable": false,
+        "hotelTotal": 197.66
+      },
+      "roomSample": [
+        {
+          "title": "Standard Room",
+          "total": 197.66,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Standard Room",
+          "total": 2851.84,
+          "mealType": "Breakfast Included"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "section": "CITY_SEARCH",
+      "rule": "Goa: available listing fields intact",
+      "how": "CITY search 328649:IN",
+      "expected": "HTTP 200; available hotels have name/star/price/isGSTClaimable",
+      "status": "PASS",
+      "actual": "http=200 total=114 page=20 avail=20 unavail=0 availOk=true",
+      "availableSample": [
+        {
+          "id": "70750317",
+          "name": "The Hosteller Goa, Old Goa",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 548.51,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "71214505",
+          "name": "goSTOPS PLUS Goa, Panaji",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 574.13,
+          "refundable": false,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "15217623",
+          "name": "THE OLD QUARTER HOSTEL",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 767.5200000000001,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "unavailShapeOk": true
+    },
+    {
+      "id": 17,
+      "section": "CITY_DETAILS",
+      "rule": "Goa: details OK for available hotel The Hosteller Goa, Old Goa",
+      "how": "POST /v1/hotels/details entityId=70750317",
+      "expected": "HTTP 200; hotel id/name/star; rooms[]>0 with non-negative prices; isGSTClaimable boolean",
+      "status": "PASS",
+      "actual": "http=200 idMatch=true rooms=21 pricedOk=21 neg=0 star=3 gst=true",
+      "searchHotel": {
+        "id": "70750317",
+        "name": "The Hosteller Goa, Old Goa",
+        "starRating": 3,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 548.51,
+        "refundable": true,
+        "isGSTClaimable": false,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "70750317",
+        "name": "The Hosteller Goa, Old Goa",
+        "starRating": 3,
+        "available": true,
+        "isGSTClaimable": true,
+        "hotelTotal": 575.9
+      },
+      "roomSample": [
+        {
+          "title": "Shared room",
+          "total": 567.16,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Bed in 8 Bed Mixed Dormitory with Balcony",
+          "total": 568.44,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Bed in 8 Bed Mixed Dormitory with Balcony",
+          "total": 575.9,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "section": "CITY_SEARCH",
+      "rule": "Ahmedabad: available listing fields intact",
+      "how": "CITY search 246774:IN",
+      "expected": "HTTP 200; available hotels have name/star/price/isGSTClaimable",
+      "status": "PASS",
+      "actual": "http=200 total=522 page=20 avail=20 unavail=0 availOk=true",
+      "availableSample": [
+        {
+          "id": "17336042",
+          "name": "Hotel Milan",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 563.47,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "16307535",
+          "name": "HOTEL JASRAJ",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 645.0799999999999,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 4,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "72377141",
+          "name": "HOTEL SIGNOR",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 645.59,
+          "refundable": true,
+          "isGSTClaimable": false,
+          "amenitiesCount": 4,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "unavailShapeOk": true
+    },
+    {
+      "id": 19,
+      "section": "CITY_DETAILS",
+      "rule": "Ahmedabad: details OK for available hotel Hotel Milan",
+      "how": "POST /v1/hotels/details entityId=17336042",
+      "expected": "HTTP 200; hotel id/name/star; rooms[]>0 with non-negative prices; isGSTClaimable boolean",
+      "status": "PASS",
+      "actual": "http=200 idMatch=true rooms=5 pricedOk=5 neg=0 star=1 gst=false",
+      "searchHotel": {
+        "id": "17336042",
+        "name": "Hotel Milan",
+        "starRating": 1,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 563.47,
+        "refundable": true,
+        "isGSTClaimable": false,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "17336042",
+        "name": "Hotel Milan",
+        "starRating": 1,
+        "available": true,
+        "isGSTClaimable": false,
+        "hotelTotal": 563.47
+      },
+      "roomSample": [
+        {
+          "title": "Dormitory- Men Only",
+          "total": 563.47,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Deluxe",
+          "total": 1669.1399999999999,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Family Deluxe Room",
+          "total": 2287.8199999999997,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "section": "UNAVAIL",
+      "rule": "Mumbai sample HOTEL searches with adults=6 prefer new unavail shape",
+      "how": "5 hotels from Mumbai listing",
+      "expected": "When no inventory: available:false+price:null (not empty message envelope)",
+      "status": "PASS",
+      "actual": "newUnavail=5 oldEmpty=0",
+      "probes": [
+        {
+          "id": "41617696",
+          "name": "Indigo 66 - Boys Hostel near Seepz MIDC Andheri",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "41617696",
+            "name": "Indigo 66 - Boys Hostel near Seepz MIDC Andheri",
+            "starRating": 2,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": false,
+            "amenitiesCount": 6,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        },
+        {
+          "id": "15079424",
+          "name": "New Shahana - Hostel",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "15079424",
+            "name": "New Shahana - Hostel",
+            "starRating": 3,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": false,
+            "amenitiesCount": 4,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        },
+        {
+          "id": "31325671",
+          "name": "Perfect Dormitory",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "31325671",
+            "name": "Perfect Dormitory",
+            "starRating": 5,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": false,
+            "amenitiesCount": 6,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        },
+        {
+          "id": "51359546",
+          "name": "Rest Inn Hostel Dormitory",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "51359546",
+            "name": "Rest Inn Hostel Dormitory",
+            "starRating": 2,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": false,
+            "amenitiesCount": 6,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        },
+        {
+          "id": "70748967",
+          "name": "AAFEE CABIN STAY & DORMITORY",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "70748967",
+            "name": "AAFEE CABIN STAY & DORMITORY",
+            "starRating": 1,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": false,
+            "amenitiesCount": 6,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        }
+      ]
+    }
+  ]
+}

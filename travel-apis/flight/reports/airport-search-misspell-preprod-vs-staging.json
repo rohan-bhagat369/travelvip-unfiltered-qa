@@ -1,0 +1,679 @@
+{
+  "ranAt": "2026-08-27T10:09:33.661Z",
+  "preprod": "https://preprod-api.travelvip.ai",
+  "staging": "https://api-staging.travelvip.ai",
+  "counts": {
+    "preprod": {
+      "PASS": 59,
+      "BUG": 23,
+      "NOT_TESTED": 0
+    },
+    "staging": {
+      "PASS": 19,
+      "BUG": 63,
+      "NOT_TESTED": 0
+    },
+    "bothPass": 18,
+    "preprodBetter": 41,
+    "stagingBetter": 1,
+    "bothMiss": 22
+  },
+  "rows": [
+    {
+      "id": 1,
+      "q": "bangalor",
+      "expect": "BLR",
+      "preprod": "BGR:Bangor",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 2,
+      "q": "banglor",
+      "expect": "BLR",
+      "preprod": "BGR:Bangor | BKK:Bangkok | PKG:Lumut | DMK:Bangkok",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 3,
+      "q": "bangalore",
+      "expect": "BLR",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 4,
+      "q": "bengaluru",
+      "expect": "BLR",
+      "preprod": "BLR:Bengaluru | IXE:Mangaluru",
+      "staging": "BLR:Bengaluru",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 5,
+      "q": "bengaloor",
+      "expect": "BLR",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 6,
+      "q": "bengalur",
+      "expect": "BLR",
+      "preprod": "BLR:Bengaluru",
+      "staging": "BLR:Bengaluru",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 7,
+      "q": "bangaluru",
+      "expect": "BLR",
+      "preprod": "IXE:Mangaluru | BLR:Bengaluru",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 8,
+      "q": "bengaluruu",
+      "expect": "BLR",
+      "preprod": "BLR:Bengaluru",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 9,
+      "q": "mumbi",
+      "expect": "BOM",
+      "preprod": "NMI:Navi Mumbai | BOM:Mumbai | MCZ:Maceió | GHD:Gimbi | DUM:Dumai",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 10,
+      "q": "bombay",
+      "expect": "BOM",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 11,
+      "q": "mumabai",
+      "expect": "BOM",
+      "preprod": "NMI:Navi Mumbai | BOM:Mumbai",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 12,
+      "q": "muumbai",
+      "expect": "BOM",
+      "preprod": "NMI:Navi Mumbai | BOM:Mumbai",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 13,
+      "q": "dehli",
+      "expect": "DEL",
+      "preprod": "DEL:New Delhi",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 14,
+      "q": "delli",
+      "expect": "DEL",
+      "preprod": "DEL:New Delhi | LSV:Las Vegas | OAJ:Richlands | GAG:Ellis County",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 15,
+      "q": "newdelh",
+      "expect": "DEL",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 16,
+      "q": "new delh",
+      "expect": "DEL",
+      "preprod": "DEL:New Delhi | AKL:Auckland | NYC:New York City | KBZ:New Plymouth | NPL:New Plymouth",
+      "staging": "NYC:New York City | CTS:Sapporo | MSY:New Orleans | WLG:Wellington | CHC:Christchurch",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 17,
+      "q": "newdlhi",
+      "expect": "DEL",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 18,
+      "q": "chenai",
+      "expect": "MAA",
+      "preprod": "MAA:Chennai | CEX:Fairbanks North Star Borough | REQ:Chagai",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 19,
+      "q": "chennaii",
+      "expect": "MAA",
+      "preprod": "MAA:Chennai",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 20,
+      "q": "madrass",
+      "expect": "MAA",
+      "preprod": "MDJ:Madras",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 21,
+      "q": "madras",
+      "expect": "MAA",
+      "preprod": "MDJ:Madras | MAE:Madera",
+      "staging": "MDJ:Madras",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 22,
+      "q": "hydrabd",
+      "expect": "HYD",
+      "preprod": "HYD:Hyderabad | HDD:Hyderabad | BPM:Hyderabad",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 23,
+      "q": "hyderabd",
+      "expect": "HYD",
+      "preprod": "HYD:Hyderabad | HDD:Hyderabad | BPM:Hyderabad",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 24,
+      "q": "hyderbad",
+      "expect": "HYD",
+      "preprod": "HYD:Hyderabad | HDD:Hyderabad | BPM:Hyderabad",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 25,
+      "q": "hydrabad",
+      "expect": "HYD",
+      "preprod": "HYD:Hyderabad | HDD:Hyderabad | BPM:Hyderabad",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 26,
+      "q": "kolkat",
+      "expect": "CCU",
+      "preprod": "CCU:Kolkata | IDR:Indore | DEX:Kabupaten Yahukimo | KXB:Kabupaten Kolaka | PUM:Kabupaten Kolaka",
+      "staging": "CCU:Kolkata",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 27,
+      "q": "kolkataa",
+      "expect": "CCU",
+      "preprod": "CCU:Kolkata",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 28,
+      "q": "calcuta",
+      "expect": "CCU",
+      "preprod": "ALU:Caluula | CCJ:Kozhikode | CVI:Caleta Olivia",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 29,
+      "q": "calcutta",
+      "expect": "CCU",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 30,
+      "q": "kolkatta",
+      "expect": "CCU",
+      "preprod": "CCU:Kolkata",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 31,
+      "q": "ahmedabd",
+      "expect": "AMD",
+      "preprod": "AMD:Ahmedabad",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 32,
+      "q": "ahmdabad",
+      "expect": "AMD",
+      "preprod": "AMD:Ahmedabad",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 33,
+      "q": "ahmedabaad",
+      "expect": "AMD",
+      "preprod": "AMD:Ahmedabad",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 34,
+      "q": "amdavad",
+      "expect": "AMD",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 35,
+      "q": "amritsa",
+      "expect": "ATQ",
+      "preprod": "ATQ:Amritsar",
+      "staging": "ATQ:Amritsar",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 36,
+      "q": "amristsar",
+      "expect": "ATQ",
+      "preprod": "ATQ:Amritsar",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 37,
+      "q": "amritsar",
+      "expect": "ATQ",
+      "preprod": "ATQ:Amritsar",
+      "staging": "ATQ:Amritsar",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 38,
+      "q": "pone",
+      "expect": "PNQ",
+      "preprod": "PIC:Pine Cay | XPR:Pine Ridge | CZP:North Pole | PBF:Pine Bluff | LNP:Wise",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 39,
+      "q": "punne",
+      "expect": "PNQ",
+      "preprod": "PNQ:Pune | CEQ:Cannes | JCA:Cannes | PCH:Juan Francisco Bulnes",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 40,
+      "q": "poona",
+      "expect": "PNQ",
+      "preprod": "AON:Kainantu | BNV:Lae",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 41,
+      "q": "goa",
+      "expect": "GOI/GOX",
+      "preprod": "GOA:Mele | GOI:Vasco da Gama",
+      "staging": "GOI:Vasco da Gama | GOX:Pernem | GOA:Mele",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 42,
+      "q": "goaa",
+      "expect": "GOI/GOX",
+      "preprod": "OYA:Goya | BGN:Belaya Gora | GOM:Goma | GOC:Popondetta | GOI:Vasco da Gama",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 43,
+      "q": "dabolim",
+      "expect": "GOI",
+      "preprod": "GOI:Vasco da Gama",
+      "staging": "GOI:Vasco da Gama",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 44,
+      "q": "jaipu",
+      "expect": "JAI",
+      "preprod": "JAI:Jaipur | MXQ:Cairu",
+      "staging": "JAI:Jaipur",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 45,
+      "q": "jaipurr",
+      "expect": "JAI",
+      "preprod": "JAI:Jaipur | RGT:Kabupaten Indragiri Hulu | RPR:Raipur",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 46,
+      "q": "jaypur",
+      "expect": "JAI",
+      "preprod": "JAI:Jaipur | KNU:Kanpur | YJA:Jasper Park Lodge | KNU:Kanpur | JAS:Jasper",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 47,
+      "q": "lucknw",
+      "expect": "LKO",
+      "preprod": "LKO:Lucknow",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 48,
+      "q": "lakhnau",
+      "expect": "LKO",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 49,
+      "q": "lucknou",
+      "expect": "LKO",
+      "preprod": "NKG:Nanjing | LKO:Lucknow",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 50,
+      "q": "kochi",
+      "expect": "COK",
+      "preprod": "COK:Kochi | KCZ:Nankoku | AER:Sochi | LMM:Los Mochis | OCH:Nacogdoches",
+      "staging": "KCZ:Nankoku",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 51,
+      "q": "cochin",
+      "expect": "COK",
+      "preprod": "COK:Kochi",
+      "staging": "COK:Angamali",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 52,
+      "q": "cochinn",
+      "expect": "COK",
+      "preprod": "COK:Kochi | CWX:Willcox | TRM:Palm Springs",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 53,
+      "q": "kocchi",
+      "expect": "COK",
+      "preprod": "KCZ:Nankoku | COK:Kochi",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 54,
+      "q": "trivandrum",
+      "expect": "TRV",
+      "preprod": "(empty)",
+      "staging": "TRV:Thiruvananthapuram",
+      "cmp": "STAGING_BETTER"
+    },
+    {
+      "id": 55,
+      "q": "trivandrm",
+      "expect": "TRV",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 56,
+      "q": "thiruvananthapuram",
+      "expect": "TRV",
+      "preprod": "TRV:Thiruvananthapuram",
+      "staging": "TRV:Thiruvananthapuram",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 57,
+      "q": "srinagr",
+      "expect": "SXR",
+      "preprod": "SXR:Srinagar",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 58,
+      "q": "srinagar",
+      "expect": "SXR",
+      "preprod": "SXR:Srinagar",
+      "staging": "SXR:Srinagar",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 59,
+      "q": "varanasi",
+      "expect": "VNS",
+      "preprod": "VNS:Varanasi",
+      "staging": "VNS:Varanasi",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 60,
+      "q": "varanasi",
+      "expect": "VNS",
+      "preprod": "VNS:Varanasi",
+      "staging": "VNS:Varanasi",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 61,
+      "q": "benaras",
+      "expect": "VNS",
+      "preprod": "(empty)",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 62,
+      "q": "banaras",
+      "expect": "VNS",
+      "preprod": "NAS:Nassau | WZY:Nassau | GTC:Marsh Harbour | HBI:Dunmore Town | NSB:Alice Town",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 63,
+      "q": "indor",
+      "expect": "IDR",
+      "preprod": "IDR:Indore | SAQ:San Andros | ASD:Andros Town | RCP:Lake and Peninsula Borough | SAI:Srŏk Prasat Bakong",
+      "staging": "IDR:Indore",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 64,
+      "q": "indoor",
+      "expect": "IDR",
+      "preprod": "IDR:Indore | YQG:Windsor",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 65,
+      "q": "nagpr",
+      "expect": "NAG",
+      "preprod": "RMD:Ramagundam | ANE:Seiches-sur-le-Loir | NDR:Al Aaroui | NAG:Nagpur",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 66,
+      "q": "nagpur",
+      "expect": "NAG",
+      "preprod": "NAG:Nagpur | KNU:Kanpur | KNU:Kanpur | JAI:Jaipur",
+      "staging": "NAG:Nagpur",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 67,
+      "q": "chandigar",
+      "expect": "IXC",
+      "preprod": "IXC:Chandigarh | WCR:Azle",
+      "staging": "IXC:Chandigarh",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 68,
+      "q": "chandigrah",
+      "expect": "IXC",
+      "preprod": "IXC:Chandigarh",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 69,
+      "q": "guwhati",
+      "expect": "GAU",
+      "preprod": "GAU:Guwahati",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 70,
+      "q": "guwahati",
+      "expect": "GAU",
+      "preprod": "GAU:Guwahati",
+      "staging": "GAU:Guwahati",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 71,
+      "q": "gauhati",
+      "expect": "GAU",
+      "preprod": "WLN:Craig",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    },
+    {
+      "id": 72,
+      "q": "singapor",
+      "expect": "SIN",
+      "preprod": "SIN:Singapore | XSP:Singapore | TGA:Singapore | QPG:Singapore",
+      "staging": "SIN:Singapore | XSP:Singapore | TGA:Singapore | QPG:Singapore",
+      "cmp": "BOTH_OK"
+    },
+    {
+      "id": 73,
+      "q": "singpore",
+      "expect": "SIN",
+      "preprod": "SIN:Singapore | XSP:Singapore | TGA:Singapore | QPG:Singapore",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 74,
+      "q": "singapre",
+      "expect": "SIN",
+      "preprod": "SIN:Singapore | XSP:Singapore | TGA:Singapore | QPG:Singapore",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 75,
+      "q": "dubia",
+      "expect": "DXB",
+      "preprod": "DXB:Dubai | XNB:Dubai | BUX:Bunia | MZL:Manizales | DPE:Dieppe",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 76,
+      "q": "duabi",
+      "expect": "DXB",
+      "preprod": "DXB:Dubai | XNB:Dubai | ZVJ:Abu Dhabi | SBE:Arawa | DWC:Dubai",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 77,
+      "q": "bangkock",
+      "expect": "BKK/DMK",
+      "preprod": "BKK:Bangkok | DMK:Bangkok",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 78,
+      "q": "bankok",
+      "expect": "BKK/DMK",
+      "preprod": "BGR:Bangor | BDY:Bandon | BKK:Bangkok | DVO:Davao | FKI:Kisangani",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 79,
+      "q": "londn",
+      "expect": "LON/LHR/LGW/STN/LCY",
+      "preprod": "LHR:London | LGW:London | YXU:London | LCY:London | LTN:London",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 80,
+      "q": "pariss",
+      "expect": "PAR/CDG/ORY",
+      "preprod": "ORY:Paris | PAR:Paris | GAS:Garissa | LBG:Paris | CDG:Paris",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 81,
+      "q": "tokoyo",
+      "expect": "TYO/HND/NRT",
+      "preprod": "TYO:Tokyo | HND:Tokyo | BKR:Bokoro | OKK:Kokomo | OKG:Ewo",
+      "staging": "(empty)",
+      "cmp": "PREPROD_BETTER"
+    },
+    {
+      "id": 82,
+      "q": "newyrok",
+      "expect": "NYC/JFK/EWR/LGA",
+      "preprod": "EWR:Newark | WWT:Azle",
+      "staging": "(empty)",
+      "cmp": "BOTH_MISS"
+    }
+  ]
+}

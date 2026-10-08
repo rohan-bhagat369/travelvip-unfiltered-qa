@@ -1,0 +1,187 @@
+{
+  "ranAt": "2026-08-13T00:02:30.283Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "ok": true,
+  "endpoint": "POST /v1/flights/booking/{bookingReference}/cancel?lang=en&currency=INR",
+  "booking": {
+    "trip": "RT",
+    "stops": {
+      "onward": "Direct",
+      "return": "Direct"
+    },
+    "pax": "2 ADT",
+    "fareType": "CORPORATE",
+    "route": "DEL-BOM-DEL",
+    "br": "BR1786579337263613",
+    "passengers": [
+      {
+        "paxId": "PAX1",
+        "name": "Reyansh Khuranaju"
+      },
+      {
+        "paxId": "PAX2",
+        "name": "Saanvi Khuranaju"
+      }
+    ],
+    "totalAmount": 24906,
+    "onward": {
+      "pnr": "ZY4S2U",
+      "onlineCancellation": true,
+      "airline": "IX",
+      "flight": "IX IX 1038"
+    },
+    "return": {
+      "pnr": "D7U7FH",
+      "onlineCancellation": true,
+      "airline": "IX",
+      "flight": "IX IX 8006"
+    },
+    "afterStatus": "Confirmed",
+    "itineraryAfter": [
+      {
+        "direction": "ONWARD",
+        "pnr": "ZY4S2U",
+        "onlineCancellation": true
+      },
+      {
+        "direction": "RETURN",
+        "pnr": "D7U7FH",
+        "onlineCancellation": true
+      }
+    ]
+  },
+  "perPaxCancel": {
+    "description": "Cancel PAX1 only on onward PNR (return untouched)",
+    "penalty": {
+      "request": {
+        "retryCount": 2,
+        "action": "PENALTY",
+        "pnr": "ZY4S2U",
+        "cancellationPaxList": [
+          "PAX1"
+        ],
+        "cancellationReason": "RT 2ADT CORPORATE per-pax PAX1"
+      },
+      "http": 200,
+      "response": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786579337263613",
+          "pnr": "ZY4S2U",
+          "cancellationRequest": {
+            "status": "Penalty Fetched",
+            "estimatedCancellationCharge": 950,
+            "estimatedRefund": 11503,
+            "totalAmount": 12453,
+            "totalPenalty": 950,
+            "penaltyBasis": "PER_PAX_POLICY",
+            "amount": 12453,
+            "convenienceFee": 0,
+            "ssr": 0,
+            "flexiCancelFee": 0,
+            "penalty": 600,
+            "cancellationFee": 350,
+            "perPax": [
+              {
+                "paxId": "PAX1",
+                "amount": 12453,
+                "convenienceFee": 0,
+                "ssr": 0,
+                "flexiCancelFee": 0,
+                "penalty": 600,
+                "cancellationFee": 350,
+                "totalPenalty": 950,
+                "refund": 11503,
+                "ssrPerPassenger": false
+              }
+            ],
+            "createdAt": "2026-08-13T00:02:26Z"
+          },
+          "paxScope": {
+            "scope": "PARTIAL_PAX",
+            "cancellationPaxList": [
+              "PAX1"
+            ],
+            "totalPaxOnPnr": 2,
+            "cancelledPaxCount": 1,
+            "prorated": true,
+            "penaltyQuotable": true,
+            "penaltyBasis": "PER_PAX_POLICY",
+            "penaltyPerPax": 600,
+            "chargedPax": 1
+          }
+        },
+        "_meta": {
+          "correlation_id": "2f0ce696-67f0-4ce1-9845-3238077599fc"
+        }
+      }
+    },
+    "cancel": {
+      "request": {
+        "retryCount": 2,
+        "action": "CANCEL",
+        "pnr": "ZY4S2U",
+        "cancellationPaxList": [
+          "PAX1"
+        ],
+        "cancellationReason": "RT 2ADT CORPORATE per-pax PAX1"
+      },
+      "http": 200,
+      "response": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786579337263613",
+          "pnr": "ZY4S2U",
+          "cancellationRequest": {
+            "status": "Cancellation Requested",
+            "estimatedCancellationCharge": 950,
+            "estimatedRefund": 11503,
+            "totalAmount": 12453,
+            "totalPenalty": 950,
+            "penaltyBasis": "PER_PAX_POLICY",
+            "amount": 12453,
+            "convenienceFee": 0,
+            "ssr": 0,
+            "flexiCancelFee": 0,
+            "penalty": 600,
+            "cancellationFee": 350,
+            "perPax": [
+              {
+                "paxId": "PAX1",
+                "amount": 12453,
+                "convenienceFee": 0,
+                "ssr": 0,
+                "flexiCancelFee": 0,
+                "penalty": 600,
+                "cancellationFee": 350,
+                "totalPenalty": 950,
+                "refund": 11503,
+                "ssrPerPassenger": false
+              }
+            ],
+            "createdAt": "2026-08-13T00:02:28Z"
+          },
+          "paxScope": {
+            "scope": "PARTIAL_PAX",
+            "cancellationPaxList": [
+              "PAX1"
+            ],
+            "totalPaxOnPnr": 2,
+            "cancelledPaxCount": 1,
+            "prorated": true,
+            "penaltyQuotable": true,
+            "penaltyBasis": "PER_PAX_POLICY",
+            "penaltyPerPax": 600,
+            "chargedPax": 1
+          }
+        },
+        "_meta": {
+          "correlation_id": "2f0ce696-67f0-4ce1-9845-3238077599fc"
+        }
+      }
+    }
+  },
+  "left": []
+}

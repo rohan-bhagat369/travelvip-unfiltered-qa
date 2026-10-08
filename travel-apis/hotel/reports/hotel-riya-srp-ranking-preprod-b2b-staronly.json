@@ -1,0 +1,1170 @@
+{
+  "ranAt": "2026-09-03T07:49:51.572Z",
+  "channel": "B2B",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 19597201,
+  "noBook": true,
+  "checkin": "2026-12-12",
+  "checkout": "2026-12-13",
+  "score": {
+    "PASS": 13,
+    "BUG": 12,
+    "NOT TESTED": 2,
+    "total": 27
+  },
+  "rows": [
+    {
+      "caseId": "1",
+      "rule": "Page one deliberate — Mumbai (metro)",
+      "how": "POST /v1/hotels/search Mumbai default sort offset=0 limit=20",
+      "expected": "Top 10 mostly 4-5★ (by starRating only — no name/alias brand check); no 1-2★/unrated cluster at top",
+      "actual": "ISSUES: 4/10 are 1-2★ near top; only 0/10 are 4-5★ (expect mostly premium stars on page one) | top=Hotel Riva International - Near Nesco Center(3★); FabHotel Bliss Executive(3★); Embassy Park BKC Mumbai(2★); Hotel Pacific Residency Near Airport(3★); Hotel Airport International(3★); Hotel Priceless(2★); HOTEL METROMAX(2★); Staywood Suites, Mumbai(3★); HOTEL ARTS INTERNATIONAL(3★); Hotel Sanjary International(2★)",
+      "status": "BUG",
+      "city": "Mumbai",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "9bac2c5f-2cb4-4236-a0f2-928c95922c7d",
+      "ms": 22643,
+      "top10": [
+        {
+          "rank": 1,
+          "id": "38359876",
+          "name": "Hotel Riva International - Near Nesco Center",
+          "star": 3,
+          "price": 1826.23,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "41629241",
+          "name": "FabHotel Bliss Executive",
+          "star": 3,
+          "price": 2160.27,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "39604631",
+          "name": "Embassy Park BKC Mumbai",
+          "star": 2,
+          "price": 2428.1,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "21189471",
+          "name": "Hotel Pacific Residency Near Airport",
+          "star": 3,
+          "price": 7239.93,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "39743604",
+          "name": "Hotel Airport International",
+          "star": 3,
+          "price": 4576.78,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "55181718",
+          "name": "Hotel Priceless",
+          "star": 2,
+          "price": 1803.08,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "70512391",
+          "name": "HOTEL METROMAX",
+          "star": 2,
+          "price": 2588.98,
+          "distance": null
+        },
+        {
+          "rank": 8,
+          "id": "71358344",
+          "name": "Staywood Suites, Mumbai",
+          "star": 3,
+          "price": 6423.89,
+          "distance": null
+        },
+        {
+          "rank": 9,
+          "id": "49538083",
+          "name": "HOTEL ARTS INTERNATIONAL",
+          "star": 3,
+          "price": 2650.47,
+          "distance": null
+        },
+        {
+          "rank": 10,
+          "id": "70517846",
+          "name": "Hotel Sanjary International",
+          "star": 2,
+          "price": 3643.8,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "1",
+      "rule": "Page one deliberate — Delhi (metro)",
+      "how": "POST /v1/hotels/search Delhi default sort offset=0 limit=20",
+      "expected": "Top 10 mostly 4-5★ (by starRating only — no name/alias brand check); no 1-2★/unrated cluster at top",
+      "actual": "ISSUES: only 2/10 are 4-5★ (expect mostly premium stars on page one) | top=YMCA Tourist Hostel(3★); Paying Guest Hotel(2★); Centaur Hotel IGI Airport(4★); Fabhotel Sparkling(3★); Hotel Bricks(3★); The Vegas By De Pavilion, Delhi Airport(4★); Hotel Delhi Darbar-Near Karolbagh Metro(3★); Hotel Aura - Near to New Delhi Railway Station(3★); Hotel Sunstar Heights(3★); Hotel Legend International - Just a min walk from New Delhi Railway Station(3★)",
+      "status": "BUG",
+      "city": "Delhi",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "e5fb30cf-bd8a-47ba-81db-173e9bdbc39d",
+      "ms": 21448,
+      "top10": [
+        {
+          "rank": 1,
+          "id": "39605722",
+          "name": "YMCA Tourist Hostel",
+          "star": 3,
+          "price": 4794.17,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "72458842",
+          "name": "Paying Guest Hotel",
+          "star": 2,
+          "price": 968.31,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "39659103",
+          "name": "Centaur Hotel IGI Airport",
+          "star": 4,
+          "price": 4334.53,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "70483742",
+          "name": "Fabhotel Sparkling",
+          "star": 3,
+          "price": 2152.55,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "41472414",
+          "name": "Hotel Bricks",
+          "star": 3,
+          "price": 2376.05,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "41226066",
+          "name": "The Vegas By De Pavilion, Delhi Airport",
+          "star": 4,
+          "price": 3387.57,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "72387566",
+          "name": "Hotel Delhi Darbar-Near Karolbagh Metro",
+          "star": 3,
+          "price": 1941.66,
+          "distance": null
+        },
+        {
+          "rank": 8,
+          "id": "39659590",
+          "name": "Hotel Aura - Near to New Delhi Railway Station",
+          "star": 3,
+          "price": 2841.35,
+          "distance": null
+        },
+        {
+          "rank": 9,
+          "id": "39558884",
+          "name": "Hotel Sunstar Heights",
+          "star": 3,
+          "price": 2608.21,
+          "distance": null
+        },
+        {
+          "rank": 10,
+          "id": "72225478",
+          "name": "Hotel Legend International - Just a min walk from New Delhi Railway Station",
+          "star": 3,
+          "price": 2146.58,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "1",
+      "rule": "Page one deliberate — Dubai (intl)",
+      "how": "POST /v1/hotels/search Dubai default sort offset=0 limit=20",
+      "expected": "Top 10 mostly 4-5★ (by starRating only — no name/alias brand check); no 1-2★/unrated cluster at top",
+      "actual": "ISSUES: 2/10 are 1-2★ near top; only 5/10 are 4-5★ (expect mostly premium stars on page one) | top=W Dubai - Mina Seyahi(5★); Studio M Al Barsha By Millennium(3★); Residence Inn by Marriott Sheikh Zayed Road(4★); Hues Boutique Hotel(4★); Crowne Plaza Dubai Jumeirah by IHG(5★); Ecos Dubai Hotel at Al Furjan(3★); ibis Styles Dubai Airport Hotel(3★); NAJIBA HOTEL(1★); Tamarind Hotel(1★); Address Downtown(5★)",
+      "status": "BUG",
+      "city": "Dubai",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "b42ebd66-e63d-47e2-a46a-0f2f116da1b2",
+      "ms": 23641,
+      "top10": [
+        {
+          "rank": 1,
+          "id": "41312742",
+          "name": "W Dubai - Mina Seyahi",
+          "star": 5,
+          "price": 36509.1,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "41312740",
+          "name": "Studio M Al Barsha By Millennium",
+          "star": 3,
+          "price": 7334.64,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "40287809",
+          "name": "Residence Inn by Marriott Sheikh Zayed Road",
+          "star": 4,
+          "price": 13002.29,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "15478724",
+          "name": "Hues Boutique Hotel",
+          "star": 4,
+          "price": 9972.34,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "41261072",
+          "name": "Crowne Plaza Dubai Jumeirah by IHG",
+          "star": 5,
+          "price": 8071.16,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "39969695",
+          "name": "Ecos Dubai Hotel at Al Furjan",
+          "star": 3,
+          "price": 9478.69,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "38689587",
+          "name": "ibis Styles Dubai Airport Hotel",
+          "star": 3,
+          "price": 5217.58,
+          "distance": null
+        },
+        {
+          "rank": 8,
+          "id": "70480231",
+          "name": "NAJIBA HOTEL",
+          "star": 1,
+          "price": 86265.42,
+          "distance": null
+        },
+        {
+          "rank": 9,
+          "id": "70480224",
+          "name": "Tamarind Hotel",
+          "star": 1,
+          "price": 6488.77,
+          "distance": null
+        },
+        {
+          "rank": 10,
+          "id": "32532184",
+          "name": "Address Downtown",
+          "star": 5,
+          "price": 63653.58,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "1",
+      "rule": "Page one deliberate — Bangkok (intl)",
+      "how": "POST /v1/hotels/search Bangkok default sort offset=0 limit=20",
+      "expected": "Top 10 mostly 4-5★ (by starRating only — no name/alias brand check); no 1-2★/unrated cluster at top",
+      "actual": "ISSUES: 2/10 are 1-2★ near top | top=BNK89 Hostel(2★); Lub d Bangkok Siam – New Look, Across from MBK & Skytrain Access(3★); Lumen Bangkok Udomsuk Station(4★); Wyndham Garden Bangkok Sukhumvit 42(4★); Honey House1(3★); Au Luna Bangkok Hostel(1★); At Residence Suvarnabhumi Hotel(4★); The Landmark Bangkok(5★); PARKROYAL Suites Bangkok(4★); Hide and Seek Boutique Hometel(4★)",
+      "status": "BUG",
+      "city": "Bangkok",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "e919e7b3-0ff5-4243-8fd1-90f3174b72bb",
+      "ms": 31739,
+      "top10": [
+        {
+          "rank": 1,
+          "id": "72457996",
+          "name": "BNK89 Hostel",
+          "star": 2,
+          "price": 2539.89,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "38904048",
+          "name": "Lub d Bangkok Siam – New Look, Across from MBK & Skytrain Access",
+          "star": 3,
+          "price": 1520.17,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "41623938",
+          "name": "Lumen Bangkok Udomsuk Station",
+          "star": 4,
+          "price": 5647.97,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "41378358",
+          "name": "Wyndham Garden Bangkok Sukhumvit 42",
+          "star": 4,
+          "price": 7249.72,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "39653800",
+          "name": "Honey House1",
+          "star": 3,
+          "price": 1985.77,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "72384049",
+          "name": "Au Luna Bangkok Hostel",
+          "star": 1,
+          "price": 1677.87,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "39636473",
+          "name": "At Residence Suvarnabhumi Hotel",
+          "star": 4,
+          "price": 4957.25,
+          "distance": null
+        },
+        {
+          "rank": 8,
+          "id": "39798556",
+          "name": "The Landmark Bangkok",
+          "star": 5,
+          "price": 11527.74,
+          "distance": null
+        },
+        {
+          "rank": 9,
+          "id": "39798554",
+          "name": "PARKROYAL Suites Bangkok",
+          "star": 4,
+          "price": 9171.87,
+          "distance": null
+        },
+        {
+          "rank": 10,
+          "id": "39651628",
+          "name": "Hide and Seek Boutique Hometel",
+          "star": 4,
+          "price": 4572.93,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "LAT",
+      "rule": "Slow search >30000ms — Bangkok",
+      "how": "first page timing",
+      "expected": "<30000ms",
+      "actual": "31739ms",
+      "status": "BUG",
+      "city": "Bangkok",
+      "requestId": "e919e7b3-0ff5-4243-8fd1-90f3174b72bb"
+    },
+    {
+      "caseId": "1",
+      "rule": "Page one deliberate — Jaipur (mid)",
+      "how": "POST /v1/hotels/search Jaipur default sort offset=0 limit=20",
+      "expected": "Top 10 mostly 4-5★ (by starRating only — no name/alias brand check); no 1-2★/unrated cluster at top",
+      "actual": "ISSUES: 3/10 are 1-2★ near top; only 4/10 are 4-5★ (expect mostly premium stars on page one) | top=Garg Niwas(2★); Shakun Hotels & Resorts Jaipur(5★); Riddhi villa(2★); Hotel R D Palace(3★); Royal Heritage Haveli(4★); Hotel Urban Boutique Jaipur(3★); Hotel Fort Chandragupt Jaipur(4★); Alsisar Haveli - A Heritage Hotel(4★); Madpackers Jaipur(1★); The Harmony Circle - Jaipur(3★)",
+      "status": "BUG",
+      "city": "Jaipur",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "03131052-a0ca-4fcc-add9-83a6d72c6fe3",
+      "ms": 12896,
+      "top10": [
+        {
+          "rank": 1,
+          "id": "39841038",
+          "name": "Garg Niwas",
+          "star": 2,
+          "price": 1932.92,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "39710920",
+          "name": "Shakun Hotels & Resorts Jaipur",
+          "star": 5,
+          "price": 11437.18,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "15224887",
+          "name": "Riddhi villa",
+          "star": 2,
+          "price": 1039.91,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "71359433",
+          "name": "Hotel R D Palace",
+          "star": 3,
+          "price": 1110.72,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "39609090",
+          "name": "Royal Heritage Haveli",
+          "star": 4,
+          "price": 24793.39,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "70512397",
+          "name": "Hotel Urban Boutique Jaipur",
+          "star": 3,
+          "price": 2308.5,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "39659113",
+          "name": "Hotel Fort Chandragupt Jaipur",
+          "star": 4,
+          "price": 1925.55,
+          "distance": null
+        },
+        {
+          "rank": 8,
+          "id": "39659111",
+          "name": "Alsisar Haveli - A Heritage Hotel",
+          "star": 4,
+          "price": 10731.34,
+          "distance": null
+        },
+        {
+          "rank": 9,
+          "id": "62003936",
+          "name": "Madpackers Jaipur",
+          "star": 1,
+          "price": 659.48,
+          "distance": null
+        },
+        {
+          "rank": 10,
+          "id": "72410419",
+          "name": "The Harmony Circle - Jaipur",
+          "star": 3,
+          "price": 1669.17,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "1",
+      "rule": "Page one deliberate — Kochi (mid)",
+      "how": "POST /v1/hotels/search Kochi default sort offset=0 limit=20",
+      "expected": "Top 10 mostly 4-5★ (by starRating only — no name/alias brand check); no 1-2★/unrated cluster at top",
+      "actual": "ISSUES: 4/10 are 1-2★ near top; only 2/10 are 4-5★ (expect mostly premium stars on page one) | top=Forte Kochi(4★); Rossitta Wood Castle(2★); Sheeba's Homestay(1★); Fortkochi Beach Inn(3★); Palm Wave Beach Resort(3★); Swasthigriha's Beach Homestay, Cherai(1★); Elim Homestay(3★); LOUIS BACKPACKERS HOSTEL(3★); Ama Stays & Trails Sherlys Ente Kumbalanghi, Kochi(5★); The Santa Maria hostel Fort Kochi(2★)",
+      "status": "BUG",
+      "city": "Kochi",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "f0760117-6698-414f-bf62-402639689c93",
+      "ms": 11498,
+      "top10": [
+        {
+          "rank": 1,
+          "id": "15776044",
+          "name": "Forte Kochi",
+          "star": 4,
+          "price": 29803.53,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "39677335",
+          "name": "Rossitta Wood Castle",
+          "star": 2,
+          "price": 5543.21,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "40039955",
+          "name": "Sheeba's Homestay",
+          "star": 1,
+          "price": 1156.48,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "39672567",
+          "name": "Fortkochi Beach Inn",
+          "star": 3,
+          "price": 2843.09,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "72390601",
+          "name": "Palm Wave Beach Resort",
+          "star": 3,
+          "price": 10069.89,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "16792850",
+          "name": "Swasthigriha's Beach Homestay, Cherai",
+          "star": 1,
+          "price": 3138.06,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "39643798",
+          "name": "Elim Homestay",
+          "star": 3,
+          "price": 1894.39,
+          "distance": null
+        },
+        {
+          "rank": 8,
+          "id": "72403220",
+          "name": "LOUIS BACKPACKERS HOSTEL",
+          "star": 3,
+          "price": 883.26,
+          "distance": null
+        },
+        {
+          "rank": 9,
+          "id": "16794810",
+          "name": "Ama Stays & Trails Sherlys Ente Kumbalanghi, Kochi",
+          "star": 5,
+          "price": 121451,
+          "distance": null
+        },
+        {
+          "rank": 10,
+          "id": "15788952",
+          "name": "The Santa Maria hostel Fort Kochi",
+          "star": 2,
+          "price": 827.02,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "1",
+      "rule": "Page one deliberate — Rishikesh (small)",
+      "how": "POST /v1/hotels/search Rishikesh default sort offset=0 limit=20",
+      "expected": "Top 10 mostly 4-5★ (by starRating only — no name/alias brand check); no 1-2★/unrated cluster at top",
+      "actual": "ISSUES: 3/10 are 1-2★ near top; only 1/10 are 4-5★ (expect mostly premium stars on page one) | top=Hotel Raj Mahal(2★); Tapovan Hills(3★); Aloha On The Ganges, Rishikesh(4★); Hotel Vishla Palace(2★); Raj Resort(3★); Home of Lavenia(3★); Devlok Homes(3★); Manzil Hostel(1★); Hotel Indo Tiger By Rawat Hospitality(3★); PerfectStayz B2L Hills Tapovan(3★)",
+      "status": "BUG",
+      "city": "Rishikesh",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "18c4270f-66fe-4093-9fb4-294d901ccd5c",
+      "ms": 9446,
+      "top10": [
+        {
+          "rank": 1,
+          "id": "15398964",
+          "name": "Hotel Raj Mahal",
+          "star": 2,
+          "price": 2626.5,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "58488487",
+          "name": "Tapovan Hills",
+          "star": 3,
+          "price": 2083.21,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "39591597",
+          "name": "Aloha On The Ganges, Rishikesh",
+          "star": 4,
+          "price": 17792,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "39945487",
+          "name": "Hotel Vishla Palace",
+          "star": 2,
+          "price": 83401.42,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "39760064",
+          "name": "Raj Resort",
+          "star": 3,
+          "price": 1697.87,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "72343864",
+          "name": "Home of Lavenia",
+          "star": 3,
+          "price": 1310.98,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "54686032",
+          "name": "Devlok Homes",
+          "star": 3,
+          "price": 3196.82,
+          "distance": null
+        },
+        {
+          "rank": 8,
+          "id": "53720861",
+          "name": "Manzil Hostel",
+          "star": 1,
+          "price": 573.43,
+          "distance": null
+        },
+        {
+          "rank": 9,
+          "id": "72387202",
+          "name": "Hotel Indo Tiger By Rawat Hospitality",
+          "star": 3,
+          "price": 1391.6,
+          "distance": null
+        },
+        {
+          "rank": 10,
+          "id": "71430859",
+          "name": "PerfectStayz B2L Hills Tapovan",
+          "star": 3,
+          "price": 2804.55,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "1",
+      "rule": "Page one deliberate — Manali (small)",
+      "how": "POST /v1/hotels/search Manali default sort offset=0 limit=20",
+      "expected": "Top 10 mostly 4-5★ (by starRating only — no name/alias brand check); no 1-2★/unrated cluster at top",
+      "actual": "ISSUES: only 2/10 are 4-5★ (expect mostly premium stars on page one) | top=Snow Valley Resorts(4★); Sunrise Villa Manali(2★); Shingar Regency(4★); Whoopers Hostel Manali(3★); Clarks Inn Suites Manali(3★); Treebo M R Villa(3★); Hotel Mount View By Oscar Hotels(3★); Page 3 - Riverside Rooms & Bar(3★); Hotel Sky Heaven(3★); Johnson Lodge and Spa(3★)",
+      "status": "BUG",
+      "city": "Manali",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "d62ce0ea-ad63-4ea4-89eb-2f45f8a2af8f",
+      "ms": 8387,
+      "top10": [
+        {
+          "rank": 1,
+          "id": "39662519",
+          "name": "Snow Valley Resorts",
+          "star": 4,
+          "price": 3955.76,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "41354024",
+          "name": "Sunrise Villa Manali",
+          "star": 2,
+          "price": 2444.09,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "39744812",
+          "name": "Shingar Regency",
+          "star": 4,
+          "price": 2885.66,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "41631203",
+          "name": "Whoopers Hostel Manali",
+          "star": 3,
+          "price": 729.88,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "41600937",
+          "name": "Clarks Inn Suites Manali",
+          "star": 3,
+          "price": 4519.63,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "71601515",
+          "name": "Treebo M R Villa",
+          "star": 3,
+          "price": 4443.6,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "72419365",
+          "name": "Hotel Mount View By Oscar Hotels",
+          "star": 3,
+          "price": 3314.52,
+          "distance": null
+        },
+        {
+          "rank": 8,
+          "id": "61996819",
+          "name": "Page 3 - Riverside Rooms & Bar",
+          "star": 3,
+          "price": 2173.76,
+          "distance": null
+        },
+        {
+          "rank": 9,
+          "id": "32798004",
+          "name": "Hotel Sky Heaven",
+          "star": 3,
+          "price": 2942.5,
+          "distance": null
+        },
+        {
+          "rank": 10,
+          "id": "15382017",
+          "name": "Johnson Lodge and Spa",
+          "star": 3,
+          "price": 5977.57,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "2",
+      "rule": "Result count captured — Mumbai",
+      "how": "note totalResults on unfiltered search",
+      "expected": "totalResults > 0 (compare to prod manually)",
+      "actual": "totalResults=987 available=987",
+      "status": "PASS",
+      "city": "Mumbai",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "5b93acb4-c43b-4742-aef8-1c77129d9587"
+    },
+    {
+      "caseId": "3",
+      "rule": "Paging unique/no dup — Mumbai",
+      "how": "offset 0..N limit=20 until empty",
+      "expected": "no duplicate ids; collected ≈ totalResults; last page partial",
+      "actual": "pages=50 unique=987 reported=987 dups=0 slowPages=0",
+      "status": "PASS",
+      "city": "Mumbai",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "duplicates": [],
+      "last10": [
+        {
+          "rank": 1,
+          "id": "70441076",
+          "name": "Hotel Dream Palace Residency",
+          "star": 3,
+          "price": 3703.08,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "71371393",
+          "name": "KOHINOOR GUEST HOUSE",
+          "star": 1,
+          "price": 1414.63,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "72383347",
+          "name": "Hotel Vile Parle Executive Near Nanavati",
+          "star": 2,
+          "price": 2067.15,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "31324242",
+          "name": "Hotel Shabana Colaba",
+          "star": 2,
+          "price": 1514.91,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "31327511",
+          "name": "Stayvilla Hostel",
+          "star": 4,
+          "price": 907.93,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "30907138",
+          "name": "Hotel Auris & Banquets, Mumbai International Airport",
+          "star": 4,
+          "price": 6963.46,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "39774210",
+          "name": "Hilton Mumbai International Airport",
+          "star": 5,
+          "price": 21301.36,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "3",
+      "rule": "Paging unique/no dup — Jaipur",
+      "how": "offset 0..N limit=20 until empty",
+      "expected": "no duplicate ids; collected ≈ totalResults; last page partial",
+      "actual": "pages=40 unique=800 reported=800 dups=0 slowPages=0",
+      "status": "PASS",
+      "city": "Jaipur",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "duplicates": [],
+      "last10": [
+        {
+          "rank": 1,
+          "id": "72375749",
+          "name": "Hotel Starlink By The Nine Hotel",
+          "star": 2,
+          "price": 3204.49,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "70608110",
+          "name": "Pink Cozzy",
+          "star": 3,
+          "price": 1287.49,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "70497058",
+          "name": "Ridhi Retreat",
+          "star": 2,
+          "price": 3339.4,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "71186338",
+          "name": "Hotel Gulabi Nagri",
+          "star": 3,
+          "price": 1129.5,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "53973612",
+          "name": "The Grand Anukampa Inn Pink city",
+          "star": 1,
+          "price": 3671.81,
+          "distance": null
+        },
+        {
+          "rank": 6,
+          "id": "70489210",
+          "name": "Hotel MB Grand",
+          "star": 3,
+          "price": 1617.02,
+          "distance": null
+        },
+        {
+          "rank": 7,
+          "id": "39604622",
+          "name": "Hotel Aditya Park Regent",
+          "star": 3,
+          "price": 3436.69,
+          "distance": null
+        },
+        {
+          "rank": 8,
+          "id": "71596740",
+          "name": "Hotel Kanha & Banquet",
+          "star": 3,
+          "price": 3322.05,
+          "distance": null
+        },
+        {
+          "rank": 9,
+          "id": "71365704",
+          "name": "Sum Jaipur",
+          "star": 1,
+          "price": 13954.38,
+          "distance": null
+        },
+        {
+          "rank": 10,
+          "id": "72455689",
+          "name": "Desert Hotel and Spa",
+          "star": 5,
+          "price": 919.49,
+          "distance": null
+        }
+      ]
+    },
+    {
+      "caseId": "4",
+      "rule": "Price sort ASC/DESC — Mumbai",
+      "how": "sort=price_ASC then price_DESC",
+      "expected": "strict mono price; cheap unrated can beat expensive 5★ on ASC",
+      "actual": "ASC mono=true first=New Shahana - Hostel ₹323.13 | DESC mono=true first=Ivy Splendour Studios (B) Oshiwara ₹51559.12 | sortOverridesDefault=true",
+      "status": "PASS",
+      "city": "Mumbai",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "c9387c5f-e67c-4e0f-8caf-e664ac153957"
+    },
+    {
+      "caseId": "4",
+      "rule": "Price sort ASC/DESC — Dubai",
+      "how": "sort=price_ASC then price_DESC",
+      "expected": "strict mono price; cheap unrated can beat expensive 5★ on ASC",
+      "actual": "ASC mono=true first=Towers Rotana ₹NaN | DESC mono=true first=Address Montgomerie Dubai ₹2284614.96 | sortOverridesDefault=false",
+      "status": "BUG",
+      "city": "Dubai",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "ba6b7d62-1278-4665-9ef6-725f18bd307f"
+    },
+    {
+      "caseId": "5a",
+      "rule": "Star filter apply + facet counts stable — Mumbai",
+      "how": "fq df_long_star_rating:4",
+      "expected": "results 4★+; facet counts unchanged",
+      "actual": "filtered=97 countsStable=true sampleStars=4,4,4,4,4",
+      "status": "PASS",
+      "requestId": "7ca51ad8-8f7b-408a-84b8-d9bf773ad1d7",
+      "fq": [
+        "df_long_star_rating:4"
+      ]
+    },
+    {
+      "caseId": "5b",
+      "rule": "Chain filter + facet counts stable — Mumbai (Fabhotels)",
+      "how": "fq chain filter",
+      "expected": "narrowed results; facet counts unchanged",
+      "actual": "filtered=103 countsStable=true",
+      "status": "PASS",
+      "requestId": "678dcced-b5be-4afb-b59d-197f7112b4ab",
+      "fq": [
+        "Chain:Fabhotels"
+      ]
+    },
+    {
+      "caseId": "5c",
+      "rule": "Combined GST + Property Type filter — Mumbai",
+      "how": "fq combo",
+      "expected": "HTTP 200 narrowed results",
+      "actual": "total=10 http=200",
+      "status": "PASS",
+      "requestId": "16255aee-d31f-4606-82f3-314e1086da86",
+      "fq": [
+        "GST:Claimable",
+        "Property Type:Hotel"
+      ]
+    },
+    {
+      "caseId": "6",
+      "rule": "Hotel pages and booking unchanged",
+      "how": "details/prebook/finalize",
+      "expected": "no regression vs before",
+      "actual": "NOT TESTED — user requested search-only on preprod",
+      "status": "NOT TESTED"
+    },
+    {
+      "caseId": "7",
+      "rule": "4★ can appear before later 5★ — Mumbai (star-only)",
+      "how": "scan top 40 default order",
+      "expected": "4★ before a later 5★ is allowed (group membership beats star)",
+      "actual": "first 4-5★ at rank #16; no 4★-then-later-5★ pair in top 40",
+      "status": "NOT TESTED",
+      "city": "Mumbai",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13"
+    },
+    {
+      "caseId": "8",
+      "rule": "Top 20 not dominated by ≤3★ — Mumbai (star-only)",
+      "how": "scan top 20 starRating",
+      "expected": "majority of top 20 should be 4-5★",
+      "actual": "4-5★=2/20 ≤3★=18/20",
+      "status": "BUG",
+      "city": "Mumbai",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13"
+    },
+    {
+      "caseId": "9",
+      "rule": "Unrated/1-2★ present on last page — Mumbai",
+      "how": "inspect last page of full pagination",
+      "expected": "unrated/1-2★ appear near bottom (not missing)",
+      "actual": "lastPageSize=7 lowOrUnrated=3 last=Hotel Dream Palace Residency(3★); KOHINOOR GUEST HOUSE(1★); Hotel Vile Parle Executive Near Nanavati(2★); Hotel Shabana Colaba(2★); Stayvilla Hostel(4★)",
+      "status": "PASS",
+      "city": "Mumbai",
+      "unique": 987
+    },
+    {
+      "caseId": "10",
+      "rule": "4-5★ appear before unrated/1-2★ — Mumbai (star-only)",
+      "how": "scan first 200 results by starRating",
+      "expected": "first 4-5★ before first unrated/1-2★",
+      "actual": "first4-5★ rank #16 \"Sunrise Homes Serviced Apartment\"; firstLowUnrated rank #3; firstBudgetNameMatch #2 (name match informational only)",
+      "status": "BUG",
+      "city": "Mumbai"
+    },
+    {
+      "caseId": "11",
+      "rule": "Small town search — Rishikesh",
+      "how": "unfiltered search",
+      "expected": "HTTP 200; renders even if 0-1 pages",
+      "actual": "http=200 total=353 results=20",
+      "status": "PASS",
+      "city": "Rishikesh",
+      "requestId": "9226c8fa-3b4d-4a3b-83f0-25cdd938b170"
+    },
+    {
+      "caseId": "11",
+      "rule": "Small town search — Manali",
+      "how": "unfiltered search",
+      "expected": "HTTP 200; renders even if 0-1 pages",
+      "actual": "http=200 total=402 results=20",
+      "status": "PASS",
+      "city": "Manali",
+      "requestId": "bc816c07-b509-40a4-a8c2-fa2f4ff69bcb"
+    },
+    {
+      "caseId": "12",
+      "rule": "No availability / empty message — Mumbai far future",
+      "how": "checkin 2027-06-01",
+      "expected": "graceful empty/message, not 500",
+      "actual": "http=200 total=743 message=n/a",
+      "status": "PASS",
+      "city": "Mumbai",
+      "checkin": "2027-06-01",
+      "checkout": "2027-06-02",
+      "requestId": "eceffaa8-f3b4-4db0-ba09-69fee82a3b0b"
+    },
+    {
+      "caseId": "13",
+      "rule": "Repeat search same dates — Bangkok",
+      "how": "two identical searches back-to-back",
+      "expected": "same order; 2nd faster (cache)",
+      "actual": "sameOrder=true ms1=1004 ms2=1093 fromCache2=false",
+      "status": "PASS",
+      "city": "Bangkok",
+      "checkin": "2026-12-12",
+      "checkout": "2026-12-13",
+      "requestId": "97dcd1d1-1632-4970-b733-9f469c23ecef"
+    },
+    {
+      "caseId": "14",
+      "rule": "Different dates fresh search — Delhi",
+      "how": "2026-12-12 vs 2026-12-15",
+      "expected": "both HTTP 200; ordering rules still apply on page 1",
+      "actual": "dates1 total=1658 highStarTop=1/5 | dates2 total=1657 highStarTop=1/5 ms1=961 ms2=20367",
+      "status": "PASS",
+      "city": "Delhi",
+      "requestId": "c4363000-74eb-4df0-983f-32d7439d9e28",
+      "top5Alt": [
+        {
+          "rank": 1,
+          "id": "39605722",
+          "name": "YMCA Tourist Hostel",
+          "star": 3,
+          "price": 4903.37,
+          "distance": null
+        },
+        {
+          "rank": 2,
+          "id": "72458842",
+          "name": "Paying Guest Hotel",
+          "star": 2,
+          "price": 913.66,
+          "distance": null
+        },
+        {
+          "rank": 3,
+          "id": "39659103",
+          "name": "Centaur Hotel IGI Airport",
+          "star": 4,
+          "price": 4433.27,
+          "distance": null
+        },
+        {
+          "rank": 4,
+          "id": "70483742",
+          "name": "Fabhotel Sparkling",
+          "star": 3,
+          "price": 2107.42,
+          "distance": null
+        },
+        {
+          "rank": 5,
+          "id": "41472414",
+          "name": "Hotel Bricks",
+          "star": 3,
+          "price": 2376.05,
+          "distance": null
+        }
+      ]
+    }
+  ]
+}

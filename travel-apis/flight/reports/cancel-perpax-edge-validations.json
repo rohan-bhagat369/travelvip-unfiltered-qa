@@ -1,0 +1,108 @@
+{
+  "ranAt": "2026-08-12T22:09:49.311Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "Cancel edge validations",
+  "fixtures": {
+    "one": {
+      "br": "BR1786571557638647",
+      "status": "Confirmed",
+      "pnr": "VRV19P",
+      "passengers": [
+        "PAX1"
+      ]
+    },
+    "multi": {
+      "br": "BR1786569524287412",
+      "status": "Confirmed",
+      "pnr": "JB1DPB",
+      "passengers": [
+        "PAX1",
+        "PAX2"
+      ]
+    }
+  },
+  "cases": {
+    "E1": {
+      "http": 422,
+      "error": {
+        "code": "PAX_NOT_IN_BOOKING",
+        "message": "cancellationPaxList names a passenger who is not on this booking",
+        "details": "No passenger PAX99 exists on booking 'BR1786569524287412'",
+        "timestamp": "2026-08-12T22:09:47Z",
+        "request_id": "req-1786572586970",
+        "invalidPax": [
+          "PAX99"
+        ],
+        "validPaxList": [
+          "PAX1",
+          "PAX2"
+        ]
+      },
+      "raw": "{\"error\":{\"code\":\"PAX_NOT_IN_BOOKING\",\"message\":\"cancellationPaxList names a passenger who is not on this booking\",\"details\":\"No passenger PAX99 exists on booking 'BR1786569524287412'\",\"timestamp\":\"2026-08-12T22:09:47Z\",\"request_id\":\"req-1786572586970\",\"invalidPax\":[\"PAX99\"],\"validPaxList\":[\"PAX1\",\"PAX2\"]},\"_meta\":{\"correlation_id\":\"681d868a-a326-4686-ad52-e2c8aa4fea0a\"}}"
+    },
+    "E2": {
+      "http": 200,
+      "error": null,
+      "status": "Penalty Fetched",
+      "raw": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786571557638647\",\"pnr\":\"VRV19P\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":1350,\"estimatedRefund\":3397,\"totalAmount\":4747,\"totalPenalty\":1350,\"penaltyBasis\":\"PROVIDER\",\"amount\":4747,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":1000,\"cancellationFee\":350,\"perPax\":[{\"paxId\":\"PAX1\",\"am"
+    },
+    "E3": {
+      "first": {
+        "http": 200,
+        "status": "Penalty Fetched",
+        "refund": 3397,
+        "charge": 1350
+      },
+      "second": {
+        "http": 200,
+        "status": "Penalty Fetched",
+        "refund": 3397,
+        "charge": 1350
+      }
+    },
+    "E4": {
+      "http": 400,
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "cancellationPaxList lists the same passenger more than once",
+        "details": "Field 'cancellationPaxList' must name each passenger at most once. Repeated: PAX1. Note that \"PAX1\" and \"1\" are the same passenger.",
+        "timestamp": "2026-08-12T22:09:49Z",
+        "request_id": "req-1786572589165",
+        "duplicatePax": [
+          "PAX1"
+        ]
+      },
+      "raw": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"cancellationPaxList lists the same passenger more than once\",\"details\":\"Field 'cancellationPaxList' must name each passenger at most once. Repeated: PAX1. Note that \\\"PAX1\\\" and \\\"1\\\" are the same passenger.\",\"timestamp\":\"2026-08-12T22:09:49Z\",\"request_id\":\"req-1786572589165\",\"duplicatePax\":[\"PAX1\"]},\"_meta\":{\"correlation_id\":\"681d868a-a326-4686-ad52-"
+    }
+  },
+  "table": [
+    {
+      "rule": "E1 mixed valid+invalid pax rejected",
+      "expected": "4xx PAX_NOT_IN_BOOKING (or similar); no quote",
+      "actual": "422 PAX_NOT_IN_BOOKING",
+      "status": "PASS"
+    },
+    {
+      "rule": "E2 whitespace paxId deterministic",
+      "expected": "trim → Penalty Fetched OR 4xx validation",
+      "actual": "200 Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "E3 duplicate PENALTY stable quote",
+      "expected": "both Penalty Fetched; same estimatedRefund",
+      "actual": "a=Penalty Fetched/3397 b=Penalty Fetched/3397",
+      "status": "PASS"
+    },
+    {
+      "rule": "E4 duplicate pax in list deterministic",
+      "expected": "reject OR dedupe to 1 charged pax",
+      "actual": "400 VALIDATION_ERROR scope=undefined",
+      "status": "PASS"
+    }
+  ],
+  "score": {
+    "PASS": 4,
+    "BUG": 0
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "ranAt": "2026-08-14T14:13:15.314Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "endpoint": "GET /v1/hotels/bookings/history",
+  "allowedStatuses": [
+    "Pending",
+    "Inprogress",
+    "Confirmed",
+    "Failed",
+    "Cancelled"
+  ],
+  "counts": {
+    "PASS": 6,
+    "BUG": 0,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "id": "H0",
+      "rule": "No status (baseline — all/unfiltered)",
+      "how": "GET /v1/hotels/bookings/history?lang=en&currency=INR&page=0&perpage=20",
+      "status": "PASS",
+      "note": "HTTP 200; 20 booking(s); unique statuses=[Confirmed, Failed]",
+      "http": 200,
+      "code": null,
+      "totalCount": 513,
+      "page": 0,
+      "perPage": 20,
+      "returned": 20,
+      "uniqueStatuses": [
+        "Confirmed",
+        "Failed"
+      ],
+      "sample": [
+        {
+          "bookingId": "BR1786711327778765",
+          "status": "Confirmed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-09-11"
+        },
+        {
+          "bookingId": "BR1786711315796945",
+          "status": "Failed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-10-13"
+        },
+        {
+          "bookingId": "BR1786711307635767",
+          "status": "Failed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-10-13"
+        },
+        {
+          "bookingId": "BR1786711301102965",
+          "status": "Failed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-10-13"
+        },
+        {
+          "bookingId": "BR1786711294806942",
+          "status": "Failed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-10-13"
+        }
+      ],
+      "responseKeys": [
+        "status",
+        "totalCount",
+        "page",
+        "perPage",
+        "bookings",
+        "_meta"
+      ],
+      "snippet": "{\"status\":0,\"totalCount\":513,\"page\":0,\"perPage\":20,\"bookings\":[{\"bookingId\":\"BR1786711327778765\",\"hotelName\":\"Hiltop Hotel\",\"hotelLocation\":\"43. Sir Pochkhanwala Road\",\"checkin\":\"2026-09-11\",\"checkout\":\"2026-09-12\",\"bookingDate\":\"2026-08-14T12:42:07Z\",\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00010677\",\"totalAmount\":7364.86,\"currency\":\"INR\",\"rooms\":[{\"guests\":[{\"title\":\"Mr\",\"firstName\":\"Rohan\",\"lastName\":\"Bhagat\",\"type\":\"Adult\"}]}],\"roomType\":\"Basic Studio\"},{\"bookingId\":\"BR17867113157969"
+    },
+    {
+      "id": "H1",
+      "rule": "status=Pending",
+      "how": "GET /v1/hotels/bookings/history?lang=en&currency=INR&page=0&perpage=20&status=Pending",
+      "status": "PASS",
+      "note": "HTTP 200; 20 booking(s); unique statuses=[Pending]",
+      "http": 200,
+      "code": null,
+      "totalCount": 42,
+      "page": 0,
+      "perPage": 20,
+      "returned": 20,
+      "uniqueStatuses": [
+        "Pending"
+      ],
+      "sample": [
+        {
+          "bookingId": "BR1784016311297481",
+          "status": "Pending",
+          "hotel": "Taj Dubai",
+          "checkin": "2026-07-16"
+        },
+        {
+          "bookingId": "BR1783072395586818",
+          "status": "Pending",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-07-14"
+        },
+        {
+          "bookingId": "BR1782984232625954",
+          "status": "Pending",
+          "hotel": "Taj Dubai",
+          "checkin": "2026-07-16"
+        },
+        {
+          "bookingId": "BR1782984023800547",
+          "status": "Pending",
+          "hotel": "Taj Dubai",
+          "checkin": "2026-07-23"
+        },
+        {
+          "bookingId": "BR1782983714963537",
+          "status": "Pending",
+          "hotel": "Taj Dubai",
+          "checkin": "2026-09-30"
+        }
+      ],
+      "responseKeys": [
+        "status",
+        "totalCount",
+        "page",
+        "perPage",
+        "bookings",
+        "_meta"
+      ],
+      "snippet": "{\"status\":0,\"totalCount\":42,\"page\":0,\"perPage\":20,\"bookings\":[{\"bookingId\":\"BR1784016311297481\",\"hotelName\":\"Taj Dubai\",\"hotelLocation\":\"Burj Khalifa Street, Business BayPO Box 8489Dubai, Dubai, 8489, United Arab Emirates\",\"checkin\":\"2026-07-16\",\"checkout\":\"2026-07-17\",\"bookingDate\":\"2026-07-14T08:05:11Z\",\"status\":\"Pending\",\"confirmationNumber\":\"BR1784016311297481\",\"totalAmount\":39933.42,\"currency\":\"INR\",\"rooms\":[{\"guests\":[{\"title\":\"Mr.\",\"firstName\":\"Chaitanya\",\"lastName\":\"Patil\",\"type\":\"Adult\""
+    },
+    {
+      "id": "H2",
+      "rule": "status=Inprogress",
+      "how": "GET /v1/hotels/bookings/history?lang=en&currency=INR&page=0&perpage=20&status=Inprogress",
+      "status": "PASS",
+      "note": "HTTP 200; empty list (no Inprogress bookings for this user)",
+      "http": 200,
+      "code": null,
+      "totalCount": 0,
+      "page": 0,
+      "perPage": 20,
+      "returned": 0,
+      "uniqueStatuses": [],
+      "sample": [],
+      "responseKeys": [
+        "status",
+        "totalCount",
+        "page",
+        "perPage",
+        "bookings",
+        "_meta"
+      ],
+      "snippet": "{\"status\":0,\"totalCount\":0,\"page\":0,\"perPage\":20,\"bookings\":[],\"_meta\":{\"correlation_id\":\"7417549a-dd76-4a62-9ec4-b55f9fb42222\"}}"
+    },
+    {
+      "id": "H3",
+      "rule": "status=Confirmed",
+      "how": "GET /v1/hotels/bookings/history?lang=en&currency=INR&page=0&perpage=20&status=Confirmed",
+      "status": "PASS",
+      "note": "HTTP 200; 20 booking(s); unique statuses=[Confirmed]",
+      "http": 200,
+      "code": null,
+      "totalCount": 123,
+      "page": 0,
+      "perPage": 20,
+      "returned": 20,
+      "uniqueStatuses": [
+        "Confirmed"
+      ],
+      "sample": [
+        {
+          "bookingId": "BR1786711327778765",
+          "status": "Confirmed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-09-11"
+        },
+        {
+          "bookingId": "BR1786634483292919",
+          "status": "Confirmed",
+          "hotel": "Urban Stay Home",
+          "checkin": "2026-08-23"
+        },
+        {
+          "bookingId": "BR1786634402474286",
+          "status": "Confirmed",
+          "hotel": "Urban Stay Home",
+          "checkin": "2026-08-23"
+        },
+        {
+          "bookingId": "BR1786570169761292",
+          "status": "Confirmed",
+          "hotel": "Hotel Pacific Residency Near Airport",
+          "checkin": "2026-08-22"
+        },
+        {
+          "bookingId": "BR1786567783125681",
+          "status": "Confirmed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-08-23"
+        }
+      ],
+      "responseKeys": [
+        "status",
+        "totalCount",
+        "page",
+        "perPage",
+        "bookings",
+        "_meta"
+      ],
+      "snippet": "{\"status\":0,\"totalCount\":123,\"page\":0,\"perPage\":20,\"bookings\":[{\"bookingId\":\"BR1786711327778765\",\"hotelName\":\"Hiltop Hotel\",\"hotelLocation\":\"43. Sir Pochkhanwala Road\",\"checkin\":\"2026-09-11\",\"checkout\":\"2026-09-12\",\"bookingDate\":\"2026-08-14T12:42:07Z\",\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00010677\",\"totalAmount\":7364.86,\"currency\":\"INR\",\"rooms\":[{\"guests\":[{\"title\":\"Mr\",\"firstName\":\"Rohan\",\"lastName\":\"Bhagat\",\"type\":\"Adult\"}]}],\"roomType\":\"Basic Studio\"},{\"bookingId\":\"BR17866344832929"
+    },
+    {
+      "id": "H4",
+      "rule": "status=Failed",
+      "how": "GET /v1/hotels/bookings/history?lang=en&currency=INR&page=0&perpage=20&status=Failed",
+      "status": "PASS",
+      "note": "HTTP 200; 20 booking(s); unique statuses=[Failed]",
+      "http": 200,
+      "code": null,
+      "totalCount": 300,
+      "page": 0,
+      "perPage": 20,
+      "returned": 20,
+      "uniqueStatuses": [
+        "Failed"
+      ],
+      "sample": [
+        {
+          "bookingId": "BR1786711315796945",
+          "status": "Failed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-10-13"
+        },
+        {
+          "bookingId": "BR1786711307635767",
+          "status": "Failed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-10-13"
+        },
+        {
+          "bookingId": "BR1786711301102965",
+          "status": "Failed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-10-13"
+        },
+        {
+          "bookingId": "BR1786711294806942",
+          "status": "Failed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-10-13"
+        },
+        {
+          "bookingId": "BR1786711287254300",
+          "status": "Failed",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-10-13"
+        }
+      ],
+      "responseKeys": [
+        "status",
+        "totalCount",
+        "page",
+        "perPage",
+        "bookings",
+        "_meta"
+      ],
+      "snippet": "{\"status\":0,\"totalCount\":300,\"page\":0,\"perPage\":20,\"bookings\":[{\"bookingId\":\"BR1786711315796945\",\"hotelName\":\"Hiltop Hotel\",\"hotelLocation\":\"43. Sir Pochkhanwala Road\",\"checkin\":\"2026-10-13\",\"checkout\":\"2026-10-14\",\"bookingDate\":\"2026-08-14T12:41:55Z\",\"status\":\"Failed\",\"confirmationNumber\":\"BR1786711315796945\",\"totalAmount\":28688.64,\"currency\":\"INR\",\"rooms\":[{\"guests\":[{\"title\":\"Mr\",\"firstName\":\"Rohan\",\"lastName\":\"Bhagat\",\"type\":\"Adult\"}]}],\"roomType\":\"Suite\"},{\"bookingId\":\"BR1786711307635767\",\""
+    },
+    {
+      "id": "H5",
+      "rule": "status=Cancelled",
+      "how": "GET /v1/hotels/bookings/history?lang=en&currency=INR&page=0&perpage=20&status=Cancelled",
+      "status": "PASS",
+      "note": "HTTP 200; 20 booking(s); unique statuses=[Cancelled]",
+      "http": 200,
+      "code": null,
+      "totalCount": 39,
+      "page": 0,
+      "perPage": 20,
+      "returned": 20,
+      "uniqueStatuses": [
+        "Cancelled"
+      ],
+      "sample": [
+        {
+          "bookingId": "BR1786694188244307",
+          "status": "Cancelled",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-08-22"
+        },
+        {
+          "bookingId": "BR1786693145193854",
+          "status": "Cancelled",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-08-22"
+        },
+        {
+          "bookingId": "BR1786647595586718",
+          "status": "Cancelled",
+          "hotel": "Hiltop Hotel",
+          "checkin": "2026-08-22"
+        },
+        {
+          "bookingId": "BR1786634004792096",
+          "status": "Cancelled",
+          "hotel": "Hotel Haveli",
+          "checkin": "2026-08-23"
+        },
+        {
+          "bookingId": "BR1786633360670405",
+          "status": "Cancelled",
+          "hotel": "Hotel Haveli",
+          "checkin": "2026-08-23"
+        }
+      ],
+      "responseKeys": [
+        "status",
+        "totalCount",
+        "page",
+        "perPage",
+        "bookings",
+        "_meta"
+      ],
+      "snippet": "{\"status\":0,\"totalCount\":39,\"page\":0,\"perPage\":20,\"bookings\":[{\"bookingId\":\"BR1786694188244307\",\"hotelName\":\"Hiltop Hotel\",\"hotelLocation\":\"43. Sir Pochkhanwala Road\",\"checkin\":\"2026-08-22\",\"checkout\":\"2026-08-23\",\"bookingDate\":\"2026-08-14T07:56:28Z\",\"status\":\"Cancelled\",\"confirmationNumber\":\"SNHAPI00010669\",\"totalAmount\":7364.86,\"currency\":\"INR\",\"rooms\":[{\"guests\":[{\"title\":\"Mr\",\"firstName\":\"Atul\",\"lastName\":\"Ugale\",\"type\":\"Adult\"}]}],\"roomType\":\"Basic Studio\"},{\"bookingId\":\"BR1786693145193854\""
+    }
+  ]
+}

@@ -1,0 +1,753 @@
+{
+  "ranAt": "2026-09-02T12:42:01.129Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "tierId": "19597201",
+  "counts": {
+    "PASS": 11,
+    "BUG": 3
+  },
+  "rows": [
+    {
+      "id": 1,
+      "rule": "IATA DEL (uppercase)",
+      "expected": "DEL in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@1(DEL) top=DEL:New Delhi | LIS:Lisbon | AGT:Ciudad del Este | FUE:Puerto del Rosario | PCM:Playa del Carmen | MDQ:Mar Del Plata",
+      "query": "DEL",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "LIS",
+          "airportName": "Humberto Delgado Airport (Lisbon Portela Airport)",
+          "city": "Lisbon",
+          "country": "Portugal"
+        },
+        {
+          "airportCode": "AGT",
+          "airportName": "Aeropuerto Internacional Guaraní",
+          "city": "Ciudad del Este",
+          "country": "Paraguay"
+        },
+        {
+          "airportCode": "FUE",
+          "airportName": "Fuerteventura Airport",
+          "city": "Puerto del Rosario",
+          "country": "Spain"
+        },
+        {
+          "airportCode": "PCM",
+          "airportName": "Playa del Carmen Airport",
+          "city": "Playa del Carmen",
+          "country": "Mexico"
+        },
+        {
+          "airportCode": "MDQ",
+          "airportName": "Ástor Piazzola International Airport",
+          "city": "Mar Del Plata",
+          "country": "Argentina"
+        },
+        {
+          "airportCode": "IAO",
+          "airportName": "Siargao Airport",
+          "city": "Del Carmen",
+          "country": "Philippines"
+        },
+        {
+          "airportCode": "CYR",
+          "airportName": "Colonia Laguna de Los Patos International Airport",
+          "city": "Colonia del Sacramento",
+          "country": "Uruguay"
+        }
+      ],
+      "rank": 1,
+      "code": "DEL"
+    },
+    {
+      "id": 2,
+      "rule": "IATA del (lowercase)",
+      "expected": "DEL in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@1(DEL) top=DEL:New Delhi | LIS:Lisbon | AGT:Ciudad del Este | FUE:Puerto del Rosario | PCM:Playa del Carmen | MDQ:Mar Del Plata",
+      "query": "del",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "LIS",
+          "airportName": "Humberto Delgado Airport (Lisbon Portela Airport)",
+          "city": "Lisbon",
+          "country": "Portugal"
+        },
+        {
+          "airportCode": "AGT",
+          "airportName": "Aeropuerto Internacional Guaraní",
+          "city": "Ciudad del Este",
+          "country": "Paraguay"
+        },
+        {
+          "airportCode": "FUE",
+          "airportName": "Fuerteventura Airport",
+          "city": "Puerto del Rosario",
+          "country": "Spain"
+        },
+        {
+          "airportCode": "PCM",
+          "airportName": "Playa del Carmen Airport",
+          "city": "Playa del Carmen",
+          "country": "Mexico"
+        },
+        {
+          "airportCode": "MDQ",
+          "airportName": "Ástor Piazzola International Airport",
+          "city": "Mar Del Plata",
+          "country": "Argentina"
+        },
+        {
+          "airportCode": "IAO",
+          "airportName": "Siargao Airport",
+          "city": "Del Carmen",
+          "country": "Philippines"
+        },
+        {
+          "airportCode": "CYR",
+          "airportName": "Colonia Laguna de Los Patos International Airport",
+          "city": "Colonia del Sacramento",
+          "country": "Uruguay"
+        }
+      ],
+      "rank": 1,
+      "code": "DEL"
+    },
+    {
+      "id": 3,
+      "rule": "Prefix de → DEL area",
+      "expected": "DEL in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@3(DEL) top=ATL:Atlanta | DEN:Denver | DEL:New Delhi | CDG:Paris | MEX:Ciudad de México | AMS:Amsterdam",
+      "query": "de",
+      "hits": [
+        {
+          "airportCode": "ATL",
+          "airportName": "Hartsfield Jackson Atlanta International Airport",
+          "city": "Atlanta",
+          "country": "United States"
+        },
+        {
+          "airportCode": "DEN",
+          "airportName": "Denver International Airport",
+          "city": "Denver",
+          "country": "United States"
+        },
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "CDG",
+          "airportName": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France"
+        },
+        {
+          "airportCode": "MEX",
+          "airportName": "Aeropuerto Internacional Lic. Benito Juárez",
+          "city": "Ciudad de México",
+          "country": "Mexico"
+        },
+        {
+          "airportCode": "AMS",
+          "airportName": "Amsterdam Airport Schiphol",
+          "city": "Amsterdam",
+          "country": "Netherlands"
+        },
+        {
+          "airportCode": "MAD",
+          "airportName": "Adolfo Suárez Madrid–Barajas Airport",
+          "city": "Madrid",
+          "country": "Spain"
+        },
+        {
+          "airportCode": "FRA",
+          "airportName": "Frankfurt Airport",
+          "city": "Frankfurt am Main",
+          "country": "Germany"
+        }
+      ],
+      "rank": 3,
+      "code": "DEL"
+    },
+    {
+      "id": 4,
+      "rule": "Prefix delh → DEL",
+      "expected": "DEL in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@1(DEL) top=DEL:New Delhi | HDO:Ghaziabad | DXN:Noida",
+      "query": "delh",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India"
+        }
+      ],
+      "rank": 1,
+      "code": "DEL"
+    },
+    {
+      "id": 5,
+      "rule": "delhi → DEL",
+      "expected": "DEL in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@1(DEL) top=DEL:New Delhi | HDO:Ghaziabad | DXN:Noida | HSS:Hisar | HRH:Aligarh | JAI:Jaipur",
+      "query": "delhi",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India"
+        },
+        {
+          "airportCode": "HSS",
+          "airportName": "Hissar Airport",
+          "city": "Hisar",
+          "country": "India"
+        },
+        {
+          "airportCode": "HRH",
+          "airportName": "Dhanipur Airstrip",
+          "city": "Aligarh",
+          "country": "India"
+        },
+        {
+          "airportCode": "JAI",
+          "airportName": "Jaipur International Airport",
+          "city": "Jaipur",
+          "country": "India"
+        }
+      ],
+      "rank": 1,
+      "code": "DEL"
+    },
+    {
+      "id": 6,
+      "rule": "new delhi → DEL",
+      "expected": "DEL in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@1(DEL) top=DEL:New Delhi | AKL:Auckland | KUL:Sungai Pelek New Village | JFK:Springfield Gardens | CTS:Sapporo | EWR:Newark",
+      "query": "new delhi",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "AKL",
+          "airportName": "Auckland International Airport",
+          "city": "Auckland",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "KUL",
+          "airportName": "Kuala Lumpur International Airport",
+          "city": "Sungai Pelek New Village",
+          "country": "Malaysia"
+        },
+        {
+          "airportCode": "JFK",
+          "airportName": "John F Kennedy International Airport",
+          "city": "Springfield Gardens",
+          "country": "United States"
+        },
+        {
+          "airportCode": "CTS",
+          "airportName": "New Chitose Airport",
+          "city": "Sapporo",
+          "country": "Japan"
+        },
+        {
+          "airportCode": "EWR",
+          "airportName": "Newark Liberty International Airport",
+          "city": "Newark",
+          "country": "United States"
+        },
+        {
+          "airportCode": "YVR",
+          "airportName": "Vancouver International Airport",
+          "city": "Vancouver",
+          "country": "Canada"
+        },
+        {
+          "airportCode": "LGA",
+          "airportName": "La Guardia Airport",
+          "city": "East Elmhurst",
+          "country": "United States"
+        }
+      ],
+      "rank": 1,
+      "code": "DEL"
+    },
+    {
+      "id": 7,
+      "rule": "Typo dehli → DEL",
+      "expected": "DEL in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 DEL-family@MISS(-) top=(none)",
+      "query": "dehli",
+      "hits": [],
+      "rank": null,
+      "code": null
+    },
+    {
+      "id": 8,
+      "rule": "Typo delli → DEL",
+      "expected": "DEL in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 DEL-family@MISS(-) top=(none)",
+      "query": "delli",
+      "hits": [],
+      "rank": null,
+      "code": null
+    },
+    {
+      "id": 9,
+      "rule": "Official name indira gandhi → DEL",
+      "expected": "DEL in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@1(DEL) top=DEL:New Delhi | HYD:Hyderabad | IXY:Kandla | HDO:Ghaziabad | DXN:Noida | HSS:Hisar",
+      "query": "indira gandhi",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "HYD",
+          "airportName": "Rajiv Gandhi International Airport",
+          "city": "Hyderabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXY",
+          "airportName": "Kandla Airport",
+          "city": "Kandla",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India"
+        },
+        {
+          "airportCode": "HSS",
+          "airportName": "Hissar Airport",
+          "city": "Hisar",
+          "country": "India"
+        },
+        {
+          "airportCode": "HRH",
+          "airportName": "Dhanipur Airstrip",
+          "city": "Aligarh",
+          "country": "India"
+        },
+        {
+          "airportCode": "JAI",
+          "airportName": "Jaipur International Airport",
+          "city": "Jaipur",
+          "country": "India"
+        }
+      ],
+      "rank": 1,
+      "code": "DEL"
+    },
+    {
+      "id": 10,
+      "rule": "Prefix new → Delhi or NYC",
+      "expected": "DEL|NYC|JFK|EWR|LGA in top 5",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@1(DEL) top=DEL:New Delhi | AKL:Auckland | KUL:Sungai Pelek New Village | JFK:Springfield Gardens | CTS:Sapporo | EWR:Newark",
+      "query": "new",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "AKL",
+          "airportName": "Auckland International Airport",
+          "city": "Auckland",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "KUL",
+          "airportName": "Kuala Lumpur International Airport",
+          "city": "Sungai Pelek New Village",
+          "country": "Malaysia"
+        },
+        {
+          "airportCode": "JFK",
+          "airportName": "John F Kennedy International Airport",
+          "city": "Springfield Gardens",
+          "country": "United States"
+        },
+        {
+          "airportCode": "CTS",
+          "airportName": "New Chitose Airport",
+          "city": "Sapporo",
+          "country": "Japan"
+        },
+        {
+          "airportCode": "EWR",
+          "airportName": "Newark Liberty International Airport",
+          "city": "Newark",
+          "country": "United States"
+        },
+        {
+          "airportCode": "YVR",
+          "airportName": "Vancouver International Airport",
+          "city": "Vancouver",
+          "country": "Canada"
+        },
+        {
+          "airportCode": "LGA",
+          "airportName": "La Guardia Airport",
+          "city": "East Elmhurst",
+          "country": "United States"
+        }
+      ],
+      "rank": 1,
+      "code": "DEL"
+    },
+    {
+      "id": 11,
+      "rule": "Prefix dub → DXB (regression)",
+      "expected": "DXB in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@1(DXB) top=DXB:Dubai | DUB:Dublin | DWC:Dubai | XNB:Dubai | DBO:Dubbo | DBS:Dubois",
+      "query": "dub",
+      "hits": [
+        {
+          "airportCode": "DXB",
+          "airportName": "Dubai International Airport",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "DUB",
+          "airportName": "Dublin Airport",
+          "city": "Dublin",
+          "country": "Ireland"
+        },
+        {
+          "airportCode": "DWC",
+          "airportName": "Al Maktoum International Airport",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "XNB",
+          "airportName": "Dubai Bus Station",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "DBO",
+          "airportName": "Dubbo City Regional Airport",
+          "city": "Dubbo",
+          "country": "Australia"
+        },
+        {
+          "airportCode": "DBS",
+          "airportName": "Dubois Municipal Airport",
+          "city": "Dubois",
+          "country": "United States"
+        },
+        {
+          "airportCode": "DBQ",
+          "airportName": "Dubuque Regional Airport",
+          "city": "Dubuque",
+          "country": "United States"
+        },
+        {
+          "airportCode": "DUJ",
+          "airportName": "DuBois Regional Airport",
+          "city": "Dubois",
+          "country": "United States"
+        }
+      ],
+      "rank": 1,
+      "code": "DXB"
+    },
+    {
+      "id": 12,
+      "rule": "IATA DXN (NCR sibling)",
+      "expected": "DXN in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@2(DXN) top=DEL:New Delhi | DXN:Noida | LRL:Niamtougou | HDO:Ghaziabad | AGR:Agra | MZS:Moradabad",
+      "query": "DXN",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India"
+        },
+        {
+          "airportCode": "LRL",
+          "airportName": "Niamtougou International Airport",
+          "city": "Niamtougou",
+          "country": "Togo"
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "AGR",
+          "airportName": "Agra Airport / Agra Air Force Station",
+          "city": "Agra",
+          "country": "India"
+        },
+        {
+          "airportCode": "MZS",
+          "airportName": "Moradabad Airport",
+          "city": "Moradabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "HRH",
+          "airportName": "Dhanipur Airstrip",
+          "city": "Aligarh",
+          "country": "India"
+        },
+        {
+          "airportCode": "JAI",
+          "airportName": "Jaipur International Airport",
+          "city": "Jaipur",
+          "country": "India"
+        }
+      ],
+      "rank": 2,
+      "code": "DXN"
+    },
+    {
+      "id": 13,
+      "rule": "noida international → DXN/DEL",
+      "expected": "DXN|DEL in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 DEL-family@5(DEL) top=ATL:Atlanta | DXB:Dubai | DFW:Grapevine | HND:Tokyo | DEL:New Delhi | DEN:Denver",
+      "query": "noida international",
+      "hits": [
+        {
+          "airportCode": "ATL",
+          "airportName": "Hartsfield Jackson Atlanta International Airport",
+          "city": "Atlanta",
+          "country": "United States"
+        },
+        {
+          "airportCode": "DXB",
+          "airportName": "Dubai International Airport",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "DFW",
+          "airportName": "Dallas Fort Worth International Airport",
+          "city": "Grapevine",
+          "country": "United States"
+        },
+        {
+          "airportCode": "HND",
+          "airportName": "Tokyo Haneda International Airport",
+          "city": "Tokyo",
+          "country": "Japan"
+        },
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "DEN",
+          "airportName": "Denver International Airport",
+          "city": "Denver",
+          "country": "United States"
+        },
+        {
+          "airportCode": "ORD",
+          "airportName": "Chicago O'Hare International Airport",
+          "city": "Chicago",
+          "country": "United States"
+        },
+        {
+          "airportCode": "LHR",
+          "airportName": "London Heathrow Airport",
+          "city": "London",
+          "country": "United Kingdom"
+        }
+      ],
+      "rank": 5,
+      "code": "DEL"
+    },
+    {
+      "id": 14,
+      "rule": "jewar → DXN/DEL",
+      "expected": "DXN|DEL in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 DEL-family@1(DXN) top=DXN:Noida",
+      "query": "jewar",
+      "hits": [
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India"
+        }
+      ],
+      "rank": 1,
+      "code": "DXN"
+    }
+  ],
+  "bugs": [
+    {
+      "id": 7,
+      "rule": "Typo dehli → DEL",
+      "expected": "DEL in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 DEL-family@MISS(-) top=(none)",
+      "query": "dehli",
+      "hits": [],
+      "rank": null,
+      "code": null
+    },
+    {
+      "id": 8,
+      "rule": "Typo delli → DEL",
+      "expected": "DEL in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 DEL-family@MISS(-) top=(none)",
+      "query": "delli",
+      "hits": [],
+      "rank": null,
+      "code": null
+    },
+    {
+      "id": 13,
+      "rule": "noida international → DXN/DEL",
+      "expected": "DXN|DEL in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 DEL-family@5(DEL) top=ATL:Atlanta | DXB:Dubai | DFW:Grapevine | HND:Tokyo | DEL:New Delhi | DEN:Denver",
+      "query": "noida international",
+      "hits": [
+        {
+          "airportCode": "ATL",
+          "airportName": "Hartsfield Jackson Atlanta International Airport",
+          "city": "Atlanta",
+          "country": "United States"
+        },
+        {
+          "airportCode": "DXB",
+          "airportName": "Dubai International Airport",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "DFW",
+          "airportName": "Dallas Fort Worth International Airport",
+          "city": "Grapevine",
+          "country": "United States"
+        },
+        {
+          "airportCode": "HND",
+          "airportName": "Tokyo Haneda International Airport",
+          "city": "Tokyo",
+          "country": "Japan"
+        },
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "DEN",
+          "airportName": "Denver International Airport",
+          "city": "Denver",
+          "country": "United States"
+        },
+        {
+          "airportCode": "ORD",
+          "airportName": "Chicago O'Hare International Airport",
+          "city": "Chicago",
+          "country": "United States"
+        },
+        {
+          "airportCode": "LHR",
+          "airportName": "London Heathrow Airport",
+          "city": "London",
+          "country": "United Kingdom"
+        }
+      ],
+      "rank": 5,
+      "code": "DEL"
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "at": "2026-10-01T11:22:13.139Z",
+  "baseUrl": "https://api.travelvip.ai",
+  "stay": {
+    "checkin": "2026-11-05",
+    "checkout": "2026-11-06",
+    "hilltop": {
+      "checkin": "2026-11-05",
+      "checkout": "2026-11-06"
+    }
+  },
+  "l2bGuardrails": {
+    "inventoryLooks": 11,
+    "cities": 8,
+    "prebookPath": "Hilltop once only",
+    "skipped": [
+      "finalize-booking",
+      "cancel",
+      "penalty",
+      "history",
+      "pagination"
+    ]
+  },
+  "counts": {
+    "PASS": 15,
+    "BUG": 0,
+    "NOT_TESTED": 1
+  },
+  "rows": [
+    {
+      "id": "AUTH.1",
+      "rule": "Partner token + session",
+      "how": "POST /auth/partner/token → POST /v1/auth/session",
+      "expect": "access_token + auth_token",
+      "actual": "base=https://api.travelvip.ai tierId=19597201 hasAuth=true",
+      "status": "PASS"
+    },
+    {
+      "id": "SMOKE.1",
+      "rule": "Autocomplete city q=pune",
+      "how": "GET /v1/hotels/autocomplete",
+      "expect": "HTTP 200, content[]",
+      "actual": "HTTP 200 content=5",
+      "status": "PASS"
+    },
+    {
+      "id": "SMOKE.2",
+      "rule": "Autocomplete hotel q=hiltop",
+      "how": "GET /v1/hotels/autocomplete",
+      "expect": "HTTP 200, Hilltop entityId",
+      "actual": "HTTP 200 entityId=39627872:IN",
+      "status": "PASS"
+    },
+    {
+      "id": "CITY.Delhi",
+      "rule": "CITY search Delhi (limit=1)",
+      "how": "POST /v1/hotels/search 227760:IN",
+      "expect": "HTTP 200 + inventory",
+      "actual": "HTTP 200 total=1919 sample=Le Meridien New Delhi fare=23215.45",
+      "status": "PASS",
+      "city": "Delhi",
+      "total": 1919,
+      "sample": {
+        "entityId": "39676544",
+        "name": "Le Meridien New Delhi",
+        "available": true,
+        "baseFare": 23215.45,
+        "starRating": 5
+      }
+    },
+    {
+      "id": "CITY.Mumbai",
+      "rule": "CITY search Mumbai (limit=1)",
+      "how": "POST /v1/hotels/search 357389:IN",
+      "expect": "HTTP 200 + inventory",
+      "actual": "HTTP 200 total=984 sample=Sofitel Mumbai BKC  fare=26330.13",
+      "status": "PASS",
+      "city": "Mumbai",
+      "total": 984,
+      "sample": {
+        "entityId": "39624369",
+        "name": "Sofitel Mumbai BKC ",
+        "available": true,
+        "baseFare": 26330.13,
+        "starRating": 5
+      }
+    },
+    {
+      "id": "CITY.Bangalore",
+      "rule": "CITY search Bangalore (limit=1)",
+      "how": "POST /v1/hotels/search 341153:IN",
+      "expect": "HTTP 200 + inventory",
+      "actual": "HTTP 200 total=1553 sample=Taj West End fare=21024.12",
+      "status": "PASS",
+      "city": "Bangalore",
+      "total": 1553,
+      "sample": {
+        "entityId": "39658767",
+        "name": "Taj West End",
+        "available": true,
+        "baseFare": 21024.12,
+        "starRating": 5
+      }
+    },
+    {
+      "id": "CITY.Chennai",
+      "rule": "CITY search Chennai (limit=1)",
+      "how": "POST /v1/hotels/search 228269:IN",
+      "expect": "HTTP 200 + inventory",
+      "actual": "HTTP 200 total=787 sample=Taj Club House fare=6874.63",
+      "status": "PASS",
+      "city": "Chennai",
+      "total": 787,
+      "sample": {
+        "entityId": "16319680",
+        "name": "Taj Club House",
+        "available": true,
+        "baseFare": 6874.63,
+        "starRating": 5
+      }
+    },
+    {
+      "id": "CITY.Pune",
+      "rule": "CITY search Pune (limit=1)",
+      "how": "POST /v1/hotels/search 328605:IN",
+      "expect": "HTTP 200 + inventory",
+      "actual": "HTTP 200 total=522 sample=Sheraton Grand Pune Bund Garden Hotel fare=10836.02",
+      "status": "PASS",
+      "city": "Pune",
+      "total": 522,
+      "sample": {
+        "entityId": "39644515",
+        "name": "Sheraton Grand Pune Bund Garden Hotel",
+        "available": true,
+        "baseFare": 10836.02,
+        "starRating": 5
+      }
+    },
+    {
+      "id": "CITY.Hyderabad",
+      "rule": "CITY search Hyderabad (limit=1)",
+      "how": "POST /v1/hotels/search 227706:IN",
+      "expect": "HTTP 200 + inventory",
+      "actual": "HTTP 200 total=909 sample=Hyderabad Marriott Hotel & Convention Centre fare=10869.18",
+      "status": "PASS",
+      "city": "Hyderabad",
+      "total": 909,
+      "sample": {
+        "entityId": "39711473",
+        "name": "Hyderabad Marriott Hotel & Convention Centre",
+        "available": true,
+        "baseFare": 10869.18,
+        "starRating": 5
+      }
+    },
+    {
+      "id": "CITY.Goa",
+      "rule": "CITY search Goa (limit=1)",
+      "how": "POST /v1/hotels/search 328649:IN",
+      "expect": "HTTP 200 + inventory",
+      "actual": "HTTP 200 total=125 sample=Novotel GOA Panjim fare=12736.55",
+      "status": "PASS",
+      "city": "Goa",
+      "total": 125,
+      "sample": {
+        "entityId": "70489167",
+        "name": "Novotel GOA Panjim",
+        "available": true,
+        "baseFare": 12736.55,
+        "starRating": 5
+      }
+    },
+    {
+      "id": "CITY.Ahmedabad",
+      "rule": "CITY search Ahmedabad (limit=1)",
+      "how": "POST /v1/hotels/search 246774:IN",
+      "expect": "HTTP 200 + inventory",
+      "actual": "HTTP 200 total=393 sample=Four Points by Sheraton Ahmedabad fare=6041.22",
+      "status": "PASS",
+      "city": "Ahmedabad",
+      "total": 393,
+      "sample": {
+        "entityId": "39529315",
+        "name": "Four Points by Sheraton Ahmedabad",
+        "available": true,
+        "baseFare": 6041.22,
+        "starRating": 5
+      }
+    },
+    {
+      "id": "PRE.1",
+      "rule": "Hilltop HOTEL search",
+      "how": "POST /v1/hotels/search entityId=39627872",
+      "expect": "HTTP 200",
+      "actual": "HTTP 200 ok=true stay=2026-11-05→2026-11-06",
+      "status": "PASS"
+    },
+    {
+      "id": "PRE.2",
+      "rule": "Hilltop details rooms + encrypted bookingCode",
+      "how": "POST /v1/hotels/details (use details requestId)",
+      "expect": "HTTP 200, ≥1 room, bookingCode encrypted (no RIYA)",
+      "actual": "HTTP 200 rooms=92 requestId=999b1744-afab-4b2d-a3b2-f4223c8afed1 codeLen=280 enc=true",
+      "status": "PASS",
+      "sampleRoom": {
+        "bookingCodeLen": 280,
+        "totalAmount": 14081.869999999999,
+        "isPANMandatory": false
+      }
+    },
+    {
+      "id": "PRE.3",
+      "rule": "Hilltop prebook (stop — no finalize)",
+      "how": "POST /v1/hotels/prebook",
+      "expect": "HTTP 200 + bookingContext; NO finalize called",
+      "actual": "HTTP 200 success=true hasContext=true total=14081.869999999999 err=",
+      "status": "PASS",
+      "bookingContextPresent": true,
+      "finalizeCalled": false,
+      "bookingCodeEncrypted": true
+    },
+    {
+      "id": "PRE.4",
+      "rule": "Details total ≈ prebook total (±₹1)",
+      "how": "compare totals",
+      "expect": "|Δ| ≤ 1",
+      "actual": "amounts missing",
+      "status": "NOT TESTED"
+    },
+    {
+      "id": "GUARD.1",
+      "rule": "No finalize / book / cancel",
+      "how": "script guard",
+      "expect": "finalize never called",
+      "actual": "finalizeCalled=false cancelCalled=false",
+      "status": "PASS"
+    }
+  ]
+}

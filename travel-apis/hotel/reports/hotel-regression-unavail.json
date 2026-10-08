@@ -1,0 +1,842 @@
+{
+  "ranAt": "2026-08-31T10:03:53.300Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "tierId": "10546901",
+  "checkin": "2026-09-23",
+  "checkout": "2026-09-24",
+  "note": "Search + details only. No book/prebook/finalize.",
+  "counts": {
+    "PASS": 11,
+    "BUG": 1,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "id": 1,
+      "caseId": "H-UN1",
+      "section": "UNAVAIL",
+      "rule": "Sahara Star sold-out uses new SRP shape",
+      "how": "POST /v1/hotels/search type=HOTEL entityId=39649446 adults=6 2026-09-23",
+      "expected": "HTTP 200; results[0].available===false; price===null; id/name present; NOT old empty+message only",
+      "status": "PASS",
+      "actual": "http=200 total=1 message=- available=false priceNull=true name=Sahara Star Hotel",
+      "responseHotel": {
+        "id": "39649446",
+        "name": "Sahara Star Hotel",
+        "starRating": 5,
+        "available": false,
+        "priceIsNull": true,
+        "totalAmount": null,
+        "refundable": false,
+        "isGSTClaimable": true,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "oldEmpty": false
+    },
+    {
+      "id": 2,
+      "caseId": "H-UN2",
+      "section": "UNAVAIL",
+      "rule": "Sahara Star available (1ADT) still returns priced search hit",
+      "how": "HOTEL search adults=1",
+      "expected": "available!==false; price.totalAmount>=0",
+      "status": "PASS",
+      "actual": "http=200 available=true totalAmt=15002.5",
+      "hotel": {
+        "id": "39649446",
+        "name": "Sahara Star Hotel",
+        "starRating": 5,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 15002.5,
+        "refundable": true,
+        "isGSTClaimable": true,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      }
+    },
+    {
+      "id": 3,
+      "caseId": "H-UN3",
+      "section": "UNAVAIL",
+      "rule": "Sahara Star details for available stay has rooms + prices",
+      "how": "POST /v1/hotels/details entityId=39649446",
+      "expected": "HTTP 200; results[0].rooms length>0; room prices >=0; hotel name present",
+      "status": "PASS",
+      "actual": "http=200 rooms=16 pricedOk=16 neg=0 name=Sahara Star Hotel hotelAvail=true",
+      "hotelPrice": {
+        "baseFare": 12775,
+        "taxes": 2227.5,
+        "convenienceFee": 0,
+        "totalAmount": 15002.5,
+        "currency": "INR",
+        "priceReference": null,
+        "gstAmount": 0,
+        "currencyConversion": {
+          "source": "INR",
+          "destination": "INR",
+          "rate": 1
+        }
+      },
+      "roomSample": [
+        {
+          "title": "Mercury City View Room - Twin Bed",
+          "total": 15002.5,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Mercury City View Room - King Bed",
+          "total": 15002.5,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Earth Lagoon View Room with Private Balcony - Twin Bed",
+          "total": 15887.5,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "caseId": "H-UN-Delhi",
+      "section": "UNAVAIL",
+      "rule": "Delhi: available SRP fields + unavail rows + details",
+      "how": "CITY 227760:IN price_ASC page 0; details on first available hotel",
+      "expected": "Available hotels: name/star/price/isGSTClaimable; unavailable rows: available:false+price:null; details: rooms with prices",
+      "status": "PASS",
+      "actual": "search http=200 avail=20 unavail=0 availOk=true unavailOk=true; details http=200 rooms=5 pricedOk=5 neg=0 star=2 gst=true",
+      "availableSample": [
+        {
+          "id": "72459441",
+          "name": "Gavari India's Delhi Hostel",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 722.87,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 2,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "72390430",
+          "name": "Transit POD Stay",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 732.47,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "72390384",
+          "name": "A ONE HOSTEL",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 738,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 5,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "searchHotel": {
+        "id": "72459441",
+        "name": "Gavari India's Delhi Hostel",
+        "starRating": 2,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 722.87,
+        "refundable": true,
+        "isGSTClaimable": true,
+        "amenitiesCount": 2,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "72459441",
+        "name": "Gavari India's Delhi Hostel",
+        "starRating": 2,
+        "available": true,
+        "isGSTClaimable": true,
+        "hotelTotal": 722.87
+      },
+      "roomSample": [
+        {
+          "title": "Deluxe Shared Dormitory",
+          "total": 722.87,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Classic Shared Dormitory",
+          "total": 750.5500000000001,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Comfort Shared Dormitory",
+          "total": 769,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "caseId": "H-UN-Mumbai",
+      "section": "UNAVAIL",
+      "rule": "Mumbai: available SRP fields + unavail rows + details",
+      "how": "CITY 357389:IN price_ASC page 0; details on first available hotel",
+      "expected": "Available hotels: name/star/price/isGSTClaimable; unavailable rows: available:false+price:null; details: rooms with prices",
+      "status": "PASS",
+      "actual": "search http=200 avail=20 unavail=0 availOk=true unavailOk=true; details http=200 rooms=3 pricedOk=3 neg=0 star=3 gst=true",
+      "availableSample": [
+        {
+          "id": "15079424",
+          "name": "New Shahana - Hostel",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 683.5,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 4,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "70748967",
+          "name": "AAFEE CABIN STAY & DORMITORY",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 766.05,
+          "refundable": false,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "31427360",
+          "name": "Noor Dormitory",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 821.6,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 3,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "searchHotel": {
+        "id": "15079424",
+        "name": "New Shahana - Hostel",
+        "starRating": 3,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 683.5,
+        "refundable": true,
+        "isGSTClaimable": true,
+        "amenitiesCount": 4,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "15079424",
+        "name": "New Shahana - Hostel",
+        "starRating": 3,
+        "available": true,
+        "isGSTClaimable": true,
+        "hotelTotal": 683.5
+      },
+      "roomSample": [
+        {
+          "title": "Shared Dormitory, Men only",
+          "total": 683.5,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Deluxe Room, 1 Queen Bed",
+          "total": 1454.68,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Economy Room, 2 Bedrooms",
+          "total": 1605.3500000000001,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "caseId": "H-UN-Bangalore",
+      "section": "UNAVAIL",
+      "rule": "Bangalore: available SRP fields + unavail rows + details",
+      "how": "CITY 341153:IN price_ASC page 0; details on first available hotel",
+      "expected": "Available hotels: name/star/price/isGSTClaimable; unavailable rows: available:false+price:null; details: rooms with prices",
+      "status": "BUG",
+      "actual": "search http=504 avail=0 unavail=0 availOk=false unavailOk=true; details no available hotel on page",
+      "availableSample": [],
+      "unavailableSample": []
+    },
+    {
+      "id": 7,
+      "caseId": "H-UN-Chennai",
+      "section": "UNAVAIL",
+      "rule": "Chennai: available SRP fields + unavail rows + details",
+      "how": "CITY 228269:IN price_ASC page 0; details on first available hotel",
+      "expected": "Available hotels: name/star/price/isGSTClaimable; unavailable rows: available:false+price:null; details: rooms with prices",
+      "status": "PASS",
+      "actual": "search http=200 avail=20 unavail=0 availOk=true unavailOk=true; details http=200 rooms=2 pricedOk=2 neg=0 star=3 gst=true",
+      "availableSample": [
+        {
+          "id": "15339135",
+          "name": "The Mount Regency",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1390,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "15300111",
+          "name": "Hotel adithya",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1417.22,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "72382764",
+          "name": "Rayzen Stays",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1439.5,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "searchHotel": {
+        "id": "15339135",
+        "name": "The Mount Regency",
+        "starRating": 3,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 1390,
+        "refundable": true,
+        "isGSTClaimable": true,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "15339135",
+        "name": "The Mount Regency",
+        "starRating": 3,
+        "available": true,
+        "isGSTClaimable": true,
+        "hotelTotal": 1390
+      },
+      "roomSample": [
+        {
+          "title": "Standard Double Room",
+          "total": 1390,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Deluxe Double Room",
+          "total": 1570,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "caseId": "H-UN-Pune",
+      "section": "UNAVAIL",
+      "rule": "Pune: available SRP fields + unavail rows + details",
+      "how": "CITY 328605:IN price_ASC page 0; details on first available hotel",
+      "expected": "Available hotels: name/star/price/isGSTClaimable; unavailable rows: available:false+price:null; details: rooms with prices",
+      "status": "PASS",
+      "actual": "search http=200 avail=20 unavail=0 availOk=true unavailOk=true; details http=200 rooms=3 pricedOk=3 neg=0 star=2 gst=true",
+      "availableSample": [
+        {
+          "id": "70456961",
+          "name": "Galaxy Executive",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 967,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 3,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "72471835",
+          "name": "Fabhotel Dsp",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1235.48,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "54599102",
+          "name": "Zostel Pune",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1282.6299999999999,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "searchHotel": {
+        "id": "70456961",
+        "name": "Galaxy Executive",
+        "starRating": 2,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 967,
+        "refundable": true,
+        "isGSTClaimable": true,
+        "amenitiesCount": 3,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "70456961",
+        "name": "Galaxy Executive",
+        "starRating": 2,
+        "available": true,
+        "isGSTClaimable": true,
+        "hotelTotal": 967
+      },
+      "roomSample": [
+        {
+          "title": "Non AC Room",
+          "total": 967,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Deluxe Non AC Room",
+          "total": 1061.5,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Suite Non AC Double Room",
+          "total": 1534,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "caseId": "H-UN-Hyderabad",
+      "section": "UNAVAIL",
+      "rule": "Hyderabad: available SRP fields + unavail rows + details",
+      "how": "CITY 227706:IN price_ASC page 0; details on first available hotel",
+      "expected": "Available hotels: name/star/price/isGSTClaimable; unavailable rows: available:false+price:null; details: rooms with prices",
+      "status": "PASS",
+      "actual": "search http=200 avail=20 unavail=0 availOk=true unavailOk=true; details http=200 rooms=1 pricedOk=1 neg=0 star=2 gst=true",
+      "availableSample": [
+        {
+          "id": "72310812",
+          "name": "Deccan Dormitory",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 967,
+          "refundable": false,
+          "isGSTClaimable": true,
+          "amenitiesCount": 4,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "32500663",
+          "name": "Hotel KINARA GRAND-Habsiguda ",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1120,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "71351735",
+          "name": "Skyline backpackers-Premium Co-living",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1135.64,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "searchHotel": {
+        "id": "72310812",
+        "name": "Deccan Dormitory",
+        "starRating": 2,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 967,
+        "refundable": false,
+        "isGSTClaimable": true,
+        "amenitiesCount": 4,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "72310812",
+        "name": "Deccan Dormitory",
+        "starRating": 2,
+        "available": true,
+        "isGSTClaimable": true,
+        "hotelTotal": 967
+      },
+      "roomSample": [
+        {
+          "title": "Deluxe Shared Dormitory",
+          "total": 967,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "caseId": "H-UN-Goa",
+      "section": "UNAVAIL",
+      "rule": "Goa: available SRP fields + unavail rows + details",
+      "how": "CITY 328649:IN price_ASC page 0; details on first available hotel",
+      "expected": "Available hotels: name/star/price/isGSTClaimable; unavailable rows: available:false+price:null; details: rooms with prices",
+      "status": "PASS",
+      "actual": "search http=200 avail=20 unavail=0 availOk=true unavailOk=true; details http=200 rooms=4 pricedOk=4 neg=0 star=1 gst=true",
+      "availableSample": [
+        {
+          "id": "70750317",
+          "name": "The Hosteller Goa, Old Goa",
+          "starRating": 1,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1015.95,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "71214505",
+          "name": "goSTOPS PLUS Goa, Panaji",
+          "starRating": 2,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1154.06,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "15533575",
+          "name": "Viva Guest House",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 1735.01,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "searchHotel": {
+        "id": "70750317",
+        "name": "The Hosteller Goa, Old Goa",
+        "starRating": 1,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 1015.95,
+        "refundable": true,
+        "isGSTClaimable": true,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "70750317",
+        "name": "The Hosteller Goa, Old Goa",
+        "starRating": 1,
+        "available": true,
+        "isGSTClaimable": true,
+        "hotelTotal": 1015.95
+      },
+      "roomSample": [
+        {
+          "title": "Bed in 8 Bed Mixed Dormitory with Balcony",
+          "total": 1015.95,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Bed in 6 Bed Female Dormitory with Balcony",
+          "total": 1104.3300000000002,
+          "mealType": "No Meal"
+        },
+        {
+          "title": "Bed in 6 Bed Mixed Dormitory with Balcony",
+          "total": 1104.3300000000002,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "caseId": "H-UN-Ahmedabad",
+      "section": "UNAVAIL",
+      "rule": "Ahmedabad: available SRP fields + unavail rows + details",
+      "how": "CITY 246774:IN price_ASC page 0; details on first available hotel",
+      "expected": "Available hotels: name/star/price/isGSTClaimable; unavailable rows: available:false+price:null; details: rooms with prices",
+      "status": "PASS",
+      "actual": "search http=200 avail=20 unavail=0 availOk=true unavailOk=true; details http=200 rooms=1 pricedOk=1 neg=0 star=3 gst=true",
+      "availableSample": [
+        {
+          "id": "72377141",
+          "name": "HOTEL SIGNOR",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 959.22,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "16180055",
+          "name": "HOTEL DIVYA PALACE",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 964.62,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        },
+        {
+          "id": "16307535",
+          "name": "HOTEL JASRAJ",
+          "starRating": 3,
+          "available": true,
+          "priceIsNull": false,
+          "totalAmount": 972.89,
+          "refundable": true,
+          "isGSTClaimable": true,
+          "amenitiesCount": 6,
+          "hasImage": true,
+          "hasAddress": true
+        }
+      ],
+      "unavailableSample": [],
+      "searchHotel": {
+        "id": "72377141",
+        "name": "HOTEL SIGNOR",
+        "starRating": 3,
+        "available": true,
+        "priceIsNull": false,
+        "totalAmount": 959.22,
+        "refundable": true,
+        "isGSTClaimable": true,
+        "amenitiesCount": 6,
+        "hasImage": true,
+        "hasAddress": true
+      },
+      "detailsHotel": {
+        "id": "72377141",
+        "name": "HOTEL SIGNOR",
+        "starRating": 3,
+        "available": true,
+        "isGSTClaimable": true,
+        "hotelTotal": 959.22
+      },
+      "roomSample": [
+        {
+          "title": "Superior Room",
+          "total": 959.22,
+          "mealType": "No Meal"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "caseId": "H-UN-Mum6",
+      "section": "UNAVAIL",
+      "rule": "Mumbai sample HOTEL searches with adults=6 prefer new unavail shape",
+      "how": "5 hotels from Mumbai listing",
+      "expected": "When no inventory: available:false+price:null (not empty message envelope)",
+      "status": "PASS",
+      "actual": "newUnavail=5 oldEmpty=0",
+      "probes": [
+        {
+          "id": "15079424",
+          "name": "New Shahana - Hostel",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "15079424",
+            "name": "New Shahana - Hostel",
+            "starRating": 2,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": true,
+            "amenitiesCount": 6,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        },
+        {
+          "id": "70748967",
+          "name": "AAFEE CABIN STAY & DORMITORY",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "70748967",
+            "name": "AAFEE CABIN STAY & DORMITORY",
+            "starRating": 1,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": true,
+            "amenitiesCount": 6,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        },
+        {
+          "id": "31427360",
+          "name": "Noor Dormitory",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "31427360",
+            "name": "Noor Dormitory Sakinaka",
+            "starRating": 2,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": true,
+            "amenitiesCount": 6,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        },
+        {
+          "id": "63121252",
+          "name": "Negasi Dormitory",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "63121252",
+            "name": "Negasi Dormitory",
+            "starRating": 2,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": true,
+            "amenitiesCount": 6,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        },
+        {
+          "id": "15727378",
+          "name": "Delta Dormitory - Hostel",
+          "http": 200,
+          "total": 1,
+          "message": null,
+          "oldEmpty": false,
+          "hotel": {
+            "id": "15727378",
+            "name": "Delta Dormitory - Hostel",
+            "starRating": 2,
+            "available": false,
+            "priceIsNull": true,
+            "totalAmount": null,
+            "refundable": false,
+            "isGSTClaimable": true,
+            "amenitiesCount": 6,
+            "hasImage": true,
+            "hasAddress": true
+          },
+          "newUnavail": true
+        }
+      ]
+    }
+  ]
+}

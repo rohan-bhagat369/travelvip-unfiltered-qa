@@ -1,0 +1,1547 @@
+{
+  "info": {
+    "name": "TravelVIP Hotel Search Filters (Chain Brand Property Type Meal)",
+    "description": "Hotel SEARCH + DETAILS examples for Chain/Brand/Property Type filters plus board-basis mealType on room cards.\n\nWorkspace: Travel VIP V2 APIs. Use B2B env (base_url, auth_token, signing_key). Search/details only — do not book.\n\nFacet indexFields (object fq format):\n- Property Type → fq[\"Property Type\"]: [\"Apartment\"] | [\"Apartment\", \"Resort\"]\n- Chain → fq.Chain: [\"Taj Hotels\"] | [\"Fabhotels\"]\n- Brand → fq.Brand: [\"Taj\"] | [\"Treebo Hotels\"]\n- Star → fq.df_long_star_rating: [4]\n- GST → fq.GST: [\"Claimable\"]\n- Free cancel → fq[\"Reservation policy\"]: [\"Free cancellation\"]\n\nArray fq alternative: [\"Property Type:Apartment\"] or [\"Property Type:Apartment;Resort\"]\n\nMeal type: inspect rooms[].mealType, inclusion, benefitsIcon on Details (no payload change).\n\nAlso: GET /v1/hotels/autocomplete?tripType=domestic|international (domestic = India-only).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Hotel Autocomplete tripType",
+      "item": [
+        {
+          "name": "Autocomplete tripType=domestic (q=pune)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/autocomplete?lang=en&currency=INR&q=pune&page=0&perpage=10&tripType=domestic",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "autocomplete"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "q",
+                  "value": "pune"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "10"
+                },
+                {
+                  "key": "tripType",
+                  "value": "domestic"
+                }
+              ]
+            },
+            "description": "India-only cities/hotels"
+          }
+        },
+        {
+          "name": "Autocomplete tripType=international (q=dubai)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/autocomplete?lang=en&currency=INR&q=dubai&page=0&perpage=10&tripType=international",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "autocomplete"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "q",
+                  "value": "dubai"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "10"
+                },
+                {
+                  "key": "tripType",
+                  "value": "international"
+                }
+              ]
+            },
+            "description": "Unfiltered / international results"
+          }
+        },
+        {
+          "name": "Autocomplete omit tripType (q=pune)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/autocomplete?lang=en&currency=INR&q=pune&page=0&perpage=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "autocomplete"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "q",
+                  "value": "pune"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Omit tripType — unfiltered"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hotel Search Filters",
+      "item": [
+        {
+          "name": "Hotel Search - All filters (star + GST + free cancel + chain + brand + property type)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json();",
+                  "const filterNames = (data.filters || []).map(f => f.name || f.indexField);",
+                  "pm.test('filters advertise Chain, Brand, Property Type', function () {",
+                  "  const joined = filterNames.join(' ');",
+                  "  pm.expect(joined).to.match(/Chain/i);",
+                  "  pm.expect(joined).to.match(/Brand/i);",
+                  "  pm.expect(joined).to.match(/Property Type/i);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"df_long_star_rating\": [4],\n    \"GST\": [\"Claimable\"],\n    \"Reservation policy\": [\"Free cancellation\"],\n    \"Chain\": [\"Taj Hotels\"],\n    \"Brand\": [\"Taj\"],\n    \"Property Type\": [\"Hotel\"]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            },
+            "description": "Mumbai CITY with combined filters including Chain + Brand + Property Type."
+          }
+        },
+        {
+          "name": "Hotel Search - Property Type Apartment (Mumbai)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json();",
+                  "pm.test('Property Type facet present', function () {",
+                  "  const names = (data.filters || []).map(f => f.name || f.indexField).join(' ');",
+                  "  pm.expect(names).to.match(/Property Type/i);",
+                  "});",
+                  "console.log('Apartment total', data.totalResults);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"Property Type\": [\"Apartment\"]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            },
+            "description": "NEW filter: Property Type only (Apartment). Facet values: Hotel, Apartment, Resort, Hostel, etc."
+          }
+        },
+        {
+          "name": "Hotel Search - Property Type Apartment + Resort (multi-select)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "console.log('Apartment+Resort total', pm.response.json().totalResults);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"Property Type\": [\"Apartment\", \"Resort\"]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            },
+            "description": "Multi-select Property Type. Array-string alternative: fq [\"Property Type:Apartment;Resort\"]."
+          }
+        },
+        {
+          "name": "Hotel Search - Property Type + Star 4 compose",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const hotels = pm.response.json().results || [];",
+                  "pm.test('starRating === 4 when present', function () {",
+                  "  hotels.forEach(h => { if (h.starRating != null) pm.expect(Number(h.starRating)).to.eql(4); });",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"Property Type\": [\"Hotel\"],\n    \"df_long_star_rating\": [4]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            },
+            "description": "Property Type composes with existing star filter."
+          }
+        },
+        {
+          "name": "Hotel Search - Chain only (Taj Hotels)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "console.log('Chain Taj total', pm.response.json().totalResults);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"Chain\": [\"Taj Hotels\"]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Hotel Search - Brand only (Taj)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"Brand\": [\"Taj\"]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Hotel Search - Chain Fabhotels",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"Chain\": [\"Fabhotels\"]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Hotel Search - Brand Treebo Hotels",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"Brand\": [\"Treebo Hotels\"]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Hotel Search - GST Claimable",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const hotels = pm.response.json().results || [];",
+                  "pm.test('every hotel isGSTClaimable=true', function () {",
+                  "  hotels.forEach(h => { if (h.isGSTClaimable != null) pm.expect(h.isGSTClaimable, h.name).to.eql(true); });",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"GST\": [\"Claimable\"]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Hotel Search - Star 4",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const hotels = pm.response.json().results || [];",
+                  "pm.test('all starRating === 4', function () {",
+                  "  hotels.forEach(h => { if (h.starRating != null) pm.expect(Number(h.starRating), h.name).to.eql(4); });",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"357389:IN\",\n  \"nationality\": \"IN\",\n  \"type\": \"CITY\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ],\n  \"fq\": {\n    \"df_long_star_rating\": [4]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/search?currency=INR&page=0&perpage=20&lang=en&sort=price_ASC&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "perpage",
+                  "value": "20"
+                },
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_ASC"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hotel Details — Meal Type (board-basis)",
+      "item": [
+        {
+          "name": "Hotel Details - Sundeep Inn (Breakfast Included badge)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json();",
+                  "const rooms = data.rooms || [];",
+                  "const bf = rooms.filter(r => r.mealType === 'Breakfast Included');",
+                  "console.log('Breakfast Included rooms', bf.length);",
+                  "bf.slice(0, 5).forEach(r => {",
+                  "  const keys = (r.benefitsIcon || []).map(x => x.key).concat((r.amenitiesIcon || []).map(x => x.key));",
+                  "  console.log(r.title, 'mealType=', r.mealType, 'badges=', keys.join(','));",
+                  "});",
+                  "pm.test('Breakfast Included rooms have breakfast badge', function () {",
+                  "  if (!bf.length) return pm.test.skip('no breakfast rooms');",
+                  "  bf.forEach(r => {",
+                  "    const keys = (r.benefitsIcon || []).map(x => String(x.key||'')).concat((r.amenitiesIcon || []).map(x => String(x.key||'')));",
+                  "    const ok = keys.some(k => /^breakfast$/i.test(k) || /breakfast included/i.test(k));",
+                  "    pm.expect(ok, r.title).to.be.true;",
+                  "  });",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"39637795\",\n  \"nationality\": \"IN\",\n  \"type\": \"HOTEL\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/details?lang=en&currency=INR&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "details"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            },
+            "description": "Board-basis mealType on room cards. Expect mealType=Breakfast Included + breakfast badge in benefitsIcon. Known preprod bug if badge missing."
+          }
+        },
+        {
+          "name": "Hotel Details - Towers Rotana (Half Board / Full Board)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "const signingKey = pm.environment.get('signing_key');",
+                  "const signature = CryptoJS.HmacSHA256(body + timestamp, signingKey).toString(CryptoJS.enc.Hex);",
+                  "pm.environment.set('timestamp', timestamp);",
+                  "pm.environment.set('signature', signature);",
+                  "pm.variables.set('request_id', 'req-' + Date.now());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const rooms = pm.response.json().rooms || [];",
+                  "const meals = [...new Set(rooms.map(r => r.mealType).filter(Boolean))];",
+                  "console.log('mealTypes', meals.join(', '));",
+                  "rooms.slice(0, 5).forEach(r => console.log(r.title, r.mealType, (r.inclusion||'').slice(0,80)));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "X-Timestamp",
+                "value": "{{timestamp}}"
+              },
+              {
+                "key": "X-Signature",
+                "value": "{{signature}}"
+              },
+              {
+                "key": "X-Correlation-ID",
+                "value": "{{correlation_id}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"2026-09-23\",\n  \"checkout\": \"2026-09-24\",\n  \"entityId\": \"39657625\",\n  \"nationality\": \"IN\",\n  \"type\": \"HOTEL\",\n  \"rooms\": [\n    {\n      \"adults\": 1,\n      \"children\": 0,\n      \"childrenAges\": []\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/hotels/details?lang=en&currency=INR&pid=vgm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "hotels",
+                "details"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "key": "currency",
+                  "value": "INR"
+                },
+                {
+                  "key": "pid",
+                  "value": "vgm"
+                }
+              ]
+            },
+            "description": "Inspect Half Board / Full Board mealType mapping from board-basis inclusion text."
+          }
+        }
+      ]
+    }
+  ]
+}

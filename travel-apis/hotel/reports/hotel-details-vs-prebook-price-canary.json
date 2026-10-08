@@ -1,0 +1,124 @@
+{
+  "ranAt": "2026-08-14T15:50:29.576Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "entityId": "39627872",
+  "hotel": "Hiltop Hotel / Hilltop Hotel Mumbai",
+  "relatedBr": "BR1786711327778765",
+  "checkin": "2026-09-11",
+  "checkout": "2026-09-12",
+  "requestId": "334d4ba2-c4d4-4fad-b83a-0fb86e91abd3",
+  "bookingCode": "39627872!TB!RIYA!TB!8f5f9273-aecc-4d5f-9743-8ab3631072df~653cdf0a-c773-4890-8bd8-2a968d6e3cfd~ec278a99-72fa-4a65-b811-3b14c8f54502~1c0a8d48-78fb-4520-b92e-ade6643b34bc~334d4ba2-c4d4-4fad-b83a-0fb86e91abd3",
+  "detailsRoom": {
+    "bookingCode": "39627872!TB!RIYA!TB!8f5f9273-aecc-4d5f-9743-8ab3631072df~653cdf0a-c773-4890-8bd8-2a968d6e3cfd~ec278a99-72fa-4a65-b811-3b14c8f54502~1c0a8d48-78fb-4520-b92e-ade6643b34bc~334d4ba2-c4d4-4fad-b83a-0fb86e91abd3",
+    "title": "Basic Studio",
+    "mealType": "Breakfast Included",
+    "isPANMandatory": true,
+    "isGSTClaimable": true,
+    "price": {
+      "baseFare": 7004.9,
+      "taxes": 359.96,
+      "convenienceFee": 0,
+      "totalAmount": 7364.86,
+      "currency": "INR",
+      "gstAmount": 0
+    }
+  },
+  "prebookRoom": {
+    "bookingCode": "39627872!TB!RIYA!TB!8f5f9273-aecc-4d5f-9743-8ab3631072df~653cdf0a-c773-4890-8bd8-2a968d6e3cfd~ec278a99-72fa-4a65-b811-3b14c8f54502~1c0a8d48-78fb-4520-b92e-ade6643b34bc~334d4ba2-c4d4-4fad-b83a-0fb86e91abd3",
+    "title": "Basic Studio",
+    "mealType": "Breakfast Included",
+    "isPANMandatory": true,
+    "isGSTClaimable": true,
+    "price": {
+      "baseFare": 7004.9,
+      "taxes": 359.96,
+      "convenienceFee": 0,
+      "totalAmount": 7364.86,
+      "currency": "INR",
+      "gstAmount": 0
+    }
+  },
+  "hotelLevel": {
+    "details": {
+      "baseFare": 7004.9,
+      "taxes": 359.96,
+      "convenienceFee": 0,
+      "totalAmount": 7364.86,
+      "currency": "INR",
+      "gstAmount": 0
+    },
+    "prebook": {
+      "baseFare": 7004.9,
+      "taxes": 359.96,
+      "convenienceFee": 0,
+      "totalAmount": 7364.86,
+      "currency": "INR",
+      "gstAmount": 0
+    },
+    "totalMatch": true
+  },
+  "allRoomPricesMatch": true,
+  "counts": {
+    "PASS": 7,
+    "BUG": 0,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "id": "P0",
+      "rule": "Hotel-level totalAmount details == prebook",
+      "how": "results[0].price.totalAmount",
+      "expected": "Match ±0.05",
+      "actual": "details=7364.86 prebook=7364.86",
+      "status": "PASS"
+    },
+    {
+      "id": "P1",
+      "rule": "Room price.baseFare details == prebook",
+      "how": "Same bookingCode from details → prebook",
+      "expected": "details.baseFare === prebook.baseFare (±0.05)",
+      "actual": "details=7004.9 prebook=7004.9 delta=0",
+      "status": "PASS"
+    },
+    {
+      "id": "P2",
+      "rule": "Room price.taxes details == prebook",
+      "how": "Same bookingCode from details → prebook",
+      "expected": "details.taxes === prebook.taxes (±0.05)",
+      "actual": "details=359.96 prebook=359.96 delta=0",
+      "status": "PASS"
+    },
+    {
+      "id": "P3",
+      "rule": "Room price.convenienceFee details == prebook",
+      "how": "Same bookingCode from details → prebook",
+      "expected": "details.convenienceFee === prebook.convenienceFee (±0.05)",
+      "actual": "details=0 prebook=0 delta=0",
+      "status": "PASS"
+    },
+    {
+      "id": "P4",
+      "rule": "Room price.totalAmount details == prebook",
+      "how": "Same bookingCode from details → prebook",
+      "expected": "details.totalAmount === prebook.totalAmount (±0.05)",
+      "actual": "details=7364.86 prebook=7364.86 delta=0",
+      "status": "PASS"
+    },
+    {
+      "id": "P5",
+      "rule": "Room price.gstAmount details == prebook",
+      "how": "Same bookingCode from details → prebook",
+      "expected": "details.gstAmount === prebook.gstAmount (±0.05)",
+      "actual": "details=0 prebook=0 delta=0",
+      "status": "PASS"
+    },
+    {
+      "id": "P6",
+      "rule": "Room price.currency details == prebook",
+      "how": "Same bookingCode from details → prebook",
+      "expected": "details.currency === prebook.currency (±0.05)",
+      "actual": "details=INR prebook=INR delta=null",
+      "status": "PASS"
+    }
+  ]
+}

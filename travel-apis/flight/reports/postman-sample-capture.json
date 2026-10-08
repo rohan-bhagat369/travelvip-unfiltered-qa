@@ -1,0 +1,63 @@
+{
+  "ranAt": "2026-08-05T09:04:07.066Z",
+  "env": "https://api-staging.travelvip.ai",
+  "samplesCaptured": 72,
+  "injected": 72,
+  "results": {
+    "partner": {
+      "ok": true
+    },
+    "owFamily": {
+      "ok": true,
+      "br": "BR1785920360652572",
+      "status": "Confirmed"
+    },
+    "owAnc": {
+      "ok": true,
+      "br": "BR1785920390237560",
+      "status": "Inprogress"
+    },
+    "rtFamily": {
+      "ok": true,
+      "br": "BR1785920586433749",
+      "status": "Confirmed"
+    },
+    "rtAnc": {
+      "ok": false,
+      "error": "no BR",
+      "data": {
+        "status": 400,
+        "code": "WALLET_INSUFFICIENT_BALANCE",
+        "message": "Insufficient wallet balance to complete this booking.",
+        "available": 713342,
+        "required": 724000,
+        "_meta": {
+          "correlation_id": "38984e56-b38f-47fc-85a3-f7c99e869d8d"
+        }
+      }
+    },
+    "hotel": {
+      "ok": false,
+      "error": "no hotel BR",
+      "data": {
+        "status": 400,
+        "message": "bookingContext is required",
+        "_meta": {
+          "correlation_id": "38984e56-b38f-47fc-85a3-f7c99e869d8d"
+        }
+      }
+    },
+    "lounge": {
+      "ok": false,
+      "error": "no airport"
+    },
+    "ft": {
+      "ok": false,
+      "error": "no airport"
+    },
+    "esim": {
+      "ok": false,
+      "error": "no esim product"
+    }
+  }
+}

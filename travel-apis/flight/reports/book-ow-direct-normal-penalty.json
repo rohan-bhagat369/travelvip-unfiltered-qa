@@ -1,0 +1,52 @@
+{
+  "ranAt": "2026-08-13T11:04:56.233Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "ok": true,
+  "fixture": {
+    "br": "BR1786619084852128",
+    "status": "Confirmed",
+    "fareType": "NORMAL",
+    "trip": "OW",
+    "stops": "direct",
+    "route": "BOM-DEL",
+    "pnr": "HPNQ6S",
+    "onlineCancellation": true,
+    "airline": "6E",
+    "flight": "6E 954",
+    "passenger": "Ishaan Kapoorhdgh",
+    "totalAmount": 7172,
+    "userId": 20688
+  },
+  "penalty": {
+    "request": {
+      "action": "PENALTY",
+      "pnr": "HPNQ6S",
+      "cancellationReason": "OW direct NORMAL penalty quote"
+    },
+    "http": 200,
+    "response": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786619084852128",
+        "pnr": "HPNQ6S",
+        "cancellationRequest": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 1099,
+          "estimatedRefund": 6073
+        }
+      },
+      "_meta": {
+        "correlation_id": "cb3a826a-23bf-4313-935f-abd2925aa027"
+      }
+    }
+  },
+  "left": [
+    {
+      "br": "BR1786619065148840",
+      "status": "Inprogress",
+      "route": "DEL-BOM",
+      "name": "Dev Malhotragbki"
+    }
+  ]
+}

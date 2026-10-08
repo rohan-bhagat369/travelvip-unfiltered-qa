@@ -1,0 +1,155 @@
+{
+  "ranAt": "2026-09-04T13:59:37.446Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "summary": {
+    "PASS": 0,
+    "BUG": 12,
+    "NOT TESTED": 0
+  },
+  "rows": [
+    {
+      "id": "S-FUZZ-3",
+      "domain": "Flight",
+      "api": "POST /v1/flights/search",
+      "how": "fareType=GARBAGE",
+      "expected": "HTTP 400 VALIDATION_ERROR",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":3682,\"message\":null},\"timingReference\":\"qeBS0qZI6g85h2jQ9eYWaBGjVJPtyyVuuEXL93jhzotdXNoXOA3Fw/rmcGpipZZeGlcx3F1bRgo/SKHn5+3QXrkXmK35DzLDPbWbSA06O5Xt5d"
+    },
+    {
+      "id": "ISSUE-NO-PRICEID",
+      "domain": "Flight",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "how": "priceId trailing comma",
+      "expected": "HTTP 400 VALIDATION_ERROR (no BR)",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"bookingReference\":\"BR1788530358641482\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"4fc30a65-15e5-439f-b3b9-ade050f0616f\"}}"
+    },
+    {
+      "id": "ISSUE-HTML-PRICEID",
+      "domain": "Flight",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "how": "priceId=<script>…",
+      "expected": "HTTP 400 VALIDATION_ERROR (no BR)",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"bookingReference\":\"BR1788530363100003\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"4fc30a65-15e5-439f-b3b9-ade050f0616f\"}}"
+    },
+    {
+      "id": "S-HTML-ENTITY",
+      "domain": "Hotel",
+      "api": "POST /v1/hotels/search",
+      "how": "entityId=39627872<script>",
+      "expected": "HTTP 400 VALIDATION_ERROR",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels found for this date range. Please try searching different dates.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"fi"
+    },
+    {
+      "id": "DET-PAST",
+      "domain": "Hotel",
+      "api": "POST /v1/hotels/details",
+      "how": "checkin/checkout 2024-01-01/03",
+      "expected": "HTTP 400 VALIDATION_ERROR (same as search)",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"checkin\":\"Check-in date must be today or a future date\",\"_meta\":{\"correlation_id\":\"4fc30a65-15e5-439f-b3b9-ade050f0616f\"}}"
+    },
+    {
+      "id": "DET-HTML",
+      "domain": "Hotel",
+      "api": "POST /v1/hotels/details",
+      "how": "entityId=<script>alert(1)</script>",
+      "expected": "HTTP 400 VALIDATION_ERROR",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"page\":0,\"size\":1,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"results\":null,\"sorts\":[{\"name\":\"Price Low to High\",\"key\":\"price_ASC\"},{\"name\":\"Price High to Low\",\"key\":\"price_DESC\"}],\"fromCache\":false,\"cacheTimeStamp\":null,\"requestId\":\"69c0bdf6-0c16-4c34-923c-fa69c913b93"
+    },
+    {
+      "id": "PB-HTML-CODE",
+      "domain": "Hotel",
+      "api": "POST /v1/hotels/prebook",
+      "how": "bookingCode=<script>…",
+      "expected": "HTTP 4xx VALIDATION_ERROR (not HTTP 200 + INTERNAL_SERVER_ERROR)",
+      "http": 200,
+      "code": "INTERNAL_SERVER_ERROR",
+      "status": "BUG",
+      "actual": "HTTP 200 with body error INTERNAL_SERVER_ERROR",
+      "snippet": "{\"code\":\"INTERNAL_SERVER_ERROR\",\"message\":\"Unable to confirm this room right now. Please try again.\",\"_meta\":{\"correlation_id\":\"4fc30a65-15e5-439f-b3b9-ade050f0616f\"}}"
+    },
+    {
+      "id": "PB-COMMA-REQ",
+      "domain": "Hotel",
+      "api": "POST /v1/hotels/prebook",
+      "how": "requestId with trailing comma",
+      "expected": "HTTP 400 VALIDATION_ERROR",
+      "http": 200,
+      "code": "INTERNAL_SERVER_ERROR",
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"code\":\"INTERNAL_SERVER_ERROR\",\"message\":\"Unable to confirm this room right now. Please try again.\",\"_meta\":{\"correlation_id\":\"4fc30a65-15e5-439f-b3b9-ade050f0616f\"}}"
+    },
+    {
+      "id": "BR-STATUS",
+      "domain": "Hotel",
+      "api": "GET /v1/hotels/bookings/BR0000000000000001/status",
+      "how": "fake BR",
+      "expected": "HTTP 404 BOOKING_NOT_FOUND",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"4fc30a65-15e5-439f-b3b9-ade050f0616f\"}}"
+    },
+    {
+      "id": "BR-DETAIL",
+      "domain": "Hotel",
+      "api": "GET /v1/hotels/bookings/BR0000000000000001",
+      "how": "fake BR",
+      "expected": "HTTP 404 BOOKING_NOT_FOUND",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"4fc30a65-15e5-439f-b3b9-ade050f0616f\"}}"
+    },
+    {
+      "id": "BR-HTML",
+      "domain": "Hotel",
+      "api": "GET /v1/hotels/bookings/<script>/status",
+      "how": "HTML BR path",
+      "expected": "HTTP 400 or 404",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"4fc30a65-15e5-439f-b3b9-ade050f0616f\"}}"
+    },
+    {
+      "id": "BR-COMMA",
+      "domain": "Hotel",
+      "api": "GET /v1/hotels/bookings/BR123,/status",
+      "how": "BR with trailing comma",
+      "expected": "HTTP 400 or 404",
+      "http": 200,
+      "code": null,
+      "status": "BUG",
+      "actual": "Accepted invalid input HTTP 200",
+      "snippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"4fc30a65-15e5-439f-b3b9-ade050f0616f\"}}"
+    }
+  ]
+}

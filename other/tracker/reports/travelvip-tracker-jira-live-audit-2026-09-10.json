@@ -1,0 +1,24 @@
+{
+  "ranAt": "2026-09-10T13:30:00+05:30",
+  "tool": "Playwright MCP",
+  "user": "rohan@travelvip.ai",
+  "url": "https://tracker.travelvip.ai",
+  "checks": [
+    { "id": 1, "rule": "Google login → /tasks", "status": "PASS" },
+    { "id": 2, "rule": "List + Board + Synced", "status": "PASS" },
+    { "id": 3, "rule": "ENG Active/Backlog/All ENG filters", "status": "PASS" },
+    { "id": 4, "rule": "Project filters present", "status": "PASS" },
+    { "id": 5, "rule": "Sprint Sept Sprint 1 → ENG-9, ENG-4", "status": "PASS" },
+    { "id": 6, "rule": "Title search q=Signoz → ENG-9", "status": "PASS" },
+    { "id": 7, "rule": "Key search q=ENG-12", "status": "BUG" },
+    { "id": 8, "rule": "ENG-2 detail: assignees/CC/follow/project/labels/deps/subtasks/comments", "status": "PASS" },
+    { "id": 9, "rule": "Reporter / worklog / story points / epic / severity / attachments / notif bell", "status": "MISSING" },
+    { "id": 10, "rule": "New task has issue type Epic/Story/Bug", "status": "MISSING" },
+    { "id": 11, "rule": "Cmd+K Go to views/projects", "status": "PASS" },
+    { "id": 12, "rule": "Group by Status/Assignee/Priority/Project", "status": "PASS" },
+    { "id": 13, "rule": "Admin routes settings/teams/projects/sprints/reports/epics/notifications", "status": "MISSING_404" },
+    { "id": 14, "rule": "Burndown / velocity / worklog-per-person UI", "status": "MISSING" },
+    { "id": 15, "rule": "Email notification for @mention (observable in UI)", "status": "NOT TESTED" }
+  ],
+  "reportUpdated": "reports/travelvip-tracker-jira-gap-analysis.md"
+}

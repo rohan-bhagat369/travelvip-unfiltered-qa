@@ -1,0 +1,96 @@
+{
+  "ranAt": "2026-09-11T14:53:21.757Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "rows": [
+    {
+      "case": "confirm_only_exact_postman_body",
+      "book": {
+        "ok": true,
+        "br": "BR1789138380752611",
+        "status": "Confirmed",
+        "pickup": "2026-10-09T18:35:58+00:00",
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "provider": "TVIPWE110926202300RRWN",
+        "operator": {
+          "name": "TravelVIP",
+          "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+          "rating": 3.2,
+          "ratingCount": 403
+        }
+      },
+      "cancel": {
+        "url": "https://api-staging.travelvip.ai/v1/airportServices/cabs/bookings/BR1789138380752611/cancel?lang=en&currency=INR",
+        "http": 400,
+        "data": {
+          "error": {
+            "code": "CANCELLATION_FAILED",
+            "message": "Booking cancellation unsuccessful",
+            "details": null,
+            "timestamp": "2026-09-11T14:53:02Z",
+            "request_id": "req-1789138383418",
+            "bookingRefId": "BR1789138380752611",
+            "type": "cancel",
+            "result": {
+              "bookingStatus": "FAILED"
+            }
+          },
+          "_meta": {
+            "correlation_id": "1719877f-c85b-4aec-9c22-998f8ab61204"
+          }
+        },
+        "statusAfter": "Confirmed"
+      }
+    },
+    {
+      "case": "confirm_only_wait_10s",
+      "book": {
+        "ok": true,
+        "br": "BR1789138387945770",
+        "status": "Confirmed",
+        "pickup": "2026-10-10T18:35:58+00:00",
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "provider": "TVIPWE110926202307P3RE",
+        "operator": {
+          "name": "TravelVIP",
+          "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+          "rating": 3.2,
+          "ratingCount": 403
+        }
+      },
+      "cancel": {
+        "url": "https://api-staging.travelvip.ai/v1/airportServices/cabs/bookings/BR1789138387945770/cancel?lang=en&currency=INR",
+        "http": 200,
+        "data": {
+          "status": 0,
+          "bookingRefId": "BR1789138387945770",
+          "type": "cancel",
+          "result": {
+            "bookingStatus": "CANCELLED",
+            "message": "Booking cancelled successfully",
+            "providerBookingId": "TVIPWE110926202307P3RE",
+            "totalPrice": 686.7,
+            "penaltyAmount": 50,
+            "refundAmount": 636.7,
+            "currency": "INR"
+          },
+          "_meta": {
+            "correlation_id": "1719877f-c85b-4aec-9c22-998f8ab61204"
+          }
+        },
+        "statusAfter": "Cancelled"
+      }
+    }
+  ]
+}

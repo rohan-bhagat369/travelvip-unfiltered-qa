@@ -1,0 +1,278 @@
+{
+  "summary": {
+    "baseUrl": "https://api-staging.travelvip.ai",
+    "path": "/v1/flights/search",
+    "startedAt": "2026-08-24T13:59:18.020Z",
+    "discovered": {
+      "owLabels": [],
+      "domOnwardLabels": [],
+      "domReturnLabels": [],
+      "intlOnward": [],
+      "intlReturn": []
+    }
+  },
+  "counts": {
+    "NOT TESTED": 2,
+    "BUG": 2
+  },
+  "rows": [
+    {
+      "tag": "FARETYPES-BOOK",
+      "section": "RT-DOM",
+      "n": 1,
+      "id": "RT-DOM.1",
+      "rule": "RT domestic same fare both legs [\"Normal\"] / [\"Normal\"]",
+      "how": "search fareTypes filter → details → pricing → POST /api/v2/flights/booking/issue-ticket",
+      "expected": "HTTP 200 hops, issue BR, status Confirmed (Inprogress after 1 retry still PASS)",
+      "actual": "no RT pair after fareTypes filter",
+      "status": "NOT TESTED",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Normal"
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            "Normal"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "FARETYPES-BOOK",
+      "section": "RT-DOM",
+      "n": 2,
+      "id": "RT-DOM.2",
+      "rule": "RT domestic different fareTypes ONWARD=[\"Normal\"] RETURN=[\"Flexi\"]",
+      "how": "search fareTypes filter → details → pricing → POST /api/v2/flights/booking/issue-ticket",
+      "expected": "HTTP 200 hops, issue BR, status Confirmed (Inprogress after 1 retry still PASS)",
+      "actual": "no RT pair after fareTypes filter",
+      "status": "NOT TESTED",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Normal"
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            "Flexi"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "FARETYPES-BOOK",
+      "section": "RT-INTL",
+      "n": 1,
+      "id": "RT-INTL.1",
+      "rule": "Intl RT #1 different fareTypes ONWARD=[\"Economy Saver\"] RETURN=[\"NDC:-Economy Saver\"] BOM↔DXB",
+      "how": "search fareTypes filter → details → pricing → POST /api/v2/flights/booking/issue-ticket",
+      "expected": "HTTP 200 hops, issue BR, status Confirmed (Inprogress after 1 retry still PASS)",
+      "actual": "searchIds=srch_cbba6244c4e94d558abb40e3e51d50c1,srch_8fe5b2b816244086938e10154c50babd details=400 INVALID_COMBINATION pricing=400 INVALID_COMBINATION issue=undefined BR=- status=- selected=Economy Saver/NDC:-Economy Saver bookedFares=[]",
+      "status": "BUG",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Economy Saver"
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            "NDC:-Economy Saver"
+          ]
+        }
+      },
+      "bookingReference": null
+    },
+    {
+      "tag": "FARETYPES-BOOK",
+      "section": "RT-INTL",
+      "n": 2,
+      "id": "RT-INTL.2",
+      "rule": "Intl RT #2 different fareTypes ONWARD=[\"Economy Saver\"] RETURN=[\"NDC:-Economy Saver\"] BOM↔DXB",
+      "how": "search fareTypes filter → details → pricing → POST /api/v2/flights/booking/issue-ticket",
+      "expected": "HTTP 200 hops, issue BR, status Confirmed (Inprogress after 1 retry still PASS)",
+      "actual": "searchIds=srch_da9a4a26f87f447dadff77c7a4ed5828,srch_2aa20d1d861c4b3189100b296d28edc8 details=400 INVALID_COMBINATION pricing=400 INVALID_COMBINATION issue=undefined BR=- status=- selected=Economy Saver/NDC:-Economy Saver bookedFares=[]",
+      "status": "BUG",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Economy Saver"
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            "NDC:-Economy Saver"
+          ]
+        }
+      },
+      "bookingReference": null
+    }
+  ],
+  "books": [
+    {
+      "id": "RT-DOM-SAME",
+      "searchIds": [
+        "srch_7f313d0438fc4e76b323531781cabf4c"
+      ],
+      "selected": {
+        "onward": {
+          "searchId": "srch_7f313d0438fc4e76b323531781cabf4c",
+          "price": 6286,
+          "fareType": "Normal",
+          "flights": [
+            "6E 6E 2314",
+            "6E 6E 5237"
+          ]
+        },
+        "ret": null
+      },
+      "attempts": [
+        {
+          "dates": {
+            "onward": "2026-09-20",
+            "ret": "2026-09-27"
+          },
+          "skip": "no RT pair after fareTypes filter",
+          "searchIds": [
+            "srch_ca186dafd55941e794a428aaceab356f"
+          ]
+        },
+        {
+          "dates": {
+            "onward": "2026-09-27",
+            "ret": "2026-10-04"
+          },
+          "skip": "no RT pair after fareTypes filter",
+          "searchIds": [
+            "srch_7f313d0438fc4e76b323531781cabf4c"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RT-DOM-DIFF",
+      "searchIds": [
+        "srch_7f313d0438fc4e76b323531781cabf4c"
+      ],
+      "selected": {
+        "onward": {
+          "searchId": "srch_7f313d0438fc4e76b323531781cabf4c",
+          "price": 6286,
+          "fareType": "Normal",
+          "flights": [
+            "6E 6E 2314",
+            "6E 6E 5237"
+          ]
+        },
+        "ret": null
+      },
+      "attempts": [
+        {
+          "dates": {
+            "onward": "2026-09-20",
+            "ret": "2026-09-27"
+          },
+          "skip": "no RT pair after fareTypes filter",
+          "searchIds": [
+            "srch_ca186dafd55941e794a428aaceab356f"
+          ]
+        },
+        {
+          "dates": {
+            "onward": "2026-09-27",
+            "ret": "2026-10-04"
+          },
+          "skip": "no RT pair after fareTypes filter",
+          "searchIds": [
+            "srch_7f313d0438fc4e76b323531781cabf4c"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RT-INTL-DIFF-1",
+      "br": null,
+      "searchIds": [
+        "srch_cbba6244c4e94d558abb40e3e51d50c1",
+        "srch_8fe5b2b816244086938e10154c50babd"
+      ],
+      "selected": {
+        "onward": {
+          "searchId": "srch_cbba6244c4e94d558abb40e3e51d50c1",
+          "price": 32930,
+          "fareType": "Economy Saver",
+          "flights": [
+            "EK EK 505"
+          ]
+        },
+        "ret": {
+          "searchId": "srch_8fe5b2b816244086938e10154c50babd",
+          "price": 32930,
+          "fareType": "NDC:-Economy Saver",
+          "flights": [
+            "EK EK 506"
+          ]
+        }
+      },
+      "attempts": [
+        {
+          "dates": {
+            "onward": "2026-09-20",
+            "ret": "2026-09-27"
+          },
+          "br": null,
+          "detailsHttp": 400,
+          "pricingHttp": 400,
+          "searchIds": [
+            "srch_cbba6244c4e94d558abb40e3e51d50c1",
+            "srch_8fe5b2b816244086938e10154c50babd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RT-INTL-DIFF-2",
+      "br": null,
+      "searchIds": [
+        "srch_da9a4a26f87f447dadff77c7a4ed5828",
+        "srch_2aa20d1d861c4b3189100b296d28edc8"
+      ],
+      "selected": {
+        "onward": {
+          "searchId": "srch_da9a4a26f87f447dadff77c7a4ed5828",
+          "price": 28661,
+          "fareType": "Economy Saver",
+          "flights": [
+            "EK EK 505"
+          ]
+        },
+        "ret": {
+          "searchId": "srch_2aa20d1d861c4b3189100b296d28edc8",
+          "price": 28661,
+          "fareType": "NDC:-Economy Saver",
+          "flights": [
+            "EK EK 506"
+          ]
+        }
+      },
+      "attempts": [
+        {
+          "dates": {
+            "onward": "2026-09-23",
+            "ret": "2026-09-30"
+          },
+          "br": null,
+          "detailsHttp": 400,
+          "pricingHttp": 400,
+          "searchIds": [
+            "srch_da9a4a26f87f447dadff77c7a4ed5828",
+            "srch_2aa20d1d861c4b3189100b296d28edc8"
+          ]
+        }
+      ]
+    }
+  ]
+}

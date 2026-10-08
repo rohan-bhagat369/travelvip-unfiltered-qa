@@ -1,0 +1,225 @@
+#,Product,Tag,Id,API,Rule,How tested,Expected
+1,Hotel,SMOKE,H-SM1,GET /v1/hotels/autocomplete,Autocomplete city q=pune,GET ?q=pune page=0.,"HTTP 200, content[] non-empty"
+2,Hotel,SMOKE,H-SM2,GET /v1/hotels/autocomplete,Autocomplete hotel name q=hiltop,GET ?q=hiltop; pick HOTEL Hilltop Mumbai entityId.,HTTP 200 with entityId
+3,Hotel,SMOKE,H-SM3,POST /v1/hotels/search,Search with pid=vgm,"CITY Mumbai 357389:IN, 1 adult, dates, pid=vgm, limit=5.",HTTP 200 with availability (totalResults > 0)
+4,Hotel,SMOKE,H-SM4,POST /api/hotels/v2/availability/listing,Spec listing URL optional/404,Same body as search on spec path.,HTTP 200 or documented 404 — never 500
+5,Hotel,LISTING,S1,POST /v1/hotels/search,Sort options are advertised,"offset=0 limit=5, no sort.","sorts[] exactly price_ASC, price_DESC (no star sort)"
+6,Hotel,LISTING,S2,POST /v1/hotels/search,Price ascending across result set,sort=price_ASC limit=5.,Non-decreasing price.baseFare
+7,Hotel,LISTING,S3,POST /v1/hotels/search,"Price descending, different set from S2",sort=price_DESC limit=5.,Non-increasing fares; hotel set differs from S2
+8,Hotel,LISTING,S4,POST /v1/hotels/search,Unknown sort key ignored,sort=rating_DESC.,HTTP 200; not rejected
+9,Hotel,LISTING,S-E4,POST /v1/hotels/search,S2 orders by baseFare not totalAmount,Compare S2 baseFare vs totalAmount sequences.,baseFare monotonic; totalAmount may differ
+10,Hotel,LISTING,F1,POST /v1/hotels/search,Star-rating facet self-describing,Unfiltered listing filters[].,Star Rating indexField df_long_star_rating; 5/4/3; no 1–2 star
+11,Hotel,LISTING,F2,POST /v1/hotels/search,One facet value narrows the set,fq df_long_star_rating:5 (or available 5★ key).,totalResults = facet count; every starRating=5
+12,Hotel,LISTING,F3,POST /v1/hotels/search,Multi-select uses a semicolon,fq 4;5 star keys.,total = 4★+5★ counts; only those ratings
+13,Hotel,LISTING,F4,POST /v1/hotels/search,Facet counts survive a selection,fq 5-star only.,Filtered total; full facet list still present
+14,Hotel,LISTING,F5,POST /v1/hotels/search,Filter and sort compose,fq + sort=price_ASC.,totalResults < unfiltered; fares ascending
+15,Hotel,LISTING,F6,POST /v1/hotels/search,Valueless filter is ignored,fq star_rating empty value.,HTTP 200 and full unfiltered totalResults
+16,Hotel,LISTING,P1,POST /v1/hotels/search,Pages chain without gaps or repeats,"offset 0,5,10 limit=5 price_ASC.",No overlapping ids; fare chain continues
+17,Hotel,LISTING,P2,POST /v1/hotels/search,Offset is echoed back,offset=7 limit=5.,offset:7 in response
+18,Hotel,LISTING,P3,POST /v1/hotels/search,Non-multiple offset slices the sorted set,offset=7 vs pages at 5 and 10.,Fares match slice of the sorted list
+19,Hotel,LISTING,P4,POST /v1/hotels/search,Page size changes recompute page count,limit=20.,20 results; totalPages=ceil(total/20)
+20,Hotel,LISTING,P5,POST /v1/hotels/search,Final page reports itself,"offset near end, limit=5.",Fewer than limit results; last:true
+21,Hotel,LISTING,P6,POST /v1/hotels/search,Past the end is an empty page,offset=9999 limit=5.,"HTTP 200, 0 results, last true, offset echoed"
+22,Hotel,LISTING,V1,POST /v1/hotels/search,Negative offset rejected,offset=-1 limit=5.,HTTP 400 VALIDATION_ERROR
+23,Hotel,LISTING,V2,POST /v1/hotels/search,Zero limit rejected,limit=0.,HTTP 400 VALIDATION_ERROR
+24,Hotel,LISTING,V3,POST /v1/hotels/search,Non-numeric offset rejected,offset=abc.,HTTP 400
+25,Hotel,STARBOOK,Mumbai-1,POST /v1/hotels/search,Mumbai: unfiltered search works,CITY search sort=price_ASC no fq.,HTTP 200 and hotel list
+26,Hotel,STARBOOK,Mumbai-2,POST /v1/hotels/search,Mumbai: 4★ fq returns only 4-star hotels,fq.df_long_star_rating=[4] sort=price_ASC.,Every starRating=4; total narrower than unfiltered
+27,Hotel,STARBOOK,Mumbai-3,POST /v1/hotels/search,Mumbai: 4★ price_ASC is non-decreasing,Same 4★ search.,baseFare non-decreasing
+28,Hotel,STARBOOK,Mumbai-4,POST /v1/hotels/search,Mumbai: 4★ + price_DESC still only 4-star,fq star 4 + sort=price_DESC.,Every starRating=4
+29,Hotel,STARBOOK,Mumbai-5,POST /v1/hotels/search,Mumbai: 4★ price_DESC is non-increasing,sort=price_DESC.,baseFare non-increasing
+30,Hotel,STARBOOK,Mumbai-6,POST /v1/hotels/search,Mumbai: ASC vs DESC are different ordered lists,Compare 4★ ASC vs DESC first page.,Order differs; cheapest-first vs dearest-first
+31,Hotel,STARBOOK,Mumbai-7,POST /v1/hotels/search,Mumbai: 4★ + Free cancellation + price_ASC,"fq star 4 + Reservation policy Free cancellation, price_ASC.",Only 4★; refundable=true; fares non-decreasing
+32,Hotel,STARBOOK,Mumbai-8,POST /v1/hotels/search,Mumbai: 4★ + Free cancellation + price_DESC,"Same fq, sort=price_DESC.",Only 4★; refundable=true; fares non-increasing
+33,Hotel,STARBOOK,Pune-1,POST /v1/hotels/search,Pune: unfiltered search works,CITY search sort=price_ASC no fq.,HTTP 200 and hotel list
+34,Hotel,STARBOOK,Pune-2,POST /v1/hotels/search,Pune: 4★ fq returns only 4-star hotels,fq.df_long_star_rating=[4] sort=price_ASC.,Every starRating=4; total narrower than unfiltered
+35,Hotel,STARBOOK,Pune-3,POST /v1/hotels/search,Pune: 4★ price_ASC is non-decreasing,Same 4★ search.,baseFare non-decreasing
+36,Hotel,STARBOOK,Pune-4,POST /v1/hotels/search,Pune: 4★ + price_DESC still only 4-star,fq star 4 + sort=price_DESC.,Every starRating=4
+37,Hotel,STARBOOK,Pune-5,POST /v1/hotels/search,Pune: 4★ price_DESC is non-increasing,sort=price_DESC.,baseFare non-increasing
+38,Hotel,STARBOOK,Pune-6,POST /v1/hotels/search,Pune: ASC vs DESC are different ordered lists,Compare 4★ ASC vs DESC first page.,Order differs; cheapest-first vs dearest-first
+39,Hotel,STARBOOK,Pune-7,POST /v1/hotels/search,Pune: 4★ + Free cancellation + price_ASC,"fq star 4 + Reservation policy Free cancellation, price_ASC.",Only 4★; refundable=true; fares non-decreasing
+40,Hotel,STARBOOK,Pune-8,POST /v1/hotels/search,Pune: 4★ + Free cancellation + price_DESC,"Same fq, sort=price_DESC.",Only 4★; refundable=true; fares non-increasing
+41,Hotel,STARBOOK,Delhi-1,POST /v1/hotels/search,Delhi: unfiltered search works,CITY search sort=price_ASC no fq.,HTTP 200 and hotel list
+42,Hotel,STARBOOK,Delhi-2,POST /v1/hotels/search,Delhi: 4★ fq returns only 4-star hotels,fq.df_long_star_rating=[4] sort=price_ASC.,Every starRating=4; total narrower than unfiltered
+43,Hotel,STARBOOK,Delhi-3,POST /v1/hotels/search,Delhi: 4★ price_ASC is non-decreasing,Same 4★ search.,baseFare non-decreasing
+44,Hotel,STARBOOK,Delhi-4,POST /v1/hotels/search,Delhi: 4★ + price_DESC still only 4-star,fq star 4 + sort=price_DESC.,Every starRating=4
+45,Hotel,STARBOOK,Delhi-5,POST /v1/hotels/search,Delhi: 4★ price_DESC is non-increasing,sort=price_DESC.,baseFare non-increasing
+46,Hotel,STARBOOK,Delhi-6,POST /v1/hotels/search,Delhi: ASC vs DESC are different ordered lists,Compare 4★ ASC vs DESC first page.,Order differs; cheapest-first vs dearest-first
+47,Hotel,STARBOOK,Delhi-7,POST /v1/hotels/search,Delhi: 4★ + Free cancellation + price_ASC,"fq star 4 + Reservation policy Free cancellation, price_ASC.",Only 4★; refundable=true; fares non-decreasing
+48,Hotel,STARBOOK,Delhi-8,POST /v1/hotels/search,Delhi: 4★ + Free cancellation + price_DESC,"Same fq, sort=price_DESC.",Only 4★; refundable=true; fares non-increasing
+49,Hotel,ENCRYPT,E1,POST /v1/hotels/details,Details bookingCode encrypted,Hilltop Mumbai 39627872 details rooms[].bookingCode.,No RIYA / !TB!RIYA!TB!; length > 12
+50,Hotel,ENCRYPT,E2,POST /v1/hotels/prebook,Prebook request/response codes encrypted,Same bookingCode + details requestId.,Code still encrypted; bookingContext present
+51,Hotel,ENCRYPT,E3,POST /v1/hotels/finalize-booking,Finalize uses encrypted bookingCode,Finalize body from E2E stay.,Not a VALIDATION_ERROR merely for encryption
+52,Hotel,ENCRYPT,E4,POST /v1/hotels/details,Scan details JSON bookingCodes for vendor strings,Walk details.results[].rooms[].bookingCode.,leakCount=0
+53,Hotel,ENCRYPT,E-RIYA,POST /v1/hotels/details,PAN dest hotels encrypted (optional extra hotels),--tags RIYA scans extra entityIds in RIYA_HOTELS.,bookingCode encrypted; no Riya token
+54,Hotel,CORR,C1,All hotel hops,Pin one UUID on hotel hops,Send same X-Correlation-ID on autocomplete/search/details/prebook/finalize/status/detail/history/cancel.,Request header sent (same UUID)
+55,Hotel,CORR,C2,All hotel hops,Response _meta.correlation_id,Compare response correlation to pinned UUID.,"Same UUID, documented rewrite, or no echo (header still sent)"
+56,Hotel,VALIDATE,A0,POST /v1/hotels/search,Valid search YYYY-MM-DD + 1 adult,Complete catalog search entityId + dates + 1 adult (baseline).,"HTTP 200, not VALIDATION_ERROR"
+57,Hotel,VALIDATE,A1,POST /v1/hotels/search,checkin DD-MM-YYYY rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+58,Hotel,VALIDATE,A2,POST /v1/hotels/search,checkin slashes YYYY/MM/DD rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+59,Hotel,VALIDATE,A3,POST /v1/hotels/search,checkin unpadded YYYY-M-D rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+60,Hotel,VALIDATE,A4,POST /v1/hotels/search,checkin impossible 2026-02-30 rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+61,Hotel,VALIDATE,A5,POST /v1/hotels/search,checkout DD-MM-YYYY rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+62,Hotel,VALIDATE,A6,POST /v1/hotels/search,checkout before checkin rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+63,Hotel,VALIDATE,A7,POST /v1/hotels/search,checkin in the past rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+64,Hotel,VALIDATE,A8,POST /v1/hotels/search,checkout >1 year from today rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+65,Hotel,VALIDATE,A9,POST /v1/hotels/search,"adults as string ""1"" rejected","Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+66,Hotel,VALIDATE,A10,POST /v1/hotels/search,adults decimal 1.5 rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+67,Hotel,VALIDATE,A11,POST /v1/hotels/search,adults 0 rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+68,Hotel,VALIDATE,A12,POST /v1/hotels/search,adults 7 rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+69,Hotel,VALIDATE,A13,POST /v1/hotels/search,children decimal rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+70,Hotel,VALIDATE,A14,POST /v1/hotels/search,children 5 rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+71,Hotel,VALIDATE,A15,POST /v1/hotels/search,children>0 without childrenAges rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+72,Hotel,VALIDATE,A16,POST /v1/hotels/search,childrenAges length mismatch rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+73,Hotel,VALIDATE,A17,POST /v1/hotels/search,childrenAges entry 18 rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+74,Hotel,VALIDATE,A18,POST /v1/hotels/search,childrenAges as string rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+75,Hotel,VALIDATE,A19,POST /v1/hotels/search,missing entityId rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+76,Hotel,VALIDATE,A20,POST /v1/hotels/search,missing type rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+77,Hotel,VALIDATE,A21,POST /v1/hotels/search,nationality not 2-letter rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+78,Hotel,VALIDATE,A22,POST /v1/hotels/search,>6 rooms rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+79,Hotel,VALIDATE,A23,POST /v1/hotels/search,"nationality with trailing comma (IN,)","Clone a valid baseline payload, mutate only this field, then call the API. nationality=IN,.","HTTP 4xx with error.code — never HTTP 500, never HTTP 200."
+80,Hotel,VALIDATE,A24,POST /v1/hotels/search,entityId with extra punctuation,"Clone a valid baseline payload, mutate only this field, then call the API. entityId punctuation.","HTTP 4xx with error.code — never HTTP 500, never HTTP 200."
+81,Hotel,VALIDATE,B1,POST /v1/hotels/details,checkin DD-MM-YYYY rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+82,Hotel,VALIDATE,B2,POST /v1/hotels/details,checkin slashes rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+83,Hotel,VALIDATE,B3,POST /v1/hotels/details,checkin unpadded rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+84,Hotel,VALIDATE,B4,POST /v1/hotels/details,impossible date 2026-02-30 rejected,"Clone a valid baseline payload, mutate only this field, then call the API.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+85,Hotel,VALIDATE,B5,POST /v1/hotels/details,checkout before checkin still accepted (no date compare),"Clone a valid baseline payload, mutate only this field, then call the API. checkout before checkin on details.",HTTP 200 or not a date VALIDATION_ERROR (details may not compare dates)
+86,Hotel,VALIDATE,C1,POST /v1/hotels/prebook,blank bookingCode rejected,"Prebook { bookingCode:"""", requestId }.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+87,Hotel,VALIDATE,C2,POST /v1/hotels/prebook,blank requestId rejected,"Prebook { bookingCode, requestId:"""" }.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+88,Hotel,VALIDATE,C3,POST /v1/hotels/prebook,Both bookingCode + requestId missing reported together,POST prebook {}.,HTTP 400 VALIDATION_ERROR with both fields in details[]
+89,Hotel,VALIDATE,SETUP,POST /v1/hotels/search → POST /v1/hotels/details → POST /v1/hotels/prebook,search → details → prebook bookingContext,Hilltop (or first bookable) to seed finalize tests.,bookingContext present
+90,Hotel,VALIDATE,FIN0,POST /v1/hotels/finalize-booking,Valid finalize body is not VALIDATION_ERROR,Full valid finalize from prebook (PAN/GST as required).,Not VALIDATION_ERROR (wallet/offer 4xx other codes allowed)
+91,Hotel,VALIDATE,SD1,POST /v1/hotels/finalize-booking,checkin DD-MM-YYYY rejected,"Clone a valid baseline payload, mutate only this field, then call the API. stay dates.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+92,Hotel,VALIDATE,SD2,POST /v1/hotels/finalize-booking,checkin slashes rejected,"Clone a valid baseline payload, mutate only this field, then call the API. stay dates.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+93,Hotel,VALIDATE,SD3,POST /v1/hotels/finalize-booking,checkin unpadded rejected,"Clone a valid baseline payload, mutate only this field, then call the API. stay dates.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+94,Hotel,VALIDATE,SD4,POST /v1/hotels/finalize-booking,impossible 2026-02-30 rejected,"Clone a valid baseline payload, mutate only this field, then call the API. stay dates.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+95,Hotel,VALIDATE,SD5,POST /v1/hotels/finalize-booking,checkout before/equal checkin rejected,"Clone a valid baseline payload, mutate only this field, then call the API. stay dates.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+96,Hotel,VALIDATE,SD6,POST /v1/hotels/finalize-booking,checkin in the past rejected,"Clone a valid baseline payload, mutate only this field, then call the API. stay dates.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+97,Hotel,VALIDATE,SD7,POST /v1/hotels/finalize-booking,Same-day check-in accepted (date rule),checkin = today.,Not rejected as past-date VALIDATION_ERROR
+98,Hotel,VALIDATE,G1,POST /v1/hotels/finalize-booking,type Infant rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+99,Hotel,VALIDATE,G2,POST /v1/hotels/finalize-booking,title MR (wrong case) rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+100,Hotel,VALIDATE,G3,POST /v1/hotels/finalize-booking,title mr lowercase rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+101,Hotel,VALIDATE,G4,POST /v1/hotels/finalize-booking,Adult title Mstr rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+102,Hotel,VALIDATE,G5,POST /v1/hotels/finalize-booking,Child title Mr rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+103,Hotel,VALIDATE,G6,POST /v1/hotels/finalize-booking,title Mr + gender Female mismatch,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+104,Hotel,VALIDATE,G7,POST /v1/hotels/finalize-booking,firstName with digit rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+105,Hotel,VALIDATE,G8,POST /v1/hotels/finalize-booking,lastName with hyphen rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+106,Hotel,VALIDATE,G9,POST /v1/hotels/finalize-booking,lastName with apostrophe rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+107,Hotel,VALIDATE,G10,POST /v1/hotels/finalize-booking,firstName too short (<2) rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+108,Hotel,VALIDATE,G11,POST /v1/hotels/finalize-booking,Child missing age rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+109,Hotel,VALIDATE,G12,POST /v1/hotels/finalize-booking,Child age 18 rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+110,Hotel,VALIDATE,G13,POST /v1/hotels/finalize-booking,dob in the future rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+111,Hotel,VALIDATE,G14,POST /v1/hotels/finalize-booking,dob wrong format DD-MM-YYYY rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+112,Hotel,VALIDATE,G15,POST /v1/hotels/finalize-booking,no lead guest rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+113,Hotel,VALIDATE,G16,POST /v1/hotels/finalize-booking,two lead guests rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+114,Hotel,VALIDATE,G17,POST /v1/hotels/finalize-booking,Adult DOB under 18 on checkin rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+115,Hotel,VALIDATE,G18,POST /v1/hotels/finalize-booking,Child DOB 18+ on checkin rejected,"Clone a valid baseline payload, mutate only this field, then call the API. guest field.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+116,Hotel,VALIDATE,G19,POST /v1/hotels/finalize-booking,firstName with trailing comma,"Clone a valid baseline payload, mutate only this field, then call the API. firstName=Rohan,.","HTTP 4xx with error.code — never HTTP 500, never HTTP 200."
+117,Hotel,VALIDATE,G20,POST /v1/hotels/finalize-booking,lastName with trailing comma,"Clone a valid baseline payload, mutate only this field, then call the API. lastName=Bhagat,.","HTTP 4xx with error.code — never HTTP 500, never HTTP 200."
+118,Hotel,VALIDATE,G21,POST /v1/hotels/finalize-booking,firstName with punctuation !@#$,"Clone a valid baseline payload, mutate only this field, then call the API. firstName punctuation.","HTTP 4xx with error.code — never HTTP 500, never HTTP 200."
+119,Hotel,VALIDATE,G22,POST /v1/hotels/finalize-booking,Child turns 18 during stay (checkout age rule),"DOB such that 17 on checkin, 18 on checkout.",HTTP 400 VALIDATION_ERROR
+120,Hotel,VALIDATE,CT1,POST /v1/hotels/finalize-booking,missing email rejected,"Clone a valid baseline payload, mutate only this field, then call the API. contact/PAN.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+121,Hotel,VALIDATE,CT2,POST /v1/hotels/finalize-booking,invalid email rejected,"Clone a valid baseline payload, mutate only this field, then call the API. contact/PAN.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+122,Hotel,VALIDATE,CT3,POST /v1/hotels/finalize-booking,missing countryCode rejected,"Clone a valid baseline payload, mutate only this field, then call the API. contact/PAN.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+123,Hotel,VALIDATE,CT4,POST /v1/hotels/finalize-booking,missing mobile rejected,"Clone a valid baseline payload, mutate only this field, then call the API. contact/PAN.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+124,Hotel,VALIDATE,CT5,POST /v1/hotels/finalize-booking,#ERROR!,"Clone a valid baseline payload, mutate only this field, then call the API. contact/PAN.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+125,Hotel,VALIDATE,CT6,POST /v1/hotels/finalize-booking,#ERROR!,"Clone a valid baseline payload, mutate only this field, then call the API. contact/PAN.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+126,Hotel,VALIDATE,CT7,POST /v1/hotels/finalize-booking,invalid panCardNumber format rejected,"Clone a valid baseline payload, mutate only this field, then call the API. contact/PAN.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+127,Hotel,VALIDATE,CT8,POST /v1/hotels/finalize-booking,panCardNumber without panCardName rejected,"Clone a valid baseline payload, mutate only this field, then call the API. contact/PAN.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+128,Hotel,VALIDATE,CT9,POST /v1/hotels/finalize-booking,email with comma,"Clone a valid baseline payload, mutate only this field, then call the API. email contains comma.","HTTP 4xx with error.code — never HTTP 500, never HTTP 200."
+129,Hotel,VALIDATE,CT10,POST /v1/hotels/finalize-booking,mobile with comma,"Clone a valid baseline payload, mutate only this field, then call the API. mobile contains comma.","HTTP 4xx with error.code — never HTTP 500, never HTTP 200."
+130,Hotel,VALIDATE,GS1,POST /v1/hotels/finalize-booking,partial GST block rejected,"Clone a valid baseline payload, mutate only this field, then call the API. gstDetails.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+131,Hotel,VALIDATE,GS2,POST /v1/hotels/finalize-booking,invalid GSTIN rejected,"Clone a valid baseline payload, mutate only this field, then call the API. gstDetails.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+132,Hotel,VALIDATE,GS3,POST /v1/hotels/finalize-booking,gstEmailId (wrong casing) treated as missing,"Clone a valid baseline payload, mutate only this field, then call the API. gstDetails.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+133,Hotel,VALIDATE,GS4,POST /v1/hotels/finalize-booking,invalid gstMobileNumber rejected,"Clone a valid baseline payload, mutate only this field, then call the API. gstDetails.",HTTP 4xx with error.code (VALIDATION_ERROR unless noted). Never HTTP 500.
+134,Hotel,VALIDATE,GS5,POST /v1/hotels/finalize-booking,full valid gstDetails accepted (not VALIDATION_ERROR),Complete GST block on finalize.,Not VALIDATION_ERROR
+135,Hotel,VALIDATE,ENV1,POST /v1/hotels/finalize-booking,Error envelope shape,Invalid email finalize.,"{ error: { code, message, details[], timestamp, request_id } }"
+136,Hotel,VALIDATE,ENV2,POST /v1/hotels/finalize-booking,Multiple validation problems listed together,Bad date + short name + bad email in one finalize.,details[] length >= 2
+137,Hotel,VALIDATE,PAN-M,POST /v1/hotels/finalize-booking,PAN mandatory rate requires panCardNumber,Omit PAN on isPANMandatory rate (also covered live Hilltop PAN.6).,VALIDATION_ERROR when missing on PAN rate
+138,Hotel,VALIDATE,GST-M,POST /v1/hotels/finalize-booking,GST-required rate makes gstDetails mandatory,Omit gstDetails on GST-claimable rate.,VALIDATION_ERROR gstDetails required
+139,Hotel,PAN,PAN.7,POST /v1/hotels/details,isPANMandatory flag present on Hilltop room,Hilltop details cheapest room.,Flag present; Hilltop typically true
+140,Hotel,PAN,PAN.3,POST /v1/hotels/finalize-booking,Invalid PAN format BADPAN,"Clone a valid baseline payload, mutate only this field, then call the API. panCardNumber=BADPAN.",HTTP 400 VALIDATION_ERROR; no BR
+141,Hotel,PAN,PAN.4,POST /v1/hotels/finalize-booking,PAN without panCardName,Omit panCardName only.,HTTP 400 VALIDATION_ERROR
+142,Hotel,PAN,PAN.6,POST /v1/hotels/finalize-booking,Missing PAN on isPANMandatory=true,Omit panCardNumber + panCardName Hilltop.,400 / fail; not Confirmed
+143,Hotel,PAN,PAN.5,POST /v1/hotels/finalize-booking,PAN name ≠ lead guest,Lead lastName tagged; PAN name still Rohan Bhagat.,status Failed (not Confirmed)
+144,Hotel,GST,GST.8,POST /v1/hotels/finalize-booking,GST-claimable rate without gstDetails,Omit gstDetails on claimable room.,HTTP 400 VALIDATION_ERROR
+145,Hotel,PAN,PAN.2,POST /v1/hotels/finalize-booking,Second person valid PAN same prebook,"Rohan then Atul, same bookingCode/requestId/bookingContext.","2nd Confirmed, duplicate:false"
+146,Hotel,E2E,E2E.1,POST /v1/hotels/search → POST /v1/hotels/details → POST /v1/hotels/prebook → POST /v1/hotels/finalize-booking,Search → details → prebook → finalize Confirmed,Hilltop 39627872; PAN EUIPB1672M / Rohan Bhagat; retry checkin +28/+35/+21 days.,GET status Confirmed; BR + confirmation number
+147,Hotel,E2E,E2E.D1,GET /v1/hotels/bookings/{BR},Booking detail roomType present,GET detail after Confirmed.,roomType/title present
+148,Hotel,E2E,E2E.6,GET /v1/hotels/bookings/history,Hotel history lists BR,GET history page 0.,BR present
+149,Hotel,E2E,E2E.D3,GET /v1/hotels/bookings/BR0000000000000001,Unknown BR is 4xx NOT_FOUND,Dummy BR.,4xx NOT_FOUND (not HTTP 200)
+150,Hotel,PRICE,P1,POST /v1/hotels/details vs POST /v1/hotels/prebook,Details totalAmount ≈ prebook total,Same bookingCode / stay.,Match ±₹0.05
+151,Hotel,PRICE,P2,POST /v1/hotels/finalize-booking,Prebook ≈ finalize/confirmed total,salesSummary.totalAmount.,Match ±₹0.05
+152,Hotel,PRICE,P3,GET /v1/hotels/bookings/{BR}/status,Confirmed ≈ GET status total,After Confirmed.,Match ±₹0.05
+153,Hotel,PRICE,P4,GET /v1/hotels/bookings/{BR},Status ≈ GET booking details total,After Confirmed.,Match ±₹0.05
+154,Hotel,CANCEL,CX7,GET /v1/hotels/bookings/{BR}/penalty-check,Penalty check on Confirmed,GET penalty-check; does not cancel.,HTTP 200 quote; booking still Confirmed
+155,Hotel,CANCEL,CX4,GET /v1/hotels/bookings/{BR}/cancel,Cancel Confirmed,GET cancel then poll status.,HTTP 200; status → Cancelled
+156,Hotel,CANCEL,CX5,GET /v1/hotels/bookings/{BR}/cancel,Cancel already-Cancelled,Repeat GET cancel on same BR.,4xx already cancelled / not Confirmed
+157,Hotel,UNAVAIL,H-UN1,POST /v1/hotels/search,Sahara Star sold-out uses new SRP shape,"HOTEL entityId=39649446, adults=6, valid dates.","HTTP 200; results[0] present with available:false, price:null, id+name; not only totalResults=0 + No hotels found message"
+158,Hotel,UNAVAIL,H-UN2,POST /v1/hotels/search,Sahara Star available search still priced,"Same hotel entityId=39649446, adults=1.",HTTP 200; available!==false; price.totalAmount>=0
+159,Hotel,UNAVAIL,H-UN3,POST /v1/hotels/details,Sahara Star details has priced rooms when available,"POST /v1/hotels/details after H-UN2 search.",HTTP 200; rooms[] length>0; room prices>=0; hotel name present
+160,Hotel,UNAVAIL,H-UN-Delhi,POST /v1/hotels/search → POST /v1/hotels/details,Delhi: available SRP fields + unavail rows + details,"CITY 227760:IN, 1 adult, price_ASC page 0; details on first available hotel.",Available hotels: name/star/price/isGSTClaimable; unavailable rows: available:false+price:null; details: rooms with prices
+161,Hotel,UNAVAIL,H-UN-Mumbai,POST /v1/hotels/search → POST /v1/hotels/details,Mumbai: available SRP fields + unavail rows + details,"CITY 357389:IN, 1 adult, price_ASC page 0; details on first available hotel.",Same as H-UN-Delhi
+162,Hotel,UNAVAIL,H-UN-Bangalore,POST /v1/hotels/search → POST /v1/hotels/details,Bangalore: available SRP fields + unavail rows + details,"CITY 341153:IN, 1 adult, price_ASC page 0; details on first available hotel.",Same as H-UN-Delhi
+163,Hotel,UNAVAIL,H-UN-Chennai,POST /v1/hotels/search → POST /v1/hotels/details,Chennai: available SRP fields + unavail rows + details,"CITY 228269:IN, 1 adult, price_ASC page 0; details on first available hotel.",Same as H-UN-Delhi
+164,Hotel,UNAVAIL,H-UN-Pune,POST /v1/hotels/search → POST /v1/hotels/details,Pune: available SRP fields + unavail rows + details,"CITY 328605:IN, 1 adult, price_ASC page 0; details on first available hotel.",Same as H-UN-Delhi
+165,Hotel,UNAVAIL,H-UN-Hyderabad,POST /v1/hotels/search → POST /v1/hotels/details,Hyderabad: available SRP fields + unavail rows + details,"CITY 227706:IN, 1 adult, price_ASC page 0; details on first available hotel.",Same as H-UN-Delhi
+166,Hotel,UNAVAIL,H-UN-Goa,POST /v1/hotels/search → POST /v1/hotels/details,Goa: available SRP fields + unavail rows + details,"CITY 328649:IN, 1 adult, price_ASC page 0; details on first available hotel.",Same as H-UN-Delhi
+167,Hotel,UNAVAIL,H-UN-Ahmedabad,POST /v1/hotels/search → POST /v1/hotels/details,Ahmedabad: available SRP fields + unavail rows + details,"CITY 246774:IN, 1 adult, price_ASC page 0; details on first available hotel.",Same as H-UN-Delhi
+168,Hotel,UNAVAIL,H-UN-Mum6,POST /v1/hotels/search,Mumbai sample HOTEL searches adults=6 prefer new shape,"Pick 5 hotels from Mumbai listing; HOTEL search each with adults=6.",When no inventory: available:false+price:null (not old empty envelope only). Inventory may flap — recheck if mixed
+169,Hotel,STARSRP,H-SS-Delhi-3,POST /v1/hotels/search → POST /v1/hotels/details,Delhi: 3★ SRP star matches Details,"CITY 227760:IN fq df_long_star_rating:3; details first 8 hotels.",Every SRP starRating=3; details.starRating===SRP for each sampled hotel
+170,Hotel,STARSRP,H-SS-Delhi-4,POST /v1/hotels/search → POST /v1/hotels/details,Delhi: 4★ SRP star matches Details,"CITY 227760:IN fq df_long_star_rating:4; details first 8 hotels.",Every SRP starRating=4; details.starRating===SRP for each sampled hotel
+171,Hotel,STARSRP,H-SS-Delhi-5,POST /v1/hotels/search → POST /v1/hotels/details,Delhi: 5★ SRP star matches Details,"CITY 227760:IN fq df_long_star_rating:5; details first 8 hotels.",Every SRP starRating=5; details.starRating===SRP for each sampled hotel
+172,Hotel,STARSRP,H-SS-Mumbai-3,POST /v1/hotels/search → POST /v1/hotels/details,Mumbai: 3★ SRP star matches Details,"CITY 357389:IN fq df_long_star_rating:3; details first 8 hotels.",Same as H-SS-Delhi-3
+173,Hotel,STARSRP,H-SS-Mumbai-4,POST /v1/hotels/search → POST /v1/hotels/details,Mumbai: 4★ SRP star matches Details,"CITY 357389:IN fq df_long_star_rating:4; details first 8 hotels.",Same as H-SS-Delhi-4
+174,Hotel,STARSRP,H-SS-Mumbai-5,POST /v1/hotels/search → POST /v1/hotels/details,Mumbai: 5★ SRP star matches Details,"CITY 357389:IN fq df_long_star_rating:5; details first 8 hotels.",Same as H-SS-Delhi-5
+175,Hotel,STARSRP,H-SS-Bangalore-3,POST /v1/hotels/search → POST /v1/hotels/details,Bangalore: 3★ SRP star matches Details,"CITY 341153:IN fq df_long_star_rating:3; details first 8 hotels.",Same as H-SS-Delhi-3
+176,Hotel,STARSRP,H-SS-Bangalore-4,POST /v1/hotels/search → POST /v1/hotels/details,Bangalore: 4★ SRP star matches Details,"CITY 341153:IN fq df_long_star_rating:4; details first 8 hotels.",Same as H-SS-Delhi-4
+177,Hotel,STARSRP,H-SS-Bangalore-5,POST /v1/hotels/search → POST /v1/hotels/details,Bangalore: 5★ SRP star matches Details,"CITY 341153:IN fq df_long_star_rating:5; details first 8 hotels.",Same as H-SS-Delhi-5
+178,Hotel,STARSRP,H-SS-Chennai-3,POST /v1/hotels/search → POST /v1/hotels/details,Chennai: 3★ SRP star matches Details,"CITY 228269:IN fq df_long_star_rating:3; details first 8 hotels.",Same as H-SS-Delhi-3
+179,Hotel,STARSRP,H-SS-Chennai-4,POST /v1/hotels/search → POST /v1/hotels/details,Chennai: 4★ SRP star matches Details,"CITY 228269:IN fq df_long_star_rating:4; details first 8 hotels.",Same as H-SS-Delhi-4
+180,Hotel,STARSRP,H-SS-Chennai-5,POST /v1/hotels/search → POST /v1/hotels/details,Chennai: 5★ SRP star matches Details,"CITY 228269:IN fq df_long_star_rating:5; details first 8 hotels.",Same as H-SS-Delhi-5
+181,Hotel,STARSRP,H-SS-Pune-3,POST /v1/hotels/search → POST /v1/hotels/details,Pune: 3★ SRP star matches Details,"CITY 328605:IN fq df_long_star_rating:3; details first 8 hotels.",Same as H-SS-Delhi-3
+182,Hotel,STARSRP,H-SS-Pune-4,POST /v1/hotels/search → POST /v1/hotels/details,Pune: 4★ SRP star matches Details,"CITY 328605:IN fq df_long_star_rating:4; details first 8 hotels.",Same as H-SS-Delhi-4
+183,Hotel,STARSRP,H-SS-Pune-5,POST /v1/hotels/search → POST /v1/hotels/details,Pune: 5★ SRP star matches Details,"CITY 328605:IN fq df_long_star_rating:5; details first 8 hotels.",Same as H-SS-Delhi-5
+184,Hotel,STARSRP,H-SS-Hyderabad-3,POST /v1/hotels/search → POST /v1/hotels/details,Hyderabad: 3★ SRP star matches Details,"CITY 227706:IN fq df_long_star_rating:3; details first 8 hotels.",Same as H-SS-Delhi-3
+185,Hotel,STARSRP,H-SS-Hyderabad-4,POST /v1/hotels/search → POST /v1/hotels/details,Hyderabad: 4★ SRP star matches Details,"CITY 227706:IN fq df_long_star_rating:4; details first 8 hotels.",Same as H-SS-Delhi-4
+186,Hotel,STARSRP,H-SS-Hyderabad-5,POST /v1/hotels/search → POST /v1/hotels/details,Hyderabad: 5★ SRP star matches Details,"CITY 227706:IN fq df_long_star_rating:5; details first 8 hotels.",Same as H-SS-Delhi-5
+187,Hotel,STARSRP,H-SS-Goa-3,POST /v1/hotels/search → POST /v1/hotels/details,Goa: 3★ SRP star matches Details,"CITY 328649:IN fq df_long_star_rating:3; details first 8 hotels.",Same as H-SS-Delhi-3
+188,Hotel,STARSRP,H-SS-Goa-4,POST /v1/hotels/search → POST /v1/hotels/details,Goa: 4★ SRP star matches Details,"CITY 328649:IN fq df_long_star_rating:4; details first 8 hotels.",Same as H-SS-Delhi-4
+189,Hotel,STARSRP,H-SS-Goa-5,POST /v1/hotels/search → POST /v1/hotels/details,Goa: 5★ SRP star matches Details,"CITY 328649:IN fq df_long_star_rating:5; details first 8 hotels.",Same as H-SS-Delhi-5
+190,Hotel,STARSRP,H-SS-Ahmedabad-3,POST /v1/hotels/search → POST /v1/hotels/details,Ahmedabad: 3★ SRP star matches Details,"CITY 246774:IN fq df_long_star_rating:3; details first 8 hotels.",Same as H-SS-Delhi-3
+191,Hotel,STARSRP,H-SS-Ahmedabad-4,POST /v1/hotels/search → POST /v1/hotels/details,Ahmedabad: 4★ SRP star matches Details,"CITY 246774:IN fq df_long_star_rating:4; details first 8 hotels.",Same as H-SS-Delhi-4
+192,Hotel,STARSRP,H-SS-Ahmedabad-5,POST /v1/hotels/search → POST /v1/hotels/details,Ahmedabad: 5★ SRP star matches Details,"CITY 246774:IN fq df_long_star_rating:5; details first 8 hotels.",Same as H-SS-Delhi-5
+193,Hotel,CHAINBRAND,CB-B-Delhi,POST /v1/hotels/search,Delhi: Chain + Brand facets advertised,"CITY 227760:IN unfiltered search.",HTTP 200; filters[] includes Chain and Brand with facet counts; Star/GST/Free cancellation still present
+194,Hotel,CHAINBRAND,CB-B-Mumbai,POST /v1/hotels/search,Mumbai: Chain + Brand facets advertised,"CITY 357389:IN unfiltered search.",Same as CB-B-Delhi
+195,Hotel,CHAINBRAND,CB-B-Bangalore,POST /v1/hotels/search,Bangalore: Chain + Brand facets advertised,"CITY 341153:IN unfiltered search.",Same as CB-B-Delhi
+196,Hotel,CHAINBRAND,CB-B-Chennai,POST /v1/hotels/search,Chennai: Chain + Brand facets advertised,"CITY 228269:IN unfiltered search.",Same as CB-B-Delhi
+197,Hotel,CHAINBRAND,CB-B-Pune,POST /v1/hotels/search,Pune: Chain + Brand facets advertised,"CITY 328605:IN unfiltered search.",Same as CB-B-Delhi
+198,Hotel,CHAINBRAND,CB-B-Hyderabad,POST /v1/hotels/search,Hyderabad: Chain + Brand facets advertised,"CITY 227706:IN unfiltered search.",Same as CB-B-Delhi
+199,Hotel,CHAINBRAND,CB-B-Goa,POST /v1/hotels/search,Goa: Chain + Brand facets advertised,"CITY 328649:IN unfiltered search.",Same as CB-B-Delhi
+200,Hotel,CHAINBRAND,CB-B-Ahmedabad,POST /v1/hotels/search,Ahmedabad: Chain + Brand facets advertised,"CITY 246774:IN unfiltered search.",Same as CB-B-Delhi
+201,Hotel,CHAINBRAND,CB-C-Delhi,POST /v1/hotels/search,Delhi: top Chain filter applies + count match,"fq Chain:<top facetKey> from baseline.",HTTP 200; totalResults===facet.count (or narrowed set); never 500
+202,Hotel,CHAINBRAND,CB-C-Mumbai,POST /v1/hotels/search,Mumbai: top Chain filter applies + count match,"fq Chain:<top facetKey> from baseline.",Same as CB-C-Delhi
+203,Hotel,CHAINBRAND,CB-C-Multi,POST /v1/hotels/search,Chain multi-select uses semicolon,"fq Chain:<A>;<B> on Mumbai (or any city with 2+ chains).",HTTP 200; total <= baseline; both chains allowed
+204,Hotel,CHAINBRAND,CB-BR-Delhi,POST /v1/hotels/search,Delhi: top Brand filter applies + count match,"fq Brand:<top facetKey> from baseline.",HTTP 200; totalResults===facet.count (or narrowed set); never 500
+205,Hotel,CHAINBRAND,CB-BR-Multi,POST /v1/hotels/search,Brand multi-select uses semicolon,"fq Brand:<A>;<B> on Mumbai (or any city with 2+ brands).",HTTP 200; total <= baseline
+206,Hotel,CHAINBRAND,CB-CB-Mumbai,POST /v1/hotels/search,Chain + Brand compose,"Mumbai fq top Chain + top Brand together.",HTTP 200; total <= min(chain count; brand count; baseline)
+207,Hotel,CHAINBRAND,CB-EX-Star,POST /v1/hotels/search,Star + Chain filters compose,"fq df_long_star_rating:4 + Chain:<top> per city.",HTTP 200; every starRating=4; total <= star-only and chain-only
+208,Hotel,CHAINBRAND,CB-EX-GST,POST /v1/hotels/search,GST Claimable filter still works with Chain/Brand present,"fq GST:Claimable on unfiltered baseline.",HTTP 200; every result isGSTClaimable===true when facet count matches
+209,Hotel,CHAINBRAND,CB-EX-FC,POST /v1/hotels/search,Free cancellation filter still works,"fq Reservation policy:Free cancellation.",HTTP 200; narrowed set; never 500
+210,Hotel,CHAINBRAND,CB-EX-Sort,POST /v1/hotels/search,price_ASC with Chain filter,"Mumbai fq Chain:<top> sort=price_ASC.",Non-decreasing price.baseFare on page
+211,Hotel,CHAINBRAND,CB-NEG-C1,POST /v1/hotels/search,Unknown chain returns empty not baseline,"Mumbai fq Chain:NOT_A_REAL_CHAIN_XYZ.",HTTP 200 total=0 or empty results; not full baseline; never 500
+212,Hotel,CHAINBRAND,CB-NEG-C2,POST /v1/hotels/search,Valueless chain fq ignored,"Mumbai fq Chain: (empty value).",HTTP 200; full/near baseline total
+213,Hotel,CHAINBRAND,CB-NEG-C3,POST /v1/hotels/search,Chain fq with trailing comma,"Mumbai fq Chain:Fabhotels,.","HTTP 4xx or empty; never HTTP 500"
+214,Hotel,CHAINBRAND,CB-NEG-C4,POST /v1/hotels/search,Chain fq with HTML/script,"Mumbai fq Chain:<script>.","HTTP 4xx or empty; never HTTP 500"
+215,Hotel,CHAINBRAND,CB-NEG-B1,POST /v1/hotels/search,Unknown brand returns empty not baseline,"Mumbai fq Brand:NOT_A_REAL_BRAND_XYZ.",HTTP 200 total=0 or empty; not full baseline; never 500
+216,Hotel,CHAINBRAND,CB-NEG-B2,POST /v1/hotels/search,Valueless brand fq ignored,"Mumbai fq Brand: (empty value).",HTTP 200; full/near baseline total
+217,Hotel,CHAINBRAND,CB-NEG-B3,POST /v1/hotels/search,Brand fq with trailing comma,"Mumbai fq Brand:Taj,.","HTTP 4xx or empty; never HTTP 500"
+218,Hotel,CHAINBRAND,CB-NEG-B4,POST /v1/hotels/search,Brand fq with HTML/script,"Mumbai fq Brand:<script>.","HTTP 4xx or empty; never HTTP 500"
+219,Hotel,CHAINBRANDVAL,CBV-Chain,POST /v1/hotels/search,Random Chain facet results belong to that chain,"Per city: pick random chain facets; fq each; sample up to 20 results. Alias-aware (Fab/Via, Treebo/Itsy, Oberoi/Trident).",Sampled hotel names/chain fields match facet; flag ZUZU and obvious mismatches as catalog bugs
+220,Hotel,CHAINBRANDVAL,CBV-Brand,POST /v1/hotels/search,Random Brand facet results belong to that brand,"Per city: pick random brand facets; fq each; sample up to 20 results. Alias-aware (Taj/Ginger/Vivanta, marriott family).",Sampled hotel names/brand fields match facet; ZUZU HS unrelated hotels = data bug not filter bug
+221,Hotel,CHAINBRANDVAL,CBV-Taj,POST /v1/hotels/search,Taj chain/brand returns Taj family hotels,"fq Chain:Taj Hotels or Brand:Taj on city with Taj inventory.",Results are Taj / Ginger / Vivanta / Taj group properties
+222,Hotel,CHAINBRANDVAL,CBV-Fab,POST /v1/hotels/search,Fabhotels chain returns Fab family hotels,"fq Chain:Fabhotels on Delhi/Mumbai.",Results include Fabhotel / Fabexpress / Via-branded Fab properties
+223,Hotel,CHAINBRANDVAL,CBV-Treebo,POST /v1/hotels/search,Treebo chain returns Treebo family hotels,"fq Chain:Treebo Hotels.",Results include Treebo / Itsy hotels
+224,Hotel,CHAINBRANDVAL,CBV-ZUZU,POST /v1/hotels/search,ZUZU HS brand mapping sanity,"fq Brand:ZUZU HS where facet exists.",Results should be ZUZU-branded; unrelated names = catalog data issue

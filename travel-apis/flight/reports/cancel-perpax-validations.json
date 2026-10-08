@@ -1,0 +1,134 @@
+{
+  "ranAt": "2026-08-12T21:45:50.396Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "Cancel validation / negatives",
+  "fixture": {
+    "br": "BR1786561773208289",
+    "pnr": "HVEW5Q",
+    "status": "Confirmed"
+  },
+  "cases": [
+    {
+      "id": "V1",
+      "http": 422,
+      "error": {
+        "code": "PAX_NOT_IN_BOOKING",
+        "message": "cancellationPaxList names a passenger who is not on this booking",
+        "details": "No passenger PAX99 exists on booking 'BR1786561773208289'",
+        "timestamp": "2026-08-12T21:45:49Z",
+        "request_id": "req-1786571148863",
+        "invalidPax": [
+          "PAX99"
+        ],
+        "validPaxList": [
+          "PAX1"
+        ]
+      },
+      "status": null,
+      "message": "cancellationPaxList names a passenger who is not on this booking",
+      "raw": "{\"error\":{\"code\":\"PAX_NOT_IN_BOOKING\",\"message\":\"cancellationPaxList names a passenger who is not on this booking\",\"details\":\"No passenger PAX99 exists on booking 'BR1786561773208289'\",\"timestamp\":\"2026-08-12T21:45:49Z\",\"request_id\":\"req-1786571148863\",\"invalidPax\":[\"PAX99\"],\"validPaxList\":[\"PAX1\"]},\"_meta\":{\"correlation_id\":\"14efc606-09b3-48d8-b68d-df555f784589\"}}"
+    },
+    {
+      "id": "V2",
+      "http": 200,
+      "error": null,
+      "status": "Penalty Fetched",
+      "raw": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786561773208289\",\"pnr\":\"HVEW5Q\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":1350,\"estimatedRefund\":1317,\"totalAmount\":2667,\"totalPenalty\":1350,\"penaltyBasis\":\"PROVIDER\",\"amount\":2667,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":1000,\"cancellationFee\":350,\"perPax\":[{\"paxId\":\"PAX1\",\"am"
+    },
+    {
+      "id": "V3",
+      "http": 422,
+      "error": {
+        "code": "PNR_INVALID",
+        "message": "pnr does not belong to this booking",
+        "details": "No flight with PNR 'ZZZZZZ' exists on booking 'BR1786561773208289'",
+        "timestamp": "2026-08-12T21:45:49Z",
+        "request_id": "req-1786571149423"
+      },
+      "raw": "{\"error\":{\"code\":\"PNR_INVALID\",\"message\":\"pnr does not belong to this booking\",\"details\":\"No flight with PNR 'ZZZZZZ' exists on booking 'BR1786561773208289'\",\"timestamp\":\"2026-08-12T21:45:49Z\",\"request_id\":\"req-1786571149423\"},\"_meta\":{\"correlation_id\":\"14efc606-09b3-48d8-b68d-df555f784589\"}}"
+    },
+    {
+      "id": "V4",
+      "http": 404,
+      "error": {
+        "code": "BOOKING_NOT_FOUND",
+        "message": "Booking not found",
+        "details": null,
+        "timestamp": "2026-08-12T21:45:49Z",
+        "request_id": "req-1786571149547"
+      },
+      "raw": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-08-12T21:45:49Z\",\"request_id\":\"req-1786571149547\"},\"_meta\":{\"correlation_id\":\"14efc606-09b3-48d8-b68d-df555f784589\"}}"
+    },
+    {
+      "id": "V5",
+      "br": "BR1786570951120374",
+      "http": 409,
+      "error": {
+        "code": "CANCELLATION_ALREADY_IN_PROGRESS",
+        "message": "A cancellation is already in progress for these passengers",
+        "details": "PAX1 on PNR 'KSKZ2J' already has a cancellation pending with the airline.",
+        "timestamp": "2026-08-12T21:45:50Z",
+        "request_id": "req-1786571149947",
+        "invalidPax": [
+          "PAX1"
+        ]
+      },
+      "raw": "{\"error\":{\"code\":\"CANCELLATION_ALREADY_IN_PROGRESS\",\"message\":\"A cancellation is already in progress for these passengers\",\"details\":\"PAX1 on PNR 'KSKZ2J' already has a cancellation pending with the airline.\",\"timestamp\":\"2026-08-12T21:45:50Z\",\"request_id\":\"req-1786571149947\",\"invalidPax\":[\"PAX1\"]},\"_meta\":{\"correlation_id\":\"14efc606-09b3-48d8-b68d-df555f784589\"}}"
+    },
+    {
+      "id": "V6",
+      "http": 200,
+      "status": "Penalty Fetched",
+      "raw": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786561773208289\",\"pnr\":\"HVEW5Q\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":1350,\"estimatedRefund\":1317,\"totalAmount\":2667,\"totalPenalty\":1350,\"penaltyBasis\":\"PROVIDER\",\"amount\":2667,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":1000,\"cancellationFee\":350,\"perPax\":[{\"paxId\":\"PAX1\",\"am"
+    }
+  ],
+  "table": [
+    {
+      "rule": "V1 invalid pax: HTTP",
+      "expected": "400",
+      "actual": "422",
+      "status": "BUG"
+    },
+    {
+      "rule": "V1 invalid pax: error.code",
+      "expected": "ANY_ERROR",
+      "actual": "PAX_NOT_IN_BOOKING",
+      "status": "PASS"
+    },
+    {
+      "rule": "V2 empty paxList: deterministic (validate OR full-PNR quote)",
+      "expected": "VALIDATION_ERROR or full-PNR Penalty Fetched/Failed",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "V3 unknown PNR rejected",
+      "expected": "4xx error.code or failed status",
+      "actual": "422 PNR_INVALID",
+      "status": "PASS"
+    },
+    {
+      "rule": "V4 unknown BR rejected",
+      "expected": "4xx + error.code (NOT_FOUND / etc)",
+      "actual": "404 BOOKING_NOT_FOUND",
+      "status": "PASS"
+    },
+    {
+      "rule": "V5 already-in-progress guarded",
+      "expected": "CANCELLATION_ALREADY_IN_PROGRESS (or clear already/pending message)",
+      "actual": "409 CANCELLATION_ALREADY_IN_PROGRESS",
+      "status": "PASS"
+    },
+    {
+      "rule": "V6 valid PENALTY still works after negatives",
+      "expected": "Penalty Fetched (or provider failed with envelope)",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    }
+  ],
+  "score": {
+    "PASS": 6,
+    "BUG": 1,
+    "NOT_TESTED": 0
+  }
+}

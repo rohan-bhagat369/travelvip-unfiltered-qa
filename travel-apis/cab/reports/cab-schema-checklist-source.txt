@@ -1,0 +1,286 @@
+<timestamp>Tuesday, Aug 25, 2026, 12:40 PM (UTC+5:30)</timestamp>
+<user_query>
+ok so now we have to test the cab booking flow via APIS below are the details 
+
+Please check the cab booking flow end-to-end on api-staging.
+
+We have rearranged the database structure. There should be no functional changes, but please verify the complete booking flow and ensure all details are working correctly.
+
+Cab booking — storage changes & test checklist
+What the cab schema consolidation changed, and how to verify the new columns are actually
+being written.
+
+Audience: tester. Everything below is "do this action, then look at this table column and
+expect this value."
+
+Finding a booking's rows (no SQL needed — use your DB browser's filter box):
+
+booking → filter booking_reference = the reference the API returned. Note its id.
+booking_item → filter booking_id = that id, service_type = cabs. Note its id.
+booking_item_cab → filter booking_item_id = that id. This is the main row. Note its id.
+booking_item_cab_location, booking_item_cab_assignment, booking_item_cab_trip → filter booking_item_cab_id = the id from step 3.
+booking_item_status_history → filter booking_item_id = the id from step 2.
+Tables went from 6 to 4: booking_item_cab_vehicle and booking_item_cab_operator no
+longer exist (their data is now inside booking_item_cab).
+
+PART A — Test checklist
+A1. Create a cab booking
+Action: complete a booking through finalize-booking, or through create-booking +
+payment. Do it for an AIRPORT / DEPARTURE journey.
+
+A1.1 booking_item_cab — new vehicle columns must be filled
+Compare against the vehicle block in the /fare (or /search) response for the cab you
+picked.
+
+Column	Expect
+vehicle_type	e.g. SEDAN
+vehicle_category	e.g. ECONOMY
+vehicle_model	e.g. Dzire or Similar
+vehicle_make_year	e.g. 2016 (may be empty if the provider omits it)
+vehicle_seating_capacity	e.g. 2
+vehicle_luggage_capacity	e.g. 2
+vehicle_air_conditioned	1 or 0
+vehicle_fuel_type	e.g. CNG
+vehicle_image_url	a URL
+vehicle_image_app_url	a URL
+vehicle_image_mobile_url	a URL
+Fail if: all eleven are empty while the /fare response clearly carried a vehicle block.
+
+A1.2 booking_item_cab — new operator columns must be filled
+Compare against the operator block in the same /fare response.
+
+Column	Expect
+operator_name	e.g. Carzonrent
+operator_logo_url	a URL
+operator_rating	e.g. 4.00
+operator_rating_count	e.g. 71
+A1.3 booking_item_cab.extra_km_rate — the important one
+The provider sends a text label; we now store a whole number in paise (rupees × 100).
+
+/fare sends extraKmFareLabel	extra_km_rate must be
+INR 24/Km	2400
+INR 19/Km	1900
+INR 18.5/Km	1850
+INR 23/Km	2300
+INR 32/Km	3200
+Fail if: the value is 24 (not multiplied), 1849 (wrong rounding on the decimal case),
+or 0. Empty is acceptable only when the provider sent no label at all.
+
+A1.4 booking_item_cab_location — new address and airport_code
+There are two rows, location_type = PICKUP and DROP.
+
+Column	Expect
+address	the full address, on both rows, when the request carried one
+airport_code	filled on exactly one row — see the table below
+Which row carries airport_code:
+
+journey_type	travel_type	Meaning	Row with the code
+AIRPORT	DEPARTURE	going to the airport	DROP
+AIRPORT	ARRIVAL	coming from the airport	PICKUP
+RENTAL or OUTSTATION	anything	no airport involved	neither — both empty
+Fail if: the code is on both rows, on the wrong row, or on neither for an AIRPORT
+journey. Please test both DEPARTURE and ARRIVAL — they use opposite rows and a swap is
+the most likely bug here.
+
+A1.5 booking_item_cab — old columns must now stay empty
+These columns still exist (they are removed in a later migration) but nothing should write
+them any more. On a newly created booking they must be empty / zero:
+
+Column	Expect on a new booking
+airport_code	empty (it moved to the location row)
+extra_km_fare_label	empty (replaced by extra_km_rate)
+price_reference	empty
+payment_redirect_url	empty
+activated_at	empty
+cab_assigned	0
+cab_left_for_pickup	0
+cab_reached_source	0
+cab_trip_started	0
+cab_trip_end	0
+Fail if any of these is populated on a booking created after the release — it means old
+code is still running or a write path was missed.
+
+A1.6 booking_item_cab.search_id
+Must be filled for every new booking (a long uuid|hash string). It is allowed to be empty
+only on bookings made before this release.
+
+A2. Provider sends /update-booking
+Action: trigger the provider update callback (or have the provider send it).
+
+Table.column	Expect
+booking_item_cab.provider_booking_id	the provider's booking id from the payload
+booking_item_cab.update_booking_response	the whole raw payload as text
+booking_item_cab_assignment	a row exists when the payload carried an assignment block
+…_assignment.driver_name, driver_mobile, vehicle_registration_no, tracking_url, assigned_at	values from the payload
+This is a fix — please test it specifically. The same callback can arrive on two
+endpoints, and one of them used to ignore the assignment block entirely:
+
+v1/airportServices/cabs/update-booking — always worked
+api/airportServices/updateAirportServiceBooking — used to drop the driver details
+Send the callback with an assignment block to both endpoints and confirm the
+booking_item_cab_assignment row appears either way.
+
+Also new on the second endpoint: if the payload's bookingId does not match the
+provider_booking_id already stored for that booking, the API now answers 400
+"bookingId does not match the provider booking id for this booking" and writes nothing.
+That is correct behaviour, not a bug. It applies to cab bookings only — other services are
+unaffected.
+
+A3. Partner webhooks — the trip lifecycle
+The five progress flags are gone. Each event now writes a row in
+booking_item_status_history instead.
+
+Action: send each partner webhook event in order.
+
+Event sent	New row in booking_item_status_history linked to a booking_status_mapping with status_code	Replaces the old flag
+DRIVER_CAB_DETAILS	310	cab_assigned
+TRIP_LOCATION, event contains left	320	cab_left_for_pickup
+TRIP_LOCATION, event = arrived	330	cab_reached_source
+TRIP_DETAILS, tripEvent = start	340	cab_trip_started
+TRIP_DETAILS, tripEvent = stop	350	cab_trip_end
+For each row also check:
+
+Column	Expect
+provider_timestamp	the timeStamp from the webhook, unchanged — a 13-digit number like 1750935000000
+occurred_at	when we processed it (may differ from provider_timestamp — that is fine)
+status_mapping_id	points at the cabs row for that status code
+Also check booking_item.current_status_mapping_id advances to the newest status.
+
+Additional checks:
+
+DRIVER_CAB_DETAILS also creates/updates a booking_item_cab_assignment row (driver name, mobile, vehicle name/colour/registration, partner, synced_at). Re-sending the same event must not duplicate the row; a reassignment (different sync_datetime) must add a new row and keep the old one.
+BOOKING_CONFIRMED must fill booking_item_cab.otp.
+TRIP_DETAILS must also fill booking_item_cab_trip (started_at, ended_at, distance and fare fields) — unchanged from before.
+Re-sending the same event must not create a second identical status row.
+After a cancellation: if a TRIP_LOCATION webhook arrives after the booking is cancelled, a history row is still recorded but booking_item.current_status_mapping_id must stay on cancelled — it must not go back to "driver arrived".
+A3.1 The OTP now has one home
+Column	Expect
+booking_item_cab.otp	the trip OTP, from the BOOKING_CONFIRMED webhook
+booking_item_cab_assignment.trip_otp	stays empty — no longer written
+Fail if: a booking reaches "driver assigned" with an empty otp — that means the
+BOOKING_CONFIRMED webhook never arrived, which is now the only source.
+
+A4. API responses
+Check GET v1/airportServices/cabs/booking/{bookingId}, …/{bookingId}/status, and
+…/cabs/booking/history.
+
+In details	Expect
+extraKmRate	new field, a number in rupees: 24, or 18.5
+extraKmFareLabel	must be gone
+pickup.address / drop.address	new field, the full address
+pickup.airportCode / drop.airportCode	new field, filled on the airport leg only
+airportCode (top level of details)	unchanged — same value as before
+assignment.tripOtp	must be gone — use details.otp instead
+otp	unchanged, carries the OTP
+vehicle and operator blocks	unchanged — same fields, same values as before
+progress	unchanged — same five true/false fields
+GET …/cabs/tracking/{bookingId}/location is unchanged in shape.
+
+Regression check: the progress block must still turn true step by step as you send
+the webhooks in A3, exactly as it did before — it is now calculated from the status history
+rather than read from the flags, so the values should be identical.
+
+A5. Other services must be unaffected
+The status-history table and the generic update endpoint are shared. Please smoke-test one
+booking of each type end to end and confirm nothing changed:
+
+eSIM · Lounge · Fast Track · Attractions · Flight · Hotel
+For those, booking_item_status_history.provider_timestamp will simply be empty — that
+is correct, only cab partner webhooks carry a provider timestamp.
+
+PART B — Reference: where each field lives now
+B1. Vehicle details (was its own table)
+Table booking_item_cab_vehicle no longer exists.
+
+Was	Now
+booking_item_cab_vehicle.type	booking_item_cab.vehicle_type
+booking_item_cab_vehicle.category	booking_item_cab.vehicle_category
+booking_item_cab_vehicle.model	booking_item_cab.vehicle_model
+booking_item_cab_vehicle.make_year	booking_item_cab.vehicle_make_year
+booking_item_cab_vehicle.seating_capacity	booking_item_cab.vehicle_seating_capacity
+booking_item_cab_vehicle.luggage_capacity	booking_item_cab.vehicle_luggage_capacity
+booking_item_cab_vehicle.air_conditioned	booking_item_cab.vehicle_air_conditioned
+booking_item_cab_vehicle.fuel_type	booking_item_cab.vehicle_fuel_type
+booking_item_cab_vehicle.image_url	booking_item_cab.vehicle_image_url
+booking_item_cab_vehicle.image_app_url	booking_item_cab.vehicle_image_app_url
+booking_item_cab_vehicle.image_mobile_url	booking_item_cab.vehicle_image_mobile_url
+Watch out: booking_item_cab.vehicle_type is the vehicle class quoted at booking
+time (SEDAN). booking_item_cab_assignment.vehicle_type is the vehicle actually sent
+to pick the customer up. Same column name, two different tables, two different meanings.
+They are allowed to differ.
+
+B2. Operator details (was its own table)
+Table booking_item_cab_operator no longer exists.
+
+Was	Now
+booking_item_cab_operator.name	booking_item_cab.operator_name
+booking_item_cab_operator.logo_url	booking_item_cab.operator_logo_url
+booking_item_cab_operator.rating	booking_item_cab.operator_rating
+booking_item_cab_operator.rating_count	booking_item_cab.operator_rating_count
+B3. booking_item_cab — full column list
+Column	Status	Notes
+journey_type, travel_type	unchanged	
+airport_code	moved	now on booking_item_cab_location
+pickup_datetime, distance_km, duration_min	unchanged	
+extra_km_fare_label	replaced	by extra_km_rate
+extra_km_rate	new	whole number in paise: INR 24/Km → 2400
+free_cancellation_till_min, cancellation_rule	unchanged	
+inclusions, exclusions, tags	unchanged	JSON text
+vehicle_* (11 columns)	new	from the old vehicle table, B1
+operator_* (4 columns)	new	from the old operator table, B2
+search_id	unchanged	now always filled on new bookings
+cab_id, fare_id, provider_booking_reference, price_id	unchanged	
+price_reference	removed	was never read
+fare_expiry_time, special_instructions, book_payload	unchanged	
+payment_redirect_url	removed	was never read
+provider_booking_id, update_booking_response	unchanged	
+activated_at	removed	cabs have no activation step
+otp	unchanged	now the only place the OTP is stored
+cab_assigned, cab_left_for_pickup, cab_reached_source, cab_trip_started, cab_trip_end	removed	now status history rows, B6
+created_at, updated_at	unchanged
+B4. booking_item_cab_location
+Column	Status
+location_type, sequence, name, city, latitude, longitude	unchanged
+address	new — full formatted address
+airport_code	new — arrives from booking_item_cab, on the airport leg only
+B5. booking_item_cab_assignment
+Only one change: trip_otp is removed. The OTP lives in booking_item_cab.otp.
+Everything else — driver, vehicle, partner, is_reassigned, synced_at, assigned_at,
+tracking_url — is unchanged, and the table still adds a new row per reassignment with the
+newest row being the active one.
+
+B6. Progress flags → status history
+Was, in booking_item_cab	Now, a row in booking_item_status_history with status_code
+cab_assigned = 1	310 — driver assigned
+cab_left_for_pickup = 1	320 — driver on the way
+cab_reached_source = 1	330 — driver arrived
+cab_trip_started = 1	340 — trip in progress
+cab_trip_end = 1	350 — trip completed
+"Flag was 1" now means "a row with that status code exists for the booking item". The
+advantage: each row also records when it happened.
+
+Old bookings were not converted. A booking completed before this release has no
+310-350 rows, so its trip timeline shows as empty. That is expected, not a bug.
+
+B7. booking_item_status_history.provider_timestamp — new column
+Holds	the time the provider says the event happened
+Format	epoch milliseconds, 13 digits, e.g. 1750935000000
+Comes from	the partner webhook's timeStamp field, stored exactly as sent
+Empty when	the status change came from us, not a provider — so it is empty for every non-cab service
+occurred_at still means "when we recorded it". The two can differ by minutes if a webhook
+was retried — that is normal.
+
+B8. No longer stored anywhere
+Field	Why
+booking_item_cab.price_reference	only used inside the request that created it
+booking_item_cab.payment_redirect_url	never read back; the payment URL is passed straight through in the response
+booking_item_cab.activated_at	cabs have no activation step
+booking_item_cab.extra_km_fare_label	replaced by extra_km_rate; the text is rebuilt for display
+booking_item_cab_assignment.trip_otp	duplicated booking_item_cab.otp
+the five progress flags	replaced by status history, B6
+B9. Unchanged
+booking_item_cab_trip is untouched. booking, booking_item,
+booking_item_sales_summary, booking_passenger, payment and refund tables are untouched.
+
+Tell me how can we start testing for this 
+</user_query>

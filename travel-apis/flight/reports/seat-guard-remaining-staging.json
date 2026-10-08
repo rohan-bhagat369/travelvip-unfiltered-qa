@@ -1,0 +1,126 @@
+{
+  "ranAt": "2026-09-03T09:53:18.576Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "summary": {
+    "PASS": 5,
+    "BUG": 0,
+    "NOT_TESTED": 9
+  },
+  "rows": [
+    {
+      "tc": "TC-05",
+      "rule": "No seat selected still books",
+      "how": "issue without seats IX IX 1463",
+      "expected": "Confirmed, no seat on detail",
+      "status": "PASS",
+      "actual": "br=BR1788429146283744 status=Confirmed seats=0 pnr=L93ZPH",
+      "br": "BR1788429146283744"
+    },
+    {
+      "tc": "TC-08",
+      "rule": "No seat guard block when no seat requested",
+      "how": "seatless BR1788429146283744",
+      "expected": "proceeds (not Price expired / seat-guard 4xx)",
+      "status": "PASS",
+      "actual": "status=Confirmed",
+      "br": "BR1788429146283744"
+    },
+    {
+      "tc": "TC-17",
+      "rule": "Failed response must include refund payload when applicable",
+      "how": "GET detail BR1788426895817401 (prior Failed book)",
+      "expected": "refund block if money moved",
+      "status": "PASS",
+      "actual": "status=Failed refundKeys=refundable,refundText",
+      "br": "BR1788426895817401"
+    },
+    {
+      "tc": "TC-06",
+      "rule": "Fare up on re-price → Price has expired",
+      "how": "issue with unknown priceId (not a live fare-up)",
+      "expected": "400 message Price has expired. Please search again.",
+      "status": "NOT TESTED",
+      "actual": "HTTP 200 br=BR1788429192357026 code=null msg=Booking is processing"
+    },
+    {
+      "tc": "TC-07",
+      "rule": "Fare change amounts only in alert not API",
+      "how": "error body of TC-06-style call",
+      "expected": "no amounts in API error",
+      "status": "NOT TESTED",
+      "actual": "amountsInError=false body={\"bookingReference\":\"BR1788429192357026\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"4816e6be-4ac2-4007-a18d-2529b46d1454\"}}"
+    },
+    {
+      "tc": "TC-08b-map",
+      "rule": "Seatmap with bad context does not 500",
+      "how": "GET/POST seatmap junk bookingContext",
+      "expected": "4xx, not 500",
+      "status": "PASS",
+      "actual": "seatmap HTTP 400 code=INVALID_BOOKING_CONTEXT"
+    },
+    {
+      "tc": "TC-08b",
+      "rule": "Seatmap/re-price unavailable → fail open (book as before)",
+      "how": "cannot force vendor seatmap outage on live Riya",
+      "expected": "books as before",
+      "status": "NOT TESTED",
+      "actual": "junk seatmap HTTP 400; live outage not simulated"
+    },
+    {
+      "tc": "TC-04",
+      "rule": "Seat gone + flag OFF → fail before vendor",
+      "how": "PARTNER_ID_2 with retry_ticket_without_seat_on_seat_failure=false",
+      "expected": "4xx no BR",
+      "status": "NOT TESTED",
+      "actual": "no second partner in .env"
+    },
+    {
+      "tc": "TC-12",
+      "rule": "Alert PROCESSING stuck 10 min",
+      "how": "booking_outbox logs/DB",
+      "expected": "alert fired",
+      "status": "NOT TESTED",
+      "actual": "no log/DB access; would need 10 min wait"
+    },
+    {
+      "tc": "TC-13",
+      "rule": "Alert vendor IN_PROGRESS 45 min",
+      "how": "logs/DB",
+      "expected": "alert fired",
+      "status": "NOT TESTED",
+      "actual": "no log/DB access; would need 45 min wait"
+    },
+    {
+      "tc": "TC-14",
+      "rule": "Hotel/cab not on flight V2 outbox path",
+      "how": "POST /v1/hotels/search HTTP 200 (no flight issue-ticket)",
+      "expected": "hotel uses hotel APIs, not /api/v2/flights/booking/issue-ticket",
+      "status": "PASS",
+      "actual": "hotel search HTTP 200; cab/esim not called; outbox table not inspected"
+    },
+    {
+      "tc": "TC-15",
+      "rule": "Seatless retry must not report FAILED when ticketed",
+      "how": "needs TC-03 drop path",
+      "expected": "Confirmed not Failed",
+      "status": "NOT TESTED",
+      "actual": "TC-03 FAIL: both carts kept the seat; drop path never ran"
+    },
+    {
+      "tc": "TC-16",
+      "rule": "Seat amount refunded when dropped",
+      "how": "needs TC-03",
+      "expected": "seatPrice 0 / refund",
+      "status": "NOT TESTED",
+      "actual": "seat never dropped"
+    },
+    {
+      "tc": "TC-18",
+      "rule": "Seatless Confirmed not masked as Failed",
+      "how": "see TC-15",
+      "expected": "Confirmed",
+      "status": "NOT TESTED",
+      "actual": "see TC-15"
+    }
+  ]
+}

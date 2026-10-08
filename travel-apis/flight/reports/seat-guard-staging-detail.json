@@ -1,0 +1,316 @@
+{
+  "ranAt": "2026-09-03T09:03:48.997Z",
+  "dumps": [
+    {
+      "tc": "TC-02",
+      "issueHttp": 200,
+      "br": "BR1788426190239884",
+      "issue": {
+        "bookingReference": "BR1788426190239884",
+        "status": "pending",
+        "message": "Booking is processing",
+        "_meta": {
+          "correlation_id": "67a698c4-d751-4a93-8349-362bbc687eb7"
+        }
+      }
+    },
+    {
+      "tc": "TC-02-detail",
+      "br": "BR1788426190239884",
+      "status": "Confirmed",
+      "detail": {
+        "status": "Confirmed",
+        "bookingResponse": {
+          "bookingReferenceId": "BR1788426190239884",
+          "bookingType": "TICKET",
+          "summary": {
+            "tripType": "O",
+            "totalPassengers": 1,
+            "journeys": 1,
+            "bookingDate": "2026-09-03T09:03:10",
+            "isFlexiCancel": 0
+          },
+          "itinerary": [
+            {
+              "direction": "ONWARD",
+              "legId": "IX1235-DEL-BOM-2026-10-15T23:25-2026-10-16T01:50",
+              "legNumber": 1,
+              "totalStops": 0,
+              "totalDurationMinutes": 145,
+              "refundable": true,
+              "refundText": "Refundable",
+              "segments": [
+                {
+                  "segmentId": "SEG_1",
+                  "segmentNumber": 1,
+                  "segmentReference": "IX1235-DEL-BOM-2026-10-15T23:25-2026-10-16T01:50",
+                  "flightNumber": "IX 1235",
+                  "airlineCode": "IX",
+                  "airline": {
+                    "code": "IX",
+                    "name": "AIR INDIA EXPRESS",
+                    "logo": "https://img.travelx.ai/cstx_images/airline/logo/air_india_express_fv.png"
+                  },
+                  "operatingCarrier": null,
+                  "cabinClass": "ECONOMY",
+                  "aircraft": "Boeing 7M8",
+                  "durationMinutes": 145,
+                  "stops": 0,
+                  "vendorFlightId": "IX1235-DEL-BOM-2026-10-15T23:25-2026-10-16T01:50",
+                  "baggage": {
+                    "checkIn": "15Kg",
+                    "cabin": "7 Kg"
+                  },
+                  "departure": {
+                    "time": "2026-10-15T23:25",
+                    "terminal": "1",
+                    "airportCode": "DEL",
+                    "airportName": "Indira Gandhi International Airport",
+                    "city": "New Delhi",
+                    "country": "India"
+                  },
+                  "arrival": {
+                    "time": "2026-10-16T01:50",
+                    "terminal": "2",
+                    "airportCode": "BOM",
+                    "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+                    "city": "Mumbai",
+                    "country": "India"
+                  }
+                }
+              ],
+              "onlineCancellation": true,
+              "cancellationPolicies": null,
+              "mandatorySsr": {
+                "meal": false,
+                "seat": false,
+                "baggage": false,
+                "types": []
+              },
+              "pricing": null,
+              "pnr": "EVZETV"
+            }
+          ],
+          "passengers": [
+            {
+              "paxId": "PAX1",
+              "paxType": "ADULT",
+              "profile": {
+                "title": "Mr",
+                "firstName": "Rohan",
+                "lastName": "Bhagatttby",
+                "dob": "2001-05-29"
+              },
+              "passport": {
+                "number": null,
+                "expiry": null,
+                "issuedDate": null,
+                "issuedCountryCode": null
+              },
+              "legs": [
+                {
+                  "legId": "IX1235-DEL-BOM-2026-10-15T23:25-2026-10-16T01:50",
+                  "pnr": "EVZETV",
+                  "eticket": "BX03HI00241-1",
+                  "status": "Confirmed"
+                }
+              ],
+              "ssr": {
+                "baggage": [],
+                "meal": [],
+                "seat": [
+                  {
+                    "seatName": "1A",
+                    "direction": "ONWARD",
+                    "origin": "DEL",
+                    "destination": "BOM",
+                    "seatType": "WINDOW"
+                  }
+                ]
+              },
+              "PaxAncillary": []
+            }
+          ],
+          "salesSummary": {
+            "basePrice": 1001,
+            "subTotal": 1001,
+            "tax": 1287,
+            "convenienceFee": 350,
+            "totalAmount": 4338,
+            "totalDiscount": 0,
+            "currency": "INR",
+            "campaignId": null,
+            "seatPrice": 1700
+          },
+          "contactDetails": {
+            "email": "rohan@travelvip.ai",
+            "countryCode": "+91",
+            "mobile": "9876543210"
+          },
+          "onlineCancellation": true,
+          "gstBreakup": null,
+          "cancellationRequest": []
+        },
+        "_meta": {
+          "correlation_id": "67a698c4-d751-4a93-8349-362bbc687eb7"
+        }
+      }
+    },
+    {
+      "tc": "TC-03",
+      "issueHttp": 200,
+      "br": "BR1788426211649717",
+      "issue": {
+        "bookingReference": "BR1788426211649717",
+        "status": "pending",
+        "message": "Booking is processing",
+        "_meta": {
+          "correlation_id": "67a698c4-d751-4a93-8349-362bbc687eb7"
+        }
+      },
+      "seat": "5C"
+    },
+    {
+      "tc": "TC-03-detail",
+      "br": "BR1788426211649717",
+      "status": "Confirmed",
+      "detail": {
+        "status": "Confirmed",
+        "bookingResponse": {
+          "bookingReferenceId": "BR1788426211649717",
+          "bookingType": "TICKET",
+          "summary": {
+            "tripType": "O",
+            "totalPassengers": 1,
+            "journeys": 1,
+            "bookingDate": "2026-09-03T09:03:31",
+            "isFlexiCancel": 0
+          },
+          "itinerary": [
+            {
+              "direction": "ONWARD",
+              "legId": "IX1235-DEL-BOM-2026-10-15T23:25-2026-10-16T01:50",
+              "legNumber": 1,
+              "totalStops": 0,
+              "totalDurationMinutes": 145,
+              "refundable": true,
+              "refundText": "Refundable",
+              "segments": [
+                {
+                  "segmentId": "SEG_1",
+                  "segmentNumber": 1,
+                  "segmentReference": "IX1235-DEL-BOM-2026-10-15T23:25-2026-10-16T01:50",
+                  "flightNumber": "IX 1235",
+                  "airlineCode": "IX",
+                  "airline": {
+                    "code": "IX",
+                    "name": "AIR INDIA EXPRESS",
+                    "logo": "https://img.travelx.ai/cstx_images/airline/logo/air_india_express_fv.png"
+                  },
+                  "operatingCarrier": null,
+                  "cabinClass": "ECONOMY",
+                  "aircraft": "Boeing 7M8",
+                  "durationMinutes": 145,
+                  "stops": 0,
+                  "vendorFlightId": "IX1235-DEL-BOM-2026-10-15T23:25-2026-10-16T01:50",
+                  "baggage": {
+                    "checkIn": "15Kg",
+                    "cabin": "7 Kg"
+                  },
+                  "departure": {
+                    "time": "2026-10-15T23:25",
+                    "terminal": "1",
+                    "airportCode": "DEL",
+                    "airportName": "Indira Gandhi International Airport",
+                    "city": "New Delhi",
+                    "country": "India"
+                  },
+                  "arrival": {
+                    "time": "2026-10-16T01:50",
+                    "terminal": "2",
+                    "airportCode": "BOM",
+                    "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+                    "city": "Mumbai",
+                    "country": "India"
+                  }
+                }
+              ],
+              "onlineCancellation": true,
+              "cancellationPolicies": null,
+              "mandatorySsr": {
+                "meal": false,
+                "seat": false,
+                "baggage": false,
+                "types": []
+              },
+              "pricing": null,
+              "pnr": "HV8B6S"
+            }
+          ],
+          "passengers": [
+            {
+              "paxId": "PAX1",
+              "paxType": "ADULT",
+              "profile": {
+                "title": "Mr",
+                "firstName": "Rohan",
+                "lastName": "Bhagatuytf",
+                "dob": "2001-05-29"
+              },
+              "passport": {
+                "number": null,
+                "expiry": null,
+                "issuedDate": null,
+                "issuedCountryCode": null
+              },
+              "legs": [
+                {
+                  "legId": "IX1235-DEL-BOM-2026-10-15T23:25-2026-10-16T01:50",
+                  "pnr": "HV8B6S",
+                  "eticket": "BX03HI00251-1",
+                  "status": "Confirmed"
+                }
+              ],
+              "ssr": {
+                "baggage": [],
+                "meal": [],
+                "seat": [
+                  {
+                    "seatName": "5C",
+                    "direction": "ONWARD",
+                    "origin": "DEL",
+                    "destination": "BOM",
+                    "seatType": "AISLE"
+                  }
+                ]
+              },
+              "PaxAncillary": []
+            }
+          ],
+          "salesSummary": {
+            "basePrice": 1001,
+            "subTotal": 1001,
+            "tax": 1287,
+            "convenienceFee": 350,
+            "totalAmount": 3188,
+            "totalDiscount": 0,
+            "currency": "INR",
+            "campaignId": null,
+            "seatPrice": 550
+          },
+          "contactDetails": {
+            "email": "rohan@travelvip.ai",
+            "countryCode": "+91",
+            "mobile": "9876543210"
+          },
+          "onlineCancellation": true,
+          "gstBreakup": null,
+          "cancellationRequest": []
+        },
+        "_meta": {
+          "correlation_id": "67a698c4-d751-4a93-8349-362bbc687eb7"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "ranAt": "2026-08-15T19:48:34.165Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "stay": {
+    "checkin": "2026-10-14",
+    "checkout": "2026-10-15"
+  },
+  "fq": {
+    "df_long_star_rating": [
+      4
+    ],
+    "Reservation policy": [
+      "Free cancellation"
+    ]
+  },
+  "counts": {
+    "PASS": 3,
+    "BUG": 0,
+    "NOT TESTED": 0,
+    "total": 3
+  },
+  "rows": [
+    {
+      "scenario": "Mumbai 4★+freeCancel price_ASC (first hotel)",
+      "how": "CITY search fq+sort → HOTEL details → prebook → finalize (T2 Beacon Hotel, Mumbai)",
+      "expected": "Confirmed booking; listing filters do not break book path",
+      "status": "PASS",
+      "actual": "BR1786823282659833 Confirmed Hotel Beacon T2 amt=3189.3900000000003",
+      "searchOk": {
+        "starOk": true,
+        "refundOk": true,
+        "hotelCount": 20,
+        "total": 38
+      },
+      "booked": {
+        "ok": true,
+        "step": "confirmed",
+        "br": "BR1786823282659833",
+        "status": "Confirmed",
+        "message": "Successful",
+        "name": "Hotel Beacon T2",
+        "starRating": 4,
+        "refundable": true,
+        "searchFare": 3037.51,
+        "room": [
+          "Deluxe Room"
+        ],
+        "amount": 3189.3900000000003,
+        "pick": "first"
+      }
+    },
+    {
+      "scenario": "Mumbai 4★+freeCancel price_DESC (first hotel)",
+      "how": "CITY search fq+sort → HOTEL details → prebook → finalize (Fairmont Mumbai)",
+      "expected": "Confirmed booking; listing filters do not break book path",
+      "status": "PASS",
+      "actual": "BR1786823299168211 Confirmed Fairmont Mumbai amt=28320",
+      "searchOk": {
+        "starOk": true,
+        "refundOk": true,
+        "hotelCount": 20,
+        "total": 38
+      },
+      "booked": {
+        "ok": true,
+        "step": "confirmed",
+        "br": "BR1786823299168211",
+        "status": "Confirmed",
+        "message": "Successful",
+        "name": "Fairmont Mumbai",
+        "starRating": 4,
+        "refundable": true,
+        "searchFare": 24000,
+        "room": [
+          "Room, 2 Twin Beds, City View"
+        ],
+        "amount": 28320,
+        "pick": "first"
+      }
+    },
+    {
+      "scenario": "Pune 4★+freeCancel price_ASC (first hotel)",
+      "how": "CITY search fq+sort → HOTEL details → prebook → finalize (Park Ornate)",
+      "expected": "Confirmed booking; listing filters do not break book path",
+      "status": "PASS",
+      "actual": "BR1786823308988120 Confirmed PARK ORNATE ( Formerly Park Orchid ) amt=4983.37",
+      "searchOk": {
+        "starOk": true,
+        "refundOk": true,
+        "hotelCount": 7,
+        "total": 7
+      },
+      "booked": {
+        "ok": true,
+        "step": "confirmed",
+        "br": "BR1786823308988120",
+        "status": "Confirmed",
+        "message": "Successful",
+        "name": "PARK ORNATE ( Formerly Park Orchid )",
+        "starRating": 4,
+        "refundable": true,
+        "searchFare": 4740.87,
+        "room": [
+          "Deluxe Room"
+        ],
+        "amount": 4983.37,
+        "pick": "first"
+      }
+    }
+  ]
+}

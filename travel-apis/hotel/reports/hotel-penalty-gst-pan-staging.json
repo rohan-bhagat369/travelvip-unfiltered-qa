@@ -1,0 +1,262 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "at": "2026-08-12T11:58:14.231Z",
+  "prebookFlags": {
+    "isPANMandatory": true,
+    "isGSTClaimable": true,
+    "entityId": "39627872",
+    "checkin": "2026-09-02"
+  },
+  "confirmedBooking": "BR1786528522623648",
+  "score": {
+    "PASS": 21,
+    "BUG": 1,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "section": "GST",
+      "rule": "1. Omit gstDetails when isGSTClaimable=true",
+      "how": "clone → delete gstDetails → finalize",
+      "expected": "Docs say optional; if gated by claimable flag → VALIDATION_ERROR mentioning gstDetails",
+      "status": "PASS",
+      "actual": "Required on claimable rate: HTTP 400 details=[\"'gstDetails' is required when the selected rate is GST claimable\"]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails' is required when the selected rate is GST claimable\"],\"timestamp\":\"2026-08-12T11:55:59Z\",\"request_id\":\"req-1786535760054\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "note": "Stricter than docs optional wording",
+      "at": "2026-08-12T11:56:00.249Z"
+    },
+    {
+      "section": "GST",
+      "rule": "2. gstDetails: null when isGSTClaimable=true",
+      "how": "clone → gstDetails=null → finalize",
+      "expected": "Docs say null OK; claimable rate may require object",
+      "status": "PASS",
+      "actual": "Rejected on claimable rate: HTTP 400 details=[\"'gstDetails' must be an object\"]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails' must be an object\"],\"timestamp\":\"2026-08-12T11:56:00Z\",\"request_id\":\"req-1786535760249\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:00.556Z"
+    },
+    {
+      "section": "GST",
+      "rule": "3. Full valid gstDetails accepted (not VALIDATION_ERROR)",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "Not VALIDATION_ERROR (may be 2xx or business error)",
+      "status": "PASS",
+      "actual": "HTTP 200 code=null booked=true br=BR1786535760226818",
+      "responseSnippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786535760226818\",\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:02.239Z"
+    },
+    {
+      "section": "GST",
+      "rule": "4. Partial gstDetails (only gstNumber)",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'gstDetails.gstCompanyName' is required when gstDetails is provided\",\"'gstDetails.gstAddress' is required when gstDetails is provided\",\"'gstDetails.gstEmailID' is required when g | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "4. Partial gstDetails (only gstNumber)",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstCompanyName' is required when gstDetails is provided\",\"'gstDetails.gstAddress' is required when gstDetails is provided\",\"'gstDetails.gstEmailID' is required when gstDetails is provided\",\"'gstDetails.gstMobileNumber' is required when gstDetails is provided\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535762239\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:02.328Z"
+    },
+    {
+      "section": "GST",
+      "rule": "5. Empty gstDetails object",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'gstDetails' is required when the selected rate is GST claimable\"] | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "5. Empty gstDetails object",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails' is required when the selected rate is GST claimable\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535762328\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:02.503Z"
+    },
+    {
+      "section": "GST",
+      "rule": "6. Invalid GSTIN format",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'gstDetails.gstNumber' is not a valid 15-character GSTIN\"] | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "6. Invalid GSTIN format",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstNumber' is not a valid 15-character GSTIN\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535762503\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:02.585Z"
+    },
+    {
+      "section": "GST",
+      "rule": "7. Invalid gstEmailID",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'gstDetails.gstEmailID' is not a valid email address\"] | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "7. Invalid gstEmailID",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstEmailID' is not a valid email address\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535762585\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:02.679Z"
+    },
+    {
+      "section": "GST",
+      "rule": "8. Wrong key gstEmailId (missing gstEmailID)",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'gstDetails.gstEmailID' is required when gstDetails is provided\"] | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "8. Wrong key gstEmailId (missing gstEmailID)",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstEmailID' is required when gstDetails is provided\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535762679\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:02.759Z"
+    },
+    {
+      "section": "GST",
+      "rule": "9. Invalid gstMobileNumber (+91 starting with 5)",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'gstDetails.gstMobileNumber' must be a 10-digit Indian mobile number starting with 6-9\"] | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "9. Invalid gstMobileNumber (+91 starting with 5)",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstMobileNumber' must be a 10-digit Indian mobile number starting with 6-9\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535762760\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:02.844Z"
+    },
+    {
+      "section": "GST",
+      "rule": "10. Blank gstCompanyName",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'gstDetails.gstCompanyName' is required when gstDetails is provided\"] | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "10. Blank gstCompanyName",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstCompanyName' is required when gstDetails is provided\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535762844\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:02.930Z"
+    },
+    {
+      "section": "PAN",
+      "rule": "0. Prebook isPANMandatory flag",
+      "how": "Inspect prebook/details room flags",
+      "expected": "Flag present on room",
+      "status": "PASS",
+      "actual": "isPANMandatory=true roomHasKey=true",
+      "roomFlags": {
+        "isPANMandatory": true,
+        "isGSTClaimable": true
+      },
+      "at": "2026-08-12T11:56:02.930Z"
+    },
+    {
+      "section": "PAN",
+      "rule": "1. Missing panCardNumber+panCardName when isPANMandatory=true",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'contact.panCardNumber' is required\",\"'contact.panCardName' is required\"] | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "1. Missing panCardNumber+panCardName when isPANMandatory=true",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.panCardNumber' is required\",\"'contact.panCardName' is required\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535762930\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:03.113Z"
+    },
+    {
+      "section": "PAN",
+      "rule": "2. Invalid panCardNumber format when mandatory",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'contact.panCardNumber' must be a valid PAN (five letters, four digits, one letter)\"] | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "2. Invalid panCardNumber format when mandatory",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.panCardNumber' must be a valid PAN (five letters, four digits, one letter)\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535763113\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:03.209Z"
+    },
+    {
+      "section": "PAN",
+      "rule": "3. panCardNumber without panCardName",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "status": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'contact.panCardName' must be a non-empty string when provided\"] | HTTP 400 VALIDATION_ERROR + envelope",
+      "payloadNote": "3. panCardNumber without panCardName",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.panCardName' must be a non-empty string when provided\"],\"timestamp\":\"2026-08-12T11:56:02Z\",\"request_id\":\"req-1786535763209\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:03.306Z"
+    },
+    {
+      "section": "PAN",
+      "rule": "4. Valid PAN on mandatory rate (not VALIDATION_ERROR)",
+      "how": "clone baseline → mutate → finalize",
+      "expected": "Not VALIDATION_ERROR (may be 2xx or business error)",
+      "status": "PASS",
+      "actual": "HTTP 200 code=null booked=true br=BR1786535763529082",
+      "responseSnippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786535763529082\",\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:05.026Z"
+    },
+    {
+      "section": "Penalty",
+      "rule": "1. Malformed bookingId",
+      "how": "GET /v1/hotels/bookings/!!bad!!/penalty-check",
+      "expected": "HTTP 400 + error.code",
+      "status": "BUG",
+      "actual": "HTTP 404 code=null envelope=false",
+      "responseSnippet": "{\"status\":404,\"info\":\"Page not found\"}",
+      "at": "2026-08-12T11:56:05.110Z"
+    },
+    {
+      "section": "Penalty",
+      "rule": "2. Unknown bookingId",
+      "how": "GET .../bookings/BR91786535765110/penalty-check",
+      "expected": "HTTP 404 + BOOKING_NOT_FOUND (or error.code)",
+      "status": "PASS",
+      "actual": "HTTP 404 code=BOOKING_NOT_FOUND",
+      "responseSnippet": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR91786535765110'\",\"timestamp\":\"2026-08-12T11:56:04Z\",\"request_id\":\"req-1786535765110\"},\"_meta\":{\"correlation_id\":\"e13b9359-41ea-424b-ae0c-db55dcea827e\"}}",
+      "at": "2026-08-12T11:56:05.233Z"
+    },
+    {
+      "section": "Penalty",
+      "rule": "3. Confirmed booking penalty quote",
+      "how": "history Confirmed BR → GET penalty-check",
+      "expected": "HTTP 200 + Penalty Fetched | Not Available",
+      "status": "PASS",
+      "actual": "HTTP 200 status=Penalty Fetched charge=0 refund=7364.86",
+      "at": "2026-08-12T11:58:10.362Z",
+      "bookingId": "BR1786528522623648",
+      "responseSnippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786528522623648\",\"confirmationNumber\":\"SNHAPI00010618\",\"currency\":\"INR\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":0,\"estimatedRefund\":7364.86,\"createdAt\":\"2026-08-12T11:58:10Z\"}},\"_meta\":{\"correlation_id\":\"41985e8b-632f-42d8-b316-01a718126059\"}}"
+    },
+    {
+      "section": "Penalty",
+      "rule": "4. Penalty-check is safe to repeat (no cancel)",
+      "how": "Call penalty-check twice; status poll",
+      "expected": "HTTP 200 both; booking status still Confirmed",
+      "status": "PASS",
+      "actual": "pen2=200/Penalty Fetched bookingStatus=Confirmed",
+      "at": "2026-08-12T11:58:10.585Z"
+    },
+    {
+      "section": "Penalty",
+      "rule": "5. Penalty-check after cancel",
+      "how": "Successful cancel then GET penalty-check",
+      "expected": "HTTP 400 + error.code (already cancelled / not cancellable)",
+      "status": "PASS",
+      "actual": "cancelStatus=Cancelled bookingStatus=Cancelled penHTTP=400 code=BOOKING_NOT_CANCELLABLE",
+      "responseSnippet": "{\"error\":{\"code\":\"BOOKING_NOT_CANCELLABLE\",\"message\":\"Booking can only be cancelled when status is Confirmed\",\"details\":\"Booking 'BR1786465749931480' is in status 'Cancelled'\",\"timestamp\":\"2026-08-12T12:00:03Z\",\"request_id\":\"req-1786536003690\",\"currentStatus\":\"Cancelled\"},\"_meta\":{\"correlation_id\":\"fcadea5d-de94-48d7-887d-2c72dbe101b0\"}}",
+      "at": "2026-08-12T12:00:04.053Z"
+    },
+    {
+      "section": "Penalty",
+      "rule": "3b. Penalty Fetched includes estimate fields",
+      "how": "Inspect cancellationRequest amounts",
+      "expected": "estimatedCancellationCharge + estimatedRefund present",
+      "status": "PASS",
+      "actual": "charge=0 refund=7364.86 currency=INR",
+      "at": "2026-08-12T11:58:10.362Z"
+    },
+    {
+      "section": "Penalty",
+      "rule": "6. Failed booking not cancellable",
+      "how": "GET penalty-check on Failed BR",
+      "expected": "HTTP 400 BOOKING_NOT_CANCELLABLE",
+      "status": "PASS",
+      "actual": "HTTP 400 code=BOOKING_NOT_CANCELLABLE",
+      "at": "2026-08-12T11:58:14.231Z"
+    }
+  ],
+  "bugs": [
+    {
+      "section": "Penalty",
+      "rule": "1. Malformed bookingId",
+      "how": "GET /v1/hotels/bookings/!!bad!!/penalty-check",
+      "expected": "HTTP 400 + error.code",
+      "status": "BUG",
+      "actual": "HTTP 404 code=null envelope=false",
+      "responseSnippet": "{\"status\":404,\"info\":\"Page not found\"}",
+      "at": "2026-08-12T11:56:05.110Z"
+    }
+  ]
+}

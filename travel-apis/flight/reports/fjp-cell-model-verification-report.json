@@ -1,0 +1,48 @@
+{
+  "ranAt": "2026-08-13T00:46:00+05:30",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "database": "travelx",
+  "verdict": "PASS",
+  "score": { "PASS": 7, "FAIL": 0, "NOT_TESTED": 1 },
+  "change": "flight_journey_passenger.flight_segment_id dropped; cell = passenger × journey",
+  "fixtures": [
+    {
+      "scenario": "OW_2ADT_DIRECT",
+      "br": "BR1786561427255395",
+      "expectedCells": 2,
+      "actual": { "journeys": 1, "passengers": 2, "cells": 2 },
+      "status": "PASS"
+    },
+    {
+      "scenario": "OW_2ADT_CONNECTING",
+      "br": "BR1786561629552992",
+      "expectedCells": 2,
+      "actual": { "journeys": 1, "passengers": 2, "cells": 2 },
+      "status": "PASS"
+    },
+    {
+      "scenario": "RT_2ADT_DIRECT",
+      "br": "BR1786561521735923",
+      "expectedCells": 4,
+      "actual": { "journeys": 2, "passengers": 2, "cells": 4 },
+      "status": "PASS"
+    },
+    {
+      "scenario": "RT_2ADT_CONNECTING",
+      "br": "BR1786561552340517",
+      "expectedCells": 4,
+      "actual": { "journeys": 2, "passengers": 2, "cells": 4 },
+      "status": "PASS"
+    }
+  ],
+  "testCases": [
+    { "id": "TC0", "name": "flight_segment_id dropped", "status": "PASS" },
+    { "id": "TC1", "name": "RT connecting 4 cells", "status": "PASS" },
+    { "id": "TC1b", "name": "RT direct 4 cells", "status": "PASS" },
+    { "id": "TC2", "name": "OW direct 2 cells", "status": "PASS" },
+    { "id": "TC2b", "name": "OW connecting 2 cells", "status": "PASS" },
+    { "id": "TC3", "name": "Connecting not segments×pax", "status": "PASS" },
+    { "id": "TC4", "name": "Data quality", "status": "PASS" },
+    { "id": "TC5", "name": "UNIQUE constraint insert", "status": "NOT_TESTED" }
+  ]
+}

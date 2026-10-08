@@ -1,0 +1,80 @@
+{
+  "booked": {
+    "br": "BR1786026302970325",
+    "status": "Confirmed",
+    "hotelName": "Taj Dubai",
+    "checkin": "2026-08-20"
+  },
+  "step1": {
+    "http": 200,
+    "data": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786026302970325",
+        "cancellationRequest": {
+          "status": "Cancelled",
+          "cancellationCharge": 0,
+          "refund": 181.92,
+          "createdAt": "2026-08-06T14:25:16Z"
+        }
+      },
+      "_meta": {
+        "correlation_id": "2b4bd74e-f5e2-44a6-b38c-4bd535644ec2"
+      }
+    }
+  },
+  "step2": {
+    "http": 200,
+    "data": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786026302970325",
+        "cancellationRequest": {
+          "status": "Cancelled",
+          "cancellationCharge": 0,
+          "refund": 181.92,
+          "createdAt": "2026-08-06T14:25:16Z"
+        }
+      },
+      "duplicate": true,
+      "duplicateMessage": "Duplicate payload — returning previously processed response.",
+      "_meta": {
+        "correlation_id": "2b4bd74e-f5e2-44a6-b38c-4bd535644ec2"
+      }
+    }
+  },
+  "step3": {
+    "http": 400,
+    "data": {
+      "error": {
+        "code": "BOOKING_NOT_CANCELLABLE",
+        "message": "Booking can only be cancelled when status is Confirmed",
+        "details": "Booking 'BR1786026302970325' is in status 'Cancelled'",
+        "timestamp": "2026-08-06T14:25:20Z",
+        "request_id": "req-1786026319728",
+        "currentStatus": "Cancelled"
+      },
+      "_meta": {
+        "correlation_id": "2b4bd74e-f5e2-44a6-b38c-4bd535644ec2"
+      }
+    }
+  },
+  "step4": {
+    "http": 400,
+    "data": {
+      "error": {
+        "code": "BOOKING_NOT_CANCELLABLE",
+        "message": "Booking can only be cancelled when status is Confirmed",
+        "details": "Booking 'BR1786026302970325' is in status 'Cancelled'",
+        "timestamp": "2026-08-06T14:25:20Z",
+        "request_id": "req-1786026319830",
+        "currentStatus": "Cancelled"
+      },
+      "_meta": {
+        "correlation_id": "2b4bd74e-f5e2-44a6-b38c-4bd535644ec2"
+      }
+    }
+  }
+}

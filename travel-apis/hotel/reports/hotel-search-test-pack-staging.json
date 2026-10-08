@@ -1,0 +1,423 @@
+{
+  "host": "https://api-staging.travelvip.ai",
+  "at": "2026-08-15T19:58:43.103Z",
+  "search": {
+    "name": "user-curl CITY 357389:IN INR",
+    "entityId": "357389:IN",
+    "type": "CITY",
+    "checkin": "2026-09-10",
+    "checkout": "2026-09-12",
+    "currency": "INR",
+    "subscriptionId": "123841304969662b8",
+    "totalResults": 631,
+    "requestId": "84b00af7-0d3c-4973-95b4-c455d334eca7"
+  },
+  "score": {
+    "PASS": 41,
+    "BUG": 0,
+    "NOT_TESTED": 0,
+    "total": 41
+  },
+  "rows": [
+    {
+      "section": "Setup",
+      "id": "0",
+      "rule": "Working listing search (auth + inventory)",
+      "how": "POST /v1/hotels/search user-curl CITY 357389:IN INR",
+      "expected": "HTTP 200 results>0",
+      "actual": "HTTP 200 n=5 total=631 requestId=84b00af7-0d3c-4973-95b4-c455d334eca7 ms=996",
+      "status": "PASS",
+      "requestId": "84b00af7-0d3c-4973-95b4-c455d334eca7"
+    },
+    {
+      "section": "Sort",
+      "id": "S1",
+      "rule": "Sort options are advertised",
+      "how": "offset=0 limit=5 no sort",
+      "expected": "exactly ['price_ASC','price_DESC']; no star sort",
+      "actual": "keys=[\"price_ASC\",\"price_DESC\"]",
+      "status": "PASS",
+      "requestId": "d5ec2504-9f3a-4414-80be-83af52c3815b"
+    },
+    {
+      "section": "Sort",
+      "id": "S2",
+      "rule": "Price ascending across whole result set",
+      "how": "sort=price_ASC limit=5",
+      "expected": "non-decreasing price.baseFare",
+      "actual": "fares=[540,697.24,793.8,805.94,873.94]",
+      "status": "PASS",
+      "requestId": "2834d55c-8d72-4f29-b560-6909dc1bfbf1"
+    },
+    {
+      "section": "Sort",
+      "id": "S3",
+      "rule": "Price descending, different set from S2",
+      "how": "sort=price_DESC limit=5",
+      "expected": "non-increasing fares and different hotels than S2",
+      "actual": "fares=[84000,72000,64000,63360,63300] overlapIds=0",
+      "status": "PASS",
+      "requestId": "79d7ea91-dd95-45b3-8a20-fa0ffca5f808",
+      "differentSet": false
+    },
+    {
+      "section": "Sort",
+      "id": "S4",
+      "rule": "Unknown sort key ignored, not rejected",
+      "how": "sort=rating_DESC",
+      "expected": "HTTP 200, order matches unsorted",
+      "actual": "http=200 fares=[14009.8,9604,8000,3577.9,9900] unsorted=[14009.8,9604,8000,3577.9,9900]",
+      "status": "PASS",
+      "requestId": "4cccb2ec-33f5-4335-b694-5085989d2e62"
+    },
+    {
+      "section": "Sort",
+      "id": "S-E1",
+      "rule": "Truncated key price_AS ignored",
+      "how": "sort=price_AS",
+      "expected": "HTTP 200 with results",
+      "actual": "http=200 n=5 fares=[14009.8,9604,8000,3577.9,9900]",
+      "status": "PASS",
+      "requestId": "a2e60874-ae07-4e97-a469-7538e76d5492"
+    },
+    {
+      "section": "Sort",
+      "id": "S-E2",
+      "rule": "Sort key is case-sensitive / PRICE_ASC",
+      "how": "sort=PRICE_ASC",
+      "expected": "Either treated as price_ASC (monotonic) or ignored (200)",
+      "actual": "http=200 fares=[540,697.24,793.8,805.94,873.94] monoAsc=true",
+      "status": "PASS",
+      "requestId": "2c35054b-e05b-4560-ac0f-c2907989653c"
+    },
+    {
+      "section": "Sort",
+      "id": "S-E3",
+      "rule": "Combined sort=price_ASC,price_DESC",
+      "how": "comma-separated sort",
+      "expected": "HTTP 200 (ignored or first key)",
+      "actual": "http=200 n=5 fares=[540,697.24,793.8,805.94,873.94]",
+      "status": "PASS",
+      "requestId": "bafac407-1b58-494a-87ef-66ae8750a593"
+    },
+    {
+      "section": "Sort",
+      "id": "S-E4",
+      "rule": "S2 orders by baseFare not totalAmount",
+      "how": "compare S2 baseFare vs totalAmount sequences",
+      "expected": "baseFare monotonic; if totalAmount differs, that difference is allowed",
+      "actual": "base=[540,697.24,793.8,805.94,873.94] total=[567,732.1,834.3,846.44,918.86]",
+      "status": "PASS"
+    },
+    {
+      "section": "Filter",
+      "id": "F1",
+      "rule": "Star-rating facet present and self-describing",
+      "how": "unfiltered listing filters[]",
+      "expected": "Star Rating indexField df_long_star_rating; 5/4/3 with facetKey; no 1-2 star",
+      "actual": "indexField=df_long_star_rating facets=[{\"name\":\"5 Star\",\"count\":43,\"facetKey\":\"5\"},{\"name\":\"4 Star\",\"count\":49,\"facetKey\":\"4\"},{\"name\":\"3 Star\",\"count\":307,\"facetKey\":\"3\"}]",
+      "status": "PASS",
+      "requestId": "dce9708d-8caa-4c04-b3c5-e9916319b4f2"
+    },
+    {
+      "section": "Filter",
+      "id": "F2",
+      "rule": "One value narrows the set",
+      "how": "fq df_long_star_rating:5",
+      "expected": "totalResults=43; every starRating 5",
+      "actual": "total=43 stars=[5,5,5,5,5] facetCount=43",
+      "status": "PASS",
+      "requestId": "bd89418c-c1f3-4be1-9715-b97ac0a32987"
+    },
+    {
+      "section": "Filter",
+      "id": "F3",
+      "rule": "Multi-select uses a semicolon",
+      "how": "fq df_long_star_rating:4;5",
+      "expected": "totalResults=92; only 4 and 5",
+      "actual": "total=92 ratings=[4] expected=92",
+      "status": "PASS",
+      "requestId": "457731aa-0ecd-49fc-a051-6fc24367cd26"
+    },
+    {
+      "section": "Filter",
+      "id": "F4",
+      "rule": "Facet counts survive a selection",
+      "how": "fq 5-star only",
+      "expected": "totalResults filtered; facet counts remain full",
+      "actual": "total=43 facetsNow=[\"5 Star:43\",\"4 Star:49\",\"3 Star:307\"] orig=[\"5 Star:43\",\"4 Star:49\",\"3 Star:307\"]",
+      "status": "PASS",
+      "requestId": "a877ea3a-7277-4546-9b8e-c7eec1eabef1"
+    },
+    {
+      "section": "Filter",
+      "id": "F5",
+      "rule": "Filter and sort compose",
+      "how": "fq Reservation policy:Free cancellation + sort=price_ASC",
+      "expected": "totalResults < unfiltered; fares ascending",
+      "actual": "total=531 unfiltered=631 fares=[540,793.8,805.94,873.94,875.7]",
+      "status": "PASS",
+      "requestId": "6cb3e54d-bd2f-4615-acd3-3e78064ced5f"
+    },
+    {
+      "section": "Filter",
+      "id": "F6",
+      "rule": "Valueless filter is ignored, not fatal",
+      "how": "fq star_rating empty value",
+      "expected": "HTTP 200 and full unfiltered totalResults",
+      "actual": "http=200 total=631 unfiltered=631",
+      "status": "PASS",
+      "requestId": "af4572d5-5df6-48e3-be19-f6b60368cbe9"
+    },
+    {
+      "section": "Filter",
+      "id": "F-E1",
+      "rule": "Comma instead of semicolon does not multi-select",
+      "how": "fq df_long_star_rating:4,5",
+      "expected": "Must NOT equal 4★+5★ combined total (semicolon is required)",
+      "actual": "total=631 combined=92 http=200",
+      "status": "PASS",
+      "requestId": "07e206d3-cf69-4d11-8f73-e19254a3b67a"
+    },
+    {
+      "section": "Filter",
+      "id": "F-E2",
+      "rule": "Two fq entries for same field vs semicolon",
+      "how": "fq array with two star filters",
+      "expected": "Documented contract is one field with semicolon. Record actual total.",
+      "actual": "http=200 total=92 semiExpected=92",
+      "status": "PASS",
+      "requestId": "590e8b4a-28fd-4c25-b8f5-ec67037aa3d4",
+      "note": "informational if totals differ from semicolon form"
+    },
+    {
+      "section": "Filter",
+      "id": "F-E3",
+      "rule": "Unknown star facetKey",
+      "how": "fq star_rating:99",
+      "expected": "HTTP 200, typically 0 results not 500",
+      "actual": "http=200 n=0 total=0",
+      "status": "PASS",
+      "requestId": "0133e419-5947-4f76-8616-a17a9fd874a5"
+    },
+    {
+      "section": "Filter",
+      "id": "F-E4",
+      "rule": "1★/2★ filter (excluded by design)",
+      "how": "fq df_long_star_rating:1;2",
+      "expected": "HTTP 200; typically 0 results",
+      "actual": "http=200 total=151 n=5",
+      "status": "PASS",
+      "requestId": "d3227fa5-1ade-4334-a112-9e3b3602e6da"
+    },
+    {
+      "section": "Filter",
+      "id": "F-E5",
+      "rule": "fq as string instead of array",
+      "how": "body.fq is a string",
+      "expected": "HTTP 400 or ignored (200). Not 500.",
+      "actual": "http=200 {\"page\":0,\"size\":5,\"offset\":0,\"totalResults\":631,\"totalPages\":127,\"availableResults\":631,\"last\":false,\"results\":[{\"id\":\"39627872\",\"name\":\"Hotel Hiltop\",\"address\":\"Sea Link, 43, Sir",
+      "status": "PASS",
+      "requestId": "03999f62-6cbc-4807-b758-579162b849ec"
+    },
+    {
+      "section": "Paging",
+      "id": "P1",
+      "rule": "Pages chain without gaps or repeats",
+      "how": "offset 0,5,10 limit=5 price_ASC",
+      "expected": "last fare of page N <= first of N+1; no id repeats",
+      "actual": "fares0=[540,697.24,793.8,805.94,873.94] fares5=[875.7,878,880,891,898.2] fares10=[900,963.26,975.14,975.14,1049.08] overlap=[]",
+      "status": "PASS",
+      "requestId": "1753349c-9096-46ae-bc18-b3ab54b99272"
+    },
+    {
+      "section": "Paging",
+      "id": "P2",
+      "rule": "Offset is echoed back",
+      "how": "offset=7 limit=5",
+      "expected": "offset:7 exactly; page advisory",
+      "actual": "page=1 offset=7 size=5",
+      "status": "PASS",
+      "requestId": "23eb46e9-795a-44b0-a964-a60b7a37cbb6"
+    },
+    {
+      "section": "Paging",
+      "id": "P3",
+      "rule": "Non-multiple offset slices where it says",
+      "how": "offset=7 is tail of page offset=5 + head of offset=10",
+      "expected": "fares ≈ [880,891,898.2,900,963.26]",
+      "actual": "fares=[880,891,898.2,900,963.26]",
+      "status": "PASS",
+      "requestId": "23eb46e9-795a-44b0-a964-a60b7a37cbb6"
+    },
+    {
+      "section": "Paging",
+      "id": "P4",
+      "rule": "Page size changes recompute page count",
+      "how": "limit=20",
+      "expected": "20 results; totalPages==ceil(total/20)",
+      "actual": "size=20 n=20 totalPages=32 expected=32",
+      "status": "PASS",
+      "requestId": "9803dad0-5723-46f7-bd8f-083b33d66589"
+    },
+    {
+      "section": "Paging",
+      "id": "P5",
+      "rule": "Final page reports itself",
+      "how": "offset=627 (total-4) limit=5",
+      "expected": "fewer than limit results and last:true",
+      "actual": "n=4 last=true offset=627",
+      "status": "PASS",
+      "requestId": "bca4b7f7-b232-4f0e-b519-a36d18dbd08c"
+    },
+    {
+      "section": "Paging",
+      "id": "P6",
+      "rule": "Past the end is an empty page, not an error",
+      "how": "offset=9999 limit=5",
+      "expected": "HTTP 200, 0 results, last true, offset echoed, total unchanged",
+      "actual": "http=200 n=0 last=true offset=9999 total=631",
+      "status": "PASS",
+      "requestId": "2ee30c77-20bd-4e35-aa36-412f828bd993"
+    },
+    {
+      "section": "Paging",
+      "id": "P-E1",
+      "rule": "limit=1 returns a single hotel",
+      "how": "limit=1",
+      "expected": "n=1 size=1",
+      "actual": "n=1 size=1",
+      "status": "PASS",
+      "requestId": "c6857464-ebb6-474c-a96f-b9586131c6e3"
+    },
+    {
+      "section": "Paging",
+      "id": "P-E2",
+      "rule": "Omitting limit still pages",
+      "how": "no limit query param",
+      "expected": "HTTP 200 with a default size > 0",
+      "actual": "http=200 n=10 size=10",
+      "status": "PASS",
+      "requestId": "51be062a-7c4f-4c0a-8a9b-9f1734a047b0"
+    },
+    {
+      "section": "Paging",
+      "id": "P-E3",
+      "rule": "offset == totalResults is empty last page",
+      "how": "offset=631",
+      "expected": "HTTP 200 n=0 last true",
+      "actual": "http=200 n=0 last=true offset=631",
+      "status": "PASS",
+      "requestId": "98a7408e-22cc-445e-94c5-44390a467a59"
+    },
+    {
+      "section": "Paging",
+      "id": "P-E4",
+      "rule": "Follow-up page echoes / accepts requestId",
+      "how": "same search + requestId on page 2",
+      "expected": "HTTP 200; page continues ASC",
+      "actual": "http=200 n=5 rid=1753349c-9096-46ae-bc18-b3ab54b99272 fares=[875.7,878,880,891,898.2]",
+      "status": "PASS"
+    },
+    {
+      "section": "Validation",
+      "id": "V1",
+      "rule": "Negative offset is rejected",
+      "how": "offset=-1 limit=5",
+      "expected": "HTTP 400 VALIDATION_ERROR offset must be 0 or greater…",
+      "actual": "http=400 code=VALIDATION_ERROR msg=Validation failed",
+      "status": "PASS"
+    },
+    {
+      "section": "Validation",
+      "id": "V2",
+      "rule": "Zero limit is rejected",
+      "how": "limit=0",
+      "expected": "HTTP 400 VALIDATION_ERROR",
+      "actual": "http=400 code=VALIDATION_ERROR msg=Validation failed",
+      "status": "PASS"
+    },
+    {
+      "section": "Validation",
+      "id": "V3",
+      "rule": "Non-numeric offset is rejected",
+      "how": "offset=abc",
+      "expected": "HTTP 400 (framework body, may not be VALIDATION_ERROR)",
+      "actual": "http=400 {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"offset must be 0 or greater.\"],\"timestamp\":\"2026-08-15T19:58:43Z\",\"request_id\":\"req-1786823922461\"},\"_",
+      "status": "PASS"
+    },
+    {
+      "section": "Validation",
+      "id": "V-E1",
+      "rule": "Negative limit is rejected",
+      "how": "limit=-1",
+      "expected": "HTTP 400 VALIDATION_ERROR",
+      "actual": "http=400 {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"limit must be greater than 0.\"],\"timestamp\":\"2026-08-15T19:58:43Z\",\"request_id\":\"req-1786823922509\"},\"",
+      "status": "PASS"
+    },
+    {
+      "section": "Validation",
+      "id": "V-E2",
+      "rule": "Float offset is rejected or not silently clamped to 0",
+      "how": "offset=1.5",
+      "expected": "HTTP 400 preferred; 200 with offset 1.5 or 1 also acceptable if documented. 200 of first page is BUG.",
+      "actual": "http=400 offset=undefined n=0 {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"offset must be 0 or greater.\"],\"timestamp\":\"2026-08-15T19:58:4",
+      "status": "PASS"
+    },
+    {
+      "section": "Validation",
+      "id": "V-E3",
+      "rule": "Non-numeric limit is rejected",
+      "how": "limit=abc",
+      "expected": "HTTP 400",
+      "actual": "http=400 {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"limit must be greater than 0.\"],\"timestamp\":\"2026-08-15T19:58:43Z\",\"request_id\":\"req-1786823922600\"},\"",
+      "status": "PASS"
+    },
+    {
+      "section": "Validation",
+      "id": "V-E4",
+      "rule": "Huge offset Integer.MAX+ does not 500",
+      "how": "offset=2147483648",
+      "expected": "HTTP 200 empty last page or 400 — not 500",
+      "actual": "http=200 n=0",
+      "status": "PASS"
+    },
+    {
+      "section": "Validation",
+      "id": "V-E5",
+      "rule": "Empty offset query",
+      "how": "offset=",
+      "expected": "HTTP 400 or default 0 with 200",
+      "actual": "http=400 offset=undefined n=0",
+      "status": "PASS"
+    },
+    {
+      "section": "Edge",
+      "id": "E-E1",
+      "rule": "Missing checkin/checkout",
+      "how": "omit stay dates",
+      "expected": "HTTP 400 VALIDATION_ERROR not 500",
+      "actual": "http=400 {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is required.\",\"Check-out date is required.\"],\"timestamp\":\"2026-08-15T19:58:43Z\",\"request",
+      "status": "PASS"
+    },
+    {
+      "section": "Edge",
+      "id": "E-E2",
+      "rule": "type TBOCITY vs CITY on this entity",
+      "how": "entity 357389:IN type=TBOCITY",
+      "expected": "HTTP 200 results or 4xx — not 500",
+      "actual": "http=200 n=5 total=631",
+      "status": "PASS",
+      "requestId": "f264e5bb-46a1-45b9-9674-2649ac0486b2"
+    },
+    {
+      "section": "Edge",
+      "id": "E-E3",
+      "rule": "Empty rooms array",
+      "how": "rooms:[]",
+      "expected": "HTTP 400 not 500",
+      "actual": "http=400 {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"At least one room is required.\"],\"timestamp\":\"2026-08-15T19:58:43Z\",\"request_id\":\"req-1786823923052\"},",
+      "status": "PASS"
+    }
+  ]
+}

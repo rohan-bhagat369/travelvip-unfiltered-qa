@@ -1,0 +1,347 @@
+{
+  "verifiedAt": "2026-08-03T13:02:26.888Z",
+  "env": "https://api-staging.travelvip.ai",
+  "checkin": "2026-08-28",
+  "checkout": "2026-08-30",
+  "question": "Is hotel cancellation policy breakup sent in structured format in API?",
+  "verdict": {
+    "structuredBreakupSent": true,
+    "structure": "{ fromDate, chargeType, cancellationCharge }",
+    "location": "POST /v1/hotels/details → results[0].rooms[].cancelPolicies[]",
+    "allSamplesValidShape": true,
+    "samplesWithPolicies": 7,
+    "totalRoomSamplesChecked": 7
+  },
+  "fieldDefinitions": [
+    {
+      "field": "fromDate",
+      "type": "string",
+      "format": "DD-MM-YYYY HH:mm:ss",
+      "meaning": "Start of this cancellation charge window"
+    },
+    {
+      "field": "chargeType",
+      "type": "string",
+      "observed": "Percent",
+      "meaning": "Charge is percentage of booking amount"
+    },
+    {
+      "field": "cancellationCharge",
+      "type": "number",
+      "meaning": "Percent charge applicable from fromDate onward until next window"
+    }
+  ],
+  "relatedDisplayFields": [
+    {
+      "field": "refundable",
+      "location": "search results[] and details rooms[]",
+      "type": "boolean"
+    },
+    {
+      "field": "refundableNotes",
+      "location": "search results[] and details rooms[]",
+      "type": "string[]",
+      "example": "Free cancellation before 27-08-2026"
+    },
+    {
+      "field": "benefitsIcon",
+      "location": "details rooms[]",
+      "type": "array of { key, value }",
+      "example": "key=Free cancellation before ... / Non-Refundable"
+    }
+  ],
+  "samples": [
+    {
+      "hotelId": "2943014",
+      "hotelName": "Hotel Basera",
+      "searchRefundable": true,
+      "searchRefundableNotes": [
+        "Free cancellation before 27-08-2026"
+      ],
+      "roomName": [
+        "Deluxe Double room (full double bed)",
+        "non-smoking"
+      ],
+      "roomRefundable": true,
+      "roomRefundableNotes": [
+        "Free cancellation before 27-08-2026"
+      ],
+      "benefitsIconCancel": [
+        {
+          "key": "Free cancellation before 27-08-2026",
+          "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+        }
+      ],
+      "cancelPolicies": [
+        {
+          "fromDate": "03-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 0
+        },
+        {
+          "fromDate": "27-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 48.84
+        },
+        {
+          "fromDate": "28-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 100
+        }
+      ],
+      "structuredBreakupPresent": true,
+      "policyShapeValid": true,
+      "policyFields": [
+        "fromDate",
+        "chargeType",
+        "cancellationCharge"
+      ],
+      "price": 3911.47
+    },
+    {
+      "hotelId": "2722396",
+      "hotelName": "The Citiotel",
+      "searchRefundable": true,
+      "searchRefundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "roomName": [
+        "Deluxe Double room with city view (full double bed) (queen size bed)",
+        "queen-bed",
+        "non-smoking"
+      ],
+      "roomRefundable": true,
+      "roomRefundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "benefitsIconCancel": [
+        {
+          "key": "Free cancellation before 26-08-2026",
+          "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+        }
+      ],
+      "cancelPolicies": [
+        {
+          "fromDate": "03-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 0
+        },
+        {
+          "fromDate": "26-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 100
+        }
+      ],
+      "structuredBreakupPresent": true,
+      "policyShapeValid": true,
+      "policyFields": [
+        "fromDate",
+        "chargeType",
+        "cancellationCharge"
+      ],
+      "price": 6367.52
+    },
+    {
+      "hotelId": "2722396",
+      "hotelName": "The Citiotel",
+      "searchRefundable": true,
+      "searchRefundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "roomName": [
+        "Deluxe room with city view",
+        "non-smoking"
+      ],
+      "roomRefundable": true,
+      "roomRefundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "benefitsIconCancel": [
+        {
+          "key": "Free cancellation before 26-08-2026",
+          "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+        }
+      ],
+      "cancelPolicies": [
+        {
+          "fromDate": "03-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 0
+        },
+        {
+          "fromDate": "26-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 100
+        }
+      ],
+      "structuredBreakupPresent": true,
+      "policyShapeValid": true,
+      "policyFields": [
+        "fromDate",
+        "chargeType",
+        "cancellationCharge"
+      ],
+      "price": 6731.37
+    },
+    {
+      "hotelId": "2688620",
+      "hotelName": "Rutugandh Heritage",
+      "searchRefundable": false,
+      "searchRefundableNotes": [],
+      "roomName": [
+        "Deluxe Double room (full double bed)",
+        "non-smoking"
+      ],
+      "roomRefundable": false,
+      "roomRefundableNotes": [],
+      "benefitsIconCancel": [
+        {
+          "key": "Non-Refundable",
+          "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+        }
+      ],
+      "cancelPolicies": [
+        {
+          "fromDate": "03-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 100
+        }
+      ],
+      "structuredBreakupPresent": true,
+      "policyShapeValid": true,
+      "policyFields": [
+        "fromDate",
+        "chargeType",
+        "cancellationCharge"
+      ],
+      "price": 3820.51
+    },
+    {
+      "hotelId": "2688620",
+      "hotelName": "Rutugandh Heritage",
+      "searchRefundable": false,
+      "searchRefundableNotes": [],
+      "roomName": [
+        "Deluxe Double room (full double bed)",
+        "non-smoking"
+      ],
+      "roomRefundable": false,
+      "roomRefundableNotes": [],
+      "benefitsIconCancel": [
+        {
+          "key": "Non-Refundable",
+          "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+        }
+      ],
+      "cancelPolicies": [
+        {
+          "fromDate": "03-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 100
+        }
+      ],
+      "structuredBreakupPresent": true,
+      "policyShapeValid": true,
+      "policyFields": [
+        "fromDate",
+        "chargeType",
+        "cancellationCharge"
+      ],
+      "price": 4184.37
+    },
+    {
+      "hotelId": "2943015",
+      "hotelName": "Hotel Orchard Pune",
+      "searchRefundable": true,
+      "searchRefundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "roomName": [
+        "Executive Single room with city view (single bed)",
+        "non-smoking"
+      ],
+      "roomRefundable": true,
+      "roomRefundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "benefitsIconCancel": [
+        {
+          "key": "Free cancellation before 26-08-2026",
+          "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+        }
+      ],
+      "cancelPolicies": [
+        {
+          "fromDate": "03-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 0
+        },
+        {
+          "fromDate": "26-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 50
+        },
+        {
+          "fromDate": "28-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 100
+        }
+      ],
+      "structuredBreakupPresent": true,
+      "policyShapeValid": true,
+      "policyFields": [
+        "fromDate",
+        "chargeType",
+        "cancellationCharge"
+      ],
+      "price": 4548.23
+    },
+    {
+      "hotelId": "2943015",
+      "hotelName": "Hotel Orchard Pune",
+      "searchRefundable": true,
+      "searchRefundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "roomName": [
+        "Deluxe Double room with city view (twin beds)",
+        "non-smoking"
+      ],
+      "roomRefundable": true,
+      "roomRefundableNotes": [
+        "Free cancellation before 26-08-2026"
+      ],
+      "benefitsIconCancel": [
+        {
+          "key": "Free cancellation before 26-08-2026",
+          "value": "https://img.travelx.ai/Hotel_Amenities/Refundable.svg"
+        }
+      ],
+      "cancelPolicies": [
+        {
+          "fromDate": "03-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 0
+        },
+        {
+          "fromDate": "26-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 50.85
+        },
+        {
+          "fromDate": "28-08-2026 00:00:00",
+          "chargeType": "Percent",
+          "cancellationCharge": 100
+        }
+      ],
+      "structuredBreakupPresent": true,
+      "policyShapeValid": true,
+      "policyFields": [
+        "fromDate",
+        "chargeType",
+        "cancellationCharge"
+      ],
+      "price": 5366.91
+    }
+  ]
+}

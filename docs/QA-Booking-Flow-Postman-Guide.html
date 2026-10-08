@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TravelVIP B2B — QA Booking Flow Guide</title>
+  <style>
+    @page { margin: 18mm 15mm; size: A4; }
+    body { font-family: Segoe UI, Arial, sans-serif; font-size: 11pt; line-height: 1.45; color: #1a1a1a; max-width: 900px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 20pt; border-bottom: 3px solid #2563eb; padding-bottom: 8px; }
+    h2 { font-size: 14pt; color: #2563eb; margin-top: 28px; page-break-after: avoid; }
+    h3 { font-size: 12pt; margin-top: 18px; page-break-after: avoid; }
+    .subtitle { color: #555; margin-bottom: 20px; }
+    table { border-collapse: collapse; width: 100%; margin: 10px 0 16px; font-size: 10pt; }
+    th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #eff6ff; }
+    .flow { background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 14px; font-family: Consolas, monospace; font-size: 10pt; margin: 8px 0; }
+    .note { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 8px 12px; margin: 10px 0; font-size: 10pt; }
+    .warn { background: #fef2f2; border-left: 4px solid #ef4444; padding: 8px 12px; margin: 10px 0; font-size: 10pt; }
+    pre { background: #f1f5f9; padding: 10px; overflow-x: auto; font-size: 9pt; border-radius: 4px; }
+    .product { page-break-before: always; }
+    .product:first-of-type { page-break-before: auto; }
+    .badge { display: inline-block; background: #2563eb; color: white; padding: 2px 8px; border-radius: 4px; font-size: 9pt; }
+    ul { padding-left: 20px; }
+    li { margin: 4px 0; }
+    @media print { body { padding: 0; } h2 { page-break-before: auto; } }
+  </style>
+</head>
+<body>
+
+<h1>TravelVIP B2B — QA Booking Flow Guide</h1>
+<p class="subtitle">
+  <strong>For QA team</strong> · Hotel · Flight · Cab · Postman<br>
+  Staging: <code>https://api-staging.travelvip.ai</code><br>
+  Collection: <code>TravelVIP-Dynamic-Flights-Hotels.postman_collection.json</code>
+</p>
+
+<h2>Setup (do once)</h2>
+<ol>
+  <li>Import Postman <strong>collection</strong> + <strong>B2B Dev environment</strong></li>
+  <li>Set: <code>base_url</code>, <code>partner_id</code>, <code>partner_secret</code>, <code>signing_key</code>, <code>tier_id</code></li>
+  <li>Run <strong>Auth</strong>: Partner Token → User Session</li>
+  <li>Keep one <code>correlation_id</code> for the whole flow</li>
+</ol>
+
+<table>
+  <tr><th>Header</th><th>Value</th><th>When</th></tr>
+  <tr><td>Authorization</td><td>Bearer {{auth_token}}</td><td>All APIs</td></tr>
+  <tr><td>X-Partner-Key</td><td>{{access_token}}</td><td>Hotel finalize · Flight issue-ticket · Cab finalize</td></tr>
+  <tr><td>X-Correlation-ID</td><td>{{correlation_id}}</td><td>All APIs (same ID)</td></tr>
+</table>
+
+<div class="flow"><strong>Cheat sheet:</strong><br>
+HOTEL:  details.requestId + bookingCode → prebook → finalize → status(BR)<br>
+FLIGHT: search.searchId → pricing → issue-ticket → status(BR)<br>
+CAB:    search.searchId → fare → finalize → status(BR)
+</div>
+
+<!-- HOTEL -->
+<div class="product">
+<h2><span class="badge">HOTEL</span> Booking Flow</h2>
+<div class="flow">Auth → Search → Details → Prebook → Finalize → Status</div>
+
+<h3>Step 1 — Search</h3>
+<p><code>POST /v1/hotels/search</code> · Query: <code>pid=vgm</code></p>
+<table>
+  <tr><th>Send in body</th><th>Example</th></tr>
+  <tr><td>checkin / checkout</td><td>2026-09-23 / 2026-09-24</td></tr>
+  <tr><td>entityId</td><td>39627872 (Hilltop Mumbai)</td></tr>
+  <tr><td>nationality</td><td>IN</td></tr>
+  <tr><td>type</td><td>HOTEL</td></tr>
+  <tr><td>rooms</td><td>1 adult</td></tr>
+</table>
+<p><strong>Copy forward:</strong> same dates + entity + rooms → Details &amp; Finalize</p>
+
+<h3>Step 2 — Details</h3>
+<p><code>POST /v1/hotels/details</code> · Same body as Search <strong>without</strong> <code>type</code></p>
+<table>
+  <tr><th>From response</th><th>Copy to</th></tr>
+  <tr><td><strong>requestId</strong></td><td>Prebook + Finalize</td></tr>
+  <tr><td><strong>results[0].rooms[0].bookingCode</strong></td><td>Prebook + Finalize</td></tr>
+</table>
+<div class="note">Use <strong>Details</strong> requestId — not Search requestId.</div>
+
+<h3>Step 3 — Prebook</h3>
+<p><code>POST /v1/hotels/prebook</code></p>
+<pre>{ "bookingCode": "&lt;Details&gt;", "requestId": "&lt;Details&gt;" }</pre>
+<table>
+  <tr><th>From response</th><th>Copy to</th></tr>
+  <tr><td><strong>bookingContext</strong></td><td>Finalize</td></tr>
+</table>
+
+<h3>Step 4 — Finalize (BOOK)</h3>
+<p><code>POST /v1/hotels/finalize-booking</code> · Needs <strong>X-Partner-Key</strong></p>
+<table>
+  <tr><th>Field</th><th>Source</th></tr>
+  <tr><td>bookingContext</td><td>Prebook</td></tr>
+  <tr><td>bookingCode, requestId</td><td>Details</td></tr>
+  <tr><td>checkin, checkout, rooms, contact</td><td>Your test data + PAN if mandatory</td></tr>
+</table>
+<p><strong>After book:</strong> save <code>bookingRefId</code> → GET status</p>
+
+<h3>Step 5 — Status</h3>
+<p><code>GET /v1/hotels/bookings/{bookingRefId}/status</code> — poll until Confirmed / Failed / Inprogress</p>
+</div>
+
+<!-- FLIGHT -->
+<div class="product">
+<h2><span class="badge">FLIGHT</span> Booking Flow</h2>
+<div class="flow">Auth → Search (poll) → Details → Pricing → Issue-ticket → Status</div>
+
+<h3>Step 1 — Search</h3>
+<p><code>POST /v1/flights/search</code></p>
+<table>
+  <tr><th>Send</th><th>Example</th></tr>
+  <tr><td>itinerary</td><td>DEL → BOM, date YYYY-MM-DD</td></tr>
+  <tr><td>journeyType</td><td>ONE_WAY</td></tr>
+  <tr><td>travellers</td><td>1 adult</td></tr>
+  <tr><td>cabinClass</td><td>ECONOMY</td></tr>
+</table>
+<p><strong>Copy forward:</strong> <code>results[ONWARD].options[0].searchId</code> → all next steps</p>
+<p>Round trip: copy <strong>two</strong> searchIds (ONWARD + RETURN).</p>
+
+<h3>Step 2 — Details</h3>
+<pre>{ "journeyType": "ONE_WAY", "selection": { "selectedSearchIds": ["&lt;searchId&gt;"] } }</pre>
+
+<h3>Step 3 — Pricing</h3>
+<p>Same body as Details.</p>
+<table>
+  <tr><th>From response</th><th>Copy to</th></tr>
+  <tr><td><strong>priceId</strong></td><td>Issue-ticket → data.priceId</td></tr>
+  <tr><td><strong>bookingContext</strong></td><td>Issue-ticket → bookingReference</td></tr>
+</table>
+
+<h3>Step 4 — Issue ticket (BOOK)</h3>
+<p><code>POST /api/v2/flights/booking/issue-ticket</code> · Needs <strong>X-Partner-Key</strong></p>
+<table>
+  <tr><th>Issue-ticket field</th><th>Source</th></tr>
+  <tr><td>bookingReference</td><td>pricing.bookingContext</td></tr>
+  <tr><td>searchIds[]</td><td>search searchId</td></tr>
+  <tr><td>data.priceId</td><td>pricing.priceId</td></tr>
+  <tr><td>data.passengers[], contact</td><td>Your test pax data</td></tr>
+</table>
+<div class="note">Field is named bookingReference but value = pricing.bookingContext</div>
+
+<h3>Step 5 — Status</h3>
+<p><code>GET /v1/flights/booking/{bookingReference}/status</code></p>
+<div class="warn">Issue-ticket books a LIVE ticket on staging. Run only when needed.</div>
+</div>
+
+<!-- CAB -->
+<div class="product">
+<h2><span class="badge">CAB</span> Booking Flow</h2>
+<div class="flow">Auth → Search → Fare → Finalize → Status</div>
+
+<h3>Step 1 — Search</h3>
+<p><code>POST /v1/airportServices/cabs/search</code></p>
+<table>
+  <tr><th>Field</th><th>AIRPORT example</th></tr>
+  <tr><td>journeyType</td><td>AIRPORT</td></tr>
+  <tr><td>travelType</td><td>DEPARTURE</td></tr>
+  <tr><td>airportCode</td><td>DEL</td></tr>
+  <tr><td>pickupDatetime</td><td>ISO datetime with timezone</td></tr>
+  <tr><td>pickup / drop</td><td>lat, long, address</td></tr>
+</table>
+<p><strong>Copy forward:</strong> pick RECOMMENDED cab → <code>cabs[].searchId</code></p>
+
+<h3>Step 2 — Fare</h3>
+<pre>{ "searchId": "&lt;from Cab Search&gt;" }</pre>
+<table>
+  <tr><th>From response</th><th>Copy to</th></tr>
+  <tr><td><strong>bookingReference</strong></td><td>Finalize</td></tr>
+  <tr><td><strong>priceId</strong></td><td>Finalize</td></tr>
+</table>
+
+<h3>Step 3 — Finalize (BOOK)</h3>
+<p><code>POST /v1/airportServices/cabs/finalize-booking</code> · Needs <strong>X-Partner-Key</strong></p>
+<table>
+  <tr><th>Field</th><th>Source</th></tr>
+  <tr><td>bookingReference, priceId</td><td>Fare</td></tr>
+  <tr><td>passengers[], contact</td><td>Your test data</td></tr>
+</table>
+
+<h3>Step 4 — Status</h3>
+<p><code>GET /v1/airportServices/cabs/{bookingRefId}/status</code></p>
+</div>
+
+<h2>One-page summary</h2>
+<table>
+  <tr><th>Product</th><th>Step 1→2</th><th>Step 2→3</th><th>Book step</th><th>After book</th></tr>
+  <tr><td>Hotel</td><td>Search → Details (same body)</td><td>requestId + bookingCode → Prebook</td><td>bookingContext → Finalize</td><td>bookingRefId → status</td></tr>
+  <tr><td>Flight</td><td>searchId → Pricing</td><td>priceId + bookingContext → Issue</td><td>Issue-ticket + X-Partner-Key</td><td>bookingReference → status</td></tr>
+  <tr><td>Cab</td><td>searchId → Fare</td><td>bookingReference + priceId → Finalize</td><td>Finalize + X-Partner-Key</td><td>bookingRefId → status</td></tr>
+</table>
+
+<h2>QA reminders</h2>
+<ul>
+  <li>Run requests <strong>top to bottom</strong> in Postman — scripts auto-save variables</li>
+  <li>Never reuse expired requestId / bookingCode / priceId</li>
+  <li>Do not commit secrets (partner_secret, signing_key)</li>
+  <li>Hotel/Flight/Cab finalize = <strong>live booking</strong> on staging</li>
+</ul>
+
+<p style="margin-top:30px;color:#888;font-size:9pt;">TravelVIP B2B QA · Print this page to PDF (Ctrl+P → Save as PDF)</p>
+</body>
+</html>

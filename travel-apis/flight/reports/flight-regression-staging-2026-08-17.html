@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Flight B2B regression</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; background: #f5f7fb; color: #1a2b4a; }
+  h1,h2,h3 { color: #1a2b4a; }
+  .cards { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px; }
+  .card { background: #fff; padding: 14px 18px; border-radius: 8px; box-shadow: 0 1px 4px #0001; min-width: 110px; }
+  .card.bug { border-top: 4px solid #ef4444; }
+  .card.pass { border-top: 4px solid #22c55e; }
+  .card.nt { border-top: 4px solid #94a3b8; }
+  table { border-collapse: collapse; width: 100%; background: #fff; margin: 8px 0 24px; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; font-size: 13px; vertical-align: top; }
+  th { background: #1a2b4a; color: #fff; }
+  tr.pass { background: #f0fdf4; }
+  tr.bug { background: #fef2f2; }
+  tr.not-tested { background: #f8fafc; }
+  .bug { background: #fff; padding: 16px; border-left: 4px solid #ef4444; margin: 12px 0; border-radius: 6px; }
+  pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 6px; overflow: auto; font-size: 12px; }
+  small { color: #64748b; font-weight: 400; }
+</style></head><body>
+  <h1>Flight B2B regression</h1>
+  <p>https://api-staging.travelvip.ai · 2026-08-17T12:07:32.448Z · tags AUTH</p>
+  <div class="cards">
+    <div class="card pass"><strong>PASS</strong><br>24</div>
+    <div class="card bug"><strong>BUG</strong><br>0</div>
+    <div class="card nt"><strong>NOT TESTED</strong><br>0</div>
+    <div class="card"><strong>Total</strong><br>24</div>
+  </div>
+  <p>Correlation <code>3baadd69-74a8-475d-826c-057cca92b641</code>
+     · BR <code>—</code>
+     · status —</p>
+  <h2>AUTH <small>24 PASS / 0 BUG / 0 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="pass">
+        <td>1</td>
+        <td>POST /auth/partner/token — valid partner_id + partner_secret returns access_token and refresh_token</td>
+        <td>POST /auth/partner/token with partner_id/partner_secret from env (this is the baseline for mutations below).</td>
+        <td>HTTP 200 with access_token + refresh_token</td>
+        <td>HTTP 200 tokens present</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td>POST /auth/partner/token — omit partner_id</td>
+        <td>POST /auth/partner/token body { partner_secret } only.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>3</td>
+        <td>POST /auth/partner/token — omit partner_secret</td>
+        <td>POST /auth/partner/token body { partner_id } only.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>4</td>
+        <td>POST /auth/partner/token — empty JSON body</td>
+        <td>POST /auth/partner/token body {}.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>5</td>
+        <td>POST /auth/partner/token — partner_id with trailing comma</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>6</td>
+        <td>POST /auth/partner/token — partner_secret with trailing comma</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>7</td>
+        <td>POST /auth/partner/token — partner_id with punctuation !@#$</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>8</td>
+        <td>POST /auth/partner/token — partner_id with HTML/script chars</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>9</td>
+        <td>POST /auth/partner/token — partner_id with quote/semicolon</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>10</td>
+        <td>POST /auth/partner/refresh — valid refresh_token returns a new access_token</td>
+        <td>POST /auth/partner/refresh body { refresh_token } from the access-token response.</td>
+        <td>HTTP 200 with access_token (never 500)</td>
+        <td>HTTP 200 tokens present</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>11</td>
+        <td>POST /auth/partner/refresh — empty refresh_token</td>
+        <td>POST /auth/partner/refresh body { refresh_token: "" }.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>12</td>
+        <td>POST /auth/partner/refresh — refresh_token with trailing comma</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>13</td>
+        <td>POST /auth/partner/refresh — refresh_token punctuation !@#$</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>14</td>
+        <td>POST /auth/partner/refresh — refresh_token HTML/script chars</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>15</td>
+        <td>POST /auth/partner/refresh — refresh_token is only a comma</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>16</td>
+        <td>POST /v1/auth/session — valid X-Partner-Key + tierId returns auth_token</td>
+        <td>POST /v1/auth/session with X-Partner-Key = partner access_token and body { tierId } from env.</td>
+        <td>HTTP 200 with auth_token (never 500)</td>
+        <td>HTTP 200 tokens present</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>17</td>
+        <td>POST /v1/auth/session — omit X-Partner-Key</td>
+        <td>POST /v1/auth/session with no X-Partner-Key header, body { tierId }.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=MISSING_HEADER — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>18</td>
+        <td>POST /v1/auth/session — invalid X-Partner-Key</td>
+        <td>POST /v1/auth/session X-Partner-Key=gmr_at_invalid_access_token, body { tierId }.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>19</td>
+        <td>POST /v1/auth/session — X-Partner-Key with trailing comma</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on X-Partner-Key.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>20</td>
+        <td>POST /v1/auth/session — X-Partner-Key with punctuation</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on X-Partner-Key.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>21</td>
+        <td>POST /v1/auth/session — X-Partner-Key with HTML/script chars</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on X-Partner-Key.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>22</td>
+        <td>POST /v1/auth/session — tierId with trailing comma</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on tierId.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>23</td>
+        <td>POST /v1/auth/session — tierId with punctuation</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on tierId.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>24</td>
+        <td>POST /v1/auth/session — tierId with HTML/script chars</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on tierId.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr></tbody>
+      </table>
+  <h2>Bugs for Dev</h2>
+  <p>None this run.</p>
+</body></html>

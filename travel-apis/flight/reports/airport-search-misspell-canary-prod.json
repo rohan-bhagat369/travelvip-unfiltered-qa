@@ -1,0 +1,2126 @@
+{
+  "ranAt": "2026-08-27T10:10:52.304Z",
+  "baseUrl": "https://api.travelvip.ai",
+  "tierId": "19597201",
+  "api": "GET /v1/flights/airports",
+  "note": "Misspell/near-miss canary after bangalor→Bangor. Catalog only, no book.",
+  "counts": {
+    "PASS": 19,
+    "BUG": 63,
+    "NOT_TESTED": 0
+  },
+  "bugCount": 63,
+  "bugs": [
+    {
+      "id": 1,
+      "query": "bangalor",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 2,
+      "query": "banglor",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 3,
+      "query": "bangalore",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 5,
+      "query": "bengaloor",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 7,
+      "query": "bangaluru",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 8,
+      "query": "bengaluruu",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 9,
+      "query": "mumbi",
+      "expect": [
+        "BOM"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 10,
+      "query": "bombay",
+      "expect": [
+        "BOM"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 11,
+      "query": "mumabai",
+      "expect": [
+        "BOM"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 12,
+      "query": "muumbai",
+      "expect": [
+        "BOM"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 13,
+      "query": "dehli",
+      "expect": [
+        "DEL"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 14,
+      "query": "delli",
+      "expect": [
+        "DEL"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 15,
+      "query": "newdelh",
+      "expect": [
+        "DEL"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 16,
+      "query": "new delh",
+      "expect": [
+        "DEL"
+      ],
+      "wrongTop": "AKL:Auckland",
+      "rank": 9,
+      "top": [
+        {
+          "airportCode": "AKL",
+          "city": "Auckland",
+          "airportName": "Auckland International Airport",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "NYC",
+          "city": "New York City",
+          "airportName": "All Airports",
+          "country": "United States"
+        },
+        {
+          "airportCode": "KBZ",
+          "city": "New Plymouth",
+          "airportName": "Kaikoura Airport",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "NPL",
+          "city": "New Plymouth",
+          "airportName": "New Plymouth Airport",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "CHC",
+          "city": "Christchurch",
+          "airportName": "Christchurch International Airport",
+          "country": "New Zealand"
+        }
+      ],
+      "actual": "HTTP 200 n=10 expect@9(DEL) top=AKL:Auckland | NYC:New York City | KBZ:New Plymouth | NPL:New Plymouth | CHC:Christchurch — wrong/miss; top1=AKL:Auckland"
+    },
+    {
+      "id": 17,
+      "query": "newdlhi",
+      "expect": [
+        "DEL"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 18,
+      "query": "chenai",
+      "expect": [
+        "MAA"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 19,
+      "query": "chennaii",
+      "expect": [
+        "MAA"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 20,
+      "query": "madrass",
+      "expect": [
+        "MAA"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 21,
+      "query": "madras",
+      "expect": [
+        "MAA"
+      ],
+      "wrongTop": "MDJ:Madras",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "MDJ",
+          "city": "Madras",
+          "airportName": "Madras Municipal Airport",
+          "country": "United States"
+        }
+      ],
+      "actual": "HTTP 200 n=1 expect@MISS(-) top=MDJ:Madras — wrong/miss; top1=MDJ:Madras"
+    },
+    {
+      "id": 22,
+      "query": "hydrabd",
+      "expect": [
+        "HYD"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 23,
+      "query": "hyderabd",
+      "expect": [
+        "HYD"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 24,
+      "query": "hyderbad",
+      "expect": [
+        "HYD"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 25,
+      "query": "hydrabad",
+      "expect": [
+        "HYD"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 27,
+      "query": "kolkataa",
+      "expect": [
+        "CCU"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 28,
+      "query": "calcuta",
+      "expect": [
+        "CCU"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 29,
+      "query": "calcutta",
+      "expect": [
+        "CCU"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 30,
+      "query": "kolkatta",
+      "expect": [
+        "CCU"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 31,
+      "query": "ahmedabd",
+      "expect": [
+        "AMD"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 32,
+      "query": "ahmdabad",
+      "expect": [
+        "AMD"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 33,
+      "query": "ahmedabaad",
+      "expect": [
+        "AMD"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 34,
+      "query": "amdavad",
+      "expect": [
+        "AMD"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 36,
+      "query": "amristsar",
+      "expect": [
+        "ATQ"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 38,
+      "query": "pone",
+      "expect": [
+        "PNQ"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 39,
+      "query": "punne",
+      "expect": [
+        "PNQ"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 40,
+      "query": "poona",
+      "expect": [
+        "PNQ"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 42,
+      "query": "goaa",
+      "expect": [
+        "GOI",
+        "GOX"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 45,
+      "query": "jaipurr",
+      "expect": [
+        "JAI"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 46,
+      "query": "jaypur",
+      "expect": [
+        "JAI"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 47,
+      "query": "lucknw",
+      "expect": [
+        "LKO"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 48,
+      "query": "lakhnau",
+      "expect": [
+        "LKO"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 49,
+      "query": "lucknou",
+      "expect": [
+        "LKO"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 52,
+      "query": "cochinn",
+      "expect": [
+        "COK"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 53,
+      "query": "kocchi",
+      "expect": [
+        "COK"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 54,
+      "query": "trivandrum",
+      "expect": [
+        "TRV"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 55,
+      "query": "trivandrm",
+      "expect": [
+        "TRV"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 57,
+      "query": "srinagr",
+      "expect": [
+        "SXR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 61,
+      "query": "benaras",
+      "expect": [
+        "VNS"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 62,
+      "query": "banaras",
+      "expect": [
+        "VNS"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 64,
+      "query": "indoor",
+      "expect": [
+        "IDR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 65,
+      "query": "nagpr",
+      "expect": [
+        "NAG"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 68,
+      "query": "chandigrah",
+      "expect": [
+        "IXC"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 69,
+      "query": "guwhati",
+      "expect": [
+        "GAU"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 71,
+      "query": "gauhati",
+      "expect": [
+        "GAU"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 73,
+      "query": "singpore",
+      "expect": [
+        "SIN"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 74,
+      "query": "singapre",
+      "expect": [
+        "SIN"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 75,
+      "query": "dubia",
+      "expect": [
+        "DXB"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 76,
+      "query": "duabi",
+      "expect": [
+        "DXB"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 77,
+      "query": "bangkock",
+      "expect": [
+        "BKK",
+        "DMK"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 78,
+      "query": "bankok",
+      "expect": [
+        "BKK",
+        "DMK"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 79,
+      "query": "londn",
+      "expect": [
+        "LON",
+        "LHR",
+        "LGW",
+        "STN",
+        "LCY"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 80,
+      "query": "pariss",
+      "expect": [
+        "PAR",
+        "CDG",
+        "ORY"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 81,
+      "query": "tokoyo",
+      "expect": [
+        "TYO",
+        "HND",
+        "NRT"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 82,
+      "query": "newyrok",
+      "expect": [
+        "NYC",
+        "JFK",
+        "EWR",
+        "LGA"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    }
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "query": "bangalor",
+      "expect": [
+        "BLR"
+      ],
+      "note": "known: may hit Bangor",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 2,
+      "query": "banglor",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 3,
+      "query": "bangalore",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 4,
+      "query": "bengaluru",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(BLR) top=BLR:Bengaluru",
+      "rank": 1,
+      "matchedCode": "BLR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "BLR",
+          "city": "Bengaluru",
+          "airportName": "Kempegowda International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "query": "bengaloor",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 6,
+      "query": "bengalur",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(BLR) top=BLR:Bengaluru",
+      "rank": 1,
+      "matchedCode": "BLR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "BLR",
+          "city": "Bengaluru",
+          "airportName": "Kempegowda International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "query": "bangaluru",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 8,
+      "query": "bengaluruu",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 9,
+      "query": "mumbi",
+      "expect": [
+        "BOM"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 10,
+      "query": "bombay",
+      "expect": [
+        "BOM"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 11,
+      "query": "mumabai",
+      "expect": [
+        "BOM"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 12,
+      "query": "muumbai",
+      "expect": [
+        "BOM"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 13,
+      "query": "dehli",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 14,
+      "query": "delli",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 15,
+      "query": "newdelh",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 16,
+      "query": "new delh",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=10 expect@9(DEL) top=AKL:Auckland | NYC:New York City | KBZ:New Plymouth | NPL:New Plymouth | CHC:Christchurch — wrong/miss; top1=AKL:Auckland",
+      "rank": 9,
+      "matchedCode": "DEL",
+      "wrongTop": "AKL:Auckland",
+      "top": [
+        {
+          "airportCode": "AKL",
+          "city": "Auckland",
+          "airportName": "Auckland International Airport",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "NYC",
+          "city": "New York City",
+          "airportName": "All Airports",
+          "country": "United States"
+        },
+        {
+          "airportCode": "KBZ",
+          "city": "New Plymouth",
+          "airportName": "Kaikoura Airport",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "NPL",
+          "city": "New Plymouth",
+          "airportName": "New Plymouth Airport",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "CHC",
+          "city": "Christchurch",
+          "airportName": "Christchurch International Airport",
+          "country": "New Zealand"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "query": "newdlhi",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 18,
+      "query": "chenai",
+      "expect": [
+        "MAA"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 19,
+      "query": "chennaii",
+      "expect": [
+        "MAA"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 20,
+      "query": "madrass",
+      "expect": [
+        "MAA"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 21,
+      "query": "madras",
+      "expect": [
+        "MAA"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=1 expect@MISS(-) top=MDJ:Madras — wrong/miss; top1=MDJ:Madras",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "MDJ:Madras",
+      "top": [
+        {
+          "airportCode": "MDJ",
+          "city": "Madras",
+          "airportName": "Madras Municipal Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "query": "hydrabd",
+      "expect": [
+        "HYD"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 23,
+      "query": "hyderabd",
+      "expect": [
+        "HYD"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 24,
+      "query": "hyderbad",
+      "expect": [
+        "HYD"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 25,
+      "query": "hydrabad",
+      "expect": [
+        "HYD"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 26,
+      "query": "kolkat",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(CCU) top=CCU:Kolkata",
+      "rank": 1,
+      "matchedCode": "CCU",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "CCU",
+          "city": "Kolkata",
+          "airportName": "Netaji Subhas Chandra Bose International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "query": "kolkataa",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 28,
+      "query": "calcuta",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 29,
+      "query": "calcutta",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 30,
+      "query": "kolkatta",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 31,
+      "query": "ahmedabd",
+      "expect": [
+        "AMD"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 32,
+      "query": "ahmdabad",
+      "expect": [
+        "AMD"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 33,
+      "query": "ahmedabaad",
+      "expect": [
+        "AMD"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 34,
+      "query": "amdavad",
+      "expect": [
+        "AMD"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 35,
+      "query": "amritsa",
+      "expect": [
+        "ATQ"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(ATQ) top=ATQ:Amritsar",
+      "rank": 1,
+      "matchedCode": "ATQ",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "ATQ",
+          "city": "Amritsar",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "query": "amristsar",
+      "expect": [
+        "ATQ"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 37,
+      "query": "amritsar",
+      "expect": [
+        "ATQ"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(ATQ) top=ATQ:Amritsar",
+      "rank": 1,
+      "matchedCode": "ATQ",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "ATQ",
+          "city": "Amritsar",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "query": "pone",
+      "expect": [
+        "PNQ"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 39,
+      "query": "punne",
+      "expect": [
+        "PNQ"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 40,
+      "query": "poona",
+      "expect": [
+        "PNQ"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 41,
+      "query": "goa",
+      "expect": [
+        "GOI",
+        "GOX"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@2(GOI) top=GOA:Mele | GOI:Vasco da Gama",
+      "rank": 2,
+      "matchedCode": "GOI",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "GOA",
+          "city": "Mele",
+          "airportName": "Genoa Cristoforo Colombo Airport",
+          "country": "Italy"
+        },
+        {
+          "airportCode": "GOI",
+          "city": "Vasco da Gama",
+          "airportName": "Dabolim Airport, Goa",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "query": "goaa",
+      "expect": [
+        "GOI",
+        "GOX"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 43,
+      "query": "dabolim",
+      "expect": [
+        "GOI"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(GOI) top=GOI:Vasco da Gama",
+      "rank": 1,
+      "matchedCode": "GOI",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "GOI",
+          "city": "Vasco da Gama",
+          "airportName": "Dabolim Airport, Goa",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "query": "jaipu",
+      "expect": [
+        "JAI"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(JAI) top=JAI:Jaipur",
+      "rank": 1,
+      "matchedCode": "JAI",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "JAI",
+          "city": "Jaipur",
+          "airportName": "Jaipur International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "query": "jaipurr",
+      "expect": [
+        "JAI"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 46,
+      "query": "jaypur",
+      "expect": [
+        "JAI"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 47,
+      "query": "lucknw",
+      "expect": [
+        "LKO"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 48,
+      "query": "lakhnau",
+      "expect": [
+        "LKO"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 49,
+      "query": "lucknou",
+      "expect": [
+        "LKO"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 50,
+      "query": "kochi",
+      "expect": [
+        "COK"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@1(COK) top=COK:Kochi | KCZ:Nankoku",
+      "rank": 1,
+      "matchedCode": "COK",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "COK",
+          "city": "Kochi",
+          "airportName": "Cochin International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "KCZ",
+          "city": "Nankoku",
+          "airportName": "Kochi Ryoma Airport",
+          "country": "Japan"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "query": "cochin",
+      "expect": [
+        "COK"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(COK) top=COK:Kochi",
+      "rank": 1,
+      "matchedCode": "COK",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "COK",
+          "city": "Kochi",
+          "airportName": "Cochin International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "query": "cochinn",
+      "expect": [
+        "COK"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 53,
+      "query": "kocchi",
+      "expect": [
+        "COK"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 54,
+      "query": "trivandrum",
+      "expect": [
+        "TRV"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 55,
+      "query": "trivandrm",
+      "expect": [
+        "TRV"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 56,
+      "query": "thiruvananthapuram",
+      "expect": [
+        "TRV"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(TRV) top=TRV:Thiruvananthapuram",
+      "rank": 1,
+      "matchedCode": "TRV",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "TRV",
+          "city": "Thiruvananthapuram",
+          "airportName": "Thiruvananthapuram International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "query": "srinagr",
+      "expect": [
+        "SXR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 58,
+      "query": "srinagar",
+      "expect": [
+        "SXR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(SXR) top=SXR:Srinagar",
+      "rank": 1,
+      "matchedCode": "SXR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "SXR",
+          "city": "Srinagar",
+          "airportName": "Srinagar International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "query": "varanasi",
+      "expect": [
+        "VNS"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(VNS) top=VNS:Varanasi",
+      "rank": 1,
+      "matchedCode": "VNS",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "VNS",
+          "city": "Varanasi",
+          "airportName": "Lal Bahadur Shastri Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "query": "varanasi",
+      "expect": [
+        "VNS"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(VNS) top=VNS:Varanasi",
+      "rank": 1,
+      "matchedCode": "VNS",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "VNS",
+          "city": "Varanasi",
+          "airportName": "Lal Bahadur Shastri Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "query": "benaras",
+      "expect": [
+        "VNS"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 62,
+      "query": "banaras",
+      "expect": [
+        "VNS"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 63,
+      "query": "indor",
+      "expect": [
+        "IDR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(IDR) top=IDR:Indore",
+      "rank": 1,
+      "matchedCode": "IDR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "IDR",
+          "city": "Indore",
+          "airportName": "Devi Ahilyabai Holkar Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "query": "indoor",
+      "expect": [
+        "IDR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 65,
+      "query": "nagpr",
+      "expect": [
+        "NAG"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 66,
+      "query": "nagpur",
+      "expect": [
+        "NAG"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(NAG) top=NAG:Nagpur",
+      "rank": 1,
+      "matchedCode": "NAG",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "NAG",
+          "city": "Nagpur",
+          "airportName": "Dr. Babasaheb Ambedkar International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "query": "chandigar",
+      "expect": [
+        "IXC"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(IXC) top=IXC:Chandigarh",
+      "rank": 1,
+      "matchedCode": "IXC",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "IXC",
+          "city": "Chandigarh",
+          "airportName": "Chandigarh International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "query": "chandigrah",
+      "expect": [
+        "IXC"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 69,
+      "query": "guwhati",
+      "expect": [
+        "GAU"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 70,
+      "query": "guwahati",
+      "expect": [
+        "GAU"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(GAU) top=GAU:Guwahati",
+      "rank": 1,
+      "matchedCode": "GAU",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "GAU",
+          "city": "Guwahati",
+          "airportName": "Lokpriya Gopinath Bordoloi International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "query": "gauhati",
+      "expect": [
+        "GAU"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 72,
+      "query": "singapor",
+      "expect": [
+        "SIN"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 expect@1(SIN) top=SIN:Singapore | XSP:Singapore | TGA:Singapore | QPG:Singapore",
+      "rank": 1,
+      "matchedCode": "SIN",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "SIN",
+          "city": "Singapore",
+          "airportName": "Singapore Changi Airport",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "XSP",
+          "city": "Singapore",
+          "airportName": "Seletar Airport",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "TGA",
+          "city": "Singapore",
+          "airportName": "Tengah Air Base",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "QPG",
+          "city": "Singapore",
+          "airportName": "Paya Lebar Air Base",
+          "country": "Singapore"
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "query": "singpore",
+      "expect": [
+        "SIN"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 74,
+      "query": "singapre",
+      "expect": [
+        "SIN"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 75,
+      "query": "dubia",
+      "expect": [
+        "DXB"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 76,
+      "query": "duabi",
+      "expect": [
+        "DXB"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 77,
+      "query": "bangkock",
+      "expect": [
+        "BKK",
+        "DMK"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 78,
+      "query": "bankok",
+      "expect": [
+        "BKK",
+        "DMK"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 79,
+      "query": "londn",
+      "expect": [
+        "LON",
+        "LHR",
+        "LGW",
+        "STN",
+        "LCY"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 80,
+      "query": "pariss",
+      "expect": [
+        "PAR",
+        "CDG",
+        "ORY"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 81,
+      "query": "tokoyo",
+      "expect": [
+        "TYO",
+        "HND",
+        "NRT"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 82,
+      "query": "newyrok",
+      "expect": [
+        "NYC",
+        "JFK",
+        "EWR",
+        "LGA"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    }
+  ]
+}

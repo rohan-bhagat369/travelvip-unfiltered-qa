@@ -1,0 +1,430 @@
+{
+  "vendorBookingId": "TVIPWE2608261705379F51",
+  "tvipBr": "BR1787744137248898",
+  "out": [
+    {
+      "step": "tvip_before",
+      "status": "Confirmed",
+      "assignment": null,
+      "progress": {
+        "cabAssigned": false,
+        "cabLeftForPickup": false,
+        "cabReachedSource": false,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "otp": "5979"
+    },
+    {
+      "step": "vendorLogin",
+      "ok": true
+    },
+    {
+      "step": "vendorFetch",
+      "http": 200,
+      "status": "success",
+      "bookingId": "TVIPWE2608261705379F51",
+      "partner": "CARZONRENT",
+      "otp": "5979",
+      "tvStatus": "BOOKING_CONFIRMED"
+    },
+    {
+      "step": "assignChauffeur",
+      "booking_id": "TVIPWE2608261705379F51",
+      "partner": "CARZONRENT",
+      "http": 200,
+      "ok": true,
+      "data": {
+        "status": "success",
+        "message": "Entry inserted successfully",
+        "code": 200,
+        "data": null,
+        "correlationId": "678b7485-92ba-4d53-b52d-de0b81539918"
+      }
+    },
+    {
+      "step": "leftForPickup",
+      "http": 200,
+      "ok": true,
+      "data": {
+        "status": "success",
+        "message": "Entry inserted successfully",
+        "code": 200,
+        "data": null,
+        "correlationId": "a796dc45-e0a9-46ad-bf72-8f4c84550218"
+      }
+    },
+    {
+      "step": "tvip_after_leftForPickup",
+      "status": "Driver on the way",
+      "assignment": {
+        "driverName": "Driver610313",
+        "driverMobile": "+971571648903",
+        "vehicleRegistrationNo": "DL32A2643",
+        "trackingUrl": null,
+        "assignedAt": "2026-08-26 11:38:06",
+        "driver": {
+          "name": "Driver610313",
+          "mobile": "+971571648903",
+          "image": "610313",
+          "chauffeurId": "610313",
+          "isReassigned": false
+        },
+        "vehicle": {
+          "name": "SWIFT",
+          "color": "white",
+          "type": "SWIFT",
+          "registrationNo": "DL32A2643",
+          "vehicleId": "460128"
+        },
+        "partner": "CARZONRENT",
+        "isReassigned": false,
+        "syncedAt": null
+      },
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": false,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    },
+    {
+      "step": "driverToSource10",
+      "http": 200,
+      "ok": true,
+      "data": {
+        "status": "success",
+        "message": "Entry inserted successfully",
+        "code": 200,
+        "data": null,
+        "correlationId": "d194808e-018f-4a94-af3f-7647d8cf232f"
+      }
+    },
+    {
+      "step": "tvip_after_driverToSource10",
+      "status": "Driver on the way",
+      "assignment": {
+        "driverName": "Driver610313",
+        "driverMobile": "+971571648903",
+        "vehicleRegistrationNo": "DL32A2643",
+        "trackingUrl": null,
+        "assignedAt": "2026-08-26 11:38:06",
+        "driver": {
+          "name": "Driver610313",
+          "mobile": "+971571648903",
+          "image": "610313",
+          "chauffeurId": "610313",
+          "isReassigned": false
+        },
+        "vehicle": {
+          "name": "SWIFT",
+          "color": "white",
+          "type": "SWIFT",
+          "registrationNo": "DL32A2643",
+          "vehicleId": "460128"
+        },
+        "partner": "CARZONRENT",
+        "isReassigned": false,
+        "syncedAt": null
+      },
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": false,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    },
+    {
+      "step": "arrived",
+      "http": 200,
+      "ok": true,
+      "data": {
+        "status": "success",
+        "message": "Entry inserted successfully",
+        "code": 200,
+        "data": null,
+        "correlationId": "914f8a87-33cd-47a6-b7d8-ab2e51b1ca2f"
+      }
+    },
+    {
+      "step": "tvip_after_arrived",
+      "status": "Driver arrived",
+      "assignment": {
+        "driverName": "Driver610313",
+        "driverMobile": "+971571648903",
+        "vehicleRegistrationNo": "DL32A2643",
+        "trackingUrl": null,
+        "assignedAt": "2026-08-26 11:38:06",
+        "driver": {
+          "name": "Driver610313",
+          "mobile": "+971571648903",
+          "image": "610313",
+          "chauffeurId": "610313",
+          "isReassigned": false
+        },
+        "vehicle": {
+          "name": "SWIFT",
+          "color": "white",
+          "type": "SWIFT",
+          "registrationNo": "DL32A2643",
+          "vehicleId": "460128"
+        },
+        "partner": "CARZONRENT",
+        "isReassigned": false,
+        "syncedAt": null
+      },
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": true,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    },
+    {
+      "step": "tripStart",
+      "http": 200,
+      "ok": true,
+      "data": {
+        "status": "success",
+        "message": "Entry inserted successfully",
+        "code": 200,
+        "data": null,
+        "correlationId": "19eff12e-a0e4-4ba9-93de-43638cd9496c"
+      }
+    },
+    {
+      "step": "tvip_after_tripStart",
+      "status": "Driver arrived",
+      "assignment": {
+        "driverName": "Driver610313",
+        "driverMobile": "+971571648903",
+        "vehicleRegistrationNo": "DL32A2643",
+        "trackingUrl": null,
+        "assignedAt": "2026-08-26 11:38:06",
+        "driver": {
+          "name": "Driver610313",
+          "mobile": "+971571648903",
+          "image": "610313",
+          "chauffeurId": "610313",
+          "isReassigned": false
+        },
+        "vehicle": {
+          "name": "SWIFT",
+          "color": "white",
+          "type": "SWIFT",
+          "registrationNo": "DL32A2643",
+          "vehicleId": "460128"
+        },
+        "partner": "CARZONRENT",
+        "isReassigned": false,
+        "syncedAt": null
+      },
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": true,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    },
+    {
+      "step": "loc33",
+      "http": 200,
+      "ok": true,
+      "data": {
+        "status": "success",
+        "message": "Entry inserted successfully",
+        "code": 200,
+        "data": null,
+        "correlationId": "12ff5c2a-0ca5-4806-8a53-406f0bb730ce"
+      }
+    },
+    {
+      "step": "tvip_after_loc33",
+      "status": "Driver arrived",
+      "assignment": {
+        "driverName": "Driver610313",
+        "driverMobile": "+971571648903",
+        "vehicleRegistrationNo": "DL32A2643",
+        "trackingUrl": null,
+        "assignedAt": "2026-08-26 11:38:06",
+        "driver": {
+          "name": "Driver610313",
+          "mobile": "+971571648903",
+          "image": "610313",
+          "chauffeurId": "610313",
+          "isReassigned": false
+        },
+        "vehicle": {
+          "name": "SWIFT",
+          "color": "white",
+          "type": "SWIFT",
+          "registrationNo": "DL32A2643",
+          "vehicleId": "460128"
+        },
+        "partner": "CARZONRENT",
+        "isReassigned": false,
+        "syncedAt": null
+      },
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": true,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    },
+    {
+      "step": "loc91",
+      "http": 200,
+      "ok": true,
+      "data": {
+        "status": "success",
+        "message": "Entry inserted successfully",
+        "code": 200,
+        "data": null,
+        "correlationId": "6148063d-3c30-42f8-ba91-184b9a71ea3c"
+      }
+    },
+    {
+      "step": "tvip_after_loc91",
+      "status": "Driver arrived",
+      "assignment": {
+        "driverName": "Driver610313",
+        "driverMobile": "+971571648903",
+        "vehicleRegistrationNo": "DL32A2643",
+        "trackingUrl": null,
+        "assignedAt": "2026-08-26 11:38:06",
+        "driver": {
+          "name": "Driver610313",
+          "mobile": "+971571648903",
+          "image": "610313",
+          "chauffeurId": "610313",
+          "isReassigned": false
+        },
+        "vehicle": {
+          "name": "SWIFT",
+          "color": "white",
+          "type": "SWIFT",
+          "registrationNo": "DL32A2643",
+          "vehicleId": "460128"
+        },
+        "partner": "CARZONRENT",
+        "isReassigned": false,
+        "syncedAt": null
+      },
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": true,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    },
+    {
+      "step": "loc100",
+      "http": 200,
+      "ok": true,
+      "data": {
+        "status": "success",
+        "message": "Entry inserted successfully",
+        "code": 200,
+        "data": null,
+        "correlationId": "7d9bf37d-a681-4052-af0f-a71e23c8b8d3"
+      }
+    },
+    {
+      "step": "tvip_after_loc100",
+      "status": "Driver arrived",
+      "assignment": {
+        "driverName": "Driver610313",
+        "driverMobile": "+971571648903",
+        "vehicleRegistrationNo": "DL32A2643",
+        "trackingUrl": null,
+        "assignedAt": "2026-08-26 11:38:06",
+        "driver": {
+          "name": "Driver610313",
+          "mobile": "+971571648903",
+          "image": "610313",
+          "chauffeurId": "610313",
+          "isReassigned": false
+        },
+        "vehicle": {
+          "name": "SWIFT",
+          "color": "white",
+          "type": "SWIFT",
+          "registrationNo": "DL32A2643",
+          "vehicleId": "460128"
+        },
+        "partner": "CARZONRENT",
+        "isReassigned": false,
+        "syncedAt": null
+      },
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": true,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    },
+    {
+      "step": "tripEnd",
+      "http": 200,
+      "ok": true,
+      "data": {
+        "status": "success",
+        "message": "Entry inserted successfully",
+        "code": 200,
+        "data": null,
+        "correlationId": "67b493cf-8c5d-4cf2-aaff-4dd2bcc3a61f"
+      }
+    },
+    {
+      "step": "tvip_after_tripEnd",
+      "status": "Driver arrived",
+      "assignment": {
+        "driverName": "Driver610313",
+        "driverMobile": "+971571648903",
+        "vehicleRegistrationNo": "DL32A2643",
+        "trackingUrl": null,
+        "assignedAt": "2026-08-26 11:38:06",
+        "driver": {
+          "name": "Driver610313",
+          "mobile": "+971571648903",
+          "image": "610313",
+          "chauffeurId": "610313",
+          "isReassigned": false
+        },
+        "vehicle": {
+          "name": "SWIFT",
+          "color": "white",
+          "type": "SWIFT",
+          "registrationNo": "DL32A2643",
+          "vehicleId": "460128"
+        },
+        "partner": "CARZONRENT",
+        "isReassigned": false,
+        "syncedAt": null
+      },
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": true,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "trip": null
+    }
+  ]
+}

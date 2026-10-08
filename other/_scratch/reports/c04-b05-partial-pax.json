@@ -1,0 +1,211 @@
+{
+  "ranAt": "2026-08-11T16:57:48.117Z",
+  "scenario": "C04",
+  "br": "BR1786465233357649",
+  "pre": {
+    "status": "Confirmed",
+    "pax": [
+      {
+        "paxId": "PAX1",
+        "name": "Kabir Mehta"
+      },
+      {
+        "paxId": "PAX2",
+        "name": "Ananya Iyer"
+      },
+      {
+        "paxId": "PAX3",
+        "name": "Rohit Das"
+      },
+      {
+        "paxId": "PAX4",
+        "name": "Sneha Kulkarni"
+      },
+      {
+        "paxId": "PAX5",
+        "name": "Imran Sheikh"
+      },
+      {
+        "paxId": "PAX6",
+        "name": "Pooja Nair"
+      }
+    ],
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "O8E6FK",
+        "onlineCancellation": true
+      },
+      {
+        "direction": "RETURN",
+        "pnr": "ZS32SE",
+        "onlineCancellation": true
+      }
+    ]
+  },
+  "results": [
+    {
+      "step": "PENALTY",
+      "pnr": "O8E6FK",
+      "action": "PENALTY",
+      "list": [
+        "PAX2"
+      ],
+      "http": 200,
+      "code": null,
+      "cancelStatus": "Penalty Check Failed",
+      "paxScope": null,
+      "bodyBrief": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786465233357649\",\"pnr\":\"O8E6FK\",\"cancellationRequest\":{\"status\":\"Penalty Check Failed\",\"message\":\"Unable to get Penalty details. Kindly contact customer care.\",\"createdAt\":\"2026-08-11T16:57:34Z\"}},\"_meta\":{\"correlation_id\":\"f797acbc-ab96-4e1b-bb9d-87e4c1a018d2\"}}"
+    },
+    {
+      "step": "CANCEL",
+      "pnr": "O8E6FK",
+      "action": "CANCEL",
+      "list": [
+        "PAX2"
+      ],
+      "http": 200,
+      "code": null,
+      "cancelStatus": "Cancellation Failed",
+      "paxScope": null,
+      "bodyBrief": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786465233357649\",\"pnr\":\"O8E6FK\",\"cancellationRequest\":{\"status\":\"Cancellation Failed\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":33226,\"message\":\"Your requested PNR is waiting for cancellation. Kindly contact customer care.\",\"createdAt\":\"2026-08-11T16:57:34Z\"}},\"_meta\":{\"correlation_id\":\"f797acbc-ab96-4e1b-bb9d-87e4c1a018d2\"}}"
+    },
+    {
+      "step": "PENALTY",
+      "pnr": "ZS32SE",
+      "action": "PENALTY",
+      "list": [
+        "PAX2"
+      ],
+      "http": 200,
+      "code": null,
+      "cancelStatus": "Penalty Check Failed",
+      "paxScope": null,
+      "bodyBrief": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786465233357649\",\"pnr\":\"ZS32SE\",\"cancellationRequest\":{\"status\":\"Penalty Check Failed\",\"message\":\"Unable to get Penalty details. Kindly contact customer care.\",\"createdAt\":\"2026-08-11T16:57:45Z\"}},\"_meta\":{\"correlation_id\":\"f797acbc-ab96-4e1b-bb9d-87e4c1a018d2\"}}"
+    },
+    {
+      "step": "CANCEL",
+      "pnr": "ZS32SE",
+      "action": "CANCEL",
+      "list": [
+        "PAX2"
+      ],
+      "http": 200,
+      "code": null,
+      "cancelStatus": "Cancellation Failed",
+      "paxScope": null,
+      "bodyBrief": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786465233357649\",\"pnr\":\"ZS32SE\",\"cancellationRequest\":{\"status\":\"Cancellation Failed\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":33226,\"message\":\"Your requested PNR is waiting for cancellation. Kindly contact customer care.\",\"createdAt\":\"2026-08-11T16:57:45Z\"}},\"_meta\":{\"correlation_id\":\"f797acbc-ab96-4e1b-bb9d-87e4c1a018d2\"}}"
+    }
+  ],
+  "raw": [
+    {
+      "step": "PENALTY",
+      "pnr": "O8E6FK",
+      "http": 200,
+      "body": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786465233357649",
+          "pnr": "O8E6FK",
+          "cancellationRequest": {
+            "status": "Penalty Check Failed",
+            "message": "Unable to get Penalty details. Kindly contact customer care.",
+            "createdAt": "2026-08-11T16:57:34Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "f797acbc-ab96-4e1b-bb9d-87e4c1a018d2"
+        }
+      }
+    },
+    {
+      "step": "CANCEL",
+      "pnr": "O8E6FK",
+      "http": 200,
+      "body": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786465233357649",
+          "pnr": "O8E6FK",
+          "cancellationRequest": {
+            "status": "Cancellation Failed",
+            "estimatedCancellationCharge": 350,
+            "estimatedRefund": 33226,
+            "message": "Your requested PNR is waiting for cancellation. Kindly contact customer care.",
+            "createdAt": "2026-08-11T16:57:34Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "f797acbc-ab96-4e1b-bb9d-87e4c1a018d2"
+        }
+      }
+    },
+    {
+      "step": "PENALTY",
+      "pnr": "ZS32SE",
+      "http": 200,
+      "body": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786465233357649",
+          "pnr": "ZS32SE",
+          "cancellationRequest": {
+            "status": "Penalty Check Failed",
+            "message": "Unable to get Penalty details. Kindly contact customer care.",
+            "createdAt": "2026-08-11T16:57:45Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "f797acbc-ab96-4e1b-bb9d-87e4c1a018d2"
+        }
+      }
+    },
+    {
+      "step": "CANCEL",
+      "pnr": "ZS32SE",
+      "http": 200,
+      "body": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786465233357649",
+          "pnr": "ZS32SE",
+          "cancellationRequest": {
+            "status": "Cancellation Failed",
+            "estimatedCancellationCharge": 350,
+            "estimatedRefund": 33226,
+            "message": "Your requested PNR is waiting for cancellation. Kindly contact customer care.",
+            "createdAt": "2026-08-11T16:57:45Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "f797acbc-ab96-4e1b-bb9d-87e4c1a018d2"
+        }
+      }
+    }
+  ],
+  "after": {
+    "status": "Confirmed",
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "O8E6FK"
+      },
+      {
+        "direction": "RETURN",
+        "pnr": "ZS32SE"
+      }
+    ],
+    "pax": [
+      "PAX1",
+      "PAX2",
+      "PAX3",
+      "PAX4",
+      "PAX5",
+      "PAX6"
+    ]
+  }
+}

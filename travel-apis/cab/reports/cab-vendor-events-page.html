@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test Booking Events</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 2rem;
+        background: #000;
+      }
+      .container {
+        max-width: 700px;
+        margin: auto;
+        background: #222;
+        color: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      input,
+      button {
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+        font-size: 1rem;
+        background: #333;
+        color: #fff;
+        border: 1px solid #444;
+      }
+      button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #1d4ed8;
+      }
+      .log {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #111;
+        color: #fff;
+        border-radius: 8px;
+        font-family: monospace;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Trigger Booking Events</h2>
+      <input type="text" id="bookingId" placeholder="Enter Booking ID" />
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="fetchBookingDetails()">Fetch Booking</button>
+
+      <button onclick="triggerEvent('assign')">Assign Chauffeur</button>
+      <button onclick="triggerEvent('left')">Left for Pickup</button>
+        <button onclick="triggerEvent('location10')">
+        Driver To Source Location 10 %
+      </button>
+      <!--<button onclick="triggerEvent('locationForReaching')">Reaching to Source Location</button>-->
+      <button onclick="triggerEvent('arrived')">Arrived</button>
+    
+      <button onclick="triggerEvent('start')">Trip Start</button>
+      <button onclick="triggerEvent('location30')">Update Location 33 %</button>
+      <button onclick="triggerEvent('location70')">Update Location 91 %</button>
+      <button onclick="triggerEvent('location100')">
+        Update Location 100 %
+      </button>
+      <button onclick="triggerEvent('end')">Trip End</button>
+      <button onclick="triggerEvent('endWithExtraKm')">
+        Trip End With Extra Km
+      </button>
+
+      <div class="log" id="logOutput">-- Log output --</div>
+    </div>
+
+    <script>
+      let jwtToken = "";
+      let bookingDetails = null;
+      let partner = "";
+      const devUrl = "https://travelvip-dev.bookairportcab.com";
+      const trackingBase = `${devUrl}/api/v1/tracking`;
+
+      function log(message) {
+        const logBox = document.getElementById("logOutput");
+        logBox.innerText =
+          `[${new Date().toLocaleTimeString()}] ${message}\n` +
+          logBox.innerText;
+      }
+
+      async function login(username, password) {
+        const res = await fetch(`${devUrl}/auth/v1/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const data = await res.json();
+        jwtToken = "Bearer " + data.token;
+        log("✅ Logged in successfully.");
+      }
+
+      async function fetchBookingDetails() {
+        const bookingId = document.getElementById("bookingId").value.trim();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        //partner = document.getElementById('partnerSelect').value;
+        const correlationId = crypto.randomUUID();
+
+        if (!bookingId || !username || !password)
+          return log("⚠️ Please fill all fields.");
+
+        await login(username, password);
+
+        const res = await fetch(
+          `${devUrl}/api/v1/booking/bookingDetailsOps?bookingId=${bookingId}`,
+          {
+            headers: {
+              Authorization: jwtToken,
+              correlationId: correlationId,
+            },
+          }
+        );
+
+        const data = await res.json();
+        if (data.status === "success") {
+          bookingDetails = data.data[0];
+          log(`✅ Booking fetched: ${bookingDetails.bookingId}`);
+        } else {
+          log("❌ Failed to fetch booking");
+        }
+      }
+
+      function getRandomChauffeur() {
+        const id = Math.floor(Math.random() * 900000 + 100000);
+        return {
+          id,
+          name: `Driver${id}`,
+          mobile_number: `+9715${Math.floor(
+            10000000 + Math.random() * 89999999
+          )}`,
+          image: `${id}`,
+        };
+      }
+
+      function getRandomVehicle() {
+        const id = `${Math.floor(100000 + Math.random() * 899999)}`;
+        return {
+          id,
+          name: "SWIFT",
+          color: "white",
+          registration_number: `DL${Math.floor(
+            Math.random() * 90 + 10
+          )}A${Math.floor(Math.random() * 9000 + 1000)}`,
+          vehicle_type: "SWIFT",
+        };
+      }
+
+      async function triggerEvent(type) {
+        if (!bookingDetails) return log("⚠️ Fetch booking first.");
+
+        const booking_id = "MJB" + bookingDetails.bookingId;
+        partner = bookingDetails.cabPartner;
+        const urlMap = {
+          assign: `${trackingBase}/driverDetails`,
+          left: `${trackingBase}/createCabTripTracking`,
+          location30: `${trackingBase}/updateLocation`,
+          location70: `${trackingBase}/updateLocation`,
+          location100: `${trackingBase}/updateLocation`,
+          //locationForReaching: `${trackingBase}/createCabTripTracking`,
+          location10: `${trackingBase}/updateLocation`,
+          arrived: `${trackingBase}/createCabTripTracking`,
+          start: `${trackingBase}/tripDetails`,
+          end: `${trackingBase}/tripDetails`,
+          endWithExtraKm: `${trackingBase}/tripDetails`,
+        };
+
+        // Helper to calculate a point ~8km away from source using Haversine formula
+        function getPointAtDistance(lat, lon, distanceKm, bearingDeg) {
+          const R = 6371; // Earth radius in km
+          const bearing = (bearingDeg * Math.PI) / 180;
+          const lat1 = (lat * Math.PI) / 180;
+          const lon1 = (lon * Math.PI) / 180;
+
+          const lat2 = Math.asin(
+            Math.sin(lat1) * Math.cos(distanceKm / R) +
+              Math.cos(lat1) * Math.sin(distanceKm / R) * Math.cos(bearing)
+          );
+          const lon2 =
+            lon1 +
+            Math.atan2(
+              Math.sin(bearing) * Math.sin(distanceKm / R) * Math.cos(lat1),
+              Math.cos(distanceKm / R) - Math.sin(lat1) * Math.sin(lat2)
+            );
+
+          return {
+            latitude: +((lat2 * 180) / Math.PI).toFixed(7),
+            longitude: +((lon2 * 180) / Math.PI).toFixed(7),
+          };
+        }
+
+        const chauffeur = getRandomChauffeur();
+        const vehicle = getRandomVehicle();
+        const now = String(Date.now());
+
+        // Payloads in IndigoCab tracking API format
+        const payloadMap = {
+          assign: {
+            booking_id,
+            chauffeur_id: String(chauffeur.id),
+            chauffeur_name: chauffeur.name,
+            chauffeur_mobile_number: chauffeur.mobile_number,
+            chauffeur_image: chauffeur.image,
+            vehicle_id: vehicle.id,
+            vehicle_name: vehicle.name,
+            vehicle_color: vehicle.color,
+            vehicle_registration_number: vehicle.registration_number,
+            vehicle_type: vehicle.vehicle_type,
+            partner,
+            is_reassigned: 0,
+          },
+          left: {
+            event: "Left For pickup",
+            order_referance_no: booking_id,
+            latitude: "28.4951645",
+            longitude: "77.0866388",
+            timestamp: now,
+            device_id: "webapp1",
+            total_travelled_fare: "0",
+            partner,
+          },
+          location30: {
+            order_referance_no: booking_id,
+            latitude: "28.523952",
+            longitude: "77.083717",
+            timestamp: now,
+            device_id: "webapp1",
+            partner,
+          },
+          location70: {
+            order_referance_no: booking_id,
+            latitude: "28.535489",
+            longitude: "77.110496",
+            timestamp: now,
+            device_id: "webapp1",
+            partner,
+          },
+          location10: {
+            order_referance_no: booking_id,
+            latitude: "28.506782",
+            longitude: "77.083372",
+            timestamp: now,
+            device_id: "webapp1",
+            partner,
+          },
+          location100: {
+            order_referance_no: booking_id,
+            latitude: String(bookingDetails.destinationLatitude),
+            longitude: String(bookingDetails.destinationLongitude),
+            timestamp: now,
+            device_id: "webapp1",
+            partner,
+          },
+          locationForReaching: {
+            event: "Left For pickup",
+            order_referance_no: booking_id,
+            latitude: "28.5249",
+            longitude: "77.1562",
+            timestamp: now,
+            device_id: "webapp1",
+            total_travelled_fare: "0",
+            partner,
+          },
+          arrived: {
+            event: "arrived",
+            order_referance_no: booking_id,
+            latitude: String(bookingDetails.sourceLatitude),
+            longitude: String(bookingDetails.sourceLongitude),
+            timestamp: now,
+            device_id: "webapp1",
+            partner,
+            total_travelled_fare: "0",
+          },
+          start: {
+            trip_event: "start",
+            booking_id,
+            latitude: String(bookingDetails.sourceLatitude),
+            longitude: String(bookingDetails.sourceLongitude),
+            merutimestamp: now,
+            device_id: "webapp1",
+            partner,
+            total_travelled_fare: "1100",
+            reason: "Start reason",
+            extra_travelled_km: "0",
+            extra_travelled_fare: "0",
+            night_charges: "0",
+          },
+          end: {
+            trip_event: "stop",
+            booking_id,
+            latitude: String(bookingDetails.destinationLatitude),
+            longitude: String(bookingDetails.destinationLongitude),
+            merutimestamp: now,
+            device_id: "webapp1",
+            partner,
+            total_travelled_fare: "1100",
+            reason: "End reason",
+            extra_travelled_km: "0",
+            extra_travelled_fare: "0",
+            night_charges: "0",
+          },
+          endWithExtraKm: {
+            trip_event: "stop",
+            booking_id,
+            latitude: String(bookingDetails.destinationLatitude),
+            longitude: String(bookingDetails.destinationLongitude),
+            merutimestamp: now,
+            device_id: "webapp1",
+            partner,
+            total_travelled_fare: "1100",
+            reason: "End reason",
+            extra_travelled_km: "5",
+            extra_travelled_fare: "500",
+            night_charges: "0",
+          },
+        };
+
+        // If event is 'left', use 8km away from source lat/lon
+        // if (
+        //   type === "left" &&
+        //   bookingDetails.sourceLatitude &&
+        //   bookingDetails.sourceLongitude
+        // ) {
+        //   const srcLat = parseFloat(bookingDetails.sourceLatitude);
+        //   const srcLon = parseFloat(bookingDetails.sourceLongitude);
+        //   // Pick a random direction (bearing)
+        //   const bearing = Math.floor(Math.random() * 360);
+        //   const point = getPointAtDistance(srcLat, srcLon, 8, bearing);
+        //   payloadMap.left.latitude = point.latitude;
+        //   payloadMap.left.longitude = point.longitude;
+        // }
+
+        // if (
+        //   type === "locationForReaching" &&
+        //   bookingDetails.sourceLatitude &&
+        //   bookingDetails.sourceLongitude
+        // ) {
+        //   const srcLat = parseFloat(bookingDetails.sourceLatitude);
+        //   const srcLon = parseFloat(bookingDetails.sourceLongitude);
+        //   // Pick a random direction (bearing)
+        //   const bearing = Math.floor(Math.random() * 360);
+        //   const point = getPointAtDistance(srcLat, srcLon, 3, bearing);
+        //   payloadMap.locationForReaching.latitude = point.latitude;
+        //   payloadMap.locationForReaching.longitude = point.longitude;
+        // }
+
+        // // If event is 'location', interpolate between source and destination
+        // if (
+        //   type === "location30" &&
+        //   bookingDetails.sourceLatitude &&
+        //   bookingDetails.sourceLongitude &&
+        //   bookingDetails.destinationLatitude &&
+        //   bookingDetails.destinationLongitude
+        // ) {
+        //   const percent = 0.3;
+        //   const sourceLat = parseFloat(bookingDetails.sourceLatitude);
+        //   const sourceLng = parseFloat(bookingDetails.sourceLongitude);
+        //   const destLat = parseFloat(bookingDetails.destinationLatitude);
+        //   const destLng = parseFloat(bookingDetails.destinationLongitude);
+
+        //   payloadMap.location30.latitude = (
+        //     sourceLat +
+        //     (destLat - sourceLat) * percent
+        //   ).toFixed(7);
+        //   payloadMap.location30.longitude = (
+        //     sourceLng +
+        //     (destLng - sourceLng) * percent
+        //   ).toFixed(7);
+        // }
+
+        // if (
+        //   type === "location10" &&
+        //   payloadMap.left.latitude &&
+        //   payloadMap.left.longitude
+        // ) {
+        //   const percent = 0.1;
+        //   const destLat = parseFloat(bookingDetails.sourceLatitude);
+        //   const destLng = parseFloat(bookingDetails.sourceLongitude);
+        //   const sourceLat = parseFloat(payloadMap.left.latitude);
+        //   const sourceLng = parseFloat(payloadMap.left.longitude); // ✅ fixed here
+
+        //   payloadMap.location10.latitude = (
+        //     sourceLat +
+        //     (destLat - sourceLat) * percent
+        //   ).toFixed(7);
+        //   payloadMap.location10.longitude = (
+        //     sourceLng +
+        //     (destLng - sourceLng) * percent
+        //   ).toFixed(7);
+        // }
+
+        // // If event is 'location', interpolate between source and destination
+        // if (
+        //   type === "location70" &&
+        //   bookingDetails.sourceLatitude &&
+        //   bookingDetails.sourceLongitude &&
+        //   bookingDetails.destinationLatitude &&
+        //   bookingDetails.destinationLongitude
+        // ) {
+        //   const percent = 0.7;
+        //   const sourceLat = parseFloat(bookingDetails.sourceLatitude);
+        //   const sourceLng = parseFloat(bookingDetails.sourceLongitude);
+        //   const destLat = parseFloat(bookingDetails.destinationLatitude);
+        //   const destLng = parseFloat(bookingDetails.destinationLongitude);
+
+        //   payloadMap.location70.latitude = (
+        //     sourceLat +
+        //     (destLat - sourceLat) * percent
+        //   ).toFixed(7);
+        //   payloadMap.location70.longitude = (
+        //     sourceLng +
+        //     (destLng - sourceLng) * percent
+        //   ).toFixed(7);
+        // }
+
+        // if (type == "endWithExtraKm") {
+        //   payloadMap.endWithExtraKm.extra_travelled_km = "2";
+        //   payloadMap.endWithExtraKm.extra_travelled_fare = String(
+        //     2 * bookingDetails.extraPerKm
+        //   );
+        // }
+
+        if (!jwtToken) return log("⚠️ Fetch booking first to authenticate.");
+
+        try {
+          const res = await fetch(urlMap[type], {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: jwtToken,
+              correlationId: crypto.randomUUID(),
+            },
+            body: JSON.stringify(payloadMap[type]),
+          });
+
+          const data = await res.json();
+          log(`✅ ${type} response:\n${JSON.stringify(data, null, 2)}`);
+        } catch (err) {
+          log(`❌ ${type} error: ${err.message}`);
+        }
+      }
+    </script>
+  </body>
+</html>

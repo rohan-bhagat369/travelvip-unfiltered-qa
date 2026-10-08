@@ -1,0 +1,203 @@
+{
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "generatedAt": "2026-08-10T10:50:55.875Z",
+  "devNotes": {
+    "dates": "No finalize date validation; from booking context",
+    "gst": "gstDetails not received in payload",
+    "pan": "Only when isPANMandatory true",
+    "mobile": "Validation changes deployed"
+  },
+  "prebookFlags": {
+    "isPANMandatory": null,
+    "gstFlag": null
+  },
+  "counts": {
+    "PASS": 15,
+    "BUG": 4,
+    "NOT TESTED": 1,
+    "NOTE": 0
+  },
+  "rows": [
+    {
+      "tc": "TC1",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "mobile +91 starting with 5",
+      "expected": "HTTP 400 VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'contact.mobile' must be a 10-digit Indian mobile number starting with 6-9\"] booked=false",
+      "status": "PASS",
+      "response": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.mobile' must be a 10-digit Indian mobile number starting with 6-9\"],\"timestamp\":\"2026-08-10T10:50:43Z\",\"request_id\":\"req-1786359044467\"},\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC2",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "mobile length != 10 for +91",
+      "expected": "HTTP 400 VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'contact.mobile' must be a 10-digit Indian mobile number starting with 6-9\"] booked=false",
+      "status": "PASS",
+      "response": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.mobile' must be a 10-digit Indian mobile number starting with 6-9\"],\"timestamp\":\"2026-08-10T10:50:43Z\",\"request_id\":\"req-1786359044617\"},\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC3",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "countryCode plain 91",
+      "expected": "Accept (not VALIDATION_ERROR, not 500)",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359044533643\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC4",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "mobile with hyphen",
+      "expected": "Accept (not VALIDATION_ERROR, not 500)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'contact.mobile' must contain digits only, without spaces or separators\"] booked=false",
+      "status": "BUG",
+      "response": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.mobile' must contain digits only, without spaces or separators\"],\"timestamp\":\"2026-08-10T10:50:45Z\",\"request_id\":\"req-1786359046500\"},\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC5",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "mobile repeats country code",
+      "expected": "Accept (not VALIDATION_ERROR, not 500)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'contact.mobile' must not include the country code '+91'\"] booked=false",
+      "status": "BUG",
+      "response": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.mobile' must not include the country code '+91'\"],\"timestamp\":\"2026-08-10T10:50:45Z\",\"request_id\":\"req-1786359046615\"},\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC6",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "checkin DD-MM-YYYY",
+      "expected": "No crash (Dev: dates from booking context; not validated)",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359046386763\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC7",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "checkin slashes",
+      "expected": "No crash (Dev: dates from booking context; not validated)",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359047307094\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC8",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "checkin unpadded",
+      "expected": "No crash (Dev: dates from booking context; not validated)",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359048494612\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC9",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "impossible date",
+      "expected": "No crash (Dev: dates from booking context; not validated)",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359048311945\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC10",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "checkout == checkin",
+      "expected": "No crash (Dev: dates from booking context; not validated)",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359049329183\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC11",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "past checkin",
+      "expected": "No crash (Dev: dates from booking context; not validated)",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359050564415\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC12",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "omit gstDetails",
+      "expected": "Accept / not 500",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359050376031\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC13",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "gstDetails {}",
+      "expected": "Accept / not 500",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359051711555\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC14",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "full valid gstDetails",
+      "expected": "Accept / not 500 (Dev: field may not be received yet)",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359052134778\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC15",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "partial gstDetails",
+      "expected": "If GST wired: 400 VALIDATION_ERROR; if not received: may pass/ignore",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'gstDetails.gstCompanyName' is required when gstDetails is provided\",\"'gstDetails.gstAddress' is required when gstDetails is provided\",\"'gstDetails.gstEmailID' is required when gstDetails is provided\",\"'gstDetails.gstMobileNumber' is required when gstDetails is provided\"] booked=false",
+      "status": "PASS",
+      "response": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstCompanyName' is required when gstDetails is provided\",\"'gstDetails.gstAddress' is required when gstDetails is provided\",\"'gstDetails.gstEmailID' is required when gstDetails is provided\",\"'gstDetails.gstMobileNumber' is required when gstDetails is provided\"],\"timestamp\":\"2026-08-10T10:50:52Z\",\"request_id\":\"req-1786359053733\"},\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}",
+      "note": "GST validation active"
+    },
+    {
+      "tc": "TC16",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "invalid PAN when isPANMandatory=null",
+      "expected": "Ignored / not VALIDATION_ERROR (non-mandatory)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'contact.panCardNumber' must be a valid PAN (five letters, four digits, one letter)\"] booked=false",
+      "status": "BUG",
+      "response": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.panCardNumber' must be a valid PAN (five letters, four digits, one letter)\"],\"timestamp\":\"2026-08-10T10:50:53Z\",\"request_id\":\"req-1786359053838\"},\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC17",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "PAN mandatory missing-PAN test",
+      "expected": "Needs isPANMandatory=true rate",
+      "actual": "prebook isPANMandatory=null",
+      "status": "NOT TESTED",
+      "response": "{\"sampleKeys\":[]}"
+    },
+    {
+      "tc": "TC18",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "type adult lowercase",
+      "expected": "Accept / not 500",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359053728147\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC19",
+      "api": "POST /api/v2/hotels/finalize-booking",
+      "what": "Miss + Female adult",
+      "expected": "Accept / not 500",
+      "actual": "HTTP 200 code=null details=null booked=true",
+      "status": "PASS",
+      "response": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786359054632624\",\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    },
+    {
+      "tc": "TC20",
+      "api": "POST /v1/hotels/prebook",
+      "what": "body {}",
+      "expected": "details names bookingCode + requestId",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"Request body is required\"] booked=false",
+      "status": "BUG",
+      "response": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Request body is required\"],\"timestamp\":\"2026-08-10T10:50:54Z\",\"request_id\":\"req-1786359055771\"},\"_meta\":{\"correlation_id\":\"402da3d3-a07e-4dc2-89f7-1eef1cf632fe\"}}"
+    }
+  ]
+}

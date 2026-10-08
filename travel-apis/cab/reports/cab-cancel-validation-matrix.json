@@ -1,0 +1,458 @@
+{
+  "ranAt": "2026-09-11T14:59:45.290Z",
+  "partial": false,
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "rule": "Users cannot cancel only if pickup time has passed AND driver has reached pickup location",
+  "method": "POST /v1/airportServices/cabs/bookings/{BR}/cancel",
+  "body": {
+    "cancelledBy": "USER",
+    "cancellationReason": "Customer flight rescheduled to next day"
+  },
+  "settleMsAfterConfirm": 8000,
+  "summary": {
+    "PASS": 4,
+    "BUG": 0,
+    "NOT TESTED": 2
+  },
+  "rows": [
+    {
+      "id": "P1",
+      "rule": "POSITIVE: future pickup + confirmed only (no driver) → allow",
+      "expect": "CANCEL ALLOWED",
+      "actual": "ALLOWED http=200 statusAfter=Cancelled",
+      "pickupPassed": false,
+      "progress": {
+        "cabAssigned": false,
+        "cabLeftForPickup": false,
+        "cabReachedSource": false,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "status": "PASS",
+      "br": "BR1789138705594788",
+      "cancel": {
+        "http": 200,
+        "ok": true,
+        "code": null,
+        "message": null,
+        "result": {
+          "bookingStatus": "CANCELLED",
+          "message": "Booking cancelled successfully",
+          "providerBookingId": "TVIPWE1109262028258EZY",
+          "totalPrice": 686.7,
+          "penaltyAmount": 50,
+          "refundAmount": 636.7,
+          "currency": "INR"
+        },
+        "statusAfter": "Cancelled",
+        "cancelled": true,
+        "data": {
+          "status": 0,
+          "bookingRefId": "BR1789138705594788",
+          "type": "cancel",
+          "result": {
+            "bookingStatus": "CANCELLED",
+            "message": "Booking cancelled successfully",
+            "providerBookingId": "TVIPWE1109262028258EZY",
+            "totalPrice": 686.7,
+            "penaltyAmount": 50,
+            "refundAmount": 636.7,
+            "currency": "INR"
+          },
+          "_meta": {
+            "correlation_id": "4c9075b6-7f85-4a3f-b415-88dab8f720aa"
+          }
+        }
+      },
+      "snap": {
+        "br": "BR1789138705594788",
+        "status": "Confirmed",
+        "pickupDatetime": "2026-09-14T14:58:23+00:00",
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "now": "2026-09-11T14:58:37.649Z",
+        "pickupPassed": false
+      },
+      "notes": [],
+      "vendor": null,
+      "booked": {
+        "ok": true,
+        "stage": "booked",
+        "label": "P1",
+        "pickupDatetime": "2026-09-14T14:58:23Z",
+        "br": "BR1789138705594788",
+        "status": "Confirmed",
+        "providerBookingId": "TVIPWE1109262028258EZY",
+        "pickupFromApi": "2026-09-14T14:58:23+00:00",
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        }
+      }
+    },
+    {
+      "id": "P2",
+      "rule": "POSITIVE: future pickup + driver assigned → allow",
+      "expect": "CANCEL ALLOWED",
+      "actual": "ALLOWED http=200 statusAfter=Cancelled",
+      "pickupPassed": false,
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": false,
+        "cabReachedSource": false,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "status": "PASS",
+      "br": "BR1789138722459926",
+      "cancel": {
+        "http": 200,
+        "ok": true,
+        "code": null,
+        "message": null,
+        "result": {
+          "bookingStatus": "CANCELLED",
+          "message": "Booking cancelled successfully",
+          "providerBookingId": "TVIPWE110926202842VRIX",
+          "totalPrice": 686.7,
+          "penaltyAmount": 50,
+          "refundAmount": 636.7,
+          "currency": "INR"
+        },
+        "statusAfter": "Cancelled",
+        "cancelled": true,
+        "data": {
+          "status": 0,
+          "bookingRefId": "BR1789138722459926",
+          "type": "cancel",
+          "result": {
+            "bookingStatus": "CANCELLED",
+            "message": "Booking cancelled successfully",
+            "providerBookingId": "TVIPWE110926202842VRIX",
+            "totalPrice": 686.7,
+            "penaltyAmount": 50,
+            "refundAmount": 636.7,
+            "currency": "INR"
+          },
+          "_meta": {
+            "correlation_id": "4c9075b6-7f85-4a3f-b415-88dab8f720aa"
+          }
+        }
+      },
+      "snap": {
+        "br": "BR1789138722459926",
+        "status": "Confirmed",
+        "pickupDatetime": "2026-09-14T15:58:40+00:00",
+        "progress": {
+          "cabAssigned": true,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "now": "2026-09-11T14:58:56.919Z",
+        "pickupPassed": false
+      },
+      "notes": [],
+      "vendor": {
+        "booking_id": "TVIPWE110926202842VRIX",
+        "partner": "TRAVELVIP",
+        "steps": [
+          {
+            "label": "assign",
+            "http": 200,
+            "ok": true
+          }
+        ]
+      },
+      "booked": {
+        "ok": true,
+        "stage": "booked",
+        "label": "P2",
+        "pickupDatetime": "2026-09-14T15:58:40Z",
+        "br": "BR1789138722459926",
+        "status": "Confirmed",
+        "providerBookingId": "TVIPWE110926202842VRIX",
+        "pickupFromApi": "2026-09-14T15:58:40+00:00",
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        }
+      }
+    },
+    {
+      "id": "P3",
+      "rule": "POSITIVE: future pickup + left for pickup (not arrived) → allow",
+      "expect": "CANCEL ALLOWED",
+      "actual": "ALLOWED http=200 statusAfter=Cancelled",
+      "pickupPassed": false,
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": false,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "status": "PASS",
+      "br": "BR1789138741124468",
+      "cancel": {
+        "http": 200,
+        "ok": true,
+        "code": null,
+        "message": null,
+        "result": {
+          "bookingStatus": "CANCELLED",
+          "message": "Booking cancelled successfully",
+          "providerBookingId": "TVIPWE110926202901E3NN",
+          "totalPrice": 686.7,
+          "penaltyAmount": 50,
+          "refundAmount": 636.7,
+          "currency": "INR"
+        },
+        "statusAfter": "Cancelled",
+        "cancelled": true,
+        "data": {
+          "status": 0,
+          "bookingRefId": "BR1789138741124468",
+          "type": "cancel",
+          "result": {
+            "bookingStatus": "CANCELLED",
+            "message": "Booking cancelled successfully",
+            "providerBookingId": "TVIPWE110926202901E3NN",
+            "totalPrice": 686.7,
+            "penaltyAmount": 50,
+            "refundAmount": 636.7,
+            "currency": "INR"
+          },
+          "_meta": {
+            "correlation_id": "4c9075b6-7f85-4a3f-b415-88dab8f720aa"
+          }
+        }
+      },
+      "snap": {
+        "br": "BR1789138741124468",
+        "status": "Confirmed",
+        "pickupDatetime": "2026-09-14T16:58:59+00:00",
+        "progress": {
+          "cabAssigned": true,
+          "cabLeftForPickup": true,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "now": "2026-09-11T14:59:17.716Z",
+        "pickupPassed": false
+      },
+      "notes": [],
+      "vendor": {
+        "booking_id": "TVIPWE110926202901E3NN",
+        "partner": "TRAVELVIP",
+        "steps": [
+          {
+            "label": "assign",
+            "http": 200,
+            "ok": true
+          },
+          {
+            "label": "left",
+            "http": 200,
+            "ok": true
+          }
+        ]
+      },
+      "booked": {
+        "ok": true,
+        "stage": "booked",
+        "label": "P3",
+        "pickupDatetime": "2026-09-14T16:58:59Z",
+        "br": "BR1789138741124468",
+        "status": "Confirmed",
+        "providerBookingId": "TVIPWE110926202901E3NN",
+        "pickupFromApi": "2026-09-14T16:58:59+00:00",
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        }
+      }
+    },
+    {
+      "id": "P4",
+      "rule": "POSITIVE: future pickup + driver ARRIVED → allow (pickup not passed)",
+      "expect": "CANCEL ALLOWED",
+      "actual": "ALLOWED http=200 statusAfter=Cancelled",
+      "pickupPassed": false,
+      "progress": {
+        "cabAssigned": true,
+        "cabLeftForPickup": true,
+        "cabReachedSource": true,
+        "cabTripStarted": false,
+        "cabTripEnd": false
+      },
+      "status": "PASS",
+      "br": "BR1789138762335211",
+      "cancel": {
+        "http": 200,
+        "ok": true,
+        "code": null,
+        "message": null,
+        "result": {
+          "bookingStatus": "CANCELLED",
+          "message": "Booking cancelled successfully",
+          "providerBookingId": "TVIPWE110926202922LDYD",
+          "totalPrice": 686.7,
+          "penaltyAmount": 50,
+          "refundAmount": 636.7,
+          "currency": "INR"
+        },
+        "statusAfter": "Cancelled",
+        "cancelled": true,
+        "data": {
+          "status": 0,
+          "bookingRefId": "BR1789138762335211",
+          "type": "cancel",
+          "result": {
+            "bookingStatus": "CANCELLED",
+            "message": "Booking cancelled successfully",
+            "providerBookingId": "TVIPWE110926202922LDYD",
+            "totalPrice": 686.7,
+            "penaltyAmount": 50,
+            "refundAmount": 636.7,
+            "currency": "INR"
+          },
+          "_meta": {
+            "correlation_id": "4c9075b6-7f85-4a3f-b415-88dab8f720aa"
+          }
+        }
+      },
+      "snap": {
+        "br": "BR1789138762335211",
+        "status": "Confirmed",
+        "pickupDatetime": "2026-09-14T17:59:20+00:00",
+        "progress": {
+          "cabAssigned": true,
+          "cabLeftForPickup": true,
+          "cabReachedSource": true,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "now": "2026-09-11T14:59:41.259Z",
+        "pickupPassed": false
+      },
+      "notes": [],
+      "vendor": {
+        "booking_id": "TVIPWE110926202922LDYD",
+        "partner": "TRAVELVIP",
+        "steps": [
+          {
+            "label": "assign",
+            "http": 200,
+            "ok": true
+          },
+          {
+            "label": "left",
+            "http": 200,
+            "ok": true
+          },
+          {
+            "label": "arrived",
+            "http": 200,
+            "ok": true
+          }
+        ]
+      },
+      "booked": {
+        "ok": true,
+        "stage": "booked",
+        "label": "P4",
+        "pickupDatetime": "2026-09-14T17:59:20Z",
+        "br": "BR1789138762335211",
+        "status": "Confirmed",
+        "providerBookingId": "TVIPWE110926202922LDYD",
+        "pickupFromApi": "2026-09-14T17:59:20+00:00",
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        }
+      }
+    },
+    {
+      "id": "P5",
+      "rule": "POSITIVE: past pickup + not arrived → allow",
+      "status": "NOT TESTED",
+      "detail": {
+        "bookAllow": {
+          "ok": false,
+          "stage": "search",
+          "label": "past-allow",
+          "pickupDatetime": "2026-09-11T17:31:43Z",
+          "http": 200,
+          "err": {
+            "code": "VENDOR_REJECTED_REQUEST",
+            "message": "Cab provider could not process this search.",
+            "details": null
+          }
+        },
+        "bookBlock": {
+          "ok": false,
+          "stage": "search",
+          "label": "past-block",
+          "pickupDatetime": "2026-09-11T17:37:43Z",
+          "http": 200,
+          "err": {
+            "code": "VENDOR_REJECTED_REQUEST",
+            "message": "Cab provider could not process this search.",
+            "details": null
+          }
+        }
+      }
+    },
+    {
+      "id": "N1",
+      "rule": "NEGATIVE: past pickup + driver arrived → block",
+      "status": "NOT TESTED",
+      "detail": {
+        "bookAllow": {
+          "ok": false,
+          "stage": "search",
+          "label": "past-allow",
+          "pickupDatetime": "2026-09-11T17:31:43Z",
+          "http": 200,
+          "err": {
+            "code": "VENDOR_REJECTED_REQUEST",
+            "message": "Cab provider could not process this search.",
+            "details": null
+          }
+        },
+        "bookBlock": {
+          "ok": false,
+          "stage": "search",
+          "label": "past-block",
+          "pickupDatetime": "2026-09-11T17:37:43Z",
+          "http": 200,
+          "err": {
+            "code": "VENDOR_REJECTED_REQUEST",
+            "message": "Cab provider could not process this search.",
+            "details": null
+          }
+        }
+      }
+    }
+  ]
+}

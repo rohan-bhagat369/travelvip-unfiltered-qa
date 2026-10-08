@@ -1,0 +1,177 @@
+{
+  "date": "2026-10-01 IST",
+  "me": "rohan_bhagat",
+  "totalMentionsFromOthers": 9,
+  "asks": [
+    {
+      "at": "1/10/2026, 12:00:21 pm",
+      "channel": "Engineering",
+      "channelName": "engineering",
+      "from": "mayur",
+      "isAsk": true,
+      "ask": "@atul_ugale @rohan_bhagat, we have disabled the dedicated Hotels production instance and redirected the traffic to the same prod-api server. Please perform sanity testing for Hotels on production and let us know if you encounter any issues.",
+      "replied": true,
+      "ackStyleReply": true,
+      "myReplies": [
+        {
+          "at": "1/10/2026, 4:50:11 pm",
+          "inThread": true,
+          "message": "@mayur  | I have perform sanity testing for hotels on production everything looks good. Thanks!"
+        }
+      ]
+    },
+    {
+      "at": "1/10/2026, 3:27:08 pm",
+      "channel": "Engineering",
+      "channelName": "engineering",
+      "from": "mayur",
+      "isAsk": true,
+      "ask": "@rohan_bhagat @atul_ugale, Any update on this?",
+      "replied": true,
+      "ackStyleReply": true,
+      "myReplies": [
+        {
+          "at": "1/10/2026, 4:50:11 pm",
+          "inThread": true,
+          "message": "@mayur  | I have perform sanity testing for hotels on production everything looks good. Thanks!"
+        }
+      ]
+    },
+    {
+      "at": "1/10/2026, 4:02:38 pm",
+      "channel": "Engineering",
+      "channelName": "engineering",
+      "from": "atul_ugale",
+      "isAsk": true,
+      "ask": "@mayur I have checked the hotel on production for RateHawk and Riya provider. The changes are as expected. Also book hotel for Riya. | https://shop.travelvip.ai/hotel/booking-details/1790844598949812 | @rohan_bhagat Can you please check for B2B API.",
+      "replied": true,
+      "ackStyleReply": true,
+      "myReplies": [
+        {
+          "at": "1/10/2026, 4:50:11 pm",
+          "inThread": true,
+          "message": "@mayur  | I have perform sanity testing for hotels on production everything looks good. Thanks!"
+        }
+      ]
+    },
+    {
+      "at": "1/10/2026, 4:04:20 pm",
+      "channel": "Entertainer",
+      "channelName": "entertainer",
+      "from": "shubham_rajurpalle",
+      "isAsk": true,
+      "ask": "@rohan_bhagat  | Can you please run a sanity check on this pods.  | Is everything running as expected. | @mayur ",
+      "replied": false,
+      "ackStyleReply": false,
+      "myReplies": []
+    },
+    {
+      "at": "1/10/2026, 4:44:08 pm",
+      "channel": "B2B APIs",
+      "channelName": "b2b-apis",
+      "from": "chaitanya_patil",
+      "isAsk": true,
+      "ask": "@rohan_bhagat Please check the `v1/flights/airports` API now. | We are accepting the `tripType` parameter instead of the previously mentioned `domestic` parameter. | The `tripType` parameter accepts only the following values: | - `domestic` | - `international` | deployed on api staging",
+      "replied": true,
+      "ackStyleReply": true,
+      "myReplies": [
+        {
+          "at": "1/10/2026, 5:06:17 pm",
+          "inThread": true,
+          "message": "@chaitanya_patil  | I have tested this change over api-staging.travelvip.ai  and its working as expected below are the details - | `tripType` on staging is working as expected. | | What was asked | Result | | | --- | --- | | |   `tripType=domestic` → only India   |   Working   | | |   `tripType=inte"
+        },
+        {
+          "at": "1/10/2026, 5:07:29 pm",
+          "inThread": true,
+          "message": "I have one doubt `q=<script>&tripType=domestic` its giving result as Empty `HTTP 200` is it expected ?"
+        },
+        {
+          "at": "1/10/2026, 6:53:30 pm",
+          "inThread": true,
+          "message": "@chaitanya_patil  | I have tested this on api-staging working as expected- | Flight airports `tripType` — api-staging | | Area | Result | | | --- | --- | | |   Endpoint   |   `GET /v1/flights/airports`   | | |   Param   |   `tripType` (`domestic` \\| `international`) — legacy `domestic=` ignored   | "
+        },
+        {
+          "at": "1/10/2026, 6:53:58 pm",
+          "inThread": true,
+          "message": "@shubham_rajurpalle "
+        }
+      ]
+    },
+    {
+      "at": "1/10/2026, 4:52:02 pm",
+      "channel": "B2B APIs",
+      "channelName": "b2b-apis",
+      "from": "chaitanya_patil",
+      "isAsk": true,
+      "ask": "@rohan_bhagat Also, for the `v1/hotels/autocomplete` API, we have added support for the `tripType` parameter. | The `tripType` parameter accepts only the following values: | | `tripType` | What the user sees | | |---|---| | | `domestic` | Only cities and hotels in India | | | `international` | Cities and hotels in all countries, including India | | This has been deployed on **api-staging**. Please",
+      "replied": true,
+      "ackStyleReply": true,
+      "myReplies": [
+        {
+          "at": "1/10/2026, 5:06:17 pm",
+          "inThread": true,
+          "message": "@chaitanya_patil  | I have tested this change over api-staging.travelvip.ai  and its working as expected below are the details - | `tripType` on staging is working as expected. | | What was asked | Result | | | --- | --- | | |   `tripType=domestic` → only India   |   Working   | | |   `tripType=inte"
+        },
+        {
+          "at": "1/10/2026, 5:07:29 pm",
+          "inThread": true,
+          "message": "I have one doubt `q=<script>&tripType=domestic` its giving result as Empty `HTTP 200` is it expected ?"
+        },
+        {
+          "at": "1/10/2026, 6:53:30 pm",
+          "inThread": true,
+          "message": "@chaitanya_patil  | I have tested this on api-staging working as expected- | Flight airports `tripType` — api-staging | | Area | Result | | | --- | --- | | |   Endpoint   |   `GET /v1/flights/airports`   | | |   Param   |   `tripType` (`domestic` \\| `international`) — legacy `domestic=` ignored   | "
+        },
+        {
+          "at": "1/10/2026, 6:53:58 pm",
+          "inThread": true,
+          "message": "@shubham_rajurpalle "
+        }
+      ]
+    },
+    {
+      "at": "1/10/2026, 5:24:02 pm",
+      "channel": "Engineering",
+      "channelName": "engineering",
+      "from": "saurabh_chawda",
+      "isAsk": true,
+      "ask": "@atul_ugale @rohan_bhagat I have uploaded the latest dev builds for both iOS and Android. Could you please perform end-to-end testing on the builds below. | Please check each service and all pages thoroughly across multiple Android versions to ensure everything is working as expected. | **iOS:** 9.3.0 (1)   | **Android:** [https://drive.google.com/drive/folders/16mqcGuW8Y8NEteycwsvE44w2hm3LopUJ?us",
+      "replied": false,
+      "ackStyleReply": false,
+      "myReplies": []
+    }
+  ],
+  "nonAsks": [
+    {
+      "at": "1/10/2026, 1:31:43 pm",
+      "channel": "Benepik",
+      "channelName": "benepik",
+      "from": "akash",
+      "isAsk": false,
+      "ask": "@rohan_bhagat issue 3 : We dont allow the same day DOB and passport for infrant",
+      "replied": false,
+      "ackStyleReply": false,
+      "myReplies": []
+    },
+    {
+      "at": "1/10/2026, 4:50:45 pm",
+      "channel": "Engineering",
+      "channelName": "engineering",
+      "from": "mayur",
+      "isAsk": false,
+      "ask": "Okay.. Thanks @atul_ugale @rohan_bhagat ",
+      "replied": false,
+      "ackStyleReply": false,
+      "myReplies": []
+    }
+  ],
+  "summary": {
+    "asksGiven": 7,
+    "asksWithAnyReply": 5,
+    "asksWithTestedStyleReply": 5,
+    "asksWithNoReply": [
+      "Entertainer ← shubham_rajurpalle",
+      "Engineering ← saurabh_chawda"
+    ]
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "ranAt": "2026-08-12T21:20:57.180Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "S5 RT cancel return only",
+  "fixture": {
+    "br": "BR1786569524287412",
+    "bookingStatus": "Confirmed",
+    "tripType": "R",
+    "totalPassengers": 2,
+    "passengers": [
+      {
+        "paxId": "PAX1",
+        "name": "Harsh Malhotra"
+      },
+      {
+        "paxId": "PAX2",
+        "name": "Yash Malhotra"
+      }
+    ],
+    "onward": {
+      "pnr": "JB1DPB",
+      "onlineCancellation": true,
+      "airline": "IX"
+    },
+    "return": {
+      "pnr": "E66RVQ",
+      "onlineCancellation": true,
+      "airline": "IX"
+    }
+  },
+  "request": {
+    "pnr": "E66RVQ",
+    "cancellationPaxList": null
+  },
+  "penalty": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786569524287412",
+      "pnr": "E66RVQ",
+      "cancellationRequest": {
+        "status": "Penalty Fetched",
+        "estimatedCancellationCharge": 1700,
+        "estimatedRefund": 17780,
+        "totalAmount": 19480,
+        "totalPenalty": 1700,
+        "perPax": {
+          "paxCount": 2,
+          "chargedPax": 2,
+          "amount": 9740,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 500,
+          "cancellationFee": 350,
+          "refund": 8890,
+          "penaltyBasis": "PROVIDER"
+        },
+        "createdAt": "2026-08-12T21:20:49Z"
+      }
+    },
+    "status": "Penalty Fetched",
+    "totalAmount": 19480,
+    "charge": 1700,
+    "refund": 17780,
+    "perPax": {
+      "paxCount": 2,
+      "chargedPax": 2,
+      "amount": 9740,
+      "convenienceFee": 0,
+      "ssr": 0,
+      "flexiCancelFee": 0,
+      "penalty": 500,
+      "cancellationFee": 350,
+      "refund": 8890,
+      "penaltyBasis": "PROVIDER"
+    },
+    "paxScope": null,
+    "message": null,
+    "error": null
+  },
+  "cancel": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786569524287412",
+      "pnr": "E66RVQ",
+      "cancellationRequest": {
+        "status": "Cancellation Failed",
+        "estimatedCancellationCharge": 700,
+        "estimatedRefund": 18780,
+        "totalAmount": 19480,
+        "totalPenalty": 700,
+        "perPax": {
+          "paxCount": 2,
+          "chargedPax": 2,
+          "amount": 9740,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 0,
+          "cancellationFee": 350,
+          "refund": 9390,
+          "penaltyBasis": "PROVIDER"
+        },
+        "message": "Unable to get Penalty details. Kindly contact customer care.",
+        "createdAt": "2026-08-12T21:20:51Z"
+      }
+    },
+    "status": "Cancellation Failed",
+    "totalAmount": 19480,
+    "charge": 700,
+    "refund": 18780,
+    "perPax": {
+      "paxCount": 2,
+      "chargedPax": 2,
+      "amount": 9740,
+      "convenienceFee": 0,
+      "ssr": 0,
+      "flexiCancelFee": 0,
+      "penalty": 0,
+      "cancellationFee": 350,
+      "refund": 9390,
+      "penaltyBasis": "PROVIDER"
+    },
+    "paxScope": null,
+    "message": "Unable to get Penalty details. Kindly contact customer care.",
+    "error": null
+  },
+  "after": {
+    "bookingStatus": "Confirmed",
+    "onward": {
+      "pnr": "JB1DPB"
+    },
+    "return": {
+      "pnr": "E66RVQ"
+    }
+  },
+  "table": [
+    {
+      "rule": "S5 PENALTY: amounts present",
+      "expected": "totalAmount, charge, refund numeric",
+      "actual": "total=19480 charge=1700 refund=17780 msg=",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 PENALTY: refund = total − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=17780 total=19480 charge=1700",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 PENALTY: perPax basis!=NONE",
+      "expected": "chargedPax=2 (or paxCount), penaltyBasis not NONE",
+      "actual": "{\"paxCount\":2,\"chargedPax\":2,\"amount\":9740,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":500,\"cancellationFee\":350,\"refund\":8890,\"penaltyBasis\":\"PROVIDER\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 PENALTY: status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 PENALTY: response pnr is return",
+      "expected": "E66RVQ",
+      "actual": "E66RVQ",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 CANCEL: amounts present",
+      "expected": "totalAmount, charge, refund numeric",
+      "actual": "total=19480 charge=700 refund=18780 msg=Unable to get Penalty details. Kindly contact customer care.",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 CANCEL: refund = total − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=18780 total=19480 charge=700",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 CANCEL: perPax basis!=NONE",
+      "expected": "chargedPax=2 (or paxCount), penaltyBasis not NONE",
+      "actual": "{\"paxCount\":2,\"chargedPax\":2,\"amount\":9740,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":0,\"cancellationFee\":350,\"refund\":9390,\"penaltyBasis\":\"PROVIDER\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 CANCEL: status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled",
+      "actual": "Cancellation Failed",
+      "status": "BUG"
+    },
+    {
+      "rule": "S5 CANCEL: response pnr is return",
+      "expected": "E66RVQ",
+      "actual": "E66RVQ",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 onward PNR untouched",
+      "expected": "onward JB1DPB still present",
+      "actual": "onward=JB1DPB",
+      "status": "PASS"
+    },
+    {
+      "rule": "S5 booking partially cancelled / still exists",
+      "expected": "Partially cancelled or similar; BR exists",
+      "actual": "Confirmed",
+      "status": "PASS"
+    }
+  ],
+  "score": {
+    "PASS": 11,
+    "BUG": 1
+  }
+}

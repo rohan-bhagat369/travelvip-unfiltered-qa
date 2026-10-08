@@ -1,0 +1,226 @@
+{
+  "source": "Cab-API-Error-Contract.pdf",
+  "controller": "src/AppBundle/Controller/v2/CabBookingController.php (v3/b2b-api branch)",
+  "savedAt": "2026-09-03",
+  "envelope": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "userId is required",
+      "details": null,
+      "timestamp": "2026-08-31T09:12:44Z",
+      "request_id": "req-8f21c3de-01"
+    },
+    "_meta": {
+      "correlation_id": "c-6d2a91f4b7e04c1a"
+    },
+    "notes": [
+      "timestamp — always gmdate('Y-m-d\\TH:i:s\\Z') at failure",
+      "request_id — caller X-Request-Id or null when absent",
+      "_meta.correlation_id — CorrelationIdSubscriber on every JSON body",
+      "Some errors merge extra keys (bookingReference, currentStatus, availablePackages, available, required, cancellationRequest, result)"
+    ]
+  },
+  "endpoints": [
+    {
+      "section": 1,
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/locations",
+      "handler": "cabV2Locations",
+      "upstreamNote": "No upstream error mapping — provider failure returns 200 []",
+      "validations": [
+        { "id": "LOC-1", "http": 400, "code": "VALIDATION_ERROR", "message": "Either 'query' or both 'latitude' and 'longitude' parameters are required", "automated": true },
+        { "id": "LOC-2", "http": 400, "code": "VALIDATION_ERROR", "message": "Both 'latitude' and 'longitude' are required when searching by coordinates", "automated": true },
+        { "id": "LOC-3", "http": 400, "code": "VALIDATION_ERROR", "message": "'latitude' and 'longitude' must be numeric decimal degrees", "automated": true },
+        { "id": "LOC-4", "http": 400, "code": "VALIDATION_ERROR", "message": "'latitude' must be between -90 and 90 and 'longitude' between -180 and 180", "automated": true }
+      ]
+    },
+    {
+      "section": 2,
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "handler": "cabV2Search",
+      "upstreamNote": "No upstream error mapping — provider failure returns 200 []",
+      "validations": [
+        { "id": "SR-1", "http": 400, "code": "VALIDATION_ERROR", "message": "Request body is missing or not valid JSON. Send a JSON object with journeyType, travelType, pickup, drop and pickupDatetime.", "automated": true },
+        { "id": "SR-2", "http": 400, "code": "VALIDATION_ERROR", "message": "Missing required field '<field>'. journeyType, travelType, pickup, drop and pickupDatetime are all mandatory.", "automated": true },
+        { "id": "SR-3", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid journeyType '<v>'. Allowed values are AIRPORT, RENTAL or OUTSTATION.", "automated": true },
+        { "id": "SR-4", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid travelType '<v>'. Allowed values are DEPARTURE (city to airport) or ARRIVAL (airport to city).", "automated": true },
+        { "id": "SR-5", "http": 400, "code": "VALIDATION_ERROR", "message": "Missing required field 'airportCode'. airportCode is mandatory when journeyType is AIRPORT.", "automated": true },
+        { "id": "SR-5b", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid travelType '<v>' for journeyType <j>. travelType must be DEPARTURE when journeyType is RENTAL or OUTSTATION.", "automated": false },
+        { "id": "SR-6a", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid <pickup|drop>: it must be an object with name, city, latitude and longitude.", "automated": false },
+        { "id": "SR-6b", "http": 400, "code": "VALIDATION_ERROR", "message": "Missing or empty '<pickup|drop>.<key>'. Every pickup/drop must include a non-empty '<key>' string.", "automated": false },
+        { "id": "SR-6c", "http": 400, "code": "VALIDATION_ERROR", "message": "Missing or non-numeric '<label>.latitude'/'<label>.longitude'. Both are required as decimal degrees.", "automated": false },
+        { "id": "SR-6", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid coordinates for <label>: latitude must be between -90 and 90 and longitude between -180 and 180.", "automated": true },
+        { "id": "SR-7a", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid <distanceKm|durationMin> '<v>'. It must be a number of 0 or more.", "automated": false },
+        { "id": "SR-7", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid <distanceKm|durationMin> '<v>'. It must be 0 or more, not a negative value.", "automated": true },
+        { "id": "SR-9", "http": 400, "code": "VALIDATION_ERROR", "message": "For a RENTAL search the pickup and drop must be the same location (a rental starts and ends at the same place).", "automated": true },
+        { "id": "SR-8a", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid pickupDatetime '<v>'. It must be a UTC datetime in the format YYYY-MM-DDTHH:MM:SSZ.", "automated": false },
+        { "id": "SR-8", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid pickupDatetime: <t> is in the past. Pickup must be the current date and time or later.", "automated": true },
+        { "id": "SR-8b", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid pickupDatetime: <t> is too far in the past. Pickup can be at most 3 months before the current date and time.", "automated": false },
+        { "id": "SR-8c", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid pickupDatetime: <t> is too far ahead. A cab can be booked at most 3 months in advance.", "automated": false },
+        { "id": "SR-10", "http": 400, "code": "RENTAL_PACKAGE_MISMATCH", "message": "(message from validateRentalPackage()) — includes availablePackages[]", "automated": true, "extraKeys": ["availablePackages"] }
+      ]
+    },
+    {
+      "section": 3,
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "handler": "cabV2Fare",
+      "upstreamNote": "No upstream error mapping — provider failure returns 200 []",
+      "validations": [
+        { "id": "FR-1", "http": 400, "code": "VALIDATION_ERROR", "message": "searchId is required", "automated": true },
+        { "id": "FR-3", "http": 400, "code": "INVALID_SEARCH_ID", "message": "searchId is not valid or has expired (live staging/canary; PDF also allowed provider 200 [])", "automated": true }
+      ]
+    },
+    {
+      "section": 4,
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/finalize-booking",
+      "handler": "cabV2Finalize",
+      "notes": [
+        "Invalid bookingReference covers decrypt failure and decoded payload with no searchId",
+        "WALLET_HOLD_FAILED / hold-time WALLET_ERROR occur after booking aggregate persisted; item marked FAILED",
+        "Provider rejection is HTTP 200 { status: FAILED, statusCode: 200, bookingRefId }"
+      ],
+      "validations": [
+        { "id": "FB-1", "http": 400, "code": "VALIDATION_ERROR", "message": "Request body must be a non-empty JSON object", "automated": true },
+        { "id": "FB-1b", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingReference is required", "automated": false },
+        { "id": "FB-2", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid bookingReference", "automated": true },
+        { "id": "FB-2b", "http": 400, "code": "VALIDATION_ERROR", "message": "userId is required", "automated": false },
+        { "id": "FB-2c", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid journeyType '<v>'. Allowed values: AIRPORT, RENTAL, OUTSTATION.", "automated": false },
+        { "id": "FB-2d", "http": 400, "code": "VALIDATION_ERROR", "message": "travelType is required. Allowed values: DEPARTURE, ARRIVAL.", "automated": false },
+        { "id": "FB-2e", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid travelType \"<v>\". Allowed values: DEPARTURE, ARRIVAL.", "automated": false },
+        { "id": "FB-2f", "http": 400, "code": "VALIDATION_ERROR", "message": "airportCode is required.", "automated": false },
+        { "id": "FB-2g", "http": 400, "code": "VALIDATION_ERROR", "message": "pickup is required.", "automated": false },
+        { "id": "FB-2h", "http": 400, "code": "VALIDATION_ERROR", "message": "drop is required.", "automated": false },
+        { "id": "FB-2i", "http": 400, "code": "VALIDATION_ERROR", "message": "pickupDatetime is required (ISO-8601).", "automated": false },
+        { "id": "FB-2j", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid pickupDatetime \"<v>\". Expected an ISO-8601 date-time.", "automated": false },
+        { "id": "FB-2k", "http": 400, "code": "VALIDATION_ERROR", "message": "passenger is required.", "automated": false },
+        { "id": "FB-2l", "http": 400, "code": "VALIDATION_ERROR", "message": "Only one passenger is allowed for a cab booking.", "automated": false },
+        { "id": "FB-2m", "http": 400, "code": "VALIDATION_ERROR", "message": "Passenger <field> is required.", "automated": false },
+        { "id": "FB-2n", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid passenger paxType \"<v>\". …", "automated": false },
+        { "id": "FB-2o", "http": 400, "code": "VALIDATION_ERROR", "message": "Passenger mobile number \"<v>\" …", "automated": false },
+        { "id": "FB-2p", "http": 400, "code": "VALIDATION_ERROR", "message": "Passenger email is required.", "automated": false },
+        { "id": "FB-4", "http": 400, "code": "VALIDATION_ERROR", "message": "Passenger email \"<v>\" is not a valid email address.", "automated": true },
+        { "id": "FB-3", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid priceId / bookingReference must not create BR", "automated": true },
+        { "id": "FB-FARE", "http": 409, "code": "FARE_EXPIRED", "message": "Fare expired, please re-fetch the fare", "automated": false },
+        { "id": "FB-W1", "http": 422, "code": "WALLET_NOT_CONFIGURED", "message": "Wallet is not assigned to this partner.", "automated": false, "extraKeys": ["details"] },
+        { "id": "FB-W2", "http": 502, "code": "WALLET_UNAVAILABLE", "message": "Wallet service unavailable. Please try again.", "automated": false },
+        { "id": "FB-W3", "http": 403, "code": "INSUFFICIENT_BALANCE", "message": "Insufficient wallet balance for this booking", "automated": false, "extraKeys": ["available", "required"], "note": "amounts in paise" },
+        { "id": "FB-W4", "http": 502, "code": "WALLET_ERROR", "message": "Wallet service error. Please try again.", "automated": false },
+        { "id": "FB-W5", "http": 502, "code": "WALLET_HOLD_FAILED", "message": "Failed to reserve wallet funds. Please try again.", "automated": false }
+      ]
+    },
+    {
+      "section": 5,
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/update-booking",
+      "handler": "cabV2UpdateBooking",
+      "notes": ["Provider callback. Empty body passes decoding then fails body-required check."],
+      "validations": [
+        { "id": "UB-1", "http": 400, "code": "VALIDATION_ERROR", "message": "Request body is required", "automated": true },
+        { "id": "UB-2", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingRefId is required", "automated": true },
+        { "id": "UB-3", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid status \"<v>\"", "automated": true, "details": "Allowed values: CONFIRMED, CANCELLED, FAILED." },
+        { "id": "UB-4", "http": 404, "code": "BOOKING_NOT_FOUND", "message": "Booking not found", "automated": true },
+        { "id": "UB-4b", "http": 404, "code": "CAB_BOOKING_ITEM_NOT_FOUND", "message": "Cab BookingItem not found", "automated": false },
+        { "id": "UB-5", "http": 400, "code": "PROVIDER_BOOKING_ID_MISMATCH", "message": "bookingId does not match the provider booking id for this booking", "automated": true, "needs": "CAB_BOOKING_REF" }
+      ]
+    },
+    {
+      "section": 6,
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/partner-webhook",
+      "handler": "cabV2PartnerWebhook",
+      "notes": [
+        "Authenticated with Basic Auth + IP allowlist, not partner key — excluded from TokenListener",
+        "Deliberately NOT errors (HTTP 200 ok): unknown eventName; bookingId matching no provider_booking_id; Redis store failure"
+      ],
+      "validations": [
+        { "id": "WH-IP", "http": 403, "code": "WEBHOOK_IP_NOT_ALLOWED", "message": "Forbidden", "automated": false, "note": "may fire before controller; request_id null; no _meta" },
+        { "id": "WH-2", "http": 401, "code": "INVALID_WEBHOOK_CREDENTIALS", "message": "Invalid webhook credentials", "automated": true },
+        { "id": "WH-1", "http": 400, "code": "VALIDATION_ERROR", "message": "Request body is required", "automated": true, "needs": "CAB_WEBHOOK_USER/PASS" }
+      ]
+    },
+    {
+      "section": 7,
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/{bookingId}/status",
+      "handler": "cabV1BookingStatus",
+      "validations": [
+        { "id": "ST-0", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingId is required", "automated": false },
+        { "id": "ST-1", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingId is not a valid booking reference", "automated": true, "details": "bookingId must match /^[A-Za-z0-9_-]{1,64}$/" },
+        { "id": "ST-2", "http": 404, "code": "BOOKING_NOT_FOUND", "message": "Booking not found", "automated": true, "note": "also returned for another partner's reference" },
+        { "id": "ST-3", "http": 400, "code": "UNSUPPORTED_SERVICE_TYPE", "message": "Booking is not a cab booking", "automated": false },
+        { "id": "ST-4", "http": 404, "code": "CAB_DETAILS_NOT_FOUND", "message": "Cab details not found", "automated": false },
+        { "id": "ST-5", "http": 404, "code": "NOT_FOUND", "message": "(fallback for any other 404 the helper emits)", "automated": false }
+      ]
+    },
+    {
+      "section": 8,
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/{bookingId}",
+      "handler": "cabV1BookingDetails",
+      "notes": ["Identical error set to §7"],
+      "validations": [
+        { "id": "DT-0", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingId is required", "automated": false },
+        { "id": "DT-1", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingId is not a valid booking reference", "automated": true },
+        { "id": "DT-2", "http": 404, "code": "BOOKING_NOT_FOUND", "message": "Booking not found", "automated": true },
+        { "id": "DT-3", "http": 400, "code": "UNSUPPORTED_SERVICE_TYPE", "message": "Booking is not a cab booking", "automated": false },
+        { "id": "DT-4", "http": 404, "code": "CAB_DETAILS_NOT_FOUND", "message": "Cab details not found", "automated": false },
+        { "id": "DT-5", "http": 404, "code": "NOT_FOUND", "message": "(fallback)", "automated": false }
+      ]
+    },
+    {
+      "section": 9,
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/tracking/{bookingId}/location",
+      "handler": "cabV1TrackingLocation",
+      "notes": [
+        "Identical error set to §7",
+        "Publishes driver name/number, vehicle, live GPS, boarding OTP — foreign reference → BOOKING_NOT_FOUND",
+        "Absent live fix is not an error — snapshot returned with null tracking block"
+      ],
+      "validations": [
+        { "id": "TR-0", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingId is required", "automated": false },
+        { "id": "TR-1", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingId is not a valid booking reference", "automated": true },
+        { "id": "TR-2", "http": 404, "code": "BOOKING_NOT_FOUND", "message": "Booking not found", "automated": true },
+        { "id": "TR-3", "http": 400, "code": "UNSUPPORTED_SERVICE_TYPE", "message": "Booking is not a cab booking", "automated": false },
+        { "id": "TR-4", "http": 404, "code": "CAB_DETAILS_NOT_FOUND", "message": "Cab details not found", "automated": false },
+        { "id": "TR-5", "http": 404, "code": "NOT_FOUND", "message": "(fallback)", "automated": false }
+      ]
+    },
+    {
+      "section": 10,
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/history",
+      "handler": "cabV1BookingHistory",
+      "notes": ["page and perpage are clamped (page ≥ 0, perPage 1–100), never rejected"],
+      "validations": [
+        { "id": "HI-1", "http": 400, "code": "VALIDATION_ERROR", "message": "userId is required", "automated": true },
+        { "id": "HI-2", "http": 200, "code": null, "message": "page/perpage clamped not rejected", "automated": true }
+      ]
+    },
+    {
+      "section": 11,
+      "method": "GET|POST",
+      "path": "/v1/airportServices/cabs/bookings/{bookingId}/cancel",
+      "handler": "cabV1CancelBooking",
+      "validations": [
+        { "id": "CA-0", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingId is required", "automated": false },
+        { "id": "CA-1", "http": 400, "code": "VALIDATION_ERROR", "message": "bookingId is not a valid booking reference", "automated": true },
+        { "id": "CA-3", "http": 400, "code": "VALIDATION_ERROR", "message": "Invalid cancelledBy \"<v>\"", "automated": true, "details": "Allowed values: USER, ADMIN, SYSTEM." },
+        { "id": "CA-4", "http": 400, "code": "VALIDATION_ERROR", "message": "'cancellationReason' must be a string of at most 500 characters", "automated": true },
+        { "id": "CA-4b", "http": 400, "code": "VALIDATION_ERROR", "message": "'remarks' must be a string of at most 500 characters", "automated": false },
+        { "id": "CA-2", "http": 404, "code": "BOOKING_NOT_FOUND", "message": "Booking not found", "automated": true, "note": "also partner mismatch" },
+        { "id": "CA-ITEM", "http": 400, "code": "CAB_BOOKING_ITEM_NOT_FOUND", "message": "Cab booking item not found", "automated": false, "note": "400 here (404 on update-booking)" },
+        { "id": "CA-DET", "http": 404, "code": "CAB_DETAILS_NOT_FOUND", "message": "BookingItemCab not found", "automated": false },
+        { "id": "CA-ALREADY", "http": 400, "code": "BOOKING_ALREADY_CANCELLED", "message": "Booking is already cancelled", "automated": false, "extraKeys": ["currentStatus"] },
+        { "id": "CA-5", "http": 400, "code": "BOOKING_NOT_CANCELLABLE", "message": "Booking can only be cancelled when status is Confirmed", "automated": true, "extraKeys": ["currentStatus"] },
+        { "id": "CA-ALREADY2", "http": 400, "code": "BOOKING_ALREADY_CANCELLED", "message": "Booking has already been cancelled", "automated": false },
+        { "id": "CA-INPROG", "http": 400, "code": "CANCELLATION_ALREADY_REQUESTED", "message": "Cancellation has already been requested for this booking", "automated": false, "extraKeys": ["cancellationRequest"] },
+        { "id": "CA-PROV", "http": 400, "code": "PROVIDER_BOOKING_ID_NOT_FOUND", "message": "Provider booking id not available for this booking", "automated": false },
+        { "id": "CA-FAIL", "http": 400, "code": "CANCELLATION_FAILED", "message": "provider's data.message, else Cancellation failed", "automated": false, "extraKeys": ["bookingRefId", "type", "result"] }
+      ]
+    }
+  ]
+}

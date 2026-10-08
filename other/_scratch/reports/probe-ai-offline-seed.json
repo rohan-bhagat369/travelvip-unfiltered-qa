@@ -1,0 +1,130 @@
+{
+  "ranAt": "2026-08-12T23:00:44.321Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "offlineFixture": null,
+  "attemptsLog": [
+    {
+      "o": "DEL",
+      "d": "BOM",
+      "days": 55,
+      "fareType": "CORPORATE",
+      "name": [
+        "Karan",
+        "Malhotra"
+      ],
+      "br": "BR1786575482608965",
+      "status": "Pending",
+      "result": "NOT_CONFIRMED"
+    },
+    {
+      "o": "DEL",
+      "d": "BOM",
+      "days": 60,
+      "fareType": "NORMAL",
+      "name": [
+        "Vivek",
+        "Saxena"
+      ],
+      "br": "BR1786575502109773",
+      "status": "Pending",
+      "result": "NOT_CONFIRMED"
+    },
+    {
+      "o": "BOM",
+      "d": "DEL",
+      "days": 58,
+      "fareType": "CORPORATE",
+      "name": [
+        "Arjun",
+        "Mehta"
+      ],
+      "br": "BR1786575524296721",
+      "status": "Pending",
+      "result": "NOT_CONFIRMED"
+    },
+    {
+      "o": "BLR",
+      "d": "DEL",
+      "days": 65,
+      "fareType": "NORMAL",
+      "name": [
+        "Dev",
+        "Kapoor"
+      ],
+      "br": "BR1786575546917925",
+      "status": "Pending",
+      "result": "NOT_CONFIRMED"
+    },
+    {
+      "o": "DEL",
+      "d": "HYD",
+      "days": 70,
+      "fareType": "CORPORATE",
+      "name": [
+        "Kabir",
+        "Nair"
+      ],
+      "br": "BR1786575567896172",
+      "status": "Pending",
+      "result": "NOT_CONFIRMED"
+    },
+    {
+      "o": "HYD",
+      "d": "BOM",
+      "days": 72,
+      "fareType": "NORMAL",
+      "name": [
+        "Rohan",
+        "Desai"
+      ],
+      "br": "BR1786575587498210",
+      "status": "Pending",
+      "result": "NOT_CONFIRMED"
+    },
+    {
+      "o": "DEL",
+      "d": "MAA",
+      "days": 75,
+      "fareType": "CORPORATE",
+      "name": [
+        "Yash",
+        "Iyer"
+      ],
+      "br": "BR1786575610689364",
+      "status": "Pending",
+      "result": "NOT_CONFIRMED"
+    },
+    {
+      "o": "MAA",
+      "d": "DEL",
+      "days": 68,
+      "fareType": "NORMAL",
+      "name": [
+        "Aman",
+        "Joshi"
+      ],
+      "br": "BR1786575632817738",
+      "status": "Pending",
+      "result": "NOT_CONFIRMED"
+    }
+  ],
+  "table": [
+    {
+      "rule": "AI offline inventory found",
+      "expected": "Confirmed + onlineCancellation=false",
+      "actual": "none; tried=8; online=0; notConfirmed=8",
+      "status": "NOT_TESTED"
+    }
+  ],
+  "score": {
+    "PASS": 0,
+    "BUG": 0,
+    "NOT_TESTED": 1
+  },
+  "pricingScan": {
+    "env": "canary",
+    "finding": "AI pricing onlineCancellation=false on all sampled routes",
+    "corporatePolicy": "FIXED 1047/1999 + fee FIXED 350",
+    "bookBlocker": "all 8 issue-ticket BRs stuck Pending — cannot assert post-confirm cancel"
+  }
+}

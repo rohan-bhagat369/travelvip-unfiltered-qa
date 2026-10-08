@@ -1,0 +1,418 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "at": "2026-09-30T08:28:16.773Z",
+  "counts": {
+    "PASS": 48,
+    "NOTE": 4,
+    "BUG": 3
+  },
+  "findings": [
+    {
+      "id": "SCAN-a",
+      "status": "PASS",
+      "note": "HTTP 200 india=31 total=171"
+    },
+    {
+      "id": "SCAN-b",
+      "status": "PASS",
+      "note": "HTTP 200 india=33 total=45"
+    },
+    {
+      "id": "SCAN-c",
+      "status": "PASS",
+      "note": "HTTP 200 india=33 total=35"
+    },
+    {
+      "id": "SCAN-d",
+      "status": "PASS",
+      "note": "HTTP 200 india=31 total=32"
+    },
+    {
+      "id": "SCAN-e",
+      "status": "PASS",
+      "note": "HTTP 200 india=4 total=4"
+    },
+    {
+      "id": "SCAN-f",
+      "status": "PASS",
+      "note": "HTTP 200 india=8 total=8"
+    },
+    {
+      "id": "SCAN-g",
+      "status": "PASS",
+      "note": "HTTP 200 india=26 total=26"
+    },
+    {
+      "id": "SCAN-h",
+      "status": "PASS",
+      "note": "HTTP 200 india=12 total=12"
+    },
+    {
+      "id": "SCAN-i",
+      "status": "PASS",
+      "note": "HTTP 200 india=32 total=172"
+    },
+    {
+      "id": "SCAN-j",
+      "status": "PASS",
+      "note": "HTTP 200 india=24 total=24"
+    },
+    {
+      "id": "SCAN-k",
+      "status": "PASS",
+      "note": "HTTP 200 india=33 total=35"
+    },
+    {
+      "id": "SCAN-l",
+      "status": "PASS",
+      "note": "HTTP 200 india=15 total=15"
+    },
+    {
+      "id": "SCAN-m",
+      "status": "PASS",
+      "note": "HTTP 200 india=31 total=31"
+    },
+    {
+      "id": "SCAN-n",
+      "status": "PASS",
+      "note": "HTTP 200 india=25 total=25"
+    },
+    {
+      "id": "SCAN-o",
+      "status": "PASS",
+      "note": "HTTP 200 india=8 total=8"
+    },
+    {
+      "id": "SCAN-p",
+      "status": "PASS",
+      "note": "HTTP 200 india=28 total=28"
+    },
+    {
+      "id": "SCAN-q",
+      "status": "PASS",
+      "note": "HTTP 200 india=0 total=0"
+    },
+    {
+      "id": "SCAN-r",
+      "status": "PASS",
+      "note": "HTTP 200 india=29 total=29"
+    },
+    {
+      "id": "SCAN-s",
+      "status": "PASS",
+      "note": "HTTP 200 india=33 total=48"
+    },
+    {
+      "id": "SCAN-t",
+      "status": "PASS",
+      "note": "HTTP 200 india=16 total=16"
+    },
+    {
+      "id": "SCAN-u",
+      "status": "PASS",
+      "note": "HTTP 200 india=10 total=10"
+    },
+    {
+      "id": "SCAN-v",
+      "status": "PASS",
+      "note": "HTTP 200 india=32 total=163"
+    },
+    {
+      "id": "SCAN-w",
+      "status": "PASS",
+      "note": "HTTP 200 india=7 total=7"
+    },
+    {
+      "id": "SCAN-x",
+      "status": "PASS",
+      "note": "HTTP 200 india=0 total=0"
+    },
+    {
+      "id": "SCAN-y",
+      "status": "PASS",
+      "note": "HTTP 200 india=0 total=0"
+    },
+    {
+      "id": "SCAN-z",
+      "status": "PASS",
+      "note": "HTTP 200 india=4 total=4"
+    },
+    {
+      "id": "IN-CODES",
+      "status": "PASS",
+      "note": "42 Indian codes present and India-only",
+      "missingIndia": []
+    },
+    {
+      "id": "FOREIGN-CODES",
+      "status": "PASS",
+      "note": "24 foreign codes stayed out",
+      "leakedForeign": []
+    },
+    {
+      "id": "TRAP-ind",
+      "status": "PASS",
+      "note": "HTTP 200 india=32 info="
+    },
+    {
+      "id": "TRAP-india",
+      "status": "PASS",
+      "note": "HTTP 200 india=33 info="
+    },
+    {
+      "id": "TRAP-indo",
+      "status": "PASS",
+      "note": "HTTP 200 india=4 info="
+    },
+    {
+      "id": "TRAP-diego",
+      "status": "PASS",
+      "note": "HTTP 200 india=0 info=Data not found"
+    },
+    {
+      "id": "TRAP-nkw",
+      "status": "PASS",
+      "note": "HTTP 200 india=0 info=Data not found"
+    },
+    {
+      "id": "TRAP-british",
+      "status": "PASS",
+      "note": "HTTP 200 india=0 info=Data not found"
+    },
+    {
+      "id": "TRAP-ocean",
+      "status": "PASS",
+      "note": "HTTP 200 india=0 info=Data not found"
+    },
+    {
+      "id": "IND-CITY",
+      "status": "PASS",
+      "note": "open has IND=false (DEL,DXN,HRH,HSS,BOM,BLR,MAA,HYD,CCU,COK,GOI,LKO,IDR). closed codes=DEL,DXN,HRH,HSS,BOM,BLR,MAA,HYD,CCU,COK,GOI,LKO,IDR"
+    },
+    {
+      "id": "RAW-BOTH-TRUE-LAST",
+      "status": "NOTE",
+      "note": "accepted with HTTP 200, LHR hidden. Data not found",
+      "http": 200,
+      "details": null,
+      "codes": []
+    },
+    {
+      "id": "RAW-BOTH-FALSE-LAST",
+      "status": "PASS",
+      "note": "last domestic=false returned LHR",
+      "http": 200,
+      "details": null,
+      "codes": [
+        "LHR",
+        "XS1",
+        "NHT",
+        "QQP"
+      ]
+    },
+    {
+      "id": "RAW-LEAD-SPACE",
+      "status": "NOTE",
+      "note": "accepted with HTTP 200, LHR hidden. Data not found",
+      "http": 200,
+      "details": null,
+      "codes": []
+    },
+    {
+      "id": "RAW-FALSE-TRAIL",
+      "status": "BUG",
+      "note": "LHR or foreign row returned. HTTP 200 codes=LHR,XS1,NHT,QQP",
+      "http": 200,
+      "details": null,
+      "codes": [
+        "LHR",
+        "XS1",
+        "NHT",
+        "QQP"
+      ]
+    },
+    {
+      "id": "RAW-FALSE-LEAD",
+      "status": "BUG",
+      "note": "LHR or foreign row returned. HTTP 200 codes=LHR,XS1,NHT,QQP",
+      "http": 200,
+      "details": null,
+      "codes": [
+        "LHR",
+        "XS1",
+        "NHT",
+        "QQP"
+      ]
+    },
+    {
+      "id": "RAW-TAB",
+      "status": "NOTE",
+      "note": "accepted with HTTP 200, LHR hidden. Data not found",
+      "http": 200,
+      "details": null,
+      "codes": []
+    },
+    {
+      "id": "RAW-NEWLINE",
+      "status": "NOTE",
+      "note": "accepted with HTTP 200, LHR hidden. Data not found",
+      "http": 200,
+      "details": null,
+      "codes": []
+    },
+    {
+      "id": "RAW-NULL",
+      "status": "BUG",
+      "note": "LHR or foreign row returned. HTTP 200 codes=LHR,XS1,NHT,QQP",
+      "http": 200,
+      "details": null,
+      "codes": [
+        "LHR",
+        "XS1",
+        "NHT",
+        "QQP"
+      ]
+    },
+    {
+      "id": "RAW-QUOTED",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'domestic' must be either 'true' or 'false'.",
+      "http": 400,
+      "details": [
+        "'domestic' must be either 'true' or 'false'."
+      ],
+      "codes": []
+    },
+    {
+      "id": "RAW-TRUE-FALSE",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'domestic' must be either 'true' or 'false'.",
+      "http": 400,
+      "details": [
+        "'domestic' must be either 'true' or 'false'."
+      ],
+      "codes": []
+    },
+    {
+      "id": "ODD-PAGE-NEG",
+      "status": "PASS",
+      "note": "HTTP 200  india=4 foreign=0 total=4",
+      "foreign": [],
+      "http": 200,
+      "details": null
+    },
+    {
+      "id": "ODD-PERPAGE-0",
+      "status": "PASS",
+      "note": "HTTP 200  india=4 foreign=0 total=4",
+      "foreign": [],
+      "http": 200,
+      "details": null
+    },
+    {
+      "id": "ODD-PERPAGE-NEG",
+      "status": "PASS",
+      "note": "HTTP 200  india=4 foreign=0 total=4",
+      "foreign": [],
+      "http": 200,
+      "details": null
+    },
+    {
+      "id": "ODD-PERPAGE-ABC",
+      "status": "PASS",
+      "note": "HTTP 200  india=4 foreign=0 total=4",
+      "foreign": [],
+      "http": 200,
+      "details": null
+    },
+    {
+      "id": "ODD-PERPAGE-HUGE",
+      "status": "PASS",
+      "note": "HTTP 200  india=170 foreign=0 total=170",
+      "foreign": [],
+      "http": 200,
+      "details": null
+    },
+    {
+      "id": "ODD-STAR",
+      "status": "PASS",
+      "note": "HTTP 200  india=22 foreign=0 total=172",
+      "foreign": [],
+      "http": 200,
+      "details": null
+    },
+    {
+      "id": "ODD-PERCENT",
+      "status": "PASS",
+      "note": "HTTP 200 Data not found india=0 foreign=0 total=null",
+      "foreign": [],
+      "http": 200,
+      "details": null
+    },
+    {
+      "id": "ODD-QUOTE",
+      "status": "PASS",
+      "note": "HTTP 200  india=5 foreign=0 total=5",
+      "foreign": [],
+      "http": 200,
+      "details": null
+    },
+    {
+      "id": "ODD-HTML-AIRPORT",
+      "status": "PASS",
+      "note": "HTTP 200  india=0 foreign=8 total=8",
+      "foreign": [
+        {
+          "airportCode": "EVA",
+          "city": "Evadale",
+          "country": "United States",
+          "airportName": "Evadale Landing Strip"
+        },
+        {
+          "airportCode": "BMT",
+          "city": "Beaumont",
+          "country": "United States",
+          "airportName": "Beaumont Municipal Airport"
+        },
+        {
+          "airportCode": "BPT",
+          "city": "Beaumont",
+          "country": "United States",
+          "airportName": "Jack Brooks Regional Airport"
+        },
+        {
+          "airportCode": "JAS",
+          "city": "Jasper",
+          "country": "United States",
+          "airportName": "Jasper County Airport Bell Field"
+        },
+        {
+          "airportCode": "SMP",
+          "city": "Arawa",
+          "country": "Papua new Guinea",
+          "airportName": "Stockholm Landing Strip"
+        },
+        {
+          "airportCode": "YSA",
+          "city": "Bow Island",
+          "country": "Canada",
+          "airportName": "Sable Island Landing Strip"
+        },
+        {
+          "airportCode": "PPD",
+          "city": "Humacao",
+          "country": "United States",
+          "airportName": "Palmas Del Mar Air Strip"
+        },
+        {
+          "airportCode": "IPC",
+          "city": "Isla de Pascua",
+          "country": "Chile",
+          "airportName": "Mataveri Airport"
+        }
+      ],
+      "http": 200,
+      "details": null
+    }
+  ]
+}

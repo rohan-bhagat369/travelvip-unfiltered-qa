@@ -1,0 +1,459 @@
+{
+  "ranAt": "2026-08-12T23:50:45.604Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "booked": {
+    "br": "BR1786578616630501",
+    "status": "Confirmed",
+    "fareType": "CORPORATE",
+    "journeyType": "ROUND_TRIP",
+    "adults": 2,
+    "route": "BOM-BLR",
+    "dates": {
+      "onward": "2026-09-21",
+      "return": "2026-09-28"
+    },
+    "totalAmount": 12964,
+    "onwardPnr": "F7EYMK",
+    "returnPnr": "V7DEXQ",
+    "online": {
+      "onward": true,
+      "return": true
+    }
+  },
+  "cancelFlow": [
+    {
+      "pnr": "F7EYMK",
+      "penalty": {
+        "http": 200,
+        "body": {
+          "status": 0,
+          "statusMessage": "Success",
+          "data": {
+            "bookingReference": "BR1786578616630501",
+            "pnr": "F7EYMK",
+            "cancellationRequest": {
+              "status": "Penalty Fetched",
+              "estimatedCancellationCharge": 1700,
+              "estimatedRefund": 11264,
+              "totalAmount": 12964,
+              "totalPenalty": 1700,
+              "penaltyBasis": "PROVIDER",
+              "amount": 12964,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 1000,
+              "cancellationFee": 700,
+              "perPax": [
+                {
+                  "paxId": "PAX1",
+                  "amount": 6482,
+                  "convenienceFee": 0,
+                  "ssr": 0,
+                  "flexiCancelFee": 0,
+                  "penalty": 500,
+                  "cancellationFee": 350,
+                  "totalPenalty": 850,
+                  "refund": 5632,
+                  "ssrPerPassenger": false
+                },
+                {
+                  "paxId": "PAX2",
+                  "amount": 6482,
+                  "convenienceFee": 0,
+                  "ssr": 0,
+                  "flexiCancelFee": 0,
+                  "penalty": 500,
+                  "cancellationFee": 350,
+                  "totalPenalty": 850,
+                  "refund": 5632,
+                  "ssrPerPassenger": false
+                }
+              ],
+              "createdAt": "2026-08-12T23:50:34Z"
+            }
+          },
+          "_meta": {
+            "correlation_id": "07d8b41e-bfd2-4991-a946-afc47ce864e4"
+          }
+        },
+        "cr": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 1700,
+          "estimatedRefund": 11264,
+          "totalAmount": 12964,
+          "totalPenalty": 1700,
+          "penaltyBasis": "PROVIDER",
+          "amount": 12964,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 1000,
+          "cancellationFee": 700,
+          "perPax": [
+            {
+              "paxId": "PAX1",
+              "amount": 6482,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 500,
+              "cancellationFee": 350,
+              "totalPenalty": 850,
+              "refund": 5632,
+              "ssrPerPassenger": false
+            },
+            {
+              "paxId": "PAX2",
+              "amount": 6482,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 500,
+              "cancellationFee": 350,
+              "totalPenalty": 850,
+              "refund": 5632,
+              "ssrPerPassenger": false
+            }
+          ],
+          "createdAt": "2026-08-12T23:50:34Z"
+        }
+      },
+      "cancel": {
+        "http": 200,
+        "body": {
+          "status": 0,
+          "statusMessage": "Success",
+          "data": {
+            "bookingReference": "BR1786578616630501",
+            "pnr": "F7EYMK",
+            "cancellationRequest": {
+              "status": "Cancellation Failed",
+              "estimatedCancellationCharge": 700,
+              "estimatedRefund": 12264,
+              "totalAmount": 12964,
+              "totalPenalty": 700,
+              "penaltyBasis": "PROVIDER",
+              "amount": 12964,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 0,
+              "cancellationFee": 700,
+              "perPax": [
+                {
+                  "paxId": "PAX1",
+                  "amount": 6482,
+                  "convenienceFee": 0,
+                  "ssr": 0,
+                  "flexiCancelFee": 0,
+                  "penalty": 0,
+                  "cancellationFee": 350,
+                  "totalPenalty": 350,
+                  "refund": 6132,
+                  "ssrPerPassenger": false
+                },
+                {
+                  "paxId": "PAX2",
+                  "amount": 6482,
+                  "convenienceFee": 0,
+                  "ssr": 0,
+                  "flexiCancelFee": 0,
+                  "penalty": 0,
+                  "cancellationFee": 350,
+                  "totalPenalty": 350,
+                  "refund": 6132,
+                  "ssrPerPassenger": false
+                }
+              ],
+              "message": "Unable to get Penalty details. Kindly contact customer care.",
+              "createdAt": "2026-08-12T23:50:35Z"
+            }
+          },
+          "_meta": {
+            "correlation_id": "07d8b41e-bfd2-4991-a946-afc47ce864e4"
+          }
+        },
+        "cr": {
+          "status": "Cancellation Failed",
+          "estimatedCancellationCharge": 700,
+          "estimatedRefund": 12264,
+          "totalAmount": 12964,
+          "totalPenalty": 700,
+          "penaltyBasis": "PROVIDER",
+          "amount": 12964,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 0,
+          "cancellationFee": 700,
+          "perPax": [
+            {
+              "paxId": "PAX1",
+              "amount": 6482,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 0,
+              "cancellationFee": 350,
+              "totalPenalty": 350,
+              "refund": 6132,
+              "ssrPerPassenger": false
+            },
+            {
+              "paxId": "PAX2",
+              "amount": 6482,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 0,
+              "cancellationFee": 350,
+              "totalPenalty": 350,
+              "refund": 6132,
+              "ssrPerPassenger": false
+            }
+          ],
+          "message": "Unable to get Penalty details. Kindly contact customer care.",
+          "createdAt": "2026-08-12T23:50:35Z"
+        }
+      }
+    },
+    {
+      "pnr": "V7DEXQ",
+      "penalty": {
+        "http": 200,
+        "body": {
+          "status": 0,
+          "statusMessage": "Success",
+          "data": {
+            "bookingReference": "BR1786578616630501",
+            "pnr": "V7DEXQ",
+            "cancellationRequest": {
+              "status": "Penalty Fetched",
+              "estimatedCancellationCharge": 1700,
+              "estimatedRefund": 11264,
+              "totalAmount": 12964,
+              "totalPenalty": 1700,
+              "penaltyBasis": "PROVIDER",
+              "amount": 12964,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 1000,
+              "cancellationFee": 700,
+              "perPax": [
+                {
+                  "paxId": "PAX1",
+                  "amount": 6482,
+                  "convenienceFee": 0,
+                  "ssr": 0,
+                  "flexiCancelFee": 0,
+                  "penalty": 500,
+                  "cancellationFee": 350,
+                  "totalPenalty": 850,
+                  "refund": 5632,
+                  "ssrPerPassenger": false
+                },
+                {
+                  "paxId": "PAX2",
+                  "amount": 6482,
+                  "convenienceFee": 0,
+                  "ssr": 0,
+                  "flexiCancelFee": 0,
+                  "penalty": 500,
+                  "cancellationFee": 350,
+                  "totalPenalty": 850,
+                  "refund": 5632,
+                  "ssrPerPassenger": false
+                }
+              ],
+              "createdAt": "2026-08-12T23:50:38Z"
+            }
+          },
+          "_meta": {
+            "correlation_id": "07d8b41e-bfd2-4991-a946-afc47ce864e4"
+          }
+        },
+        "cr": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 1700,
+          "estimatedRefund": 11264,
+          "totalAmount": 12964,
+          "totalPenalty": 1700,
+          "penaltyBasis": "PROVIDER",
+          "amount": 12964,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 1000,
+          "cancellationFee": 700,
+          "perPax": [
+            {
+              "paxId": "PAX1",
+              "amount": 6482,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 500,
+              "cancellationFee": 350,
+              "totalPenalty": 850,
+              "refund": 5632,
+              "ssrPerPassenger": false
+            },
+            {
+              "paxId": "PAX2",
+              "amount": 6482,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 500,
+              "cancellationFee": 350,
+              "totalPenalty": 850,
+              "refund": 5632,
+              "ssrPerPassenger": false
+            }
+          ],
+          "createdAt": "2026-08-12T23:50:38Z"
+        }
+      },
+      "cancel": {
+        "http": 200,
+        "body": {
+          "status": 0,
+          "statusMessage": "Success",
+          "data": {
+            "bookingReference": "BR1786578616630501",
+            "pnr": "V7DEXQ",
+            "cancellationRequest": {
+              "status": "Cancellation Failed",
+              "estimatedCancellationCharge": 700,
+              "estimatedRefund": 12264,
+              "totalAmount": 12964,
+              "totalPenalty": 700,
+              "penaltyBasis": "PROVIDER",
+              "amount": 12964,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 0,
+              "cancellationFee": 700,
+              "perPax": [
+                {
+                  "paxId": "PAX1",
+                  "amount": 6482,
+                  "convenienceFee": 0,
+                  "ssr": 0,
+                  "flexiCancelFee": 0,
+                  "penalty": 0,
+                  "cancellationFee": 350,
+                  "totalPenalty": 350,
+                  "refund": 6132,
+                  "ssrPerPassenger": false
+                },
+                {
+                  "paxId": "PAX2",
+                  "amount": 6482,
+                  "convenienceFee": 0,
+                  "ssr": 0,
+                  "flexiCancelFee": 0,
+                  "penalty": 0,
+                  "cancellationFee": 350,
+                  "totalPenalty": 350,
+                  "refund": 6132,
+                  "ssrPerPassenger": false
+                }
+              ],
+              "message": "Unable to get Penalty details. Kindly contact customer care.",
+              "createdAt": "2026-08-12T23:50:39Z"
+            }
+          },
+          "_meta": {
+            "correlation_id": "07d8b41e-bfd2-4991-a946-afc47ce864e4"
+          }
+        },
+        "cr": {
+          "status": "Cancellation Failed",
+          "estimatedCancellationCharge": 700,
+          "estimatedRefund": 12264,
+          "totalAmount": 12964,
+          "totalPenalty": 700,
+          "penaltyBasis": "PROVIDER",
+          "amount": 12964,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 0,
+          "cancellationFee": 700,
+          "perPax": [
+            {
+              "paxId": "PAX1",
+              "amount": 6482,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 0,
+              "cancellationFee": 350,
+              "totalPenalty": 350,
+              "refund": 6132,
+              "ssrPerPassenger": false
+            },
+            {
+              "paxId": "PAX2",
+              "amount": 6482,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 0,
+              "cancellationFee": 350,
+              "totalPenalty": 350,
+              "refund": 6132,
+              "ssrPerPassenger": false
+            }
+          ],
+          "message": "Unable to get Penalty details. Kindly contact customer care.",
+          "createdAt": "2026-08-12T23:50:39Z"
+        }
+      }
+    }
+  ],
+  "after": {
+    "status": "Confirmed",
+    "detailStatus": "Confirmed"
+  },
+  "table": [
+    {
+      "rule": "1 Book CORPORATE RT 2ADT Confirmed",
+      "how": "BOM-BLR BR1786578616630501",
+      "status": "PASS"
+    },
+    {
+      "rule": "2a PENALTY pnr F7EYMK",
+      "how": "action=PENALTY → Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "2b CANCEL pnr F7EYMK",
+      "how": "action=CANCEL → Cancellation Failed",
+      "status": "BUG"
+    },
+    {
+      "rule": "3a PENALTY pnr V7DEXQ",
+      "how": "action=PENALTY → Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "3b CANCEL pnr V7DEXQ",
+      "how": "action=CANCEL → Cancellation Failed",
+      "status": "BUG"
+    },
+    {
+      "rule": "4 Booking status after cancel",
+      "how": "Confirmed",
+      "status": "BUG"
+    }
+  ],
+  "score": {
+    "PASS": 3,
+    "BUG": 3
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "ranAt": "2026-08-12T20:39:37.715Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "P0 per-passenger cancel charges",
+  "fixtures": {
+    "b1": {
+      "br": "BR1786567118651512",
+      "status": "Confirmed",
+      "pnr": "GEGH9X",
+      "onlineCancellation": true,
+      "adults": 1,
+      "route": "DEL-BOM",
+      "totalAmount": 4748,
+      "passengers": [
+        "PAX1"
+      ]
+    },
+    "b2subset": {
+      "br": "BR1786567137397135",
+      "status": "Confirmed",
+      "pnr": "DZH9YQ",
+      "onlineCancellation": true,
+      "adults": 2,
+      "route": "DEL-BOM",
+      "totalAmount": 7952,
+      "passengers": [
+        "PAX1",
+        "PAX2"
+      ]
+    },
+    "b2full": {
+      "br": "BR1786567148753429",
+      "status": "Confirmed",
+      "pnr": "V1SPWC",
+      "onlineCancellation": true,
+      "adults": 2,
+      "route": "DEL-BOM",
+      "totalAmount": 4788,
+      "passengers": [
+        "PAX1",
+        "PAX2"
+      ]
+    }
+  },
+  "results": [
+    {
+      "id": "S1",
+      "fixture": {
+        "br": "BR1786567118651512",
+        "status": "Confirmed",
+        "pnr": "GEGH9X",
+        "onlineCancellation": true,
+        "adults": 1,
+        "route": "DEL-BOM",
+        "totalAmount": 4748,
+        "passengers": [
+          "PAX1"
+        ]
+      },
+      "penalty": {
+        "http": 200,
+        "status": "Penalty Fetched",
+        "totalAmount": 4748,
+        "totalPenalty": 350,
+        "estimatedCancellationCharge": 350,
+        "estimatedRefund": 4398,
+        "perPax": {
+          "paxCount": 1,
+          "chargedPax": 1,
+          "amount": 4748,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 0,
+          "cancellationFee": 350,
+          "refund": 4398,
+          "penaltyBasis": "PROVIDER"
+        },
+        "paxScope": null,
+        "message": null
+      },
+      "cancel": {
+        "http": 200,
+        "status": "Cancelled",
+        "totalAmount": 4748,
+        "totalPenalty": 350,
+        "estimatedCancellationCharge": 350,
+        "estimatedRefund": 4398,
+        "perPax": {
+          "paxCount": 1,
+          "chargedPax": 1,
+          "amount": 4748,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 0,
+          "cancellationFee": 350,
+          "refund": 4398,
+          "penaltyBasis": "PROVIDER"
+        },
+        "paxScope": null,
+        "message": null
+      },
+      "after": "Cancelled"
+    },
+    {
+      "id": "S2",
+      "fixture": {
+        "br": "BR1786567137397135",
+        "status": "Confirmed",
+        "pnr": "DZH9YQ",
+        "onlineCancellation": true,
+        "adults": 2,
+        "route": "DEL-BOM",
+        "totalAmount": 7952,
+        "passengers": [
+          "PAX1",
+          "PAX2"
+        ]
+      },
+      "penalty": {
+        "http": 200,
+        "status": "Penalty Fetched",
+        "totalAmount": null,
+        "totalPenalty": null,
+        "estimatedCancellationCharge": null,
+        "estimatedRefund": null,
+        "perPax": null,
+        "paxScope": {
+          "scope": "PARTIAL_PAX",
+          "cancellationPaxList": [
+            "PAX1"
+          ],
+          "totalPaxOnPnr": 2,
+          "cancelledPaxCount": 1,
+          "prorated": true,
+          "penaltyQuotable": true,
+          "penaltyBasis": "NONE"
+        },
+        "message": "No estimated cancellation and refund amount available"
+      },
+      "cancel": {
+        "http": 200,
+        "status": "Cancellation Requested",
+        "totalAmount": null,
+        "totalPenalty": null,
+        "estimatedCancellationCharge": null,
+        "estimatedRefund": null,
+        "perPax": null,
+        "paxScope": {
+          "scope": "PARTIAL_PAX",
+          "cancellationPaxList": [
+            "PAX1"
+          ],
+          "totalPaxOnPnr": 2,
+          "cancelledPaxCount": 1,
+          "prorated": true,
+          "penaltyQuotable": true,
+          "penaltyBasis": "NONE"
+        },
+        "message": "No estimated cancellation and refund amount available"
+      }
+    },
+    {
+      "id": "S3",
+      "fixture": {
+        "br": "BR1786567148753429",
+        "status": "Confirmed",
+        "pnr": "V1SPWC",
+        "onlineCancellation": true,
+        "adults": 2,
+        "route": "DEL-BOM",
+        "totalAmount": 4788,
+        "passengers": [
+          "PAX1",
+          "PAX2"
+        ]
+      },
+      "penalty": {
+        "http": 200,
+        "status": "Penalty Check Failed",
+        "totalAmount": null,
+        "totalPenalty": null,
+        "estimatedCancellationCharge": null,
+        "estimatedRefund": null,
+        "perPax": null,
+        "paxScope": null,
+        "message": "Unable to get Penalty details. Kindly contact customer care."
+      },
+      "cancel": {
+        "http": 200,
+        "status": "Cancellation Failed",
+        "totalAmount": 4788,
+        "totalPenalty": 700,
+        "estimatedCancellationCharge": 700,
+        "estimatedRefund": 4088,
+        "perPax": {
+          "paxCount": 2,
+          "chargedPax": 2,
+          "amount": 2394,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 0,
+          "cancellationFee": 350,
+          "refund": 2044,
+          "penaltyBasis": "PROVIDER"
+        },
+        "paxScope": null,
+        "message": "Your requested PNR is waiting for cancellation. Kindly contact customer care."
+      }
+    }
+  ],
+  "table": [
+    {
+      "rule": "S1 PENALTY: refund = totalAmount − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=4398 total=4748 charge=350",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 PENALTY: perPax block present",
+      "expected": "cancellationRequest.perPax object with penalty/cancellationFee/refund",
+      "actual": "{\"paxCount\":1,\"chargedPax\":1,\"amount\":4748,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":0,\"cancellationFee\":350,\"refund\":4398,\"penaltyBasis\":\"PROVIDER\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 PENALTY: perPax.refund × chargedPax ≈ estimatedRefund",
+      "expected": "≈ 4398",
+      "actual": "4398 × 1 = 4398",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 PENALTY: perPax.chargedPax / paxCount",
+      "expected": "chargedPax=1",
+      "actual": "chargedPax=1 paxCount=1 basis=PROVIDER",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 PENALTY: paxScope absent (whole PNR)",
+      "expected": "no paxScope block",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 PENALTY: cancel status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled (not Failed / Not Available)",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 CANCEL: refund = totalAmount − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=4398 total=4748 charge=350",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 CANCEL: perPax block present",
+      "expected": "cancellationRequest.perPax object with penalty/cancellationFee/refund",
+      "actual": "{\"paxCount\":1,\"chargedPax\":1,\"amount\":4748,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":0,\"cancellationFee\":350,\"refund\":4398,\"penaltyBasis\":\"PROVIDER\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 CANCEL: perPax.refund × chargedPax ≈ estimatedRefund",
+      "expected": "≈ 4398",
+      "actual": "4398 × 1 = 4398",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 CANCEL: perPax.chargedPax / paxCount",
+      "expected": "chargedPax=1",
+      "actual": "chargedPax=1 paxCount=1 basis=PROVIDER",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 CANCEL: paxScope absent (whole PNR)",
+      "expected": "no paxScope block",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 CANCEL: cancel status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled (not Failed / Not Available)",
+      "actual": "Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "S1 final booking status",
+      "expected": "Cancelled or Cancellation Requested",
+      "actual": "Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "S2/R4 subset PENALTY quotable (was refused before)",
+      "expected": "Penalty Fetched with amounts + penaltyQuotable=true",
+      "actual": "Penalty Fetched {\"scope\":\"PARTIAL_PAX\",\"cancellationPaxList\":[\"PAX1\"],\"totalPaxOnPnr\":2,\"cancelledPaxCount\":1,\"prorated\":true,\"penaltyQuotable\":true,\"penaltyBasis\":\"NONE\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S2 PENALTY subset: refund = totalAmount − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=null total=null charge=null",
+      "status": "NOT_READY"
+    },
+    {
+      "rule": "S2 PENALTY subset: perPax block present",
+      "expected": "cancellationRequest.perPax object with penalty/cancellationFee/refund",
+      "actual": "MISSING",
+      "status": "BUG"
+    },
+    {
+      "rule": "S2 PENALTY subset: paxScope PARTIAL_PAX",
+      "expected": "scope=PARTIAL_PAX cancelledPaxCount=1 totalPaxOnPnr=2 penaltyQuotable=true",
+      "actual": "{\"scope\":\"PARTIAL_PAX\",\"cancellationPaxList\":[\"PAX1\"],\"totalPaxOnPnr\":2,\"cancelledPaxCount\":1,\"prorated\":true,\"penaltyQuotable\":true,\"penaltyBasis\":\"NONE\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S2 PENALTY subset: cancel status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled (not Failed / Not Available)",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "S2 CANCEL subset: refund = totalAmount − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=null total=null charge=null",
+      "status": "NOT_READY"
+    },
+    {
+      "rule": "S2 CANCEL subset: perPax block present",
+      "expected": "cancellationRequest.perPax object with penalty/cancellationFee/refund",
+      "actual": "MISSING",
+      "status": "BUG"
+    },
+    {
+      "rule": "S2 CANCEL subset: paxScope PARTIAL_PAX",
+      "expected": "scope=PARTIAL_PAX cancelledPaxCount=1 totalPaxOnPnr=2 penaltyQuotable=true",
+      "actual": "{\"scope\":\"PARTIAL_PAX\",\"cancellationPaxList\":[\"PAX1\"],\"totalPaxOnPnr\":2,\"cancelledPaxCount\":1,\"prorated\":true,\"penaltyQuotable\":true,\"penaltyBasis\":\"NONE\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S2 CANCEL subset: cancel status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled (not Failed / Not Available)",
+      "actual": "Cancellation Requested",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 PENALTY full: refund = totalAmount − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=null total=null charge=null",
+      "status": "NOT_READY"
+    },
+    {
+      "rule": "S3 PENALTY full: perPax block present",
+      "expected": "cancellationRequest.perPax object with penalty/cancellationFee/refund",
+      "actual": "MISSING",
+      "status": "BUG"
+    },
+    {
+      "rule": "S3 PENALTY full: paxScope absent (whole PNR)",
+      "expected": "no paxScope block",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 PENALTY full: cancel status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled (not Failed / Not Available)",
+      "actual": "Penalty Check Failed",
+      "status": "BUG"
+    },
+    {
+      "rule": "S3 CANCEL full: refund = totalAmount − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=4088 total=4788 charge=700",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: perPax block present",
+      "expected": "cancellationRequest.perPax object with penalty/cancellationFee/refund",
+      "actual": "{\"paxCount\":2,\"chargedPax\":2,\"amount\":2394,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":0,\"cancellationFee\":350,\"refund\":2044,\"penaltyBasis\":\"PROVIDER\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: perPax.refund × chargedPax ≈ estimatedRefund",
+      "expected": "≈ 4088",
+      "actual": "2044 × 2 = 4088",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: perPax.chargedPax / paxCount",
+      "expected": "chargedPax=2",
+      "actual": "chargedPax=2 paxCount=2 basis=PROVIDER",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: paxScope absent (whole PNR)",
+      "expected": "no paxScope block",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "S3 CANCEL full: cancel status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled (not Failed / Not Available)",
+      "actual": "Cancellation Failed",
+      "status": "BUG"
+    }
+  ],
+  "score": {
+    "PASS": 24,
+    "BUG": 5,
+    "NOT_TESTED": 3
+  }
+}

@@ -1,0 +1,19 @@
+---
+description: Byufuel/Centvis UCO QA E2E — byufuel/AGENTS.md has Azure Dev/UAT (same) creds
+alwaysApply: false
+globs:
+  - byufuel/**
+  - byufuel/AGENTS.md
+  - byufuel/reports/**
+  - byufuel/scripts/*
+---
+
+# Byufuel QA agent
+
+1. Read `byufuel/AGENTS.md` — **Azure Dev and UAT are the same**; URLs + working emails/passwords are there.
+2. Read `byufuel/reports/byufuel-drive/BYUFUEL-QA-E2E-HANDOFF.md` for full flow and blockers (Sep 22–23 QA window).
+3. Default web: `https://u-byufuel.azurewebsites.net` (d-byufuel is the same stack). **No tunnels.**
+4. Apps: Driver/TSM `com.byufuel.uat` · Supplier `com.byufuel.mobile` · WH Worker = web only.
+5. Driver deliveries → warehouse **Check in Oil** only (never Collect Oil).
+6. Tracker **ENG-289** / hub **QA-19** + Validated TCs sheet links are in `byufuel/AGENTS.md`.
+7. Log PASS / FAIL / PARTIAL / BLOCKED / NOT TESTED with SCH/IT/BR evidence.

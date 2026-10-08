@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Flight B2B regression</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; background: #f5f7fb; color: #1a2b4a; }
+  h1,h2,h3 { color: #1a2b4a; }
+  .cards { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px; }
+  .card { background: #fff; padding: 14px 18px; border-radius: 8px; box-shadow: 0 1px 4px #0001; min-width: 110px; }
+  .card.bug { border-top: 4px solid #ef4444; }
+  .card.pass { border-top: 4px solid #22c55e; }
+  .card.nt { border-top: 4px solid #94a3b8; }
+  table { border-collapse: collapse; width: 100%; background: #fff; margin: 8px 0 24px; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; font-size: 13px; vertical-align: top; }
+  th { background: #1a2b4a; color: #fff; }
+  tr.pass { background: #f0fdf4; }
+  tr.bug { background: #fef2f2; }
+  tr.not-tested { background: #f8fafc; }
+  .bug { background: #fff; padding: 16px; border-left: 4px solid #ef4444; margin: 12px 0; border-radius: 6px; }
+  pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 6px; overflow: auto; font-size: 12px; }
+  small { color: #64748b; font-weight: 400; }
+</style></head><body>
+  <h1>Flight B2B regression</h1>
+  <p>https://canary-api.travelvip.ai · 2026-09-07T13:58:19.961Z · tags AUTH, VALIDATE, SMOKE, CORR</p>
+  <div class="cards">
+    <div class="card pass"><strong>PASS</strong><br>113</div>
+    <div class="card bug"><strong>BUG</strong><br>9</div>
+    <div class="card nt"><strong>NOT TESTED</strong><br>0</div>
+    <div class="card"><strong>Total</strong><br>122</div>
+  </div>
+  <p>Correlation <code>b3fbc832-da66-4a24-9510-a43300176d9e</code>
+     · BR <code>—</code>
+     · status —</p>
+  <h2>AUTH <small>29 PASS / 0 BUG / 0 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="pass">
+        <td>1</td>
+        <td>POST /auth/partner/token — valid partner_id + partner_secret returns access_token and refresh_token</td>
+        <td>POST /auth/partner/token with partner_id/partner_secret from env (this is the baseline for mutations below).</td>
+        <td>HTTP 200 with access_token + refresh_token</td>
+        <td>HTTP 200 tokens present</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td>POST /auth/partner/token — omit partner_id</td>
+        <td>POST /auth/partner/token body { partner_secret } only.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>3</td>
+        <td>POST /auth/partner/token — omit partner_secret</td>
+        <td>POST /auth/partner/token body { partner_id } only.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>4</td>
+        <td>POST /auth/partner/token — empty JSON body</td>
+        <td>POST /auth/partner/token body {}.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>5</td>
+        <td>POST /auth/partner/token — partner_id with trailing comma</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>6</td>
+        <td>POST /auth/partner/token — partner_secret with trailing comma</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>7</td>
+        <td>POST /auth/partner/token — partner_id with punctuation !@#$</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>8</td>
+        <td>POST /auth/partner/token — partner_id with HTML/script chars</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>9</td>
+        <td>POST /auth/partner/token — partner_id with quote/semicolon</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>10</td>
+        <td>POST /auth/partner/refresh — valid refresh_token returns a new access_token</td>
+        <td>POST /auth/partner/refresh body { refresh_token } from the access-token response.</td>
+        <td>HTTP 200 with access_token (never 500)</td>
+        <td>HTTP 200 tokens present</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>11</td>
+        <td>POST /auth/partner/refresh — empty refresh_token</td>
+        <td>POST /auth/partner/refresh body { refresh_token: "" }.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>12</td>
+        <td>POST /auth/partner/refresh — refresh_token with trailing comma</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>13</td>
+        <td>POST /auth/partner/refresh — refresh_token punctuation !@#$</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>14</td>
+        <td>POST /auth/partner/refresh — refresh_token HTML/script chars</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>15</td>
+        <td>POST /auth/partner/refresh — refresh_token is only a comma</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>16</td>
+        <td>POST /v1/auth/session — valid X-Partner-Key + tierId returns auth_token</td>
+        <td>POST /v1/auth/session with X-Partner-Key = partner access_token and body { tierId } from env.</td>
+        <td>HTTP 200 with auth_token (never 500)</td>
+        <td>HTTP 200 tokens present</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>17</td>
+        <td>POST /v1/auth/session — omit X-Partner-Key</td>
+        <td>POST /v1/auth/session with no X-Partner-Key header, body { tierId }.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=MISSING_HEADER — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>18</td>
+        <td>POST /v1/auth/session — invalid X-Partner-Key</td>
+        <td>POST /v1/auth/session X-Partner-Key=gmr_at_invalid_access_token, body { tierId }.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>19</td>
+        <td>POST /v1/auth/session — X-Partner-Key with trailing comma</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on X-Partner-Key.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>20</td>
+        <td>POST /v1/auth/session — X-Partner-Key with punctuation</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on X-Partner-Key.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>21</td>
+        <td>POST /v1/auth/session — X-Partner-Key with HTML/script chars</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on X-Partner-Key.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>22</td>
+        <td>POST /v1/auth/session — tierId with trailing comma</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on tierId.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>23</td>
+        <td>POST /v1/auth/session — tierId with punctuation</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on tierId.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>24</td>
+        <td>POST /v1/auth/session — tierId with HTML/script chars</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on tierId.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>25</td>
+        <td>POST /v1/flights/search — omit Authorization Bearer</td>
+        <td>Same valid search body, no Bearer header, keep X-Partner-Key.</td>
+        <td>HTTP 4xx error.code (never 500)</td>
+        <td>HTTP 403 code=INVALID_PARTNER_KEY {"error":{"code":"INVALID_PARTNER_KEY","message":"Invalid or missing partner key","details":"The key query parameter is missing or does not </td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>26</td>
+        <td>POST /v1/flights/search — garbage Bearer token</td>
+        <td>Authorization: Bearer gmr_at_invalid&lt;&gt; on OW search.</td>
+        <td>HTTP 4xx (never 500)</td>
+        <td>HTTP 403 code=INVALID_PARTNER_KEY</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>27</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — omit X-Partner-Key</td>
+        <td>Bearer present, omit X-Partner-Key, stub issue-ticket body.</td>
+        <td>HTTP 4xx (never 500)</td>
+        <td>HTTP 400 code=MISSING_HEADER {"error":{"code":"MISSING_HEADER","message":"Missing X-Partner-Key header","details":"Request must include an X-Partner-Key header","timesta</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>28</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — X-Partner-Key with comma</td>
+        <td>X-Partner-Key=gmr_at_invalid, on stub issue-ticket.</td>
+        <td>HTTP 4xx (never 500)</td>
+        <td>HTTP 401 code=TOKEN_REVOKED</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>29</td>
+        <td>POST /api/v2/flight/cancel — omit X-Partner-Key</td>
+        <td>Bearer present, omit X-Partner-Key, dummy bookingId.</td>
+        <td>HTTP 4xx (never 500)</td>
+        <td>HTTP 400 code=MISSING_HEADER</td>
+        <td><strong>PASS</strong></td>
+      </tr></tbody>
+      </table><h2>VALIDATE <small>78 PASS / 8 BUG / 0 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="pass">
+        <td>1</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — valid priced issue-ticket body is accepted (not VALIDATION_ERROR)</td>
+        <td>Priced OW BOM→DEL (searchId=srch_58b0d5ee471e4a678a30626594c36b58, priceId=price_0f95bdc067f54bbf943f7e6bc9e69053), then POST /api/v2/flights/booking/issue-ticket with a complete ticket body (passengers, contact, priceId, bookingReference).</td>
+        <td>Must not return VALIDATION_ERROR (HTTP 200 book or a later business error is OK)</td>
+        <td>Not validation-blocked (HTTP 200 code=null)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — type required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (type required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /type/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>3</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — type non-empty</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (type non-empty), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /type/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>4</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — currency required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (currency required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /currency/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>5</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — currency non-empty</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (currency non-empty), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /currency/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>6</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — language required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (language required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /language/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>7</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — timezone required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (timezone required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /timezone/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>8</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — bookingReference required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (bookingReference required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /bookingReference/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>9</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — searchIds required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (searchIds required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /searchIds/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>10</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — searchIds non-empty</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (searchIds non-empty), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /searchIds/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>11</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — journeyType required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (journeyType required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /journeyType/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>12</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — journeyType enum</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (journeyType enum), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /journeyType|ONE_WAY|ROUND_TRIP|MULTI_CITY/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>13</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — data required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (data required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /data/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>14</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — priceId required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (priceId required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /priceId/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>15</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — priceId non-empty</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (priceId non-empty), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /priceId/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>16</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — passportType required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (passportType required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passportType/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>17</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — passportType enum</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (passportType enum), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passportType|NONE|MINI|FULL/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>18</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — includeGst required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (includeGst required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /includeGst/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>19</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — contact.email required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (contact.email required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /email/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>20</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — contact.email format</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (contact.email format), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /email/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>21</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — contact.mobile required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (contact.mobile required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /mobile/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>22</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — contact.mobile too short</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (contact.mobile too short), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /mobile|7 to 15|digits/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>23</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — contact.mobile too long</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (contact.mobile too long), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /mobile|7 to 15|digits/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>24</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — contact.mobile non-digits</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (contact.mobile non-digits), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /mobile|digit/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>25</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — contact.countryCode required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (contact.countryCode required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /countryCode/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>26</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — gstDetails required when includeGst true</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (gstDetails required when includeGst true), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /gst/i</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>27</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — gstNumber required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (gstNumber required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /gstNumber/i</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>28</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — gstEmailID format</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (gstEmailID format), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /gstEmail|email/i</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>29</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — passengers required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (passengers required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passenger/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>30</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — passengers non-empty</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (passengers non-empty), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passenger/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>31</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — paxId required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (paxId required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /paxId/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>32</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — type required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (type required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /type|adult|child|infant/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>33</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — type enum</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (type enum), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /adult|child|infant/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>34</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — isLead required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (isLead required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /isLead/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>35</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — title required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (title required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /title/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>36</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — Mrs + Male mismatch</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (Mrs + Male mismatch), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /Mrs|Female|gender|title/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>37</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — Mr + Female mismatch</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (Mr + Female mismatch), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /Mr|Male|gender|title/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>38</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — firstName too short</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (firstName too short), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /firstName|2/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>39</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — firstName non-letters</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (firstName non-letters), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /firstName|letter/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>40</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — lastName too short</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (lastName too short), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /lastName|2/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>41</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — gender required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (gender required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /gender/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>42</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — gender enum</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (gender enum), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /Male|Female|gender/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>43</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — dob required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (dob required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /dob/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>44</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — dob future</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (dob future), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /dob|future/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>45</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — dob format</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (dob format), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /dob|YYYY|format/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>46</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — nationality required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (nationality required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /nationality/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>47</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — adult age too young (child dob)</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (adult age too young (child dob)), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /age|adult|12|dob|child/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>48</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — adult 11 years on depart (1 day under 12)</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (adult 11 years on depart (1 day under 12)), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /adult|12|dob|age/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>49</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — adult with infant dob (~6 months)</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (adult with infant dob (~6 months)), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /adult|12|dob|age|infant/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>50</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — child dob makes 12+ on depart (adult age)</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (child dob makes 12+ on depart (adult age)), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /child|12|adult|dob|age/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>51</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — child dob makes under 2 on depart (infant age)</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (child dob makes under 2 on depart (infant age)), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /child|2|infant|dob|age/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>52</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — infant dob makes 2+ on depart (child age)</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (infant dob makes 2+ on depart (child age)), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /infant|2|child|dob|age/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>53</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — infant dob makes 12+ on depart (adult age)</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (infant dob makes 12+ on depart (adult age)), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /infant|2|adult|dob|age/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>54</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — cityCode required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (cityCode required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /cityCode/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>55</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — cityName required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (cityName required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /cityName/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>56</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — passport required for MINI</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (passport required for MINI), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passport|number|expiry/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>57</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — passport number length</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (passport number length), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passport|number|6 to 12|alphanumeric/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>58</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — passport expiry too soon</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (passport expiry too soon), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passport|expiry|6 month/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>59</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — FULL issuedDate required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (FULL issuedDate required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /issuedDate|passport/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>60</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — FULL issuedCountryCode required</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (FULL issuedCountryCode required), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /issuedCountry|passport/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>61</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — exactly one isLead</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (exactly one isLead), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /isLead|lead|one/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>62</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — no isLead</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (no isLead), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /isLead|lead/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>63</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — duplicate paxId</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (duplicate paxId), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /paxId|unique/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>64</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — duplicate first+last name</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (duplicate first+last name), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /firstName|lastName|same|unique|identical|duplicate/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>65</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — firstName == lastName</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (firstName == lastName), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /firstName|lastName|identical|same/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>66</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — child as only lead</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (child as only lead), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /isLead|adult|lead/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>67</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — more infants than adults</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (more infants than adults), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /infant|adult/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>68</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — wrong order child before adult</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (wrong order child before adult), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /order|adult|child|infant/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>69</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — child title Mr invalid</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (child title Mr invalid), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /title|child|Mstr|Miss/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>70</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — duplicate passport numbers</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (duplicate passport numbers), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passport|unique|same|duplicate/</td>
+        <td>rejected as expected HTTP 400 VALIDATION_ERROR</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>71</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — firstName with trailing comma</td>
+        <td>Clone priced issue-ticket; set passengers[0].profile.firstName="Rohan,"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>72</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — lastName with trailing comma</td>
+        <td>Clone priced issue-ticket; set passengers[0].profile.lastName="Bhagat,"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>73</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — firstName with punctuation !@#$</td>
+        <td>Clone priced issue-ticket; set firstName="Rohan!@#$"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>74</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — firstName with HTML/script chars</td>
+        <td>Clone priced issue-ticket; set firstName="Rohan&lt;script&gt;"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>75</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — currency with trailing comma (INR,)</td>
+        <td>Clone priced issue-ticket; set currency="INR,"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>Accepted payload that added extra special characters / comma</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>76</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — type with trailing comma (ticket,)</td>
+        <td>Clone priced issue-ticket; set type="ticket,"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>Accepted payload that added extra special characters / comma</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>77</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — journeyType with trailing comma</td>
+        <td>Clone priced issue-ticket; set journeyType="ONE_WAY,"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>78</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — contact.email with comma</td>
+        <td>Clone priced issue-ticket; set contact.email="rohan,bhagat@travelvip.ai"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>79</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — contact.mobile with comma</td>
+        <td>Clone priced issue-ticket; set contact.mobile="98765,43210"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>80</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — searchId with trailing comma</td>
+        <td>Clone priced issue-ticket; append comma to searchIds[0]; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>HTTP 500 Internal Server Error after special chars — expected 4xx error envelope</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>81</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — cityName with comma and punctuation</td>
+        <td>Clone priced issue-ticket; set city.cityName="Pune, &lt;&gt;!"; POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</td>
+        <td>Accepted payload that added extra special characters / comma</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>82</td>
+        <td>POST /v1/flights/booking/issue-ticket — omit type</td>
+        <td>Clone priced ticket body, omit type, POST /v1/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx VALIDATION_ERROR (never 500)</td>
+        <td>Accepted invalid v1 payload</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>83</td>
+        <td>POST /v1/flights/booking/issue-ticket — firstName with trailing comma</td>
+        <td>Clone priced ticket body, set firstName="Rohan,", POST /v1/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx (never 500)</td>
+        <td>Accepted v1 payload with comma in firstName</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>84</td>
+        <td>POST /v1/flights/booking/issue-ticket — searchId with trailing comma</td>
+        <td>Clone priced ticket body, append comma to searchIds[0], POST /v1/flights/booking/issue-ticket.</td>
+        <td>HTTP 4xx (never 500)</td>
+        <td>Accepted v1 payload with comma on searchId</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>85</td>
+        <td>POST /api/v2/flights/booking/issue-ticket — multiple validation errors aggregated</td>
+        <td>Clone that priced issue-ticket body, change only this field/rule (multiple validation errors aggregated), then POST /api/v2/flights/booking/issue-ticket.</td>
+        <td>HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: &gt;=2 details</td>
+        <td>details count=4</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>86</td>
+        <td>Search/details/pricing/SSR/seatmap validations spawn</td>
+        <td>scripts/probe-flight-search-hop-validations.js</td>
+        <td>JSON report with S/H/D/P/SSR/SM rows</td>
+        <td>exit=1 missing flight-regression-search-hop-validations.json</td>
+        <td><strong>BUG</strong></td>
+      </tr></tbody>
+      </table><h2>SMOKE <small>3 PASS / 1 BUG / 0 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="bug">
+        <td>1</td>
+        <td>Airports catalog with pid</td>
+        <td>GET /v1/flights/airports?airport=BOM</td>
+        <td>HTTP 200 list</td>
+        <td>HTTP 200 hits=0 code=null</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td>Airlines catalog</td>
+        <td>GET /v1/flights/airlines?airline=AI</td>
+        <td>HTTP 200 list</td>
+        <td>HTTP 200 hits=10</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>3</td>
+        <td>citySearch with pid</td>
+        <td>GET /v1/flights/citySearch?q=Pune</td>
+        <td>HTTP 200</td>
+        <td>HTTP 200 hits=2</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>4</td>
+        <td>OW search pid=vgm</td>
+        <td>POST /v1/flights/search DEL→BOM</td>
+        <td>HTTP 200 (inventory or in-progress search)</td>
+        <td>HTTP 200 options=10 progress=INPROGRESS code=null</td>
+        <td><strong>PASS</strong></td>
+      </tr></tbody>
+      </table><h2>E2E <small>1 PASS / 0 BUG / 0 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="pass">
+        <td>1</td>
+        <td>No Riya in any API response</td>
+        <td>scan every captured flight response body (fareRules, search, issue, status, cancel, …)</td>
+        <td>no "riya" in keys or string values</td>
+        <td>none</td>
+        <td><strong>PASS</strong></td>
+      </tr></tbody>
+      </table><h2>CORR <small>2 PASS / 0 BUG / 0 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="pass">
+        <td>1</td>
+        <td>Pin one UUID on flight hops</td>
+        <td>auth-search-no-bearer, auth-search-junk-bearer, auth-issue-no-partner-key, auth-issue-junk-partner-key, auth-cancel-no-partner-key, airports, airlines, citySearch, search-pid</td>
+        <td>request header sent (same UUID)</td>
+        <td>hops=9 sentPinned=9 corr=b3fbc832-da66-4a24-9510-a43300176d9e</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td>Response _meta.correlation_id</td>
+        <td>echo same UUID (or documented rewrite)</td>
+        <td>same UUID or documented gateway rewrite</td>
+        <td>echoed=9 missingEcho=0 rewrite=0</td>
+        <td><strong>PASS</strong></td>
+      </tr></tbody>
+      </table>
+  <h2>Bugs for Dev</h2>
+  
+      <section class="bug">
+        <h3>BUG 1 — VALIDATE.SC5 POST /api/v2/flights/booking/issue-ticket — currency with trailing comma (INR,)</h3>
+        <p><strong>How:</strong> Clone priced issue-ticket; set currency="INR,"; POST /api/v2/flights/booking/issue-ticket.</p>
+        <p><strong>Expected:</strong> HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</p>
+        <p><strong>Actual:</strong> Accepted payload that added extra special characters / comma</p>
+        <pre>{"bookingReference":"BR1788789458686152","status":"pending","message":"Booking is processing","_meta":{"correlation_id":"b3fbc832-da66-4a24-9510-a43300176d9e"}}</pre>
+      </section>
+      <section class="bug">
+        <h3>BUG 2 — VALIDATE.SC6 POST /api/v2/flights/booking/issue-ticket — type with trailing comma (ticket,)</h3>
+        <p><strong>How:</strong> Clone priced issue-ticket; set type="ticket,"; POST /api/v2/flights/booking/issue-ticket.</p>
+        <p><strong>Expected:</strong> HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</p>
+        <p><strong>Actual:</strong> Accepted payload that added extra special characters / comma</p>
+        <pre>{"bookingReference":"BR1788789461276791","status":"pending","message":"Booking is processing","_meta":{"correlation_id":"b3fbc832-da66-4a24-9510-a43300176d9e"}}</pre>
+      </section>
+      <section class="bug">
+        <h3>BUG 3 — VALIDATE.SC10 POST /api/v2/flights/booking/issue-ticket — searchId with trailing comma</h3>
+        <p><strong>How:</strong> Clone priced issue-ticket; append comma to searchIds[0]; POST /api/v2/flights/booking/issue-ticket.</p>
+        <p><strong>Expected:</strong> HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</p>
+        <p><strong>Actual:</strong> HTTP 500 Internal Server Error after special chars — expected 4xx error envelope</p>
+        <pre>{"error":{"code":"PRICING_FETCH_FAILED","message":"Failed to fetch flight pricing details","details":null,"timestamp":"2026-09-07T13:57:42Z","request_id":"req-1788789462421"},"_meta":{"correlation_id":"b3fbc832-da66-4a24-9510-a43300176d9e"}}</pre>
+      </section>
+      <section class="bug">
+        <h3>BUG 4 — VALIDATE.SC11 POST /api/v2/flights/booking/issue-ticket — cityName with comma and punctuation</h3>
+        <p><strong>How:</strong> Clone priced issue-ticket; set city.cityName="Pune, &lt;&gt;!"; POST /api/v2/flights/booking/issue-ticket.</p>
+        <p><strong>Expected:</strong> HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.</p>
+        <p><strong>Actual:</strong> Accepted payload that added extra special characters / comma</p>
+        <pre>{"bookingReference":"BR1788789462364083","status":"pending","message":"Booking is processing","_meta":{"correlation_id":"b3fbc832-da66-4a24-9510-a43300176d9e"}}</pre>
+      </section>
+      <section class="bug">
+        <h3>BUG 5 — VALIDATE.V1-T1 POST /v1/flights/booking/issue-ticket — omit type</h3>
+        <p><strong>How:</strong> Clone priced ticket body, omit type, POST /v1/flights/booking/issue-ticket.</p>
+        <p><strong>Expected:</strong> HTTP 4xx VALIDATION_ERROR (never 500)</p>
+        <p><strong>Actual:</strong> Accepted invalid v1 payload</p>
+        <pre>{"error":{"code":"VALIDATION_ERROR","message":"Validation failed","details":["'type' is required"],"timestamp":"2026-09-07T13:57:25Z","request_id":"req-1788789445811"},"duplicate":true,"duplicateMessage":"Duplicate payload — returning previously processed response.","_meta":{"correlation_id":"b3fbc832-da66-4a24-9510-a43300176d9e"}}</pre>
+      </section>
+      <section class="bug">
+        <h3>BUG 6 — VALIDATE.V1-SC1 POST /v1/flights/booking/issue-ticket — firstName with trailing comma</h3>
+        <p><strong>How:</strong> Clone priced ticket body, set firstName="Rohan,", POST /v1/flights/booking/issue-ticket.</p>
+        <p><strong>Expected:</strong> HTTP 4xx (never 500)</p>
+        <p><strong>Actual:</strong> Accepted v1 payload with comma in firstName</p>
+        <pre>{"error":{"code":"VALIDATION_ERROR","message":"Validation failed","details":["'data.passengers[0].profile.firstName' must contain only letters and spaces"],"timestamp":"2026-09-07T13:57:38Z","request_id":"req-1788789458304"},"duplicate":true,"duplicateMessage":"Duplicate payload — returning previously processed response.","_meta":{"correlation_id":"b3fbc832-da66-4a24-9510-a43300176d9e"}}</pre>
+      </section>
+      <section class="bug">
+        <h3>BUG 7 — VALIDATE.V1-SC2 POST /v1/flights/booking/issue-ticket — searchId with trailing comma</h3>
+        <p><strong>How:</strong> Clone priced ticket body, append comma to searchIds[0], POST /v1/flights/booking/issue-ticket.</p>
+        <p><strong>Expected:</strong> HTTP 4xx (never 500)</p>
+        <p><strong>Actual:</strong> Accepted v1 payload with comma on searchId</p>
+        <pre>{"error":{"code":"PRICING_FETCH_FAILED","message":"Failed to fetch flight pricing details","details":null,"timestamp":"2026-09-07T13:57:42Z","request_id":"req-1788789462421"},"duplicate":true,"duplicateMessage":"Duplicate payload — returning previously processed response.","_meta":{"correlation_id":"b3fbc832-da66-4a24-9510-a43300176d9e"}}</pre>
+      </section>
+      <section class="bug">
+        <h3>BUG 8 — VALIDATE.1 Search/details/pricing/SSR/seatmap validations spawn</h3>
+        <p><strong>How:</strong> scripts/probe-flight-search-hop-validations.js</p>
+        <p><strong>Expected:</strong> JSON report with S/H/D/P/SSR/SM rows</p>
+        <p><strong>Actual:</strong> exit=1 missing flight-regression-search-hop-validations.json</p>
+        
+      </section>
+      <section class="bug">
+        <h3>BUG 9 — SMOKE.1 Airports catalog with pid</h3>
+        <p><strong>How:</strong> GET /v1/flights/airports?airport=BOM</p>
+        <p><strong>Expected:</strong> HTTP 200 list</p>
+        <p><strong>Actual:</strong> HTTP 200 hits=0 code=null</p>
+        
+      </section>
+</body></html>

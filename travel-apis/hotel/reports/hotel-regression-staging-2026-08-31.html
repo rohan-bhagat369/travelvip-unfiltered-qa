@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Hotel B2B regression</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; background: #f5f7fb; color: #1a2b4a; }
+  h1,h2,h3 { color: #1a2b4a; }
+  .cards { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px; }
+  .card { background: #fff; padding: 14px 18px; border-radius: 8px; box-shadow: 0 1px 4px #0001; min-width: 110px; }
+  .card.bug { border-top: 4px solid #ef4444; }
+  .card.pass { border-top: 4px solid #22c55e; }
+  .card.nt { border-top: 4px solid #94a3b8; }
+  table { border-collapse: collapse; width: 100%; background: #fff; margin: 8px 0 24px; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; font-size: 13px; vertical-align: top; }
+  th { background: #1a2b4a; color: #fff; }
+  tr.pass { background: #f0fdf4; }
+  tr.bug { background: #fef2f2; }
+  tr.not-tested { background: #f8fafc; }
+  .bug { background: #fff; padding: 16px; border-left: 4px solid #ef4444; margin: 12px 0; border-radius: 6px; }
+  pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 6px; overflow: auto; font-size: 12px; }
+  small { color: #64748b; font-weight: 400; }
+</style></head><body>
+  <h1>Hotel B2B regression</h1>
+  <p>https://api-staging.travelvip.ai · 2026-08-31T10:17:15.750Z · tags CHAINBRANDVAL</p>
+  <div class="cards">
+    <div class="card pass"><strong>PASS</strong><br>111</div>
+    <div class="card bug"><strong>BUG</strong><br>0</div>
+    <div class="card nt"><strong>NOT TESTED</strong><br>0</div>
+    <div class="card"><strong>Total</strong><br>111</div>
+  </div>
+  <p>Correlation <code>88232e0f-b8b4-4d6b-8592-02018fc2e1ce</code>
+     · BR <code>—</code>
+     · status —</p>
+  <h2>CHAINBRANDVAL <small>111 PASS / 0 BUG / 0 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="pass">
+        <td>1</td>
+        <td>CBV-Taj</td>
+        <td>fq Chain/Brand Taj on city with Taj inventory (Delhi Chain=Taj Hotels)</td>
+        <td>Results are Taj / Ginger / Vivanta / Taj group properties</td>
+        <td>http=200 total=6 facet=6 checked=6; vendorNameMismatch=2 (catalog, not API)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td>CBV-Fab</td>
+        <td>fq Chain Fabhotels on Delhi/Mumbai (Delhi Chain=Fabhotels)</td>
+        <td>Results include Fabhotel / Fabexpress / Via-branded Fab properties</td>
+        <td>http=200 total=135 facet=135 checked=40; vendorNameMismatch=9 (catalog, not API)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>3</td>
+        <td>CBV-Treebo</td>
+        <td>fq Chain Treebo Hotels (Delhi Chain=Treebo Hotels)</td>
+        <td>Results include Treebo / Itsy hotels</td>
+        <td>http=200 total=13 facet=13 checked=13; vendorNameMismatch=2 (catalog, not API)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>4</td>
+        <td>CBV-ZUZU</td>
+        <td>fq Brand ZUZU HS where facet exists (Delhi Brand=ZUZU HS)</td>
+        <td>Filter returns facet count; vendor display names may omit ZUZU (catalog)</td>
+        <td>http=200 total=15 facet=15 checked=15; vendorNameMismatch=15 (catalog, not API)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>5</td>
+        <td>Delhi: Chain="Preferred" results belong to that chain</td>
+        <td>fq Chain:[Preferred] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2; vendorNameMismatch=2 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>6</td>
+        <td>Delhi: Chain="YourRentals" results belong to that chain</td>
+        <td>fq Chain:[YourRentals] sample up to 8 hotels</td>
+        <td>HTTP 200; total=8; vendor names logged only</td>
+        <td>http=200 total=8 facet=8 checked=8; vendorNameMismatch=8 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>7</td>
+        <td>Delhi: Chain="Taj Hotels" results belong to that chain</td>
+        <td>fq Chain:[Taj Hotels] sample up to 6 hotels</td>
+        <td>HTTP 200; total=6; vendor names logged only</td>
+        <td>http=200 total=6 facet=6 checked=6; vendorNameMismatch=2 (catalog, not API) sampleOK=Ginger East Delhi | Vivanta New Delhi, Dwarka | Taj Mahal, New Delhi</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>8</td>
+        <td>Delhi: Chain="The Leading Hotels of the World" results belong to that chain</td>
+        <td>fq Chain:[The Leading Hotels of the World] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2; vendorNameMismatch=1 (catalog, not API) sampleOK=The Lodhi - A member of The Leading Hotels Of The World</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>9</td>
+        <td>Delhi: Chain="Moustache" results belong to that chain</td>
+        <td>fq Chain:[Moustache] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Moustache Delhi - Hostel</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>10</td>
+        <td>Delhi: Chain="Fabhotels" results belong to that chain</td>
+        <td>fq Chain:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=135; vendor names logged only</td>
+        <td>http=200 total=135 facet=135 checked=40; vendorNameMismatch=9 (catalog, not API) sampleOK=Fabhotel Palm Majestic | FabHotel TP Suites | Fabhotel Np International</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>11</td>
+        <td>Delhi: Chain="Treebo Hotels" results belong to that chain</td>
+        <td>fq Chain:[Treebo Hotels] sample up to 13 hotels</td>
+        <td>HTTP 200; total=13; vendor names logged only</td>
+        <td>http=200 total=13 facet=13 checked=13; vendorNameMismatch=2 (catalog, not API) sampleOK=Treebo TMS Residency | Treebo MVM Residency | Treebo Twin Tree</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>12</td>
+        <td>Delhi: Brand="Orion Hotel Group" results belong to that brand</td>
+        <td>fq Brand:[Orion Hotel Group] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=The Orion - Greater Kailash</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>13</td>
+        <td>Delhi: Brand="SAROVAR" results belong to that brand</td>
+        <td>fq Brand:[SAROVAR] sample up to 4 hotels</td>
+        <td>HTTP 200; total=4; vendor names logged only</td>
+        <td>http=200 total=4 facet=4 checked=4 sampleOK=Sarovar Portico Naraina Delhi | Venizia Sarovar Portico Delhi | Deventure Sarovar Portico Kapashera</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>14</td>
+        <td>Delhi: Brand="Oberoi Hotels &amp; Resorts" results belong to that brand</td>
+        <td>fq Brand:[Oberoi Hotels &amp; Resorts] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2; vendorNameMismatch=1 (catalog, not API) sampleOK=The Oberoi, New Delhi</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>15</td>
+        <td>Delhi: Brand="Lemon Tree" results belong to that brand</td>
+        <td>fq Brand:[Lemon Tree] sample up to 3 hotels</td>
+        <td>HTTP 200; total=3; vendor names logged only</td>
+        <td>http=200 total=3 facet=3 checked=3 sampleOK=Red Fox by Lemon Tree Hotels, East Delhi |  Lemon Tree Hotel, Delhi Airport | Lemon Tree Premier, Delhi Airport</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>16</td>
+        <td>Delhi: Brand="Hyatt Hotels" results belong to that brand</td>
+        <td>fq Brand:[Hyatt Hotels] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Hyatt Delhi Residences</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>17</td>
+        <td>Delhi: Brand="Fabhotels" results belong to that brand</td>
+        <td>fq Brand:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=129; vendor names logged only</td>
+        <td>http=200 total=129 facet=129 checked=40; vendorNameMismatch=10 (catalog, not API) sampleOK=Fabhotel Palm Majestic | FabHotel TP Suites | Fabhotel Np International</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>18</td>
+        <td>Delhi: Brand="ZUZU HS" results belong to that brand</td>
+        <td>fq Brand:[ZUZU HS] sample up to 15 hotels</td>
+        <td>HTTP 200; total=15; vendor names logged only</td>
+        <td>http=200 total=15 facet=15 checked=15; vendorNameMismatch=15 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>19</td>
+        <td>Mumbai: Chain="Radisson Hotel Group" results belong to that chain</td>
+        <td>fq Chain:[Radisson Hotel Group] sample up to 3 hotels</td>
+        <td>HTTP 200; total=3; vendor names logged only</td>
+        <td>http=200 total=3 facet=3 checked=3 sampleOK=Radisson Blu Mumbai International Airport | Radisson Mumbai Andheri MIDC | Radisson Mumbai Goregaon</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>20</td>
+        <td>Mumbai: Chain="The LaLit" results belong to that chain</td>
+        <td>fq Chain:[The LaLit] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=The LaLiT Mumbai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>21</td>
+        <td>Mumbai: Chain="Marriott International" results belong to that chain</td>
+        <td>fq Chain:[Marriott International] sample up to 15 hotels</td>
+        <td>HTTP 200; total=15; vendor names logged only</td>
+        <td>http=200 total=15 facet=15 checked=15; vendorNameMismatch=5 (catalog, not API) sampleOK=Fairfield by Marriott Mumbai International Airport | The Fern Mumbai, Goregaon, Series by Marriott | COURTYARD MUMBAI ARPT MARRIOTT</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>22</td>
+        <td>Mumbai: Chain="Oberoi Hotels &amp; Resorts" results belong to that chain</td>
+        <td>fq Chain:[Oberoi Hotels &amp; Resorts] sample up to 3 hotels</td>
+        <td>HTTP 200; total=3; vendor names logged only</td>
+        <td>http=200 total=3 facet=3 checked=3; vendorNameMismatch=2 (catalog, not API) sampleOK=The Oberoi Mumbai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>23</td>
+        <td>Mumbai: Chain="Hyatt Hotels" results belong to that chain</td>
+        <td>fq Chain:[Hyatt Hotels] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=Hyatt Centric Juhu Mumbai | Grand Hyatt Mumbai Hotel and Serviced Apartments</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>24</td>
+        <td>Mumbai: Chain="Fabhotels" results belong to that chain</td>
+        <td>fq Chain:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=63; vendor names logged only</td>
+        <td>http=200 total=63 facet=63 checked=40; vendorNameMismatch=11 (catalog, not API) sampleOK=Fabhotel City Inn | Fabhotel Ascot International II | Fabexpress Aksa Inn</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>25</td>
+        <td>Mumbai: Brand="ibis" results belong to that brand</td>
+        <td>fq Brand:[ibis] sample up to 3 hotels</td>
+        <td>HTTP 200; total=3; vendor names logged only</td>
+        <td>http=200 total=3 facet=3 checked=3 sampleOK=Ibis Mumbai Bkc | Ibis Mumbai Vikhroli | ibis Mumbai Airport Hotel</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>26</td>
+        <td>Mumbai: Brand="ZUZU HS" results belong to that brand</td>
+        <td>fq Brand:[ZUZU HS] sample up to 9 hotels</td>
+        <td>HTTP 200; total=9; vendor names logged only</td>
+        <td>http=200 total=9 facet=9 checked=9; vendorNameMismatch=8 (catalog, not API) sampleOK=Aboo's Hotel Concord Galaxy by ZUZU</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>27</td>
+        <td>Mumbai: Brand="Four Seasons" results belong to that brand</td>
+        <td>fq Brand:[Four Seasons] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Four Seasons Hotel Mumbai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>28</td>
+        <td>Mumbai: Brand="SAROVAR" results belong to that brand</td>
+        <td>fq Brand:[SAROVAR] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Residency Sarovar Portico Mumbai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>29</td>
+        <td>Mumbai: Brand="Radisson" results belong to that brand</td>
+        <td>fq Brand:[Radisson] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=Radisson Mumbai Andheri MIDC | Radisson Mumbai Goregaon</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>30</td>
+        <td>Mumbai: Brand="Fabhotels" results belong to that brand</td>
+        <td>fq Brand:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=55; vendor names logged only</td>
+        <td>http=200 total=55 facet=55 checked=40; vendorNameMismatch=9 (catalog, not API) sampleOK=Fabhotel Ascot International II | Fabexpress Aksa Inn | FabExpress Marol Metro</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>31</td>
+        <td>Mumbai: Brand="Treebo Hotels" results belong to that brand</td>
+        <td>fq Brand:[Treebo Hotels] sample up to 10 hotels</td>
+        <td>HTTP 200; total=10; vendor names logged only</td>
+        <td>http=200 total=10 facet=10 checked=10; vendorNameMismatch=2 (catalog, not API) sampleOK=Treebo Zaid International Powai | Treebo Seven Olives | Treebo Prince Andheri East</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>32</td>
+        <td>Bangalore: Chain="Hyatt Hotels" results belong to that chain</td>
+        <td>fq Chain:[Hyatt Hotels] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=Hyatt Centric MG Road Bangalore | Hyatt Centric Hebbal Bengaluru</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>33</td>
+        <td>Bangalore: Chain="ITC Hotels" results belong to that chain</td>
+        <td>fq Chain:[ITC Hotels] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Welcomhotel by ITC Hotels, Richmond Road, Bengaluru</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>34</td>
+        <td>Bangalore: Chain="JUSTA HOTELS" results belong to that chain</td>
+        <td>fq Chain:[JUSTA HOTELS] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=juSTa OFF MG Road | juSTa Indiranagar - Bangalore</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>35</td>
+        <td>Bangalore: Chain="Keys Hotels" results belong to that chain</td>
+        <td>fq Chain:[Keys Hotels] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Keys Prima by Lemon Tree Hotels, Whitefield, Bengaluru.</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>36</td>
+        <td>Bangalore: Chain="Louvre Hotels" results belong to that chain</td>
+        <td>fq Chain:[Louvre Hotels] sample up to 8 hotels</td>
+        <td>HTTP 200; total=8; vendor names logged only</td>
+        <td>http=200 total=8 facet=8 checked=8; vendorNameMismatch=8 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>37</td>
+        <td>Bangalore: Chain="Fabhotels" results belong to that chain</td>
+        <td>fq Chain:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=81; vendor names logged only</td>
+        <td>http=200 total=81 facet=81 checked=40; vendorNameMismatch=6 (catalog, not API) sampleOK=FabHotel Prime IJ Suites - Kasavanahalli | FabHotel Royal Sterling | FabHotel Maark Inn - Tilak Nagar, Jayanagar</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>38</td>
+        <td>Bangalore: Chain="Treebo Hotels" results belong to that chain</td>
+        <td>fq Chain:[Treebo Hotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=47; vendor names logged only</td>
+        <td>http=200 total=47 facet=47 checked=40; vendorNameMismatch=5 (catalog, not API) sampleOK=Treebo Raghavendra Tranquil Inn Bellandur | Treebo Zion | Treebo Sai Suites Inn Nagavara</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>39</td>
+        <td>Bangalore: Brand="Fabhotels" results belong to that brand</td>
+        <td>fq Brand:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=76; vendor names logged only</td>
+        <td>http=200 total=76 facet=76 checked=40; vendorNameMismatch=4 (catalog, not API) sampleOK=FabHotel Prime IJ Suites - Kasavanahalli | FabHotel Royal Sterling | FabHotel Maark Inn - Tilak Nagar, Jayanagar</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>40</td>
+        <td>Bangalore: Brand="DoubleTree" results belong to that brand</td>
+        <td>fq Brand:[DoubleTree] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=DoubleTree Suites by Hilton Bengaluru Outer Ring Road | Doubletree By Hilton Bengaluru Whitefield</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>41</td>
+        <td>Bangalore: Brand="BEST WESTERN" results belong to that brand</td>
+        <td>fq Brand:[BEST WESTERN] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Aiden by Best Western Hennur Bengaluru</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>42</td>
+        <td>Bangalore: Brand="Hyatt Hotels" results belong to that brand</td>
+        <td>fq Brand:[Hyatt Hotels] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Hyatt Centric MG Road Bangalore</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>43</td>
+        <td>Bangalore: Brand="Golden Tulip" results belong to that brand</td>
+        <td>fq Brand:[Golden Tulip] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1; vendorNameMismatch=1 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>44</td>
+        <td>Bangalore: Brand="Treebo Hotels" results belong to that brand</td>
+        <td>fq Brand:[Treebo Hotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=45; vendor names logged only</td>
+        <td>http=200 total=45 facet=45 checked=40; vendorNameMismatch=4 (catalog, not API) sampleOK=Treebo Raghavendra Tranquil Inn Bellandur | Treebo Zion | Treebo Sai Suites Inn Nagavara</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>45</td>
+        <td>Chennai: Chain="ZUZU HS" results belong to that chain</td>
+        <td>fq Chain:[ZUZU HS] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1; vendorNameMismatch=1 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>46</td>
+        <td>Chennai: Chain="Ascott" results belong to that chain</td>
+        <td>fq Chain:[Ascott] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2; vendorNameMismatch=2 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>47</td>
+        <td>Chennai: Chain="Hyatt Hotels" results belong to that chain</td>
+        <td>fq Chain:[Hyatt Hotels] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=Hyatt Regency Chennai | Park Hyatt Chennai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>48</td>
+        <td>Chennai: Chain="Pride Hotels" results belong to that chain</td>
+        <td>fq Chain:[Pride Hotels] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Pride Premier Chennai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>49</td>
+        <td>Chennai: Chain="Accor" results belong to that chain</td>
+        <td>fq Chain:[Accor] sample up to 5 hotels</td>
+        <td>HTTP 200; total=5; vendor names logged only</td>
+        <td>http=200 total=5 facet=5 checked=5 sampleOK=ibis Chennai SIPCOT Hotel | ibis Chennai OMR Hotel | Novotel Chennai Sipcot</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>50</td>
+        <td>Chennai: Chain="Fabhotels" results belong to that chain</td>
+        <td>fq Chain:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=48; vendor names logged only</td>
+        <td>http=200 total=48 facet=48 checked=40; vendorNameMismatch=3 (catalog, not API) sampleOK=FabHotel Aishwarya Inn | FabHotel D Qube - Porur | Fabexpress Ss Residency</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>51</td>
+        <td>Chennai: Chain="Treebo Hotels" results belong to that chain</td>
+        <td>fq Chain:[Treebo Hotels] sample up to 16 hotels</td>
+        <td>HTTP 200; total=16; vendor names logged only</td>
+        <td>http=200 total=16 facet=16 checked=16; vendorNameMismatch=2 (catalog, not API) sampleOK=Treebo RKH Palace | Treebo Sri Anand Residency | Treebo Golden Swan Pammal</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>52</td>
+        <td>Chennai: Brand="Wyndham Hotels" results belong to that brand</td>
+        <td>fq Brand:[Wyndham Hotels] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=Ramada by Wyndham Chennai Egmore | Ramada Plaza by Wyndham Chennai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>53</td>
+        <td>Chennai: Brand="The Park" results belong to that brand</td>
+        <td>fq Brand:[The Park] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=The Park Chennai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>54</td>
+        <td>Chennai: Brand="Pride Hotels" results belong to that brand</td>
+        <td>fq Brand:[Pride Hotels] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Pride Premier Chennai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>55</td>
+        <td>Chennai: Brand="Somerset" results belong to that brand</td>
+        <td>fq Brand:[Somerset] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Somerset Greenways Chennai</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>56</td>
+        <td>Chennai: Brand="Westin" results belong to that brand</td>
+        <td>fq Brand:[Westin] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=The Westin Chennai Velachery</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>57</td>
+        <td>Chennai: Brand="Fabhotels" results belong to that brand</td>
+        <td>fq Brand:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=45; vendor names logged only</td>
+        <td>http=200 total=45 facet=45 checked=40; vendorNameMismatch=3 (catalog, not API) sampleOK=FabHotel Aishwarya Inn | FabHotel D Qube - Porur | Fabexpress Ss Residency</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>58</td>
+        <td>Chennai: Brand="Treebo Hotels" results belong to that brand</td>
+        <td>fq Brand:[Treebo Hotels] sample up to 16 hotels</td>
+        <td>HTTP 200; total=16; vendor names logged only</td>
+        <td>http=200 total=16 facet=16 checked=16; vendorNameMismatch=2 (catalog, not API) sampleOK=Treebo RKH Palace | Treebo Sri Anand Residency | Treebo Golden Swan Pammal</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>59</td>
+        <td>Pune: Chain="Accor" results belong to that chain</td>
+        <td>fq Chain:[Accor] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=ibis Pune Viman Nagar Hotel | Novotel Pune Viman Nagar Hotel</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>60</td>
+        <td>Pune: Chain="Marriott International" results belong to that chain</td>
+        <td>fq Chain:[Marriott International] sample up to 10 hotels</td>
+        <td>HTTP 200; total=10; vendor names logged only</td>
+        <td>http=200 total=10 facet=10 checked=10; vendorNameMismatch=1 (catalog, not API) sampleOK=The Fern Habitat Pune, Mundhwa, Series By Marriott | Four Points by Sheraton Hotel &amp; Serviced Apartments, Pune | Fairfield by Marriott Pune Kharadi</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>61</td>
+        <td>Pune: Chain="Fabhotels" results belong to that chain</td>
+        <td>fq Chain:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=91; vendor names logged only</td>
+        <td>http=200 total=91 facet=91 checked=40; vendorNameMismatch=6 (catalog, not API) sampleOK=Fabhotel Dsp | Fabhotel Swapanpurti Sai Avenue | Fabhotel Destiny Living</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>62</td>
+        <td>Pune: Chain="Taj Hotels" results belong to that chain</td>
+        <td>fq Chain:[Taj Hotels] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1; vendorNameMismatch=1 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>63</td>
+        <td>Pune: Chain="IHG" results belong to that chain</td>
+        <td>fq Chain:[IHG] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Crowne Plaza Pune City Centre by IHG</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>64</td>
+        <td>Pune: Chain="Treebo Hotels" results belong to that chain</td>
+        <td>fq Chain:[Treebo Hotels] sample up to 28 hotels</td>
+        <td>HTTP 200; total=28; vendor names logged only</td>
+        <td>http=200 total=28 facet=28 checked=28; vendorNameMismatch=7 (catalog, not API) sampleOK=Treebo Naunidh Suites | Treebo Tulip Comfort | Treebo Diamond Residency - DDPK Inn</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>65</td>
+        <td>Pune: Brand="Hyatt Regency" results belong to that brand</td>
+        <td>fq Brand:[Hyatt Regency] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Hyatt Regency Pune &amp; Residences</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>66</td>
+        <td>Pune: Brand="Fairfield Inn" results belong to that brand</td>
+        <td>fq Brand:[Fairfield Inn] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1; vendorNameMismatch=1 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>67</td>
+        <td>Pune: Brand="Crowne Plaza" results belong to that brand</td>
+        <td>fq Brand:[Crowne Plaza] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Crowne Plaza Pune City Centre by IHG</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>68</td>
+        <td>Pune: Brand="Novotel" results belong to that brand</td>
+        <td>fq Brand:[Novotel] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Novotel Pune Viman Nagar Hotel</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>69</td>
+        <td>Pune: Brand="DoubleTree" results belong to that brand</td>
+        <td>fq Brand:[DoubleTree] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Doubletree By Hilton Pune - Chinchwad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>70</td>
+        <td>Pune: Brand="Fabhotels" results belong to that brand</td>
+        <td>fq Brand:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=84; vendor names logged only</td>
+        <td>http=200 total=84 facet=84 checked=40; vendorNameMismatch=4 (catalog, not API) sampleOK=Fabhotel Dsp | Fabhotel Swapanpurti Sai Avenue | Fabhotel Destiny Living</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>71</td>
+        <td>Pune: Brand="Treebo Hotels" results belong to that brand</td>
+        <td>fq Brand:[Treebo Hotels] sample up to 26 hotels</td>
+        <td>HTTP 200; total=26; vendor names logged only</td>
+        <td>http=200 total=26 facet=26 checked=26; vendorNameMismatch=5 (catalog, not API) sampleOK=Treebo Naunidh Suites | Treebo Tulip Comfort | Treebo Diamond Residency - DDPK Inn</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>72</td>
+        <td>Hyderabad: Chain="Preferred" results belong to that chain</td>
+        <td>fq Chain:[Preferred] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1; vendorNameMismatch=1 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>73</td>
+        <td>Hyderabad: Chain="Sarovar Hotels" results belong to that chain</td>
+        <td>fq Chain:[Sarovar Hotels] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2; vendorNameMismatch=2 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>74</td>
+        <td>Hyderabad: Chain="Belvilla" results belong to that chain</td>
+        <td>fq Chain:[Belvilla] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1; vendorNameMismatch=1 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>75</td>
+        <td>Hyderabad: Chain="Bloomrooms" results belong to that chain</td>
+        <td>fq Chain:[Bloomrooms] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2; vendorNameMismatch=2 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>76</td>
+        <td>Hyderabad: Chain="The Park" results belong to that chain</td>
+        <td>fq Chain:[The Park] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=The Park Hyderabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>77</td>
+        <td>Hyderabad: Chain="Fabhotels" results belong to that chain</td>
+        <td>fq Chain:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=107; vendor names logged only</td>
+        <td>http=200 total=107 facet=107 checked=40; vendorNameMismatch=6 (catalog, not API) sampleOK=Fabhotel White Ridge | Fabhotel Three Waves | FabHotel White Ridge Kamineni - Nr. Saroornagar Indoor Stadium- L.B Nagar</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>78</td>
+        <td>Hyderabad: Chain="Treebo Hotels" results belong to that chain</td>
+        <td>fq Chain:[Treebo Hotels] sample up to 23 hotels</td>
+        <td>HTTP 200; total=23; vendor names logged only</td>
+        <td>http=200 total=23 facet=23 checked=23; vendorNameMismatch=4 (catalog, not API) sampleOK=Treebo Navya The Park | Treebo The Address Inn Mehdipatnam | Treebo Seventh Heaven Kukatpally</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>79</td>
+        <td>Hyderabad: Brand="Park Hyatt" results belong to that brand</td>
+        <td>fq Brand:[Park Hyatt] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Park Hyatt Hyderabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>80</td>
+        <td>Hyderabad: Brand="Lemon Tree" results belong to that brand</td>
+        <td>fq Brand:[Lemon Tree] sample up to 4 hotels</td>
+        <td>HTTP 200; total=4; vendor names logged only</td>
+        <td>http=200 total=4 facet=4 checked=4 sampleOK=Lemon Tree Hotel Banjara Hills | Red Fox by Lemon Tree Hotels, Hyderabad | Lemon Tree Premier, HITEC City, Hyderabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>81</td>
+        <td>Hyderabad: Brand="Clarion" results belong to that brand</td>
+        <td>fq Brand:[Clarion] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Clarion Hotel Hyderabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>82</td>
+        <td>Hyderabad: Brand="The Park" results belong to that brand</td>
+        <td>fq Brand:[The Park] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=The Park Hyderabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>83</td>
+        <td>Hyderabad: Brand="BEST WESTERN" results belong to that brand</td>
+        <td>fq Brand:[BEST WESTERN] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Best Western Ashoka</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>84</td>
+        <td>Hyderabad: Brand="Fabhotels" results belong to that brand</td>
+        <td>fq Brand:[Fabhotels] sample up to 40 hotels</td>
+        <td>HTTP 200; total=103; vendor names logged only</td>
+        <td>http=200 total=103 facet=103 checked=40; vendorNameMismatch=5 (catalog, not API) sampleOK=Fabhotel White Ridge | Fabhotel Three Waves | FabHotel White Ridge Kamineni - Nr. Saroornagar Indoor Stadium- L.B Nagar</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>85</td>
+        <td>Hyderabad: Brand="Treebo Hotels" results belong to that brand</td>
+        <td>fq Brand:[Treebo Hotels] sample up to 23 hotels</td>
+        <td>HTTP 200; total=23; vendor names logged only</td>
+        <td>http=200 total=23 facet=23 checked=23; vendorNameMismatch=4 (catalog, not API) sampleOK=Treebo Navya The Park | Treebo The Address Inn Mehdipatnam | Treebo Seventh Heaven Kukatpally</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>86</td>
+        <td>Goa: Chain="Hilton Worldwide" results belong to that chain</td>
+        <td>fq Chain:[Hilton Worldwide] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1; vendorNameMismatch=1 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>87</td>
+        <td>Goa: Chain="Royal Orchid" results belong to that chain</td>
+        <td>fq Chain:[Royal Orchid] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1; vendorNameMismatch=1 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>88</td>
+        <td>Goa: Chain="Taj Hotels" results belong to that chain</td>
+        <td>fq Chain:[Taj Hotels] sample up to 3 hotels</td>
+        <td>HTTP 200; total=3; vendor names logged only</td>
+        <td>http=200 total=3 facet=3 checked=3 sampleOK=Vivanta Goa, Panaji | Taj Cidade de Goa Heritage, Goa | Vivanta Goa, Miramar</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>89</td>
+        <td>Goa: Chain="Accor" results belong to that chain</td>
+        <td>fq Chain:[Accor] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=Mercure Goa Devaaya Resort - An Accor Hotels Brand | Novotel GOA Panjim</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>90</td>
+        <td>Goa: Chain="Fabhotels" results belong to that chain</td>
+        <td>fq Chain:[Fabhotels] sample up to 5 hotels</td>
+        <td>HTTP 200; total=5; vendor names logged only</td>
+        <td>http=200 total=5 facet=5 checked=5; vendorNameMismatch=1 (catalog, not API) sampleOK=Fabhotel Comfort Stays | Fabhotel Shadowline | Fabhotel Avasa Grand</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>91</td>
+        <td>Goa: Brand="Taj" results belong to that brand</td>
+        <td>fq Brand:[Taj] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Taj Cidade de Goa Heritage, Goa</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>92</td>
+        <td>Goa: Brand="ZUZU HS" results belong to that brand</td>
+        <td>fq Brand:[ZUZU HS] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1; vendorNameMismatch=1 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>93</td>
+        <td>Goa: Brand="Fabhotels" results belong to that brand</td>
+        <td>fq Brand:[Fabhotels] sample up to 4 hotels</td>
+        <td>HTTP 200; total=4; vendor names logged only</td>
+        <td>http=200 total=4 facet=4 checked=4 sampleOK=Fabhotel Comfort Stays | Fabhotel Shadowline | Fabhotel Avasa Grand</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>94</td>
+        <td>Goa: Brand="ITC Hotels" results belong to that brand</td>
+        <td>fq Brand:[ITC Hotels] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Fortune Miramar, Goa - Member ITC Hotels' Group</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>95</td>
+        <td>Goa: Brand="Novotel" results belong to that brand</td>
+        <td>fq Brand:[Novotel] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Novotel GOA Panjim</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>96</td>
+        <td>Goa: Brand="marriott" results belong to that brand</td>
+        <td>fq Brand:[marriott] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=The Fern Kadamba Hotel &amp; Spa Goa, Panjim, Series by Marriott | Goa Marriott Resort &amp; Spa</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>97</td>
+        <td>Ahmedabad: Chain="Fabhotels" results belong to that chain</td>
+        <td>fq Chain:[Fabhotels] sample up to 13 hotels</td>
+        <td>HTTP 200; total=13; vendor names logged only</td>
+        <td>http=200 total=13 facet=13 checked=13; vendorNameMismatch=2 (catalog, not API) sampleOK=FabHotel Pratiksha | FabExpress Himalaya Inn - Inside Himalaya Mall | Fabhotel Airport View</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>98</td>
+        <td>Ahmedabad: Chain="Wyndham Hotels &amp; Resorts" results belong to that chain</td>
+        <td>fq Chain:[Wyndham Hotels &amp; Resorts] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2; vendorNameMismatch=2 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>99</td>
+        <td>Ahmedabad: Chain="Treebo Hotels" results belong to that chain</td>
+        <td>fq Chain:[Treebo Hotels] sample up to 7 hotels</td>
+        <td>HTTP 200; total=7; vendor names logged only</td>
+        <td>http=200 total=7 facet=7 checked=7; vendorNameMismatch=3 (catalog, not API) sampleOK=Treebo Prince Plaza | Treebo The Square | Treebo Ambassador</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>100</td>
+        <td>Ahmedabad: Chain="Accor" results belong to that chain</td>
+        <td>fq Chain:[Accor] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Novotel Ahmedabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>101</td>
+        <td>Ahmedabad: Chain="Louvre Hotels" results belong to that chain</td>
+        <td>fq Chain:[Louvre Hotels] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2; vendorNameMismatch=2 (catalog, not API) sampleOK=</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>102</td>
+        <td>Ahmedabad: Chain="Marriott International" results belong to that chain</td>
+        <td>fq Chain:[Marriott International] sample up to 7 hotels</td>
+        <td>HTTP 200; total=7; vendor names logged only</td>
+        <td>http=200 total=7 facet=7 checked=7; vendorNameMismatch=3 (catalog, not API) sampleOK=The Fern Residency Ahmedabad, Ellisbridge, Series by Marriott | Four Points by Sheraton Ahmedabad | Fairfield by Marriott Ahmedabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>103</td>
+        <td>Ahmedabad: Brand="Novotel" results belong to that brand</td>
+        <td>fq Brand:[Novotel] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=Novotel Ahmedabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>104</td>
+        <td>Ahmedabad: Brand="ITC Hotels" results belong to that brand</td>
+        <td>fq Brand:[ITC Hotels] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=Fortune Park, Ahmedabad - Member ITC Hotels' Group | Fortune Landmark, Ahmedabad - Member ITC Hotels' Group</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>105</td>
+        <td>Ahmedabad: Brand="Luxury Collection" results belong to that brand</td>
+        <td>fq Brand:[Luxury Collection] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=ITC Narmada, a Luxury Collection Hotel, Ahmedabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>106</td>
+        <td>Ahmedabad: Brand="Pride Hotels" results belong to that brand</td>
+        <td>fq Brand:[Pride Hotels] sample up to 2 hotels</td>
+        <td>HTTP 200; total=2; vendor names logged only</td>
+        <td>http=200 total=2 facet=2 checked=2 sampleOK=Biznotel by Pride Motera | Pride Plaza Hotel, Ahmedabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>107</td>
+        <td>Ahmedabad: Brand="DoubleTree" results belong to that brand</td>
+        <td>fq Brand:[DoubleTree] sample up to 1 hotels</td>
+        <td>HTTP 200; total=1; vendor names logged only</td>
+        <td>http=200 total=1 facet=1 checked=1 sampleOK=DoubleTree by Hilton Ahmedabad</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>108</td>
+        <td>Ahmedabad: Brand="Fabhotels" results belong to that brand</td>
+        <td>fq Brand:[Fabhotels] sample up to 12 hotels</td>
+        <td>HTTP 200; total=12; vendor names logged only</td>
+        <td>http=200 total=12 facet=12 checked=12; vendorNameMismatch=1 (catalog, not API) sampleOK=FabHotel Pratiksha | FabExpress Himalaya Inn - Inside Himalaya Mall | Fabhotel Airport View</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>109</td>
+        <td>Ahmedabad: Brand="Treebo Hotels" results belong to that brand</td>
+        <td>fq Brand:[Treebo Hotels] sample up to 5 hotels</td>
+        <td>HTTP 200; total=5; vendor names logged only</td>
+        <td>http=200 total=5 facet=5 checked=5; vendorNameMismatch=1 (catalog, not API) sampleOK=Treebo Prince Plaza | Treebo The Square | Treebo Ambassador</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>110</td>
+        <td>CBV-Chain</td>
+        <td>Per city: 5 random chain facets; fq each; sample up to 40 results</td>
+        <td>Filter/count PASS; vendor name tokens informational only</td>
+        <td>checks=51 pass=51 catalogNameMismatch=37</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>111</td>
+        <td>CBV-Brand</td>
+        <td>Per city: 5 random brand facets; fq each; sample up to 40 results</td>
+        <td>Filter/count PASS; vendor name tokens informational only</td>
+        <td>checks=54 pass=54 catalogNameMismatch=20</td>
+        <td><strong>PASS</strong></td>
+      </tr></tbody>
+      </table>
+  <h2>Bugs for Dev</h2>
+  <p>None this run.</p>
+</body></html>

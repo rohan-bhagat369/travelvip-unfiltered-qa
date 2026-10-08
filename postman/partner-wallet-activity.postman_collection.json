@@ -1,0 +1,531 @@
+{
+  "info": {
+    "name": "TravelVIP - Wallet Activity",
+    "description": "GET /v1/wallet/activity and GET /v1/wallet/activity/{id} - the authenticated partner's own wallet ledger, curated (contract in wallet-activity-api.md).\n\nRuns against your existing **TravelVIP Local Env** - it needs only two keys you already have:\n- `base_url`\n- `access_token` - decides which wallet is read; there is no partner id anywhere in the path, query or body\n\nNo `external_api_key`, no `signing_key`, no `Idempotency-Key`. Those five gates guard the top-up because it moves money; these endpoints only read the caller's own rows, so the access token is the only credential. If you are used to the top-up request, that difference is deliberate, not an omission.\n\nThe collection WRITES (every send):\n- `request_id`, `correlation_id` - generated per request, echoed back on errors\n- `activity_id` - captured by 'Activity feed' from the newest entry, so 'Activity detail' can be sent straight afterwards with no copy-paste\n\nRun the folder top to bottom: the two happy paths first (the feed hands the detail request its id), then the four contract checks, which are expected to fail with 400/401/404 and pass their tests by doing so.\n\nAmounts here are **decimal rupees**, unlike the top-up collection, which is in paise. Same wallet, two different contracts - the read surface sits next to /v1/partners/me, which has always been in major units.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Both endpoints accept X-Request-Id and X-Correlation-ID but require neither --",
+          "// the published contract asks for Authorization only. They are sent regardless so",
+          "// any call can be found again in corporate/wallet logs by its id.",
+          "const stamp = 'pm-' + Date.now();",
+          "pm.environment.set('request_id', stamp);",
+          "pm.environment.set('correlation_id', stamp);"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Activity feed",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// The wrapper exists to curate. These keys are the wallet's own vocabulary and",
+              "// must never appear anywhere in a response -- see the 'Field curation' table in",
+              "// wallet-activity-api.md. Checked recursively, because a leak would most likely",
+              "// show up nested inside activity[] or legs[], not at the top level.",
+              "const FORBIDDEN = ['idempotencyKey', 'referenceType', 'transactionCategory',",
+              "    'assetType', 'walletPartnerId', 'walletId', 'ownerId', 'partnerId',",
+              "    'bookingId', 'referenceId'];",
+              "function leaks(node, path) {",
+              "    let found = [];",
+              "    if (Array.isArray(node)) {",
+              "        node.forEach((v, i) => { found = found.concat(leaks(v, path + '[' + i + ']')); });",
+              "    } else if (node && typeof node === 'object') {",
+              "        Object.keys(node).forEach(function (k) {",
+              "            if (FORBIDDEN.indexOf(k) !== -1) { found.push(path + '.' + k); }",
+              "            found = found.concat(leaks(node[k], path + '.' + k));",
+              "        });",
+              "    }",
+              "    return found;",
+              "}",
+              "",
+              "const json = pm.response.json();",
+              "",
+              "pm.test('200 with summary / pagination / activity', function () {",
+              "    pm.response.to.have.status(200);",
+              "    pm.expect(json).to.have.property('summary');",
+              "    pm.expect(json).to.have.property('pagination');",
+              "    pm.expect(json.activity).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('page size is fixed at 15', function () {",
+              "    pm.expect(json.pagination.perPage).to.eql(15);",
+              "});",
+              "",
+              "pm.test('no wallet internals leaked', function () {",
+              "    pm.expect(leaks(json, 'body'), 'leaked keys').to.eql([]);",
+              "});",
+              "",
+              "pm.test('every entry carries exactly one reference field, named reference', function () {",
+              "    // referenceId and bookingId are merged into `reference`; the key is always",
+              "    // present, null only when the movement has no reference at all.",
+              "    json.activity.forEach(function (e) {",
+              "        pm.expect(e).to.have.property('reference');",
+              "    });",
+              "});",
+              "",
+              "pm.test('every entry uses the published category / kind enums', function () {",
+              "    const CATEGORIES = ['top_up', 'booking_payment', 'credit_drawn', 'credit_repaid',",
+              "        'refund', 'adjustment', 'funds_held', 'hold_released', 'hold_expired', 'reward',",
+              "        'promotion', 'redemption', 'other'];",
+              "    json.activity.forEach(function (e) {",
+              "        pm.expect(CATEGORIES, 'category ' + e.category).to.include(e.category);",
+              "        if (e.kind !== null) { pm.expect(['credit', 'debit', 'hold']).to.include(e.kind); }",
+              "    });",
+              "});",
+              "",
+              "pm.test('an outstanding hold is listed as funds_held / kind hold', function () {",
+              "    // The wallet lists a hold ONLY while its funds are still reserved -- once it",
+              "    // settles it drops out and what settled it is listed instead. So the two must",
+              "    // agree: every funds_held row is kind hold, and vice versa.",
+              "    json.activity.forEach(function (e) {",
+              "        if (e.category === 'funds_held') { pm.expect(e.kind, e.id).to.eql('hold'); }",
+              "        if (e.kind === 'hold') { pm.expect(e.category, e.id).to.eql('funds_held'); }",
+              "    });",
+              "});",
+              "",
+              "// 'other' is the honest answer for a ledger category this wrapper does not map",
+              "// yet -- but it means a client cannot tell what the movement was, so surface it.",
+              "const unmapped = json.activity.filter(function (e) { return e.category === 'other'; });",
+              "if (unmapped.length) {",
+              "    console.warn(unmapped.length + \" entr(ies) came back as category 'other' -- add the\" +",
+              "        ' wallet category to $activityCategories in PartnerWalletController');",
+              "}",
+              "",
+              "// Hand the next request an id, so the detail call needs no copy-paste.",
+              "if (json.activity.length && json.activity[0].id) {",
+              "    pm.environment.set('activity_id', json.activity[0].id);",
+              "    console.log('activity_id ->', json.activity[0].id);",
+              "} else {",
+              "    console.warn('empty feed on this page -- request 2 will reuse whatever activity_id' +",
+              "        ' is already in the environment');",
+              "}",
+              "",
+              "console.log('cash', json.summary.cashBalance, json.summary.currency,",
+              "    '| reserved', json.summary.reserved,",
+              "    '| page', json.pagination.page + '/' + json.pagination.totalPages,",
+              "    '| entries', json.activity.length);",
+              "",
+              "const held = json.activity.filter(function (e) { return e.kind === 'hold'; });",
+              "if (held.length) {",
+              "    console.log(held.length + ' outstanding hold(s) on this page --',",
+              "        'summary.reserved is', json.summary.reserved, json.summary.currency);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Request-Id",
+            "value": "{{request_id}}"
+          },
+          {
+            "key": "X-Correlation-ID",
+            "value": "{{correlation_id}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/wallet/activity?page=1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "wallet",
+            "activity"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "description": "Optional, 1-based, defaults to 1. Page size is not a parameter."
+            }
+          ]
+        },
+        "description": "Newest first, 15 per page. An outstanding hold appears as `funds_held` / `kind: hold` while its funds are still reserved, then drops out once it settles and is replaced by whatever settled it - so the same money is never counted twice. `summary` is the balance NOW, not as of this page, so it does not change as you page through.\n\nMoney fields are decimal rupees. A null amount means the wallet did not report that field - treat it as unknown, never as zero.\n\nOne reference field, `reference` - Paynex's `referenceId` and `bookingId` are merged into it (booking reference last), so a hold-derived movement still reports its booking."
+      }
+    },
+    {
+      "name": "2. Activity detail",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (!pm.environment.get('activity_id')) {",
+              "    throw new Error('No activity_id yet -- send \\'1. Activity feed\\' first, or set' +",
+              "        ' activity_id in the environment by hand');",
+              "}"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// The wrapper exists to curate. These keys are the wallet's own vocabulary and",
+              "// must never appear anywhere in a response -- see the 'Field curation' table in",
+              "// wallet-activity-api.md. Checked recursively, because a leak would most likely",
+              "// show up nested inside activity[] or legs[], not at the top level.",
+              "const FORBIDDEN = ['idempotencyKey', 'referenceType', 'transactionCategory',",
+              "    'assetType', 'walletPartnerId', 'walletId', 'ownerId', 'partnerId',",
+              "    'bookingId', 'referenceId'];",
+              "function leaks(node, path) {",
+              "    let found = [];",
+              "    if (Array.isArray(node)) {",
+              "        node.forEach((v, i) => { found = found.concat(leaks(v, path + '[' + i + ']')); });",
+              "    } else if (node && typeof node === 'object') {",
+              "        Object.keys(node).forEach(function (k) {",
+              "            if (FORBIDDEN.indexOf(k) !== -1) { found.push(path + '.' + k); }",
+              "            found = found.concat(leaks(node[k], path + '.' + k));",
+              "        });",
+              "    }",
+              "    return found;",
+              "}",
+              "",
+              "const json = pm.response.json();",
+              "",
+              "// hold | committed | released | expired are ONE shape in four settlement states;",
+              "// transaction is the only other value. `legs` is the structural signal.",
+              "const HOLD_TYPES = ['hold', 'committed', 'released', 'expired'];",
+              "const isHold = HOLD_TYPES.indexOf(json.type) !== -1;",
+              "",
+              "pm.test('200, type is one of the five published values', function () {",
+              "    pm.response.to.have.status(200);",
+              "    pm.expect(HOLD_TYPES.concat(['transaction'])).to.include(json.type);",
+              "});",
+              "",
+              "pm.test('legs tracks the shape: present on a hold, absent on a transaction', function () {",
+              "    if (isHold) { pm.expect(json.legs).to.be.an('array'); }",
+              "    else { pm.expect(json).to.not.have.property('legs'); }",
+              "});",
+              "",
+              "pm.test('no wallet internals leaked', function () {",
+              "    pm.expect(leaks(json, 'body'), 'leaked keys').to.eql([]);",
+              "});",
+              "",
+              "pm.test('exactly one reference field, named reference', function () {",
+              "    // referenceId and bookingId are merged into `reference` -- the key is always",
+              "    // present, null only when the movement has no reference at all.",
+              "    pm.expect(json).to.have.property('reference');",
+              "});",
+              "",
+              "if (isHold) {",
+              "    pm.test('held = committed + released + stillHeld', function () {",
+              "        const sum = json.committed + json.released + json.stillHeld;",
+              "        // Rupee amounts carry two decimals; compare with a paise-sized tolerance",
+              "        // rather than exactly, so binary float noise is not a failed test.",
+              "        pm.expect(Math.abs(json.held - sum)).to.be.below(0.005);",
+              "    });",
+              "",
+              "    pm.test('legs carry only label / kind / amount / date', function () {",
+              "        json.legs.forEach(function (leg) {",
+              "            pm.expect(Object.keys(leg).sort()).to.eql(['amount', 'date', 'kind', 'label']);",
+              "        });",
+              "    });",
+              "",
+              "    pm.test('a transaction-only field never appears on a hold', function () {",
+              "        pm.expect(json).to.not.have.property('category');",
+              "        pm.expect(json).to.not.have.property('autoDrawnCredit');",
+              "        // type IS the status (hold / committed / released / expired), so a second",
+              "        // status field would only be a chance for the two to disagree.",
+              "        pm.expect(json).to.not.have.property('status');",
+              "    });",
+              "",
+              "    console.log('hold ->', json.type, '| held', json.held, json.currency,",
+              "        '-> committed', json.committed, '| released', json.released,",
+              "        '| stillHeld', json.stillHeld, '|', json.legs.length, 'leg(s)');",
+              "} else {",
+              "    pm.test('a hold-only field never appears on a transaction', function () {",
+              "        pm.expect(json).to.not.have.property('legs');",
+              "        pm.expect(json).to.not.have.property('held');",
+              "        pm.expect(json).to.not.have.property('stillHeld');",
+              "    });",
+              "",
+              "    console.log('transaction', json.category, json.kind, json.amount, json.currency,",
+              "        '|', json.status, '| ref', json.reference);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Request-Id",
+            "value": "{{request_id}}"
+          },
+          {
+            "key": "X-Correlation-ID",
+            "value": "{{correlation_id}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/wallet/activity/{{activity_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "wallet",
+            "activity",
+            "{{activity_id}}"
+          ]
+        },
+        "description": "A five-value union on `type`.\n\n- `hold` / `committed` / `released` / `expired` - one shape in four settlement states: the held / committed / released figures plus `legs`, one entry per step. There is no `status` field; `type` is the state.\n- `transaction` - a standalone movement: no `legs`, nothing to break down\n\n`{id}` takes a feed entry id or a hold id - the wallet resolves either, so a hold you created stays reachable after it drops out of the feed.\n\n`activity_id` is set for you by request 1."
+      }
+    },
+    {
+      "name": "3. Contract check: invalid page -> 400",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('400 VALIDATION_ERROR', function () {",
+              "    pm.response.to.have.status(400);",
+              "    pm.expect(pm.response.json().error.code).to.eql('VALIDATION_ERROR');",
+              "});",
+              "",
+              "pm.test('the error names the offending parameter', function () {",
+              "    pm.expect(pm.response.json().error.details).to.include('page');",
+              "});",
+              "",
+              "console.log(pm.response.json().error.details);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Request-Id",
+            "value": "{{request_id}}"
+          },
+          {
+            "key": "X-Correlation-ID",
+            "value": "{{correlation_id}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/wallet/activity?page=abc",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "wallet",
+            "activity"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "abc"
+            }
+          ]
+        },
+        "description": "A bad page is rejected here rather than passed to the wallet, which would answer with an empty feed - and an empty feed reads as 'you have no activity'."
+      }
+    },
+    {
+      "name": "4. Contract check: malformed id -> 400",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('400 VALIDATION_ERROR', function () {",
+              "    pm.response.to.have.status(400);",
+              "    pm.expect(pm.response.json().error.code).to.eql('VALIDATION_ERROR');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Request-Id",
+            "value": "{{request_id}}"
+          },
+          {
+            "key": "X-Correlation-ID",
+            "value": "{{correlation_id}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/wallet/activity/not$a$valid$id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "wallet",
+            "activity",
+            "not$a$valid$id"
+          ]
+        },
+        "description": "The id is checked against ^[A-Za-z0-9_-]{1,128}$ BEFORE it is interpolated into a wallet URL path - it arrives from a client, and the ids the feed hands out are UUIDs."
+      }
+    },
+    {
+      "name": "5. Contract check: unknown id -> 404",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('404, and no wallet internals in the error', function () {",
+              "    pm.response.to.have.status(404);",
+              "    const code = pm.response.json().error.code;",
+              "    // WALLET_NOT_FOUND is the same 404 seen from the other side: this partner has",
+              "    // no wallet at all yet, so there is nothing for the id to belong to.",
+              "    pm.expect(['ACTIVITY_NOT_FOUND', 'WALLET_NOT_FOUND']).to.include(code);",
+              "});",
+              "",
+              "console.log(pm.response.json().error.code, '|', pm.response.json().error.details);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Request-Id",
+            "value": "{{request_id}}"
+          },
+          {
+            "key": "X-Correlation-ID",
+            "value": "{{correlation_id}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/wallet/activity/00000000-0000-4000-8000-000000000000",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "wallet",
+            "activity",
+            "00000000-0000-4000-8000-000000000000"
+          ]
+        },
+        "description": "The same 404 a real id belonging to ANOTHER partner returns. The wallet scopes every lookup to the owner id resolved from the token, so a cross-tenant read is indistinguishable from a typo - isolation by construction, not by filtering the answer."
+      }
+    },
+    {
+      "name": "6. Contract check: no token -> 401",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('401 without an Authorization header', function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test('nothing about the wallet is disclosed to an unauthenticated caller', function () {",
+              "    pm.expect(pm.response.text()).to.not.include('cashBalance');",
+              "});",
+              "",
+              "console.log(pm.response.code, pm.response.json().error.code);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Request-Id",
+            "value": "{{request_id}}"
+          },
+          {
+            "key": "X-Correlation-ID",
+            "value": "{{correlation_id}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/wallet/activity",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "wallet",
+            "activity"
+          ]
+        },
+        "description": "Sent with the Authorization header removed. The access token is the ONLY credential on this surface, so this is the whole gate."
+      }
+    }
+  ]
+}

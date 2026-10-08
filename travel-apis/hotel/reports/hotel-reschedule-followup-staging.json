@@ -1,0 +1,52 @@
+{
+  "error": "no codes",
+  "cases": [
+    {
+      "id": "F1a",
+      "title": "POST /api/hotels/cancelBooking missing bookingId",
+      "passed": null,
+      "observational": true,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"bookingId is required\",\"details\":\"Field 'bookingId' is required\",\"timestamp\":\"2026-08-06T13:51:34Z\",\"request_id\":\"req-1786024293277\"},\"_meta\":{\"correlation_id\":\"df0d5376-1ce2-468f-acd3-cbdb65a9638d\"}}",
+      "at": "2026-08-06T13:51:33.360Z"
+    },
+    {
+      "id": "F1b",
+      "title": "POST /v1/hotels/cancelBooking missing bookingId (alt path)",
+      "passed": null,
+      "observational": true,
+      "http": 404,
+      "bodyStatus": 404,
+      "code": null,
+      "snippet": "{\"status\":404,\"info\":\"Page not found\"}",
+      "at": "2026-08-06T13:51:33.645Z"
+    },
+    {
+      "id": "F2",
+      "title": "POST v1 cancel unknown BR → BOOKING_NOT_FOUND envelope?",
+      "expected": "HTTP 404 + error.code BOOKING_NOT_FOUND",
+      "passed": true,
+      "http": 404,
+      "code": "BOOKING_NOT_FOUND",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR0000000000000000'\",\"timestamp\":\"2026-08-06T13:51:34Z\",\"request_id\":\"req-1786024293645\"},\"_meta\":{\"correlation_id\":\"df0d5376-1ce2-468f-acd3-cbdb65a9638d\"}}",
+      "at": "2026-08-06T13:51:33.729Z"
+    },
+    {
+      "id": "F2b",
+      "title": "POST /api/hotels/cancelBooking unknown BR",
+      "passed": true,
+      "http": 404,
+      "code": "BOOKING_NOT_FOUND",
+      "snippet": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR0000000000000000'\",\"timestamp\":\"2026-08-06T13:51:34Z\",\"request_id\":\"req-1786024293729\"},\"_meta\":{\"correlation_id\":\"df0d5376-1ce2-468f-acd3-cbdb65a9638d\"}}",
+      "at": "2026-08-06T13:51:33.813Z"
+    },
+    {
+      "id": "F0",
+      "title": "Book original",
+      "passed": false,
+      "message": "no codes",
+      "at": "2026-08-06T13:51:34.706Z"
+    }
+  ]
+}

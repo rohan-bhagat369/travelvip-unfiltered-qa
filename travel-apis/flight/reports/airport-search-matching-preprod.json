@@ -1,0 +1,803 @@
+{
+  "ranAt": "2026-08-27T09:52:02.017Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "tierId": "19597201",
+  "api": "GET /v1/flights/airports",
+  "note": "Airport catalog matching only. No flight search / book.",
+  "counts": {
+    "PASS": 22,
+    "BUG": 3,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "section": "POS",
+      "id": 1,
+      "rule": "Partial city → Amritsar (ATQ)",
+      "how": "GET /v1/flights/airports?airport=amrit",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 rank(ATQ)=1 top=ATQ:Amritsar",
+      "query": "amrit",
+      "hits": [
+        {
+          "airportCode": "ATQ",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "city": "Amritsar",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 2,
+      "rule": "Partial city → Mumbai (BOM)",
+      "how": "GET /v1/flights/airports?airport=mumb",
+      "expected": "HTTP 200; expected code in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 rank(BOM)=1 top=BOM:Mumbai | NMI:Navi Mumbai | AUV:Arawa | MJG:Florencia | UMA:Maisí",
+      "query": "mumb",
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India"
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India"
+        },
+        {
+          "airportCode": "AUV",
+          "airportName": "Aumo Airport",
+          "city": "Arawa",
+          "country": "Papua new Guinea"
+        },
+        {
+          "airportCode": "MJG",
+          "airportName": "Mayajigua Airport",
+          "city": "Florencia",
+          "country": "Cuba"
+        },
+        {
+          "airportCode": "UMA",
+          "airportName": "Alfredo Noa Díaz Airport",
+          "city": "Maisí",
+          "country": "Cuba"
+        },
+        {
+          "airportCode": "MOA",
+          "airportName": "Orestes Acosta Airport",
+          "city": "Moa",
+          "country": "Cuba"
+        },
+        {
+          "airportCode": "UPB",
+          "airportName": "Playa Baracoa Airport",
+          "city": "Havana",
+          "country": "Cuba"
+        },
+        {
+          "airportCode": "MZO",
+          "airportName": "Sierra Maestra International Airport",
+          "city": "Manzanillo",
+          "country": "Cuba"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 3,
+      "rule": "Typo amritsr → Amritsar (ATQ)",
+      "how": "GET /v1/flights/airports?airport=amritsr",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 rank(ATQ)=1 top=ATQ:Amritsar",
+      "query": "amritsr",
+      "hits": [
+        {
+          "airportCode": "ATQ",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "city": "Amritsar",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 4,
+      "rule": "Typo ahmedbad → Ahmedabad (AMD)",
+      "how": "GET /v1/flights/airports?airport=ahmedbad",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 rank(AMD)=1 top=AMD:Ahmedabad",
+      "query": "ahmedbad",
+      "hits": [
+        {
+          "airportCode": "AMD",
+          "airportName": "Sardar Vallabhbhai Patel International Airport",
+          "city": "Ahmedabad",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 5,
+      "rule": "Multi-word new delhi → DEL",
+      "how": "GET /v1/flights/airports?airport=new%20delhi",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 rank(DEL)=1 top=DEL:New Delhi | AKL:Auckland | NYC:New York City | KBZ:New Plymouth | NPL:New Plymouth",
+      "query": "new delhi",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "AKL",
+          "airportName": "Auckland International Airport",
+          "city": "Auckland",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "NYC",
+          "airportName": "All Airports",
+          "city": "New York City",
+          "country": "United States"
+        },
+        {
+          "airportCode": "KBZ",
+          "airportName": "Kaikoura Airport",
+          "city": "New Plymouth",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "NPL",
+          "airportName": "New Plymouth Airport",
+          "city": "New Plymouth",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "CHC",
+          "airportName": "Christchurch International Airport",
+          "city": "Christchurch",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "WLG",
+          "airportName": "Wellington International Airport",
+          "city": "Wellington",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "KUI",
+          "airportName": "Kawau Island Seaplane Base",
+          "city": "Warkworth",
+          "country": "New Zealand"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 6,
+      "rule": "Full city delhi → DEL",
+      "how": "GET /v1/flights/airports?airport=delhi",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 rank(DEL)=1 top=DEL:New Delhi",
+      "query": "delhi",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 7,
+      "rule": "Exact IATA BOM → Mumbai",
+      "how": "GET /v1/flights/airports?airport=BOM",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=7 rank(BOM)=1 top=BOM:Mumbai | LAZ:Bom Jesus da Lapa | BOA:Boma | LVR:Lucas do Rio Verde | SYI:Shelbyville",
+      "query": "BOM",
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India"
+        },
+        {
+          "airportCode": "LAZ",
+          "airportName": "Bom Jesus da Lapa Airport",
+          "city": "Bom Jesus da Lapa",
+          "country": "Brazil"
+        },
+        {
+          "airportCode": "BOA",
+          "airportName": "Boma Airport",
+          "city": "Boma",
+          "country": "Democratic Republic of the Congo"
+        },
+        {
+          "airportCode": "LVR",
+          "airportName": "Bomfuturo Municipal Airport",
+          "city": "Lucas do Rio Verde",
+          "country": "Brazil"
+        },
+        {
+          "airportCode": "SYI",
+          "airportName": "Bomar Field Shelbyville Municipal Airport",
+          "city": "Shelbyville",
+          "country": "United States"
+        },
+        {
+          "airportCode": "BMH",
+          "airportName": "Bomai Airport",
+          "city": "Gumine",
+          "country": "Papua new Guinea"
+        },
+        {
+          "airportCode": "UDI",
+          "airportName": "Ten. Cel. Aviador César Bombonato Airport",
+          "city": "Uberlândia",
+          "country": "Brazil"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 8,
+      "rule": "Exact IATA ATQ → Amritsar",
+      "how": "GET /v1/flights/airports?airport=ATQ",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 rank(ATQ)=1 top=ATQ:Amritsar | ATK:Azle",
+      "query": "ATQ",
+      "hits": [
+        {
+          "airportCode": "ATQ",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "city": "Amritsar",
+          "country": "India"
+        },
+        {
+          "airportCode": "ATK",
+          "airportName": "Atqasuk Edward Burnell Sr Memorial Airport",
+          "city": "Azle",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 9,
+      "rule": "Exact IATA AMD → Ahmedabad",
+      "how": "GET /v1/flights/airports?airport=AMD",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 rank(AMD)=1 top=AMD:Ahmedabad | AMV:Amderma",
+      "query": "AMD",
+      "hits": [
+        {
+          "airportCode": "AMD",
+          "airportName": "Sardar Vallabhbhai Patel International Airport",
+          "city": "Ahmedabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "AMV",
+          "airportName": "Amderma Airport",
+          "city": "Amderma",
+          "country": "Russia"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 10,
+      "rule": "Exact IATA DEL → New Delhi",
+      "how": "GET /v1/flights/airports?airport=DEL",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 rank(DEL)=1 top=DEL:New Delhi | AGT:Ciudad del Este | FUE:Puerto del Rosario | IAO:Del Carmen | MDQ:Mar Del Plata",
+      "query": "DEL",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "AGT",
+          "airportName": "Aeropuerto Internacional Guaraní",
+          "city": "Ciudad del Este",
+          "country": "Paraguay"
+        },
+        {
+          "airportCode": "FUE",
+          "airportName": "Fuerteventura Airport",
+          "city": "Puerto del Rosario",
+          "country": "Spain"
+        },
+        {
+          "airportCode": "IAO",
+          "airportName": "Siargao Airport",
+          "city": "Del Carmen",
+          "country": "Philippines"
+        },
+        {
+          "airportCode": "MDQ",
+          "airportName": "Ástor Piazzola International Airport",
+          "city": "Mar Del Plata",
+          "country": "Argentina"
+        },
+        {
+          "airportCode": "PCM",
+          "airportName": "Playa del Carmen Airport",
+          "city": "Playa del Carmen",
+          "country": "Mexico"
+        },
+        {
+          "airportCode": "BOC",
+          "airportName": "Bocas del Toro International Airport",
+          "city": "Bocas del Toro",
+          "country": "Panama"
+        },
+        {
+          "airportCode": "CYR",
+          "airportName": "Colonia Laguna de Los Patos International Airport",
+          "city": "Colonia del Sacramento",
+          "country": "Uruguay"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 11,
+      "rule": "Case-insensitive AMRIT → ATQ",
+      "how": "GET /v1/flights/airports?airport=AMRIT",
+      "expected": "HTTP 200; expected code in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 rank(ATQ)=1 top=ATQ:Amritsar",
+      "query": "AMRIT",
+      "hits": [
+        {
+          "airportCode": "ATQ",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "city": "Amritsar",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 12,
+      "rule": "Mixed case MuMb → BOM",
+      "how": "GET /v1/flights/airports?airport=MuMb",
+      "expected": "HTTP 200; expected code in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 rank(BOM)=1 top=BOM:Mumbai | NMI:Navi Mumbai | AUV:Arawa | MJG:Florencia | UMA:Maisí",
+      "query": "MuMb",
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India"
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India"
+        },
+        {
+          "airportCode": "AUV",
+          "airportName": "Aumo Airport",
+          "city": "Arawa",
+          "country": "Papua new Guinea"
+        },
+        {
+          "airportCode": "MJG",
+          "airportName": "Mayajigua Airport",
+          "city": "Florencia",
+          "country": "Cuba"
+        },
+        {
+          "airportCode": "UMA",
+          "airportName": "Alfredo Noa Díaz Airport",
+          "city": "Maisí",
+          "country": "Cuba"
+        },
+        {
+          "airportCode": "MOA",
+          "airportName": "Orestes Acosta Airport",
+          "city": "Moa",
+          "country": "Cuba"
+        },
+        {
+          "airportCode": "UPB",
+          "airportName": "Playa Baracoa Airport",
+          "city": "Havana",
+          "country": "Cuba"
+        },
+        {
+          "airportCode": "MZO",
+          "airportName": "Sierra Maestra International Airport",
+          "city": "Manzanillo",
+          "country": "Cuba"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 13,
+      "rule": "Partial/typo bangalor → BLR",
+      "how": "GET /v1/flights/airports?airport=bangalor",
+      "expected": "HTTP 200; expected code in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 n=1 rank(BLR)=null cityMismatch top=BGR:Bangor",
+      "query": "bangalor",
+      "hits": [
+        {
+          "airportCode": "BGR",
+          "airportName": "Bangor International Airport",
+          "city": "Bangor",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 14,
+      "rule": "Partial chenn → MAA Chennai",
+      "how": "GET /v1/flights/airports?airport=chenn",
+      "expected": "HTTP 200; expected code in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=5 rank(MAA)=1 top=MAA:Chennai | CWF:Lake Charles | CEX:Fairbanks North Star Borough | ENY:YanCheng | HBG:Hattiesburg",
+      "query": "chenn",
+      "hits": [
+        {
+          "airportCode": "MAA",
+          "airportName": "Chennai International Airport",
+          "city": "Chennai",
+          "country": "India"
+        },
+        {
+          "airportCode": "CWF",
+          "airportName": "Chennault International Airport",
+          "city": "Lake Charles",
+          "country": "United States"
+        },
+        {
+          "airportCode": "CEX",
+          "airportName": "Chena Hot Springs Airport",
+          "city": "Fairbanks North Star Borough",
+          "country": "United States"
+        },
+        {
+          "airportCode": "ENY",
+          "airportName": "Yan'an Nanniwan Airport",
+          "city": "YanCheng",
+          "country": "China"
+        },
+        {
+          "airportCode": "HBG",
+          "airportName": "Hattiesburg Bobby L Chain Municipal Airport",
+          "city": "Hattiesburg",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 15,
+      "rule": "Partial hyderab → HYD",
+      "how": "GET /v1/flights/airports?airport=hyderab",
+      "expected": "HTTP 200; expected code in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 rank(HYD)=1 top=HYD:Hyderabad | HDD:Hyderabad | BPM:Hyderabad | WHD:Azle",
+      "query": "hyderab",
+      "hits": [
+        {
+          "airportCode": "HYD",
+          "airportName": "Rajiv Gandhi International Airport",
+          "city": "Hyderabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDD",
+          "airportName": "Airport",
+          "city": "Hyderabad",
+          "country": "Pakistan"
+        },
+        {
+          "airportCode": "BPM",
+          "airportName": "Begumpet Airport",
+          "city": "Hyderabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "WHD",
+          "airportName": "Hyder Sea Plane Base",
+          "city": "Azle",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "section": "POS",
+      "id": 16,
+      "rule": "Multi-word new york → NYC (or JFK/EWR/LGA in top)",
+      "how": "GET /v1/flights/airports?airport=new%20york",
+      "expected": "HTTP 200; expected code in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 best=NYC@2 top=ZAC:York | NYC:New York City | THV:Thomasville | NYS:East Village | SWF:Newburgh",
+      "query": "new york",
+      "hits": [
+        {
+          "airportCode": "ZAC",
+          "airportName": "York Landing Airport",
+          "city": "York",
+          "country": "Canada"
+        },
+        {
+          "airportCode": "NYC",
+          "airportName": "All Airports",
+          "city": "New York City",
+          "country": "United States"
+        },
+        {
+          "airportCode": "THV",
+          "airportName": "York Airport",
+          "city": "Thomasville",
+          "country": "United States"
+        },
+        {
+          "airportCode": "NYS",
+          "airportName": "New York Skyports Seaplane Base",
+          "city": "East Village",
+          "country": "United States"
+        },
+        {
+          "airportCode": "SWF",
+          "airportName": "New York Stewart International Airport",
+          "city": "Newburgh",
+          "country": "United States"
+        },
+        {
+          "airportCode": "RKH",
+          "airportName": "Rock Hill - York County Airport",
+          "city": "Rock Hill",
+          "country": "United States"
+        },
+        {
+          "airportCode": "OKR",
+          "airportName": "Yorke Island Airport",
+          "city": "Yorke Peninsula",
+          "country": "Australia"
+        },
+        {
+          "airportCode": "XML",
+          "airportName": "Minlaton Airport",
+          "city": "Yorke Peninsula",
+          "country": "Australia"
+        }
+      ]
+    },
+    {
+      "section": "NEG",
+      "id": 17,
+      "rule": "Empty airport query rejected",
+      "how": "GET /v1/flights/airports?airport=",
+      "expected": "HTTP 4xx (VALIDATION) never 500",
+      "status": "PASS",
+      "actual": "HTTP 400 n=0 top=(none) code=MISSING_AIRPORT",
+      "query": "",
+      "hits": [],
+      "error": {
+        "code": "MISSING_AIRPORT",
+        "message": "airport parameter is required",
+        "details": "Query parameter 'airport' is required",
+        "timestamp": "2026-08-27T09:51:59Z",
+        "request_id": "req-1787824319736"
+      }
+    },
+    {
+      "section": "NEG",
+      "id": 18,
+      "rule": "Whitespace-only query → empty or 4xx, never 500",
+      "how": "GET /v1/flights/airports?airport=%20%20%20",
+      "expected": "HTTP 4xx or 200 with 0 hits",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none) code=-",
+      "query": "   ",
+      "hits": [],
+      "error": null
+    },
+    {
+      "section": "NEG",
+      "id": 19,
+      "rule": "Nonsense zzzzxxx → no airports",
+      "how": "GET /v1/flights/airports?airport=zzzzxxx",
+      "expected": "HTTP 200 empty (or 4xx), never 500",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none) code=-",
+      "query": "zzzzxxx",
+      "hits": [],
+      "error": null
+    },
+    {
+      "section": "NEG",
+      "id": 20,
+      "rule": "Nonsense xyzzy123 → no airports",
+      "how": "GET /v1/flights/airports?airport=xyzzy123",
+      "expected": "HTTP 200 empty (or 4xx), never 500",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none) code=-",
+      "query": "xyzzy123",
+      "hits": [],
+      "error": null
+    },
+    {
+      "section": "NEG",
+      "id": 21,
+      "rule": "Nonsense qqqqqqqq → no airports",
+      "how": "GET /v1/flights/airports?airport=qqqqqqqq",
+      "expected": "HTTP 200 empty (or 4xx), never 500",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none) code=-",
+      "query": "qqqqqqqq",
+      "hits": [],
+      "error": null
+    },
+    {
+      "section": "NEG",
+      "id": 22,
+      "rule": "Punctuation-only !@#$ → 4xx or empty, never 500 / invented hits",
+      "how": "GET /v1/flights/airports?airport=!%40%23%24",
+      "expected": "HTTP 4xx or 200 with 0 hits (never 500)",
+      "status": "BUG",
+      "actual": "HTTP 200 n=10 top=WAS:Washington D.C. | MIL:Milan | MOW:Moscow | LON:London | NYC:New York City code=-",
+      "query": "!@#$",
+      "hits": [
+        {
+          "airportCode": "WAS",
+          "airportName": "All Airports",
+          "city": "Washington D.C.",
+          "country": "United States"
+        },
+        {
+          "airportCode": "MIL",
+          "airportName": "All Airports",
+          "city": "Milan",
+          "country": "Italy"
+        },
+        {
+          "airportCode": "MOW",
+          "airportName": "All Airports",
+          "city": "Moscow",
+          "country": "Russia"
+        },
+        {
+          "airportCode": "LON",
+          "airportName": "All Airports",
+          "city": "London",
+          "country": "United Kingdom"
+        },
+        {
+          "airportCode": "NYC",
+          "airportName": "All Airports",
+          "city": "New York City",
+          "country": "United States"
+        },
+        {
+          "airportCode": "PAR",
+          "airportName": "All Airports",
+          "city": "Paris",
+          "country": "France"
+        },
+        {
+          "airportCode": "ATL",
+          "airportName": "Hartsfield Jackson Atlanta International Airport",
+          "city": "Atlanta",
+          "country": "United States"
+        },
+        {
+          "airportCode": "DFW",
+          "airportName": "Dallas Fort Worth International Airport",
+          "city": "Grapevine",
+          "country": "United States"
+        }
+      ],
+      "error": null
+    },
+    {
+      "section": "NEG",
+      "id": 23,
+      "rule": "HTML <script> → 4xx or empty, never 500 / invented hits",
+      "how": "GET /v1/flights/airports?airport=%3Cscript%3E",
+      "expected": "HTTP 4xx or 200 with 0 hits (never 500)",
+      "status": "BUG",
+      "actual": "HTTP 200 n=5 top=EVA:Evadale | SMP:Gazelle | YSA:Bow Island | PPD:Humacao | IPC:Isla de Pascua code=-",
+      "query": "<script>",
+      "hits": [
+        {
+          "airportCode": "EVA",
+          "airportName": "Evadale Landing Strip",
+          "city": "Evadale",
+          "country": "United States"
+        },
+        {
+          "airportCode": "SMP",
+          "airportName": "Stockholm Landing Strip",
+          "city": "Gazelle",
+          "country": "Papua new Guinea"
+        },
+        {
+          "airportCode": "YSA",
+          "airportName": "Sable Island Landing Strip",
+          "city": "Bow Island",
+          "country": "Canada"
+        },
+        {
+          "airportCode": "PPD",
+          "airportName": "Palmas Del Mar Air Strip",
+          "city": "Humacao",
+          "country": "United States"
+        },
+        {
+          "airportCode": "IPC",
+          "airportName": "Mataveri Airport",
+          "city": "Isla de Pascua",
+          "country": "Chile"
+        }
+      ],
+      "error": null
+    },
+    {
+      "section": "NEG",
+      "id": 24,
+      "rule": "Trailing comma amrit, → 4xx or still ATQ / empty — never 500",
+      "how": "GET /v1/flights/airports?airport=amrit%2C",
+      "expected": "never HTTP 500",
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 top=ATQ:Amritsar code=-",
+      "query": "amrit,",
+      "hits": [
+        {
+          "airportCode": "ATQ",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "city": "Amritsar",
+          "country": "India"
+        }
+      ],
+      "error": null
+    },
+    {
+      "section": "NEG",
+      "id": 25,
+      "rule": "Semicolons only → 4xx or empty, never 500",
+      "how": "GET /v1/flights/airports?airport=%3B%3B%3B%3B",
+      "expected": "HTTP 4xx or 200 empty",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none) code=-",
+      "query": ";;;;",
+      "hits": [],
+      "error": null
+    }
+  ]
+}

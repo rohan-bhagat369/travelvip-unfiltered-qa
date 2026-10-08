@@ -1,0 +1,383 @@
+{
+  "ranAt": "2026-08-26T16:51:43.998Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "tierId": "19597201",
+  "checkin": "2026-09-23",
+  "checkout": "2026-09-24",
+  "note": "GST filter on SEARCH listing flag isGSTClaimable only. No details/book.",
+  "cities": [
+    {
+      "city": "Delhi",
+      "alias": null,
+      "entityId": "227760:IN",
+      "checks": [
+        {
+          "id": "G1",
+          "rule": "Every listing hotel has boolean isGSTClaimable",
+          "how": "unfiltered search results[]",
+          "status": "PASS",
+          "actual": "n=40 true=0 false=40 missingKey=0 nonBool=0",
+          "missingSample": [],
+          "nonBoolSample": []
+        },
+        {
+          "id": "G2",
+          "rule": "GST filter advertised on search (indexField + Claimable facet)",
+          "how": "unfiltered filters[]",
+          "status": "PASS",
+          "actual": "facet=GST claimable=Claimable:5"
+        },
+        {
+          "id": "G3",
+          "rule": "fq GST Claimable → every hotel isGSTClaimable=true (listing flag)",
+          "how": "fq=GST:Claimable",
+          "status": "PASS",
+          "actual": "http=200 n=5 total=5 allTrue=true anyFalse=false",
+          "falseSample": []
+        },
+        {
+          "id": "G4",
+          "rule": "Filtered total ≤ unfiltered and matches Claimable facet count",
+          "how": "compare totals",
+          "status": "PASS",
+          "actual": "unfTotal=1577 filtTotal=5 facetCount=5"
+        },
+        {
+          "id": "G5",
+          "rule": "Filter uses listing isGSTClaimable (not details rooms)",
+          "how": "search-only validation",
+          "status": "PASS",
+          "actual": "validated on /v1/hotels/search results[].isGSTClaimable only"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Mumbai",
+      "alias": null,
+      "entityId": "357389:IN",
+      "checks": [
+        {
+          "id": "G1",
+          "rule": "Every listing hotel has boolean isGSTClaimable",
+          "how": "unfiltered search results[]",
+          "status": "PASS",
+          "actual": "n=40 true=0 false=40 missingKey=0 nonBool=0",
+          "missingSample": [],
+          "nonBoolSample": []
+        },
+        {
+          "id": "G2",
+          "rule": "GST filter advertised on search (indexField + Claimable facet)",
+          "how": "unfiltered filters[]",
+          "status": "PASS",
+          "actual": "facet=GST claimable=Claimable:15"
+        },
+        {
+          "id": "G3",
+          "rule": "fq GST Claimable → every hotel isGSTClaimable=true (listing flag)",
+          "how": "fq=GST:Claimable",
+          "status": "PASS",
+          "actual": "http=200 n=15 total=15 allTrue=true anyFalse=false",
+          "falseSample": []
+        },
+        {
+          "id": "G4",
+          "rule": "Filtered total ≤ unfiltered and matches Claimable facet count",
+          "how": "compare totals",
+          "status": "PASS",
+          "actual": "unfTotal=961 filtTotal=15 facetCount=15"
+        },
+        {
+          "id": "G5",
+          "rule": "Filter uses listing isGSTClaimable (not details rooms)",
+          "how": "search-only validation",
+          "status": "PASS",
+          "actual": "validated on /v1/hotels/search results[].isGSTClaimable only"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Bangalore",
+      "alias": null,
+      "entityId": "341153:IN",
+      "checks": [
+        {
+          "id": "G1",
+          "rule": "Every listing hotel has boolean isGSTClaimable",
+          "how": "unfiltered search results[]",
+          "status": "PASS",
+          "actual": "n=40 true=1 false=39 missingKey=0 nonBool=0",
+          "missingSample": [],
+          "nonBoolSample": []
+        },
+        {
+          "id": "G2",
+          "rule": "GST filter advertised on search (indexField + Claimable facet)",
+          "how": "unfiltered filters[]",
+          "status": "PASS",
+          "actual": "facet=GST claimable=Claimable:31"
+        },
+        {
+          "id": "G3",
+          "rule": "fq GST Claimable → every hotel isGSTClaimable=true (listing flag)",
+          "how": "fq=GST:Claimable",
+          "status": "PASS",
+          "actual": "http=200 n=31 total=31 allTrue=true anyFalse=false",
+          "falseSample": []
+        },
+        {
+          "id": "G4",
+          "rule": "Filtered total ≤ unfiltered and matches Claimable facet count",
+          "how": "compare totals",
+          "status": "PASS",
+          "actual": "unfTotal=1599 filtTotal=31 facetCount=31"
+        },
+        {
+          "id": "G5",
+          "rule": "Filter uses listing isGSTClaimable (not details rooms)",
+          "how": "search-only validation",
+          "status": "PASS",
+          "actual": "validated on /v1/hotels/search results[].isGSTClaimable only"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Chennai",
+      "alias": null,
+      "entityId": "228269:IN",
+      "checks": [
+        {
+          "id": "G1",
+          "rule": "Every listing hotel has boolean isGSTClaimable",
+          "how": "unfiltered search results[]",
+          "status": "PASS",
+          "actual": "n=40 true=0 false=40 missingKey=0 nonBool=0",
+          "missingSample": [],
+          "nonBoolSample": []
+        },
+        {
+          "id": "G2",
+          "rule": "GST filter advertised on search (indexField + Claimable facet)",
+          "how": "unfiltered filters[]",
+          "status": "PASS",
+          "actual": "facet=GST claimable=Claimable:2"
+        },
+        {
+          "id": "G3",
+          "rule": "fq GST Claimable → every hotel isGSTClaimable=true (listing flag)",
+          "how": "fq=GST:Claimable",
+          "status": "PASS",
+          "actual": "http=200 n=2 total=2 allTrue=true anyFalse=false",
+          "falseSample": []
+        },
+        {
+          "id": "G4",
+          "rule": "Filtered total ≤ unfiltered and matches Claimable facet count",
+          "how": "compare totals",
+          "status": "PASS",
+          "actual": "unfTotal=655 filtTotal=2 facetCount=2"
+        },
+        {
+          "id": "G5",
+          "rule": "Filter uses listing isGSTClaimable (not details rooms)",
+          "how": "search-only validation",
+          "status": "PASS",
+          "actual": "validated on /v1/hotels/search results[].isGSTClaimable only"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Pune",
+      "alias": null,
+      "entityId": "328605:IN",
+      "checks": [
+        {
+          "id": "G1",
+          "rule": "Every listing hotel has boolean isGSTClaimable",
+          "how": "unfiltered search results[]",
+          "status": "PASS",
+          "actual": "n=40 true=0 false=40 missingKey=0 nonBool=0",
+          "missingSample": [],
+          "nonBoolSample": []
+        },
+        {
+          "id": "G2",
+          "rule": "GST filter advertised on search (indexField + Claimable facet)",
+          "how": "unfiltered filters[]",
+          "status": "PASS",
+          "actual": "facet=GST claimable=Claimable:2"
+        },
+        {
+          "id": "G3",
+          "rule": "fq GST Claimable → every hotel isGSTClaimable=true (listing flag)",
+          "how": "fq=GST:Claimable",
+          "status": "PASS",
+          "actual": "http=200 n=2 total=2 allTrue=true anyFalse=false",
+          "falseSample": []
+        },
+        {
+          "id": "G4",
+          "rule": "Filtered total ≤ unfiltered and matches Claimable facet count",
+          "how": "compare totals",
+          "status": "PASS",
+          "actual": "unfTotal=563 filtTotal=2 facetCount=2"
+        },
+        {
+          "id": "G5",
+          "rule": "Filter uses listing isGSTClaimable (not details rooms)",
+          "how": "search-only validation",
+          "status": "PASS",
+          "actual": "validated on /v1/hotels/search results[].isGSTClaimable only"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Hyderabad",
+      "alias": null,
+      "entityId": "227706:IN",
+      "checks": [
+        {
+          "id": "G1",
+          "rule": "Every listing hotel has boolean isGSTClaimable",
+          "how": "unfiltered search results[]",
+          "status": "PASS",
+          "actual": "n=40 true=0 false=40 missingKey=0 nonBool=0",
+          "missingSample": [],
+          "nonBoolSample": []
+        },
+        {
+          "id": "G2",
+          "rule": "GST filter advertised on search (indexField + Claimable facet)",
+          "how": "unfiltered filters[]",
+          "status": "PASS",
+          "actual": "facet=GST claimable=Claimable:7"
+        },
+        {
+          "id": "G3",
+          "rule": "fq GST Claimable → every hotel isGSTClaimable=true (listing flag)",
+          "how": "fq=GST:Claimable",
+          "status": "PASS",
+          "actual": "http=200 n=7 total=7 allTrue=true anyFalse=false",
+          "falseSample": []
+        },
+        {
+          "id": "G4",
+          "rule": "Filtered total ≤ unfiltered and matches Claimable facet count",
+          "how": "compare totals",
+          "status": "PASS",
+          "actual": "unfTotal=760 filtTotal=7 facetCount=7"
+        },
+        {
+          "id": "G5",
+          "rule": "Filter uses listing isGSTClaimable (not details rooms)",
+          "how": "search-only validation",
+          "status": "PASS",
+          "actual": "validated on /v1/hotels/search results[].isGSTClaimable only"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Goa",
+      "alias": null,
+      "entityId": "328649:IN",
+      "checks": [
+        {
+          "id": "G1",
+          "rule": "Every listing hotel has boolean isGSTClaimable",
+          "how": "unfiltered search results[]",
+          "status": "PASS",
+          "actual": "n=40 true=1 false=39 missingKey=0 nonBool=0",
+          "missingSample": [],
+          "nonBoolSample": []
+        },
+        {
+          "id": "G2",
+          "rule": "GST filter advertised on search (indexField + Claimable facet)",
+          "how": "unfiltered filters[]",
+          "status": "PASS",
+          "actual": "facet=GST claimable=Claimable:1"
+        },
+        {
+          "id": "G3",
+          "rule": "fq GST Claimable → every hotel isGSTClaimable=true (listing flag)",
+          "how": "fq=GST:Claimable",
+          "status": "PASS",
+          "actual": "http=200 n=1 total=1 allTrue=true anyFalse=false",
+          "falseSample": []
+        },
+        {
+          "id": "G4",
+          "rule": "Filtered total ≤ unfiltered and matches Claimable facet count",
+          "how": "compare totals",
+          "status": "PASS",
+          "actual": "unfTotal=114 filtTotal=1 facetCount=1"
+        },
+        {
+          "id": "G5",
+          "rule": "Filter uses listing isGSTClaimable (not details rooms)",
+          "how": "search-only validation",
+          "status": "PASS",
+          "actual": "validated on /v1/hotels/search results[].isGSTClaimable only"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Ahmedabad",
+      "alias": "AMD",
+      "entityId": "246774:IN",
+      "checks": [
+        {
+          "id": "G1",
+          "rule": "Every listing hotel has boolean isGSTClaimable",
+          "how": "unfiltered search results[]",
+          "status": "PASS",
+          "actual": "n=40 true=0 false=40 missingKey=0 nonBool=0",
+          "missingSample": [],
+          "nonBoolSample": []
+        },
+        {
+          "id": "G2",
+          "rule": "GST filter advertised on search (indexField + Claimable facet)",
+          "how": "unfiltered filters[]",
+          "status": "PASS",
+          "actual": "facet=GST claimable=Claimable:1"
+        },
+        {
+          "id": "G3",
+          "rule": "fq GST Claimable → every hotel isGSTClaimable=true (listing flag)",
+          "how": "fq=GST:Claimable",
+          "status": "PASS",
+          "actual": "http=200 n=1 total=1 allTrue=true anyFalse=false",
+          "falseSample": []
+        },
+        {
+          "id": "G4",
+          "rule": "Filtered total ≤ unfiltered and matches Claimable facet count",
+          "how": "compare totals",
+          "status": "PASS",
+          "actual": "unfTotal=526 filtTotal=1 facetCount=1"
+        },
+        {
+          "id": "G5",
+          "rule": "Filter uses listing isGSTClaimable (not details rooms)",
+          "how": "search-only validation",
+          "status": "PASS",
+          "actual": "validated on /v1/hotels/search results[].isGSTClaimable only"
+        }
+      ],
+      "verdict": "PASS"
+    }
+  ],
+  "counts": {
+    "PASS": 8,
+    "BUG": 0,
+    "NOT_TESTED": 0
+  }
+}

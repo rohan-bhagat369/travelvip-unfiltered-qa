@@ -1,0 +1,5896 @@
+{
+  "ranAt": "2026-09-01T13:23:02.777Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "tierId": "19597201",
+  "api": "GET /v1/flights/airports",
+  "note": "Checklist pass: blank, edge, pid, page, prefix, typo/synonym. No book.",
+  "counts": {
+    "PASS": 61,
+    "BUG": 22,
+    "NOT_TESTED": 0
+  },
+  "bySection": {
+    "BLANK": {
+      "PASS": 3,
+      "BUG": 0
+    },
+    "EDGE": {
+      "PASS": 8,
+      "BUG": 2
+    },
+    "PID": {
+      "PASS": 7,
+      "BUG": 0
+    },
+    "PAGE": {
+      "PASS": 5,
+      "BUG": 0
+    },
+    "PREFIX": {
+      "PASS": 12,
+      "BUG": 12
+    },
+    "SYNONYM": {
+      "PASS": 12,
+      "BUG": 1
+    },
+    "TYPO": {
+      "PASS": 10,
+      "BUG": 6
+    },
+    "IATA": {
+      "PASS": 4,
+      "BUG": 1
+    }
+  },
+  "bugCount": 22,
+  "bugs": [
+    {
+      "id": 7,
+      "section": "EDGE",
+      "rule": "special !@#$",
+      "actual": "HTTP 200 n=13 top=WAS:Washington D.C. | JPN:Rosslyn | BZS:Washington D.C."
+    },
+    {
+      "id": 8,
+      "section": "EDGE",
+      "rule": "HTML <script>",
+      "actual": "HTTP 200 n=8 top=SMP:Gazelle | OPB:Gazelle | ULE:Arawa"
+    },
+    {
+      "id": 28,
+      "section": "PREFIX",
+      "rule": "Prefix mum → BOM",
+      "actual": "HTTP 200 n=11 expect@5(BOM) top=MUM:Mumias | GGM:Kakamega | KIS:Kisumu | NZO:Port Victoria | BOM:Mumbai"
+    },
+    {
+      "id": 31,
+      "section": "PREFIX",
+      "rule": "Prefix de → DEL area",
+      "actual": "HTTP 200 n=13 expect@MISS(-) top=MEX:Ciudad de México | AZP:Ciudad López Mateos | NLU:San Juan Pueblo Nuevo | TLC:Guadalupe Totoltepec | FDF:Fort-de-France"
+    },
+    {
+      "id": 32,
+      "section": "PREFIX",
+      "rule": "Prefix del → DEL",
+      "actual": "HTTP 200 n=13 expect@9(DEL) top=AGT:Ciudad del Este | ENO:Encarnación | ASU:Mariano Roque Alonso | AYO:Juan de Ayolas | FUE:Puerto del Rosario"
+    },
+    {
+      "id": 34,
+      "section": "PREFIX",
+      "rule": "Prefix ban → BLR",
+      "actual": "HTTP 200 n=13 expect@9(BLR) top=HOE:Ban Houakhoua | XIE:Muang Paktha | LXG:Luang Namtha | UON:Muang Xay | PHZ:Ban Mai Khao"
+    },
+    {
+      "id": 35,
+      "section": "PREFIX",
+      "rule": "Prefix bang → BLR",
+      "actual": "HTTP 200 n=12 expect@5(BLR) top=PYX:Bang Lamung District | UTP:Rayong | BKK:Bangkok | HHQ:Hua Hin | BLR:Bengaluru"
+    },
+    {
+      "id": 36,
+      "section": "PREFIX",
+      "rule": "Prefix chen → MAA",
+      "actual": "HTTP 200 n=13 expect@5(MAA) top=CEX:Fairbanks North Star Borough | EIL:Fairbanks | FBK:Fairbanks | CHP:Hot Springs | MAA:Chennai"
+    },
+    {
+      "id": 37,
+      "section": "PREFIX",
+      "rule": "Prefix che → MAA area",
+      "actual": "HTTP 200 n=13 expect@7(MAA) top=CHE:Cahersiveen | KIR:Castleisland | BYT:Bantry | ORK:Cork | GVA:Le Grand-Saconnex"
+    },
+    {
+      "id": 39,
+      "section": "PREFIX",
+      "rule": "Prefix goa → GOI/GOX",
+      "actual": "HTTP 200 n=10 expect@5(GOX) top=GOA:Mele | GPP:Genoa | GEP:Genoa | ALL:Villanova d'Albenga | GOX:Mopa"
+    },
+    {
+      "id": 41,
+      "section": "PREFIX",
+      "rule": "Prefix kol → CCU",
+      "actual": "HTTP 200 n=13 expect@7(CCU) top=OLS:Nogales | FHU:Huachuca City | TUS:Tucson | DMA:Tucson | KOL:Ndélé"
+    },
+    {
+      "id": 42,
+      "section": "PREFIX",
+      "rule": "Prefix pun → PNQ",
+      "actual": "HTTP 200 n=13 expect@7(PNQ) top=PUN:Gemena | KLY:Gemena | KND:Kindu | FKI:Kisangani | CDE:Chengde"
+    },
+    {
+      "id": 43,
+      "section": "PREFIX",
+      "rule": "Prefix amr → ATQ",
+      "actual": "HTTP 200 n=7 expect@5(ATQ) top=AVR:Amravati | AKD:Akola | NAG:Nagpur | NDC:Nanded | ATQ:Amritsar"
+    },
+    {
+      "id": 48,
+      "section": "PREFIX",
+      "rule": "Prefix dub → DXB",
+      "actual": "HTTP 200 n=13 expect@5(DXB) top=DUB:Dublin | KKY:Kilkenny | WEX:Castlebridge | WAT:Waterford | DXB:Dubai"
+    },
+    {
+      "id": 51,
+      "section": "SYNONYM",
+      "rule": "madras → MAA",
+      "actual": "HTTP 200 rank=5 top=MDJ:Madras | RDM:Redmond | PRZ:Prineville | SUO:Sunriver"
+    },
+    {
+      "id": 66,
+      "section": "TYPO",
+      "rule": "banglor → BLR",
+      "actual": "HTTP 200 rank=7 top=BGR:Bangor | OLD:Old Town | BHB:Bar Harbor | WVL:Waterville"
+    },
+    {
+      "id": 68,
+      "section": "TYPO",
+      "rule": "madrass → MAA",
+      "actual": "HTTP 200 rank=5 top=MDJ:Madras | RDM:Redmond | PRZ:Prineville | SUO:Sunriver"
+    },
+    {
+      "id": 69,
+      "section": "TYPO",
+      "rule": "calcuta → CCU",
+      "actual": "HTTP 200 rank=7 top=ALU:Caluula | CXN:Qandala | BSA:Bosaso | CMS:Iskushuban"
+    },
+    {
+      "id": 70,
+      "section": "TYPO",
+      "rule": "pone → PNQ",
+      "actual": "HTTP 200 rank=MISS top=PIC:Pine Cay | NCA:North Caicos | PLS:Providenciales | MDS:Middle Caicos"
+    },
+    {
+      "id": 71,
+      "section": "TYPO",
+      "rule": "goaa → GOI|GOX",
+      "actual": "HTTP 200 rank=6 top=OYA:Goya | RCQ:Reconquista | MDX:Mercedes | UZU:Curuzú Cuatiá"
+    },
+    {
+      "id": 72,
+      "section": "TYPO",
+      "rule": "nagpr → NAG",
+      "actual": "HTTP 200 rank=7 top=RMD:Ramagundam | WGC:Warangal | BPM:Hyderabad | HYD:Hyderabad"
+    },
+    {
+      "id": 80,
+      "section": "IATA",
+      "rule": "Exact airport=DEL",
+      "actual": "HTTP 200 rank(DEL)=9 top=AGT:Ciudad del Este | ENO:Encarnación | ASU:Mariano Roque Alonso"
+    }
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "section": "BLANK",
+      "rule": "No airport param + page=0",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&page=0&perpage=10",
+      "expected": "HTTP 400 MISSING_AIRPORT or 200 default list; never 500",
+      "status": "PASS",
+      "actual": "HTTP 400 code=MISSING_AIRPORT n=0",
+      "hits": [],
+      "error": {
+        "code": "MISSING_AIRPORT",
+        "message": "airport parameter is required",
+        "details": "Query parameter 'airport' is required",
+        "timestamp": "2026-09-01T13:22:44Z",
+        "request_id": "req-1788268964672"
+      }
+    },
+    {
+      "id": 2,
+      "section": "BLANK",
+      "rule": "No airport param, no page param",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10",
+      "expected": "HTTP 400 MISSING_AIRPORT or 200; never 500",
+      "status": "PASS",
+      "actual": "HTTP 400 code=MISSING_AIRPORT n=0",
+      "hits": [],
+      "error": {
+        "code": "MISSING_AIRPORT",
+        "message": "airport parameter is required",
+        "details": "Query parameter 'airport' is required",
+        "timestamp": "2026-09-01T13:22:45Z",
+        "request_id": "req-1788268964814"
+      }
+    },
+    {
+      "id": 3,
+      "section": "BLANK",
+      "rule": "No airport param + page=1",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&page=1&perpage=10",
+      "expected": "Same as no-airport: 400 or empty; never 500",
+      "status": "PASS",
+      "actual": "HTTP 400 code=MISSING_AIRPORT n=0",
+      "error": {
+        "code": "MISSING_AIRPORT",
+        "message": "airport parameter is required",
+        "details": "Query parameter 'airport' is required",
+        "timestamp": "2026-09-01T13:22:45Z",
+        "request_id": "req-1788268965226"
+      }
+    },
+    {
+      "id": 4,
+      "section": "EDGE",
+      "rule": "empty string",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "PASS",
+      "actual": "HTTP 400 n=0 top=(none)",
+      "query": "",
+      "hits": [],
+      "error": {
+        "code": "MISSING_AIRPORT",
+        "message": "airport parameter is required",
+        "details": "Query parameter 'airport' is required",
+        "timestamp": "2026-09-01T13:22:45Z",
+        "request_id": "req-1788268965361"
+      }
+    },
+    {
+      "id": 5,
+      "section": "EDGE",
+      "rule": "spaces only",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=+++&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none)",
+      "query": "   ",
+      "hits": [],
+      "error": null
+    },
+    {
+      "id": 6,
+      "section": "EDGE",
+      "rule": "tab only",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=%09&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none)",
+      "query": "\t",
+      "hits": [],
+      "error": null
+    },
+    {
+      "id": 7,
+      "section": "EDGE",
+      "rule": "special !@#$",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=%21%40%23%24&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "BUG",
+      "actual": "HTTP 200 n=13 top=WAS:Washington D.C. | JPN:Rosslyn | BZS:Washington D.C.",
+      "query": "!@#$",
+      "hits": [
+        {
+          "airportCode": "WAS",
+          "airportName": "All Airports",
+          "city": "Washington D.C.",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "JPN",
+          "airportName": "Pentagon Army Airport",
+          "city": "Rosslyn",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BZS",
+          "airportName": "Buzzards Point S Airport",
+          "city": "Washington D.C.",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DCA",
+          "airportName": "Ronald Reagan Washington National Airport",
+          "city": "Washington",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MIL",
+          "airportName": "All Airports",
+          "city": "Milan",
+          "country": "Italy",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 8,
+      "section": "EDGE",
+      "rule": "HTML <script>",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=%3Cscript%3E&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "BUG",
+      "actual": "HTTP 200 n=8 top=SMP:Gazelle | OPB:Gazelle | ULE:Arawa",
+      "query": "<script>",
+      "hits": [
+        {
+          "airportCode": "SMP",
+          "airportName": "Stockholm Landing Strip",
+          "city": "Gazelle",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "OPB",
+          "airportName": "Open Bay Airport",
+          "city": "Gazelle",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ULE",
+          "airportName": "Sule Airport",
+          "city": "Arawa",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TLO",
+          "airportName": "Tol Airport",
+          "city": "Arawa",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "EVA",
+          "airportName": "Evadale Landing Strip",
+          "city": "Evadale",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 9,
+      "section": "EDGE",
+      "rule": "semicolons",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=%3B%3B%3B%3B&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none)",
+      "query": ";;;;",
+      "hits": [],
+      "error": null
+    },
+    {
+      "id": 10,
+      "section": "EDGE",
+      "rule": "trailing comma",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=mumb%2C&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "PASS",
+      "actual": "HTTP 200 n=12 top=BOM:Mumbai | NMI:Navi Mumbai | PNQ:Pune",
+      "query": "mumb,",
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AUV",
+          "airportName": "Aumo Airport",
+          "city": "Arawa",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 11,
+      "section": "EDGE",
+      "rule": "nonsense",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=zzzzxxx&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none)",
+      "query": "zzzzxxx",
+      "hits": [],
+      "error": null
+    },
+    {
+      "id": 12,
+      "section": "EDGE",
+      "rule": "200-char string",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none)",
+      "query": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "hits": [],
+      "error": null
+    },
+    {
+      "id": 13,
+      "section": "EDGE",
+      "rule": "500-char string",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&page=0",
+      "expected": "never 500; 4xx or safe empty for garbage",
+      "status": "PASS",
+      "actual": "HTTP 200 n=0 top=(none)",
+      "query": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "hits": [],
+      "error": null
+    },
+    {
+      "id": 14,
+      "section": "PID",
+      "rule": "Response pid field: airport=bom (omit vs vgm vs smt)",
+      "how": "airport=bom with pid=vgm|smt|omit",
+      "expected": "HTTP 200 all; note pid on hits + whether order changes",
+      "status": "PASS",
+      "actual": "omit pids=[all null] vgm=[all null] smt=[all null] topSame=true top=BOM:Mumbai | NMI:Navi Mumbai | PNQ:Pune | NMB:Daman",
+      "noPid": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LAZ",
+          "airportName": "Bom Jesus da Lapa Airport",
+          "city": "Bom Jesus da Lapa",
+          "country": "Brazil",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "withVgm": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LAZ",
+          "airportName": "Bom Jesus da Lapa Airport",
+          "city": "Bom Jesus da Lapa",
+          "country": "Brazil",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "withSmt": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LAZ",
+          "airportName": "Bom Jesus da Lapa Airport",
+          "city": "Bom Jesus da Lapa",
+          "country": "Brazil",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "section": "PID",
+      "rule": "Response pid field: airport=del (omit vs vgm vs smt)",
+      "how": "airport=del with pid=vgm|smt|omit",
+      "expected": "HTTP 200 all; note pid on hits + whether order changes",
+      "status": "PASS",
+      "actual": "omit pids=[all null] vgm=[all null] smt=[all null] topSame=true top=AGT:Ciudad del Este | ENO:Encarnación | ASU:Mariano Roque Alonso | AYO:Juan de Ayolas",
+      "noPid": [
+        {
+          "airportCode": "AGT",
+          "airportName": "Aeropuerto Internacional Guaraní",
+          "city": "Ciudad del Este",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ENO",
+          "airportName": "Aeropuerto Nacional Tte. Amin Ayub González",
+          "city": "Encarnación",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ASU",
+          "airportName": "Aeropuerto Internacional Silvio Pettirossi",
+          "city": "Mariano Roque Alonso",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AYO",
+          "airportName": "Aeropuerto Nacional de Juan De Ayolas",
+          "city": "Juan de Ayolas",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FUE",
+          "airportName": "Fuerteventura Airport",
+          "city": "Puerto del Rosario",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "withVgm": [
+        {
+          "airportCode": "AGT",
+          "airportName": "Aeropuerto Internacional Guaraní",
+          "city": "Ciudad del Este",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ENO",
+          "airportName": "Aeropuerto Nacional Tte. Amin Ayub González",
+          "city": "Encarnación",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ASU",
+          "airportName": "Aeropuerto Internacional Silvio Pettirossi",
+          "city": "Mariano Roque Alonso",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AYO",
+          "airportName": "Aeropuerto Nacional de Juan De Ayolas",
+          "city": "Juan de Ayolas",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FUE",
+          "airportName": "Fuerteventura Airport",
+          "city": "Puerto del Rosario",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "withSmt": [
+        {
+          "airportCode": "AGT",
+          "airportName": "Aeropuerto Internacional Guaraní",
+          "city": "Ciudad del Este",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ENO",
+          "airportName": "Aeropuerto Nacional Tte. Amin Ayub González",
+          "city": "Encarnación",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ASU",
+          "airportName": "Aeropuerto Internacional Silvio Pettirossi",
+          "city": "Mariano Roque Alonso",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AYO",
+          "airportName": "Aeropuerto Nacional de Juan De Ayolas",
+          "city": "Juan de Ayolas",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FUE",
+          "airportName": "Fuerteventura Airport",
+          "city": "Puerto del Rosario",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "section": "PID",
+      "rule": "Response pid field: airport=blr (omit vs vgm vs smt)",
+      "how": "airport=blr with pid=vgm|smt|omit",
+      "expected": "HTTP 200 all; note pid on hits + whether order changes",
+      "status": "PASS",
+      "actual": "omit pids=[all null] vgm=[all null] smt=[all null] topSame=true top=BLR:Bengaluru | PUT:Puttaparthi | MYQ:Mysuru | SXV:Salem",
+      "noPid": [
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PUT",
+          "airportName": "Sri Sathya Sai Airport",
+          "city": "Puttaparthi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MYQ",
+          "airportName": "Mysuru Airport",
+          "city": "Mysuru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXV",
+          "airportName": "Salem Airport",
+          "city": "Salem",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MSQ",
+          "airportName": "Minsk National Airport",
+          "city": "Minsk",
+          "country": "Belarus",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "withVgm": [
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PUT",
+          "airportName": "Sri Sathya Sai Airport",
+          "city": "Puttaparthi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MYQ",
+          "airportName": "Mysuru Airport",
+          "city": "Mysuru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXV",
+          "airportName": "Salem Airport",
+          "city": "Salem",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MSQ",
+          "airportName": "Minsk National Airport",
+          "city": "Minsk",
+          "country": "Belarus",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "withSmt": [
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PUT",
+          "airportName": "Sri Sathya Sai Airport",
+          "city": "Puttaparthi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MYQ",
+          "airportName": "Mysuru Airport",
+          "city": "Mysuru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXV",
+          "airportName": "Salem Airport",
+          "city": "Salem",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MSQ",
+          "airportName": "Minsk National Airport",
+          "city": "Minsk",
+          "country": "Belarus",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "section": "PID",
+      "rule": "Query pid=vgm on airport=sin",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=sin&pid=vgm&page=0",
+      "expected": "HTTP 200 SIN ranked; or 4xx bad pid; never 500",
+      "status": "PASS",
+      "actual": "HTTP 200 SIN@1 hitPids=[]",
+      "hits": [
+        {
+          "airportCode": "SIN",
+          "airportName": "Singapore Changi Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QPG",
+          "airportName": "Paya Lebar Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XSP",
+          "airportName": "Seletar Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TGA",
+          "airportName": "Tengah Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXM",
+          "airportName": "Princess Juliana International Airport",
+          "city": "Sint Maarten",
+          "country": "Sint Maarten (Dutch part)",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "section": "PID",
+      "rule": "Query pid=smt on airport=sin",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=sin&pid=smt&page=0",
+      "expected": "HTTP 200 SIN ranked; or 4xx bad pid; never 500",
+      "status": "PASS",
+      "actual": "HTTP 200 SIN@1 hitPids=[]",
+      "hits": [
+        {
+          "airportCode": "SIN",
+          "airportName": "Singapore Changi Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QPG",
+          "airportName": "Paya Lebar Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XSP",
+          "airportName": "Seletar Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TGA",
+          "airportName": "Tengah Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXM",
+          "airportName": "Princess Juliana International Airport",
+          "city": "Sint Maarten",
+          "country": "Sint Maarten (Dutch part)",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "section": "PID",
+      "rule": "Query pid=(empty string) on airport=sin",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=sin&pid=&page=0",
+      "expected": "HTTP 200 SIN ranked; or 4xx bad pid; never 500",
+      "status": "PASS",
+      "actual": "HTTP 200 SIN@1 hitPids=[]",
+      "hits": [
+        {
+          "airportCode": "SIN",
+          "airportName": "Singapore Changi Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QPG",
+          "airportName": "Paya Lebar Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XSP",
+          "airportName": "Seletar Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TGA",
+          "airportName": "Tengah Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXM",
+          "airportName": "Princess Juliana International Airport",
+          "city": "Sint Maarten",
+          "country": "Sint Maarten (Dutch part)",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "section": "PID",
+      "rule": "Invalid pid=INVALID_PID_XYZ",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=bom&pid=INVALID_PID_XYZ&page=0",
+      "expected": "HTTP 200 (ignore bad pid) or 4xx; never 500",
+      "status": "PASS",
+      "actual": "HTTP 200 n=12 top=BOM:Mumbai | NMI:Navi Mumbai",
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 21,
+      "section": "PAGE",
+      "rule": "Pages 0/1/2 airport=a perpage=5",
+      "how": "airport=a page=0,1,2",
+      "expected": "HTTP 200; no overlap between consecutive pages; nearbyAirports noted",
+      "status": "PASS",
+      "actual": "p0=8 p1=5 p2=5 overlap01=0 overlap12=0 total=9338 nearbyWithData=0",
+      "page0": [
+        {
+          "airportCode": "WAS",
+          "airportName": "All Airports",
+          "city": "Washington D.C.",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "JPN",
+          "airportName": "Pentagon Army Airport",
+          "city": "Rosslyn",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BZS",
+          "airportName": "Buzzards Point S Airport",
+          "city": "Washington D.C.",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DCA",
+          "airportName": "Ronald Reagan Washington National Airport",
+          "city": "Washington",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MIL",
+          "airportName": "All Airports",
+          "city": "Milan",
+          "country": "Italy",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MOW",
+          "airportName": "All Airports",
+          "city": "Moscow",
+          "country": "Russia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LON",
+          "airportName": "All Airports",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NYC",
+          "airportName": "All Airports",
+          "city": "New York City",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "page1": [
+        {
+          "airportCode": "PAR",
+          "airportName": "All Airports",
+          "city": "Paris",
+          "country": "France",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ATL",
+          "airportName": "Hartsfield Jackson Atlanta International Airport",
+          "city": "Atlanta",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DXB",
+          "airportName": "Dubai International Airport",
+          "city": "Dubai",
+          "country": "United Arab Emirates",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DFW",
+          "airportName": "Dallas Fort Worth International Airport",
+          "city": "Grapevine",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HND",
+          "airportName": "Tokyo Haneda International Airport",
+          "city": "Tokyo",
+          "country": "Japan",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "page2": [
+        {
+          "airportCode": "LHR",
+          "airportName": "London Heathrow Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DEN",
+          "airportName": "Denver International Airport",
+          "city": "Denver",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AMS",
+          "airportName": "Amsterdam Airport Schiphol",
+          "city": "Amsterdam",
+          "country": "Netherlands",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ORD",
+          "airportName": "Chicago O'Hare International Airport",
+          "city": "Chicago",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IST",
+          "airportName": "İstanbul Airport",
+          "city": "Sultangazi",
+          "country": "Turkey",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "nearbySample": []
+    },
+    {
+      "id": 22,
+      "section": "PAGE",
+      "rule": "Pages 0/1/2 airport=del perpage=5",
+      "how": "airport=del page=0,1,2",
+      "expected": "HTTP 200; no overlap between consecutive pages; nearbyAirports noted",
+      "status": "PASS",
+      "actual": "p0=8 p1=5 p2=5 overlap01=0 overlap12=0 total=208 nearbyWithData=0",
+      "page0": [
+        {
+          "airportCode": "AGT",
+          "airportName": "Aeropuerto Internacional Guaraní",
+          "city": "Ciudad del Este",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ENO",
+          "airportName": "Aeropuerto Nacional Tte. Amin Ayub González",
+          "city": "Encarnación",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ASU",
+          "airportName": "Aeropuerto Internacional Silvio Pettirossi",
+          "city": "Mariano Roque Alonso",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AYO",
+          "airportName": "Aeropuerto Nacional de Juan De Ayolas",
+          "city": "Juan de Ayolas",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FUE",
+          "airportName": "Fuerteventura Airport",
+          "city": "Puerto del Rosario",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PCM",
+          "airportName": "Playa del Carmen Airport",
+          "city": "Playa del Carmen",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MDQ",
+          "airportName": "Ástor Piazzola International Airport",
+          "city": "Mar Del Plata",
+          "country": "Argentina",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IAO",
+          "airportName": "Siargao Airport",
+          "city": "Del Carmen",
+          "country": "Philippines",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "page1": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CYR",
+          "airportName": "Colonia Laguna de Los Patos International Airport",
+          "city": "Colonia del Sacramento",
+          "country": "Uruguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BOC",
+          "airportName": "Bocas del Toro International Airport",
+          "city": "Bocas del Toro",
+          "country": "Panama",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HSK",
+          "airportName": "Huesca-Pirineos Airport",
+          "city": "Alcalá del Obispo",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SDE",
+          "airportName": "Vicecomodoro Angel D. La Paz Aragonés Airport",
+          "city": "Santiago del Estero",
+          "country": "Argentina",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "page2": [
+        {
+          "airportCode": "VAP",
+          "airportName": "Rodelillo Airport",
+          "city": "Viña del Mar",
+          "country": "Chile",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CME",
+          "airportName": "Ciudad del Carmen International Airport",
+          "city": "Ciudad del Carmen",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CYO",
+          "airportName": "Vilo Acuña International Airport",
+          "city": "Cayo Largo Del Sur",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SJH",
+          "airportName": "San Juan Del César Airport",
+          "city": "San Juan del Cesar",
+          "country": "Colombia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LCL",
+          "airportName": "La Coloma Airport",
+          "city": "Pinar del Río",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "nearbySample": []
+    },
+    {
+      "id": 23,
+      "section": "PAGE",
+      "rule": "Pages 0/1/2 airport=mumb perpage=5",
+      "how": "airport=mumb page=0,1,2",
+      "expected": "HTTP 200; no overlap between consecutive pages; nearbyAirports noted",
+      "status": "PASS",
+      "actual": "p0=7 p1=5 p2=5 overlap01=0 overlap12=0 total=18 nearbyWithData=0",
+      "page0": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AUV",
+          "airportName": "Aumo Airport",
+          "city": "Arawa",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "UMA",
+          "airportName": "Alfredo Noa Díaz Airport",
+          "city": "Maisí",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MZO",
+          "airportName": "Sierra Maestra International Airport",
+          "city": "Manzanillo",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "page1": [
+        {
+          "airportCode": "MOA",
+          "airportName": "Orestes Acosta Airport",
+          "city": "Moa",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MJG",
+          "airportName": "Mayajigua Airport",
+          "city": "Florencia",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "UPB",
+          "airportName": "Playa Baracoa Airport",
+          "city": "Havana",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MUM",
+          "airportName": "Mumias Airport",
+          "city": "Mumias",
+          "country": "Kenya",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MUB",
+          "airportName": "Maun Airport",
+          "city": "Maun",
+          "country": "Botswana",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "page2": [
+        {
+          "airportCode": "MMB",
+          "airportName": "Memanbetsu Airport",
+          "city": "Motomachi",
+          "country": "Japan",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QSN",
+          "airportName": "San Nicolas De Bari Airport",
+          "city": "San Nicolás de Bari",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "UMB",
+          "airportName": "Kalumbila Airport",
+          "city": "Dauphin Island",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BTW",
+          "airportName": "Batu Licin Airport",
+          "city": "Kabupaten Tanah Bumbu",
+          "country": "Indonesia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BMB",
+          "airportName": "Bumbar Airport",
+          "city": "Bumba",
+          "country": "Democratic Republic of the Congo",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "nearbySample": []
+    },
+    {
+      "id": 24,
+      "section": "PAGE",
+      "rule": "Pages 0/1/2 airport=lon perpage=5",
+      "how": "airport=lon page=0,1,2",
+      "expected": "HTTP 200; no overlap between consecutive pages; nearbyAirports noted",
+      "status": "PASS",
+      "actual": "p0=8 p1=5 p2=5 overlap01=0 overlap12=0 total=61 nearbyWithData=0",
+      "page0": [
+        {
+          "airportCode": "LON",
+          "airportName": "All Airports",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QQU",
+          "airportName": "Euston Railway Station",
+          "city": "Camden Town",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QQS",
+          "airportName": "Saint Pancras International Railway Station",
+          "city": "Barnsbury",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QQK",
+          "airportName": "Kings Cross Railway Station",
+          "city": "Barnsbury",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LHR",
+          "airportName": "London Heathrow Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LGW",
+          "airportName": "London Gatwick Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LCY",
+          "airportName": "London City Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XS1",
+          "airportName": "London Heathrow Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "page1": [
+        {
+          "airportCode": "LTN",
+          "airportName": "London Luton Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "STN",
+          "airportName": "London Stansted Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "YMQ",
+          "airportName": "Montreal",
+          "city": "Longueuil",
+          "country": "Canada",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KWE",
+          "airportName": "Guiyang Longdongbao International Airport",
+          "city": "Guiyang",
+          "country": "China",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WNZ",
+          "airportName": "Wenzhou Longwan International Airport",
+          "city": "Wenzhou",
+          "country": "China",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "page2": [
+        {
+          "airportCode": "CGQ",
+          "airportName": "Changchun Longjia International Airport",
+          "city": "Changchun",
+          "country": "China",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LCP",
+          "airportName": "Loncopue Airport",
+          "city": "Loncopué",
+          "country": "Argentina",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XLO",
+          "airportName": "Long Xuyen Airport",
+          "city": "Long Xuyên City",
+          "country": "Vietnam",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LIJ",
+          "airportName": "Long Island Airport",
+          "city": "Long Island City",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LPU",
+          "airportName": "Long Apung Airport",
+          "city": "Long Apung",
+          "country": "Indonesia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ],
+      "nearbySample": []
+    },
+    {
+      "id": 25,
+      "section": "PAGE",
+      "rule": "nearbyAirports scan on IATA BOM/DEL/BLR/MAA/HYD/GOI/GOX/NMI",
+      "how": "first page per IATA code",
+      "expected": "Document whether nearbyAirports populated (NOT_TESTED if never present)",
+      "status": "PASS",
+      "actual": "nearbyAirports always null on all 8 codes scanned",
+      "nearbyFound": []
+    },
+    {
+      "id": 26,
+      "section": "PREFIX",
+      "rule": "Single char m → HTTP 200 has results",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=m&page=0",
+      "expected": "HTTP 200 non-empty",
+      "status": "PASS",
+      "actual": "HTTP 200 n=13 expect@MISS(-) top=JCU:M'Diq-Fnideq | TTU:Martil | TNG:Tangier | AHU:Imzouren | MLY:Hot Springs",
+      "query": "m",
+      "hits": [
+        {
+          "airportCode": "JCU",
+          "airportName": "Ceuta Heliport",
+          "city": "M'Diq-Fnideq",
+          "country": "Morocco",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TTU",
+          "airportName": "Sania Ramel Airport",
+          "city": "Martil",
+          "country": "Morocco",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TNG",
+          "airportName": "Tangier Ibn Battuta Airport",
+          "city": "Tangier",
+          "country": "Morocco",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AHU",
+          "airportName": "Cherif Al Idrissi Airport",
+          "city": "Imzouren",
+          "country": "Morocco",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MLY",
+          "airportName": "Manley Hot Springs Airport",
+          "city": "Hot Springs",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PCU",
+          "airportName": "Poplarville Pearl River County Airport",
+          "city": "Poplarville",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MIL",
+          "airportName": "All Airports",
+          "city": "Milan",
+          "country": "Italy",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MOW",
+          "airportName": "All Airports",
+          "city": "Moscow",
+          "country": "Russia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "section": "PREFIX",
+      "rule": "Prefix mu → BOM area",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=mu&page=0",
+      "expected": "BOM in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 n=12 expect@1(BOM) top=BOM:Mumbai | NMI:Navi Mumbai | PNQ:Pune | NMB:Daman | MUC:Munich",
+      "query": "mu",
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MUC",
+          "airportName": "Munich Airport",
+          "city": "Munich",
+          "country": "Germany",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MCT",
+          "airportName": "Muscat International Airport",
+          "city": "Muscat",
+          "country": "Oman",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MWX",
+          "airportName": "Muan International Airport",
+          "city": "Muan-gun",
+          "country": "South Korea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "VRA",
+          "airportName": "Juan Gualberto Gomez International Airport",
+          "city": "Matanzas",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "section": "PREFIX",
+      "rule": "Prefix mum → BOM",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=mum&page=0",
+      "expected": "BOM in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 n=11 expect@5(BOM) top=MUM:Mumias | GGM:Kakamega | KIS:Kisumu | NZO:Port Victoria | BOM:Mumbai",
+      "query": "mum",
+      "hits": [
+        {
+          "airportCode": "MUM",
+          "airportName": "Mumias Airport",
+          "city": "Mumias",
+          "country": "Kenya",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GGM",
+          "airportName": "Kakamega Airport",
+          "city": "Kakamega",
+          "country": "Kenya",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KIS",
+          "airportName": "Kisumu Airport",
+          "city": "Kisumu",
+          "country": "Kenya",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NZO",
+          "airportName": "Nzoia Airport",
+          "city": "Port Victoria",
+          "country": "Kenya",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "UMA",
+          "airportName": "Alfredo Noa Díaz Airport",
+          "city": "Maisí",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MZO",
+          "airportName": "Sierra Maestra International Airport",
+          "city": "Manzanillo",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "section": "PREFIX",
+      "rule": "Prefix mumb → BOM",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=mumb&page=0",
+      "expected": "BOM in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=12 expect@1(BOM) top=BOM:Mumbai | NMI:Navi Mumbai | PNQ:Pune | NMB:Daman | AUV:Arawa",
+      "query": "mumb",
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AUV",
+          "airportName": "Aumo Airport",
+          "city": "Arawa",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "UMA",
+          "airportName": "Alfredo Noa Díaz Airport",
+          "city": "Maisí",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MZO",
+          "airportName": "Sierra Maestra International Airport",
+          "city": "Manzanillo",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MOA",
+          "airportName": "Orestes Acosta Airport",
+          "city": "Moa",
+          "country": "Cuba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "section": "PREFIX",
+      "rule": "Prefix mumbai → BOM",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=mumbai&page=0",
+      "expected": "BOM in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=7 expect@2(BOM) top=NMI:Navi Mumbai | BOM:Mumbai | PNQ:Pune | ISK:Ozar | BMB:Bumba",
+      "query": "mumbai",
+      "hits": [
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ISK",
+          "airportName": "Nashik Airport",
+          "city": "Ozar",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BMB",
+          "airportName": "Bumbar Airport",
+          "city": "Bumba",
+          "country": "Democratic Republic of the Congo",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FLZ",
+          "airportName": "Dr. Ferdinand Lumban Tobing Airport",
+          "city": "Kota Sibolga",
+          "country": "Indonesia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "section": "PREFIX",
+      "rule": "Prefix de → DEL area",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=de&page=0",
+      "expected": "DEL in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 n=13 expect@MISS(-) top=MEX:Ciudad de México | AZP:Ciudad López Mateos | NLU:San Juan Pueblo Nuevo | TLC:Guadalupe Totoltepec | FDF:Fort-de-France",
+      "query": "de",
+      "hits": [
+        {
+          "airportCode": "MEX",
+          "airportName": "Aeropuerto Internacional Lic. Benito Juárez",
+          "city": "Ciudad de México",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AZP",
+          "airportName": "Aeropuerto Nacional Jorge Jiménez Cantú",
+          "city": "Ciudad López Mateos",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NLU",
+          "airportName": "Santa Lucía Air Force Base / General Felipe Ángeles International Airport",
+          "city": "San Juan Pueblo Nuevo",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TLC",
+          "airportName": "Aeropuerto Internacional Adolfo López Mateos",
+          "city": "Guadalupe Totoltepec",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FDF",
+          "airportName": "Martinique Aimé Césaire International Airport",
+          "city": "Fort-de-France",
+          "country": "Martinique",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RIM",
+          "airportName": "San Nicolas Airport",
+          "city": "Provincia de Rodríguez de Mendoza",
+          "country": "Peru",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DGO",
+          "airportName": "Aeropuerto Internacional Gral, Guadalupe Victoria",
+          "city": "Cinco de Mayo",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SCQ",
+          "airportName": "Santiago-Rosalía de Castro Airport",
+          "city": "Santiago de Compostela",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "section": "PREFIX",
+      "rule": "Prefix del → DEL",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=del&page=0",
+      "expected": "DEL in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 n=13 expect@9(DEL) top=AGT:Ciudad del Este | ENO:Encarnación | ASU:Mariano Roque Alonso | AYO:Juan de Ayolas | FUE:Puerto del Rosario",
+      "query": "del",
+      "hits": [
+        {
+          "airportCode": "AGT",
+          "airportName": "Aeropuerto Internacional Guaraní",
+          "city": "Ciudad del Este",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ENO",
+          "airportName": "Aeropuerto Nacional Tte. Amin Ayub González",
+          "city": "Encarnación",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ASU",
+          "airportName": "Aeropuerto Internacional Silvio Pettirossi",
+          "city": "Mariano Roque Alonso",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AYO",
+          "airportName": "Aeropuerto Nacional de Juan De Ayolas",
+          "city": "Juan de Ayolas",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FUE",
+          "airportName": "Fuerteventura Airport",
+          "city": "Puerto del Rosario",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PCM",
+          "airportName": "Playa del Carmen Airport",
+          "city": "Playa del Carmen",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MDQ",
+          "airportName": "Ástor Piazzola International Airport",
+          "city": "Mar Del Plata",
+          "country": "Argentina",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IAO",
+          "airportName": "Siargao Airport",
+          "city": "Del Carmen",
+          "country": "Philippines",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "section": "PREFIX",
+      "rule": "Prefix delh → DEL",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=delh&page=0",
+      "expected": "DEL in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=11 expect@1(DEL) top=DEL:New Delhi | HDO:Ghaziabad | DXN:Noida | HRH:Aligarh | PCM:Playa del Carmen",
+      "query": "delh",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HRH",
+          "airportName": "Dhanipur Airstrip",
+          "city": "Aligarh",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PCM",
+          "airportName": "Playa del Carmen Airport",
+          "city": "Playa del Carmen",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DRT",
+          "airportName": "Del Rio International Airport",
+          "city": "Del Rio",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BOC",
+          "airportName": "Bocas del Toro International Airport",
+          "city": "Bocas del Toro",
+          "country": "Panama",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CME",
+          "airportName": "Ciudad del Carmen International Airport",
+          "city": "Ciudad del Carmen",
+          "country": "Mexico",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "section": "PREFIX",
+      "rule": "Prefix ban → BLR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=ban&page=0",
+      "expected": "BLR in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 n=13 expect@9(BLR) top=HOE:Ban Houakhoua | XIE:Muang Paktha | LXG:Luang Namtha | UON:Muang Xay | PHZ:Ban Mai Khao",
+      "query": "ban",
+      "hits": [
+        {
+          "airportCode": "HOE",
+          "airportName": "Ban Huoeisay Airport",
+          "city": "Ban Houakhoua",
+          "country": "Laos",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XIE",
+          "airportName": "Xienglom Airport",
+          "city": "Muang Paktha",
+          "country": "Laos",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LXG",
+          "airportName": "Luang Namtha Airport",
+          "city": "Luang Namtha",
+          "country": "Laos",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "UON",
+          "airportName": "Muong Sai Airport",
+          "city": "Muang Xay",
+          "country": "Laos",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PHZ",
+          "airportName": "Phi Phi Island Airport",
+          "city": "Ban Mai Khao",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BNG",
+          "airportName": "Banning Municipal Airport",
+          "city": "Banning",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BAN",
+          "airportName": "Basongo Airport",
+          "city": "Ilebo",
+          "country": "Democratic Republic of the Congo",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BKK",
+          "airportName": "Suvarnabhumi Airport",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "section": "PREFIX",
+      "rule": "Prefix bang → BLR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=bang&page=0",
+      "expected": "BLR in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 n=12 expect@5(BLR) top=PYX:Bang Lamung District | UTP:Rayong | BKK:Bangkok | HHQ:Hua Hin | BLR:Bengaluru",
+      "query": "bang",
+      "hits": [
+        {
+          "airportCode": "PYX",
+          "airportName": "Pattaya Airpark",
+          "city": "Bang Lamung District",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "UTP",
+          "airportName": "U-Tapao International Airport",
+          "city": "Rayong",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BKK",
+          "airportName": "Suvarnabhumi Airport",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HHQ",
+          "airportName": "Hua Hin Airport",
+          "city": "Hua Hin",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LBP",
+          "airportName": "Long Banga Airport",
+          "city": "Long Ampan Aing or Abanang",
+          "country": "Malaysia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DAC",
+          "airportName": "Hazrat Shahjalal International Airport",
+          "city": "Dhaka",
+          "country": "Bangladesh",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RAU",
+          "airportName": "Rangpur Airport",
+          "city": "Rangpur",
+          "country": "Bangladesh",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "section": "PREFIX",
+      "rule": "Prefix chen → MAA",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=chen&page=0",
+      "expected": "MAA in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 n=13 expect@5(MAA) top=CEX:Fairbanks North Star Borough | EIL:Fairbanks | FBK:Fairbanks | CHP:Hot Springs | MAA:Chennai",
+      "query": "chen",
+      "hits": [
+        {
+          "airportCode": "CEX",
+          "airportName": "Chena Hot Springs Airport",
+          "city": "Fairbanks North Star Borough",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "EIL",
+          "airportName": "Eielson Air Force Base",
+          "city": "Fairbanks",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FBK",
+          "airportName": "Ladd Army Airfield",
+          "city": "Fairbanks",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CHP",
+          "airportName": "Circle Hot Springs Airport",
+          "city": "Hot Springs",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MAA",
+          "airportName": "Chennai International Airport",
+          "city": "Chennai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CTU",
+          "airportName": "Chengdu Shuangliu International Airport",
+          "city": "Chengdu",
+          "country": "China",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HCZ",
+          "airportName": "Chenzhou Beihu Airport",
+          "city": "Chenzhou",
+          "country": "China",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CDE",
+          "airportName": "Chengde Puning Airport",
+          "city": "Chengde",
+          "country": "China",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "section": "PREFIX",
+      "rule": "Prefix che → MAA area",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=che&page=0",
+      "expected": "MAA in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 n=13 expect@7(MAA) top=CHE:Cahersiveen | KIR:Castleisland | BYT:Bantry | ORK:Cork | GVA:Le Grand-Saconnex",
+      "query": "che",
+      "hits": [
+        {
+          "airportCode": "CHE",
+          "airportName": "Reeroe Airport",
+          "city": "Cahersiveen",
+          "country": "Ireland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KIR",
+          "airportName": "Kerry Airport",
+          "city": "Castleisland",
+          "country": "Ireland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BYT",
+          "airportName": "Bantry Aerodrome",
+          "city": "Bantry",
+          "country": "Ireland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ORK",
+          "airportName": "Cork Airport",
+          "city": "Cork",
+          "country": "Ireland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GVA",
+          "airportName": "Geneva Cointrin International Airport",
+          "city": "Le Grand-Saconnex",
+          "country": "Switzerland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ZRH",
+          "airportName": "Zurich Airport",
+          "city": "Rümlang / Rümlang (Dorfkern)",
+          "country": "Switzerland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MAA",
+          "airportName": "Chennai International Airport",
+          "city": "Chennai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CTU",
+          "airportName": "Chengdu Shuangliu International Airport",
+          "city": "Chengdu",
+          "country": "China",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "section": "PREFIX",
+      "rule": "Prefix hyd → HYD",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=hyd&page=0",
+      "expected": "HYD in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 expect@1(HYD) top=HYD:Hyderabad | BPM:Hyderabad | IXX:Bidar | WGC:Warangal | WHD:Azle",
+      "query": "hyd",
+      "hits": [
+        {
+          "airportCode": "HYD",
+          "airportName": "Rajiv Gandhi International Airport",
+          "city": "Hyderabad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BPM",
+          "airportName": "Begumpet Airport",
+          "city": "Hyderabad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXX",
+          "airportName": "Bidar Airport / Bidar Air Force Station",
+          "city": "Bidar",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WGC",
+          "airportName": "Warangal Airport",
+          "city": "Warangal",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WHD",
+          "airportName": "Hyder Sea Plane Base",
+          "city": "Azle",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HDD",
+          "airportName": "Airport",
+          "city": "Hyderabad",
+          "country": "Pakistan",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HYG",
+          "airportName": "Hydaburg Sea Plane Base",
+          "city": "Craig",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RMD",
+          "airportName": "Basanth Nagar Airport",
+          "city": "Ramagundam",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "section": "PREFIX",
+      "rule": "Prefix goa → GOI/GOX",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=goa&page=0",
+      "expected": "GOI|GOX in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 n=10 expect@5(GOX) top=GOA:Mele | GPP:Genoa | GEP:Genoa | ALL:Villanova d'Albenga | GOX:Mopa",
+      "query": "goa",
+      "hits": [
+        {
+          "airportCode": "GOA",
+          "airportName": "Genoa Cristoforo Colombo Airport",
+          "city": "Mele",
+          "country": "Italy",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GPP",
+          "airportName": "Piazza Principe Railway Station",
+          "city": "Genoa",
+          "country": "Italy",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GEP",
+          "airportName": "Brignole Railway Station",
+          "city": "Genoa",
+          "country": "Italy",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ALL",
+          "airportName": "Villanova D'Albenga International Airport",
+          "city": "Villanova d'Albenga",
+          "country": "Italy",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GOX",
+          "airportName": "Manohar International Airport",
+          "city": "Mopa",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GOI",
+          "airportName": "Dabolim Airport, Goa",
+          "city": "Vasco da Gama",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXG",
+          "airportName": "Belagavi Airport",
+          "city": "Belagavi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HBX",
+          "airportName": "Hubli Airport",
+          "city": "Hubballi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "section": "PREFIX",
+      "rule": "Prefix go → Goa area",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=go&page=0",
+      "expected": "GOI|GOX in top 5",
+      "status": "PASS",
+      "actual": "HTTP 200 n=13 expect@5(GOI) top=GRU:São Paulo | RTE:São Paulo | CGH:São Paulo | BJP:Bragança Paulista | GOI:Vasco da Gama",
+      "query": "go",
+      "hits": [
+        {
+          "airportCode": "GRU",
+          "airportName": "Guarulhos - Governador André Franco Montoro International Airport",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RTE",
+          "airportName": "Campo de Marte Airport",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CGH",
+          "airportName": "Congonhas Airport",
+          "city": "São Paulo",
+          "country": "Brazil",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BJP",
+          "airportName": "Estadual Arthur Siqueira Airport",
+          "city": "Bragança Paulista",
+          "country": "Brazil",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GOI",
+          "airportName": "Dabolim Airport, Goa",
+          "city": "Vasco da Gama",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GOX",
+          "airportName": "Manohar International Airport",
+          "city": "Mopa",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GOT",
+          "airportName": "Gothenburg-Landvetter Airport",
+          "city": "Landvetter",
+          "country": "Sweden",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DSS",
+          "airportName": "Blaise Diagne International Airport",
+          "city": "Dakar",
+          "country": "Senegal",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "section": "PREFIX",
+      "rule": "Prefix kol → CCU",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=kol&page=0",
+      "expected": "CCU in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 n=13 expect@7(CCU) top=OLS:Nogales | FHU:Huachuca City | TUS:Tucson | DMA:Tucson | KOL:Ndélé",
+      "query": "kol",
+      "hits": [
+        {
+          "airportCode": "OLS",
+          "airportName": "Nogales International Airport",
+          "city": "Nogales",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FHU",
+          "airportName": "Sierra Vista Municipal Airport / Libby Army Air Field",
+          "city": "Huachuca City",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TUS",
+          "airportName": "Tucson International Airport / Morris Air National Guard Base",
+          "city": "Tucson",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DMA",
+          "airportName": "Davis Monthan Air Force Base",
+          "city": "Tucson",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KOL",
+          "airportName": "Koumala Airport",
+          "city": "Ndélé",
+          "country": "Central African Republic",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KQL",
+          "airportName": "Kol Airport",
+          "city": "North Wahgi",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CCU",
+          "airportName": "Netaji Subhas Chandra Bose International Airport",
+          "city": "Kolkata",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NIM",
+          "airportName": "Diori Hamani International Airport",
+          "city": "Kollo",
+          "country": "Niger",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "section": "PREFIX",
+      "rule": "Prefix pun → PNQ",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=pun&page=0",
+      "expected": "PNQ in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 n=13 expect@7(PNQ) top=PUN:Gemena | KLY:Gemena | KND:Kindu | FKI:Kisangani | CDE:Chengde",
+      "query": "pun",
+      "hits": [
+        {
+          "airportCode": "PUN",
+          "airportName": "Punia Airport",
+          "city": "Gemena",
+          "country": "Democratic Republic of the Congo",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KLY",
+          "airportName": "Kinkungwa Airport",
+          "city": "Gemena",
+          "country": "Democratic Republic of the Congo",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KND",
+          "airportName": "Kindu Airport",
+          "city": "Kindu",
+          "country": "Democratic Republic of the Congo",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FKI",
+          "airportName": "Bangoka International Airport",
+          "city": "Kisangani",
+          "country": "Democratic Republic of the Congo",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CDE",
+          "airportName": "Chengde Puning Airport",
+          "city": "Chengde",
+          "country": "China",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PUJ",
+          "airportName": "Punta Cana International Airport",
+          "city": "Punta Cana",
+          "country": "Dominican Republic",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PND",
+          "airportName": "Punta Gorda Airport",
+          "city": "Punta Gorda",
+          "country": "Belize",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "section": "PREFIX",
+      "rule": "Prefix amr → ATQ",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=amr&page=0",
+      "expected": "ATQ in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 n=7 expect@5(ATQ) top=AVR:Amravati | AKD:Akola | NAG:Nagpur | NDC:Nanded | ATQ:Amritsar",
+      "query": "amr",
+      "hits": [
+        {
+          "airportCode": "AVR",
+          "airportName": "Amravati Airport",
+          "city": "Amravati",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AKD",
+          "airportName": "Akola Airport",
+          "city": "Akola",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NAG",
+          "airportName": "Dr. Babasaheb Ambedkar International Airport",
+          "city": "Nagpur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NDC",
+          "airportName": "Nanded Airport",
+          "city": "Nanded",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ATQ",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "city": "Amritsar",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MLN",
+          "airportName": "Melilla Airport",
+          "city": "Melilla",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LEI",
+          "airportName": "Almería Airport",
+          "city": "Almería",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "section": "PREFIX",
+      "rule": "Prefix amrit → ATQ",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=amrit&page=0",
+      "expected": "ATQ in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 expect@1(ATQ) top=ATQ:Amritsar | AIP:Adampur | IXP:Pathankot | IXJ:Jammu",
+      "query": "amrit",
+      "hits": [
+        {
+          "airportCode": "ATQ",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "city": "Amritsar",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AIP",
+          "airportName": "Adampur Airport",
+          "city": "Adampur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXP",
+          "airportName": "Pathankot Airport",
+          "city": "Pathankot",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXJ",
+          "airportName": "Jammu Airport",
+          "city": "Jammu",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "section": "PREFIX",
+      "rule": "Prefix sin → SIN",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=sin&page=0",
+      "expected": "SIN in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 expect@1(SIN) top=SIN:Singapore | QPG:Singapore | XSP:Singapore | TGA:Singapore | SXM:Sint Maarten",
+      "query": "sin",
+      "hits": [
+        {
+          "airportCode": "SIN",
+          "airportName": "Singapore Changi Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QPG",
+          "airportName": "Paya Lebar Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XSP",
+          "airportName": "Seletar Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TGA",
+          "airportName": "Tengah Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXM",
+          "airportName": "Princess Juliana International Airport",
+          "city": "Sint Maarten",
+          "country": "Sint Maarten (Dutch part)",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BON",
+          "airportName": "Flamingo International Airport",
+          "city": "Dorp Tera Kora",
+          "country": "Bonaire, Sint Eustatius and Saba",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SDW",
+          "airportName": "Sindhudurg Chipi Airport",
+          "city": "Sindhudurg",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SIE",
+          "airportName": "Sines Airport",
+          "city": "Sines",
+          "country": "Portugal",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "section": "PREFIX",
+      "rule": "Prefix lon → London",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=lon&page=0",
+      "expected": "LON|LHR|LGW in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 n=13 expect@1(LON) top=LON:London | QQU:Camden Town | QQS:Barnsbury | QQK:Barnsbury | LHR:London",
+      "query": "lon",
+      "hits": [
+        {
+          "airportCode": "LON",
+          "airportName": "All Airports",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QQU",
+          "airportName": "Euston Railway Station",
+          "city": "Camden Town",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QQS",
+          "airportName": "Saint Pancras International Railway Station",
+          "city": "Barnsbury",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QQK",
+          "airportName": "Kings Cross Railway Station",
+          "city": "Barnsbury",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LHR",
+          "airportName": "London Heathrow Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LGW",
+          "airportName": "London Gatwick Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LCY",
+          "airportName": "London City Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XS1",
+          "airportName": "London Heathrow Airport",
+          "city": "London",
+          "country": "United Kingdom",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "section": "PREFIX",
+      "rule": "Prefix new → Delhi or NYC",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=new&page=0",
+      "expected": "DEL|NYC|JFK in top 5",
+      "status": "PASS",
+      "actual": "HTTP 200 n=13 expect@5(NYC) top=AKL:Auckland | AMZ:Red Hill | MHB:Auckland | WIK:Pakuranga | NYC:New York City",
+      "query": "new",
+      "hits": [
+        {
+          "airportCode": "AKL",
+          "airportName": "Auckland International Airport",
+          "city": "Auckland",
+          "country": "New Zealand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AMZ",
+          "airportName": "Ardmore Airport",
+          "city": "Red Hill",
+          "country": "New Zealand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MHB",
+          "airportName": "Mechanics Bay Heliport",
+          "city": "Auckland",
+          "country": "New Zealand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WIK",
+          "airportName": "Waiheke Reeve Airport",
+          "city": "Pakuranga",
+          "country": "New Zealand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NYC",
+          "airportName": "All Airports",
+          "city": "New York City",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KBZ",
+          "airportName": "Kaikoura Airport",
+          "city": "New Plymouth",
+          "country": "New Zealand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NPL",
+          "airportName": "New Plymouth Airport",
+          "city": "New Plymouth",
+          "country": "New Zealand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CHC",
+          "airportName": "Christchurch International Airport",
+          "city": "Christchurch",
+          "country": "New Zealand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "section": "PREFIX",
+      "rule": "Prefix dub → DXB",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=dub&page=0",
+      "expected": "DXB in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 n=13 expect@5(DXB) top=DUB:Dublin | KKY:Kilkenny | WEX:Castlebridge | WAT:Waterford | DXB:Dubai",
+      "query": "dub",
+      "hits": [
+        {
+          "airportCode": "DUB",
+          "airportName": "Dublin Airport",
+          "city": "Dublin",
+          "country": "Ireland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KKY",
+          "airportName": "Kilkenny Airport",
+          "city": "Kilkenny",
+          "country": "Ireland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WEX",
+          "airportName": "Castlebridge Airport",
+          "city": "Castlebridge",
+          "country": "Ireland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WAT",
+          "airportName": "Waterford Airport",
+          "city": "Waterford",
+          "country": "Ireland",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DXB",
+          "airportName": "Dubai International Airport",
+          "city": "Dubai",
+          "country": "United Arab Emirates",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DWC",
+          "airportName": "Al Maktoum International Airport",
+          "city": "Dubai",
+          "country": "United Arab Emirates",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XNB",
+          "airportName": "Dubai Bus Station",
+          "city": "Dubai",
+          "country": "United Arab Emirates",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DBO",
+          "airportName": "Dubbo City Regional Airport",
+          "city": "Dubbo",
+          "country": "Australia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "section": "PREFIX",
+      "rule": "Prefix bkk → Bangkok",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=bkk&page=0",
+      "expected": "BKK|DMK in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 n=8 expect@1(BKK) top=BKK:Bangkok | DMK:Bangkok | PMM:Amphoe Phanom Sarakham | PYX:Bang Lamung District | HHQ:Hua Hin",
+      "query": "bkk",
+      "hits": [
+        {
+          "airportCode": "BKK",
+          "airportName": "Suvarnabhumi Airport",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DMK",
+          "airportName": "Don Mueang International Airport",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PMM",
+          "airportName": "Phanom Sarakham Airport",
+          "city": "Amphoe Phanom Sarakham",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PYX",
+          "airportName": "Pattaya Airpark",
+          "city": "Bang Lamung District",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HHQ",
+          "airportName": "Hua Hin Airport",
+          "city": "Hua Hin",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KDT",
+          "airportName": "Kamphaeng Saen Airport",
+          "city": "Nakhon Pathom",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KKM",
+          "airportName": "Sa Pran Nak Airport",
+          "city": "Muang Lop Buri District",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "UTP",
+          "airportName": "U-Tapao International Airport",
+          "city": "Rayong",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "section": "SYNONYM",
+      "rule": "bombay → BOM",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=bombay&page=0",
+      "expected": "BOM in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=BOM:Mumbai | NMI:Navi Mumbai | PNQ:Pune | NMB:Daman",
+      "query": "bombay",
+      "expect": [
+        "BOM"
+      ],
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "section": "SYNONYM",
+      "rule": "madras → MAA",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=madras&page=0",
+      "expected": "MAA in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 rank=5 top=MDJ:Madras | RDM:Redmond | PRZ:Prineville | SUO:Sunriver",
+      "query": "madras",
+      "expect": [
+        "MAA"
+      ],
+      "hits": [
+        {
+          "airportCode": "MDJ",
+          "airportName": "Madras Municipal Airport",
+          "city": "Madras",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RDM",
+          "airportName": "Roberts Field",
+          "city": "Redmond",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PRZ",
+          "airportName": "Prineville Airport",
+          "city": "Prineville",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SUO",
+          "airportName": "Sunriver Airport",
+          "city": "Sunriver",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MAA",
+          "airportName": "Chennai International Airport",
+          "city": "Chennai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MAE",
+          "airportName": "Madera Municipal Airport",
+          "city": "Madera",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "section": "SYNONYM",
+      "rule": "calcutta → CCU",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=calcutta&page=0",
+      "expected": "CCU in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=CCU:Kolkata | RDP:Durgapur | IXW:Jamshedpur | DBD:Dhanbad",
+      "query": "calcutta",
+      "expect": [
+        "CCU"
+      ],
+      "hits": [
+        {
+          "airportCode": "CCU",
+          "airportName": "Netaji Subhas Chandra Bose International Airport",
+          "city": "Kolkata",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RDP",
+          "airportName": "Kazi Nazrul Islam Airport",
+          "city": "Durgapur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXW",
+          "airportName": "Sonari Airport",
+          "city": "Jamshedpur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DBD",
+          "airportName": "Dhanbad Airport",
+          "city": "Dhanbad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "section": "SYNONYM",
+      "rule": "poona → PNQ",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=poona&page=0",
+      "expected": "PNQ in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=PNQ:Pune | NMI:Navi Mumbai | BOM:Mumbai | SAG:Shirdi",
+      "query": "poona",
+      "expect": [
+        "PNQ"
+      ],
+      "hits": [
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SAG",
+          "airportName": "Shirdi Airport",
+          "city": "Shirdi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AON",
+          "airportName": "Arona Airport",
+          "city": "Kainantu",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BNV",
+          "airportName": "Boana Airport",
+          "city": "Lae",
+          "country": "Papua new Guinea",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "section": "SYNONYM",
+      "rule": "cochin → COK",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=cochin&page=0",
+      "expected": "COK in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=COK:Kochi | CCJ:Kozhikode | CJB:Coimbatore | IXM:Madurai",
+      "query": "cochin",
+      "expect": [
+        "COK"
+      ],
+      "hits": [
+        {
+          "airportCode": "COK",
+          "airportName": "Cochin International Airport",
+          "city": "Kochi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CCJ",
+          "airportName": "Calicut International Airport",
+          "city": "Kozhikode",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CJB",
+          "airportName": "Coimbatore International Airport",
+          "city": "Coimbatore",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXM",
+          "airportName": "Madurai International Airport",
+          "city": "Madurai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TRV",
+          "airportName": "Thiruvananthapuram International Airport",
+          "city": "Thiruvananthapuram",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AGX",
+          "airportName": "Agatti Airport",
+          "city": "Bamboo Flat",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "section": "SYNONYM",
+      "rule": "trivandrum → TRV",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=trivandrum&page=0",
+      "expected": "TRV in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=TRV:Thiruvananthapuram | TCR:Thoothukudi | COK:Kochi | IXM:Madurai",
+      "query": "trivandrum",
+      "expect": [
+        "TRV"
+      ],
+      "hits": [
+        {
+          "airportCode": "TRV",
+          "airportName": "Thiruvananthapuram International Airport",
+          "city": "Thiruvananthapuram",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TCR",
+          "airportName": "Tuticorin Airport",
+          "city": "Thoothukudi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "COK",
+          "airportName": "Cochin International Airport",
+          "city": "Kochi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXM",
+          "airportName": "Madurai International Airport",
+          "city": "Madurai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "section": "SYNONYM",
+      "rule": "benaras → VNS",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=benaras&page=0",
+      "expected": "VNS in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=VNS:Varanasi | AZH:Azamgarh | IXD:Prayagraj | GOP:Gorakhpur",
+      "query": "benaras",
+      "expect": [
+        "VNS"
+      ],
+      "hits": [
+        {
+          "airportCode": "VNS",
+          "airportName": "Lal Bahadur Shastri Airport",
+          "city": "Varanasi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AZH",
+          "airportName": "Azamgarh Airport",
+          "city": "Azamgarh",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXD",
+          "airportName": "Prayagraj Deendayal Upadhyay Airport / Bamrauli Air Force Station",
+          "city": "Prayagraj",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GOP",
+          "airportName": "Gorakhpur Airport",
+          "city": "Gorakhpur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "section": "SYNONYM",
+      "rule": "banaras → VNS",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=banaras&page=0",
+      "expected": "VNS in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=VNS:Varanasi | AZH:Azamgarh | IXD:Prayagraj | GOP:Gorakhpur",
+      "query": "banaras",
+      "expect": [
+        "VNS"
+      ],
+      "hits": [
+        {
+          "airportCode": "VNS",
+          "airportName": "Lal Bahadur Shastri Airport",
+          "city": "Varanasi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AZH",
+          "airportName": "Azamgarh Airport",
+          "city": "Azamgarh",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXD",
+          "airportName": "Prayagraj Deendayal Upadhyay Airport / Bamrauli Air Force Station",
+          "city": "Prayagraj",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GOP",
+          "airportName": "Gorakhpur Airport",
+          "city": "Gorakhpur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NAS",
+          "airportName": "Lynden Pindling International Airport",
+          "city": "Nassau",
+          "country": "The Bahamas",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WZY",
+          "airportName": "Paradise Island-Seaplane Base",
+          "city": "Nassau",
+          "country": "The Bahamas",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "section": "SYNONYM",
+      "rule": "baroda → BDQ",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=baroda&page=0",
+      "expected": "BDQ in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=BDQ:Vadodara | AMD:Ahmedabad | BHU:Bhavnagar | STV:Surat",
+      "query": "baroda",
+      "expect": [
+        "BDQ"
+      ],
+      "hits": [
+        {
+          "airportCode": "BDQ",
+          "airportName": "Vadodara Airport",
+          "city": "Vadodara",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AMD",
+          "airportName": "Sardar Vallabhbhai Patel International Airport",
+          "city": "Ahmedabad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BHU",
+          "airportName": "Bhavnagar Airport",
+          "city": "Bhavnagar",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "STV",
+          "airportName": "Surat Airport",
+          "city": "Surat",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RRI",
+          "airportName": "Barora Airport",
+          "city": "Tulagi",
+          "country": "Solomon Islands",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BIB",
+          "airportName": "Baidoa Airport",
+          "city": "Baidoa",
+          "country": "Somalia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "section": "SYNONYM",
+      "rule": "mysore → MYQ",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=mysore&page=0",
+      "expected": "MYQ in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=MYQ:Mysuru | CNN:Kannur | CJB:Coimbatore | CCJ:Kozhikode",
+      "query": "mysore",
+      "expect": [
+        "MYQ"
+      ],
+      "hits": [
+        {
+          "airportCode": "MYQ",
+          "airportName": "Mysuru Airport",
+          "city": "Mysuru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CNN",
+          "airportName": "Kannur International Airport",
+          "city": "Kannur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CJB",
+          "airportName": "Coimbatore International Airport",
+          "city": "Coimbatore",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CCJ",
+          "airportName": "Calicut International Airport",
+          "city": "Kozhikode",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "section": "SYNONYM",
+      "rule": "allahabad → IXD",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=allahabad&page=0",
+      "expected": "IXD in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=IXD:Prayagraj | CWK:Chitrakoot | VNS:Varanasi | REW:Rewa",
+      "query": "allahabad",
+      "expect": [
+        "IXD"
+      ],
+      "hits": [
+        {
+          "airportCode": "IXD",
+          "airportName": "Prayagraj Deendayal Upadhyay Airport / Bamrauli Air Force Station",
+          "city": "Prayagraj",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CWK",
+          "airportName": "Chitrakoot Airport",
+          "city": "Chitrakoot",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "VNS",
+          "airportName": "Lal Bahadur Shastri Airport",
+          "city": "Varanasi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "REW",
+          "airportName": "Rewa Airport, Chorhata, REWA",
+          "city": "Rewa",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "section": "SYNONYM",
+      "rule": "bangalore → BLR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=bangalore&page=0",
+      "expected": "BLR in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=BLR:Bengaluru | PUT:Puttaparthi | MYQ:Mysuru | SXV:Salem",
+      "query": "bangalore",
+      "expect": [
+        "BLR"
+      ],
+      "hits": [
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PUT",
+          "airportName": "Sri Sathya Sai Airport",
+          "city": "Puttaparthi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MYQ",
+          "airportName": "Mysuru Airport",
+          "city": "Mysuru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXV",
+          "airportName": "Salem Airport",
+          "city": "Salem",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXE",
+          "airportName": "Mangaluru International Airport",
+          "city": "Mangaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "section": "SYNONYM",
+      "rule": "bengaluru → BLR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=bengaluru&page=0",
+      "expected": "BLR in top 1",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=BLR:Bengaluru | PUT:Puttaparthi | MYQ:Mysuru | SXV:Salem",
+      "query": "bengaluru",
+      "expect": [
+        "BLR"
+      ],
+      "hits": [
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PUT",
+          "airportName": "Sri Sathya Sai Airport",
+          "city": "Puttaparthi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MYQ",
+          "airportName": "Mysuru Airport",
+          "city": "Mysuru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXV",
+          "airportName": "Salem Airport",
+          "city": "Salem",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BEP",
+          "airportName": "Bellary Airport",
+          "city": "Ballari",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXE",
+          "airportName": "Mangaluru International Airport",
+          "city": "Mangaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "section": "TYPO",
+      "rule": "dehli → DEL",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=dehli&page=0",
+      "expected": "DEL in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=DEL:New Delhi | HDO:Ghaziabad | DXN:Noida | HRH:Aligarh",
+      "query": "dehli",
+      "expect": [
+        "DEL"
+      ],
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HRH",
+          "airportName": "Dhanipur Airstrip",
+          "city": "Aligarh",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "section": "TYPO",
+      "rule": "hydrabad → HYD",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=hydrabad&page=0",
+      "expected": "HYD in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=HYD:Hyderabad | BPM:Hyderabad | IXX:Bidar | WGC:Warangal",
+      "query": "hydrabad",
+      "expect": [
+        "HYD"
+      ],
+      "hits": [
+        {
+          "airportCode": "HYD",
+          "airportName": "Rajiv Gandhi International Airport",
+          "city": "Hyderabad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BPM",
+          "airportName": "Begumpet Airport",
+          "city": "Hyderabad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXX",
+          "airportName": "Bidar Airport / Bidar Air Force Station",
+          "city": "Bidar",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WGC",
+          "airportName": "Warangal Airport",
+          "city": "Warangal",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HDD",
+          "airportName": "Airport",
+          "city": "Hyderabad",
+          "country": "Pakistan",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "section": "TYPO",
+      "rule": "bangalor → BLR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=bangalor&page=0",
+      "expected": "BLR in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=BLR:Bengaluru | PUT:Puttaparthi | MYQ:Mysuru | SXV:Salem",
+      "query": "bangalor",
+      "expect": [
+        "BLR"
+      ],
+      "hits": [
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PUT",
+          "airportName": "Sri Sathya Sai Airport",
+          "city": "Puttaparthi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MYQ",
+          "airportName": "Mysuru Airport",
+          "city": "Mysuru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXV",
+          "airportName": "Salem Airport",
+          "city": "Salem",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BGR",
+          "airportName": "Bangor International Airport",
+          "city": "Bangor",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXE",
+          "airportName": "Mangaluru International Airport",
+          "city": "Mangaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "section": "TYPO",
+      "rule": "banglor → BLR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=banglor&page=0",
+      "expected": "BLR in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 rank=7 top=BGR:Bangor | OLD:Old Town | BHB:Bar Harbor | WVL:Waterville",
+      "query": "banglor",
+      "expect": [
+        "BLR"
+      ],
+      "hits": [
+        {
+          "airportCode": "BGR",
+          "airportName": "Bangor International Airport",
+          "city": "Bangor",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "OLD",
+          "airportName": "Dewitt Field - Old Town Municipal Airport",
+          "city": "Old Town",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BHB",
+          "airportName": "Hancock County-Bar Harbor Airport",
+          "city": "Bar Harbor",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WVL",
+          "airportName": "Waterville Robert Lafleur Airport",
+          "city": "Waterville",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BKK",
+          "airportName": "Suvarnabhumi Airport",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PKG",
+          "airportName": "Pulau Pangkor Airport",
+          "city": "Lumut",
+          "country": "Malaysia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "section": "TYPO",
+      "rule": "mumbi → BOM",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=mumbi&page=0",
+      "expected": "BOM in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=2 top=NMI:Navi Mumbai | BOM:Mumbai | PNQ:Pune | ISK:Ozar",
+      "query": "mumbi",
+      "expect": [
+        "BOM"
+      ],
+      "hits": [
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ISK",
+          "airportName": "Nashik Airport",
+          "city": "Ozar",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MCZ",
+          "airportName": "Zumbi dos Palmares Airport",
+          "city": "Maceió",
+          "country": "Brazil",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GHD",
+          "airportName": "Ghimbi Airport",
+          "city": "Gimbi",
+          "country": "Ethiopia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "section": "TYPO",
+      "rule": "madrass → MAA",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=madrass&page=0",
+      "expected": "MAA in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 rank=5 top=MDJ:Madras | RDM:Redmond | PRZ:Prineville | SUO:Sunriver",
+      "query": "madrass",
+      "expect": [
+        "MAA"
+      ],
+      "hits": [
+        {
+          "airportCode": "MDJ",
+          "airportName": "Madras Municipal Airport",
+          "city": "Madras",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RDM",
+          "airportName": "Roberts Field",
+          "city": "Redmond",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PRZ",
+          "airportName": "Prineville Airport",
+          "city": "Prineville",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SUO",
+          "airportName": "Sunriver Airport",
+          "city": "Sunriver",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MAA",
+          "airportName": "Chennai International Airport",
+          "city": "Chennai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "section": "TYPO",
+      "rule": "calcuta → CCU",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=calcuta&page=0",
+      "expected": "CCU in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 rank=7 top=ALU:Caluula | CXN:Qandala | BSA:Bosaso | CMS:Iskushuban",
+      "query": "calcuta",
+      "expect": [
+        "CCU"
+      ],
+      "hits": [
+        {
+          "airportCode": "ALU",
+          "airportName": "Caluula Airport",
+          "city": "Caluula",
+          "country": "Somalia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CXN",
+          "airportName": "Qandala Airport",
+          "city": "Qandala",
+          "country": "Somalia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BSA",
+          "airportName": "Bosaso / Bender Qassim International Airport",
+          "city": "Bosaso",
+          "country": "Somalia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CMS",
+          "airportName": "Iskushuban Airport",
+          "city": "Iskushuban",
+          "country": "Somalia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CCJ",
+          "airportName": "Calicut International Airport",
+          "city": "Kozhikode",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CVI",
+          "airportName": "Caleta Olivia Airport",
+          "city": "Caleta Olivia",
+          "country": "Argentina",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "section": "TYPO",
+      "rule": "pone → PNQ",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=pone&page=0",
+      "expected": "PNQ in top 2",
+      "status": "BUG",
+      "actual": "HTTP 200 rank=MISS top=PIC:Pine Cay | NCA:North Caicos | PLS:Providenciales | MDS:Middle Caicos",
+      "query": "pone",
+      "expect": [
+        "PNQ"
+      ],
+      "hits": [
+        {
+          "airportCode": "PIC",
+          "airportName": "Pine Cay Airport",
+          "city": "Pine Cay",
+          "country": "Turks And Caicos Islands",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NCA",
+          "airportName": "North Caicos Airport",
+          "city": "North Caicos",
+          "country": "Turks And Caicos Islands",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PLS",
+          "airportName": "Providenciales International Airport",
+          "city": "Providenciales",
+          "country": "Turks And Caicos Islands",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MDS",
+          "airportName": "Middle Caicos Airport",
+          "city": "Middle Caicos",
+          "country": "Turks And Caicos Islands",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XPR",
+          "airportName": "Pine Ridge Airport",
+          "city": "Pine Ridge",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CZP",
+          "airportName": "Cape Pole Sea Plane Base",
+          "city": "North Pole",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "section": "TYPO",
+      "rule": "goaa → GOI|GOX",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=goaa&page=0",
+      "expected": "GOI|GOX in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 rank=6 top=OYA:Goya | RCQ:Reconquista | MDX:Mercedes | UZU:Curuzú Cuatiá",
+      "query": "goaa",
+      "expect": [
+        "GOI",
+        "GOX"
+      ],
+      "hits": [
+        {
+          "airportCode": "OYA",
+          "airportName": "Goya Airport",
+          "city": "Goya",
+          "country": "Argentina",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RCQ",
+          "airportName": "Reconquista Airport",
+          "city": "Reconquista",
+          "country": "Argentina",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MDX",
+          "airportName": "Mercedes Airport",
+          "city": "Mercedes",
+          "country": "Argentina",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "UZU",
+          "airportName": "Curuzu Cuatia Airport",
+          "city": "Curuzú Cuatiá",
+          "country": "Argentina",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BGN",
+          "airportName": "Belaya Gora Airport",
+          "city": "Belaya Gora",
+          "country": "Russia",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GOI",
+          "airportName": "Dabolim Airport, Goa",
+          "city": "Vasco da Gama",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "section": "TYPO",
+      "rule": "nagpr → NAG",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=nagpr&page=0",
+      "expected": "NAG in top 3",
+      "status": "BUG",
+      "actual": "HTTP 200 rank=7 top=RMD:Ramagundam | WGC:Warangal | BPM:Hyderabad | HYD:Hyderabad",
+      "query": "nagpr",
+      "expect": [
+        "NAG"
+      ],
+      "hits": [
+        {
+          "airportCode": "RMD",
+          "airportName": "Basanth Nagar Airport",
+          "city": "Ramagundam",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "WGC",
+          "airportName": "Warangal Airport",
+          "city": "Warangal",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BPM",
+          "airportName": "Begumpet Airport",
+          "city": "Hyderabad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "HYD",
+          "airportName": "Rajiv Gandhi International Airport",
+          "city": "Hyderabad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ANE",
+          "airportName": "Angers-Loire Airport",
+          "city": "Seiches-sur-le-Loir",
+          "country": "France",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NDR",
+          "airportName": "Nador Al Aaroui International Airport",
+          "city": "Al Aaroui",
+          "country": "Morocco",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "section": "TYPO",
+      "rule": "singapor → SIN",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=singapor&page=0",
+      "expected": "SIN in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=SIN:Singapore | QPG:Singapore | XSP:Singapore | TGA:Singapore",
+      "query": "singapor",
+      "expect": [
+        "SIN"
+      ],
+      "hits": [
+        {
+          "airportCode": "SIN",
+          "airportName": "Singapore Changi Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "QPG",
+          "airportName": "Paya Lebar Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XSP",
+          "airportName": "Seletar Airport",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TGA",
+          "airportName": "Tengah Air Base",
+          "city": "Singapore",
+          "country": "Singapore",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "section": "TYPO",
+      "rule": "dubia → DXB",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=dubia&page=0",
+      "expected": "DXB in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=DXB:Dubai | SHJ:Sharjah | NHD:Dubai | DWC:Dubai",
+      "query": "dubia",
+      "expect": [
+        "DXB"
+      ],
+      "hits": [
+        {
+          "airportCode": "DXB",
+          "airportName": "Dubai International Airport",
+          "city": "Dubai",
+          "country": "United Arab Emirates",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SHJ",
+          "airportName": "Sharjah International Airport",
+          "city": "Sharjah",
+          "country": "United Arab Emirates",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NHD",
+          "airportName": "Al Minhad Air Base",
+          "city": "Dubai",
+          "country": "United Arab Emirates",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DWC",
+          "airportName": "Al Maktoum International Airport",
+          "city": "Dubai",
+          "country": "United Arab Emirates",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "XNB",
+          "airportName": "Dubai Bus Station",
+          "city": "Dubai",
+          "country": "United Arab Emirates",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BUX",
+          "airportName": "Bunia Airport",
+          "city": "Bunia",
+          "country": "Democratic Republic of the Congo",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "section": "TYPO",
+      "rule": "bangkock → BKK|DMK",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=bangkock&page=0",
+      "expected": "BKK|DMK in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=BKK:Bangkok | DMK:Bangkok | PMM:Amphoe Phanom Sarakham | PYX:Bang Lamung District",
+      "query": "bangkock",
+      "expect": [
+        "BKK",
+        "DMK"
+      ],
+      "hits": [
+        {
+          "airportCode": "BKK",
+          "airportName": "Suvarnabhumi Airport",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DMK",
+          "airportName": "Don Mueang International Airport",
+          "city": "Bangkok",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PMM",
+          "airportName": "Phanom Sarakham Airport",
+          "city": "Amphoe Phanom Sarakham",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PYX",
+          "airportName": "Pattaya Airpark",
+          "city": "Bang Lamung District",
+          "country": "Thailand",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "section": "TYPO",
+      "rule": "chenai → MAA",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=chenai&page=0",
+      "expected": "MAA in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=MAA:Chennai | TIR:Tirupati | PNY:Puducherry | NVY:Kurinjippadi",
+      "query": "chenai",
+      "expect": [
+        "MAA"
+      ],
+      "hits": [
+        {
+          "airportCode": "MAA",
+          "airportName": "Chennai International Airport",
+          "city": "Chennai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "TIR",
+          "airportName": "Tirupati Airport",
+          "city": "Tirupati",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNY",
+          "airportName": "Puducherry Airport",
+          "city": "Puducherry",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NVY",
+          "airportName": "Neyveli Airport",
+          "city": "Kurinjippadi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CEX",
+          "airportName": "Chena Hot Springs Airport",
+          "city": "Fairbanks North Star Borough",
+          "country": "United States",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "REQ",
+          "airportName": "Reko Diq Airport",
+          "city": "Chagai",
+          "country": "Pakistan",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "section": "TYPO",
+      "rule": "kolkatta → CCU",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=kolkatta&page=0",
+      "expected": "CCU in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=CCU:Kolkata | RDP:Durgapur | IXW:Jamshedpur | DBD:Dhanbad",
+      "query": "kolkatta",
+      "expect": [
+        "CCU"
+      ],
+      "hits": [
+        {
+          "airportCode": "CCU",
+          "airportName": "Netaji Subhas Chandra Bose International Airport",
+          "city": "Kolkata",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "RDP",
+          "airportName": "Kazi Nazrul Islam Airport",
+          "city": "Durgapur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXW",
+          "airportName": "Sonari Airport",
+          "city": "Jamshedpur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "DBD",
+          "airportName": "Dhanbad Airport",
+          "city": "Dhanbad",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "section": "TYPO",
+      "rule": "punne → PNQ",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=punne&page=0",
+      "expected": "PNQ in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1 top=PNQ:Pune | NMI:Navi Mumbai | BOM:Mumbai | SAG:Shirdi",
+      "query": "punne",
+      "expect": [
+        "PNQ"
+      ],
+      "hits": [
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SAG",
+          "airportName": "Shirdi Airport",
+          "city": "Shirdi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "CEQ",
+          "airportName": "Cannes-Mandelieu Airport",
+          "city": "Cannes",
+          "country": "France",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "JCA",
+          "airportName": "Croisette Heliport",
+          "city": "Cannes",
+          "country": "France",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "section": "IATA",
+      "rule": "Exact airport=BOM",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=BOM&page=0",
+      "expected": "BOM rank 1-2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank(BOM)=1 top=BOM:Mumbai | NMI:Navi Mumbai | PNQ:Pune",
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "LAZ",
+          "airportName": "Bom Jesus da Lapa Airport",
+          "city": "Bom Jesus da Lapa",
+          "country": "Brazil",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "section": "IATA",
+      "rule": "Exact airport=DEL",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=DEL&page=0",
+      "expected": "DEL rank 1-2",
+      "status": "BUG",
+      "actual": "HTTP 200 rank(DEL)=9 top=AGT:Ciudad del Este | ENO:Encarnación | ASU:Mariano Roque Alonso",
+      "hits": [
+        {
+          "airportCode": "AGT",
+          "airportName": "Aeropuerto Internacional Guaraní",
+          "city": "Ciudad del Este",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ENO",
+          "airportName": "Aeropuerto Nacional Tte. Amin Ayub González",
+          "city": "Encarnación",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ASU",
+          "airportName": "Aeropuerto Internacional Silvio Pettirossi",
+          "city": "Mariano Roque Alonso",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "AYO",
+          "airportName": "Aeropuerto Nacional de Juan De Ayolas",
+          "city": "Juan de Ayolas",
+          "country": "Paraguay",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "FUE",
+          "airportName": "Fuerteventura Airport",
+          "city": "Puerto del Rosario",
+          "country": "Spain",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "section": "IATA",
+      "rule": "Exact airport=BLR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=BLR&page=0",
+      "expected": "BLR rank 1-2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank(BLR)=1 top=BLR:Bengaluru | PUT:Puttaparthi | MYQ:Mysuru",
+      "hits": [
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PUT",
+          "airportName": "Sri Sathya Sai Airport",
+          "city": "Puttaparthi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MYQ",
+          "airportName": "Mysuru Airport",
+          "city": "Mysuru",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SXV",
+          "airportName": "Salem Airport",
+          "city": "Salem",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "MSQ",
+          "airportName": "Minsk National Airport",
+          "city": "Minsk",
+          "country": "Belarus",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "section": "IATA",
+      "rule": "Exact airport=NMI",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=NMI&page=0",
+      "expected": "NMI rank 1-2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank(NMI)=1 top=NMI:Navi Mumbai | BOM:Mumbai | PNQ:Pune",
+      "hits": [
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "ISK",
+          "airportName": "Nashik Airport",
+          "city": "Ozar",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "section": "IATA",
+      "rule": "Exact airport=GOX",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&airport=GOX&page=0",
+      "expected": "GOX rank 1-2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank(GOX)=1 top=GOX:Mopa | GOI:Vasco da Gama | SDW:Sindhudurg",
+      "hits": [
+        {
+          "airportCode": "GOX",
+          "airportName": "Manohar International Airport",
+          "city": "Mopa",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "GOI",
+          "airportName": "Dabolim Airport, Goa",
+          "city": "Vasco da Gama",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "SDW",
+          "airportName": "Sindhudurg Chipi Airport",
+          "city": "Sindhudurg",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "IXG",
+          "airportName": "Belagavi Airport",
+          "city": "Belagavi",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        },
+        {
+          "airportCode": "KLH",
+          "airportName": "Kolhapur Airport",
+          "city": "Kolhapur",
+          "country": "India",
+          "pid": null,
+          "nearbyAirports": null,
+          "tag": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "host": "https://preprod-api.travelvip.ai",
+  "at": "2026-08-16T09:21:00.000Z",
+  "noBook": true,
+  "failFast": true,
+  "stoppedOn": "Setup.auth",
+  "score": {
+    "PASS": 0,
+    "BUG": 1,
+    "NOT_TESTED": 21,
+    "total": 1
+  },
+  "rows": [
+    {
+      "section": "Setup",
+      "id": "auth",
+      "rule": "Partner token on preprod",
+      "how": "POST /auth/partner/token with PARTNER_ID from .env (vgm). One call only. No hotel book/prebook/finalize.",
+      "expected": "HTTP 200 access_token so listing pack can run on /v1/hotels/search",
+      "actual": "HTTP 401 {\"status\":\"error\",\"code\":\"AUTH_TOKEN_ERROR\",\"message\":\"Invalid credentials\",\"details\":{}}",
+      "status": "BUG"
+    }
+  ]
+}

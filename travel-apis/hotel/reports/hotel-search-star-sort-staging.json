@@ -1,0 +1,1151 @@
+{
+  "ranAt": "2026-08-15T19:47:35.240Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "path": "POST /v1/hotels/search",
+  "checkin": "2026-10-14",
+  "checkout": "2026-10-15",
+  "fqShape": "object { df_long_star_rating: [4], Reservation policy: [Free cancellation] }",
+  "sortQuery": "sort=price_ASC | price_DESC",
+  "cities": [
+    {
+      "name": "Mumbai",
+      "entityId": "357389:IN"
+    },
+    {
+      "name": "Pune",
+      "entityId": "328605:IN"
+    },
+    {
+      "name": "Delhi",
+      "entityId": "358245:IN"
+    }
+  ],
+  "counts": {
+    "PASS": 16,
+    "BUG": 0,
+    "NOT TESTED": 8,
+    "total": 24
+  },
+  "bugs": [],
+  "rows": [
+    {
+      "section": "Setup",
+      "n": 1,
+      "rule": "Mumbai: unfiltered search works",
+      "how": "POST /v1/hotels/search CITY 357389:IN sort=price_ASC no fq",
+      "expected": "HTTP 200 and hotel list",
+      "status": "PASS",
+      "actual": "HTTP 200 hotels=20 total=636 stars=[2,3,0,2,0,2,2,2,2,2,1,3,1,2,2,0,1,2,3,2]",
+      "city": "Mumbai",
+      "hotels": [
+        {
+          "id": "15079424",
+          "name": "New Shahana - Hostel",
+          "starRating": 2,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 270,
+          "totalAmount": 283.5
+        },
+        {
+          "id": "31427360",
+          "name": "Noor Dormitory",
+          "starRating": 3,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 405,
+          "totalAmount": 425.25
+        },
+        {
+          "id": "31993318",
+          "name": "Seven Hills Dormitory - Hostel",
+          "starRating": 0,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 405,
+          "totalAmount": 425.25
+        },
+        {
+          "id": "63121252",
+          "name": "Negasi Dormitory",
+          "starRating": 2,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 405,
+          "totalAmount": 425.25
+        },
+        {
+          "id": "41629285",
+          "name": "ASRA DORMITORY",
+          "starRating": 0,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 449.1,
+          "totalAmount": 471.56
+        },
+        {
+          "id": "70777588",
+          "name": "Fathima Dormitory",
+          "starRating": 2,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 450,
+          "totalAmount": 472.5
+        },
+        {
+          "id": "72390529",
+          "name": "Blue Top Dormitory",
+          "starRating": 2,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 450,
+          "totalAmount": 472.5
+        },
+        {
+          "id": "72383340",
+          "name": "Basera Dormitory and Separate Cabins",
+          "starRating": 2,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 450,
+          "totalAmount": 472.5
+        }
+      ]
+    },
+    {
+      "section": "Star filter",
+      "n": 2,
+      "rule": "Mumbai: 4★ fq returns only 4-star hotels",
+      "how": "fq.df_long_star_rating=[4] sort=price_ASC",
+      "expected": "Every result starRating=4; totalResults narrower than unfiltered",
+      "status": "PASS",
+      "actual": "HTTP 200 n=20 total=48 unfilteredTotal=636 stars=[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4] all4=true",
+      "city": "Mumbai",
+      "hotels": [
+        {
+          "id": "39693511",
+          "name": "T2 Beacon Hotel, Mumbai",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 3037.51,
+          "totalAmount": 3189.3900000000003
+        },
+        {
+          "id": "72368573",
+          "name": "Home2 Residency Mumbai Airport",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 4320,
+          "totalAmount": 4536
+        },
+        {
+          "id": "21229039",
+          "name": "Hotel Cliffton",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 5225,
+          "totalAmount": 5486.25
+        },
+        {
+          "id": "38856369",
+          "name": "Sai Palace Grand Malad",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 5400,
+          "totalAmount": 5670
+        },
+        {
+          "id": "39772106",
+          "name": "Apartment In Mumbai City Centre",
+          "starRating": 4,
+          "refundable": false,
+          "cancelText": null,
+          "baseFare": 5700,
+          "totalAmount": 5985
+        },
+        {
+          "id": "70485824",
+          "name": "Hotel Mumbai House Mindspace Malad",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 5715,
+          "totalAmount": 6000.75
+        },
+        {
+          "id": "71201497",
+          "name": "MyOtel - Santacruz",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 6300,
+          "totalAmount": 6615
+        },
+        {
+          "id": "15395924",
+          "name": "Sai Palace Hotel Andheri",
+          "starRating": 4,
+          "refundable": false,
+          "cancelText": null,
+          "baseFare": 6300,
+          "totalAmount": 6615
+        },
+        {
+          "id": "70720356",
+          "name": "ASAR ELITE BY ORION HOTELS",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 6499.35,
+          "totalAmount": 6824.320000000001
+        },
+        {
+          "id": "16268768",
+          "name": "Residency Hotel Andheri",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 6567.92,
+          "totalAmount": 6896.32
+        }
+      ]
+    },
+    {
+      "section": "Sort",
+      "n": 3,
+      "rule": "Mumbai: 4★ price_ASC is non-decreasing",
+      "how": "same 4★ search sort=price_ASC",
+      "expected": "baseFare non-decreasing across page",
+      "status": "PASS",
+      "actual": "fares=[3037.51,4320,5225,5400,5700,5715,6300,6300,6499.35,6567.92,6749.1,6750,7000,7199.1,7233,7498.8,7649.1,7833.69,7950.4,8000] monoAsc=true",
+      "city": "Mumbai",
+      "first": {
+        "id": "39693511",
+        "name": "T2 Beacon Hotel, Mumbai",
+        "starRating": 4,
+        "refundable": true,
+        "cancelText": "Free cancellation before 10-10-2026",
+        "baseFare": 3037.51,
+        "totalAmount": 3189.3900000000003
+      },
+      "last": {
+        "id": "39775677",
+        "name": "The Shalimar Hotel",
+        "starRating": 4,
+        "refundable": true,
+        "cancelText": "Free cancellation before 11-10-2026",
+        "baseFare": 8000,
+        "totalAmount": 9440
+      }
+    },
+    {
+      "section": "Star filter",
+      "n": 4,
+      "rule": "Mumbai: 4★ + price_DESC still only 4-star",
+      "how": "fq.df_long_star_rating=[4] sort=price_DESC",
+      "expected": "Every result starRating=4",
+      "status": "PASS",
+      "actual": "HTTP 200 n=20 stars=[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]",
+      "city": "Mumbai",
+      "hotels": [
+        {
+          "id": "70508694",
+          "name": "Fairmont Mumbai",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 24000,
+          "totalAmount": 28320
+        },
+        {
+          "id": "39874593",
+          "name": "Radisson Mumbai Goregaon",
+          "starRating": 4,
+          "refundable": false,
+          "cancelText": null,
+          "baseFare": 16199.09,
+          "totalAmount": 19114.93
+        },
+        {
+          "id": "39660114",
+          "name": "The Gordon House Hotel",
+          "starRating": 4,
+          "refundable": false,
+          "cancelText": null,
+          "baseFare": 16113.5,
+          "totalAmount": 19013.93
+        },
+        {
+          "id": "41437368",
+          "name": " Lemon Tree Hotel, Kalina BKC, Mumbai",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 15198.4,
+          "totalAmount": 19453.95
+        },
+        {
+          "id": "39658380",
+          "name": "The Ambassador, Mumbai",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 15000,
+          "totalAmount": 17700
+        },
+        {
+          "id": "39616102",
+          "name": "Grand Residency Hotel & Serviced Apartments",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 14249.25,
+          "totalAmount": 16814.12
+        },
+        {
+          "id": "41442163",
+          "name": "Fairfield by Marriott Mumbai International Airport",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 13999,
+          "totalAmount": 16518.82
+        },
+        {
+          "id": "15632553",
+          "name": "The Empresa Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 13332,
+          "totalAmount": 15731.76
+        },
+        {
+          "id": "39625239",
+          "name": "Hotel Kohinoor Elite Near BKC",
+          "starRating": 4,
+          "refundable": false,
+          "cancelText": null,
+          "baseFare": 13199.4,
+          "totalAmount": 15575.289999999999
+        },
+        {
+          "id": "39652486",
+          "name": "Fariyas Hotel Mumbai , Colaba",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 11314.08,
+          "totalAmount": 13350.61
+        }
+      ]
+    },
+    {
+      "section": "Sort",
+      "n": 5,
+      "rule": "Mumbai: 4★ price_DESC is non-increasing",
+      "how": "sort=price_DESC",
+      "expected": "baseFare non-increasing across page",
+      "status": "PASS",
+      "actual": "fares=[24000,16199.09,16113.5,15198.4,15000,14249.25,13999,13332,13199.4,11314.08,11199.3,10800,10709.1,10699,10400,9999.9,9648,9444.59,9269.1,9027.2] monoDesc=true",
+      "city": "Mumbai",
+      "first": {
+        "id": "70508694",
+        "name": "Fairmont Mumbai",
+        "starRating": 4,
+        "refundable": true,
+        "cancelText": "Free cancellation before 10-10-2026",
+        "baseFare": 24000,
+        "totalAmount": 28320
+      },
+      "last": {
+        "id": "39691163",
+        "name": "Ramee Guestline Hotel Juhu",
+        "starRating": 4,
+        "refundable": true,
+        "cancelText": "Free cancellation before 11-10-2026",
+        "baseFare": 9027.2,
+        "totalAmount": 10652.1
+      }
+    },
+    {
+      "section": "Sort",
+      "n": 6,
+      "rule": "Mumbai: ASC vs DESC are different ordered lists",
+      "how": "compare 4★ price_ASC vs price_DESC first page",
+      "expected": "Hotel order differs; cheapest-first vs dearest-first",
+      "status": "PASS",
+      "actual": "differentOrder=true ascFirst=T2 Beacon Hotel, Mumbai@3037.51 descFirst=Fairmont Mumbai@24000",
+      "city": "Mumbai"
+    },
+    {
+      "section": "Filter+sort",
+      "n": 7,
+      "rule": "Mumbai: 4★ + Free cancellation + price_ASC",
+      "how": "fq star 4 + Reservation policy Free cancellation, sort=price_ASC (user curl shape)",
+      "expected": "Only 4★; refundable=true; fares non-decreasing",
+      "status": "PASS",
+      "actual": "HTTP 200 n=20 total=38 stars=[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4] refundable=[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true] fares=[3037.51,4320,5225,5400,5715,6300,6499.35,6567.92,6749.1,6750,7000,7233,7498.8,7649.1,7833.69,7950.4,8000,8000,8000,8222.4] all4=true allRefund=true monoAsc=true",
+      "city": "Mumbai",
+      "hotels": [
+        {
+          "id": "39693511",
+          "name": "T2 Beacon Hotel, Mumbai",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 3037.51,
+          "totalAmount": 3189.3900000000003
+        },
+        {
+          "id": "72368573",
+          "name": "Home2 Residency Mumbai Airport",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 4320,
+          "totalAmount": 4536
+        },
+        {
+          "id": "21229039",
+          "name": "Hotel Cliffton",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 5225,
+          "totalAmount": 5486.25
+        },
+        {
+          "id": "38856369",
+          "name": "Sai Palace Grand Malad",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 5400,
+          "totalAmount": 5670
+        },
+        {
+          "id": "70485824",
+          "name": "Hotel Mumbai House Mindspace Malad",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 5715,
+          "totalAmount": 6000.75
+        },
+        {
+          "id": "71201497",
+          "name": "MyOtel - Santacruz",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 6300,
+          "totalAmount": 6615
+        },
+        {
+          "id": "70720356",
+          "name": "ASAR ELITE BY ORION HOTELS",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 6499.35,
+          "totalAmount": 6824.320000000001
+        },
+        {
+          "id": "16268768",
+          "name": "Residency Hotel Andheri",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 6567.92,
+          "totalAmount": 6896.32
+        },
+        {
+          "id": "32886865",
+          "name": "T24 Retro",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 6749.1,
+          "totalAmount": 7086.56
+        },
+        {
+          "id": "15720321",
+          "name": "Hotel Mumbai House",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 6750,
+          "totalAmount": 7087.5
+        }
+      ]
+    },
+    {
+      "section": "Filter+sort",
+      "n": 8,
+      "rule": "Mumbai: 4★ + Free cancellation + price_DESC",
+      "how": "same fq, sort=price_DESC (exact user curl sort)",
+      "expected": "Only 4★; refundable=true; fares non-increasing",
+      "status": "PASS",
+      "actual": "HTTP 200 n=20 stars=[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4] refundable=[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true] fares=[24000,15198.4,15000,14249.25,13999,13332,11314.08,11199.3,10800,10709.1,10400,9648,9444.59,9269.1,9027.2,8750,8748,8689.02,8222.4,8000]",
+      "city": "Mumbai",
+      "hotels": [
+        {
+          "id": "70508694",
+          "name": "Fairmont Mumbai",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 24000,
+          "totalAmount": 28320
+        },
+        {
+          "id": "41437368",
+          "name": " Lemon Tree Hotel, Kalina BKC, Mumbai",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 15198.4,
+          "totalAmount": 19453.95
+        },
+        {
+          "id": "39658380",
+          "name": "The Ambassador, Mumbai",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 15000,
+          "totalAmount": 17700
+        },
+        {
+          "id": "39616102",
+          "name": "Grand Residency Hotel & Serviced Apartments",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 14249.25,
+          "totalAmount": 16814.12
+        },
+        {
+          "id": "41442163",
+          "name": "Fairfield by Marriott Mumbai International Airport",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 13999,
+          "totalAmount": 16518.82
+        },
+        {
+          "id": "15632553",
+          "name": "The Empresa Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 13332,
+          "totalAmount": 15731.76
+        },
+        {
+          "id": "39652486",
+          "name": "Fariyas Hotel Mumbai , Colaba",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 11314.08,
+          "totalAmount": 13350.61
+        },
+        {
+          "id": "38441986",
+          "name": "Mirage Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 11199.3,
+          "totalAmount": 13215.169999999998
+        },
+        {
+          "id": "71134564",
+          "name": "Bloom Hotel Saki Vihar Powai",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 10800,
+          "totalAmount": 12744
+        },
+        {
+          "id": "39755110",
+          "name": "Hotel Wego",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 10709.1,
+          "totalAmount": 12636.74
+        }
+      ]
+    },
+    {
+      "section": "Setup",
+      "n": 9,
+      "rule": "Pune: unfiltered search works",
+      "how": "POST /v1/hotels/search CITY 328605:IN sort=price_ASC no fq",
+      "expected": "HTTP 200 and hotel list",
+      "status": "PASS",
+      "actual": "HTTP 200 hotels=20 total=293 stars=[2,3,0,1,3,0,3,2,3,3,3,2,3,3,3,3,0,3,0,2]",
+      "city": "Pune",
+      "hotels": [
+        {
+          "id": "70456961",
+          "name": "Galaxy Executive",
+          "starRating": 2,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 540,
+          "totalAmount": 567
+        },
+        {
+          "id": "72420257",
+          "name": "Fabhotel Swapanpurti Sai Avenue",
+          "starRating": 3,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 857.3,
+          "totalAmount": 900.17
+        },
+        {
+          "id": "15131286",
+          "name": "Hotel Parag",
+          "starRating": 0,
+          "refundable": false,
+          "cancelText": null,
+          "baseFare": 889.11,
+          "totalAmount": 934.07
+        },
+        {
+          "id": "70754924",
+          "name": "Solo Stays Pune",
+          "starRating": 1,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 900,
+          "totalAmount": 945
+        },
+        {
+          "id": "50125617",
+          "name": "Via Galaxy Hospitality",
+          "starRating": 3,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 913.37,
+          "totalAmount": 959.04
+        },
+        {
+          "id": "41494174",
+          "name": "Khush executive",
+          "starRating": 0,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 980.78,
+          "totalAmount": 1030.82
+        },
+        {
+          "id": "41619989",
+          "name": "FabHotel Diamond Stay",
+          "starRating": 3,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 1009.95,
+          "totalAmount": 1061.8500000000001
+        },
+        {
+          "id": "15599148",
+          "name": "Hotel Haveli",
+          "starRating": 2,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 1012.33,
+          "totalAmount": 1063.2
+        }
+      ]
+    },
+    {
+      "section": "Star filter",
+      "n": 10,
+      "rule": "Pune: 4★ fq returns only 4-star hotels",
+      "how": "fq.df_long_star_rating=[4] sort=price_ASC",
+      "expected": "Every result starRating=4; totalResults narrower than unfiltered",
+      "status": "PASS",
+      "actual": "HTTP 200 n=8 total=8 unfilteredTotal=293 stars=[4,4,4,4,4,4,4,4] all4=true",
+      "city": "Pune",
+      "hotels": [
+        {
+          "id": "39607557",
+          "name": "Park Ornate",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 4740.87,
+          "totalAmount": 4983.37
+        },
+        {
+          "id": "15380909",
+          "name": "Cocoon Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 6300,
+          "totalAmount": 6615
+        },
+        {
+          "id": "39686905",
+          "name": "Oakwood Residence Naylor Road Pune",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 7000,
+          "totalAmount": 7350
+        },
+        {
+          "id": "360800",
+          "name": "Lemon Tree Hotel Viman Nagar Pune",
+          "starRating": 4,
+          "refundable": false,
+          "cancelText": null,
+          "baseFare": 7562.16,
+          "totalAmount": 9738.32
+        },
+        {
+          "id": "57535743",
+          "name": "Kyriad Hotel Pimpri",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 8730,
+          "totalAmount": 10301.4
+        },
+        {
+          "id": "39743262",
+          "name": "Ramee Grand Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 8757,
+          "totalAmount": 10377
+        },
+        {
+          "id": "16375660",
+          "name": "Lemon Tree Premier City Center Pune",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 10887.2,
+          "totalAmount": 13935.62
+        },
+        {
+          "id": "38399629",
+          "name": "Courtyard by Marriott Pune Chakan",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 12400,
+          "totalAmount": 14632
+        }
+      ]
+    },
+    {
+      "section": "Sort",
+      "n": 11,
+      "rule": "Pune: 4★ price_ASC is non-decreasing",
+      "how": "same 4★ search sort=price_ASC",
+      "expected": "baseFare non-decreasing across page",
+      "status": "PASS",
+      "actual": "fares=[4740.87,6300,7000,7562.16,8730,8757,10887.2,12400] monoAsc=true",
+      "city": "Pune",
+      "first": {
+        "id": "39607557",
+        "name": "Park Ornate",
+        "starRating": 4,
+        "refundable": true,
+        "cancelText": "Free cancellation before 10-10-2026",
+        "baseFare": 4740.87,
+        "totalAmount": 4983.37
+      },
+      "last": {
+        "id": "38399629",
+        "name": "Courtyard by Marriott Pune Chakan",
+        "starRating": 4,
+        "refundable": true,
+        "cancelText": "Free cancellation before 11-10-2026",
+        "baseFare": 12400,
+        "totalAmount": 14632
+      }
+    },
+    {
+      "section": "Star filter",
+      "n": 12,
+      "rule": "Pune: 4★ + price_DESC still only 4-star",
+      "how": "fq.df_long_star_rating=[4] sort=price_DESC",
+      "expected": "Every result starRating=4",
+      "status": "PASS",
+      "actual": "HTTP 200 n=8 stars=[4,4,4,4,4,4,4,4]",
+      "city": "Pune",
+      "hotels": [
+        {
+          "id": "38399629",
+          "name": "Courtyard by Marriott Pune Chakan",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 12400,
+          "totalAmount": 14632
+        },
+        {
+          "id": "16375660",
+          "name": "Lemon Tree Premier City Center Pune",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 10887.2,
+          "totalAmount": 13935.62
+        },
+        {
+          "id": "39743262",
+          "name": "Ramee Grand Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 8757,
+          "totalAmount": 10377
+        },
+        {
+          "id": "57535743",
+          "name": "Kyriad Hotel Pimpri",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 8730,
+          "totalAmount": 10301.4
+        },
+        {
+          "id": "360800",
+          "name": "Lemon Tree Hotel Viman Nagar Pune",
+          "starRating": 4,
+          "refundable": false,
+          "cancelText": null,
+          "baseFare": 7562.16,
+          "totalAmount": 9738.32
+        },
+        {
+          "id": "39686905",
+          "name": "Oakwood Residence Naylor Road Pune",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 7000,
+          "totalAmount": 7350
+        },
+        {
+          "id": "15380909",
+          "name": "Cocoon Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 6300,
+          "totalAmount": 6615
+        },
+        {
+          "id": "39607557",
+          "name": "Park Ornate",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 4740.87,
+          "totalAmount": 4983.37
+        }
+      ]
+    },
+    {
+      "section": "Sort",
+      "n": 13,
+      "rule": "Pune: 4★ price_DESC is non-increasing",
+      "how": "sort=price_DESC",
+      "expected": "baseFare non-increasing across page",
+      "status": "PASS",
+      "actual": "fares=[12400,10887.2,8757,8730,7562.16,7000,6300,4740.87] monoDesc=true",
+      "city": "Pune",
+      "first": {
+        "id": "38399629",
+        "name": "Courtyard by Marriott Pune Chakan",
+        "starRating": 4,
+        "refundable": true,
+        "cancelText": "Free cancellation before 11-10-2026",
+        "baseFare": 12400,
+        "totalAmount": 14632
+      },
+      "last": {
+        "id": "39607557",
+        "name": "Park Ornate",
+        "starRating": 4,
+        "refundable": true,
+        "cancelText": "Free cancellation before 10-10-2026",
+        "baseFare": 4740.87,
+        "totalAmount": 4983.37
+      }
+    },
+    {
+      "section": "Sort",
+      "n": 14,
+      "rule": "Pune: ASC vs DESC are different ordered lists",
+      "how": "compare 4★ price_ASC vs price_DESC first page",
+      "expected": "Hotel order differs; cheapest-first vs dearest-first",
+      "status": "PASS",
+      "actual": "differentOrder=true ascFirst=Park Ornate@4740.87 descFirst=Courtyard by Marriott Pune Chakan@12400",
+      "city": "Pune"
+    },
+    {
+      "section": "Filter+sort",
+      "n": 15,
+      "rule": "Pune: 4★ + Free cancellation + price_ASC",
+      "how": "fq star 4 + Reservation policy Free cancellation, sort=price_ASC (user curl shape)",
+      "expected": "Only 4★; refundable=true; fares non-decreasing",
+      "status": "PASS",
+      "actual": "HTTP 200 n=7 total=7 stars=[4,4,4,4,4,4,4] refundable=[true,true,true,true,true,true,true] fares=[4740.87,6300,7000,8730,8757,10887.2,12400] all4=true allRefund=true monoAsc=true",
+      "city": "Pune",
+      "hotels": [
+        {
+          "id": "39607557",
+          "name": "Park Ornate",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 4740.87,
+          "totalAmount": 4983.37
+        },
+        {
+          "id": "15380909",
+          "name": "Cocoon Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 6300,
+          "totalAmount": 6615
+        },
+        {
+          "id": "39686905",
+          "name": "Oakwood Residence Naylor Road Pune",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 7000,
+          "totalAmount": 7350
+        },
+        {
+          "id": "57535743",
+          "name": "Kyriad Hotel Pimpri",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 8730,
+          "totalAmount": 10301.4
+        },
+        {
+          "id": "39743262",
+          "name": "Ramee Grand Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 8757,
+          "totalAmount": 10377
+        },
+        {
+          "id": "16375660",
+          "name": "Lemon Tree Premier City Center Pune",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 10887.2,
+          "totalAmount": 13935.62
+        },
+        {
+          "id": "38399629",
+          "name": "Courtyard by Marriott Pune Chakan",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 12400,
+          "totalAmount": 14632
+        }
+      ]
+    },
+    {
+      "section": "Filter+sort",
+      "n": 16,
+      "rule": "Pune: 4★ + Free cancellation + price_DESC",
+      "how": "same fq, sort=price_DESC (exact user curl sort)",
+      "expected": "Only 4★; refundable=true; fares non-increasing",
+      "status": "PASS",
+      "actual": "HTTP 200 n=7 stars=[4,4,4,4,4,4,4] refundable=[true,true,true,true,true,true,true] fares=[12400,10887.2,8757,8730,7000,6300,4740.87]",
+      "city": "Pune",
+      "hotels": [
+        {
+          "id": "38399629",
+          "name": "Courtyard by Marriott Pune Chakan",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 12400,
+          "totalAmount": 14632
+        },
+        {
+          "id": "16375660",
+          "name": "Lemon Tree Premier City Center Pune",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 10887.2,
+          "totalAmount": 13935.62
+        },
+        {
+          "id": "39743262",
+          "name": "Ramee Grand Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 8757,
+          "totalAmount": 10377
+        },
+        {
+          "id": "57535743",
+          "name": "Kyriad Hotel Pimpri",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 8730,
+          "totalAmount": 10301.4
+        },
+        {
+          "id": "39686905",
+          "name": "Oakwood Residence Naylor Road Pune",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 11-10-2026",
+          "baseFare": 7000,
+          "totalAmount": 7350
+        },
+        {
+          "id": "15380909",
+          "name": "Cocoon Hotel",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 09-10-2026",
+          "baseFare": 6300,
+          "totalAmount": 6615
+        },
+        {
+          "id": "39607557",
+          "name": "Park Ornate",
+          "starRating": 4,
+          "refundable": true,
+          "cancelText": "Free cancellation before 10-10-2026",
+          "baseFare": 4740.87,
+          "totalAmount": 4983.37
+        }
+      ]
+    },
+    {
+      "section": "Setup",
+      "n": 17,
+      "rule": "Delhi: unfiltered search works",
+      "how": "POST /v1/hotels/search CITY 358245:IN sort=price_ASC no fq",
+      "expected": "HTTP 200 and hotel list",
+      "status": "NOT TESTED",
+      "actual": "HTTP 200 hotels=0 total=0 stars=[]",
+      "city": "Delhi",
+      "hotels": [],
+      "note": "entityId 358245:IN returned 0 hotels — invalid city id"
+    },
+    {
+      "section": "Star filter",
+      "n": 18,
+      "rule": "Delhi: 4★ fq returns only 4-star hotels",
+      "how": "fq.df_long_star_rating=[4] sort=price_ASC",
+      "expected": "Every result starRating=4; totalResults narrower than unfiltered",
+      "status": "NOT TESTED",
+      "actual": "HTTP 200 n=0 total=0 unfilteredTotal=0 stars=[] all4=false",
+      "city": "Delhi",
+      "hotels": [],
+      "note": "entityId 358245:IN returned 0 hotels — invalid city id"
+    },
+    {
+      "section": "Sort",
+      "n": 19,
+      "rule": "Delhi: 4★ price_ASC is non-decreasing",
+      "how": "same 4★ search sort=price_ASC",
+      "expected": "baseFare non-decreasing across page",
+      "status": "NOT TESTED",
+      "actual": "fares=[] monoAsc=false",
+      "city": "Delhi",
+      "note": "entityId 358245:IN returned 0 hotels — invalid city id"
+    },
+    {
+      "section": "Star filter",
+      "n": 20,
+      "rule": "Delhi: 4★ + price_DESC still only 4-star",
+      "how": "fq.df_long_star_rating=[4] sort=price_DESC",
+      "expected": "Every result starRating=4",
+      "status": "NOT TESTED",
+      "actual": "HTTP 200 n=0 stars=[]",
+      "city": "Delhi",
+      "hotels": [],
+      "note": "entityId 358245:IN returned 0 hotels — invalid city id"
+    },
+    {
+      "section": "Sort",
+      "n": 21,
+      "rule": "Delhi: 4★ price_DESC is non-increasing",
+      "how": "sort=price_DESC",
+      "expected": "baseFare non-increasing across page",
+      "status": "NOT TESTED",
+      "actual": "fares=[] monoDesc=false",
+      "city": "Delhi",
+      "note": "entityId 358245:IN returned 0 hotels — invalid city id"
+    },
+    {
+      "section": "Sort",
+      "n": 22,
+      "rule": "Delhi: ASC vs DESC are different ordered lists",
+      "how": "compare 4★ price_ASC vs price_DESC first page",
+      "expected": "Hotel order differs; cheapest-first vs dearest-first",
+      "status": "NOT TESTED",
+      "actual": "differentOrder=false ascFirst=undefined@undefined descFirst=undefined@undefined",
+      "city": "Delhi",
+      "note": "entityId 358245:IN returned 0 hotels — invalid city id"
+    },
+    {
+      "section": "Filter+sort",
+      "n": 23,
+      "rule": "Delhi: 4★ + Free cancellation + price_ASC",
+      "how": "fq star 4 + Reservation policy Free cancellation, sort=price_ASC (user curl shape)",
+      "expected": "Only 4★; refundable=true; fares non-decreasing",
+      "status": "NOT TESTED",
+      "actual": "HTTP 200 n=0 total=0 stars=[] refundable=[] fares=[] all4=false allRefund=0 monoAsc=false",
+      "city": "Delhi",
+      "hotels": [],
+      "note": "entityId 358245:IN returned 0 hotels — invalid city id"
+    },
+    {
+      "section": "Filter+sort",
+      "n": 24,
+      "rule": "Delhi: 4★ + Free cancellation + price_DESC",
+      "how": "same fq, sort=price_DESC (exact user curl sort)",
+      "expected": "Only 4★; refundable=true; fares non-increasing",
+      "status": "NOT TESTED",
+      "actual": "HTTP 200 n=0 stars=[] refundable=[] fares=[]",
+      "city": "Delhi",
+      "hotels": [],
+      "note": "entityId 358245:IN returned 0 hotels — invalid city id"
+    }
+  ]
+}

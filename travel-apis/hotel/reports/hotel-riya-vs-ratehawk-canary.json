@@ -1,0 +1,293 @@
+{
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "at": "2026-08-12T15:42:50.801Z",
+  "score": {
+    "PASS": 5,
+    "BUG": 0,
+    "NOT_TESTED": 1
+  },
+  "rows": [
+    {
+      "supplier": "RIYA",
+      "rule": "Supplier tag in bookingCode",
+      "status": "PASS",
+      "actual": "bookingCode supplier=RIYA"
+    },
+    {
+      "supplier": "RIYA",
+      "rule": "Status taxBreakup",
+      "status": "PASS",
+      "actual": "gst=0 other=374.95 tax=374.95",
+      "salesSummary": {
+        "baseFare": 7296.51,
+        "tax": 374.95,
+        "convenienceFee": 0,
+        "totalAmount": 7671.46,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 374.95
+        }
+      }
+    },
+    {
+      "supplier": "RIYA",
+      "rule": "Details taxBreakup",
+      "status": "PASS",
+      "actual": "gst=0 other=374.95 tax=374.95",
+      "salesSummary": {
+        "baseFare": 7296.51,
+        "tax": 374.95,
+        "convenienceFee": 0,
+        "totalAmount": 7671.46,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "taxBreakup": {
+          "gst": 0,
+          "otherTaxes": 374.95
+        }
+      }
+    },
+    {
+      "supplier": "RIYA",
+      "rule": "Failed status message (provider reason)",
+      "status": "PASS",
+      "actual": "message=\"Aadhaar Seeding is UnSuccessful\""
+    },
+    {
+      "supplier": "RIYA",
+      "rule": "Failed details message (provider reason)",
+      "status": "PASS",
+      "actual": "message=\"Aadhaar Seeding is UnSuccessful\""
+    },
+    {
+      "supplier": "RHK",
+      "rule": "Locate bookable room",
+      "status": "NOT TESTED",
+      "actual": "No RHK bookingCode found in candidate hotels"
+    }
+  ],
+  "results": [
+    {
+      "found": true,
+      "supplier": "RIYA",
+      "hotelName": "Hiltop Hotel",
+      "entityId": "39627872",
+      "bookingCode": "39627872!TB!RIYA!TB!517f46c1-6d16-4219-8993-e43cc5d192ac~158a491f-4e9a-496a-a8b3-50dea5b9c60c~286e1891-0a27-434c-b837-d57f46a11d4a~26955ede-bd1b-4eb0-bb5d-84d0e8a1897e~26f51258-9304-4791-8c30-1388be2b7db7",
+      "bookingId": "BR1786549343337268",
+      "terminalStatus": "Failed",
+      "isPANMandatory": true,
+      "isGSTClaimable": true,
+      "finalizeOk": true,
+      "statusBody": {
+        "bookingReferenceId": "BR1786549343337268",
+        "status": "Failed",
+        "confirmationNumber": "",
+        "checkin": "2026-09-02",
+        "checkout": "2026-09-03",
+        "checkinTime": "2:00 PM",
+        "checkoutTime": "11:00 AM",
+        "message": "Aadhaar Seeding is UnSuccessful",
+        "hotelDetails": {
+          "name": "Hiltop Hotel",
+          "address": "43. Sir Pochkhanwala Road",
+          "contact": null
+        },
+        "roomDetails": {
+          "name": [
+            "Basic Studio"
+          ],
+          "mealType": "Breakfast Included",
+          "roomType": "Basic Studio"
+        },
+        "rooms": [
+          {
+            "guestNames": [
+              {
+                "title": "Mr",
+                "firstName": "Rohan",
+                "lastName": "Bhagat",
+                "type": "Adult"
+              }
+            ]
+          }
+        ],
+        "salesSummary": {
+          "baseFare": 7296.51,
+          "tax": 374.95,
+          "convenienceFee": 0,
+          "totalAmount": 7671.46,
+          "totalDiscount": 0,
+          "currency": "INR",
+          "taxBreakup": {
+            "gst": 0,
+            "otherTaxes": 374.95
+          }
+        },
+        "_meta": {
+          "correlation_id": "215c9026-7f4f-46d0-bdff-d42ba5025dc6"
+        }
+      },
+      "detailsBody": {
+        "status": "Failed",
+        "confirmationNumber": "BR1786549343337268",
+        "checkIn": "2026-09-02",
+        "checkInTime": "2:00 PM",
+        "checkOut": "2026-09-03",
+        "checkOutTime": "11:00 AM",
+        "bookingDate": "2026-08-12T15:42:23Z",
+        "noOfRooms": 1,
+        "message": "Aadhaar Seeding is UnSuccessful",
+        "hotelDetails": {
+          "hotelName": "Hiltop Hotel",
+          "city": "Mumbai",
+          "address": "43. Sir Pochkhanwala Road",
+          "contactNumber": null,
+          "amenities": [
+            {
+              "key": "Dry cleaning/laundry service",
+              "value": null
+            },
+            {
+              "key": "Banquet hall",
+              "value": null
+            },
+            {
+              "key": "Wheelchair accessible – no",
+              "value": null
+            },
+            {
+              "key": "Luggage storage",
+              "value": null
+            },
+            {
+              "key": "Number of meeting rooms - 3",
+              "value": null
+            },
+            {
+              "key": "Business center",
+              "value": null
+            }
+          ],
+          "image": "https://static-images.webbeds.com/0/image/ba52053b-4fd3-48ac-a583-d85a9fe52d2c.jpg",
+          "rateConditions": [
+            "Check-in between 2:00 PM - 5:00 AM",
+            "Check-out before 11:00 AM",
+            "<ul>  <li>Extra-person charges may apply and vary depending on property policy</li><li>Government-issued photo identification and a credit card, debit card, or cash deposit may be required at check-in for incidental charges</li><li>Special requests are subject to availability upon check-in and may incur additional charges; special requests cannot be guaranteed</li><li>This property accepts credit cards; cash is not accepted</li><li>Please note that cultural norms and guest policies may differ by country and by property; the policies listed are provided by the property</li>  </ul>",
+            "To make arrangements for check-in please contact the property ahead of time using the information on the booking confirmation. If you are planning to arrive after midnight please contact the property in advance using the information on the booking confirmation. Guests must contact the property in advance for check-in instructions. Front desk staff will greet guests on arrival at the property. For any questions, please contact the property using the information on the booking confirmation. Information provided by the property may be translated using automated translation tools. Couples are required to present proof of marriage at check-in when sharing a room.",
+            "<ul>  <li>Couples wishing to share a room must provide proof of marriage. </li><li>The property has connecting/adjoining rooms, which are subject to availability and can be requested by contacting the property using the number on the booking confirmation. </li><li>No pets and no service animals are allowed at this property. </li><li>Contactless check-out is available.</li> </ul>",
+            "<ul> <li>Crib (infant bed) fee: INR 2469.0 per day</li><li>Rollaway bed fee: INR 2469.0 per stay</li></ul> <p>The above list may not be comprehensive. Fees and deposits may not include tax and are subject to change. </p>",
+            "<ul><li>Hotels may charge a security deposit at the time of check in, which will be refundable if unutilized.</li><li>Check in & Check out time is for information purposes and may change without intimation.</li><li>Early Check in and Late check out are subject to availability and as per Hotel Policy.</li><li>Carrying valid ID proof and Voucher copy is recommended.</li><li>Any Supplementary charges / Gala Dinner / City Tax etc. to be paid directly at the property.</li><li>Bedding type is subject to availability at the time of check in.</li><li>Extra beds are not included in the reservation price unless stated in the hotel / booking policies.</li><li>Hotels may not allow any additional passenger apart from those reflecting in the booking.</li><li>Special Requests are subject to availability and cannot be pre confirmed / guaranteed.</li><li>Hotels may deny check in or charge a different amount if the nationality is different than mentioned at the time of reservation.</li><li>To avail any complementary service, guests need to contact the hotel directly. Hotel reserves the rights to accept, deny or withdraw the same.</li></ul>"
+          ]
+        },
+        "roomDetails": {
+          "name": [
+            "Basic Studio"
+          ],
+          "mealType": "Breakfast Included",
+          "roomType": "Basic Studio",
+          "cancelPolicies": [
+            {
+              "fromDate": "12-08-2026 00:00:00",
+              "chargeType": "Percent",
+              "cancellationCharge": 0
+            },
+            {
+              "fromDate": "30-08-2026 00:00:00",
+              "chargeType": "Percent",
+              "cancellationCharge": 100
+            }
+          ],
+          "refundable_notes": [
+            "Free cancellation before 30-08-2026"
+          ]
+        },
+        "rooms": [
+          {
+            "guests": [
+              {
+                "title": "Mr",
+                "firstName": "Rohan",
+                "lastName": "Bhagat",
+                "type": "Adult"
+              }
+            ]
+          }
+        ],
+        "salesSummary": {
+          "baseFare": 7296.51,
+          "tax": 374.95,
+          "convenienceFee": 0,
+          "totalAmount": 7671.46,
+          "totalDiscount": 0,
+          "currency": "INR",
+          "taxBreakup": {
+            "gst": 0,
+            "otherTaxes": 374.95
+          }
+        },
+        "_meta": {
+          "correlation_id": "215c9026-7f4f-46d0-bdff-d42ba5025dc6"
+        }
+      },
+      "penalty": null,
+      "checks": [
+        {
+          "rule": "Supplier tag in bookingCode",
+          "status": "PASS",
+          "actual": "bookingCode supplier=RIYA"
+        },
+        {
+          "rule": "Status taxBreakup",
+          "status": "PASS",
+          "actual": "gst=0 other=374.95 tax=374.95",
+          "salesSummary": {
+            "baseFare": 7296.51,
+            "tax": 374.95,
+            "convenienceFee": 0,
+            "totalAmount": 7671.46,
+            "totalDiscount": 0,
+            "currency": "INR",
+            "taxBreakup": {
+              "gst": 0,
+              "otherTaxes": 374.95
+            }
+          }
+        },
+        {
+          "rule": "Details taxBreakup",
+          "status": "PASS",
+          "actual": "gst=0 other=374.95 tax=374.95",
+          "salesSummary": {
+            "baseFare": 7296.51,
+            "tax": 374.95,
+            "convenienceFee": 0,
+            "totalAmount": 7671.46,
+            "totalDiscount": 0,
+            "currency": "INR",
+            "taxBreakup": {
+              "gst": 0,
+              "otherTaxes": 374.95
+            }
+          }
+        },
+        {
+          "rule": "Failed status message (provider reason)",
+          "status": "PASS",
+          "actual": "message=\"Aadhaar Seeding is UnSuccessful\""
+        },
+        {
+          "rule": "Failed details message (provider reason)",
+          "status": "PASS",
+          "actual": "message=\"Aadhaar Seeding is UnSuccessful\""
+        }
+      ]
+    },
+    {
+      "supplier": "RHK",
+      "found": false
+    }
+  ],
+  "bugs": []
+}

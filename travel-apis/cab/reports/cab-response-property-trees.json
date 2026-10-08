@@ -1,0 +1,2835 @@
+{
+  "locations": [
+    {
+      "name": "locations",
+      "method": "GET",
+      "url": "{{base_url}}/v1/airportServices/cabs/locations?lang=en&query=Keshav Nagar, Pune&longitude=73.9143",
+      "responses": [
+        {
+          "name": "locations",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "locations"
+          ],
+          "tree": {
+            "(root)": "object",
+            "locations": "array[5]",
+            "locations[]": "object",
+            "locations[].referenceId": "string",
+            "locations[].airportCode": "string",
+            "locations[].airportName": "string",
+            "locations[].terminalId": "string",
+            "locations[].name": "string",
+            "locations[].city": "string",
+            "locations[].address": "string",
+            "locations[].displayName": "string",
+            "locations[].latitude": "number",
+            "locations[].longitude": "number"
+          },
+          "nullFields": [],
+          "sample": {
+            "locations": [
+              {
+                "referenceId": "26",
+                "airportCode": "DEL",
+                "airportName": "Indira Gandhi International Airport (DEL)",
+                "terminalId": "T1",
+                "name": "IGI Airport-T1",
+                "city": "Delhi",
+                "address": "IGI Airport-T1",
+                "displayName": "T1 , IGI Airport-T1 , Delhi",
+                "latitude": 28.5627225,
+                "longitude": 77.1171405
+              },
+              {
+                "referenceId": "27",
+                "airportCode": "DEL",
+                "airportName": "Indira Gandhi International Airport (DEL)",
+                "terminalId": "T2",
+                "name": "IGI Airport-T2",
+                "city": "Delhi",
+                "address": "IGI Airport-T2",
+                "displayName": "T2 , IGI Airport-T2 , Delhi",
+                "latitude": 28.5584867,
+                "longitude": 77.0872235
+              },
+              {
+                "referenceId": "28",
+                "airportCode": "DEL",
+                "airportName": "Indira Gandhi International Airport (DEL)",
+                "terminalId": "T3",
+                "name": "IGI Airport-T3",
+                "city": "Delhi",
+                "address": "IGI Airport-T3",
+                "displayName": "T3 , IGI Airport-T3 , Delhi",
+                "latitude": 28.5550838,
+                "longitude": 77.0818266
+              },
+              {
+                "referenceId": "89",
+                "airportCode": "HDO",
+                "airportName": "Hindon Airport (HDO)",
+                "terminalId": "T1",
+                "name": "Hindon Airport",
+                "city": "Ghaziabad",
+                "address": "Hindon Airport",
+                "displayName": "T1 , Hindon Airport , Ghaziabad",
+                "latitude": 28.7052478,
+                "longitude": 77.3423036
+              },
+              {
+                "referenceId": "97",
+                "airportCode": "HSR",
+                "airportName": "Rajkot International Airport (HSR)",
+                "terminalId": "T1",
+                "name": "Rajkot International Airport (Hirasar)",
+                "city": "Hirasar",
+                "address": "Rajkot International Airport (Hirasar)",
+                "displayName": "T1 , Rajkot International Airport , Hirasar",
+                "latitude": 22.3820553,
+                "longitude": 71.0317159
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "search": [
+    {
+      "name": "Cabs Search",
+      "method": "POST",
+      "url": "{{base_url}}/v1/airportServices/cabs/search?lang=en&currency=INR",
+      "responses": [
+        {
+          "name": "Cabs Search - Airport",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "currency",
+            "cabs"
+          ],
+          "tree": {
+            "(root)": "object",
+            "currency": "string",
+            "cabs": "array[5]",
+            "cabs[]": "object",
+            "cabs[].searchId": "string",
+            "cabs[].cabId": "string",
+            "cabs[].fareId": "string",
+            "cabs[].vehicle": "object",
+            "cabs[].vehicle.type": "string",
+            "cabs[].vehicle.category": "string",
+            "cabs[].vehicle.model": "string",
+            "cabs[].vehicle.makeYear": "number",
+            "cabs[].vehicle.seatingCapacity": "number",
+            "cabs[].vehicle.luggageCapacity": "number",
+            "cabs[].vehicle.airConditioned": "boolean",
+            "cabs[].vehicle.fuelType": "string",
+            "cabs[].vehicle.imageUrl": "string",
+            "cabs[].vehicle.imageApp": "string",
+            "cabs[].vehicle.imageMobile": "string",
+            "cabs[].operator": "object",
+            "cabs[].operator.name": "string",
+            "cabs[].operator.logoUrl": "string",
+            "cabs[].operator.rating": "number",
+            "cabs[].operator.ratingCount": "number",
+            "cabs[].trip": "object",
+            "cabs[].trip.distanceKm": "number",
+            "cabs[].trip.durationMin": "number",
+            "cabs[].trip.extraKmFareLabel": "string",
+            "cabs[].trip.freeCancellationTillMin": "number",
+            "cabs[].trip.cancellationRule": "string",
+            "cabs[].inclusions": "array[2]",
+            "cabs[].inclusions[]": "string",
+            "cabs[].exclusions": "array[6]",
+            "cabs[].exclusions[]": "string",
+            "cabs[].priceDetail": "object",
+            "cabs[].priceDetail.baseFare": "number",
+            "cabs[].priceDetail.taxes": "number",
+            "cabs[].priceDetail.convenienceFee": "number",
+            "cabs[].priceDetail.totalAmount": "number",
+            "cabs[].priceDetail.currency": "string",
+            "cabs[].priceDetail.priceReference": "string",
+            "cabs[].priceDetail.currencyConversion": "object",
+            "cabs[].priceDetail.currencyConversion.source": "string",
+            "cabs[].priceDetail.currencyConversion.destination": "string",
+            "cabs[].priceDetail.currencyConversion.rate": "number",
+            "cabs[].fareExpiryTime": "number",
+            "cabs[].tags": "array[1]",
+            "cabs[].tags[]": "string"
+          },
+          "nullFields": [],
+          "sample": {
+            "currency": "INR",
+            "cabs": [
+              {
+                "searchId": "a43a1a3d-0dc2-4c9f-bcd0-52430f0c6869|de631c4b8216e7d71ef8f57337be843179b218ded23cc0bd4cbd06e826998f84",
+                "cabId": "f429d319-db36-41bd-95b8-bcea605c8e09",
+                "fareId": "Unknown",
+                "vehicle": {
+                  "type": "SEDAN",
+                  "category": "ECONOMY",
+                  "model": "Dzire or Similar",
+                  "makeYear": 2016,
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 2,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                  "imageApp": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+                },
+                "operator": {
+                  "name": "Carzonrent",
+                  "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                  "rating": 4,
+                  "ratingCount": 71
+                },
+                "trip": {
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 24/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": "FLEXI"
+                },
+                "inclusions": [
+                  "15 Kms Ride",
+                  "GST Included ₹20.58"
+                ],
+                "exclusions": [
+                  "Toll Charges",
+                  "Waiting Charges (after 20 mins) ₹100/30 mins",
+                  "Extra Km Fare (₹24/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 411,
+                  "taxes": 20.58,
+                  "convenienceFee": 0,
+                  "totalAmount": 431.58,
+                  "currency": "INR",
+                  "priceReference": "93s4SLwus0UHu+QStpMY4eMt2nxuXHfa0vWU+FWtj/MwwQRf0ycnns9NFcg5Z0ZW",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1783939217430,
+                "tags": [
+                  "NO_RECOMMENDATION"
+                ]
+              },
+              {
+                "searchId": "2370c984-34ed-48de-9609-f7602dda7790|de631c4b8216e7d71ef8f57337be843179b218ded23cc0bd4cbd06e826998f84",
+                "cabId": "09e6c83d-da5a-40cd-ad53-a66677fc400d",
+                "fareId": "73",
+                "vehicle": {
+                  "type": "SEDAN",
+                  "category": "ECONOMY",
+                  "model": "Dzire or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 2,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 4.6,
+                  "ratingCount": 286
+                },
+                "trip": {
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 19/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "15 Kms Ride",
+                  "Parking Charges"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Extra Km Fare (₹19/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 798,
+                  "taxes": 40,
+                  "convenienceFee": 0,
+                  "totalAmount": 838,
+                  "currency": "INR",
+                  "priceReference": "mNpInsSiZBa8OWuAiFoTDymvM/pKvuafdfmstC36bmgwwQRf0ycnns9NFcg5Z0ZW",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1783939217428,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "9d82480c-eec1-43f1-886f-7ca83f66d629|de631c4b8216e7d71ef8f57337be843179b218ded23cc0bd4cbd06e826998f84",
+                "cabId": "c8994993-524a-422a-9606-43325ad4d1cf",
+                "fareId": "72",
+                "vehicle": {
+                  "type": "HATCHBACK",
+                  "category": "ECONOMY",
+                  "model": "Swift or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 1,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 4.6,
+                  "ratingCount": 286
+                },
+                "trip": {
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 18.5/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "15 Kms Ride",
+                  "Parking Charges"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Extra Km Fare (₹18.5/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 798,
+                  "taxes": 40,
+                  "convenienceFee": 0,
+                  "totalAmount": 838,
+                  "currency": "INR",
+                  "priceReference": "mNpInsSiZBa8OWuAiFoTDymvM/pKvuafdfmstC36bmgwwQRf0ycnns9NFcg5Z0ZW",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1783939217429,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "bb67f5ed-6847-4d61-b6bb-a296f736545f|de631c4b8216e7d71ef8f57337be843179b218ded23cc0bd4cbd06e826998f84",
+                "cabId": "13b452a4-be7f-4ae0-a699-360e1fc10dbd",
+                "fareId": "74",
+                "vehicle": {
+                  "type": "SUV",
+                  "category": "ECONOMY",
+                  "model": "Ertiga or Similar",
+                  "seatingCapacity": 3,
+                  "luggageCapacity": 3,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                  "imageApp": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                  "imageMobile": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+                },
+                "operator": {
+                  "name": "TravelVIP",
+                  "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                  "rating": 4.6,
+                  "ratingCount": 286
+                },
+                "trip": {
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 23/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "15 Kms Ride",
+                  "Parking Charges"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Extra Km Fare (₹23/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 1227,
+                  "taxes": 61,
+                  "convenienceFee": 0,
+                  "totalAmount": 1288,
+                  "currency": "INR",
+                  "priceReference": "vz5853wrhGkwkf+CGK1nnsI9QUCEmYvejYKPbf3Y7s/QoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1783939217429,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "cb10e140-3ab5-4241-8cb4-3e92b0ff87f2|de631c4b8216e7d71ef8f57337be843179b218ded23cc0bd4cbd06e826998f84",
+                "cabId": "f429d319-db36-41bd-95b8-bcea605c8e09",
+                "fareId": "Unknown",
+                "vehicle": {
+                  "type": "SUV",
+                  "category": "PREMIUM",
+                  "model": "Ertiga or Similar",
+                  "makeYear": 2016,
+                  "seatingCapacity": 4,
+                  "luggageCapacity": 3,
+                  "airConditioned": true,
+                  "fuelType": "DIESEL",
+                  "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                  "imageApp": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+                },
+                "operator": {
+                  "name": "Carzonrent",
+                  "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                  "rating": 4,
+                  "ratingCount": 71
+                },
+                "trip": {
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 32/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": "FLEXI"
+                },
+                "inclusions": [
+                  "15 Kms Ride",
+                  "GST Included ₹100"
+                ],
+                "exclusions": [
+                  "Toll Charges",
+                  "Waiting Charges (after 20 mins) ₹100/30 mins",
+                  "Extra Km Fare (₹32/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 2000,
+                  "taxes": 100,
+                  "convenienceFee": 0,
+                  "totalAmount": 2100,
+                  "currency": "INR",
+                  "priceReference": "Lu1nL8vOrCeqHeN4e+x1ToW1o8ZTLPA0SsEKq76WBfnQoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1783939217430,
+                "tags": [
+                  "NO_RECOMMENDATION"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "Cabs Search - Outstation",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "currency",
+            "cabs"
+          ],
+          "tree": {
+            "(root)": "object",
+            "currency": "string",
+            "cabs": "array[2]",
+            "cabs[]": "object",
+            "cabs[].searchId": "string",
+            "cabs[].cabId": "string",
+            "cabs[].fareId": "string",
+            "cabs[].vehicle": "object",
+            "cabs[].vehicle.type": "string",
+            "cabs[].vehicle.category": "string",
+            "cabs[].vehicle.model": "string",
+            "cabs[].vehicle.seatingCapacity": "number",
+            "cabs[].vehicle.luggageCapacity": "number",
+            "cabs[].vehicle.airConditioned": "boolean",
+            "cabs[].vehicle.fuelType": "string",
+            "cabs[].vehicle.imageUrl": "string",
+            "cabs[].vehicle.imageApp": "string",
+            "cabs[].vehicle.imageMobile": "string",
+            "cabs[].operator": "object",
+            "cabs[].operator.name": "string",
+            "cabs[].operator.logoUrl": "string",
+            "cabs[].operator.rating": "number",
+            "cabs[].operator.ratingCount": "number",
+            "cabs[].trip": "object",
+            "cabs[].trip.distanceKm": "number",
+            "cabs[].trip.durationMin": "number",
+            "cabs[].trip.extraKmFareLabel": "string",
+            "cabs[].trip.freeCancellationTillMin": "number",
+            "cabs[].inclusions": "array[3]",
+            "cabs[].inclusions[]": "string",
+            "cabs[].exclusions": "array[6]",
+            "cabs[].exclusions[]": "string",
+            "cabs[].priceDetail": "object",
+            "cabs[].priceDetail.baseFare": "number",
+            "cabs[].priceDetail.taxes": "number",
+            "cabs[].priceDetail.convenienceFee": "number",
+            "cabs[].priceDetail.totalAmount": "number",
+            "cabs[].priceDetail.currency": "string",
+            "cabs[].priceDetail.priceReference": "string",
+            "cabs[].priceDetail.currencyConversion": "object",
+            "cabs[].priceDetail.currencyConversion.source": "string",
+            "cabs[].priceDetail.currencyConversion.destination": "string",
+            "cabs[].priceDetail.currencyConversion.rate": "number",
+            "cabs[].fareExpiryTime": "number",
+            "cabs[].tags": "array[1]",
+            "cabs[].tags[]": "string"
+          },
+          "nullFields": [],
+          "sample": {
+            "currency": "INR",
+            "cabs": [
+              {
+                "searchId": "d5b1123b-277f-460e-ae6d-99ea2dec34d1|0b6ed348f9762ef54f13fe97535a72ecedb8412ec58b5fad4c0a2d878d32ab6c",
+                "cabId": "d2395058-8d62-416a-b998-30afea0081ff",
+                "fareId": "72",
+                "vehicle": {
+                  "type": "HATCHBACK",
+                  "category": "ECONOMY",
+                  "model": "Swift or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 1,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 8,
+                  "durationMin": 25,
+                  "extraKmFareLabel": "INR 13.5/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "8 Kms Ride",
+                  "Toll Charges",
+                  "State Tax"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹13.5/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 483,
+                  "taxes": 24,
+                  "convenienceFee": 0,
+                  "totalAmount": 507,
+                  "currency": "INR",
+                  "priceReference": "93s4SLwus0UHu+QStpMY4cUiOj+bSXEUT18CGzZdSqswwQRf0ycnns9NFcg5Z0ZW",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784016155478,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "9be7effe-06f0-4bf0-8656-e2be457f8d6c|0b6ed348f9762ef54f13fe97535a72ecedb8412ec58b5fad4c0a2d878d32ab6c",
+                "cabId": "3bff229e-3dab-4db2-a287-d5d3bebc6b56",
+                "fareId": "73",
+                "vehicle": {
+                  "type": "SEDAN",
+                  "category": "ECONOMY",
+                  "model": "Dzire or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 2,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 8,
+                  "durationMin": 25,
+                  "extraKmFareLabel": "INR 13.5/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "8 Kms Ride",
+                  "Toll Charges",
+                  "State Tax"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹13.5/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 491,
+                  "taxes": 25,
+                  "convenienceFee": 0,
+                  "totalAmount": 516,
+                  "currency": "INR",
+                  "priceReference": "93s4SLwus0UHu+QStpMY4cEFpJo/Z+9E6cL+bCMYu0EwwQRf0ycnns9NFcg5Z0ZW",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784016155477,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "Cabs Search - Rental",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "currency",
+            "cabs"
+          ],
+          "tree": {
+            "(root)": "object",
+            "currency": "string",
+            "cabs": "array[9]",
+            "cabs[]": "object",
+            "cabs[].searchId": "string",
+            "cabs[].cabId": "string",
+            "cabs[].fareId": "string",
+            "cabs[].vehicle": "object",
+            "cabs[].vehicle.type": "string",
+            "cabs[].vehicle.category": "string",
+            "cabs[].vehicle.model": "string",
+            "cabs[].vehicle.seatingCapacity": "number",
+            "cabs[].vehicle.luggageCapacity": "number",
+            "cabs[].vehicle.airConditioned": "boolean",
+            "cabs[].vehicle.fuelType": "string",
+            "cabs[].vehicle.imageUrl": "string",
+            "cabs[].vehicle.imageApp": "string",
+            "cabs[].vehicle.imageMobile": "string",
+            "cabs[].operator": "object",
+            "cabs[].operator.name": "string",
+            "cabs[].operator.logoUrl": "string",
+            "cabs[].operator.rating": "number",
+            "cabs[].operator.ratingCount": "number",
+            "cabs[].trip": "object",
+            "cabs[].trip.distanceKm": "number",
+            "cabs[].trip.durationMin": "number",
+            "cabs[].trip.extraKmFareLabel": "string",
+            "cabs[].trip.freeCancellationTillMin": "number",
+            "cabs[].inclusions": "array[2]",
+            "cabs[].inclusions[]": "string",
+            "cabs[].exclusions": "array[7]",
+            "cabs[].exclusions[]": "string",
+            "cabs[].priceDetail": "object",
+            "cabs[].priceDetail.baseFare": "number",
+            "cabs[].priceDetail.taxes": "number",
+            "cabs[].priceDetail.convenienceFee": "number",
+            "cabs[].priceDetail.totalAmount": "number",
+            "cabs[].priceDetail.currency": "string",
+            "cabs[].priceDetail.priceReference": "string",
+            "cabs[].priceDetail.currencyConversion": "object",
+            "cabs[].priceDetail.currencyConversion.source": "string",
+            "cabs[].priceDetail.currencyConversion.destination": "string",
+            "cabs[].priceDetail.currencyConversion.rate": "number",
+            "cabs[].fareExpiryTime": "number",
+            "cabs[].tags": "array[1]",
+            "cabs[].tags[]": "string"
+          },
+          "nullFields": [],
+          "sample": {
+            "currency": "INR",
+            "cabs": [
+              {
+                "searchId": "ef5c9103-469a-4308-90cc-68366f70ab07|f0eaf63392d6782b7861843ac64473eb20771ef3124104da4739ab71b5d0c133",
+                "cabId": "11d27253-6722-48ca-b4dc-f6a7cf6cb0d1",
+                "fareId": "72",
+                "vehicle": {
+                  "type": "HATCHBACK",
+                  "category": "ECONOMY",
+                  "model": "Swift or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 1,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 20,
+                  "durationMin": 120,
+                  "extraKmFareLabel": "INR 15/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "20 Kms Ride",
+                  "Driver Allowance (₹250)"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹15/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 1206,
+                  "taxes": 73,
+                  "convenienceFee": 0,
+                  "totalAmount": 1279,
+                  "currency": "INR",
+                  "priceReference": "vz5853wrhGkwkf+CGK1nnlomBMaNzsJoaDDUPz6JOWHQoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784022831243,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "5541ce72-41f2-41a5-b060-a29f994b00a0|f0eaf63392d6782b7861843ac64473eb20771ef3124104da4739ab71b5d0c133",
+                "cabId": "a28ee629-7baa-4eb4-bc82-9fc62490a0b5",
+                "fareId": "74",
+                "vehicle": {
+                  "type": "SUV",
+                  "category": "ECONOMY",
+                  "model": "Ertiga or Similar",
+                  "seatingCapacity": 3,
+                  "luggageCapacity": 3,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 20,
+                  "durationMin": 120,
+                  "extraKmFareLabel": "INR 16.25/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "20 Kms Ride",
+                  "Driver Allowance (₹250)"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹16.25/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 1756,
+                  "taxes": 100,
+                  "convenienceFee": 0,
+                  "totalAmount": 1856,
+                  "currency": "INR",
+                  "priceReference": "vz5853wrhGkwkf+CGK1nnq5GgMqLFXmQPQRXL8HLIb7QoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784022831243,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "cb32e19c-0224-4262-97e4-ce6264a48a8b|f0eaf63392d6782b7861843ac64473eb20771ef3124104da4739ab71b5d0c133",
+                "cabId": "3fe17a71-ef54-4087-acfa-8e16002bd450",
+                "fareId": "73",
+                "vehicle": {
+                  "type": "SEDAN",
+                  "category": "ECONOMY",
+                  "model": "Dzire or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 2,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 20,
+                  "durationMin": 120,
+                  "extraKmFareLabel": "INR 13.5/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "20 Kms Ride",
+                  "Driver Allowance (₹250)"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹13.5/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 1914,
+                  "taxes": 108,
+                  "convenienceFee": 0,
+                  "totalAmount": 2022,
+                  "currency": "INR",
+                  "priceReference": "vz5853wrhGkwkf+CGK1nnrFh5eTANLuQSe9WSLh7M0DQoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784022831241,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "560412c6-9637-4dd8-9351-35cc9917a5d0|f0eaf63392d6782b7861843ac64473eb20771ef3124104da4739ab71b5d0c133",
+                "cabId": "42c617a6-f8e2-4541-b270-e823c64fbabe",
+                "fareId": "72",
+                "vehicle": {
+                  "type": "HATCHBACK",
+                  "category": "ECONOMY",
+                  "model": "Swift or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 1,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 20,
+                  "durationMin": 120,
+                  "extraKmFareLabel": "INR 15/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "20 Kms Ride",
+                  "Driver Allowance (₹250)"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹15/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 1914,
+                  "taxes": 108,
+                  "convenienceFee": 0,
+                  "totalAmount": 2022,
+                  "currency": "INR",
+                  "priceReference": "vz5853wrhGkwkf+CGK1nnrFh5eTANLuQSe9WSLh7M0DQoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784022831243,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "fffbcc9c-4c24-400c-97f5-52b5ca2be44c|f0eaf63392d6782b7861843ac64473eb20771ef3124104da4739ab71b5d0c133",
+                "cabId": "e92f43ef-e7b6-4e6c-b0a0-ff6d8d82bb55",
+                "fareId": "73",
+                "vehicle": {
+                  "type": "SEDAN",
+                  "category": "ECONOMY",
+                  "model": "Dzire or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 2,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 20,
+                  "durationMin": 120,
+                  "extraKmFareLabel": "INR 13.5/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "20 Kms Ride",
+                  "Driver Allowance (₹250)"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹13.5/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 2339,
+                  "taxes": 129,
+                  "convenienceFee": 0,
+                  "totalAmount": 2468,
+                  "currency": "INR",
+                  "priceReference": "Lu1nL8vOrCeqHeN4e+x1TpbxJHcd8+OXNBCCINnZNgfQoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784022831242,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "5a0fcde6-a506-45d6-bffd-e52208ed1904|f0eaf63392d6782b7861843ac64473eb20771ef3124104da4739ab71b5d0c133",
+                "cabId": "242e2635-6443-4a64-8559-fe5cd68e6561",
+                "fareId": "73",
+                "vehicle": {
+                  "type": "SEDAN",
+                  "category": "ECONOMY",
+                  "model": "Dzire or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 2,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 20,
+                  "durationMin": 120,
+                  "extraKmFareLabel": "INR 13.5/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "20 Kms Ride",
+                  "Driver Allowance (₹250)"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹13.5/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 2605,
+                  "taxes": 143,
+                  "convenienceFee": 0,
+                  "totalAmount": 2748,
+                  "currency": "INR",
+                  "priceReference": "Lu1nL8vOrCeqHeN4e+x1TpcKxy2g8xO/IEg+o26fEC3QoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784022831242,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "d52b97d0-22d6-42ba-bc27-45ce31d68dfd|f0eaf63392d6782b7861843ac64473eb20771ef3124104da4739ab71b5d0c133",
+                "cabId": "0e57efab-1abf-4ebc-86ee-793e65f62a5e",
+                "fareId": "72",
+                "vehicle": {
+                  "type": "HATCHBACK",
+                  "category": "ECONOMY",
+                  "model": "Swift or Similar",
+                  "seatingCapacity": 2,
+                  "luggageCapacity": 1,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 20,
+                  "durationMin": 120,
+                  "extraKmFareLabel": "INR 15/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "20 Kms Ride",
+                  "Driver Allowance (₹250)"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹15/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 2623,
+                  "taxes": 144,
+                  "convenienceFee": 0,
+                  "totalAmount": 2767,
+                  "currency": "INR",
+                  "priceReference": "Lu1nL8vOrCeqHeN4e+x1TgNRjXR4Bnv2esUVX1/5z/nQoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784022831244,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "a2e874ed-981a-4cac-a49b-09d43446ea7b|f0eaf63392d6782b7861843ac64473eb20771ef3124104da4739ab71b5d0c133",
+                "cabId": "b75a1be6-06bc-42fe-a5f5-41efa43f9c29",
+                "fareId": "74",
+                "vehicle": {
+                  "type": "SUV",
+                  "category": "ECONOMY",
+                  "model": "Ertiga or Similar",
+                  "seatingCapacity": 3,
+                  "luggageCapacity": 3,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 20,
+                  "durationMin": 120,
+                  "extraKmFareLabel": "INR 19.75/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "20 Kms Ride",
+                  "Driver Allowance (₹250)"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹19.75/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 2866,
+                  "taxes": 156,
+                  "convenienceFee": 0,
+                  "totalAmount": 3022,
+                  "currency": "INR",
+                  "priceReference": "Lu1nL8vOrCeqHeN4e+x1TtjN7o5HCBW4w5MBc4hhKwHQoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784022831243,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              },
+              {
+                "searchId": "f5fea297-a552-4474-a2ae-b1eec74c87f2|f0eaf63392d6782b7861843ac64473eb20771ef3124104da4739ab71b5d0c133",
+                "cabId": "da442b04-b3b0-419c-824f-556ff386de94",
+                "fareId": "74",
+                "vehicle": {
+                  "type": "SUV",
+                  "category": "ECONOMY",
+                  "model": "Ertiga or Similar",
+                  "seatingCapacity": 3,
+                  "luggageCapacity": 3,
+                  "airConditioned": true,
+                  "fuelType": "CNG",
+                  "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+                },
+                "operator": {
+                  "name": "Gozo Cabs",
+                  "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                  "rating": 3.2,
+                  "ratingCount": 155
+                },
+                "trip": {
+                  "distanceKm": 20,
+                  "durationMin": 120,
+                  "extraKmFareLabel": "INR 19.75/Km",
+                  "freeCancellationTillMin": 30
+                },
+                "inclusions": [
+                  "20 Kms Ride",
+                  "Driver Allowance (₹250)"
+                ],
+                "exclusions": [
+                  "Waiting Charges (after 30 mins) ₹100/30min",
+                  "Toll Charges",
+                  "Parking Charges (as applicable)",
+                  "Extra Km Fare (₹19.75/Km)",
+                  "Airport parking charges may apply as per destination airport rules.",
+                  "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                  "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+                ],
+                "priceDetail": {
+                  "baseFare": 3687,
+                  "taxes": 197,
+                  "convenienceFee": 0,
+                  "totalAmount": 3884,
+                  "currency": "INR",
+                  "priceReference": "xiOvX9Y1ZKfxxk3JjNVpr+nn1j1anzBWGskk1YuxDUPQoCEENqlutE0vhQ3vzZjj",
+                  "currencyConversion": {
+                    "source": "INR",
+                    "destination": "INR",
+                    "rate": 1
+                  }
+                },
+                "fareExpiryTime": 1784022831243,
+                "tags": [
+                  "RECOMMENDED"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "fare": [
+    {
+      "name": "Cabs Fare",
+      "method": "POST",
+      "url": "{{base_url}}/v1/airportServices/cabs/fare?lang=en&currency=INR",
+      "responses": [
+        {
+          "name": "Cabs Fare",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "bookingReference",
+            "priceId",
+            "vehicle",
+            "operator",
+            "trip",
+            "inclusions",
+            "exclusions",
+            "priceDetail",
+            "fareExpiryTime",
+            "tags"
+          ],
+          "tree": {
+            "(root)": "object",
+            "bookingReference": "string",
+            "priceId": "string",
+            "vehicle": "object",
+            "vehicle.type": "string",
+            "vehicle.category": "string",
+            "vehicle.model": "string",
+            "vehicle.makeYear": "number",
+            "vehicle.seatingCapacity": "number",
+            "vehicle.luggageCapacity": "number",
+            "vehicle.airConditioned": "boolean",
+            "vehicle.fuelType": "string",
+            "vehicle.imageUrl": "string",
+            "vehicle.imageApp": "string",
+            "vehicle.imageMobile": "string",
+            "operator": "object",
+            "operator.name": "string",
+            "operator.logoUrl": "string",
+            "operator.rating": "number",
+            "operator.ratingCount": "number",
+            "trip": "object",
+            "trip.distanceKm": "number",
+            "trip.durationMin": "number",
+            "trip.extraKmFareLabel": "string",
+            "trip.freeCancellationTillMin": "number",
+            "trip.cancellationRule": "string",
+            "inclusions": "array[2]",
+            "inclusions[]": "string",
+            "exclusions": "array[6]",
+            "exclusions[]": "string",
+            "priceDetail": "object",
+            "priceDetail.baseFare": "number",
+            "priceDetail.taxes": "number",
+            "priceDetail.convenienceFee": "number",
+            "priceDetail.totalAmount": "number",
+            "priceDetail.currency": "string",
+            "priceDetail.priceReference": "string",
+            "priceDetail.currencyConversion": "object",
+            "priceDetail.currencyConversion.source": "string",
+            "priceDetail.currencyConversion.destination": "string",
+            "priceDetail.currencyConversion.rate": "number",
+            "fareExpiryTime": "number",
+            "tags": "array[1]",
+            "tags[]": "string"
+          },
+          "nullFields": [],
+          "sample": {
+            "bookingReference": "+XGK/ai3YOPOOvLVhAwZJoa6S9wJgFM4PO4AOowfBj6CMEN9ddgVn2B/84AIrm5jV7a1EGJ5+grN6mY9m+C9yZ6qPFzp12PhKMcT/pvXiVXhkACTC5lRFQaRF9hDgXQ6hgh+gnoIslblRMJEzJgq6kqW+4mbQxommIakz9XAuQL5GtsFjCZz8tOT1eUiZAeIvOuwP8V1HHumaVzgw3jSp4AU73gFnN+IDl15o/VrzBrF4O84osPkx20GnnnLnID6oSEQKBpgz7IMgXtHQ4J/P2OiPieWZr0GgujxaR/ASBuaxPuuU1fO275Sycrkfm1r/ByPhC4pLnuYoZ3RG0yMZi8hJtsLUfPrbxPiorY3O5hsuJiyAZIpffQK4trkfViUz+bnwbZ+QvHcwo5qia4UDzkii2n1QEDYBu1a2OU2QVyLyZQRaxA9zYW2ymlKkTvHgdhp+P1UHHiabe9j/a8Kfg5PZ0MgUxspHbw87GzAnyNjLRVgOILY3XtCMKgWnXoQ71dgqFpwclecGCzgDfbuBKTZvn8hzvtp31WQEmoFYBo=",
+            "priceId": "e1a8a75f1c744c50b83050ba96b58e07",
+            "vehicle": {
+              "type": "SEDAN",
+              "category": "ECONOMY",
+              "model": "Dzire or Similar",
+              "makeYear": 2016,
+              "seatingCapacity": 2,
+              "luggageCapacity": 2,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+              "imageApp": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+            },
+            "operator": {
+              "name": "Carzonrent",
+              "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+              "rating": 3.3,
+              "ratingCount": 120
+            },
+            "trip": {
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmFareLabel": "INR 24/Km",
+              "freeCancellationTillMin": 30,
+              "cancellationRule": "FLEXI"
+            },
+            "inclusions": [
+              "15 Kms Ride",
+              "GST Included ₹20.58"
+            ],
+            "exclusions": [
+              "Toll Charges",
+              "Waiting Charges (after 20 mins) ₹100/30 mins",
+              "Extra Km Fare (₹24/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 411,
+              "taxes": 20.58,
+              "convenienceFee": 0,
+              "totalAmount": 431.58,
+              "currency": "INR",
+              "priceReference": "93s4SLwus0UHu+QStpMY4eMt2nxuXHfa0vWU+FWtj/MwwQRf0ycnns9NFcg5Z0ZW",
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1782912929779,
+            "tags": [
+              "NO_RECOMMENDATION"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "finalize-booking": [
+    {
+      "name": "Book",
+      "method": "POST",
+      "url": "{{base_url}}/v1/airportServices/cabs/finalize-booking?lang=en&currency=INR",
+      "responses": [
+        {
+          "name": "Book",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "status",
+            "statusCode",
+            "bookingRefId"
+          ],
+          "tree": {
+            "(root)": "object",
+            "status": "string",
+            "statusCode": "number",
+            "bookingRefId": "string"
+          },
+          "nullFields": [],
+          "sample": {
+            "status": "Pending",
+            "statusCode": 200,
+            "bookingRefId": "BR1782911241278872"
+          }
+        }
+      ]
+    }
+  ],
+  "status": [
+    {
+      "name": "Fetch Booking Status",
+      "method": "GET",
+      "url": "{{base_url}}/v1/airportServices/cabs/BR1784017077801203/status?lang=en&currency=INR",
+      "responses": [
+        {
+          "name": "Fetch Booking Status",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "statusCode",
+            "bookingReferenceId",
+            "status",
+            "contact",
+            "details"
+          ],
+          "tree": {
+            "(root)": "object",
+            "statusCode": "number",
+            "bookingReferenceId": "string",
+            "status": "string",
+            "contact": "object",
+            "contact.name": "string",
+            "contact.email": "string",
+            "contact.countryCode": "string",
+            "contact.mobile": "string",
+            "details": "object",
+            "details.travelType": "string",
+            "details.airportCode": "string",
+            "details.pickupDatetime": "string",
+            "details.distanceKm": "number",
+            "details.durationMin": "number",
+            "details.extraKmFareLabel": "string",
+            "details.freeCancellationTillMin": "number",
+            "details.cancellationRule": "null",
+            "details.pickup": "object",
+            "details.pickup.name": "string",
+            "details.pickup.city": "string",
+            "details.pickup.latitude": "number",
+            "details.pickup.longitude": "number",
+            "details.drop": "object",
+            "details.drop.name": "string",
+            "details.drop.city": "string",
+            "details.drop.latitude": "number",
+            "details.drop.longitude": "number",
+            "details.vehicle": "object",
+            "details.vehicle.type": "string",
+            "details.vehicle.category": "string",
+            "details.vehicle.model": "string",
+            "details.vehicle.makeYear": "null",
+            "details.vehicle.seatingCapacity": "number",
+            "details.vehicle.luggageCapacity": "number",
+            "details.vehicle.airConditioned": "boolean",
+            "details.vehicle.fuelType": "string",
+            "details.vehicle.imageUrl": "string",
+            "details.vehicle.imageAppUrl": "null",
+            "details.vehicle.imageMobileUrl": "null",
+            "details.operator": "object",
+            "details.operator.name": "string",
+            "details.operator.logoUrl": "string",
+            "details.operator.rating": "number",
+            "details.operator.ratingCount": "number",
+            "details.otp": "string",
+            "details.assignment": "object",
+            "details.assignment.driverName": "string",
+            "details.assignment.driverMobile": "string",
+            "details.assignment.vehicleRegistrationNo": "string",
+            "details.assignment.tripOtp": "null",
+            "details.assignment.trackingUrl": "null",
+            "details.assignment.assignedAt": "string",
+            "details.assignment.driver": "object",
+            "details.assignment.driver.name": "string",
+            "details.assignment.driver.mobile": "string",
+            "details.assignment.driver.image": "string",
+            "details.assignment.driver.chauffeurId": "string",
+            "details.assignment.driver.isReassigned": "boolean",
+            "details.assignment.vehicle": "object",
+            "details.assignment.vehicle.name": "string",
+            "details.assignment.vehicle.color": "string",
+            "details.assignment.vehicle.type": "string",
+            "details.assignment.vehicle.registrationNo": "string",
+            "details.assignment.vehicle.vehicleId": "string",
+            "details.assignment.partner": "string",
+            "details.assignment.isReassigned": "boolean",
+            "details.assignment.syncedAt": "string",
+            "details.progress": "object",
+            "details.progress.cabAssigned": "boolean",
+            "details.progress.cabLeftForPickup": "boolean",
+            "details.progress.cabReachedSource": "boolean",
+            "details.progress.cabTripStarted": "boolean",
+            "details.progress.cabTripEnd": "boolean",
+            "details.trip": "object",
+            "details.trip.startedAt": "string",
+            "details.trip.endedAt": "string",
+            "details.trip.totalTravelledKm": "number",
+            "details.trip.totalTravelledFare": "number",
+            "details.trip.extraTravelledKm": "number",
+            "details.trip.extraTravelledFare": "number",
+            "details.trip.nightCharges": "number",
+            "details.trip.reason": "string"
+          },
+          "nullFields": [
+            "details.cancellationRule",
+            "details.vehicle.makeYear",
+            "details.vehicle.imageAppUrl",
+            "details.vehicle.imageMobileUrl",
+            "details.assignment.tripOtp",
+            "details.assignment.trackingUrl"
+          ],
+          "sample": {
+            "statusCode": 200,
+            "bookingReferenceId": "BR1782903629606476",
+            "status": "Confirmed",
+            "contact": {
+              "name": "John Doe",
+              "email": "john@example.com",
+              "countryCode": "+91",
+              "mobile": "7410015224"
+            },
+            "details": {
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-07-20T15:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmFareLabel": "INR 25/Km",
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "city": "Delhi",
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "city": "Delhi",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "SUV",
+                "category": "ECONOMY",
+                "model": "Ertiga or Similar",
+                "makeYear": null,
+                "seatingCapacity": 3,
+                "luggageCapacity": 3,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": null,
+                "imageMobileUrl": null
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.6,
+                "ratingCount": 190
+              },
+              "otp": "4522",
+              "assignment": {
+                "driverName": "Ramesh Kumar",
+                "driverMobile": "9876543210",
+                "vehicleRegistrationNo": "KA01AB1234",
+                "tripOtp": null,
+                "trackingUrl": null,
+                "assignedAt": "2026-06-26 10:30:00",
+                "driver": {
+                  "name": "Ramesh Kumar",
+                  "mobile": "9876543210",
+                  "image": "https://example.com/driver.jpg",
+                  "chauffeurId": "DRV001",
+                  "isReassigned": false
+                },
+                "vehicle": {
+                  "name": "Swift Dzire",
+                  "color": "White",
+                  "type": "SEDAN",
+                  "registrationNo": "KA01AB1234",
+                  "vehicleId": "VEH001"
+                },
+                "partner": "MERU",
+                "isReassigned": false,
+                "syncedAt": "2026-06-26 10:30:00"
+              },
+              "progress": {
+                "cabAssigned": true,
+                "cabLeftForPickup": true,
+                "cabReachedSource": true,
+                "cabTripStarted": true,
+                "cabTripEnd": true
+              },
+              "trip": {
+                "startedAt": "2025-06-26 10:50:00",
+                "endedAt": "2025-06-26 10:50:00",
+                "totalTravelledKm": 36,
+                "totalTravelledFare": 450,
+                "extraTravelledKm": 1,
+                "extraTravelledFare": 30,
+                "nightCharges": 20,
+                "reason": "test"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "booking-details": [
+    {
+      "name": "Fetch Booking Details",
+      "method": "GET",
+      "url": "{{base_url}}/v1/airportServices/cabs/booking/BR1783685806152267?lang=en&currency=INR",
+      "responses": [
+        {
+          "name": "Fetch Booking Details",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "statusCode",
+            "bookingReferenceId",
+            "status",
+            "contact",
+            "details",
+            "salesSummary"
+          ],
+          "tree": {
+            "(root)": "object",
+            "statusCode": "number",
+            "bookingReferenceId": "string",
+            "status": "string",
+            "contact": "object",
+            "contact.name": "string",
+            "contact.email": "string",
+            "contact.countryCode": "string",
+            "contact.mobile": "string",
+            "details": "object",
+            "details.travelType": "string",
+            "details.airportCode": "string",
+            "details.pickupDatetime": "string",
+            "details.distanceKm": "number",
+            "details.durationMin": "number",
+            "details.extraKmFareLabel": "string",
+            "details.freeCancellationTillMin": "number",
+            "details.cancellationRule": "null",
+            "details.pickup": "object",
+            "details.pickup.name": "string",
+            "details.pickup.city": "string",
+            "details.pickup.latitude": "number",
+            "details.pickup.longitude": "number",
+            "details.drop": "object",
+            "details.drop.name": "string",
+            "details.drop.city": "string",
+            "details.drop.latitude": "number",
+            "details.drop.longitude": "number",
+            "details.vehicle": "object",
+            "details.vehicle.type": "string",
+            "details.vehicle.category": "string",
+            "details.vehicle.model": "string",
+            "details.vehicle.makeYear": "null",
+            "details.vehicle.seatingCapacity": "number",
+            "details.vehicle.luggageCapacity": "number",
+            "details.vehicle.airConditioned": "boolean",
+            "details.vehicle.fuelType": "string",
+            "details.vehicle.imageUrl": "string",
+            "details.vehicle.imageAppUrl": "null",
+            "details.vehicle.imageMobileUrl": "null",
+            "details.operator": "object",
+            "details.operator.name": "string",
+            "details.operator.logoUrl": "string",
+            "details.operator.rating": "number",
+            "details.operator.ratingCount": "number",
+            "details.inclusions": "array[1]",
+            "details.inclusions[]": "string",
+            "details.exclusions": "array[7]",
+            "details.exclusions[]": "string",
+            "details.tags": "array[1]",
+            "details.tags[]": "string",
+            "details.otp": "string",
+            "details.assignment": "object",
+            "details.assignment.driverName": "string",
+            "details.assignment.driverMobile": "string",
+            "details.assignment.vehicleRegistrationNo": "string",
+            "details.assignment.tripOtp": "null",
+            "details.assignment.trackingUrl": "null",
+            "details.assignment.assignedAt": "string",
+            "details.assignment.driver": "object",
+            "details.assignment.driver.name": "string",
+            "details.assignment.driver.mobile": "string",
+            "details.assignment.driver.image": "string",
+            "details.assignment.driver.chauffeurId": "string",
+            "details.assignment.driver.isReassigned": "boolean",
+            "details.assignment.vehicle": "object",
+            "details.assignment.vehicle.name": "string",
+            "details.assignment.vehicle.color": "string",
+            "details.assignment.vehicle.type": "string",
+            "details.assignment.vehicle.registrationNo": "string",
+            "details.assignment.vehicle.vehicleId": "string",
+            "details.assignment.partner": "string",
+            "details.assignment.isReassigned": "boolean",
+            "details.assignment.syncedAt": "string",
+            "details.progress": "object",
+            "details.progress.cabAssigned": "boolean",
+            "details.progress.cabLeftForPickup": "boolean",
+            "details.progress.cabReachedSource": "boolean",
+            "details.progress.cabTripStarted": "boolean",
+            "details.progress.cabTripEnd": "boolean",
+            "details.trip": "object",
+            "details.trip.startedAt": "string",
+            "details.trip.endedAt": "string",
+            "details.trip.totalTravelledKm": "number",
+            "details.trip.totalTravelledFare": "number",
+            "details.trip.extraTravelledKm": "number",
+            "details.trip.extraTravelledFare": "number",
+            "details.trip.nightCharges": "number",
+            "details.trip.reason": "string",
+            "salesSummary": "object",
+            "salesSummary.basePrice": "number",
+            "salesSummary.subTotal": "number",
+            "salesSummary.tax": "number",
+            "salesSummary.convenienceFee": "number",
+            "salesSummary.totalAmount": "number",
+            "salesSummary.totalDiscount": "number",
+            "salesSummary.currency": "string"
+          },
+          "nullFields": [
+            "details.cancellationRule",
+            "details.vehicle.makeYear",
+            "details.vehicle.imageAppUrl",
+            "details.vehicle.imageMobileUrl",
+            "details.assignment.tripOtp",
+            "details.assignment.trackingUrl"
+          ],
+          "sample": {
+            "statusCode": 200,
+            "bookingReferenceId": "BR1782903629606476",
+            "status": "Confirmed",
+            "contact": {
+              "name": "John Doe",
+              "email": "john@example.com",
+              "countryCode": "+91",
+              "mobile": "7410015224"
+            },
+            "details": {
+              "travelType": "DEPARTURE",
+              "airportCode": "DEL",
+              "pickupDatetime": "2026-07-20T15:35:58+00:00",
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmFareLabel": "INR 25/Km",
+              "freeCancellationTillMin": 30,
+              "cancellationRule": null,
+              "pickup": {
+                "name": "Vasant Kunj, Delhi",
+                "city": "Delhi",
+                "latitude": 28.5201,
+                "longitude": 77.1591
+              },
+              "drop": {
+                "name": "IGI Airport-T1",
+                "city": "Delhi",
+                "latitude": 28.5588,
+                "longitude": 77.0814
+              },
+              "vehicle": {
+                "type": "SUV",
+                "category": "ECONOMY",
+                "model": "Ertiga or Similar",
+                "makeYear": null,
+                "seatingCapacity": 3,
+                "luggageCapacity": 3,
+                "airConditioned": true,
+                "fuelType": "CNG",
+                "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "imageAppUrl": null,
+                "imageMobileUrl": null
+              },
+              "operator": {
+                "name": "TravelVIP",
+                "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                "rating": 3.6,
+                "ratingCount": 190
+              },
+              "inclusions": [
+                "15 Kms Ride"
+              ],
+              "exclusions": [
+                "Waiting Charges (after 30 mins) ₹100/30min",
+                "Toll Charges",
+                "Parking Charges (as applicable)",
+                "Extra Km Fare (₹25/Km)",
+                "Airport parking charges may apply as per destination airport rules.",
+                "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+                "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+              ],
+              "tags": [
+                "RECOMMENDED"
+              ],
+              "otp": "4522",
+              "assignment": {
+                "driverName": "Ramesh Kumar",
+                "driverMobile": "9876543210",
+                "vehicleRegistrationNo": "KA01AB1234",
+                "tripOtp": null,
+                "trackingUrl": null,
+                "assignedAt": "2026-06-26 10:30:00",
+                "driver": {
+                  "name": "Ramesh Kumar",
+                  "mobile": "9876543210",
+                  "image": "https://example.com/driver.jpg",
+                  "chauffeurId": "DRV001",
+                  "isReassigned": false
+                },
+                "vehicle": {
+                  "name": "Swift Dzire",
+                  "color": "White",
+                  "type": "SEDAN",
+                  "registrationNo": "KA01AB1234",
+                  "vehicleId": "VEH001"
+                },
+                "partner": "MERU",
+                "isReassigned": false,
+                "syncedAt": "2026-06-26 10:30:00"
+              },
+              "progress": {
+                "cabAssigned": true,
+                "cabLeftForPickup": true,
+                "cabReachedSource": true,
+                "cabTripStarted": true,
+                "cabTripEnd": true
+              },
+              "trip": {
+                "startedAt": "2025-06-26 10:50:00",
+                "endedAt": "2025-06-26 10:50:00",
+                "totalTravelledKm": 36,
+                "totalTravelledFare": 450,
+                "extraTravelledKm": 1,
+                "extraTravelledFare": 30,
+                "nightCharges": 20,
+                "reason": "test"
+              }
+            },
+            "salesSummary": {
+              "basePrice": 1060,
+              "subTotal": 1060,
+              "tax": 53,
+              "convenienceFee": 0,
+              "totalAmount": 1113,
+              "totalDiscount": 0,
+              "currency": "INR"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "name": "Fetch Booking History",
+      "method": "GET",
+      "url": "{{base_url}}/v1/airportServices/cabs/booking/history?lang=en&currency=INR&page=0&perpage=10",
+      "responses": [
+        {
+          "name": "Fetch Booking History",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "status",
+            "totalCount",
+            "page",
+            "perPage",
+            "bookings"
+          ],
+          "tree": {
+            "(root)": "object",
+            "status": "number",
+            "totalCount": "number",
+            "page": "number",
+            "perPage": "number",
+            "bookings": "array[10]",
+            "bookings[]": "object",
+            "bookings[].bookingReferenceId": "string",
+            "bookings[].status": "string",
+            "bookings[].contact": "object",
+            "bookings[].contact.name": "string",
+            "bookings[].contact.email": "string",
+            "bookings[].contact.countryCode": "string",
+            "bookings[].contact.mobile": "string",
+            "bookings[].details": "object",
+            "bookings[].details.travelType": "string",
+            "bookings[].details.airportCode": "string",
+            "bookings[].details.pickupDatetime": "string",
+            "bookings[].details.distanceKm": "number",
+            "bookings[].details.durationMin": "number",
+            "bookings[].details.extraKmFareLabel": "string",
+            "bookings[].details.freeCancellationTillMin": "number",
+            "bookings[].details.cancellationRule": "null",
+            "bookings[].details.pickup": "object",
+            "bookings[].details.pickup.name": "string",
+            "bookings[].details.pickup.city": "string",
+            "bookings[].details.pickup.latitude": "number",
+            "bookings[].details.pickup.longitude": "number",
+            "bookings[].details.drop": "object",
+            "bookings[].details.drop.name": "string",
+            "bookings[].details.drop.city": "string",
+            "bookings[].details.drop.latitude": "number",
+            "bookings[].details.drop.longitude": "number",
+            "bookings[].details.vehicle": "object",
+            "bookings[].details.vehicle.type": "string",
+            "bookings[].details.vehicle.category": "string",
+            "bookings[].details.vehicle.model": "string",
+            "bookings[].details.vehicle.makeYear": "null",
+            "bookings[].details.vehicle.seatingCapacity": "number",
+            "bookings[].details.vehicle.luggageCapacity": "number",
+            "bookings[].details.vehicle.airConditioned": "boolean",
+            "bookings[].details.vehicle.fuelType": "string",
+            "bookings[].details.vehicle.imageUrl": "string",
+            "bookings[].details.vehicle.imageAppUrl": "null",
+            "bookings[].details.vehicle.imageMobileUrl": "null",
+            "bookings[].details.operator": "object",
+            "bookings[].details.operator.name": "string",
+            "bookings[].details.operator.logoUrl": "string",
+            "bookings[].details.operator.rating": "number",
+            "bookings[].details.operator.ratingCount": "number",
+            "bookings[].details.otp": "null",
+            "bookings[].details.assignment": "null",
+            "bookings[].details.progress": "object",
+            "bookings[].details.progress.cabAssigned": "boolean",
+            "bookings[].details.progress.cabLeftForPickup": "boolean",
+            "bookings[].details.progress.cabReachedSource": "boolean",
+            "bookings[].details.progress.cabTripStarted": "boolean",
+            "bookings[].details.progress.cabTripEnd": "boolean",
+            "bookings[].details.trip": "null",
+            "bookings[].details.assignment.driverName": "string",
+            "bookings[].details.assignment.driverMobile": "string",
+            "bookings[].details.assignment.vehicleRegistrationNo": "string",
+            "bookings[].details.assignment.tripOtp": "null",
+            "bookings[].details.assignment.trackingUrl": "null",
+            "bookings[].details.assignment.assignedAt": "string",
+            "bookings[].details.assignment.driver": "object",
+            "bookings[].details.assignment.driver.name": "string",
+            "bookings[].details.assignment.driver.mobile": "string",
+            "bookings[].details.assignment.driver.image": "string",
+            "bookings[].details.assignment.driver.chauffeurId": "string",
+            "bookings[].details.assignment.driver.isReassigned": "boolean",
+            "bookings[].details.assignment.vehicle": "object",
+            "bookings[].details.assignment.vehicle.name": "string",
+            "bookings[].details.assignment.vehicle.color": "string",
+            "bookings[].details.assignment.vehicle.type": "string",
+            "bookings[].details.assignment.vehicle.registrationNo": "string",
+            "bookings[].details.assignment.vehicle.vehicleId": "string",
+            "bookings[].details.assignment.partner": "string",
+            "bookings[].details.assignment.isReassigned": "boolean",
+            "bookings[].details.assignment.syncedAt": "string",
+            "bookings[].details.trip.startedAt": "string",
+            "bookings[].details.trip.endedAt": "string",
+            "bookings[].details.trip.totalTravelledKm": "number",
+            "bookings[].details.trip.totalTravelledFare": "number",
+            "bookings[].details.trip.extraTravelledKm": "number",
+            "bookings[].details.trip.extraTravelledFare": "number",
+            "bookings[].details.trip.nightCharges": "number",
+            "bookings[].details.trip.reason": "string"
+          },
+          "nullFields": [
+            "bookings[].details.vehicle.imageAppUrl",
+            "bookings[].details.vehicle.imageMobileUrl",
+            "bookings[].details.otp",
+            "bookings[].details.assignment",
+            "bookings[].details.trip",
+            "bookings[].details.cancellationRule",
+            "bookings[].details.vehicle.makeYear",
+            "bookings[].details.assignment.tripOtp",
+            "bookings[].details.assignment.trackingUrl"
+          ],
+          "sample": {
+            "status": 0,
+            "totalCount": 15,
+            "page": 0,
+            "perPage": 10,
+            "bookings": [
+              {
+                "bookingReferenceId": "BR1782911241278872",
+                "status": "Confirmed",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-07-20T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 24/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": "FLEXI",
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "SEDAN",
+                    "category": "ECONOMY",
+                    "model": "Dzire or Similar",
+                    "makeYear": 2016,
+                    "seatingCapacity": 2,
+                    "luggageCapacity": 2,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "Carzonrent",
+                    "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+                    "rating": 3.3,
+                    "ratingCount": 120
+                  },
+                  "otp": null,
+                  "assignment": null,
+                  "progress": {
+                    "cabAssigned": false,
+                    "cabLeftForPickup": false,
+                    "cabReachedSource": false,
+                    "cabTripStarted": false,
+                    "cabTripEnd": false
+                  },
+                  "trip": null
+                }
+              },
+              {
+                "bookingReferenceId": "BR1782903629606476",
+                "status": "Confirmed",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-07-20T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 25/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": null,
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "SUV",
+                    "category": "ECONOMY",
+                    "model": "Ertiga or Similar",
+                    "makeYear": null,
+                    "seatingCapacity": 3,
+                    "luggageCapacity": 3,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "TravelVIP",
+                    "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+                    "rating": 3.6,
+                    "ratingCount": 190
+                  },
+                  "otp": "4522",
+                  "assignment": {
+                    "driverName": "Ramesh Kumar",
+                    "driverMobile": "9876543210",
+                    "vehicleRegistrationNo": "KA01AB1234",
+                    "tripOtp": null,
+                    "trackingUrl": null,
+                    "assignedAt": "2026-06-26 10:30:00",
+                    "driver": {
+                      "name": "Ramesh Kumar",
+                      "mobile": "9876543210",
+                      "image": "https://example.com/driver.jpg",
+                      "chauffeurId": "DRV001",
+                      "isReassigned": false
+                    },
+                    "vehicle": {
+                      "name": "Swift Dzire",
+                      "color": "White",
+                      "type": "SEDAN",
+                      "registrationNo": "KA01AB1234",
+                      "vehicleId": "VEH001"
+                    },
+                    "partner": "MERU",
+                    "isReassigned": false,
+                    "syncedAt": "2026-06-26 10:30:00"
+                  },
+                  "progress": {
+                    "cabAssigned": true,
+                    "cabLeftForPickup": true,
+                    "cabReachedSource": true,
+                    "cabTripStarted": true,
+                    "cabTripEnd": true
+                  },
+                  "trip": {
+                    "startedAt": "2025-06-26 10:50:00",
+                    "endedAt": "2025-06-26 10:50:00",
+                    "totalTravelledKm": 36,
+                    "totalTravelledFare": 450,
+                    "extraTravelledKm": 1,
+                    "extraTravelledFare": 30,
+                    "nightCharges": 20,
+                    "reason": "test"
+                  }
+                }
+              },
+              {
+                "bookingReferenceId": "BR1782902939641134",
+                "status": "Failed",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-07-20T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 20/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": null,
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "SEDAN",
+                    "category": "ECONOMY",
+                    "model": "Dzire or Similar",
+                    "makeYear": null,
+                    "seatingCapacity": 2,
+                    "luggageCapacity": 2,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "Gozo Cabs",
+                    "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "rating": 3.6,
+                    "ratingCount": 190
+                  },
+                  "otp": null,
+                  "assignment": null,
+                  "progress": {
+                    "cabAssigned": false,
+                    "cabLeftForPickup": false,
+                    "cabReachedSource": false,
+                    "cabTripStarted": false,
+                    "cabTripEnd": false
+                  },
+                  "trip": null
+                }
+              },
+              {
+                "bookingReferenceId": "BR1782902541829562",
+                "status": "Confirmed",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-07-20T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 20/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": null,
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "SEDAN",
+                    "category": "ECONOMY",
+                    "model": "Dzire or Similar",
+                    "makeYear": null,
+                    "seatingCapacity": 2,
+                    "luggageCapacity": 2,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "Gozo Cabs",
+                    "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "rating": 3.6,
+                    "ratingCount": 190
+                  },
+                  "otp": null,
+                  "assignment": null,
+                  "progress": {
+                    "cabAssigned": false,
+                    "cabLeftForPickup": false,
+                    "cabReachedSource": false,
+                    "cabTripStarted": false,
+                    "cabTripEnd": false
+                  },
+                  "trip": null
+                }
+              },
+              {
+                "bookingReferenceId": "BR1782902277772861",
+                "status": "Failed",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-07-05T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 18/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": null,
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "HATCHBACK",
+                    "category": "ECONOMY",
+                    "model": "Swift or Similar",
+                    "makeYear": null,
+                    "seatingCapacity": 2,
+                    "luggageCapacity": 1,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "Gozo Cabs",
+                    "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "rating": 3.6,
+                    "ratingCount": 190
+                  },
+                  "otp": null,
+                  "assignment": null,
+                  "progress": {
+                    "cabAssigned": false,
+                    "cabLeftForPickup": false,
+                    "cabReachedSource": false,
+                    "cabTripStarted": false,
+                    "cabTripEnd": false
+                  },
+                  "trip": null
+                }
+              },
+              {
+                "bookingReferenceId": "BR1782471583937973",
+                "status": "Confirmed",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-06-29T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 19/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": null,
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "HATCHBACK",
+                    "category": "ECONOMY",
+                    "model": "Swift or Similar",
+                    "makeYear": null,
+                    "seatingCapacity": 2,
+                    "luggageCapacity": 1,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "Gozo Cabs",
+                    "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "rating": 3.4,
+                    "ratingCount": 252
+                  },
+                  "otp": "4522",
+                  "assignment": {
+                    "driverName": "Suresh Nair",
+                    "driverMobile": "9123456780",
+                    "vehicleRegistrationNo": "KA05CD5678",
+                    "tripOtp": null,
+                    "trackingUrl": null,
+                    "assignedAt": "2026-06-26 11:31:00",
+                    "driver": {
+                      "name": "Suresh Nair",
+                      "mobile": "9123456780",
+                      "image": "https://example.com/driver-suresh.jpg",
+                      "chauffeurId": "DRV003",
+                      "isReassigned": true
+                    },
+                    "vehicle": {
+                      "name": "Toyota Innova",
+                      "color": "Silver",
+                      "type": "SUV",
+                      "registrationNo": "KA05CD5678",
+                      "vehicleId": "VEH003"
+                    },
+                    "partner": "MERU",
+                    "isReassigned": true,
+                    "syncedAt": "2026-06-26 11:31:00"
+                  },
+                  "progress": {
+                    "cabAssigned": true,
+                    "cabLeftForPickup": true,
+                    "cabReachedSource": true,
+                    "cabTripStarted": true,
+                    "cabTripEnd": true
+                  },
+                  "trip": {
+                    "startedAt": "2025-06-26 10:50:00",
+                    "endedAt": "2025-06-26 11:50:00",
+                    "totalTravelledKm": 36,
+                    "totalTravelledFare": 430,
+                    "extraTravelledKm": 1,
+                    "extraTravelledFare": 30,
+                    "nightCharges": null,
+                    "reason": "test"
+                  }
+                }
+              },
+              {
+                "bookingReferenceId": "BR1782468149601761",
+                "status": "Pending",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-06-29T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 19/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": null,
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "HATCHBACK",
+                    "category": "ECONOMY",
+                    "model": "Swift or Similar",
+                    "makeYear": null,
+                    "seatingCapacity": 2,
+                    "luggageCapacity": 1,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "Gozo Cabs",
+                    "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "rating": 3.4,
+                    "ratingCount": 252
+                  },
+                  "otp": null,
+                  "assignment": null,
+                  "progress": {
+                    "cabAssigned": false,
+                    "cabLeftForPickup": false,
+                    "cabReachedSource": false,
+                    "cabTripStarted": false,
+                    "cabTripEnd": false
+                  },
+                  "trip": null
+                }
+              },
+              {
+                "bookingReferenceId": "BR1782467542297346",
+                "status": "Confirmed",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-06-29T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 20/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": null,
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "SEDAN",
+                    "category": "ECONOMY",
+                    "model": "Dzire or Similar",
+                    "makeYear": null,
+                    "seatingCapacity": 2,
+                    "luggageCapacity": 2,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "Gozo Cabs",
+                    "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "rating": 3.4,
+                    "ratingCount": 252
+                  },
+                  "otp": null,
+                  "assignment": null,
+                  "progress": {
+                    "cabAssigned": false,
+                    "cabLeftForPickup": false,
+                    "cabReachedSource": false,
+                    "cabTripStarted": false,
+                    "cabTripEnd": false
+                  },
+                  "trip": null
+                }
+              },
+              {
+                "bookingReferenceId": "BR1782467357635549",
+                "status": "Failed",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-06-29T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 20/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": null,
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "SEDAN",
+                    "category": "ECONOMY",
+                    "model": "Dzire or Similar",
+                    "makeYear": null,
+                    "seatingCapacity": 2,
+                    "luggageCapacity": 2,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "Gozo Cabs",
+                    "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "rating": 3.4,
+                    "ratingCount": 252
+                  },
+                  "otp": null,
+                  "assignment": null,
+                  "progress": {
+                    "cabAssigned": false,
+                    "cabLeftForPickup": false,
+                    "cabReachedSource": false,
+                    "cabTripStarted": false,
+                    "cabTripEnd": false
+                  },
+                  "trip": null
+                }
+              },
+              {
+                "bookingReferenceId": "BR1782451144668144",
+                "status": "Confirmed",
+                "contact": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "countryCode": "+91",
+                  "mobile": "7410015224"
+                },
+                "details": {
+                  "travelType": "DEPARTURE",
+                  "airportCode": "DEL",
+                  "pickupDatetime": "2026-06-26T15:35:58+00:00",
+                  "distanceKm": 15,
+                  "durationMin": 15,
+                  "extraKmFareLabel": "INR 20/Km",
+                  "freeCancellationTillMin": 30,
+                  "cancellationRule": null,
+                  "pickup": {
+                    "name": "Vasant Kunj, Delhi",
+                    "city": "Delhi",
+                    "latitude": 28.5201,
+                    "longitude": 77.1591
+                  },
+                  "drop": {
+                    "name": "IGI Airport-T1",
+                    "city": "Delhi",
+                    "latitude": 28.5588,
+                    "longitude": 77.0814
+                  },
+                  "vehicle": {
+                    "type": "SEDAN",
+                    "category": "ECONOMY",
+                    "model": "Dzire or Similar",
+                    "makeYear": null,
+                    "seatingCapacity": 2,
+                    "luggageCapacity": 2,
+                    "airConditioned": true,
+                    "fuelType": "CNG",
+                    "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "imageAppUrl": null,
+                    "imageMobileUrl": null
+                  },
+                  "operator": {
+                    "name": "Gozo Cabs",
+                    "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+                    "rating": 3.4,
+                    "ratingCount": 252
+                  },
+                  "otp": null,
+                  "assignment": null,
+                  "progress": {
+                    "cabAssigned": false,
+                    "cabLeftForPickup": false,
+                    "cabReachedSource": false,
+                    "cabTripStarted": false,
+                    "cabTripEnd": false
+                  },
+                  "trip": null
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "tracking": [
+    {
+      "name": "Fetch Cab Location",
+      "method": "GET",
+      "url": "{{base_url}}/v1/airportServices/cabs/tracking/BR1783677028336676/location?lang=en&currency=INR",
+      "responses": [
+        {
+          "name": "Fetch Cab Location",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "bookingId",
+            "tripTracking",
+            "driver",
+            "vehicle",
+            "otp",
+            "progress",
+            "trip"
+          ],
+          "tree": {
+            "(root)": "object",
+            "bookingId": "string",
+            "tripTracking": "object",
+            "tripTracking.latitude": "string",
+            "tripTracking.longitude": "string",
+            "tripTracking.syncTimestamp": "string",
+            "driver": "object",
+            "driver.name": "string",
+            "driver.mobile": "string",
+            "driver.image": "string",
+            "driver.isReassigned": "boolean",
+            "vehicle": "object",
+            "vehicle.name": "string",
+            "vehicle.color": "string",
+            "vehicle.type": "string",
+            "vehicle.registrationNo": "string",
+            "otp": "string",
+            "progress": "object",
+            "progress.cabAssigned": "boolean",
+            "progress.cabLeftForPickup": "boolean",
+            "progress.cabReachedSource": "boolean",
+            "progress.cabTripStarted": "boolean",
+            "progress.cabTripEnd": "boolean",
+            "trip": "object",
+            "trip.startedAt": "string",
+            "trip.endedAt": "string",
+            "trip.totalTravelledKm": "number",
+            "trip.totalTravelledFare": "number",
+            "trip.extraTravelledKm": "number",
+            "trip.extraTravelledFare": "number",
+            "trip.nightCharges": "number",
+            "trip.reason": "string"
+          },
+          "nullFields": [],
+          "sample": {
+            "bookingId": "BR1782903629606476",
+            "tripTracking": {
+              "latitude": "12.9717",
+              "longitude": "77.5947",
+              "syncTimestamp": "1750935000000"
+            },
+            "driver": {
+              "name": "Ramesh Kumar",
+              "mobile": "9876543210",
+              "image": "https://example.com/driver.jpg",
+              "isReassigned": false
+            },
+            "vehicle": {
+              "name": "Swift Dzire",
+              "color": "White",
+              "type": "SEDAN",
+              "registrationNo": "KA01AB1234"
+            },
+            "otp": "4522",
+            "progress": {
+              "cabAssigned": true,
+              "cabLeftForPickup": true,
+              "cabReachedSource": true,
+              "cabTripStarted": true,
+              "cabTripEnd": true
+            },
+            "trip": {
+              "startedAt": "2025-06-26 10:50:00",
+              "endedAt": "2025-06-26 10:50:00",
+              "totalTravelledKm": 36,
+              "totalTravelledFare": 450,
+              "extraTravelledKm": 1,
+              "extraTravelledFare": 30,
+              "nightCharges": 20,
+              "reason": "test"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "cancel": [
+    {
+      "name": "Cancel Booking",
+      "method": "POST",
+      "url": "{{base_url}}/v1/airportServices/cabs/bookings/{{cab_booking_reference}}/cancel?lang=en&currency=INR",
+      "responses": [
+        {
+          "name": "Cancel Booking Success",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "status",
+            "bookingRefId",
+            "type",
+            "result"
+          ],
+          "tree": {
+            "(root)": "object",
+            "status": "number",
+            "bookingRefId": "string",
+            "type": "string",
+            "result": "object",
+            "result.bookingStatus": "string",
+            "result.message": "string",
+            "result.providerBookingId": "string",
+            "result.totalPrice": "number",
+            "result.penaltyAmount": "number",
+            "result.refundAmount": "number",
+            "result.currency": "string"
+          },
+          "nullFields": [],
+          "sample": {
+            "status": 0,
+            "bookingRefId": "BR1783685806152267",
+            "type": "cancel",
+            "result": {
+              "bookingStatus": "CANCELLED",
+              "message": "Booking cancelled successfully",
+              "providerBookingId": "TVIPWE100726174646EQEW",
+              "totalPrice": 345.46,
+              "penaltyAmount": 50,
+              "refundAmount": 295.46,
+              "currency": "INR"
+            }
+          }
+        },
+        {
+          "name": "Cancel Booking Failed",
+          "code": 200,
+          "status": "OK",
+          "topLevel": [
+            "status",
+            "message",
+            "currentStatus"
+          ],
+          "tree": {
+            "(root)": "object",
+            "status": "number",
+            "message": "string",
+            "currentStatus": "string"
+          },
+          "nullFields": [],
+          "sample": {
+            "status": 400,
+            "message": "Booking is already cancelled",
+            "currentStatus": "Cancelled"
+          }
+        }
+      ]
+    }
+  ]
+}

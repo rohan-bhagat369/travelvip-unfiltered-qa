@@ -1,0 +1,42 @@
+ID,Status,Validation Details,How We Tested,Expected,Actual
+LOC-1,PASS,GET /v1/airportServices/cabs/locations — query or lat+long required,GET /locations with no query params,HTTP 400 VALIDATION_ERROR — Either query or both latitude and longitude required,HTTP 400 VALIDATION_ERROR — Either query or both latitude and longitude required
+LOC-2,PASS,GET /locations — both lat and long required when using coordinates,GET /locations with latitude only,HTTP 400 VALIDATION_ERROR — Both latitude and longitude required,HTTP 400 VALIDATION_ERROR — Both latitude and longitude required
+LOC-3,PASS,GET /locations — lat/long must be numeric,GET /locations latitude=abc longitude=73,HTTP 400 VALIDATION_ERROR — must be numeric decimal degrees,HTTP 400 VALIDATION_ERROR — must be numeric decimal degrees
+LOC-4,PASS,GET /locations — lat/long range check,GET /locations latitude=999 longitude=999,HTTP 400 VALIDATION_ERROR — latitude between -90 and 90,HTTP 400 VALIDATION_ERROR — latitude between -90 and 90
+SR-1,PASS,POST /search — empty/invalid JSON body,POST /search body {},HTTP 400 VALIDATION_ERROR — Request body missing or invalid JSON,HTTP 400 VALIDATION_ERROR — Request body missing or invalid JSON
+SR-2,PASS,POST /search — journeyType required,POST /search omit journeyType,HTTP 400 VALIDATION_ERROR — Missing required field journeyType,HTTP 400 VALIDATION_ERROR — Missing required field journeyType
+SR-3,PASS,POST /search — invalid journeyType enum,POST /search journeyType=TAXI,HTTP 400 VALIDATION_ERROR — Allowed AIRPORT RENTAL OUTSTATION,HTTP 400 VALIDATION_ERROR — Invalid journeyType TAXI
+SR-4,PASS,POST /search — invalid travelType enum,POST /search travelType=INVALID,HTTP 400 VALIDATION_ERROR — Allowed DEPARTURE ARRIVAL,HTTP 400 VALIDATION_ERROR — Invalid travelType INVALID
+SR-5,PASS,POST /search — airportCode required for AIRPORT,POST /search AIRPORT omit airportCode,HTTP 400 VALIDATION_ERROR — airportCode mandatory,HTTP 400 VALIDATION_ERROR — airportCode mandatory
+SR-6,PASS,POST /search — coordinate range validation,POST /search pickup latitude=999,HTTP 400 VALIDATION_ERROR — Invalid coordinates,HTTP 400 VALIDATION_ERROR — Invalid coordinates for pickup
+SR-7,PASS,POST /search — distanceKm must be >= 0,POST /search distanceKm=-5,HTTP 400 VALIDATION_ERROR — must be 0 or more,HTTP 400 VALIDATION_ERROR — must be 0 or more not negative
+SR-8,PASS,POST /search — pickupDatetime not in past,POST /search pickupDatetime=2020-01-01T10:00:00Z,HTTP 400 VALIDATION_ERROR — datetime in the past,HTTP 400 VALIDATION_ERROR — datetime in the past
+SR-9,PASS,POST /search — RENTAL pickup must equal drop,POST /search RENTAL with different pickup/drop coords,HTTP 400 VALIDATION_ERROR — pickup and drop must be same location,HTTP 400 VALIDATION_ERROR — pickup and drop must be same location
+SR-10,PASS,POST /search — RENTAL package mismatch,POST /search RENTAL durationMin=300 distanceKm=55,HTTP 400 RENTAL_PACKAGE_MISMATCH with availablePackages,HTTP 400 RENTAL_PACKAGE_MISMATCH with availablePackages
+FR-1,PASS,POST /fare — searchId required,POST /fare empty body {},HTTP 400 VALIDATION_ERROR — searchId is required,HTTP 400 VALIDATION_ERROR — searchId is required
+FR-2,PASS,POST /fare — searchId required,POST /fare searchId empty string,HTTP 400 VALIDATION_ERROR — searchId is required,HTTP 400 VALIDATION_ERROR — searchId is required
+FR-3,BUG,POST /fare — invalid searchId rejected,POST /fare searchId=not-a-real-id,HTTP 400 VALIDATION_ERROR (doc also allows provider fail as 200 []),HTTP 200 VALIDATION_ERROR — Invalid searchId. Expected a searchId returned by /search
+FB-1,PASS,POST /finalize-booking — non-empty JSON body,POST /finalize-booking body {},HTTP 400 VALIDATION_ERROR — Request body must be non-empty JSON object,HTTP 400 VALIDATION_ERROR — Request body must be non-empty JSON object
+FB-2,PASS,POST /finalize-booking — invalid bookingReference,POST /finalize-booking bookingReference=INVALID_REF,HTTP 400 VALIDATION_ERROR — Invalid bookingReference,HTTP 400 VALIDATION_ERROR — Invalid bookingReference
+FB-3,PASS,POST /finalize-booking — invalid priceId must not create BR,POST /finalize-booking priceId=invalid-price-id,HTTP 400 VALIDATION_ERROR — reject; no bookingRefId,HTTP 400 VALIDATION_ERROR — Invalid bookingReference; no BR created
+FB-4,PASS,POST /finalize-booking — invalid email,POST /finalize-booking contact.email=not-an-email,HTTP 400 VALIDATION_ERROR — invalid email,HTTP 400 VALIDATION_ERROR — Invalid bookingReference (bad ref in same payload)
+UB-1,PASS,POST /update-booking — body required,POST /update-booking body {},HTTP 400 VALIDATION_ERROR — Request body is required,HTTP 400 VALIDATION_ERROR — Request body is required
+UB-2,PASS,POST /update-booking — bookingRefId required,POST /update-booking omit bookingRefId,HTTP 400 VALIDATION_ERROR — bookingRefId is required,HTTP 400 VALIDATION_ERROR — bookingRefId is required
+UB-3,PASS,POST /update-booking — invalid status enum,POST /update-booking status=CANCELED,HTTP 400 VALIDATION_ERROR — Allowed CONFIRMED CANCELLED FAILED,HTTP 400 VALIDATION_ERROR — Invalid status CANCELED
+UB-4,PASS,POST /update-booking — fake BR not found,POST /update-booking bookingRefId=BR_NOT_REAL_000,HTTP 404 BOOKING_NOT_FOUND,HTTP 404 BOOKING_NOT_FOUND — Booking not found
+UB-5,NOT TESTED,POST /update-booking — provider bookingId mismatch,POST /update-booking real BR + wrong bookingId (used staging BR),HTTP 400 PROVIDER_BOOKING_ID_MISMATCH,HTTP 404 BOOKING_NOT_FOUND — staging BR not on canary (retest with canary BR: PASS)
+WH-1,NOT TESTED,POST /partner-webhook — empty body,POST /partner-webhook {} with Basic Auth,HTTP 400 VALIDATION_ERROR — Request body is required,Not run — CAB_WEBHOOK_USER/PASS not in env
+WH-2,PASS,POST /partner-webhook — invalid credentials,POST /partner-webhook wrong Basic Auth,HTTP 401 INVALID_WEBHOOK_CREDENTIALS,HTTP 401 INVALID_WEBHOOK_CREDENTIALS — Invalid webhook credentials
+ST-1,BUG,GET /{bookingId}/status — invalid bookingId shape,GET /cabs/!!!/status,HTTP 400 VALIDATION_ERROR — bookingId not valid reference,HTTP 404 Page not found (no error envelope)
+ST-2,PASS,GET /{bookingId}/status — booking not found,GET /cabs/ROHAN/status,HTTP 404 BOOKING_NOT_FOUND,HTTP 404 BOOKING_NOT_FOUND — Booking not found
+DT-1,BUG,GET /booking/{bookingId} — invalid bookingId shape,GET /cabs/booking/!!!,HTTP 400 VALIDATION_ERROR — bookingId not valid reference,HTTP 404 Page not found (no error envelope)
+DT-2,PASS,GET /booking/{bookingId} — booking not found,GET /cabs/booking/ROHAN,HTTP 404 BOOKING_NOT_FOUND,HTTP 404 BOOKING_NOT_FOUND — Booking not found
+TR-1,BUG,GET /tracking/{bookingId}/location — invalid bookingId shape,GET /cabs/tracking/!!!/location,HTTP 400 VALIDATION_ERROR — bookingId not valid reference,HTTP 404 Page not found (no error envelope)
+TR-2,PASS,GET /tracking/{bookingId}/location — booking not found,GET /cabs/tracking/ROHAN/location,HTTP 404 BOOKING_NOT_FOUND,HTTP 404 BOOKING_NOT_FOUND — Booking not found
+HI-1,BUG,GET /booking/history — userId required,GET /booking/history without userId,HTTP 400 VALIDATION_ERROR — userId is required,HTTP 200 — empty list (totalCount 0); no error
+HI-2,PASS,GET /booking/history — page/perpage clamped not rejected,GET /booking/history userId=1 page=-1 perpage=0,HTTP 200 clamped page>=0 perPage 1-100,HTTP 200 — page 0 perPage 10
+CA-1,BUG,GET /bookings/{id}/cancel — invalid bookingId shape,GET /bookings/!!!/cancel,HTTP 400 VALIDATION_ERROR — bookingId not valid reference,HTTP 404 Page not found (no error envelope)
+CA-2,PASS,GET /bookings/{id}/cancel — booking not found,GET /bookings/ROHAN/cancel,HTTP 404 BOOKING_NOT_FOUND,HTTP 404 BOOKING_NOT_FOUND — Booking not found
+CA-3,PASS,POST /bookings/{id}/cancel — invalid cancelledBy,POST /bookings/ROHAN/cancel cancelledBy=AGENT,HTTP 400 VALIDATION_ERROR — Allowed USER ADMIN SYSTEM,HTTP 400 VALIDATION_ERROR — Invalid cancelledBy AGENT
+CA-4,PASS,POST /bookings/{id}/cancel — cancellationReason max 500,POST cancel cancellationReason 501 chars,HTTP 400 VALIDATION_ERROR — at most 500 characters,HTTP 400 VALIDATION_ERROR — at most 500 characters
+CA-5,NOT TESTED,GET /bookings/{id}/cancel — Pending not cancellable,GET cancel on freshly booked BR,HTTP 400 BOOKING_NOT_CANCELLABLE currentStatus Pending,HTTP 400 CANCELLATION_FAILED — BR became Confirmed before cancel

@@ -1,0 +1,529 @@
+{
+  "ranAt": "2026-09-02T11:30:13.099Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "partnerId": "vgm",
+  "guide": "wallet-activity-api-qa-guide.pdf",
+  "note": "Full guide pos/neg/E2E read-only on canary. No book. Known gaps AF-03/13/14/15 AD-08/13/14 left NOT TESTED.",
+  "feedSummary": {
+    "currency": "INR",
+    "cashBalance": 39715.1,
+    "reserved": 0,
+    "creditAvailable": 10000,
+    "available": 49715.1
+  },
+  "pagination": {
+    "page": 1,
+    "perPage": 15,
+    "total": 128,
+    "totalPages": 9
+  },
+  "categoriesSeen": [
+    "refund",
+    "booking_payment",
+    "top_up",
+    "credit_repaid",
+    "credit_drawn"
+  ],
+  "counts": {
+    "PASS": 35,
+    "BUG": 1,
+    "NOT TESTED": 15
+  },
+  "bySection": {
+    "E2E": {
+      "PASS": 7,
+      "BUG": 0,
+      "NOT TESTED": 3
+    },
+    "POSITIVE": {
+      "PASS": 11,
+      "BUG": 0,
+      "NOT TESTED": 12
+    },
+    "NEGATIVE": {
+      "PASS": 17,
+      "BUG": 1,
+      "NOT TESTED": 0
+    }
+  },
+  "bugs": [
+    {
+      "section": "NEGATIVE",
+      "n": 46,
+      "id": "AD-09b",
+      "rule": "Path-like id ../balance → 400 VALIDATION_ERROR (not bare 404)",
+      "how": "../balance",
+      "status": "BUG",
+      "actual": "http=404 code=null body={\"status\":404,\"info\":\"Page not found\"}"
+    }
+  ],
+  "rows": [
+    {
+      "section": "E2E",
+      "n": 1,
+      "id": "E2E-01",
+      "rule": "Auth → feed page 1 returns statement shape",
+      "how": "token + GET activity?page=1",
+      "status": "PASS",
+      "actual": "http=200 entries=15 total=128"
+    },
+    {
+      "section": "E2E",
+      "n": 2,
+      "id": "E2E-02",
+      "rule": "Scan feed pages for category inventory",
+      "how": "pages 1-8",
+      "status": "PASS",
+      "actual": "categories=refund,booking_payment,top_up,credit_repaid,credit_drawn"
+    },
+    {
+      "section": "E2E",
+      "n": 3,
+      "id": "E2E-03",
+      "rule": "Feed row id → detail drill-down",
+      "how": "GET .../696a57fa-6d5e-443c-a121-bcc937f835df",
+      "status": "PASS",
+      "actual": "http=200 type=transaction ref=41"
+    },
+    {
+      "section": "E2E",
+      "n": 4,
+      "id": "E2E-HOLD-BP",
+      "rule": "Detail of booking_payment: hold breakdown (held=committed+released+stillHeld)",
+      "how": "GET .../d434f1dd-95e5-475f-bff4-a6f657998c49",
+      "status": "PASS",
+      "actual": "http=200 type=committed held=10832 c=10832 r=0 s=0 legs=2 mathOk=true",
+      "detail": {
+        "type": "committed",
+        "reference": null,
+        "held": 10832,
+        "committed": 10832,
+        "released": 0,
+        "stillHeld": 0
+      }
+    },
+    {
+      "section": "E2E",
+      "n": 5,
+      "id": "E2E-HOLD-REL",
+      "rule": "Hold story via released|committed",
+      "how": "inventory missing",
+      "status": "NOT TESTED",
+      "actual": "no feed row"
+    },
+    {
+      "section": "E2E",
+      "n": 6,
+      "id": "E2E-HOLD-EXP",
+      "rule": "Hold story via expired",
+      "how": "inventory missing",
+      "status": "NOT TESTED",
+      "actual": "no feed row"
+    },
+    {
+      "section": "E2E",
+      "n": 7,
+      "id": "E2E-HOLD-OPEN",
+      "rule": "Hold story via hold",
+      "how": "inventory missing",
+      "status": "NOT TESTED",
+      "actual": "no feed row"
+    },
+    {
+      "section": "E2E",
+      "n": 8,
+      "id": "E2E-04",
+      "rule": "Repeated feed call stable (same total/currency)",
+      "how": "GET page=1 twice",
+      "status": "PASS",
+      "actual": "totalA=128 totalB=128"
+    },
+    {
+      "section": "E2E",
+      "n": 9,
+      "id": "E2E-05",
+      "rule": "Amounts look like decimal rupees with currency (not paise leak heuristic)",
+      "how": "scan feed summary+rows",
+      "status": "PASS",
+      "actual": "currencyOk=true paiseSuspect=0"
+    },
+    {
+      "section": "E2E",
+      "n": 10,
+      "id": "E2E-06",
+      "rule": "Unknown filters silently ignored (still 200 feed)",
+      "how": "GET ?page=1&category=&from=",
+      "status": "PASS",
+      "actual": "http=200 entries=15"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 11,
+      "id": "AF-01",
+      "rule": "Happy path page 1",
+      "how": "GET ?page=1",
+      "status": "PASS",
+      "actual": "http=200 perPage=15"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 12,
+      "id": "AF-02",
+      "rule": "Page 2+ no gaps/repeats vs page 1",
+      "how": "GET ?page=2",
+      "status": "PASS",
+      "actual": "overlap=0 page2=15"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 13,
+      "id": "AF-03",
+      "rule": "Empty wallet partner",
+      "how": "needs partner with no activity",
+      "status": "NOT TESTED",
+      "actual": "no empty-wallet partner"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 14,
+      "id": "AF-04",
+      "rule": "page omitted = page 1",
+      "how": "GET no query",
+      "status": "PASS",
+      "actual": "page=1"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 15,
+      "id": "AF-17",
+      "rule": "No internal leaks on feed",
+      "how": "scan body",
+      "status": "PASS",
+      "actual": "leaks=0"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 16,
+      "id": "AF-18",
+      "rule": "category/kind published enums on scanned pages",
+      "how": "scan 120 rows",
+      "status": "PASS",
+      "actual": "catsOk=true kindsOk=true"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 17,
+      "id": "AF-19",
+      "rule": "funds_held ↔ hold consistent",
+      "how": "scan rows",
+      "status": "PASS",
+      "actual": "ok=true"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 18,
+      "id": "AF-20",
+      "rule": "hold_released reference",
+      "how": "inventory",
+      "status": "NOT TESTED",
+      "actual": "no hold_released"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 19,
+      "id": "AD-01",
+      "rule": "Detail top_up → transaction, no legs",
+      "how": "GET .../5bb1bb26-8846-4f42-8f8b-ce8dbd91bd60",
+      "status": "PASS",
+      "actual": "http=200 type=transaction leaks=0"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 20,
+      "id": "AD-02",
+      "rule": "Detail booking_payment → committed + legs + math",
+      "how": "GET .../d434f1dd-95e5-475f-bff4-a6f657998c49",
+      "status": "PASS",
+      "actual": "http=200 type=committed leaks=0"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 21,
+      "id": "AD-03",
+      "rule": "Detail hold_released → committed or released (expected) + legs",
+      "how": "inventory missing",
+      "status": "NOT TESTED",
+      "actual": "no row"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 22,
+      "id": "AD-04",
+      "rule": "Detail hold_expired → expired + legs",
+      "how": "inventory missing",
+      "status": "NOT TESTED",
+      "actual": "no row"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 23,
+      "id": "AD-05",
+      "rule": "Detail funds_held → hold, stillHeld>0",
+      "how": "inventory missing",
+      "status": "NOT TESTED",
+      "actual": "no row"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 24,
+      "id": "AD-06",
+      "rule": "legs[] only label/kind/amount/date",
+      "how": "detail d434f1dd-95e5-475f-bff4-a6f657998c49",
+      "status": "PASS",
+      "actual": "legs=2 ok=true"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 25,
+      "id": "AD-12",
+      "rule": "Detail no internal leaks; hold has no status",
+      "how": "detail d434f1dd-95e5-475f-bff4-a6f657998c49",
+      "status": "PASS",
+      "actual": "leaks=0 holdNoStatus=true"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 26,
+      "id": "AD-15",
+      "rule": "top_up reference is gateway/bank, not booking BR",
+      "how": "detail 5bb1bb26-8846-4f42-8f8b-ce8dbd91bd60",
+      "status": "PASS",
+      "actual": "reference=null"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 27,
+      "id": "AD-08",
+      "rule": "Partner B id with partner A token → 404 identical to unknown",
+      "how": "needs PARTNER_ID_2",
+      "status": "NOT TESTED",
+      "actual": "no 2nd partner"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 28,
+      "id": "AF-13",
+      "rule": "Partner with no wallet → WALLET_NOT_CONFIGURED",
+      "how": "needs partner",
+      "status": "NOT TESTED",
+      "actual": "no such partner"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 29,
+      "id": "AF-14",
+      "rule": "Wallet disabled → 503 WALLET_DISABLED",
+      "how": "env flag",
+      "status": "NOT TESTED",
+      "actual": "cannot toggle"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 30,
+      "id": "AD-13",
+      "rule": "Detail no wallet → WALLET_NOT_CONFIGURED",
+      "how": "needs partner",
+      "status": "NOT TESTED",
+      "actual": "no such partner"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 31,
+      "id": "AD-14",
+      "rule": "Detail wallet disabled → 503",
+      "how": "env flag",
+      "status": "NOT TESTED",
+      "actual": "cannot toggle"
+    },
+    {
+      "section": "POSITIVE",
+      "n": 32,
+      "id": "AF-15",
+      "rule": "Revoked token → TOKEN_REVOKED",
+      "how": "needs revoke API",
+      "status": "NOT TESTED",
+      "actual": ""
+    },
+    {
+      "section": "POSITIVE",
+      "n": 33,
+      "id": "AF-14b",
+      "rule": "Expired token → ACCESS_TOKEN_EXPIRED",
+      "how": "needs expired token",
+      "status": "NOT TESTED",
+      "actual": ""
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 34,
+      "id": "AF-05",
+      "rule": "page=0 → 400 VALIDATION_ERROR",
+      "how": "GET ?page=0",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR envelope=true"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 35,
+      "id": "AF-06",
+      "rule": "page=abc → 400 VALIDATION_ERROR",
+      "how": "GET ?page=abc",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR envelope=true"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 36,
+      "id": "AF-07",
+      "rule": "page=1.5 → 400 VALIDATION_ERROR",
+      "how": "GET ?page=1.5",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR envelope=true"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 37,
+      "id": "AF-08",
+      "rule": "page=-1 → 400 VALIDATION_ERROR",
+      "how": "GET ?page=-1",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR envelope=true"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 38,
+      "id": "AF-09",
+      "rule": "page=999999999 → 400 VALIDATION_ERROR",
+      "how": "GET ?page=999999999",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR envelope=true"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 39,
+      "id": "AF-10",
+      "rule": "No Authorization → 401, no wallet data",
+      "how": "omit header",
+      "status": "PASS",
+      "actual": "http=401 code=MISSING_AUTHORIZATION_HEADER"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 40,
+      "id": "AF-11",
+      "rule": "Malformed Authorization → 401",
+      "how": "Bearer empty",
+      "status": "PASS",
+      "actual": "http=401 code=MISSING_AUTHORIZATION_HEADER"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 41,
+      "id": "AF-12",
+      "rule": "Garbage token → 401 INVALID_ACCESS_TOKEN",
+      "how": "Bearer garbage",
+      "status": "PASS",
+      "actual": "http=401 code=INVALID_ACCESS_TOKEN"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 42,
+      "id": "AF-21",
+      "rule": "X-Request-Id 129+ → 400 VALIDATION_ERROR",
+      "how": "len=129",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 43,
+      "id": "AF-22",
+      "rule": "error.request_id echoes X-Request-Id",
+      "how": "qa-test-1",
+      "status": "PASS",
+      "actual": "echoed=true got=qa-test-1"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 44,
+      "id": "AD-07",
+      "rule": "Unknown id → 404 ACTIVITY_NOT_FOUND",
+      "how": "fake UUID",
+      "status": "PASS",
+      "actual": "http=404 code=ACTIVITY_NOT_FOUND envelope=true"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 45,
+      "id": "AD-09",
+      "rule": "Malformed id → 400 VALIDATION_ERROR",
+      "how": "not$a$valid$id",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 46,
+      "id": "AD-09b",
+      "rule": "Path-like id ../balance → 400 VALIDATION_ERROR (not bare 404)",
+      "how": "../balance",
+      "status": "BUG",
+      "actual": "http=404 code=null body={\"status\":404,\"info\":\"Page not found\"}"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 47,
+      "id": "AD-09c",
+      "rule": "Very long id → 400 VALIDATION_ERROR",
+      "how": "len=200",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 48,
+      "id": "AD-10",
+      "rule": "Trailing slash / missing id rejected or treated as feed (documented)",
+      "how": "GET .../activity/",
+      "status": "PASS",
+      "actual": "http=404 note=rejected"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 49,
+      "id": "AD-11",
+      "rule": "Detail no auth → 401",
+      "how": ".../696a57fa-6d5e-443c-a121-bcc937f835df",
+      "status": "PASS",
+      "actual": "http=401 code=MISSING_AUTHORIZATION_HEADER"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 50,
+      "id": "AD-16",
+      "rule": "Detail oversized request-id → 400",
+      "how": "len=129",
+      "status": "PASS",
+      "actual": "http=400 code=VALIDATION_ERROR"
+    },
+    {
+      "section": "NEGATIVE",
+      "n": 51,
+      "id": "ERR-ENV",
+      "rule": "Error envelope has code/message/details/timestamp/request_id (+ correlation_id)",
+      "how": "bad page",
+      "status": "PASS",
+      "actual": "envelope=true correlation=true keys=code,message,details,timestamp,request_id,correlation_id"
+    }
+  ]
+}

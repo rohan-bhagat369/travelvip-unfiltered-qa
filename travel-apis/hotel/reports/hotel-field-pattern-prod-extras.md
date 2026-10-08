@@ -1,0 +1,94 @@
+# cancelPolicies / icons / amenities / tags
+
+| City | Hotel | entityId | details.room.cancelPolicies | prebook.room.cancelPolicies | details.room.amenitiesIcon | prebook.room.amenitiesIcon | details.room.benefitsIcon | prebook.room.benefitsIcon | details.hotel.amenities | prebook.hotel.amenities | details.hotel.tags | prebook.hotel.tags |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Mumbai | Sofitel Mumbai BKC Hotel | `39624369` | present | present | present | null | present | null | present | present | present | present |
+| Mumbai | Ibis Mumbai Bkc | `71042622` | present | present | present | null | present | null | present | present | present | present |
+| Mumbai | ITC Maratha Mumbai, a Luxury Collection Hotel, Mumbai | `39659376` | present | present | present | null | present | null | present | present | present | present |
+| Mumbai | Courtyard by Marriott Mumbai International Airport | `32799941` | present | present | present | null | present | null | present | present | present | present |
+| Mumbai | Grand Hyatt Mumbai Hotel & Residences | `39681377` | present | missing | null | missing | present | missing | present | missing | present | missing |
+| Mumbai | Taj The Trees, Mumbai | `51117724` | present | present | present | null | present | null | present | present | present | present |
+| Mumbai | Hyatt Centric Juhu Mumbai | `41534276` | present | present | present | null | present | null | present | present | present | null |
+| Mumbai | JW Marriott Mumbai Sahar | `39691858` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Mumbai | Fairmont Mumbai | `70508694` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Mumbai | Taj Santacruz | `39621191` | present | present | present | null | present | null | present | null | present | present |
+| Delhi | Le Meridien New Delhi | `39676544` | present | present | present | null | present | null | present | present | present | present |
+| Delhi | Taj Mahal, New Delhi | `39645070` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Delhi | Taj Palace, New Delhi | `39811711` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Delhi | ITC Maurya, a Luxury Collection Hotel, New Delhi | `39707491` | present | present | present | null | present | null | present | present | present | present |
+| Delhi | Novotel New Delhi City Centre | `70508700` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Delhi | The Connaught, New Delhi - IHCL SeleQtions | `39626509` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Delhi | Shangri-La Eros, New Delhi | `38415670` | present | present | present | null | present | null | present | present | present | present |
+| Delhi | The Imperial New Delhi | `39658270` | present | present | present | null | present | null | present | present | present | present |
+| Delhi | The Park New Delhi | `32502802` | present | present | present | null | present | null | present | present | present | present |
+| Delhi | The Metropolitan Hotel and Spa New Delhi | `39503514` | present | present | present | null | present | null | present | present | present | present |
+| Bengaluru | Taj West End | `39658767` | present | present | present | null | present | null | present | present | present | present |
+| Bengaluru | The Ritz-Carlton, Bangalore | `39664223` | present | present | present | null | present | null | present | present | present | present |
+| Bengaluru | ITC Gardenia, a Luxury Collection Hotel, Bengaluru | `39346139` | null | missing | present | missing | present | missing | present | missing | present | missing |
+| Bengaluru | Marriott Executive Apartments Bengaluru UB City | `72331350` | null | present | present | null | present | null | present | null | present | present |
+| Bengaluru | JW Marriott Hotel Bengaluru | `39662155` | present | present | present | null | present | null | present | present | present | present |
+| Bengaluru | Vivanta Bengaluru Residency Road | `32508303` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Bengaluru | Holiday Inn Bengaluru Racecourse by IHG | `39674317` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Bengaluru | ibis Bengaluru City Centre Hotel | `39628946` | present | present | present | null | present | null | present | present | present | present |
+| Bengaluru | ITC Windsor, A Luxury Collection Hotel, Bengaluru | `39715735` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Bengaluru | Conrad Bengaluru | `15632957` | present | present | present | null | present | null | present | null | present | present |
+| Hyderabad | Hyderabad Marriott Hotel & Convention Centre | `39711473` | present | present | present | null | present | null | present | present | present | present |
+| Hyderabad | Hyatt Place Hyderabad Banjara Hills | `39666194` | present | present | present | null | present | null | present | present | present | present |
+| Hyderabad | Courtyard by Marriott Hyderabad | `39692067` | present | present | present | null | present | null | present | present | present | present |
+| Hyderabad | Mercure Hyderabad KCP Hotel | `39973043` | present | present | present | null | present | null | present | present | present | present |
+| Hyderabad | Hotel TARA International | `38807316` | present | present | null | null | present | null | present | present | present | present |
+| Hyderabad | Royalton Hyderabad | `39613651` | present | present | present | null | present | null | present | present | present | present |
+| Hyderabad | Mandakini Jaya International | `39736131` | present | present | null | null | null | null | null | present | present | present |
+| Hyderabad | Lemon Tree Hotel Banjara Hills | `15745703` | present | present | present | null | present | null | present | present | present | present |
+| Hyderabad | The Golkonda Hyderabad | `39755646` | present | present | present | null | present | null | present | present | present | present |
+| Hyderabad | Best Western Ashoka | `39671779` | present | present | present | null | present | null | present | present | present | present |
+| Chennai | TAJ CLUB HOUSE | `16319680` | null | missing | present | missing | present | missing | present | missing | present | missing |
+| Chennai | TAJ COROMANDEL | `39616184` | present | present | present | null | present | null | present | present | present | present |
+| Chennai | RADISSON BLU HOTEL CHENNAI CITY CENTRE | `39656269` | present | present | present | null | present | null | present | null | present | present |
+| Chennai | THE PARK CHENNAI | `15259403` | present | present | present | null | present | null | present | present | present | present |
+| Chennai | AMBASSADOR PALLAVA | `39654787` | present | present | present | null | present | null | present | present | present | present |
+| Chennai | HYATT REGENCY CHENNAI | `15339517` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Chennai | SOMERSET GREENWAYS CHENNAI | `39653620` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Chennai | PARK HYATT CHENNAI | `39645717` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Chennai | NOVOTEL CHENNAI CHAMIERS ROAD | `39671991` | present | present | present | null | present | null | present | present | present | null |
+| Chennai | THE ACCORD METROPOLITAN | `39632518` | present | present | present | null | present | null | present | present | present | present |
+| Pune | Sheraton Grand Pune Bund Garden Hotel | `39644515` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Pune | JW Marriott Hotel Pune | `15350438` | present | present | present | null | present | null | present | present | present | present |
+| Pune | Crowne Plaza Pune City Centre | `39785387` | present | present | present | null | present | null | present | present | present | null |
+| Pune | Blue Diamond, Pune - IHCL SeleQtions | `15403968` | present | present | null | null | present | null | present | present | present | present |
+| Pune | Conrad Pune | `40007147` | present | present | present | null | present | null | present | null | present | present |
+| Pune | E SQUARE THE FERN PUNE | `31638453` | present | present | null | null | present | null | present | present | present | present |
+| Pune | The Pride Pune | `39610131` | present | present | present | null | present | null | present | present | present | present |
+| Pune | Tarawade Clarks Inn | `39624786` | present | present | present | null | present | null | present | present | present | present |
+| Pune | Best Western The Pride | `39872566` | present | present | null | null | null | null | null | null | present | present |
+| Pune | Enrise By Sayaji Pune | `15149939` | present | present | present | null | present | null | present | present | present | present |
+| Dubai | Hyatt Regency Dubai | `38688667` | present | present | present | null | present | null | present | present | present | null |
+| Dubai | The Galleria Residence, Hyatt Regency Dubai | `39961925` | null | present | present | null | present | null | present | present | present | present |
+| Dubai | Sheraton Dubai Creek Hotel & Towers | `39600369` | present | present | present | null | present | null | present | present | present | present |
+| Dubai | Swissotel Living Al Ghurair | `39969130` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Dubai | Swissotel Al Ghurair | `39969111` | present | present | present | null | present | null | present | present | present | null |
+| Dubai | Hyatt Place Wasl District Residences | `60466771` | present | present | null | null | present | null | present | null | present | present |
+| Dubai | Hyatt Place Dubai Wasl District | `39969134` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Dubai | Canopy by Hilton Dubai Al Seef | `39999172` | present | present | present | null | present | null | present | present | present | null |
+| Dubai | Aparthotel Adagio Dubai Deira | `39606396` | present | present | present | null | present | null | present | present | present | null |
+| Dubai | Crowne Plaza Dubai Jumeirah By IHG | `41261072` | present | present | present | null | present | null | present | present | present | null |
+| Singapore | Fairmont Singapore | `39637357` | present | present | present | null | present | null | present | present | present | null |
+| Singapore | Novotel Singapore Robertson Quay | `39641207` | present | present | present | null | present | null | present | present | present | null |
+| Singapore | Maxwell Reserve Singapore, Autograph Collection | `39788153` | present | present | null | null | present | null | present | null | present | present |
+| Singapore | Pullman Singapore Hill Street | `41638867` | present | present | present | null | present | null | present | present | present | null |
+| Singapore | The Westin Singapore | `39640194` | present | present | present | null | present | null | present | present | present | null |
+| Singapore | InterContinental Singapore Robertson Quay by IHG | `39356724` | present | present | present | null | present | null | present | present | present | present |
+| Singapore | Sofitel Singapore City Centre | `39636779` | present | present | present | null | present | null | present | present | present | present |
+| Singapore | JW Marriott Hotel Singapore South Beach | `39693758` | present | present | present | null | present | null | present | present | present | present |
+| Singapore | Frasers House, a Luxury Collection Hotel, Singapore | `39657263` | present | present | present | null | present | null | present | present | present | null |
+| Singapore | The Ritz-Carlton, Millenia Singapore | `39649621` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Bangkok | Four Points by Sheraton Bangkok Ploenchit Sukhumvit | `39660160` | present | present | present | null | present | null | present | present | present | null |
+| Bangkok | DoubleTree by Hilton Bangkok Ploenchit | `39592347` | present | present | present | null | present | null | present | present | present | null |
+| Bangkok | Hotel Muse Bangkok, Autograph Collection | `39692789` | present | present | present | null | present | null | present | present | present | present |
+| Bangkok | Conrad Bangkok | `17196228` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Bangkok | Crowne Plaza Bangkok Lumpini Park by IHG | `39647341` | present | present | present | null | present | null | present | present | present | null |
+| Bangkok | Mövenpick BDMS Wellness Resort Bangkok | `39283725` | present | present | present | null | present | null | present | present | present | null |
+| Bangkok | Grand Hyatt Erawan Bangkok | `39650619` | present | missing | present | missing | present | missing | present | missing | present | missing |
+| Bangkok | Conrad Bangkok Residences | `39522554` | present | present | present | null | present | null | present | present | present | null |
+| Bangkok | Novotel Bangkok Platinum Pratunam | `39526094` | present | present | present | null | present | null | present | present | present | null |
+| Bangkok | Courtyard by Marriott Bangkok | `39658642` | null | present | present | null | present | null | present | present | present | present |

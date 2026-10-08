@@ -1,0 +1,505 @@
+{
+  "ranAt": "2026-08-21T08:42:38.139Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "counts": {
+    "PASS": 2,
+    "BUG": 1,
+    "NOT TESTED": 5,
+    "total": 8
+  },
+  "rows": [
+    {
+      "id": "DOM-OW-1ADT",
+      "label": "Domestic OW 1ADT + seat/meal/bag",
+      "journeyType": "ONE_WAY",
+      "international": false,
+      "adults": 1,
+      "verdict": "NOT TESTED",
+      "actual": "no fare with meal+baggage+seat; last=null",
+      "br": null,
+      "status": null,
+      "route": null,
+      "ssr": null,
+      "attempts": [
+        {
+          "route": "DEL-BOM",
+          "days": 42,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        },
+        {
+          "route": "DEL-BOM",
+          "days": 49,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": true,
+            "seat": true,
+            "seatsAllowed": false
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "BOM-BLR",
+          "days": 44,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        },
+        {
+          "route": "BOM-BLR",
+          "days": 51,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        },
+        {
+          "route": "DEL-GOI",
+          "days": 46,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        },
+        {
+          "route": "DEL-GOI",
+          "days": 53,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "DOM-OW-2ADT",
+      "label": "Domestic OW 2ADT + seat/meal/bag",
+      "journeyType": "ONE_WAY",
+      "international": false,
+      "adults": 2,
+      "verdict": "BUG",
+      "actual": "issue/search failed; last={\"route\":\"BOM-HYD\",\"days\":52,\"stage\":\"issue\",\"br\":null,\"missingSsr\":null,\"issueCode\":\"VALIDATION_ERROR\",\"error\":null}",
+      "br": null,
+      "status": null,
+      "route": null,
+      "ssr": null,
+      "attempts": [
+        {
+          "route": "DEL-BOM",
+          "days": 43,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        },
+        {
+          "route": "DEL-BOM",
+          "days": 50,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        },
+        {
+          "route": "BOM-HYD",
+          "days": 45,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        },
+        {
+          "route": "BOM-HYD",
+          "days": 52,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "DOM-RT-1ADT",
+      "label": "Domestic RT 1ADT + seat/meal/bag",
+      "journeyType": "ROUND_TRIP",
+      "international": false,
+      "adults": 1,
+      "verdict": "PASS",
+      "actual": "br=BR1787300963696565 Confirmed route=BOM-BLR seat=1A meal=Masala Chai|TMAI/MiFNQ0ZCUkZRLSFUTUFJISFMS08hSVghNjM5MjcxODcyMDAwMDAwMDAwIUJPTSExMDI2ISA-|MCFBRFQ- bag=3 KG|PBCA/MSFNQ0ZCUkZRLSFQQkNBISFCTFIhSVghNjM5MjcxODcyMDAwMDAwMDAwIUJPTSExMDI2ISA-|MCFBRFQ-",
+      "br": "BR1787300963696565",
+      "status": "Confirmed",
+      "route": "BOM-BLR",
+      "ssr": {
+        "meals": 1,
+        "baggage": 1,
+        "seats": 1,
+        "mealCode": "Masala Chai|TMAI/MiFNQ0ZCUkZRLSFUTUFJISFMS08hSVghNjM5MjcxODcyMDAwMDAwMDAwIUJPTSExMDI2ISA-|MCFBRFQ-",
+        "bagCode": "3 KG|PBCA/MSFNQ0ZCUkZRLSFQQkNBISFCTFIhSVghNjM5MjcxODcyMDAwMDAwMDAwIUJPTSExMDI2ISA-|MCFBRFQ-",
+        "seatName": "1A",
+        "amount": 3900
+      },
+      "attempts": [
+        {
+          "route": "DEL-BOM",
+          "days": 48,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": false,
+            "baggage": false,
+            "seat": true,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "DEL-BOM",
+          "days": 55,
+          "stage": "pricing",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "BOM-BLR",
+          "days": 50,
+          "stage": "issued",
+          "br": "BR1787300963696565",
+          "missingSsr": null,
+          "issueCode": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "DOM-RT-2ADT",
+      "label": "Domestic RT 2ADT + seat/meal/bag",
+      "journeyType": "ROUND_TRIP",
+      "international": false,
+      "adults": 2,
+      "verdict": "NOT TESTED",
+      "actual": "no fare with meal+baggage+seat; last=null",
+      "br": null,
+      "status": null,
+      "route": null,
+      "ssr": null,
+      "attempts": [
+        {
+          "route": "DEL-BOM",
+          "days": 49,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": false,
+            "baggage": false,
+            "seat": true,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "DEL-BOM",
+          "days": 56,
+          "stage": "exception",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": null,
+          "error": "Round-trip flight search did not complete after 60 attempts"
+        },
+        {
+          "route": "BOM-BLR",
+          "days": 51,
+          "stage": "pricing",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "BOM-BLR",
+          "days": 58,
+          "stage": "pricing",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "INTL-OW-1ADT",
+      "label": "International OW 1ADT + seat/meal/bag + passport",
+      "journeyType": "ONE_WAY",
+      "international": true,
+      "adults": 1,
+      "verdict": "NOT TESTED",
+      "actual": "no fare with meal+baggage+seat; last={\"meal\":true,\"baggage\":false,\"seat\":false,\"seatsAllowed\":true}",
+      "br": null,
+      "status": null,
+      "route": null,
+      "ssr": null,
+      "attempts": [
+        {
+          "route": "DEL-DXB",
+          "days": 52,
+          "stage": "pricing",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "DEL-DXB",
+          "days": 59,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        },
+        {
+          "route": "BOM-BKK",
+          "days": 54,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": true,
+            "seat": true,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "BOM-BKK",
+          "days": 61,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": true,
+            "seat": true,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "DEL-SIN",
+          "days": 56,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": true,
+            "seat": true,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "DEL-SIN",
+          "days": 63,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": false,
+            "seat": false,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "INTL-OW-2ADT",
+      "label": "International OW 2ADT + seat/meal/bag + passport",
+      "journeyType": "ONE_WAY",
+      "international": true,
+      "adults": 2,
+      "verdict": "NOT TESTED",
+      "actual": "no fare with meal+baggage+seat; last={\"meal\":true,\"baggage\":true,\"seat\":true,\"seatsAllowed\":true}",
+      "br": null,
+      "status": null,
+      "route": null,
+      "ssr": null,
+      "attempts": [
+        {
+          "route": "DEL-DXB",
+          "days": 53,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        },
+        {
+          "route": "DEL-DXB",
+          "days": 60,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": false,
+            "seat": false,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "BOM-BKK",
+          "days": 55,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": true,
+            "seat": true,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "BOM-BKK",
+          "days": 62,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": true,
+            "seat": true,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "INTL-RT-1ADT",
+      "label": "International RT 1ADT + seat/meal/bag + passport",
+      "journeyType": "ROUND_TRIP",
+      "international": true,
+      "adults": 1,
+      "verdict": "PASS",
+      "actual": "br=BR1787301626310867 Confirmed route=DEL-DXB seat=1A meal=Masala Chai|TMAI/MiFNQ0ZCUkZRLSFUTUFJISFHT0khSVghNjM5Mjg0ODMyMDAwMDAwMDAwIURFTCExMDY4ISA-|MCFBRFQ- bag=3 KG|PBCA/MSFNQ0ZCUkZRLSFQQkNBISFEWEIhSVghNjM5Mjg0ODMyMDAwMDAwMDAwIURFTCExMDY4ISA-|MCFBRFQ-",
+      "br": "BR1787301626310867",
+      "status": "Confirmed",
+      "route": "DEL-DXB",
+      "ssr": {
+        "meals": 1,
+        "baggage": 1,
+        "seats": 1,
+        "mealCode": "Masala Chai|TMAI/MiFNQ0ZCUkZRLSFUTUFJISFHT0khSVghNjM5Mjg0ODMyMDAwMDAwMDAwIURFTCExMDY4ISA-|MCFBRFQ-",
+        "bagCode": "3 KG|PBCA/MSFNQ0ZCUkZRLSFQQkNBISFEWEIhSVghNjM5Mjg0ODMyMDAwMDAwMDAwIURFTCExMDY4ISA-|MCFBRFQ-",
+        "seatName": "1A",
+        "amount": 5400
+      },
+      "attempts": [
+        {
+          "route": "DEL-DXB",
+          "days": 58,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": false,
+            "seat": false,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "DEL-DXB",
+          "days": 65,
+          "stage": "issued",
+          "br": "BR1787301626310867",
+          "missingSsr": null,
+          "issueCode": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "INTL-RT-2ADT",
+      "label": "International RT 2ADT + seat/meal/bag + passport",
+      "journeyType": "ROUND_TRIP",
+      "international": true,
+      "adults": 2,
+      "verdict": "NOT TESTED",
+      "actual": "no fare with meal+baggage+seat; last=null",
+      "br": null,
+      "status": null,
+      "route": null,
+      "ssr": null,
+      "attempts": [
+        {
+          "route": "DEL-DXB",
+          "days": 59,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "INSUFFICIENT_BALANCE",
+          "error": null
+        },
+        {
+          "route": "DEL-DXB",
+          "days": 66,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "INSUFFICIENT_BALANCE",
+          "error": null
+        },
+        {
+          "route": "BOM-BKK",
+          "days": 61,
+          "stage": "ssr",
+          "br": null,
+          "missingSsr": {
+            "meal": true,
+            "baggage": true,
+            "seat": false,
+            "seatsAllowed": true
+          },
+          "issueCode": null,
+          "error": null
+        },
+        {
+          "route": "BOM-BKK",
+          "days": 68,
+          "stage": "issue",
+          "br": null,
+          "missingSsr": null,
+          "issueCode": "VALIDATION_ERROR",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

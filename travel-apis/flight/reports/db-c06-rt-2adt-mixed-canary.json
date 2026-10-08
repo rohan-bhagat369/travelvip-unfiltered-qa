@@ -1,0 +1,65 @@
+{
+  "ranAt": "2026-08-12T11:19:36.091Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "C06",
+  "checks": [
+    "V076",
+    "V077"
+  ],
+  "fixture": {
+    "br": "BR1786533510402978",
+    "status": "Confirmed",
+    "route": "BOM-DEL",
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "M61H5F",
+        "onlineCancellation": true
+      },
+      {
+        "direction": "RETURN",
+        "pnr": "CH5MNB",
+        "onlineCancellation": true
+      }
+    ],
+    "pnrs": [
+      "M61H5F",
+      "CH5MNB"
+    ],
+    "pax": [
+      "PAX1",
+      "PAX2"
+    ],
+    "onwardPnr": "M61H5F",
+    "returnPnr": "CH5MNB"
+  },
+  "midStatus": "Partially cancelled",
+  "onlineReturnCancel": {
+    "pnr": "CH5MNB",
+    "leg": "RETURN",
+    "mode": "ONLINE_FULL",
+    "http": 200,
+    "status": "Cancelled",
+    "paxScope": null,
+    "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786533510402978\",\"pnr\":\"CH5MNB\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":15292,\"createdAt\":\"2026-08-12T11:19:08Z\"},\"refundSummary\":{\"amount\":15292,\"cancellationCharge\":350,\"cancellationChargeBreakup\":{\"airlineCancellationFee\":0,\"convenienceFee\":0,\"serviceFee\":350,\"flexicancelFee\":0}},\"transaction\":{\"id\":\"405\",\"amount\":15292,\"currency\":\"INR\",\"paymentMethod\":\"wallet\",\"type\":\"refund\",\"status\":\"success\",\"createdAt\":\"2026-08-12T11:19:22Z\",\"completedAt\":\"2026-08-12T11:19:22Z\"}}"
+  },
+  "paxwiseOnwardCancel": {
+    "pnr": "M61H5F",
+    "leg": "ONWARD",
+    "mode": "PAXWISE_PAX2",
+    "http": 200,
+    "status": "Cancellation Requested",
+    "paxScope": {
+      "scope": "PARTIAL_PAX",
+      "cancellationPaxList": [
+        "PAX2"
+      ],
+      "totalPaxOnPnr": 2,
+      "cancelledPaxCount": 1,
+      "prorated": true
+    },
+    "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786533510402978\",\"pnr\":\"M61H5F\",\"cancellationRequest\":{\"status\":\"Cancellation Requested\",\"message\":\"No estimated cancellation and refund amount available\",\"createdAt\":\"2026-08-12T11:19:30Z\"},\"paxScope\":{\"scope\":\"PARTIAL_PAX\",\"cancellationPaxList\":[\"PAX2\"],\"totalPaxOnPnr\":2,\"cancelledPaxCount\":1,\"prorated\":true}},\"_meta\":{\"correlation_id\":\"b90c72e1-0545-4de2-9250-ba4c5cda4381\"}}"
+  },
+  "afterStatus": "Partially cancelled",
+  "dbSql": "USE travelx;\nSET @br := 'BR1786533510402978';\n\n-- V076: expect 2 cancellation_request — ONLINE (return) + OFFLINE/requested (onward paxwise)\nSELECT cr.id, cr.pnr, cr.flight_journey_id, fj.direction,\n       cr.cancellation_type, cr.mode, cr.status, cr.created_at\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nLEFT JOIN flight_journey fj ON fj.id = cr.flight_journey_id\nWHERE b.booking_reference = @br\nORDER BY cr.id;\n\n-- V077: same booking_item\nSELECT cr.id, cr.booking_item_id, cr.pnr, cr.mode, cr.status\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cr.id;\n\nSELECT b.booking_reference, b.cancelled_at, bi.id, bsm.backend_status, bsm.user_status\nFROM booking b\nJOIN booking_item bi ON bi.booking_id = b.id\nLEFT JOIN booking_status_mapping bsm ON bsm.id = bi.current_status_mapping_id\nWHERE b.booking_reference = @br;"
+}

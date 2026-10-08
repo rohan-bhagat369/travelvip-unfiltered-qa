@@ -1,0 +1,81 @@
+{
+  "ranAt": "2026-08-12T10:58:30.502Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "C03",
+  "checks": [
+    "V067",
+    "V068",
+    "V069",
+    "V070"
+  ],
+  "interpretation": {
+    "V067": "cancellation_request only for RETURN journey/PNR",
+    "V068": "return journey/cells cancelled or cancel-requested; onward not",
+    "V069": "onward PNR/journey still live",
+    "V070": "booking not fully cancelled (cancelled_at NULL / still Confirmed or partial)"
+  },
+  "fixture": {
+    "br": "BR1786532280192377",
+    "status": "Confirmed",
+    "route": "DEL-BOM",
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "I55IRY",
+        "onlineCancellation": true
+      },
+      {
+        "direction": "RETURN",
+        "pnr": "F9JCUZ",
+        "onlineCancellation": true
+      }
+    ],
+    "pnrs": [
+      "I55IRY",
+      "F9JCUZ"
+    ],
+    "onwardPnr": "I55IRY",
+    "returnPnr": "F9JCUZ",
+    "distinctPnrs": true
+  },
+  "cancelResult": {
+    "http": 200,
+    "code": null,
+    "cancelStatus": "Cancelled",
+    "paxScope": null,
+    "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786532280192377\",\"pnr\":\"F9JCUZ\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":9517,\"createdAt\":\"2026-08-12T10:58:17Z\"},\"refundSummary\":{\"amount\":9517,\"cancellationCharge\":350,\"cancellationChargeBreakup\":{\"airlineCancellationFee\":0,\"convenienceFee\":0,\"serviceFee\":350,\"flexicancelFee\":0}},\"transaction\":{\"id\":\"402\",\"amount\":9517,\"currency\":\"INR\",\"paymentMethod\":\"wallet\",\"type\":\"refund\",\"status\":\"success\",\"createdAt\":\"2026-08-12T10:58:24Z\",\"completedAt\":\"2026-08-12T10:58:24Z\"}},\"_meta\":{\"correlation_id\":\"9a25911d-1798-4765-83b9-69affbad691a\"}}",
+    "penaltyStatus": "Penalty Fetched"
+  },
+  "afterStatus": "Partially cancelled",
+  "afterLegs": [
+    {
+      "direction": "ONWARD",
+      "pnr": "I55IRY",
+      "onlineCancellation": true
+    },
+    {
+      "direction": "RETURN",
+      "pnr": "F9JCUZ",
+      "onlineCancellation": true
+    }
+  ],
+  "dbSql": [
+    "USE travelx;",
+    "SET @br := 'BR1786532280192377';",
+    "",
+    "-- booking",
+    "SELECT id, booking_reference, confirmed_at, cancelled_at\nFROM booking WHERE booking_reference = @br;",
+    "",
+    "-- journeys (expect return cancel; onward live)",
+    "SELECT fj.id, fj.sequence, fj.direction, fj.origin, fj.destination, fj.airline_pnr, fj.status\nFROM flight_journey fj\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY fj.sequence;",
+    "",
+    "-- V067: cancel requests — should be return PNR only",
+    "SELECT cr.*\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cr.id DESC;",
+    "",
+    "-- cancel passengers linked",
+    "SELECT cp.*, bp.pax_id, bp.first_name, cr.pnr AS request_pnr, cr.flight_journey_id\nFROM cancellation_passenger cp\nJOIN cancellation_request cr ON cr.id = cp.cancellation_request_id\nJOIN booking_passenger bp ON bp.id = cp.booking_passenger_id\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cp.id;",
+    "",
+    "-- cells both legs",
+    "SELECT bp.pax_id, fj.sequence, fj.direction, fj.airline_pnr,\n       fjp.id AS cell_id, fjp.eticket_number, fjp.pnr_override\nFROM flight_journey_passenger fjp\nJOIN flight_journey fj ON fj.id = fjp.flight_journey_id\nJOIN booking_passenger bp ON bp.id = fjp.booking_passenger_id\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY fj.sequence, bp.pax_id;"
+  ]
+}

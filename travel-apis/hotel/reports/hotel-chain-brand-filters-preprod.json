@@ -1,0 +1,181 @@
+{
+  "ranAt": "2026-08-27T13:21:25.818Z",
+  "baseUrl": "https://api-preprod.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 8,
+  "noBook": true,
+  "checkin": "2026-10-14",
+  "checkout": "2026-10-15",
+  "entityId": "357389:IN",
+  "baseline": {
+    "http": 401,
+    "total": null,
+    "requestId": null,
+    "filters": [],
+    "chainFacets": [],
+    "brandFacets": []
+  },
+  "score": {
+    "PASS": 1,
+    "BUG": 9,
+    "NOT TESTED": 6,
+    "total": 16
+  },
+  "rows": [
+    {
+      "section": "Baseline",
+      "n": 1,
+      "rule": "Unfiltered CITY search HTTP 200 with results",
+      "how": "POST /v1/hotels/search Mumbai fq=[]",
+      "expected": "HTTP 200, totalResults>0, filters[] present",
+      "actual": "http=401 total=NaN results=0 filters=0",
+      "status": "BUG",
+      "requestId": null,
+      "filters": []
+    },
+    {
+      "section": "Baseline",
+      "n": 2,
+      "rule": "Chain filter advertised in filters[]",
+      "how": "scan filters for name/indexField matching /chain/i",
+      "expected": "Chain filter present with facets",
+      "actual": "NOT FOUND. filters=",
+      "status": "BUG",
+      "requestId": null
+    },
+    {
+      "section": "Baseline",
+      "n": 3,
+      "rule": "Brand filter advertised in filters[]",
+      "how": "scan filters for name/indexField matching /brand/i",
+      "expected": "Brand filter present with facets",
+      "actual": "NOT FOUND. filters=",
+      "status": "BUG",
+      "requestId": null
+    },
+    {
+      "section": "Baseline",
+      "n": 4,
+      "rule": "Hotel result exposes chain/brand fields (or only via name)",
+      "how": "inspect first unfiltered hotel keys",
+      "expected": "chain and/or brand field present on hotel object (preferred)",
+      "actual": "no hotels",
+      "status": "BUG",
+      "requestId": null,
+      "sampleHotelSnippet": "null"
+    },
+    {
+      "section": "Chain",
+      "n": 1,
+      "rule": "Positive single chain filter",
+      "how": "needs chain facet",
+      "expected": "narrowed results",
+      "actual": "no chain facets",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "Chain",
+      "n": 2,
+      "rule": "Negative: unknown chain facetKey",
+      "how": "fq chain:NOT_A_REAL_CHAIN_XYZ",
+      "expected": "HTTP 200 empty/0 results, never 500; must NOT ignore filter (same as baseline)",
+      "actual": "http=401 total=NaN baseline=NaN code=INVALID_SIGNATURE",
+      "status": "BUG",
+      "requestId": null
+    },
+    {
+      "section": "Chain",
+      "n": 3,
+      "rule": "Negative: valueless chain fq ignored",
+      "how": "fq chain:",
+      "expected": "HTTP 200; full/near-full total (ignored), never 500",
+      "actual": "http=401 total=NaN baseline=NaN",
+      "status": "BUG",
+      "requestId": null
+    },
+    {
+      "section": "Chain",
+      "n": 4,
+      "rule": "Negative: punctuation in chain value (no 500)",
+      "how": "fq chain:Taj,",
+      "expected": "HTTP 200 or 4xx with error.code; never 500",
+      "actual": "http=401 total=NaN code=INVALID_SIGNATURE",
+      "status": "PASS",
+      "requestId": null
+    },
+    {
+      "section": "Brand",
+      "n": 1,
+      "rule": "Positive single brand filter",
+      "how": "needs brand facet",
+      "expected": "narrowed results",
+      "actual": "no brand facets",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "Brand",
+      "n": 2,
+      "rule": "Negative: unknown brand facetKey",
+      "how": "fq brand:NOT_A_REAL_BRAND_XYZ",
+      "expected": "HTTP 200 empty/0; never 500; must not ignore",
+      "actual": "http=401 total=NaN baseline=NaN",
+      "status": "BUG",
+      "requestId": null
+    },
+    {
+      "section": "Brand",
+      "n": 3,
+      "rule": "Negative: valueless brand fq ignored",
+      "how": "fq brand:",
+      "expected": "HTTP 200 full total, never 500",
+      "actual": "http=401 total=NaN baseline=NaN",
+      "status": "BUG",
+      "requestId": null
+    },
+    {
+      "section": "Compose",
+      "n": 1,
+      "rule": "Chain + brand compose",
+      "how": "need both facets",
+      "expected": "AND total",
+      "actual": "missing facet",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "Existing",
+      "n": 1,
+      "rule": "Star filter present",
+      "how": "baseline filters",
+      "expected": "star filter exists",
+      "actual": "missing",
+      "status": "BUG"
+    },
+    {
+      "section": "Existing",
+      "n": 2,
+      "rule": "GST filter present",
+      "how": "baseline",
+      "expected": "optional",
+      "actual": "not advertised",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "Existing",
+      "n": 3,
+      "rule": "Policy filter present",
+      "how": "baseline",
+      "expected": "optional",
+      "actual": "not advertised",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "Existing",
+      "n": 4,
+      "rule": "Meal filter",
+      "how": "not advertised or empty",
+      "expected": "optional regression",
+      "actual": "skip",
+      "status": "NOT TESTED"
+    }
+  ]
+}

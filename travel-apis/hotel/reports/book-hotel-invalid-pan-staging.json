@@ -1,0 +1,24 @@
+{
+  "host": "https://api-staging.travelvip.ai",
+  "at": "2026-08-16T11:40:09.728Z",
+  "note": "Baseline Hilltop flow; only contact.panCardNumber mutated to BADPAN. Expected reject.",
+  "hotel": "Hilltop Hotel Mumbai",
+  "entityId": "39627872:IN",
+  "isPANMandatory": true,
+  "invalidPan": "BADPAN",
+  "panCardName": "Rohan Bhagat",
+  "checkin": "2026-09-13",
+  "checkout": "2026-09-14",
+  "finalizeHttp": 400,
+  "errorCode": "VALIDATION_ERROR",
+  "errorMessage": "Validation failed",
+  "errorDetails": [
+    "'contact.panCardNumber' must be a valid PAN (five letters, four digits, one letter)"
+  ],
+  "br": null,
+  "bookStatus": null,
+  "expected": "HTTP 400 VALIDATION_ERROR (invalid PAN); no booking",
+  "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"'contact.panCardNumber' must be a valid PAN (five letters, four digits, one letter)\"]",
+  "status": "PASS",
+  "finalizeSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.panCardNumber' must be a valid PAN (five letters, four digits, one letter)\"],\"timestamp\":\"2026-08-16T11:40:09Z\",\"request_id\":\"req-1786880409681\"},\"_meta\":{\"correlation_id\":\"c4a66853-b16d-4a2b-ba65-ca758b0a6b5a\"}}"
+}

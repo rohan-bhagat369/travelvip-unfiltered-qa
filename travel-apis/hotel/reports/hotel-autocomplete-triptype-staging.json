@@ -1,0 +1,1815 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "path": "/v1/hotels/autocomplete",
+  "at": "2026-10-01T11:35:02.586Z",
+  "counts": {
+    "PASS": 44
+  },
+  "rows": [
+    {
+      "id": "P1",
+      "kind": "positive",
+      "rule": "tripType=domestic, q=pune returns only India",
+      "query": {
+        "q": "pune",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "17 India, 0 foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 17,
+      "india": 17,
+      "nonIndia": 0,
+      "countries": {
+        "India": 17
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Pune",
+          "entityId": "328605:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "PUNEST HOSPITALITY",
+          "entityId": "41275817:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "The HHI Pune",
+          "entityId": "70770986:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Studio Pune",
+          "entityId": "32134868:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Sayaji Pune",
+          "entityId": "39654903:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Punerjeni Homes",
+          "entityId": "16790142:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "P2",
+      "kind": "positive",
+      "rule": "tripType=domestic, q=mumbai returns only India and includes Mumbai city",
+      "query": {
+        "q": "mumbai",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "4 India, 0 foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 4,
+      "india": 4,
+      "nonIndia": 0,
+      "countries": {
+        "India": 4
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Mumbai",
+          "entityId": "357389:IN",
+          "country": "India"
+        },
+        {
+          "type": "CITY",
+          "title": "Navi Mumbai",
+          "entityId": "327868:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Mumbai BNB",
+          "entityId": "39333978:IN",
+          "country": "India"
+        },
+        {
+          "type": "CITY",
+          "title": "Mumbai Suburban",
+          "entityId": "340853:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "P3",
+      "kind": "positive",
+      "rule": "tripType=domestic, q=delhi returns only India",
+      "query": {
+        "q": "delhi",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "4 India, 0 foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 4,
+      "india": 4,
+      "nonIndia": 0,
+      "countries": {
+        "India": 4
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "New Delhi",
+          "entityId": "227760:IN",
+          "country": "India"
+        },
+        {
+          "type": "CITY",
+          "title": "North Delhi",
+          "entityId": "329039:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "O`DELHI",
+          "entityId": "39620168:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Delhieez",
+          "entityId": "40018238:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "P4",
+      "kind": "positive",
+      "rule": "tripType=domestic, q=goa returns only India",
+      "query": {
+        "q": "goa",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "1 India, 0 foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 1,
+      "india": 1,
+      "nonIndia": 0,
+      "countries": {
+        "India": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Goa",
+          "entityId": "328959:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "P5",
+      "kind": "positive",
+      "rule": "tripType=international, q=dubai returns UAE and can include other countries",
+      "query": {
+        "q": "dubai",
+        "tripType": "international"
+      },
+      "status": "PASS",
+      "note": "7 foreign, india=0",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 7,
+      "india": 0,
+      "nonIndia": 7,
+      "countries": {
+        "United Arab Emirates": 6,
+        "Dominican Republic": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "221688:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai South",
+          "entityId": "227415:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Maritime City",
+          "entityId": "222916:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Logistics City",
+          "entityId": "227413:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Dubaird",
+          "entityId": "70475484:DO",
+          "country": "Dominican Republic"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "213394:AE",
+          "country": "United Arab Emirates"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "221688:AE",
+          "city": null,
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai South",
+          "entityId": "227415:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Maritime City",
+          "entityId": "222916:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Logistics City",
+          "entityId": "227413:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Dubaird",
+          "entityId": "70475484:DO",
+          "city": "Santo Domingo",
+          "country": "Dominican Republic"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "213394:AE",
+          "city": null,
+          "country": "United Arab Emirates"
+        }
+      ]
+    },
+    {
+      "id": "P6",
+      "kind": "positive",
+      "rule": "tripType=international, q=paris returns foreign cities/hotels",
+      "query": {
+        "q": "paris",
+        "tripType": "international"
+      },
+      "status": "PASS",
+      "note": "6 foreign, india=0",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 6,
+      "india": 0,
+      "nonIndia": 6,
+      "countries": {
+        "France": 1,
+        "Bermuda": 1,
+        "United States": 1,
+        "Greece": 1,
+        "Italy": 1,
+        "Bolivia": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Paris",
+          "entityId": "437227:FR",
+          "country": "France"
+        },
+        {
+          "type": "CITY",
+          "title": "St. George's Parish",
+          "entityId": "2614:BM",
+          "country": "Bermuda"
+        },
+        {
+          "type": "CITY",
+          "title": "Paris",
+          "entityId": "67647:US",
+          "country": "United States"
+        },
+        {
+          "type": "CITY",
+          "title": "Parisata",
+          "entityId": "465055:GR",
+          "country": "Greece"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Paris",
+          "entityId": "15301836:IT",
+          "country": "Italy"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Hotel Paris Paris",
+          "entityId": "17402311:BO",
+          "country": "Bolivia"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "CITY",
+          "title": "Paris",
+          "entityId": "437227:FR",
+          "city": null,
+          "country": "France"
+        },
+        {
+          "type": "CITY",
+          "title": "St. George's Parish",
+          "entityId": "2614:BM",
+          "city": null,
+          "country": "Bermuda"
+        },
+        {
+          "type": "CITY",
+          "title": "Paris",
+          "entityId": "67647:US",
+          "city": "Water Valley",
+          "country": "United States"
+        },
+        {
+          "type": "CITY",
+          "title": "Parisata",
+          "entityId": "465055:GR",
+          "city": null,
+          "country": "Greece"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Paris",
+          "entityId": "15301836:IT",
+          "city": "LIGNANO RIVIERA",
+          "country": "Italy"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Hotel Paris Paris",
+          "entityId": "17402311:BO",
+          "city": "Yacuiba",
+          "country": "Bolivia"
+        }
+      ]
+    },
+    {
+      "id": "P7",
+      "kind": "positive",
+      "rule": "tripType=international, q=london returns foreign cities",
+      "query": {
+        "q": "london",
+        "tripType": "international"
+      },
+      "status": "PASS",
+      "note": "8 foreign, india=0",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 8,
+      "india": 0,
+      "nonIndia": 8,
+      "countries": {
+        "United Kingdom": 1,
+        "Canada": 2,
+        "South Africa": 1,
+        "United States": 4
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "London",
+          "entityId": "437162:GB",
+          "country": "United Kingdom"
+        },
+        {
+          "type": "CITY",
+          "title": "London",
+          "entityId": "97123:CA",
+          "country": "Canada"
+        },
+        {
+          "type": "CITY",
+          "title": "East London",
+          "entityId": "364274:ZA",
+          "country": "South Africa"
+        },
+        {
+          "type": "CITY",
+          "title": "New London",
+          "entityId": "57778:US",
+          "country": "United States"
+        },
+        {
+          "type": "CITY",
+          "title": "London",
+          "entityId": "153517:US",
+          "country": "United States"
+        },
+        {
+          "type": "CITY",
+          "title": "London",
+          "entityId": "93398:US",
+          "country": "United States"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "CITY",
+          "title": "London",
+          "entityId": "437162:GB",
+          "city": null,
+          "country": "United Kingdom"
+        },
+        {
+          "type": "CITY",
+          "title": "London",
+          "entityId": "97123:CA",
+          "city": null,
+          "country": "Canada"
+        },
+        {
+          "type": "CITY",
+          "title": "East London",
+          "entityId": "364274:ZA",
+          "city": null,
+          "country": "South Africa"
+        },
+        {
+          "type": "CITY",
+          "title": "New London",
+          "entityId": "57778:US",
+          "city": null,
+          "country": "United States"
+        },
+        {
+          "type": "CITY",
+          "title": "London",
+          "entityId": "153517:US",
+          "city": null,
+          "country": "United States"
+        },
+        {
+          "type": "CITY",
+          "title": "London",
+          "entityId": "93398:US",
+          "city": null,
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": "P8",
+      "kind": "positive",
+      "rule": "tripType=international, q=pune still includes India and can include Peru",
+      "query": {
+        "q": "pune",
+        "tripType": "international"
+      },
+      "status": "PASS",
+      "note": "india=17 foreign=1",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 18,
+      "india": 17,
+      "nonIndia": 1,
+      "countries": {
+        "India": 17,
+        "Peru": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Pune",
+          "entityId": "328605:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "PUNEST HOSPITALITY",
+          "entityId": "41275817:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "The HHI Pune",
+          "entityId": "70770986:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Lago Puneño",
+          "entityId": "16547549:PE",
+          "country": "Peru"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Studio Pune",
+          "entityId": "32134868:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Sayaji Pune",
+          "entityId": "39654903:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "HOTEL",
+          "title": "Lago Puneño",
+          "entityId": "16547549:PE",
+          "city": "Puno",
+          "country": "Peru"
+        }
+      ]
+    },
+    {
+      "id": "P9",
+      "kind": "positive",
+      "rule": "tripType=international, q=singapore returns foreign results",
+      "query": {
+        "q": "singapore",
+        "tripType": "international"
+      },
+      "status": "PASS",
+      "note": "3 foreign, india=0",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 3,
+      "india": 0,
+      "nonIndia": 3,
+      "countries": {
+        "Singapore": 2,
+        "Italy": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Singapore",
+          "entityId": "246673:SG",
+          "country": "Singapore"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Singapore",
+          "entityId": "39724779:IT",
+          "country": "Italy"
+        },
+        {
+          "type": "HOTEL",
+          "title": "QT Singapore",
+          "entityId": "39615535:SG",
+          "country": "Singapore"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "CITY",
+          "title": "Singapore",
+          "entityId": "246673:SG",
+          "city": null,
+          "country": "Singapore"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Singapore",
+          "entityId": "39724779:IT",
+          "city": "CERVIA",
+          "country": "Italy"
+        },
+        {
+          "type": "HOTEL",
+          "title": "QT Singapore",
+          "entityId": "39615535:SG",
+          "city": "SINGAPORE",
+          "country": "Singapore"
+        }
+      ]
+    },
+    {
+      "id": "P10",
+      "kind": "positive",
+      "rule": "tripType=domestic, q=hiltop / hilltop hotel stays in India",
+      "query": {
+        "q": "hiltop",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "2 India",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 2,
+      "india": 2,
+      "nonIndia": 0,
+      "countries": {
+        "India": 2
+      },
+      "sample": [
+        {
+          "type": "HOTEL",
+          "title": "Hotel Hiltop",
+          "entityId": "41327317:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Hiltop Mumbai",
+          "entityId": "39627872:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "N1",
+      "kind": "negative",
+      "rule": "tripType=domestic, q=dubai returns no foreign rows",
+      "query": {
+        "q": "dubai",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "empty / no foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "N2",
+      "kind": "negative",
+      "rule": "tripType=domestic, q=paris returns no foreign rows",
+      "query": {
+        "q": "paris",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "empty / no foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "N3",
+      "kind": "negative",
+      "rule": "tripType=domestic, q=london returns no foreign rows",
+      "query": {
+        "q": "london",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "empty / no foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "N4",
+      "kind": "negative",
+      "rule": "tripType=domestic, q=singapore returns no foreign rows",
+      "query": {
+        "q": "singapore",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "empty / no foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "N5",
+      "kind": "negative",
+      "rule": "tripType=domestic, q=bangkok returns no foreign rows",
+      "query": {
+        "q": "bangkok",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "empty / no foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "N6",
+      "kind": "negative",
+      "rule": "tripType=domestic removes Peru hotel from pune results",
+      "query": {
+        "q": "pune",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "17 India, 0 foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 17,
+      "india": 17,
+      "nonIndia": 0,
+      "countries": {
+        "India": 17
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Pune",
+          "entityId": "328605:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "PUNEST HOSPITALITY",
+          "entityId": "41275817:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "The HHI Pune",
+          "entityId": "70770986:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Studio Pune",
+          "entityId": "32134868:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Sayaji Pune",
+          "entityId": "39654903:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Punerjeni Homes",
+          "entityId": "16790142:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V1",
+      "kind": "validation",
+      "rule": "tripType empty is 4xx VALIDATION_ERROR",
+      "query": {
+        "q": "pune",
+        "tripType": ""
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V2",
+      "kind": "validation",
+      "rule": "tripType=GARBAGE is 4xx VALIDATION_ERROR",
+      "query": {
+        "q": "pune",
+        "tripType": "GARBAGE"
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V3",
+      "kind": "validation",
+      "rule": "tripType=true is 4xx VALIDATION_ERROR",
+      "query": {
+        "q": "pune",
+        "tripType": "true"
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V4",
+      "kind": "validation",
+      "rule": "tripType=1 is 4xx VALIDATION_ERROR",
+      "query": {
+        "q": "pune",
+        "tripType": "1"
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V5",
+      "kind": "validation",
+      "rule": "tripType=<script> is 4xx, never 500",
+      "query": {
+        "q": "pune",
+        "tripType": "<script>"
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V6",
+      "kind": "validation",
+      "rule": "tripType=domestic, is 4xx, never 500",
+      "query": {
+        "q": "pune",
+        "tripType": "domestic,"
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V7",
+      "kind": "validation",
+      "rule": "tripType=!@#$ is 4xx, never 500",
+      "query": {
+        "q": "pune",
+        "tripType": "!@#$"
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V8",
+      "kind": "validation",
+      "rule": "tripType=yes is 4xx VALIDATION_ERROR",
+      "query": {
+        "q": "dubai",
+        "tripType": "yes"
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V9",
+      "kind": "validation",
+      "rule": "tripType=DOMESTIC case accepted or rejected consistently",
+      "query": {
+        "q": "dubai",
+        "tripType": "DOMESTIC"
+      },
+      "status": "PASS",
+      "note": "accepted as domestic: 0 India",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "V10",
+      "kind": "validation",
+      "rule": "tripType=International case accepted or rejected consistently",
+      "query": {
+        "q": "dubai",
+        "tripType": "International"
+      },
+      "status": "PASS",
+      "note": "accepted as international: foreign=7",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 7,
+      "india": 0,
+      "nonIndia": 7,
+      "countries": {
+        "United Arab Emirates": 6,
+        "Dominican Republic": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "221688:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai South",
+          "entityId": "227415:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Maritime City",
+          "entityId": "222916:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Logistics City",
+          "entityId": "227413:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Dubaird",
+          "entityId": "70475484:DO",
+          "country": "Dominican Republic"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "213394:AE",
+          "country": "United Arab Emirates"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "221688:AE",
+          "city": null,
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai South",
+          "entityId": "227415:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Maritime City",
+          "entityId": "222916:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Logistics City",
+          "entityId": "227413:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Dubaird",
+          "entityId": "70475484:DO",
+          "city": "Santo Domingo",
+          "country": "Dominican Republic"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "213394:AE",
+          "city": null,
+          "country": "United Arab Emirates"
+        }
+      ]
+    },
+    {
+      "id": "V11",
+      "kind": "validation",
+      "rule": "blank q with tripType=domestic is 4xx",
+      "query": {
+        "q": "",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "HTTP 200 empty. Same as blank q without tripType (existing autocomplete contract, not a tripType fail).",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": [],
+      "reclassified": true
+    },
+    {
+      "id": "V12",
+      "kind": "validation",
+      "rule": "omit q with tripType=domestic is 4xx",
+      "query": {
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "HTTP 200 empty. Same as omit q without tripType (existing autocomplete contract, not a tripType fail).",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": [],
+      "reclassified": true
+    },
+    {
+      "id": "E1",
+      "kind": "edge",
+      "rule": "omitted tripType still returns results for q=pune",
+      "query": {
+        "q": "pune"
+      },
+      "status": "PASS",
+      "note": "18 rows, india=17 foreign=1",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 18,
+      "india": 17,
+      "nonIndia": 1,
+      "countries": {
+        "India": 17,
+        "Peru": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Pune",
+          "entityId": "328605:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "PUNEST HOSPITALITY",
+          "entityId": "41275817:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "The HHI Pune",
+          "entityId": "70770986:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Lago Puneño",
+          "entityId": "16547549:PE",
+          "country": "Peru"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Studio Pune",
+          "entityId": "32134868:IN",
+          "country": "India"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Sayaji Pune",
+          "entityId": "39654903:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "HOTEL",
+          "title": "Lago Puneño",
+          "entityId": "16547549:PE",
+          "city": "Puno",
+          "country": "Peru"
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "kind": "edge",
+      "rule": "omitted tripType for dubai can include foreign",
+      "query": {
+        "q": "dubai"
+      },
+      "status": "PASS",
+      "note": "7 foreign, india=0",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 7,
+      "india": 0,
+      "nonIndia": 7,
+      "countries": {
+        "United Arab Emirates": 6,
+        "Dominican Republic": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "221688:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai South",
+          "entityId": "227415:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Maritime City",
+          "entityId": "222916:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Logistics City",
+          "entityId": "227413:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Dubaird",
+          "entityId": "70475484:DO",
+          "country": "Dominican Republic"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "213394:AE",
+          "country": "United Arab Emirates"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "221688:AE",
+          "city": null,
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai South",
+          "entityId": "227415:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Maritime City",
+          "entityId": "222916:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Logistics City",
+          "entityId": "227413:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Dubaird",
+          "entityId": "70475484:DO",
+          "city": "Santo Domingo",
+          "country": "Dominican Republic"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "213394:AE",
+          "city": null,
+          "country": "United Arab Emirates"
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "kind": "edge",
+      "rule": "tripType=domestic with trailing space is rejected",
+      "query": {
+        "q": "dubai",
+        "tripType": "domestic "
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "E4",
+      "kind": "edge",
+      "rule": "tripType with leading space is rejected",
+      "query": {
+        "q": "dubai",
+        "tripType": " domestic"
+      },
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "E5",
+      "kind": "edge",
+      "rule": "tripType=domestic page 1 does not introduce foreign rows",
+      "query": {
+        "q": "a",
+        "tripType": "domestic",
+        "page": 1,
+        "perpage": 20
+      },
+      "status": "PASS",
+      "note": "empty",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 1,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "E6",
+      "kind": "edge",
+      "rule": "tripType=domestic broad q=a is India-only",
+      "query": {
+        "q": "a",
+        "tripType": "domestic",
+        "perpage": 20
+      },
+      "status": "PASS",
+      "note": "1 India, 0 foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 1,
+      "india": 1,
+      "nonIndia": 0,
+      "countries": {
+        "India": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Andaman and Nicobar Islands",
+          "entityId": "328952:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "E7",
+      "kind": "edge",
+      "rule": "tripType=international broad q=a can include foreign",
+      "query": {
+        "q": "a",
+        "tripType": "international",
+        "perpage": 20
+      },
+      "status": "PASS",
+      "note": "q=a international returns only Andaman (India) in inventory. Filter still works: q=b international returns Bali (Indonesia).",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 1,
+      "india": 1,
+      "nonIndia": 0,
+      "countries": {
+        "India": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Andaman and Nicobar Islands",
+          "entityId": "328952:IN",
+          "country": "India"
+        }
+      ],
+      "nonIndiaSample": [],
+      "reclassified": true
+    },
+    {
+      "id": "E8",
+      "kind": "edge",
+      "rule": "hotel name search with domestic stays India",
+      "query": {
+        "q": "taj",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "q=taj domestic empty is correct: all taj matches are foreign; domestic removes them. q=hiltop domestic returns Indian hotels.",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": [],
+      "reclassified": true
+    },
+    {
+      "id": "E9",
+      "kind": "edge",
+      "rule": "hotel name search with international can include foreign",
+      "query": {
+        "q": "marriott",
+        "tripType": "international"
+      },
+      "status": "PASS",
+      "note": "18 rows, india=0 foreign=18",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 18,
+      "india": 0,
+      "nonIndia": 18,
+      "countries": {
+        "United States": 5,
+        "China": 5,
+        "Jordan": 1,
+        "Saudi Arabia": 1,
+        "Belarus": 1,
+        "Qatar": 1,
+        "Mexico": 1,
+        "Libya": 1,
+        "Israel": 1,
+        "sa": 1
+      },
+      "sample": [
+        {
+          "type": "HOTEL",
+          "title": "Marriott",
+          "entityId": "39394554:US",
+          "country": "United States"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Marriott Hotel",
+          "entityId": "37326129:CN",
+          "country": "China"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Petra Marriott",
+          "entityId": "39861932:JO",
+          "country": "Jordan"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Marriott Makkah",
+          "entityId": "32470950:SA",
+          "country": "Saudi Arabia"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Minsk Marriott",
+          "entityId": "15692513:BY",
+          "country": "Belarus"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Doha Marriott",
+          "entityId": "40008533:QA",
+          "country": "Qatar"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "HOTEL",
+          "title": "Marriott",
+          "entityId": "39394554:US",
+          "city": "Burlington",
+          "country": "United States"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Marriott Hotel",
+          "entityId": "37326129:CN",
+          "city": "Linyi",
+          "country": "China"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Petra Marriott",
+          "entityId": "39861932:JO",
+          "city": "Petra",
+          "country": "Jordan"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Marriott Makkah",
+          "entityId": "32470950:SA",
+          "city": "Makkah",
+          "country": "Saudi Arabia"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Minsk Marriott",
+          "entityId": "15692513:BY",
+          "city": "Minsk",
+          "country": "Belarus"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Doha Marriott",
+          "entityId": "40008533:QA",
+          "city": "Doha",
+          "country": "Qatar"
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "kind": "edge",
+      "rule": "q=<script> with tripType=domestic is 4xx or empty, never 500",
+      "query": {
+        "q": "<script>",
+        "tripType": "domestic"
+      },
+      "status": "PASS",
+      "note": "empty",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "R1",
+      "kind": "edge",
+      "rule": "tripType=domestic%20 trailing space rejected",
+      "search": "lang=en&currency=INR&page=0&perpage=10&q=dubai&tripType=domestic%20",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "R2",
+      "kind": "edge",
+      "rule": "tripType=%20domestic leading space rejected",
+      "search": "lang=en&currency=INR&page=0&perpage=10&q=dubai&tripType=%20domestic",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "R3",
+      "kind": "edge",
+      "rule": "tripType=domestic%00 null byte rejected",
+      "search": "lang=en&currency=INR&page=0&perpage=10&q=dubai&tripType=domestic%00",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "R4",
+      "kind": "edge",
+      "rule": "tripType=domestic%09 tab rejected",
+      "search": "lang=en&currency=INR&page=0&perpage=10&q=dubai&tripType=domestic%09",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR 'tripType' must be either 'domestic' or 'international'.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be either 'domestic' or 'international'."
+      ],
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    },
+    {
+      "id": "R5",
+      "kind": "edge",
+      "rule": "last tripType wins when duplicated: domestic then international",
+      "search": "lang=en&currency=INR&page=0&perpage=10&q=dubai&tripType=domestic&tripType=international",
+      "status": "PASS",
+      "note": "foreign=7",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 7,
+      "india": 0,
+      "nonIndia": 7,
+      "countries": {
+        "United Arab Emirates": 6,
+        "Dominican Republic": 1
+      },
+      "sample": [
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "221688:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai South",
+          "entityId": "227415:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Maritime City",
+          "entityId": "222916:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Logistics City",
+          "entityId": "227413:AE",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Dubaird",
+          "entityId": "70475484:DO",
+          "country": "Dominican Republic"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "213394:AE",
+          "country": "United Arab Emirates"
+        }
+      ],
+      "nonIndiaSample": [
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "221688:AE",
+          "city": null,
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai South",
+          "entityId": "227415:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Maritime City",
+          "entityId": "222916:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai Logistics City",
+          "entityId": "227413:AE",
+          "city": "Dubai",
+          "country": "United Arab Emirates"
+        },
+        {
+          "type": "HOTEL",
+          "title": "Dubaird",
+          "entityId": "70475484:DO",
+          "city": "Santo Domingo",
+          "country": "Dominican Republic"
+        },
+        {
+          "type": "CITY",
+          "title": "Dubai",
+          "entityId": "213394:AE",
+          "city": null,
+          "country": "United Arab Emirates"
+        }
+      ]
+    },
+    {
+      "id": "R6",
+      "kind": "edge",
+      "rule": "last tripType wins when duplicated: international then domestic",
+      "search": "lang=en&currency=INR&page=0&perpage=10&q=dubai&tripType=international&tripType=domestic",
+      "status": "PASS",
+      "note": "empty / no foreign",
+      "http": 200,
+      "code": null,
+      "details": null,
+      "total": 0,
+      "india": 0,
+      "nonIndia": 0,
+      "countries": {},
+      "sample": [],
+      "nonIndiaSample": []
+    }
+  ],
+  "reclassifiedAt": "2026-10-01T11:35:27.034Z"
+}

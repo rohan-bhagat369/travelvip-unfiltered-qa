@@ -1,0 +1,4844 @@
+{
+  "x-generator": "NSwag v14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Centvis Mdm Endpoints",
+    "description": "Centvis Mdm Api",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://d-byufuel-api.azurewebsites.net"
+    }
+  ],
+  "paths": {
+    "/api/uco-configurations": {
+      "post": {
+        "tags": [
+          "Uco-Configurations"
+        ],
+        "summary": "Create UCOConfiguration",
+        "description": "Creates a new UCOConfiguration",
+        "operationId": "Geography_CentvisMdmMdmApiUCOConfigurationTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateUCOConfigurationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableCreateUCOConfigurationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableUCOConfigurationResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Uco-Configurations"
+        ],
+        "summary": "Get All  UCOConfigurations",
+        "description": "Get All UCOConfigurations",
+        "operationId": "Geography_CentvisMdmMdmApiUCOConfigurationTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableUCOConfigurationResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/uco-configurations/{ucoConfigurationId}": {
+      "delete": {
+        "tags": [
+          "Uco-Configurations"
+        ],
+        "summary": "Delete UCOConfiguration By Id",
+        "description": "Deletes an UCOConfiguration by Id",
+        "operationId": "Geography_CentvisMdmMdmApiUCOConfigurationTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "ucoConfigurationId",
+            "in": "path",
+            "required": true,
+            "description": "UCOConfiguration Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Uco-Configurations"
+        ],
+        "summary": "Get UCOConfiguration By Id",
+        "description": "Retrieves an UCOConfiguration by Id",
+        "operationId": "Geography_CentvisMdmMdmApiUCOConfigurationTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "ucoConfigurationId",
+            "in": "path",
+            "required": true,
+            "description": "UCOConfiguration Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableUCOConfigurationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Uco-Configurations"
+        ],
+        "summary": "Update UCOConfiguration",
+        "description": "Update UCOConfiguration",
+        "operationId": "Geography_CentvisMdmMdmApiUCOConfigurationTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "ucoConfigurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateUCOConfigurationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableUpdateUCOConfigurationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/uco-configurations/{typeCode}/{operationalAreaId}": {
+      "get": {
+        "tags": [
+          "Uco-Configurations"
+        ],
+        "summary": "Get UCOConfiguration By TypeCode And OperationalArea",
+        "description": "Retrieves an UCOConfiguration by TypeCode and OperationalArea",
+        "operationId": "Geography_CentvisMdmMdmApiUCOConfigurationTableGetByTypeCodeEndpoint",
+        "parameters": [
+          {
+            "name": "typeCode",
+            "in": "path",
+            "required": true,
+            "description": "Type Code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "operationalAreaId",
+            "in": "path",
+            "required": true,
+            "description": "Operational AreaId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/uco-configurations/search": {
+      "get": {
+        "tags": [
+          "Uco-Configurations"
+        ],
+        "summary": "Search  UCOConfigurations",
+        "description": "Search UCOConfigurations",
+        "operationId": "Geography_CentvisMdmMdmApiUCOConfigurationTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfUCOConfigurationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/types": {
+      "post": {
+        "tags": [
+          "Types"
+        ],
+        "summary": "Create Type",
+        "description": "Creates a new Type",
+        "operationId": "Geography_CentvisMdmTypesApiTypeTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateTypeRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmTypesCoreTypeTableCreateTypeRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmTypesCoreTypeTableTypeResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Types"
+        ],
+        "summary": "Get All  Types",
+        "description": "Get All Types",
+        "operationId": "Geography_CentvisMdmTypesApiTypeTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisMdmTypesCoreTypeTableTypeResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/types/{typeId}": {
+      "delete": {
+        "tags": [
+          "Types"
+        ],
+        "summary": "Delete Type By Id",
+        "description": "Deletes an Type by Id",
+        "operationId": "Geography_CentvisMdmTypesApiTypeTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "typeId",
+            "in": "path",
+            "required": true,
+            "description": "Type Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Types"
+        ],
+        "summary": "Get Type By Id",
+        "description": "Retrieves an Type by Id",
+        "operationId": "Geography_CentvisMdmTypesApiTypeTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "typeId",
+            "in": "path",
+            "required": true,
+            "description": "Type Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmTypesCoreTypeTableTypeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Types"
+        ],
+        "summary": "Update Type",
+        "description": "Update Type",
+        "operationId": "Geography_CentvisMdmTypesApiTypeTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "typeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateTypesDescription",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmTypesCoreTypeTableUpdateTypesDescription"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/types/search": {
+      "get": {
+        "tags": [
+          "Types"
+        ],
+        "summary": "Search  Types",
+        "description": "Search Types",
+        "operationId": "Geography_CentvisMdmTypesApiTypeTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfTypeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/uco-configurations/grade/{userId}": {
+      "get": {
+        "tags": [
+          "Uco-Configurations"
+        ],
+        "summary": "Get Grade of UCOConfiguration By Supplier Id",
+        "description": "Retrieves an Grade of UCOConfiguration By Supplier Id",
+        "operationId": "Geography_CentvisMdmApiUCOConfigurationGetGradeBySupplierIdEnpoint",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Supplier Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableUCOConfigurationGradeResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/uco-configurations/weight/{userId}": {
+      "get": {
+        "tags": [
+          "Uco-Configurations"
+        ],
+        "summary": "Get Weight of UCOConfiguration By Supplier Id",
+        "description": "Retrieves an Weight of UCOConfiguration By Supplier Id",
+        "operationId": "Geography_CentvisMdmApiUCOConfigurationGetWeightBySupplierIdEnpoint",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Supplier Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableUCOConfigurationWeightResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/locations/user/{supplierId}": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Get Location By Supplier Id",
+        "description": "Retrieves an Location By Supplier Id",
+        "operationId": "Geography_CentvisMdmApiLocationGetBySupplierId",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "in": "path",
+            "required": true,
+            "description": "Supplier Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableSupplierLocationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/locations/{locationId}/update-customer-contact": {
+      "patch": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Update Customer Support Contact No",
+        "description": "Update Customer Support Contact No",
+        "operationId": "Geography_CentvisMdmApiLocationUpdateCustomerSupportContactNoEndpoint",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateCustomerSupportContactNoRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableUpdateCustomerSupportContactNoRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/currencies": {
+      "post": {
+        "tags": [
+          "Currencies"
+        ],
+        "summary": "Create Currency",
+        "description": "Creates a new Currency",
+        "operationId": "Geography_CentvisMdmCurrencyApiCurrencyTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateCurrencyRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmCurrencyCoreCurrencyTableCreateCurrencyRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmCurrencyCoreCurrencyTableCurrencyResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Currencies"
+        ],
+        "summary": "Get All  Currencies",
+        "description": "Get All Currencies",
+        "operationId": "Geography_CentvisMdmCurrencyApiCurrencyTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisMdmCurrencyCoreCurrencyTableCurrencyResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/currencies/{currencyId}": {
+      "delete": {
+        "tags": [
+          "Currencies"
+        ],
+        "summary": "Delete Currency By Id",
+        "description": "Deletes an Currency by Id",
+        "operationId": "Geography_CentvisMdmCurrencyApiCurrencyTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "currencyId",
+            "in": "path",
+            "required": true,
+            "description": "Currency Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Currencies"
+        ],
+        "summary": "Get Currency By Id",
+        "description": "Retrieves an Currency by Id",
+        "operationId": "Geography_CentvisMdmCurrencyApiCurrencyTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "currencyId",
+            "in": "path",
+            "required": true,
+            "description": "Currency Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmCurrencyCoreCurrencyTableCurrencyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Currencies"
+        ],
+        "summary": "Update Currency",
+        "description": "Update Currency",
+        "operationId": "Geography_CentvisMdmCurrencyApiCurrencyTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "currencyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateCurrencyRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmCurrencyCoreCurrencyTableUpdateCurrencyRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/currencies/search": {
+      "get": {
+        "tags": [
+          "Currencies"
+        ],
+        "summary": "Search  Currencies",
+        "description": "Search Currencies",
+        "operationId": "Geography_CentvisMdmCurrencyApiCurrencyTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden"
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfCurrencyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/timezones": {
+      "post": {
+        "tags": [
+          "Timezones"
+        ],
+        "summary": "Create Timezone",
+        "description": "Creates a new Timezone",
+        "operationId": "Geography_CentvisMdmGeographyApiTimezoneTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateTimezoneRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmGeographyCoreTimezoneTableCreateTimezoneRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmGeographyCoreTimezoneTableTimezoneResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Timezones"
+        ],
+        "summary": "Get All  Timezones",
+        "description": "Get All Timezones",
+        "operationId": "Geography_CentvisMdmGeographyApiTimezoneTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisMdmGeographyCoreTimezoneTableTimezoneResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/timezones/{timezoneId}": {
+      "delete": {
+        "tags": [
+          "Timezones"
+        ],
+        "summary": "Delete Timezone By Id",
+        "description": "Deletes an Timezone by Id",
+        "operationId": "Geography_CentvisMdmGeographyApiTimezoneTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "timezoneId",
+            "in": "path",
+            "required": true,
+            "description": "Timezone Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Timezones"
+        ],
+        "summary": "Get Timezone By Id",
+        "description": "Retrieves an Timezone by Id",
+        "operationId": "Geography_CentvisMdmGeographyApiTimezoneTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "timezoneId",
+            "in": "path",
+            "required": true,
+            "description": "Timezone Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmGeographyCoreTimezoneTableTimezoneResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Timezones"
+        ],
+        "summary": "Update Timezone",
+        "description": "Update Timezone",
+        "operationId": "Geography_CentvisMdmGeographyApiTimezoneTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "timezoneId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateTimezoneRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmGeographyCoreTimezoneTableUpdateTimezoneRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/timezones/search": {
+      "get": {
+        "tags": [
+          "Timezones"
+        ],
+        "summary": "Search  Timezones",
+        "description": "Search Timezones",
+        "operationId": "Geography_CentvisMdmGeographyApiTimezoneTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfTimezoneResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/locations": {
+      "post": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Create Location",
+        "description": "Creates a new Location",
+        "operationId": "Geography_CentvisMdmGeographyApiLocationTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateLocationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableCreateLocationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableLocationResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Get All  Locations",
+        "description": "Get All Locations",
+        "operationId": "Geography_CentvisMdmGeographyApiLocationTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableLocationResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/locations/{locationId}": {
+      "delete": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Delete Location By Id",
+        "description": "Deletes an Location by Id",
+        "operationId": "Geography_CentvisMdmGeographyApiLocationTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "description": "Location Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Get Location By Id",
+        "description": "Retrieves an Location by Id",
+        "operationId": "Geography_CentvisMdmGeographyApiLocationTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "description": "Location Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableLocationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Update Location",
+        "description": "Update Location",
+        "operationId": "Geography_CentvisMdmGeographyApiLocationTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateLocationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableUpdateLocationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/locations/search": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Search  Locations",
+        "description": "Search Locations",
+        "operationId": "Geography_CentvisMdmGeographyApiLocationTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfLocationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/languages": {
+      "get": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Get All  Languages",
+        "description": "Get All Languages",
+        "operationId": "Geography_CentvisMdmGeographyApiLanguageTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisMdmGeographyCoreLanguageTableLanguageResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/countries": {
+      "post": {
+        "tags": [
+          "Countries"
+        ],
+        "summary": "Create Country",
+        "description": "Creates a new Country",
+        "operationId": "Geography_CentvisMdmGeographyApiCountryTableCreateEndpoint",
+        "requestBody": {
+          "x-name": "CreateCountryRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableCreateCountryRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "The request is complete, and a new resource is created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableCountryResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Countries"
+        ],
+        "summary": "Get All  Countries",
+        "description": "Get All Countries",
+        "operationId": "Geography_CentvisMdmGeographyApiCountryTableGetEndpoint",
+        "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableCountryResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/countries/{countryId}": {
+      "delete": {
+        "tags": [
+          "Countries"
+        ],
+        "summary": "Delete Country By Id",
+        "description": "Deletes an Country by Id",
+        "operationId": "Geography_CentvisMdmGeographyApiCountryTableDeleteEndpoint",
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "description": "Country Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The request is successful."
+          },
+          "409": {
+            "description": "The request conflicts with another request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Countries"
+        ],
+        "summary": "Get Country By Id",
+        "description": "Retrieves an Country by Id",
+        "operationId": "Geography_CentvisMdmGeographyApiCountryTableGetByIdEndpoint",
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "description": "Country Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableCountryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Countries"
+        ],
+        "summary": "Update Country",
+        "description": "Update Country",
+        "operationId": "Geography_CentvisMdmGeographyApiCountryTableUpdateEndpoint",
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateCountryRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableUpdateCountryRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "The request is successful."
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid Bearer Token / API key provided.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user doesn't have permissions to perform the request.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": []
+          }
+        ]
+      }
+    },
+    "/api/countries/search": {
+      "get": {
+        "tags": [
+          "Countries"
+        ],
+        "summary": "Search  Countries",
+        "description": "Search Countries",
+        "operationId": "Geography_CentvisMdmGeographyApiCountryTableSearchEndpoint",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request is successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfCountryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was unacceptable, often due to missing a required parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our end.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CentvisMdmMdmCoreUCOConfigurationTableUCOConfigurationResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableBaseUCOConfigurationEncrypted"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "driverCancellationFee": {
+                "type": "number",
+                "format": "decimal",
+                "nullable": true
+              },
+              "driverCancellationHours": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "driverContactHours": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "driverJourneyStartHours": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "gradeADescription": {
+                "type": "string",
+                "nullable": true
+              },
+              "gradeBDescription": {
+                "type": "string",
+                "nullable": true
+              },
+              "gradeCDescription": {
+                "type": "string",
+                "nullable": true
+              },
+              "id": {
+                "type": "string"
+              },
+              "maxWeight": {
+                "type": "number",
+                "format": "decimal"
+              },
+              "minWeight": {
+                "type": "number",
+                "format": "decimal"
+              },
+              "supplierCancellationFee": {
+                "type": "number",
+                "format": "decimal",
+                "nullable": true
+              },
+              "supplierCancellationHours": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "locations": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableLocationResponse"
+                  }
+                ]
+              },
+              "currencyTypes": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/CentvisMdmCurrencyCoreCurrencyTableCurrencyResponse"
+                  }
+                ]
+              },
+              "email": {
+                "type": "string",
+                "nullable": true
+              },
+              "phoneNumber": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "phoneDialCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "gstinNumber": {
+                "type": "string",
+                "nullable": true
+              },
+              "templateBody": {
+                "type": "string",
+                "nullable": true
+              },
+              "templateFooter": {
+                "type": "string",
+                "nullable": true
+              },
+              "pickupBeforeDays": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "privacyPolicy": {
+                "type": "string",
+                "nullable": true
+              },
+              "termsAndConditions": {
+                "type": "string",
+                "nullable": true
+              },
+              "distance": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisMdmGeographyCoreLocationTableLocationResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableBaseLocationEncrypt"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "countryCode": {
+                "type": "string"
+              },
+              "countryName": {
+                "type": "string"
+              },
+              "createdBy": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "deletedBy": {
+                "type": "string",
+                "nullable": true
+              },
+              "deletedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "displayOrder": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "id": {
+                "type": "string"
+              },
+              "isDeleted": {
+                "type": "boolean"
+              },
+              "modifiedBy": {
+                "type": "string"
+              },
+              "modifiedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "name": {
+                "type": "string"
+              },
+              "workflowStatusCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "workflowStatusName": {
+                "type": "string",
+                "nullable": true
+              },
+              "currencyId": {
+                "type": "string",
+                "nullable": true
+              },
+              "currencyCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "currencySymbol": {
+                "type": "string",
+                "nullable": true
+              },
+              "currencyDecimal": {
+                "type": "integer",
+                "format": "int32",
+                "nullable": true
+              },
+              "byufuelContainerCount": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "supplierContainerCount": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "customerSupportContactNo": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisMdmGeographyCoreLocationTableBaseLocationEncrypt": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "CentvisMdmCurrencyCoreCurrencyTableCurrencyResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "decimal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisMdmMdmCoreUCOConfigurationTableBaseUCOConfigurationEncrypted": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "MicrosoftAspNetCoreMvcProblemDetails": {
+        "type": "object",
+        "additionalProperties": {
+          "nullable": true
+        },
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisMdmMdmCoreUCOConfigurationTableCreateUCOConfigurationRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableBaseUCOConfigurationRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmMdmCoreUCOConfigurationTableBaseUCOConfigurationRequest": {
+        "required": [
+          "maxWeight",
+          "minWeight"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableBaseUCOConfigurationEncrypted"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "properties": {
+              "driverCancellationFee": {
+                "type": "number",
+                "format": "decimal",
+                "nullable": true
+              },
+              "driverCancellationHours": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "driverContactHours": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "driverJourneyStartHours": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "gradeADescription": {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 0,
+                "nullable": true
+              },
+              "gradeBDescription": {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 0,
+                "nullable": true
+              },
+              "gradeCDescription": {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 0,
+                "nullable": true
+              },
+              "maxWeight": {
+                "type": "number",
+                "format": "decimal",
+                "minLength": 1,
+                "nullable": false
+              },
+              "minWeight": {
+                "type": "number",
+                "format": "decimal",
+                "minLength": 1,
+                "nullable": false
+              },
+              "supplierCancellationFee": {
+                "type": "number",
+                "format": "decimal",
+                "nullable": true
+              },
+              "supplierCancellationHours": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "email": {
+                "type": "string",
+                "nullable": true
+              },
+              "phoneNumber": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "phoneDialCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "gstinNumber": {
+                "type": "string",
+                "nullable": true
+              },
+              "templateBody": {
+                "type": "string",
+                "nullable": true
+              },
+              "templateFooter": {
+                "type": "string",
+                "nullable": true
+              },
+              "pickupBeforeDays": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "privacyPolicy": {
+                "type": "string",
+                "nullable": true
+              },
+              "termsAndConditions": {
+                "type": "string",
+                "nullable": true
+              },
+              "distance": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsFilteringOrderingRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfUCOConfigurationResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfUCOConfigurationResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfUCOConfigurationResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableUCOConfigurationResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisFrameworkCoreEndpointsPagedRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsFilteringOrderingRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmMdmCoreUCOConfigurationTableUpdateUCOConfigurationRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmMdmCoreUCOConfigurationTableBaseUCOConfigurationRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmTypesCoreTypeTableTypeResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmTypesCoreTypeTableBaseTypeEncrypted"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "addNewChildren": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "createdBy": {
+                "type": "string"
+              },
+              "deletedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "deletedBy": {
+                "type": "string",
+                "nullable": true
+              },
+              "description": {
+                "type": "string"
+              },
+              "displayOrder": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "id": {
+                "type": "string"
+              },
+              "isDeleted": {
+                "type": "boolean"
+              },
+              "isEditable": {
+                "type": "boolean"
+              },
+              "isSystem": {
+                "type": "boolean"
+              },
+              "modifiedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "modifiedBy": {
+                "type": "string",
+                "nullable": true
+              },
+              "name": {
+                "type": "string"
+              },
+              "parentCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "workflowStatusCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "workflowStatusName": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisMdmTypesCoreTypeTableBaseTypeEncrypted": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "CentvisMdmTypesCoreTypeTableCreateTypeRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmTypesCoreTypeTableBaseTypeRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmTypesCoreTypeTableBaseTypeRequest": {
+        "required": [
+          "code",
+          "description",
+          "name"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmTypesCoreTypeTableBaseTypeEncrypted"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "properties": {
+              "addNewChildren": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "string",
+                "maxLength": 50,
+                "minLength": 0,
+                "nullable": false
+              },
+              "deletedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "deletedBy": {
+                "type": "string",
+                "maxLength": 225,
+                "minLength": 0,
+                "nullable": true
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 225,
+                "minLength": 0,
+                "nullable": false
+              },
+              "displayOrder": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "isDeleted": {
+                "type": "boolean"
+              },
+              "isEditable": {
+                "type": "boolean"
+              },
+              "isSystem": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 225,
+                "minLength": 0,
+                "nullable": false
+              },
+              "parentCode": {
+                "type": "string",
+                "maxLength": 50,
+                "minLength": 0,
+                "nullable": true
+              },
+              "workflowStatusCode": {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 0,
+                "nullable": true
+              },
+              "workflowStatusName": {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 0,
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfTypeResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfTypeResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfTypeResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisMdmTypesCoreTypeTableTypeResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisMdmTypesCoreTypeTableUpdateTypesDescription": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "CentvisMdmMdmCoreUCOConfigurationTableUCOConfigurationGradeResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "ratePerUnit": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxPercent": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisMdmMdmCoreUCOConfigurationTableUCOConfigurationWeightResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "maxWeight": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "minWeight": {
+            "type": "number",
+            "format": "decimal"
+          }
+        }
+      },
+      "CentvisMdmGeographyCoreLocationTableSupplierLocationResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operationalAreaId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "CentvisMdmGeographyCoreLocationTableUpdateCustomerSupportContactNoRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "customerSupportContactNo": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisMdmCurrencyCoreCurrencyTableCreateCurrencyRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmCurrencyCoreCurrencyTableBaseCurrencyRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmCurrencyCoreCurrencyTableBaseCurrencyRequest": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "required": [
+          "decimal"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "maxLength": 3,
+            "minLength": 0,
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "maxLength": 2,
+            "minLength": 0,
+            "nullable": true
+          },
+          "countryName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 0,
+            "nullable": true
+          },
+          "decimal": {
+            "type": "integer",
+            "format": "int32",
+            "minLength": 1,
+            "nullable": false
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 20,
+            "minLength": 0,
+            "nullable": true
+          },
+          "symbol": {
+            "type": "string",
+            "maxLength": 3,
+            "minLength": 0,
+            "nullable": true
+          }
+        }
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfCurrencyResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfCurrencyResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfCurrencyResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisMdmCurrencyCoreCurrencyTableCurrencyResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisMdmCurrencyCoreCurrencyTableUpdateCurrencyRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmCurrencyCoreCurrencyTableBaseCurrencyRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmGeographyCoreTimezoneTableTimezoneResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string"
+          },
+          "isDst": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string"
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisMdmGeographyCoreTimezoneTableCreateTimezoneRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreTimezoneTableBaseTimezoneRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmGeographyCoreTimezoneTableBaseTimezoneRequest": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 0,
+            "nullable": false
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 0,
+            "nullable": true
+          },
+          "isDst": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 225,
+            "minLength": 0,
+            "nullable": false
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfTimezoneResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfTimezoneResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfTimezoneResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisMdmGeographyCoreTimezoneTableTimezoneResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisMdmGeographyCoreTimezoneTableUpdateTimezoneRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreTimezoneTableBaseTimezoneRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmGeographyCoreLocationTableCreateLocationRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableBaseLocationRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmGeographyCoreLocationTableBaseLocationRequest": {
+        "required": [
+          "code",
+          "countryCode",
+          "countryName",
+          "displayOrder",
+          "name"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableBaseLocationEncrypt"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "type": "string",
+                "maxLength": 50,
+                "minLength": 0,
+                "nullable": false
+              },
+              "countryCode": {
+                "type": "string",
+                "maxLength": 2,
+                "minLength": 0,
+                "nullable": false
+              },
+              "countryName": {
+                "type": "string",
+                "maxLength": 225,
+                "minLength": 0,
+                "nullable": false
+              },
+              "deletedBy": {
+                "type": "string",
+                "maxLength": 255,
+                "minLength": 0,
+                "nullable": true
+              },
+              "deletedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "displayOrder": {
+                "type": "integer",
+                "format": "int32",
+                "minLength": 1,
+                "nullable": false
+              },
+              "isDeleted": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 225,
+                "minLength": 0,
+                "nullable": false
+              },
+              "workflowStatusCode": {
+                "type": "string",
+                "maxLength": 100,
+                "minLength": 0,
+                "nullable": true
+              },
+              "workflowStatusName": {
+                "type": "string",
+                "maxLength": 100,
+                "minLength": 0,
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfLocationResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfLocationResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfLocationResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableLocationResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisMdmGeographyCoreLocationTableUpdateLocationRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreLocationTableBaseLocationRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmGeographyCoreLanguageTableLanguageResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "fullCode": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "englishName": {
+            "type": "string"
+          },
+          "nativeName": {
+            "type": "string"
+          }
+        }
+      },
+      "CentvisMdmGeographyCoreCountryTableCountryResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableBaseCountryEncrypt"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "createdBy": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "displayOrder": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "id": {
+                "type": "string"
+              },
+              "modifiedBy": {
+                "type": "string"
+              },
+              "modifiedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "name": {
+                "type": "string"
+              },
+              "dialCode": {
+                "type": "string"
+              },
+              "workflowStatusCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "workflowStatusName": {
+                "type": "string",
+                "nullable": true
+              },
+              "isDeleted": {
+                "type": "boolean"
+              },
+              "deletedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "deletedBy": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CentvisMdmGeographyCoreCountryTableBaseCountryEncrypt": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "CentvisMdmGeographyCoreCountryTableCreateCountryRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableBaseCountryRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisMdmGeographyCoreCountryTableBaseCountryRequest": {
+        "required": [
+          "code",
+          "dialCode",
+          "name"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableBaseCountryEncrypt"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "type": "string",
+                "maxLength": 2,
+                "minLength": 0,
+                "nullable": false
+              },
+              "displayOrder": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "dialCode": {
+                "type": "string",
+                "maxLength": 5,
+                "minLength": 0,
+                "nullable": false
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 225,
+                "minLength": 0,
+                "nullable": false
+              },
+              "workflowStatusCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "workflowStatusName": {
+                "type": "string",
+                "nullable": true
+              },
+              "deletedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "deletedBy": {
+                "type": "string",
+                "nullable": true
+              },
+              "isDeleted": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfCountryResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisFrameworkCoreEndpointsPagedResponseOfCountryResponseAndObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CentvisFrameworkCoreEndpointsPagedResponseOfCountryResponseAndObject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "extra": {
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableCountryResponse"
+            }
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CentvisMdmGeographyCoreCountryTableUpdateCountryRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CentvisMdmGeographyCoreCountryTableBaseCountryRequest"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://d-byufuel-auth.azurewebsites.net/realms/byufuel-dev/protocol/openid-connect/auth",
+            "tokenUrl": "https://d-byufuel-auth.azurewebsites.net/realms/byufuel-dev/protocol/openid-connect/token",
+            "refreshUrl": "https://d-byufuel-auth.azurewebsites.net/realms/byufuel-dev/protocol/openid-connect/token",
+            "scopes": {
+              "openid": "openid",
+              "profile": "profile",
+              "email": "email",
+              "roles": "roles",
+              "offline_access": "offline_access",
+              "byufuel-api": "byufuel-api"
+            }
+          }
+        }
+      }
+    }
+  }
+}

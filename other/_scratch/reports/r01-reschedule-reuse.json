@@ -1,0 +1,83 @@
+{
+  "ranAt": "2026-08-12T07:06:25.616Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "reusePool": [
+    {
+      "env": "staging",
+      "label": "SG OW happy (cancelled source)",
+      "br": "BR1786017179800507",
+      "pnr": "B7SVXP",
+      "rescheduledTo": "BR1786017237353711",
+      "type": "OW",
+      "currentStatus": "Cancelled",
+      "legs": [
+        {
+          "direction": "ONWARD",
+          "pnr": "B7SVXP"
+        }
+      ],
+      "cancellable": false,
+      "cancelled": true,
+      "reschedule": {
+        "ok": false,
+        "reason": "no_search_id"
+      }
+    },
+    {
+      "env": "staging",
+      "label": "SG OW cancel DEL-BOM",
+      "br": "BR1786361308728715",
+      "pnr": "KCIE7A",
+      "type": "OW",
+      "currentStatus": "Cancelled",
+      "legs": [
+        {
+          "direction": "ONWARD",
+          "pnr": "KCIE7A"
+        }
+      ],
+      "cancellable": false,
+      "cancelled": true,
+      "reschedule": {
+        "ok": false,
+        "reason": "no_search_id"
+      }
+    },
+    {
+      "env": "staging",
+      "label": "SG OW cancel scan",
+      "br": "BR1786361337462087",
+      "pnr": "FEG3NK",
+      "type": "OW",
+      "currentStatus": "Cancelled",
+      "legs": [
+        {
+          "direction": "ONWARD",
+          "pnr": "FEG3NK"
+        }
+      ],
+      "cancellable": false,
+      "cancelled": true,
+      "reschedule": {
+        "ok": false,
+        "reason": "no_search_id"
+      }
+    }
+  ],
+  "freshSgOw": {
+    "ok": false,
+    "reason": "search_fail"
+  },
+  "freshRtR01": {
+    "ok": false,
+    "reason": "no_rt_path"
+  },
+  "recommendation": {
+    "owRescheduleWorks": false,
+    "rtR01Works": false,
+    "useForDb": {
+      "scenario": "BLOCKED",
+      "note": "No successful cancel+reschedule on this env today"
+    }
+  }
+}

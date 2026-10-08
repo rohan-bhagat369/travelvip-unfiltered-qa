@@ -1,0 +1,193 @@
+{
+  "ranAt": "2026-09-02T10:46:18.425Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "fixture": {
+    "route": "DEL-BOM",
+    "day": 42,
+    "flight": "IX IX 1463",
+    "openSeats": 168,
+    "closedSeats": 0
+  },
+  "summary": {
+    "PASS": 3,
+    "BUG": 2,
+    "NOT_TESTED": 13
+  },
+  "rows": [
+    {
+      "tc": "TC-01",
+      "area": "Setup",
+      "rule": "Seat-enabled flight + live seatmap",
+      "how": "GET seatmap after pricing DEL-BOM d+42 IX IX 1463",
+      "expected": "seatmap segments with seat rows",
+      "status": "PASS",
+      "actual": "open=168 closed=0 supportsSeats=true",
+      "route": "DEL-BOM",
+      "flight": "IX IX 1463",
+      "searchId": "srch_5a21b30e58174038a4be42fc8319b798"
+    },
+    {
+      "tc": "TC-09",
+      "area": "Outbox",
+      "rule": "Issue-ticket returns BR before terminal status",
+      "how": "issue-ticket immediate response BR=BR1788345929606967",
+      "expected": "bookingReference returned (async outbox enqueue)",
+      "status": "PASS",
+      "actual": "HTTP 200 status=pending br=BR1788345929606967",
+      "br": "BR1788345929606967"
+    },
+    {
+      "tc": "TC-02",
+      "area": "Seat guard",
+      "rule": "Open seat → books; seat present on Confirmed",
+      "how": "issue with 3A seatId=RA1615228583541018616152772947452EFETYQ7O1P|8434; poll status",
+      "expected": "Confirmed + seat on booking detail",
+      "status": "NOT TESTED",
+      "actual": "status=Pending seatsOnDetail=1 seatPrice=1700",
+      "br": "BR1788345929606967",
+      "polled": "Pending",
+      "seatName": "3A"
+    },
+    {
+      "tc": "TC-11",
+      "area": "Outbox",
+      "rule": "Worker completes V2 booking to terminal status",
+      "how": "poll GET status until terminal for BR1788345929606967",
+      "expected": "Confirmed/Failed/Cancelled (not stuck forever at issue)",
+      "status": "BUG",
+      "actual": "terminal=Pending polls=5",
+      "br": "BR1788345929606967"
+    },
+    {
+      "tc": "TC-03",
+      "area": "Seat guard",
+      "rule": "Seat gone + flag ON → drop seat, book without seat",
+      "how": "stale/closed seat payload → issue BR1788345955744259",
+      "expected": "Confirmed without seat on detail",
+      "status": "NOT TESTED",
+      "actual": "status=Pending seats=1 seatPrice=1700",
+      "br": "BR1788345955744259"
+    },
+    {
+      "tc": "TC-15",
+      "area": "Bug fix",
+      "rule": "Seatless retry must not report FAILED when ticketed",
+      "how": "same BR BR1788345955744259 after seat dropped",
+      "expected": "Confirmed (not Failed) with ticket/PNR",
+      "status": "NOT TESTED",
+      "actual": "status=Pending pnr=n/a",
+      "br": "BR1788345955744259"
+    },
+    {
+      "tc": "TC-16",
+      "area": "Seat guard",
+      "rule": "Seat amount refunded when seat dropped",
+      "how": "salesSummary.seatPrice on Confirmed seatless retry",
+      "expected": "seatPrice 0 or absent; refund in wallet/alerts (API may omit)",
+      "status": "NOT TESTED",
+      "actual": "seatPrice=1700",
+      "br": "BR1788345955744259"
+    },
+    {
+      "tc": "TC-04",
+      "area": "Seat guard",
+      "rule": "Seat gone + flag OFF → fail before vendor",
+      "how": "Needs partner with retry_ticket_without_seat_on_seat_failure=false",
+      "expected": "4xx before vendor; no BR",
+      "status": "NOT TESTED",
+      "actual": "only vgm creds in env; cannot toggle flag OFF"
+    },
+    {
+      "tc": "TC-05",
+      "area": "Seat guard",
+      "rule": "No seat selected on optional-seat fare still books",
+      "how": "issue-ticket without seats array populated",
+      "expected": "BR + Confirmed or Pending (legacy path)",
+      "status": "PASS",
+      "actual": "HTTP 200 br=BR1788345968737955 code=n/a",
+      "br": "BR1788345968737955"
+    },
+    {
+      "tc": "TC-08",
+      "area": "Seat guard",
+      "rule": "No seat guard block when no seat requested",
+      "how": "seatless book BR1788345968737955",
+      "expected": "Proceeds without seat-guard re-price block",
+      "status": "BUG",
+      "actual": "status=Failed",
+      "br": "BR1788345968737955"
+    },
+    {
+      "tc": "TC-06",
+      "area": "Seat guard",
+      "rule": "Fare up on re-price → Price has expired",
+      "how": "Manual/timed repro only",
+      "expected": "400 message \"Price has expired. Please search again.\"",
+      "status": "NOT TESTED",
+      "actual": "no on-demand repro"
+    },
+    {
+      "tc": "TC-07",
+      "area": "Seat guard",
+      "rule": "Fare change amounts only in alert not API",
+      "how": "Same as TC-06",
+      "expected": "no amounts in error body",
+      "status": "NOT TESTED",
+      "actual": "no on-demand repro"
+    },
+    {
+      "tc": "TC-08b",
+      "area": "Seat guard",
+      "rule": "Seatmap/re-price unavailable → fail open",
+      "how": "Would need forced vendor outage",
+      "expected": "books as before",
+      "status": "NOT TESTED",
+      "actual": "not simulated"
+    },
+    {
+      "tc": "TC-12",
+      "area": "Outbox",
+      "rule": "Alert PROCESSING stuck 10 min",
+      "how": "DB/log grep booking_outbox",
+      "expected": "alert fired",
+      "status": "NOT TESTED",
+      "actual": "requires log/DB access + wait"
+    },
+    {
+      "tc": "TC-13",
+      "area": "Outbox",
+      "rule": "Alert vendor IN_PROGRESS 45 min",
+      "how": "DB/log grep",
+      "expected": "alert fired",
+      "status": "NOT TESTED",
+      "actual": "requires log/DB access + wait"
+    },
+    {
+      "tc": "TC-14",
+      "area": "Outbox",
+      "rule": "Hotel/cab not on outbox path",
+      "how": "compare product",
+      "expected": "flight V2 only",
+      "status": "NOT TESTED",
+      "actual": "out of API-only probe scope"
+    },
+    {
+      "tc": "TC-17",
+      "area": "Bug fix",
+      "rule": "Failed response must include refund payload when applicable",
+      "how": "needs known failing wallet/refund case",
+      "expected": "refund block on partner response",
+      "status": "NOT TESTED",
+      "actual": "no repro this run"
+    },
+    {
+      "tc": "TC-18",
+      "area": "Bug fix",
+      "rule": "Regression — seatless Confirmed not masked as Failed",
+      "how": "covered by TC-15 when repro succeeds",
+      "expected": "Confirmed",
+      "status": "NOT TESTED",
+      "actual": "see TC-15"
+    }
+  ]
+}

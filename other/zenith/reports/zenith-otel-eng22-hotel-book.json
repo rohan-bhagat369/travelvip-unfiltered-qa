@@ -1,0 +1,158 @@
+{
+  "started": "2026-09-17T10:27:17.384Z",
+  "prefix": "qa-otel-eng22-hotel-20260917c",
+  "baseUrl": "https://zenith-api.travelvip.ai",
+  "stay": {
+    "checkin": "2026-10-15",
+    "checkout": "2026-10-16",
+    "requestId": "qa-otel-eng22-hotel-20260917c-search-28"
+  },
+  "steps": [
+    {
+      "label": "search-28",
+      "corr": "qa-otel-eng22-hotel-20260917c-search-28",
+      "path": "/v1/hotels/search",
+      "http": 200,
+      "ok": true,
+      "clientMs": 4394,
+      "errorCode": null,
+      "bodyPreview": "{\"checkin\":\"2026-10-15\",\"checkout\":\"2026-10-16\",\"total\":1,\"name\":\"Hilltop Hotel Mumbai\"}"
+    },
+    {
+      "label": "details-28",
+      "corr": "qa-otel-eng22-hotel-20260917c-search-28",
+      "path": "/v1/hotels/details",
+      "http": 200,
+      "ok": true,
+      "errorCode": null,
+      "bodyPreview": "{\"name\":\"Hilltop Hotel Mumbai\",\"rooms\":5,\"requestId\":\"qa-otel-eng22-hotel-20260917c-search-28\",\"pan\":true,\"price\":6844.6,\"bookingCodeLen\":280}"
+    },
+    {
+      "label": "prebook",
+      "corr": "qa-otel-eng22-hotel-20260917c-prebook",
+      "path": null,
+      "http": 200,
+      "ok": true,
+      "clientMs": 1293,
+      "errorCode": null,
+      "status": null,
+      "bookingRefId": null,
+      "bodyPreview": "{\"page\":0,\"size\":20,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39627872\",\"name\":\"Hiltop Hotel\",\"address\":\"43. Sir Pochkhanwala Road\",\"city\":\"Mumbai\",\"country\":\"India\",\"countryCode\":\"IN\",\"distance\":null,\"image\":\"https://imgcld.yatra.com/ytimages/image/u"
+    },
+    {
+      "label": "neg-badpan",
+      "corr": "qa-otel-eng22-hotel-20260917c-neg-badpan",
+      "path": null,
+      "http": 400,
+      "ok": false,
+      "clientMs": 89,
+      "errorCode": "VALIDATION_ERROR",
+      "status": null,
+      "bookingRefId": null,
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.panCardNumber' must be a valid PAN (five letters, four digits, one letter)\"],\"timestamp\":\"2026-09-17T10:27:23Z\",\"request_id\":\"req-1789640843617\"},\"_meta\":{\"correlation_id\":\"qa-otel-eng22-hotel-"
+    },
+    {
+      "label": "finalize",
+      "corr": "qa-otel-eng22-hotel-20260917c-finalize",
+      "path": null,
+      "http": 200,
+      "ok": true,
+      "clientMs": 2531,
+      "errorCode": null,
+      "status": "Pending",
+      "bookingRefId": "BR1789640844171103",
+      "bodyPreview": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1789640844171103\",\"_meta\":{\"correlation_id\":\"qa-otel-eng22-hotel-20260917c-finalize\"}}"
+    },
+    {
+      "label": "status-poll",
+      "corr": "qa-otel-eng22-hotel-20260917c-status",
+      "path": null,
+      "http": 200,
+      "ok": true,
+      "clientMs": 8729,
+      "errorCode": null,
+      "status": "Confirmed",
+      "bookingRefId": "BR1789640844171103",
+      "bodyPreview": "{\"bookingReferenceId\":\"BR1789640844171103\",\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00011136\",\"checkin\":\"2026-10-15\",\"checkout\":\"2026-10-16\",\"checkinTime\":\"2:00 PM\",\"checkoutTime\":\"11:00 AM\",\"message\":\"Successful\",\"hotelDetails\":{\"name\":\"Hiltop Hotel\",\"address\":\"43. Sir P"
+    },
+    {
+      "label": "booking-detail",
+      "corr": "qa-otel-eng22-hotel-20260917c-detail",
+      "path": null,
+      "http": 200,
+      "ok": true,
+      "clientMs": 164,
+      "errorCode": null,
+      "status": "Confirmed",
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00011136\",\"checkIn\":\"2026-10-15\",\"checkInTime\":\"2:00 PM\",\"checkOut\":\"2026-10-16\",\"checkOutTime\":\"11:00 AM\",\"bookingDate\":\"2026-09-17T10:27:25Z\",\"noOfRooms\":1,\"message\":\"Successful\",\"hotelDetails\":{\"hotelName\":\"Hiltop Hotel\",\"city\""
+    },
+    {
+      "label": "history",
+      "corr": "qa-otel-eng22-hotel-20260917c-history",
+      "path": null,
+      "http": 200,
+      "ok": true,
+      "clientMs": 241,
+      "errorCode": null,
+      "status": null,
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":0,\"totalCount\":18,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1789640844171103\",\"hotelName\":\"Hiltop Hotel\",\"hotelLocation\":\"43. Sir Pochkhanwala Road\",\"checkin\":\"2026-10-15\",\"checkout\":\"2026-10-16\",\"bookingDate\":\"2026-09-17T10:27:24Z\",\"status\":\"Confirmed\",\"confirm"
+    },
+    {
+      "label": "unknown-br",
+      "corr": "qa-otel-eng22-hotel-20260917c-unknown-br",
+      "path": null,
+      "http": 200,
+      "ok": true,
+      "clientMs": 118,
+      "errorCode": null,
+      "status": 404,
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"qa-otel-eng22-hotel-20260917c-unknown-br\"}}"
+    },
+    {
+      "label": "penalty",
+      "corr": "qa-otel-eng22-hotel-20260917c-penalty",
+      "path": null,
+      "http": 200,
+      "ok": true,
+      "clientMs": 200,
+      "errorCode": null,
+      "status": null,
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1789640844171103\",\"confirmationNumber\":\"SNHAPI00011136\",\"currency\":\"INR\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":0,\"estimatedRefund\":6844.6,\"createdAt\":\"2026-09-17T10:27:35"
+    },
+    {
+      "label": "cancel",
+      "corr": "qa-otel-eng22-hotel-20260917c-cancel",
+      "path": null,
+      "http": 200,
+      "ok": true,
+      "clientMs": 3383,
+      "errorCode": null,
+      "status": null,
+      "bookingRefId": null,
+      "bodyPreview": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1789640844171103\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":6844.6,\"createdAt\":\"2026-09-17T10:27:36Z\"}},\"_meta\":{\"correlation_id\":\"qa-otel-eng22-hotel-20260917c-cancel\"}}"
+    },
+    {
+      "label": "status-after-cancel",
+      "corr": "qa-otel-eng22-hotel-20260917c-status-after-cancel",
+      "path": null,
+      "http": 200,
+      "ok": true,
+      "clientMs": 173,
+      "errorCode": null,
+      "status": "Cancelled",
+      "bookingRefId": "BR1789640844171103",
+      "bodyPreview": "{\"bookingReferenceId\":\"BR1789640844171103\",\"status\":\"Cancelled\",\"confirmationNumber\":\"SNHAPI00011136\",\"checkin\":\"2026-10-15\",\"checkout\":\"2026-10-16\",\"checkinTime\":\"2:00 PM\",\"checkoutTime\":\"11:00 AM\",\"message\":\"Successful\",\"hotelDetails\":{\"name\":\"Hiltop Hotel\",\"address\":\"43. Sir P"
+    }
+  ],
+  "bookingRefId": "BR1789640844171103",
+  "bookingStatus": "Confirmed",
+  "cancelHttp": 200,
+  "statusAfterCancel": "Cancelled",
+  "ended": "2026-09-17T10:27:39.245Z",
+  "verdict": "PASS",
+  "note": "Confirmed then cancel attempted"
+}

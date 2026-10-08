@@ -1,0 +1,42 @@
+{
+  "ranAt": "2026-08-12T08:27:13.055Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "br": "BR1786522372190926",
+  "pnrs": [
+    "W8YWXS",
+    "KG5QYH"
+  ],
+  "beforeStatus": "Confirmed",
+  "afterStatus": "Cancelled",
+  "steps": [
+    {
+      "pnr": "W8YWXS",
+      "action": "PENALTY",
+      "http": 200,
+      "status": "Penalty Fetched",
+      "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786522372190926\",\"pnr\":\"W8YWXS\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":58852,\"createdAt\":\"2026-08-12T08:26:39Z\"}},\"_meta\":{\"correlation_id\":\"fe23431f-77b9-4967-833d-33dfa0a498a2\"}}"
+    },
+    {
+      "pnr": "W8YWXS",
+      "action": "CANCEL",
+      "http": 200,
+      "status": "Cancelled",
+      "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786522372190926\",\"pnr\":\"W8YWXS\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":58852,\"createdAt\":\"2026-08-12T08:26:41Z\"},\"refundSummary\":{\"amount\":58852,\"cancellationCharge\":350,\"cancellationChargeBreakup\":{\"airlineCancellationFee\":0,\"convenienceFee\":0,\"serviceFee\":350,\"flexicancelFee\":0}},\"transaction\":{\"id\":\"394\",\"amount\":58852,\"currency\":\"INR\",\"paymentMethod\":\"wallet\",\"type\":\"refund\",\"status\":\"success\",\"createdAt\":\"2026-08-12T08:26:49Z\",\"completedAt\":\"2026-08-12T08:26:49Z\"}}"
+    },
+    {
+      "pnr": "KG5QYH",
+      "action": "PENALTY",
+      "http": 200,
+      "status": "Penalty Fetched",
+      "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786522372190926\",\"pnr\":\"KG5QYH\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":58852,\"createdAt\":\"2026-08-12T08:26:59Z\"}},\"_meta\":{\"correlation_id\":\"fe23431f-77b9-4967-833d-33dfa0a498a2\"}}"
+    },
+    {
+      "pnr": "KG5QYH",
+      "action": "CANCEL",
+      "http": 200,
+      "status": "Cancelled",
+      "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786522372190926\",\"pnr\":\"KG5QYH\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":58852,\"createdAt\":\"2026-08-12T08:27:01Z\"},\"refundSummary\":{\"amount\":58852,\"cancellationCharge\":350,\"cancellationChargeBreakup\":{\"airlineCancellationFee\":0,\"convenienceFee\":0,\"serviceFee\":350,\"flexicancelFee\":0}},\"transaction\":{\"id\":\"395\",\"amount\":58852,\"currency\":\"INR\",\"paymentMethod\":\"wallet\",\"type\":\"refund\",\"status\":\"success\",\"createdAt\":\"2026-08-12T08:27:08Z\",\"completedAt\":\"2026-08-12T08:27:08Z\"}}"
+    }
+  ],
+  "dbSql": "USE travelx;\nSET @br := 'BR1786522372190926';\nSELECT booking_reference, confirmed_at, cancelled_at FROM booking WHERE booking_reference = @br;\nSELECT cr.id, cr.pnr, cr.flight_journey_id, cr.cancellation_type, cr.mode, cr.status, cr.refund_status, cr.estimated_refund_amount, cr.estimated_penalty_amount FROM cancellation_request cr JOIN booking_item bi ON bi.id = cr.booking_item_id JOIN booking b ON b.id = bi.booking_id WHERE b.booking_reference = @br ORDER BY cr.id DESC;\nSELECT COUNT(*) AS cp_rows, COUNT(DISTINCT cp.flight_journey_passenger_id) AS distinct_cells FROM cancellation_passenger cp JOIN cancellation_request cr ON cr.id = cp.cancellation_request_id JOIN booking_item bi ON bi.id = cr.booking_item_id JOIN booking b ON b.id = bi.booking_id WHERE b.booking_reference = @br;\nSELECT bi.id, bi.version, bsm.status_code, bsm.backend_status FROM booking_item bi JOIN booking b ON b.id = bi.booking_id LEFT JOIN booking_status_mapping bsm ON bsm.id = bi.current_status_mapping_id WHERE b.booking_reference = @br;"
+}

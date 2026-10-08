@@ -1,0 +1,2914 @@
+{
+  "summary": {
+    "baseUrl": "https://canary-api.travelvip.ai",
+    "path": "/v1/flights/search",
+    "startedAt": "2026-08-24T10:54:13.686Z"
+  },
+  "counts": {
+    "PASS": 58,
+    "BUG": 1,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "section": "SETUP",
+      "n": 0,
+      "rule": "Spec path POST /api/flights/catalog-v2/search available on canary",
+      "how": "Path probe before falling back to /v1/flights/search",
+      "status": "BUG",
+      "expected": "HTTP 200 (or non-404) on catalog-v2 search",
+      "actual": "[{\"path\":\"/api/flights/catalog-v2/search\",\"http\":404,\"error\":null},{\"path\":\"/api/v2/flights/search\",\"http\":404,\"error\":null},{\"path\":\"/v2/flights/search\",\"http\":404,\"error\":null},{\"path\":\"/v1/flights/search\",\"http\":200,\"error\":null}]"
+    },
+    {
+      "section": "SETUP",
+      "n": 1,
+      "rule": "OW unfiltered search DEL→BOM",
+      "how": "POST /v1/flights/search ECONOMY 1ADT NORMAL",
+      "status": "PASS",
+      "actual": "HTTP 200 options=20 {}"
+    },
+    {
+      "section": "OW",
+      "n": 1,
+      "rule": "See the facet (no filter) — filters.ONWARD.fareTypes lists every distinct fare label with counts",
+      "how": "Unfiltered search; compare facet vs option.fares[].fareType",
+      "status": "PASS",
+      "expected": "filters.ONWARD.fareTypes = distinct fare labels in options, with counts",
+      "actual": "facet=[{\"fareType\":\"Special\",\"count\":2},{\"fareType\":\"Normal\",\"count\":78},{\"fareType\":\"SpiceMax\",\"count\":2},{\"fareType\":\"Flexi\",\"count\":68},{\"fareType\":\"VALUE\",\"count\":15},{\"fareType\":\"PROMO\",\"count\":10},{\"fareType\":\"FLEX\",\"count\":15},{\"fareType\":\"LITE\",\"count\":12},{\"fareType\":\"CLASSIC\",\"count\":13},{\"fareType\":\"SALE\",\"count\":1},{\"fareType\":\"ECOVALU\",\"count\":45},{\"fareType\":\"ECOCLAS\",\"count\":33},{\"fareTyp optionLabels=VALUE,PROMO,FLEX,LITE,CLASSIC,SALE,Normal,Flexi"
+    },
+    {
+      "section": "OW",
+      "n": 2,
+      "rule": "No filter applied → airlines/stops/refundable/price facets still present (regression)",
+      "how": "Inspect filters.ONWARD without appliedFilters",
+      "status": "PASS",
+      "expected": "existing facets unchanged",
+      "actual": "{\"airlines\":true,\"stops\":true,\"refundable\":true,\"priceRange\":true,\"fareTypes\":true}"
+    },
+    {
+      "section": "OW",
+      "n": 3,
+      "rule": "Positive filter fareTypes=[\"Special\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"Special\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=2",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Special"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 4,
+      "rule": "After filtering Special, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 5,
+      "rule": "Case-insensitive: [\"special\"] same as [\"Special\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=2 lower=2 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "special"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 6,
+      "rule": "Positive filter fareTypes=[\"Normal\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"Normal\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=20",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Normal"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 7,
+      "rule": "After filtering Normal, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 8,
+      "rule": "Case-insensitive: [\"normal\"] same as [\"Normal\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=20 lower=20 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "normal"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 9,
+      "rule": "Positive filter fareTypes=[\"SpiceMax\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"SpiceMax\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=2",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "SpiceMax"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 10,
+      "rule": "After filtering SpiceMax, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 11,
+      "rule": "Case-insensitive: [\"spicemax\"] same as [\"SpiceMax\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=2 lower=2 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "spicemax"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 12,
+      "rule": "Positive filter fareTypes=[\"Flexi\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"Flexi\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=20",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Flexi"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 13,
+      "rule": "After filtering Flexi, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 14,
+      "rule": "Case-insensitive: [\"flexi\"] same as [\"Flexi\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=20 lower=20 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "flexi"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 15,
+      "rule": "Positive filter fareTypes=[\"VALUE\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"VALUE\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=15",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "VALUE"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 16,
+      "rule": "After filtering VALUE, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 17,
+      "rule": "Case-insensitive: [\"value\"] same as [\"VALUE\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=15 lower=15 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "value"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 18,
+      "rule": "Positive filter fareTypes=[\"PROMO\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"PROMO\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=10",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "PROMO"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 19,
+      "rule": "After filtering PROMO, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 20,
+      "rule": "Case-insensitive: [\"promo\"] same as [\"PROMO\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=10 lower=10 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "promo"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 21,
+      "rule": "Positive filter fareTypes=[\"FLEX\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"FLEX\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=15",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "FLEX"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 22,
+      "rule": "After filtering FLEX, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 23,
+      "rule": "Case-insensitive: [\"flex\"] same as [\"FLEX\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=15 lower=15 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "flex"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 24,
+      "rule": "Positive filter fareTypes=[\"LITE\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"LITE\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=12",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "LITE"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 25,
+      "rule": "After filtering LITE, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 26,
+      "rule": "Case-insensitive: [\"lite\"] same as [\"LITE\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=12 lower=12 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "lite"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 27,
+      "rule": "Positive filter fareTypes=[\"CLASSIC\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"CLASSIC\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=13",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "CLASSIC"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 28,
+      "rule": "After filtering CLASSIC, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 29,
+      "rule": "Case-insensitive: [\"classic\"] same as [\"CLASSIC\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=13 lower=13 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "classic"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 30,
+      "rule": "Positive filter fareTypes=[\"SALE\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"SALE\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=1",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "SALE"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 31,
+      "rule": "After filtering SALE, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 32,
+      "rule": "Case-insensitive: [\"sale\"] same as [\"SALE\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=1 lower=1 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "sale"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 33,
+      "rule": "Positive filter fareTypes=[\"ECOVALU\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"ECOVALU\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=20",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "ECOVALU"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 34,
+      "rule": "After filtering ECOVALU, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 35,
+      "rule": "Case-insensitive: [\"ecovalu\"] same as [\"ECOVALU\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=20 lower=20 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "ecovalu"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 36,
+      "rule": "Positive filter fareTypes=[\"ECOCLAS\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"ECOCLAS\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=20",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "ECOCLAS"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 37,
+      "rule": "After filtering ECOCLAS, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 38,
+      "rule": "Case-insensitive: [\"ecoclas\"] same as [\"ECOCLAS\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=20 lower=20 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "ecoclas"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 39,
+      "rule": "Positive filter fareTypes=[\"ECOFLX\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"ECOFLX\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=20",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "ECOFLX"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 40,
+      "rule": "After filtering ECOFLX, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 41,
+      "rule": "Case-insensitive: [\"ecoflx\"] same as [\"ECOFLX\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=20 lower=20 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "ecoflx"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 42,
+      "rule": "Positive filter fareTypes=[\"PEYVALU\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"PEYVALU\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=20",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "PEYVALU"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 43,
+      "rule": "After filtering PEYVALU, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 44,
+      "rule": "Case-insensitive: [\"peyvalu\"] same as [\"PEYVALU\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=20 lower=20 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "peyvalu"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 45,
+      "rule": "Positive filter fareTypes=[\"Normal:-\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"Normal:-\"]",
+      "status": "PASS",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=1",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Normal:-"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 46,
+      "rule": "After filtering Normal:-, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "status": "PASS",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}"
+    },
+    {
+      "section": "OW",
+      "n": 47,
+      "rule": "Case-insensitive: [\"normal:-\"] same as [\"Normal:-\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "status": "PASS",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=1 lower=1 idsMatch=true lowerBugs=",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "normal:-"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 48,
+      "rule": "Negative: fareTypes=[\"\"] must not wipe all results (treat as no filter)",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"\"]",
+      "status": "PASS",
+      "expected": "results remain (empty/blank fareTypes ignored)",
+      "actual": "HTTP 200 options=20 unfiltered=20",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 49,
+      "rule": "Negative: fareTypes=[\" \"] must not wipe all results (treat as no filter)",
+      "how": "appliedFilters.ONWARD.fareTypes=[\" \"]",
+      "status": "PASS",
+      "expected": "results remain (empty/blank fareTypes ignored)",
+      "actual": "HTTP 200 options=20 unfiltered=20",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            " "
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 50,
+      "rule": "Negative: unknown fareTypes=[\"NOT_A_REAL_FARE\"] should not return mismatched fares",
+      "how": "Filter a fare label that does not exist",
+      "status": "PASS",
+      "expected": "empty options OR only matching fares; never keep other fare families",
+      "actual": "HTTP 200 options=0 mismatched=0",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "NOT_A_REAL_FARE"
+          ]
+        }
+      }
+    },
+    {
+      "section": "OW",
+      "n": 51,
+      "rule": "Combine fareTypes=[\"CLASSIC\"] with priceRange.max=6847 below that fare — option excluded (not kept via cheaper VALUE)",
+      "how": "Option srch_abb8337dd4fc4244b7748daec316d38d has VALUE=2412 and CLASSIC=6848",
+      "status": "PASS",
+      "expected": "same option excluded when filtering CLASSIC with max below its price; cheaper VALUE must not keep it",
+      "actual": "HTTP 200 option excluded; remaining=8",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "CLASSIC"
+          ],
+          "priceRange": {
+            "min": 0,
+            "max": 6847
+          }
+        }
+      }
+    },
+    {
+      "section": "RT-DOM",
+      "n": 1,
+      "rule": "RT unfiltered — fareTypes facet per direction (ONWARD and RETURN)",
+      "how": "POST ROUND_TRIP BOM↔DEL",
+      "status": "PASS",
+      "expected": "filters.ONWARD.fareTypes and filters.RETURN.fareTypes present",
+      "actual": "HTTP 200 onwardOpts=20 returnOpts=20 onwardFacet=Normal,Flexi,RoundtripSpecial,Special,SpiceMax,VALUE,LITE,CLASSIC,FLEX,SALE,PROMO,ECOVALU,ECOCLAS,ECOFLX,PEYVALU returnFacet=Special,Normal,SpiceMax,Flexi,VALUE,PROMO,FLEX,LITE,CLASSIC,SALE,ECOVALU,ECOCLAS,ECOFLX,PEYVALU,Normal:-"
+    },
+    {
+      "section": "RT-DOM",
+      "n": 2,
+      "rule": "Independent filters ONWARD=[\"Normal\"] vs RETURN=[\"Special\"]",
+      "how": "Different fareTypes per direction on domestic RT",
+      "status": "PASS",
+      "expected": "each direction filtered independently",
+      "actual": "onwardBugs= returnBugs= o=20 r=2",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Normal"
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            "Special"
+          ]
+        }
+      }
+    },
+    {
+      "section": "RT-DOM",
+      "n": 3,
+      "rule": "After RT filter, both direction facets remain full",
+      "how": "Compare unfiltered vs filtered facets",
+      "status": "PASS",
+      "actual": "{\"onward\":{\"ok\":true,\"missing\":[],\"unfiltered\":[\"NORMAL\",\"FLEXI\",\"ROUNDTRIPSPECIAL\",\"SPECIAL\",\"SPICEMAX\",\"VALUE\",\"LITE\",\"CLASSIC\",\"FLEX\",\"SALE\",\"PROMO\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\"],\"filtered\":[\"NORMAL\",\"FLEXI\",\"ROUNDTRIPSPECIAL\",\"SPECIAL\",\"SPICEMAX\",\"VALUE\",\"LITE\",\"CLASSIC\",\"FLEX\",\"SALE\",\"PROMO\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\"]},\"ret\":{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"],\"filtered\":[\"SPECIAL\",\"NORMAL\",\"SPICEMAX\",\"FLEXI\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}}"
+    },
+    {
+      "section": "RT-DOM",
+      "n": 4,
+      "rule": "Negative RT: empty/whitespace fareTypes must not wipe results",
+      "how": "ONWARD=[\"\"] RETURN=[\" \"]",
+      "status": "PASS",
+      "actual": "HTTP 200 o=20 r=20",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            ""
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            " "
+          ]
+        }
+      }
+    },
+    {
+      "section": "RT-INTL",
+      "n": 1,
+      "rule": "International RT unfiltered — fareTypes facet per direction",
+      "how": "POST ROUND_TRIP BOM↔DXB",
+      "status": "PASS",
+      "actual": "HTTP 200 o=19 r=19 oFacet=CLASSIC,LITE,VALUE,NDC:-Economy Saver,Economy Saver,Economy Flex,NDC:-Economy Saver/Economy Flex,NDC:-Economy Flex,Economy Flex Plus,NDC:-Economy Flex Plus/Economy Flex,NDC:-Economy Flex/Economy Flex Plus,NDC:-Economy Flex Plus,NDC:-ECONOMY CLASSIC,Normal:-,NDC:-ECONOMY CONVENIENCE,NDC:-ECONOMY COMFORT rFacet=VALUE,LITE,NDC:-Economy Saver,Economy Saver,Economy Flex,NDC:-Economy Flex,Economy Flex Plus,NDC:-Economy Flex Plus/Economy Flex,NDC:-Economy Flex/Economy Flex Plus,Business Special,NDC:-Economy Saver/Economy Flex,NDC:-Economy Flex Plus,NDC:-ECONOMY CLASSIC,Normal:-,NDC:-ECONOMY CONVENIENCE,NDC:-ECONOMY COMFORT"
+    },
+    {
+      "section": "RT-INTL",
+      "n": 2,
+      "rule": "Intl independent filters ONWARD=[\"CLASSIC\"] RETURN=[\"VALUE\"]",
+      "how": "Different fareTypes per direction on BOM↔DXB",
+      "status": "PASS",
+      "actual": "oBugs= rBugs= o=3 r=5",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "CLASSIC"
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            "VALUE"
+          ]
+        }
+      }
+    }
+  ],
+  "dumps": {
+    "pathProbe": [
+      {
+        "path": "/api/flights/catalog-v2/search",
+        "http": 404,
+        "error": null
+      },
+      {
+        "path": "/api/v2/flights/search",
+        "http": 404,
+        "error": null
+      },
+      {
+        "path": "/v2/flights/search",
+        "http": 404,
+        "error": null
+      },
+      {
+        "path": "/v1/flights/search",
+        "http": 200,
+        "error": null
+      }
+    ],
+    "owUnfiltered": {
+      "http": 200,
+      "optionCount": 20,
+      "facet": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "otherFacets": {
+        "airlines": true,
+        "stops": true,
+        "refundable": true,
+        "priceRange": true,
+        "fareTypes": true
+      },
+      "sampleFares": [
+        {
+          "fareType": "VALUE",
+          "price": 2412
+        },
+        {
+          "fareType": "PROMO",
+          "price": 4963
+        },
+        {
+          "fareType": "FLEX",
+          "price": 6013
+        },
+        {
+          "fareType": "LITE",
+          "price": 6717
+        },
+        {
+          "fareType": "CLASSIC",
+          "price": 6848
+        }
+      ],
+      "sampleDisplayPricing": {
+        "type": "STARTING_FROM",
+        "fareCategory": "NORMAL",
+        "pricing": {
+          "baseFare": 899,
+          "taxes": 1513,
+          "convenienceFee": 0,
+          "flexiCancelFee": 0,
+          "platformFee": 0,
+          "totalAmount": 2412,
+          "currency": "INR"
+        }
+      },
+      "sampleFareRaw": {
+        "searchId": "srch_4f331ae118ef45ac89c1627135a4fad1",
+        "fareType": "VALUE",
+        "fareCategory": "NORMAL",
+        "pricing": {
+          "baseFare": 899,
+          "taxes": 1513,
+          "convenienceFee": 0,
+          "flexiCancelFee": 0,
+          "platformFee": 0,
+          "totalAmount": 2412,
+          "currency": "INR"
+        },
+        "fareBasisCode": "XNRA015",
+        "refundable": true,
+        "baggage": {
+          "checkIn": "15Kg",
+          "cabin": "7 Kg"
+        }
+      },
+      "filtersKeys": [
+        "ONWARD"
+      ],
+      "resultsType": "array",
+      "error": null
+    },
+    "owFilter_Special": {
+      "http": 200,
+      "requested": "Special",
+      "optionCount": 2,
+      "sampleFares": [
+        "Special"
+      ],
+      "sampleDisplay": 6794,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_Normal": {
+      "http": 200,
+      "requested": "Normal",
+      "optionCount": 20,
+      "sampleFares": [
+        "Normal"
+      ],
+      "sampleDisplay": 5960,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_SpiceMax": {
+      "http": 200,
+      "requested": "SpiceMax",
+      "optionCount": 2,
+      "sampleFares": [
+        "SpiceMax"
+      ],
+      "sampleDisplay": 7852,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_Flexi": {
+      "http": 200,
+      "requested": "Flexi",
+      "optionCount": 20,
+      "sampleFares": [
+        "Flexi"
+      ],
+      "sampleDisplay": 6859,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_VALUE": {
+      "http": 200,
+      "requested": "VALUE",
+      "optionCount": 15,
+      "sampleFares": [
+        "VALUE"
+      ],
+      "sampleDisplay": 2412,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_PROMO": {
+      "http": 200,
+      "requested": "PROMO",
+      "optionCount": 10,
+      "sampleFares": [
+        "PROMO"
+      ],
+      "sampleDisplay": 4839,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_FLEX": {
+      "http": 200,
+      "requested": "FLEX",
+      "optionCount": 15,
+      "sampleFares": [
+        "FLEX"
+      ],
+      "sampleDisplay": 5432,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_LITE": {
+      "http": 200,
+      "requested": "LITE",
+      "optionCount": 12,
+      "sampleFares": [
+        "LITE"
+      ],
+      "sampleDisplay": 6717,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_CLASSIC": {
+      "http": 200,
+      "requested": "CLASSIC",
+      "optionCount": 13,
+      "sampleFares": [
+        "CLASSIC"
+      ],
+      "sampleDisplay": 6015,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_SALE": {
+      "http": 200,
+      "requested": "SALE",
+      "optionCount": 1,
+      "sampleFares": [
+        "SALE"
+      ],
+      "sampleDisplay": 9701,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_ECOVALU": {
+      "http": 200,
+      "requested": "ECOVALU",
+      "optionCount": 20,
+      "sampleFares": [
+        "ECOVALU",
+        "ECOVALU"
+      ],
+      "sampleDisplay": 7159,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_ECOCLAS": {
+      "http": 200,
+      "requested": "ECOCLAS",
+      "optionCount": 20,
+      "sampleFares": [
+        "ECOCLAS",
+        "ECOCLAS"
+      ],
+      "sampleDisplay": 7684,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_ECOFLX": {
+      "http": 200,
+      "requested": "ECOFLX",
+      "optionCount": 20,
+      "sampleFares": [
+        "ECOFLX",
+        "ECOFLX"
+      ],
+      "sampleDisplay": 8734,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_PEYVALU": {
+      "http": 200,
+      "requested": "PEYVALU",
+      "optionCount": 20,
+      "sampleFares": [
+        "PEYVALU",
+        "PEYVALU"
+      ],
+      "sampleDisplay": 9049,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_Normal:-": {
+      "http": 200,
+      "requested": "Normal:-",
+      "optionCount": 1,
+      "sampleFares": [
+        "Normal:-",
+        "Normal:-"
+      ],
+      "sampleDisplay": 11726,
+      "facetAfter": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ],
+        "filtered": [
+          "SPECIAL",
+          "NORMAL",
+          "SPICEMAX",
+          "FLEXI",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "priceRangeCombo": {
+      "searchId": "srch_abb8337dd4fc4244b7748daec316d38d",
+      "cheapFare": {
+        "t": "VALUE",
+        "p": 2412
+      },
+      "expensiveFare": {
+        "t": "CLASSIC",
+        "p": 6848
+      },
+      "max": 6847,
+      "keptSame": false,
+      "optionCount": 8,
+      "keptSample": null
+    },
+    "rtUnfiltered": {
+      "http": 200,
+      "onward": 20,
+      "ret": 20,
+      "onwardFacet": [
+        {
+          "fareType": "Normal",
+          "count": 80
+        },
+        {
+          "fareType": "Flexi",
+          "count": 64
+        },
+        {
+          "fareType": "RoundtripSpecial",
+          "count": 3
+        },
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "VALUE",
+          "count": 16
+        },
+        {
+          "fareType": "LITE",
+          "count": 14
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "FLEX",
+          "count": 16
+        },
+        {
+          "fareType": "SALE",
+          "count": 2
+        },
+        {
+          "fareType": "PROMO",
+          "count": 7
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 50
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 49
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 44
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 36
+        }
+      ],
+      "returnFacet": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 2
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Flexi",
+          "count": 2
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "error": null
+    },
+    "intlUnfiltered": {
+      "http": 200,
+      "onward": 19,
+      "ret": 19,
+      "onwardFacet": [
+        {
+          "fareType": "CLASSIC",
+          "count": 3
+        },
+        {
+          "fareType": "LITE",
+          "count": 5
+        },
+        {
+          "fareType": "VALUE",
+          "count": 3
+        },
+        {
+          "fareType": "NDC:-Economy Saver",
+          "count": 4
+        },
+        {
+          "fareType": "Economy Saver",
+          "count": 4
+        },
+        {
+          "fareType": "Economy Flex",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Saver/Economy Flex",
+          "count": 4
+        },
+        {
+          "fareType": "NDC:-Economy Flex",
+          "count": 4
+        },
+        {
+          "fareType": "Economy Flex Plus",
+          "count": 3
+        },
+        {
+          "fareType": "NDC:-Economy Flex Plus/Economy Flex",
+          "count": 4
+        },
+        {
+          "fareType": "NDC:-Economy Flex/Economy Flex Plus",
+          "count": 4
+        },
+        {
+          "fareType": "NDC:-Economy Flex Plus",
+          "count": 4
+        },
+        {
+          "fareType": "NDC:-ECONOMY CLASSIC",
+          "count": 5
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 7
+        },
+        {
+          "fareType": "NDC:-ECONOMY CONVENIENCE",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-ECONOMY COMFORT",
+          "count": 5
+        }
+      ],
+      "returnFacet": [
+        {
+          "fareType": "VALUE",
+          "count": 5
+        },
+        {
+          "fareType": "LITE",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Saver",
+          "count": 3
+        },
+        {
+          "fareType": "Economy Saver",
+          "count": 3
+        },
+        {
+          "fareType": "Economy Flex",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Flex",
+          "count": 3
+        },
+        {
+          "fareType": "Economy Flex Plus",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Flex Plus/Economy Flex",
+          "count": 3
+        },
+        {
+          "fareType": "NDC:-Economy Flex/Economy Flex Plus",
+          "count": 5
+        },
+        {
+          "fareType": "Business Special",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Saver/Economy Flex",
+          "count": 2
+        },
+        {
+          "fareType": "NDC:-Economy Flex Plus",
+          "count": 2
+        },
+        {
+          "fareType": "NDC:-ECONOMY CLASSIC",
+          "count": 5
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 8
+        },
+        {
+          "fareType": "NDC:-ECONOMY CONVENIENCE",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-ECONOMY COMFORT",
+          "count": 5
+        }
+      ],
+      "error": null
+    }
+  },
+  "finishedAt": "2026-08-24T10:54:20.487Z"
+}

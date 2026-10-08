@@ -1,0 +1,1445 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "ranAt": "2026-09-04T07:10:58.470Z",
+  "serverNowApproxUtc": "2026-09-04T07:10:49.695Z",
+  "rules": {
+    "AIRPORT+ARRIVAL": "min 20 minutes ahead (UTC)",
+    "AIRPORT+DEPARTURE": "min 2 hours ahead (UTC)",
+    "RENTAL": "min 2 hours ahead (UTC)",
+    "OUTSTATION": "min 2 hours ahead (UTC)",
+    "failShape": "HTTP 400 VALIDATION_ERROR; must not return cab options"
+  },
+  "counts": {
+    "PASS": 22
+  },
+  "rows": [
+    {
+      "id": "AA-NEG-past",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": -5,
+      "pickupDatetimeUtc": "2026-09-04T07:05:49Z",
+      "expect": "REJECT",
+      "edgeNote": "past",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:05:49Z is in the past. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T07:05:49Z is in the past. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:49Z",
+        "request_id": "req-1788505849696"
+      }
+    },
+    {
+      "id": "AA-NEG-0",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 0,
+      "pickupDatetimeUtc": "2026-09-04T07:10:49Z",
+      "expect": "REJECT",
+      "edgeNote": "now",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:10:49Z is in the past. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T07:10:49Z is in the past. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:49Z",
+        "request_id": "req-1788505849767"
+      }
+    },
+    {
+      "id": "AA-NEG-10",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 10,
+      "pickupDatetimeUtc": "2026-09-04T07:20:49Z",
+      "expect": "REJECT",
+      "edgeNote": "10 < 20",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:20:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T07:20:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:49Z",
+        "request_id": "req-1788505849914"
+      }
+    },
+    {
+      "id": "AA-NEG-19",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 19,
+      "pickupDatetimeUtc": "2026-09-04T07:29:49Z",
+      "expect": "REJECT",
+      "edgeNote": "edge just under 20",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:29:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T07:29:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:49Z",
+        "request_id": "req-1788505849949"
+      }
+    },
+    {
+      "id": "AA-POS-20",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 20,
+      "pickupDatetimeUtc": "2026-09-04T07:30:49Z",
+      "expect": "ACCEPT",
+      "edgeNote": "exact 20 min edge",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "AA-POS-21",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 21,
+      "pickupDatetimeUtc": "2026-09-04T07:31:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "just over 20",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "AA-POS-60",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 60,
+      "pickupDatetimeUtc": "2026-09-04T08:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "1 hour ahead",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "AD-NEG-30",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 30,
+      "pickupDatetimeUtc": "2026-09-04T07:40:50Z",
+      "expect": "REJECT",
+      "edgeNote": "30 < 120",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:49Z",
+        "request_id": "req-1788505850443"
+      }
+    },
+    {
+      "id": "AD-NEG-60",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 60,
+      "pickupDatetimeUtc": "2026-09-04T08:10:50Z",
+      "expect": "REJECT",
+      "edgeNote": "1h < 2h",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T08:10:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T08:10:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:49Z",
+        "request_id": "req-1788505850483"
+      }
+    },
+    {
+      "id": "AD-NEG-119",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 119,
+      "pickupDatetimeUtc": "2026-09-04T09:09:50Z",
+      "expect": "REJECT",
+      "edgeNote": "edge just under 2h",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:49Z",
+        "request_id": "req-1788505850512"
+      }
+    },
+    {
+      "id": "AD-POS-120",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 120,
+      "pickupDatetimeUtc": "2026-09-04T09:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "exact 2h edge",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "AD-POS-121",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 121,
+      "pickupDatetimeUtc": "2026-09-04T09:11:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "just over 2h",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "AD-POS-180",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 180,
+      "pickupDatetimeUtc": "2026-09-04T10:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "3h ahead",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "RT-NEG-30",
+      "kind": "RENTAL",
+      "offsetMin": 30,
+      "pickupDatetimeUtc": "2026-09-04T07:40:50Z",
+      "expect": "REJECT",
+      "edgeNote": "30 < 120",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:50Z",
+        "request_id": "req-1788505850733"
+      }
+    },
+    {
+      "id": "RT-NEG-119",
+      "kind": "RENTAL",
+      "offsetMin": 119,
+      "pickupDatetimeUtc": "2026-09-04T09:09:50Z",
+      "expect": "REJECT",
+      "edgeNote": "edge just under 2h",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:50Z",
+        "request_id": "req-1788505850771"
+      }
+    },
+    {
+      "id": "RT-POS-120",
+      "kind": "RENTAL",
+      "offsetMin": 120,
+      "pickupDatetimeUtc": "2026-09-04T09:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "exact 2h edge",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "RT-POS-180",
+      "kind": "RENTAL",
+      "offsetMin": 180,
+      "pickupDatetimeUtc": "2026-09-04T10:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "3h ahead",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "OS-NEG-30",
+      "kind": "OUTSTATION",
+      "offsetMin": 30,
+      "pickupDatetimeUtc": "2026-09-04T07:40:50Z",
+      "expect": "REJECT",
+      "edgeNote": "30 < 120",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:50Z",
+        "request_id": "req-1788505850937"
+      }
+    },
+    {
+      "id": "OS-NEG-119",
+      "kind": "OUTSTATION",
+      "offsetMin": 119,
+      "pickupDatetimeUtc": "2026-09-04T09:09:50Z",
+      "expect": "REJECT",
+      "edgeNote": "edge just under 2h",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+        "details": null,
+        "timestamp": "2026-09-04T07:10:50Z",
+        "request_id": "req-1788505850975"
+      }
+    },
+    {
+      "id": "OS-POS-120",
+      "kind": "OUTSTATION",
+      "offsetMin": 120,
+      "pickupDatetimeUtc": "2026-09-04T09:10:51Z",
+      "expect": "ACCEPT",
+      "edgeNote": "exact 2h edge",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "OS-POS-180",
+      "kind": "OUTSTATION",
+      "offsetMin": 180,
+      "pickupDatetimeUtc": "2026-09-04T10:10:51Z",
+      "expect": "ACCEPT",
+      "edgeNote": "3h ahead",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "error": {
+        "code": "VENDOR_REJECTED_REQUEST",
+        "message": "Cab provider could not process this search.",
+        "details": null
+      }
+    },
+    {
+      "id": "UTC-TRAP-AD",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 589,
+      "pickupDatetimeUtc": "2026-09-04T16:59:51Z",
+      "expect": "ACCEPT",
+      "edgeNote": "pickupDatetime=2026-09-04T17:00:00Z (17:00Z wall, offset 589m) — must treat as UTC not IST",
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": null,
+      "cabCount": 8,
+      "status": "PASS",
+      "error": null
+    }
+  ],
+  "raw": [
+    {
+      "id": "AA-NEG-past",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": -5,
+      "pickupDatetimeUtc": "2026-09-04T07:05:49Z",
+      "expect": "REJECT",
+      "edgeNote": "past",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:05:49Z is in the past. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T07:05:49Z is in the past. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:49Z",
+          "request_id": "req-1788505849696"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AA-NEG-0",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 0,
+      "pickupDatetimeUtc": "2026-09-04T07:10:49Z",
+      "expect": "REJECT",
+      "edgeNote": "now",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:10:49Z is in the past. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T07:10:49Z is in the past. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:49Z",
+          "request_id": "req-1788505849767"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AA-NEG-10",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 10,
+      "pickupDatetimeUtc": "2026-09-04T07:20:49Z",
+      "expect": "REJECT",
+      "edgeNote": "10 < 20",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:20:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T07:20:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:49Z",
+          "request_id": "req-1788505849914"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AA-NEG-19",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 19,
+      "pickupDatetimeUtc": "2026-09-04T07:29:49Z",
+      "expect": "REJECT",
+      "edgeNote": "edge just under 20",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:29:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T07:29:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-09-04T07:30:49Z (now 2026-09-04T07:10:49Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:49Z",
+          "request_id": "req-1788505849949"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AA-POS-20",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 20,
+      "pickupDatetimeUtc": "2026-09-04T07:30:49Z",
+      "expect": "ACCEPT",
+      "edgeNote": "exact 20 min edge",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AA-POS-21",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 21,
+      "pickupDatetimeUtc": "2026-09-04T07:31:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "just over 20",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AA-POS-60",
+      "kind": "AIRPORT_ARRIVAL",
+      "offsetMin": 60,
+      "pickupDatetimeUtc": "2026-09-04T08:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "1 hour ahead",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AD-NEG-30",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 30,
+      "pickupDatetimeUtc": "2026-09-04T07:40:50Z",
+      "expect": "REJECT",
+      "edgeNote": "30 < 120",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:49Z",
+          "request_id": "req-1788505850443"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AD-NEG-60",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 60,
+      "pickupDatetimeUtc": "2026-09-04T08:10:50Z",
+      "expect": "REJECT",
+      "edgeNote": "1h < 2h",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T08:10:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T08:10:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:49Z",
+          "request_id": "req-1788505850483"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AD-NEG-119",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 119,
+      "pickupDatetimeUtc": "2026-09-04T09:09:50Z",
+      "expect": "REJECT",
+      "edgeNote": "edge just under 2h",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-04T09:10:49Z (now 2026-09-04T07:10:49Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:49Z",
+          "request_id": "req-1788505850512"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AD-POS-120",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 120,
+      "pickupDatetimeUtc": "2026-09-04T09:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "exact 2h edge",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AD-POS-121",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 121,
+      "pickupDatetimeUtc": "2026-09-04T09:11:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "just over 2h",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "AD-POS-180",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 180,
+      "pickupDatetimeUtc": "2026-09-04T10:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "3h ahead",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "RT-NEG-30",
+      "kind": "RENTAL",
+      "offsetMin": 30,
+      "pickupDatetimeUtc": "2026-09-04T07:40:50Z",
+      "expect": "REJECT",
+      "edgeNote": "30 < 120",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:50Z",
+          "request_id": "req-1788505850733"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "RT-NEG-119",
+      "kind": "RENTAL",
+      "offsetMin": 119,
+      "pickupDatetimeUtc": "2026-09-04T09:09:50Z",
+      "expect": "REJECT",
+      "edgeNote": "edge just under 2h",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:50Z",
+          "request_id": "req-1788505850771"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "RT-POS-120",
+      "kind": "RENTAL",
+      "offsetMin": 120,
+      "pickupDatetimeUtc": "2026-09-04T09:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "exact 2h edge",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "RT-POS-180",
+      "kind": "RENTAL",
+      "offsetMin": 180,
+      "pickupDatetimeUtc": "2026-09-04T10:10:50Z",
+      "expect": "ACCEPT",
+      "edgeNote": "3h ahead",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "OS-NEG-30",
+      "kind": "OUTSTATION",
+      "offsetMin": 30,
+      "pickupDatetimeUtc": "2026-09-04T07:40:50Z",
+      "expect": "REJECT",
+      "edgeNote": "30 < 120",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T07:40:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:50Z",
+          "request_id": "req-1788505850937"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "OS-NEG-119",
+      "kind": "OUTSTATION",
+      "offsetMin": 119,
+      "pickupDatetimeUtc": "2026-09-04T09:09:50Z",
+      "expect": "REJECT",
+      "edgeNote": "edge just under 2h",
+      "actualHttp": 400,
+      "actualCode": "VALIDATION_ERROR",
+      "actualMessage": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid pickupDatetime: 2026-09-04T09:09:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-09-04T09:10:50Z (now 2026-09-04T07:10:50Z).",
+          "details": null,
+          "timestamp": "2026-09-04T07:10:50Z",
+          "request_id": "req-1788505850975"
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "OS-POS-120",
+      "kind": "OUTSTATION",
+      "offsetMin": 120,
+      "pickupDatetimeUtc": "2026-09-04T09:10:51Z",
+      "expect": "ACCEPT",
+      "edgeNote": "exact 2h edge",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "OS-POS-180",
+      "kind": "OUTSTATION",
+      "offsetMin": 180,
+      "pickupDatetimeUtc": "2026-09-04T10:10:51Z",
+      "expect": "ACCEPT",
+      "edgeNote": "3h ahead",
+      "actualHttp": 200,
+      "actualCode": "VENDOR_REJECTED_REQUEST",
+      "actualMessage": "Cab provider could not process this search.",
+      "cabCount": null,
+      "status": "PASS",
+      "body": {
+        "error": {
+          "code": "VENDOR_REJECTED_REQUEST",
+          "message": "Cab provider could not process this search.",
+          "details": null
+        },
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    },
+    {
+      "id": "UTC-TRAP-AD",
+      "kind": "AIRPORT_DEPARTURE",
+      "offsetMin": 589,
+      "pickupDatetimeUtc": "2026-09-04T16:59:51Z",
+      "expect": "ACCEPT",
+      "edgeNote": "pickupDatetime=2026-09-04T17:00:00Z (17:00Z wall, offset 589m) — must treat as UTC not IST",
+      "actualHttp": 200,
+      "actualCode": null,
+      "actualMessage": null,
+      "cabCount": 8,
+      "status": "PASS",
+      "body": {
+        "currency": "INR",
+        "cabs": [
+          {
+            "searchId": "0dd773c9-e6a3-4413-84e8-d870678f8f49|1e58f395b09063857de90a973ea1208409f947aeca47fd7f4f7197d87c502cdb",
+            "cabId": "3f2f4aa5-b629-4bd2-9fc6-60fee72897c9",
+            "fareId": "Unknown",
+            "vehicle": {
+              "type": "SEDAN",
+              "category": "ECONOMY",
+              "filterTag": "Sedan",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Sedan.png",
+              "model": "Dzire or Similar",
+              "makeYear": 2016,
+              "seatingCapacity": 2,
+              "luggageCapacity": 2,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+              "imageApp": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+            },
+            "operator": {
+              "name": "Carzonrent",
+              "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+              "rating": 4.9,
+              "ratingCount": 252
+            },
+            "trip": {
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmFareLabel": "INR 24/Km",
+              "freeCancellationTillMin": 30,
+              "cancellationRule": "FLEXI"
+            },
+            "inclusions": [
+              "15 Kms Ride",
+              "GST Included ₹20.58"
+            ],
+            "exclusions": [
+              "Toll Charges",
+              "Waiting Charges (after 20 mins) ₹100/30 mins",
+              "Extra Km Fare (₹24/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 411,
+              "taxes": 20.58,
+              "convenienceFee": 21.58,
+              "totalAmount": 453.16,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkh+u9aLxWL6PQKE6bGou3EyBBr7iE768T2az+3kI9T3dfd3JEp+ane8S5bDYCUeqWYnn7eGYOW28m15AiQDQ0g6Gxj1YP65Il+DSNKxgz+dXnVFpZrOIDo4IjMxaVfnRvgHqZ/54PhWEwrjNq+ieF3dg8Q/4O2OOg3/dos8X4K6Sy4wvouwynomxi+sQeFTKwTpchIIUM8mW297gCPJrof0y9GD+A9x+8Dbg4ezzh68frXCFAHe1JUoD2HAapxfX3vnrlHBin8JyMXofRrOvubgOfhDt186wNxKCGmRpLID4llWkNLw61BtZZFHZeoqL36BznXGCuarzO9GehMG2vnaLuyB4dcA7INSNOtnpIoVRirsbE5a50KVO6BlMozXTEz3FVM7Q6aWUvf0V8ivHxSfGZUDvzZuVs8eCrP20xR0Y",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1788507617640,
+            "tags": [
+              "NO_RECOMMENDATION"
+            ]
+          },
+          {
+            "searchId": "cb1edcd9-eb42-445f-aa01-af258fba189f|1e58f395b09063857de90a973ea1208409f947aeca47fd7f4f7197d87c502cdb",
+            "cabId": "b89f57c4-e835-4283-86d0-3492deeaf6a3",
+            "fareId": "73",
+            "vehicle": {
+              "type": "SEDAN",
+              "category": "ECONOMY",
+              "filterTag": "Sedan",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Sedan.png",
+              "model": "Dzire or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 2,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageApp": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-gozo-38x38.svg"
+            },
+            "operator": {
+              "name": "Gozo Cabs",
+              "logoUrl": "https://cdn.bookairportcab.com/Gozo/gozo-logo-84.jpg",
+              "rating": 5,
+              "ratingCount": 110
+            },
+            "trip": {
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmFareLabel": "INR 20/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "15 Kms Ride"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹20/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 630,
+              "taxes": 32,
+              "convenienceFee": 33.1,
+              "totalAmount": 695.1,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkr/vNRqLRjQ8ZqcBYdT1HULHHmpaC2x58ZwZAW0sWGWNZwZe72gri61NIueQb4aGC6whJsYYAZBC+75XAK4TGPqGxj1YP65Il+DSNKxgz+dXnVFpZrOIDo4IjMxaVfnRvgHqZ/54PhWEwrjNq+ieF3dg8Q/4O2OOg3/dos8X4K6SwDGjGGNjQsjI4jjiBxaD/i6tzuBTdJTkjZzbK9lWH2rCo8z3vwUeZTBq3wyYxbXp8+Xj3yQzIx2hALGH34Cd2vnrlHBin8JyMXofRrOvubgOfhDt186wNxKCGmRpLID4llWkNLw61BtZZFHZeoqL36BznXGCuarzO9GehMG2vnaLuyB4dcA7INSNOtnpIoVRirsbE5a50KVO6BlMozXTEz3FVM7Q6aWUvf0V8ivHxSfGZUDvzZuVs8eCrP20xR0Y",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1788507617636,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "6bd9030d-1e8b-4cb9-a1cb-ce4eb64a9746|1e58f395b09063857de90a973ea1208409f947aeca47fd7f4f7197d87c502cdb",
+            "cabId": "e3a2732f-8ea4-425b-8a09-5455115673ac",
+            "fareId": "72",
+            "vehicle": {
+              "type": "HATCHBACK",
+              "category": "ECONOMY",
+              "filterTag": "Hatchback",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Hatchback.png",
+              "model": "WagonR or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 1,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+              "imageApp": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+              "imageMobile": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+            },
+            "operator": {
+              "name": "TravelVIP",
+              "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+              "rating": 5,
+              "ratingCount": 110
+            },
+            "trip": {
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmFareLabel": "INR 18/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "15 Kms Ride"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹18/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 623,
+              "taxes": 31,
+              "convenienceFee": 32.7,
+              "totalAmount": 686.7,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkkZ1lYkSEPHm+EmoTepjl48j5pu29feE+2cZ3LR/V1OH9xN6cDxNfPjr5fMvcQutt6whJsYYAZBC+75XAK4TGPqGxj1YP65Il+DSNKxgz+dXnVFpZrOIDo4IjMxaVfnRvgHqZ/54PhWEwrjNq+ieF3dg8Q/4O2OOg3/dos8X4K6SI4isgn96Hd2KzJk7XrYvJxdhtx28OG59b+hi0GePOuB6+a0jb89ZLQXGBSFfxWwakXa+RCwXfJKn8+pSUFLsuPnrlHBin8JyMXofRrOvubgOfhDt186wNxKCGmRpLID4llWkNLw61BtZZFHZeoqL36BznXGCuarzO9GehMG2vnaLuyB4dcA7INSNOtnpIoVRirsbE5a50KVO6BlMozXTEz3FVM7Q6aWUvf0V8ivHxSfGZUDvzZuVs8eCrP20xR0Y",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1788507617638,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "21d43d1b-345a-4e17-8a8b-97fa740a065c|1e58f395b09063857de90a973ea1208409f947aeca47fd7f4f7197d87c502cdb",
+            "cabId": "18ffd80b-ce5e-4559-9801-50d7fe9eb0e4",
+            "fareId": "74",
+            "vehicle": {
+              "type": "SUV",
+              "category": "ECONOMY",
+              "filterTag": "SUV",
+              "filterTagImage": "https://img.travelx.ai/icons/New/SUV.png",
+              "model": "Ertiga or Similar",
+              "seatingCapacity": 3,
+              "luggageCapacity": 3,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+              "imageApp": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+              "imageMobile": "https://cdn/bookairportcab.com/logos/travel_vip_38X38.png"
+            },
+            "operator": {
+              "name": "TravelVIP",
+              "logoUrl": "https://cdn.bookairportcab.com/logos/travel_vip_84X84.png",
+              "rating": 5,
+              "ratingCount": 110
+            },
+            "trip": {
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmFareLabel": "INR 25/Km",
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "15 Kms Ride"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 30 mins) ₹100/30min",
+              "Toll Charges",
+              "Parking Charges (as applicable)",
+              "Extra Km Fare (₹25/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 1025,
+              "taxes": 51,
+              "convenienceFee": 53.8,
+              "totalAmount": 1129.8,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkhQsE0hZRpVeMP5MpqVBIqRd35jGk/qTqZD68vSiotxl7AbyTHrLVJlXMstsTNnXYUC93u6kn09CcWuiMs/DcaKaiVw3fm1aBkbpYyptv1E7Mvrz76MQQ+7J5Vix3fybrqVkEXLVlLChLe9A6ht2NRhxVHvCd01mB0VvbUxmeRkgi6saSk9FuPEOfCaFmbS/crKlQB5nE63o3MqEuCmFi9N3+EsHxJm0banCyuhwGryP1CfrUXtyeMzWrWmDHTxype5CiGOKJqQS/Qo126XWAMCfltGajRVSTvqoQXxSELw0QPdvJGzpjz5im3H/utLrAXWBTuOGHyxI4sGxRv5bX8IztIpdxHxHNwsLBRxz47Cxo3+b2xL309qCV/JnXY0Hexh9KhWCQFU6eEwnr2sJCrK/CrwY8o2LZFfGbyUqSBfB",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1788507617637,
+            "tags": [
+              "RECOMMENDED"
+            ]
+          },
+          {
+            "searchId": "2bd5ace1-dd3f-4af0-9d89-09708bd2937f|1e58f395b09063857de90a973ea1208409f947aeca47fd7f4f7197d87c502cdb",
+            "cabId": "613fc327-adc7-4ddf-bfb7-bac12f92705f",
+            "fareId": "delhi_delhi_oneway_1770103106343",
+            "vehicle": {
+              "type": "HATCHBACK",
+              "category": "ECONOMY",
+              "filterTag": "Hatchback",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Hatchback.png",
+              "model": "WagonR or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 1,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/WTi/wticabs_84x84.png",
+              "imageApp": "https://cdn.bookairportcab.com/WTi/wticabs_84x84.png",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-wticabs-38x38.svg"
+            },
+            "operator": {
+              "name": "WTICABS",
+              "logoUrl": "https://cdn.bookairportcab.com/WTi/wticabs_84x84.png",
+              "rating": 3.4,
+              "ratingCount": 300
+            },
+            "trip": {
+              "distanceKm": 15,
+              "durationMin": 15,
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "15 Kms Ride",
+              "Driver Allowance"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 45 mins) ₹100/30min",
+              "Extra Km Fare (₹20/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 1418,
+              "taxes": 0,
+              "convenienceFee": 70.9,
+              "totalAmount": 1488.9,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkkhRQdtTxXurw07jBuNrWD5rmQOxyOeenyAa5aQgaEqenTV2K1HsM4B5OdWBXFM7XJstu/4naKSlnYfR/RkCL537QBuVo044t7n9gExY6wLsRQjnzvHebpx002A/ajIRTJebMPg0MD/FJFZV0tZDq/2xpEqkJzNR9YoXuMfKGbGVmrjx5dwcyoE3W4vthd7U0WtasAFZKHOLHHK4zw9/UGjaHJGrDEwPwUNRup7H672mg9pu4BynRtOzokTedg9xwwTrC8atIbLnmFej03Dck1eHX0lK2/PkwatfkLBWKFSNTVov2lFGx4iwULxNi079TmBy2kS271lTXDTqzvAGJRCZIIFM8JDhTo+38TbQniOgXBsjdxMYIN6NfMyT7uuEEwxJzqtV8ztEtkh0gUA3PLcpmVGBm29+YmkJhR4/zGjU",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1788507617640,
+            "tags": [
+              "NO_RECOMMENDATION"
+            ]
+          },
+          {
+            "searchId": "bcf5e666-1b17-40db-b0eb-467a94f032f1|1e58f395b09063857de90a973ea1208409f947aeca47fd7f4f7197d87c502cdb",
+            "cabId": "613fc327-adc7-4ddf-bfb7-bac12f92705f",
+            "fareId": "delhi_delhi_oneway_1770103153548",
+            "vehicle": {
+              "type": "SEDAN",
+              "category": "ECONOMY",
+              "filterTag": "Sedan",
+              "filterTagImage": "https://img.travelx.ai/icons/New/Sedan.png",
+              "model": "Dzire or Similar",
+              "seatingCapacity": 2,
+              "luggageCapacity": 2,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/WTi/wticabs_84x84.png",
+              "imageApp": "https://cdn.bookairportcab.com/WTi/wticabs_84x84.png",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-wticabs-38x38.svg"
+            },
+            "operator": {
+              "name": "WTICABS",
+              "logoUrl": "https://cdn.bookairportcab.com/WTi/wticabs_84x84.png",
+              "rating": 3.4,
+              "ratingCount": 300
+            },
+            "trip": {
+              "distanceKm": 15,
+              "durationMin": 15,
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "15 Kms Ride",
+              "Driver Allowance"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 45 mins) ₹100/30min",
+              "Extra Km Fare (₹20/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 1575,
+              "taxes": 0,
+              "convenienceFee": 78.75,
+              "totalAmount": 1653.75,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkvwPENF2vEQRd0ZzYhlzXq9rmQOxyOeenyAa5aQgaEqesdGhft27zz6UGRRufOR8MZstu/4naKSlnYfR/RkCL537QBuVo044t7n9gExY6wLsRQjnzvHebpx002A/ajIRTJebMPg0MD/FJFZV0tZDq/2xpEqkJzNR9YoXuMfKGbGVEvU0xyi4gUw2SoU1W0c6Mn5zIzcPC8q1sC8hZq8zEGfaHJGrDEwPwUNRup7H672m+mFpLhFyHAgNfOL13a0lXQTrC8atIbLnmFej03Dck1eHX0lK2/PkwatfkLBWKFSNTVov2lFGx4iwULxNi079TmBy2kS271lTXDTqzvAGJRCZIIFM8JDhTo+38TbQniOgXBsjdxMYIN6NfMyT7uuEEwxJzqtV8ztEtkh0gUA3PLcpmVGBm29+YmkJhR4/zGjU",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1788507617639,
+            "tags": [
+              "NO_RECOMMENDATION"
+            ]
+          },
+          {
+            "searchId": "2d67cc85-a7a0-4c55-bb1e-bf8b068c7ae9|1e58f395b09063857de90a973ea1208409f947aeca47fd7f4f7197d87c502cdb",
+            "cabId": "613fc327-adc7-4ddf-bfb7-bac12f92705f",
+            "fareId": "delhi_delhi_oneway_1770103237156",
+            "vehicle": {
+              "type": "SUV",
+              "category": "ECONOMY",
+              "filterTag": "SUV",
+              "filterTagImage": "https://img.travelx.ai/icons/New/SUV.png",
+              "model": "Ertiga or Similar",
+              "seatingCapacity": 3,
+              "luggageCapacity": 3,
+              "airConditioned": true,
+              "fuelType": "CNG",
+              "imageUrl": "https://cdn.bookairportcab.com/WTi/wticabs_84x84.png",
+              "imageApp": "https://cdn.bookairportcab.com/WTi/wticabs_84x84.png",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/mojoboxx-wticabs-38x38.svg"
+            },
+            "operator": {
+              "name": "WTICABS",
+              "logoUrl": "https://cdn.bookairportcab.com/WTi/wticabs_84x84.png",
+              "rating": 3.4,
+              "ratingCount": 300
+            },
+            "trip": {
+              "distanceKm": 15,
+              "durationMin": 15,
+              "freeCancellationTillMin": 30
+            },
+            "inclusions": [
+              "15 Kms Ride",
+              "Driver Allowance"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 45 mins) ₹100/30min",
+              "Extra Km Fare (₹30/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 1890,
+              "taxes": 0,
+              "convenienceFee": 94.5,
+              "totalAmount": 1984.5,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFkqYrSTymCHnIKSl5hyC2WNNrmQOxyOeenyAa5aQgaEqe5BZIKH5xaZWxiUwvafsqhpstu/4naKSlnYfR/RkCL537QBuVo044t7n9gExY6wLsRQjnzvHebpx002A/ajIRTJebMPg0MD/FJFZV0tZDq/2xpEqkJzNR9YoXuMfKGbGVU7xV5d3CBRPlQbpFYjoxr1uJQGsEVki527LWjqxGrTTaHJGrDEwPwUNRup7H672mElREt2XcvVaDjbprZ6ja+QTrC8atIbLnmFej03Dck1eHX0lK2/PkwatfkLBWKFSNTVov2lFGx4iwULxNi079TmBy2kS271lTXDTqzvAGJRCZIIFM8JDhTo+38TbQniOgXBsjdxMYIN6NfMyT7uuEEwxJzqtV8ztEtkh0gUA3PLcpmVGBm29+YmkJhR4/zGjU",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1788507617638,
+            "tags": [
+              "NO_RECOMMENDATION"
+            ]
+          },
+          {
+            "searchId": "9c21901e-c6ba-4bc2-b457-8ebcff8d1aa6|1e58f395b09063857de90a973ea1208409f947aeca47fd7f4f7197d87c502cdb",
+            "cabId": "3f2f4aa5-b629-4bd2-9fc6-60fee72897c9",
+            "fareId": "Unknown",
+            "vehicle": {
+              "type": "SUV",
+              "category": "PREMIUM",
+              "filterTag": "SUV",
+              "filterTagImage": "https://img.travelx.ai/icons/New/SUV.png",
+              "model": "Ertiga or Similar",
+              "makeYear": 2016,
+              "seatingCapacity": 4,
+              "luggageCapacity": 3,
+              "airConditioned": true,
+              "fuelType": "DIESEL",
+              "imageUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+              "imageApp": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+              "imageMobile": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent38x38.svg"
+            },
+            "operator": {
+              "name": "Carzonrent",
+              "logoUrl": "https://cdn.bookairportcab.com/svglogos/logo_carzonrent_84x84.svg",
+              "rating": 4.9,
+              "ratingCount": 252
+            },
+            "trip": {
+              "distanceKm": 15,
+              "durationMin": 15,
+              "extraKmFareLabel": "INR 32/Km",
+              "freeCancellationTillMin": 30,
+              "cancellationRule": "FLEXI"
+            },
+            "inclusions": [
+              "15 Kms Ride",
+              "Toll Charges ₹100",
+              "GST Included ₹105"
+            ],
+            "exclusions": [
+              "Waiting Charges (after 20 mins) ₹100/30 mins",
+              "Extra Km Fare (₹32/Km)",
+              "Airport parking charges may apply as per destination airport rules.",
+              "Toll charges(if applicable and not included in fare) are payable against a valid receipt.",
+              "If no receipt is provided for any extra charge, contact care@bookairportcab.com for assistance"
+            ],
+            "priceDetail": {
+              "baseFare": 2000,
+              "taxes": 105,
+              "convenienceFee": 105.25,
+              "totalAmount": 2210.25,
+              "currency": "INR",
+              "priceReference": "0EDnyojVd0KSEPjH0lnwqK74YbLQ6Su2rAN8TawpFaHeP18Lg+H6EG7Yv1jR4JK6cYUTPv6bXhN3XULBMOWFktyCd4QGbs13xxntYeVzNzqyHuci2mS0BwGdUPNmPwplAYOyyivff6IuAP/Pix2mvr1wHQ983YF4oVKZ/Vg5TXrq1USGdAYyLLkhJe5tjiDz5O3r0lOj0Dyvv48U8+ul/U7TtxdzubX0Mwy5ZeIdolxInKiZfVNTKCKZIssR4pzltLr4nx9+Xq3blqL7JS03xWhij8498QUP05Vo637JuJZry4sovIiX1Io+6wuII/R5S0DFaUB1aZBjLOZ3BJgnBEWsUYADIMyL+f6eYF+bPR8FhuZX5nSma5ei2VxCYZRiSc2NOrzEu0DJzSZkcMUML/kWhWtn4RnDKhaahEDYTAebXSIKCZXGNznBmUStaScwcI5zvnIPWw5qBm/tstYScSGRU8u13n5XdEpmpXb+yBNBqQWySj1F0sIkWPPp3QyF",
+              "gstAmount": 0,
+              "currencyConversion": {
+                "source": "INR",
+                "destination": "INR",
+                "rate": 1
+              }
+            },
+            "fareExpiryTime": 1788507617641,
+            "tags": [
+              "NO_RECOMMENDATION"
+            ]
+          }
+        ],
+        "_meta": {
+          "correlation_id": "56555ddf-431d-4c5a-bcfa-a5ff25d75b99"
+        }
+      }
+    }
+  ]
+}

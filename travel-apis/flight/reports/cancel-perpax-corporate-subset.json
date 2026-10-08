@@ -1,0 +1,244 @@
+{
+  "ranAt": "2026-08-12T20:52:08.231Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "fareType": "CORPORATE",
+  "fixture": {
+    "br": "BR1786567896898911",
+    "status": "Confirmed",
+    "pnr": "W45UMH",
+    "onlineCancellation": true,
+    "adults": 2,
+    "route": "DEL-BOM",
+    "days": 28,
+    "fareType": "CORPORATE",
+    "totalAmount": 7952,
+    "addGstInfo": true,
+    "passengers": [
+      "PAX1",
+      "PAX2"
+    ]
+  },
+  "request": {
+    "penalty": {
+      "action": "PENALTY",
+      "pnr": "W45UMH",
+      "cancellationPaxList": [
+        "PAX1"
+      ]
+    },
+    "cancel": {
+      "action": "CANCEL",
+      "pnr": "W45UMH",
+      "cancellationPaxList": [
+        "PAX1"
+      ]
+    }
+  },
+  "penalty": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786567896898911",
+      "pnr": "W45UMH",
+      "cancellationRequest": {
+        "status": "Penalty Fetched",
+        "estimatedCancellationCharge": 849,
+        "estimatedRefund": 3127,
+        "totalAmount": 3976,
+        "totalPenalty": 849,
+        "perPax": {
+          "paxCount": 2,
+          "chargedPax": 1,
+          "amount": 3976,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 499,
+          "cancellationFee": 350,
+          "refund": 3127,
+          "penaltyBasis": "PER_PAX_POLICY"
+        },
+        "createdAt": "2026-08-12T20:52:06Z"
+      },
+      "paxScope": {
+        "scope": "PARTIAL_PAX",
+        "cancellationPaxList": [
+          "PAX1"
+        ],
+        "totalPaxOnPnr": 2,
+        "cancelledPaxCount": 1,
+        "prorated": true,
+        "penaltyQuotable": true,
+        "penaltyBasis": "PER_PAX_POLICY",
+        "penaltyPerPax": 499,
+        "chargedPax": 1
+      }
+    },
+    "status": "Penalty Fetched",
+    "totalAmount": 3976,
+    "estimatedCancellationCharge": 849,
+    "estimatedRefund": 3127,
+    "perPax": {
+      "paxCount": 2,
+      "chargedPax": 1,
+      "amount": 3976,
+      "convenienceFee": 0,
+      "ssr": 0,
+      "flexiCancelFee": 0,
+      "penalty": 499,
+      "cancellationFee": 350,
+      "refund": 3127,
+      "penaltyBasis": "PER_PAX_POLICY"
+    },
+    "paxScope": {
+      "scope": "PARTIAL_PAX",
+      "cancellationPaxList": [
+        "PAX1"
+      ],
+      "totalPaxOnPnr": 2,
+      "cancelledPaxCount": 1,
+      "prorated": true,
+      "penaltyQuotable": true,
+      "penaltyBasis": "PER_PAX_POLICY",
+      "penaltyPerPax": 499,
+      "chargedPax": 1
+    },
+    "message": null
+  },
+  "cancel": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786567896898911",
+      "pnr": "W45UMH",
+      "cancellationRequest": {
+        "status": "Cancellation Requested",
+        "estimatedCancellationCharge": 849,
+        "estimatedRefund": 3127,
+        "totalAmount": 3976,
+        "totalPenalty": 849,
+        "perPax": {
+          "paxCount": 2,
+          "chargedPax": 1,
+          "amount": 3976,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 499,
+          "cancellationFee": 350,
+          "refund": 3127,
+          "penaltyBasis": "PER_PAX_POLICY"
+        },
+        "createdAt": "2026-08-12T20:52:08Z"
+      },
+      "paxScope": {
+        "scope": "PARTIAL_PAX",
+        "cancellationPaxList": [
+          "PAX1"
+        ],
+        "totalPaxOnPnr": 2,
+        "cancelledPaxCount": 1,
+        "prorated": true,
+        "penaltyQuotable": true,
+        "penaltyBasis": "PER_PAX_POLICY",
+        "penaltyPerPax": 499,
+        "chargedPax": 1
+      }
+    },
+    "status": "Cancellation Requested",
+    "totalAmount": 3976,
+    "estimatedCancellationCharge": 849,
+    "estimatedRefund": 3127,
+    "perPax": {
+      "paxCount": 2,
+      "chargedPax": 1,
+      "amount": 3976,
+      "convenienceFee": 0,
+      "ssr": 0,
+      "flexiCancelFee": 0,
+      "penalty": 499,
+      "cancellationFee": 350,
+      "refund": 3127,
+      "penaltyBasis": "PER_PAX_POLICY"
+    },
+    "paxScope": {
+      "scope": "PARTIAL_PAX",
+      "cancellationPaxList": [
+        "PAX1"
+      ],
+      "totalPaxOnPnr": 2,
+      "cancelledPaxCount": 1,
+      "prorated": true,
+      "penaltyQuotable": true,
+      "penaltyBasis": "PER_PAX_POLICY",
+      "penaltyPerPax": 499,
+      "chargedPax": 1
+    },
+    "message": null
+  },
+  "table": [
+    {
+      "rule": "CORP PENALTY subset: paxScope PARTIAL_PAX + quotable",
+      "expected": "scope=PARTIAL_PAX cancelledPaxCount=1 totalPaxOnPnr=2 penaltyQuotable=true",
+      "actual": "{\"scope\":\"PARTIAL_PAX\",\"cancellationPaxList\":[\"PAX1\"],\"totalPaxOnPnr\":2,\"cancelledPaxCount\":1,\"prorated\":true,\"penaltyQuotable\":true,\"penaltyBasis\":\"PER_PAX_POLICY\",\"penaltyPerPax\":499,\"chargedPax\":1}",
+      "status": "PASS"
+    },
+    {
+      "rule": "CORP PENALTY subset: amounts present",
+      "expected": "totalAmount, estimatedCancellationCharge, estimatedRefund all numeric",
+      "actual": "total=3976 charge=849 refund=3127 msg=",
+      "status": "PASS"
+    },
+    {
+      "rule": "CORP PENALTY subset: refund = total − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=3127 total=3976 charge=849",
+      "status": "PASS"
+    },
+    {
+      "rule": "CORP PENALTY subset: perPax present with chargedPax=1",
+      "expected": "perPax.chargedPax=1 (or paxCount=1), penaltyBasis != NONE",
+      "actual": "{\"paxCount\":2,\"chargedPax\":1,\"amount\":3976,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":499,\"cancellationFee\":350,\"refund\":3127,\"penaltyBasis\":\"PER_PAX_POLICY\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "CORP PENALTY subset: status not Failed / Not Available",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "CORP CANCEL subset: paxScope PARTIAL_PAX + quotable",
+      "expected": "scope=PARTIAL_PAX cancelledPaxCount=1 totalPaxOnPnr=2 penaltyQuotable=true",
+      "actual": "{\"scope\":\"PARTIAL_PAX\",\"cancellationPaxList\":[\"PAX1\"],\"totalPaxOnPnr\":2,\"cancelledPaxCount\":1,\"prorated\":true,\"penaltyQuotable\":true,\"penaltyBasis\":\"PER_PAX_POLICY\",\"penaltyPerPax\":499,\"chargedPax\":1}",
+      "status": "PASS"
+    },
+    {
+      "rule": "CORP CANCEL subset: amounts present",
+      "expected": "totalAmount, estimatedCancellationCharge, estimatedRefund all numeric",
+      "actual": "total=3976 charge=849 refund=3127 msg=",
+      "status": "PASS"
+    },
+    {
+      "rule": "CORP CANCEL subset: refund = total − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=3127 total=3976 charge=849",
+      "status": "PASS"
+    },
+    {
+      "rule": "CORP CANCEL subset: perPax present with chargedPax=1",
+      "expected": "perPax.chargedPax=1 (or paxCount=1), penaltyBasis != NONE",
+      "actual": "{\"paxCount\":2,\"chargedPax\":1,\"amount\":3976,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":499,\"cancellationFee\":350,\"refund\":3127,\"penaltyBasis\":\"PER_PAX_POLICY\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "CORP CANCEL subset: status not Failed / Not Available",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled",
+      "actual": "Cancellation Requested",
+      "status": "PASS"
+    }
+  ],
+  "score": {
+    "PASS": 10,
+    "BUG": 0,
+    "NOT_TESTED": 0
+  }
+}

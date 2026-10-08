@@ -1,0 +1,65 @@
+{
+  "title": "BUG-5 reproduce: Confirmed vs Cancellation requested reschedule errors",
+  "caseA_confirmed": {
+    "purpose": "API says must be CANCELLED or CANCELLATION_REQUESTED",
+    "bookingStatus": "Confirmed",
+    "requestSummary": {
+      "path": "/v1/flights/booking/issue-ticket",
+      "reschedulingReferenceId": "BR1786003631906129",
+      "reschedulingPnr": "FVRVRV",
+      "searchIds": [
+        "srch_074fb538a153484aa18015f22f796729"
+      ],
+      "journeyType": "ONE_WAY",
+      "type": "ticket",
+      "bookingReferenceLength": 1004,
+      "hasData": true
+    },
+    "response": {
+      "http": 422,
+      "body": {
+        "error": {
+          "code": "RESCHEDULING_NOT_ALLOWED",
+          "message": "Original booking is not eligible for rescheduling",
+          "details": "Booking 'BR1786003631906129' is in status 'CONFIRMED'; it must be CANCELLED or CANCELLATION_REQUESTED to be rescheduled",
+          "timestamp": "2026-08-06T10:37:40Z",
+          "request_id": "req-1786012661100"
+        },
+        "_meta": {
+          "correlation_id": "d4e57bf8-051c-4b0e-9612-2959d7ad5c00"
+        }
+      }
+    }
+  },
+  "caseB_cancellationRequested": {
+    "purpose": "Same flow when status is already Cancellation requested",
+    "bookingStatus": "Cancellation requested",
+    "requestSummary": {
+      "path": "/v1/flights/booking/issue-ticket",
+      "reschedulingReferenceId": "BR1785937786584431",
+      "reschedulingPnr": "8F4SZG",
+      "searchIds": [
+        "srch_074fb538a153484aa18015f22f796729"
+      ],
+      "journeyType": "ONE_WAY",
+      "type": "ticket",
+      "bookingReferenceLength": 1004,
+      "hasData": true
+    },
+    "response": {
+      "http": 409,
+      "body": {
+        "error": {
+          "code": "RESCHEDULING_CANCELLATION_IN_PROGRESS",
+          "message": "Cancellation request in process. You cannot process this PNR for rescheduling.",
+          "details": "A cancellation request raised on 2026-08-05 13:55 UTC for PNR '8F4SZG' is still being processed with the airline. Please wait for it to be settled before rescheduling.",
+          "timestamp": "2026-08-06T10:37:40Z",
+          "request_id": "req-1786012661771"
+        },
+        "_meta": {
+          "correlation_id": "d4e57bf8-051c-4b0e-9612-2959d7ad5c00"
+        }
+      }
+    }
+  }
+}

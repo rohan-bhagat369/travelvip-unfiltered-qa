@@ -1,0 +1,244 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "priorSuccessfulCancel": {
+    "note": "Previous successful online cancel on staging",
+    "bookingReference": "BR1786015616687710",
+    "pnr": "8K7YV5",
+    "airline": "AI",
+    "cancelStatus": "Cancellation Requested"
+  },
+  "generatedAt": "2026-08-10T11:10:55.882Z",
+  "ow": {
+    "route": "DEL→BOM",
+    "airline": "AI",
+    "days": 35,
+    "bookingReference": "BR1786360274131210",
+    "statusAfterBook": "Confirmed",
+    "pnrs": [
+      "98OYJY"
+    ],
+    "flights": [
+      "AI AI 2955 DEL→BOM"
+    ],
+    "pricedTotal": 7056,
+    "penalty": {
+      "endpoint": "POST /v1/flights/booking/BR1786360274131210/cancel",
+      "payload": {
+        "retryCount": 2,
+        "action": "PENALTY",
+        "pnr": "98OYJY"
+      },
+      "http": 200,
+      "response": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786360274131210",
+          "pnr": "98OYJY",
+          "cancellationRequest": {
+            "status": "Penalty Fetched",
+            "message": "No estimated cancellation and refund amount available",
+            "createdAt": "2026-08-10T11:11:52Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "d21c32d5-056f-4d03-bb00-b943a8d58e66"
+        }
+      },
+      "result": {
+        "ok": true,
+        "reason": "ACCEPTED",
+        "status": "Penalty Fetched",
+        "message": "No estimated cancellation and refund amount available"
+      }
+    },
+    "cancel": {
+      "endpoint": "POST /v1/flights/booking/BR1786360274131210/cancel",
+      "payload": {
+        "retryCount": 2,
+        "action": "CANCEL",
+        "pnr": "98OYJY"
+      },
+      "http": 200,
+      "response": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786360274131210",
+          "pnr": "98OYJY",
+          "cancellationRequest": {
+            "status": "Cancellation Requested",
+            "message": "No estimated cancellation and refund amount available",
+            "createdAt": "2026-08-10T11:11:53Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "d21c32d5-056f-4d03-bb00-b943a8d58e66"
+        }
+      },
+      "result": {
+        "ok": true,
+        "reason": "ACCEPTED",
+        "status": "Cancellation Requested",
+        "message": "No estimated cancellation and refund amount available"
+      }
+    },
+    "statusAfterCancel": "Confirmed"
+  },
+  "rt": {
+    "route": "DEL→BOM→DEL",
+    "airlines": [
+      "AI",
+      "AI"
+    ],
+    "mixed": false,
+    "bookingReference": "BR1786360381311489",
+    "statusAfterBook": "Confirmed",
+    "pnrs": [
+      "98O28O",
+      "98OGBW"
+    ],
+    "pricedTotal": 13734,
+    "onward": [
+      "AI AI 2955"
+    ],
+    "return": [
+      "AI AI 2960"
+    ],
+    "cancels": [
+      {
+        "pnr": "98O28O",
+        "penalty": {
+          "endpoint": "POST /v1/flights/booking/BR1786360381311489/cancel",
+          "payload": {
+            "retryCount": 2,
+            "action": "PENALTY",
+            "pnr": "98O28O"
+          },
+          "http": 200,
+          "response": {
+            "status": 0,
+            "statusMessage": "Success",
+            "data": {
+              "bookingReference": "BR1786360381311489",
+              "pnr": "98O28O",
+              "cancellationRequest": {
+                "status": "Penalty Fetched",
+                "message": "No estimated cancellation and refund amount available",
+                "createdAt": "2026-08-10T11:14:31Z"
+              }
+            },
+            "_meta": {
+              "correlation_id": "d21c32d5-056f-4d03-bb00-b943a8d58e66"
+            }
+          },
+          "result": {
+            "ok": true,
+            "reason": "ACCEPTED",
+            "status": "Penalty Fetched",
+            "message": "No estimated cancellation and refund amount available"
+          }
+        },
+        "cancel": {
+          "endpoint": "POST /v1/flights/booking/BR1786360381311489/cancel",
+          "payload": {
+            "retryCount": 2,
+            "action": "CANCEL",
+            "pnr": "98O28O"
+          },
+          "http": 200,
+          "response": {
+            "status": 0,
+            "statusMessage": "Success",
+            "data": {
+              "bookingReference": "BR1786360381311489",
+              "pnr": "98O28O",
+              "cancellationRequest": {
+                "status": "Cancellation Requested",
+                "message": "No estimated cancellation and refund amount available",
+                "createdAt": "2026-08-10T11:14:32Z"
+              }
+            },
+            "_meta": {
+              "correlation_id": "d21c32d5-056f-4d03-bb00-b943a8d58e66"
+            }
+          },
+          "result": {
+            "ok": true,
+            "reason": "ACCEPTED",
+            "status": "Cancellation Requested",
+            "message": "No estimated cancellation and refund amount available"
+          }
+        },
+        "statusAfter": "Confirmed"
+      },
+      {
+        "pnr": "98OGBW",
+        "penalty": {
+          "endpoint": "POST /v1/flights/booking/BR1786360381311489/cancel",
+          "payload": {
+            "retryCount": 2,
+            "action": "PENALTY",
+            "pnr": "98OGBW"
+          },
+          "http": 200,
+          "response": {
+            "status": 0,
+            "statusMessage": "Success",
+            "data": {
+              "bookingReference": "BR1786360381311489",
+              "pnr": "98OGBW",
+              "cancellationRequest": {
+                "status": "Penalty Fetched",
+                "message": "No estimated cancellation and refund amount available",
+                "createdAt": "2026-08-10T11:14:34Z"
+              }
+            },
+            "_meta": {
+              "correlation_id": "d21c32d5-056f-4d03-bb00-b943a8d58e66"
+            }
+          },
+          "result": {
+            "ok": true,
+            "reason": "ACCEPTED",
+            "status": "Penalty Fetched",
+            "message": "No estimated cancellation and refund amount available"
+          }
+        },
+        "cancel": {
+          "endpoint": "POST /v1/flights/booking/BR1786360381311489/cancel",
+          "payload": {
+            "retryCount": 2,
+            "action": "CANCEL",
+            "pnr": "98OGBW"
+          },
+          "http": 200,
+          "response": {
+            "status": 0,
+            "statusMessage": "Success",
+            "data": {
+              "bookingReference": "BR1786360381311489",
+              "pnr": "98OGBW",
+              "cancellationRequest": {
+                "status": "Cancellation Requested",
+                "message": "No estimated cancellation and refund amount available",
+                "createdAt": "2026-08-10T11:14:35Z"
+              }
+            },
+            "_meta": {
+              "correlation_id": "d21c32d5-056f-4d03-bb00-b943a8d58e66"
+            }
+          },
+          "result": {
+            "ok": true,
+            "reason": "ACCEPTED",
+            "status": "Cancellation Requested",
+            "message": "No estimated cancellation and refund amount available"
+          }
+        },
+        "statusAfter": "Confirmed"
+      }
+    ],
+    "statusAfterCancel": "Confirmed"
+  }
+}

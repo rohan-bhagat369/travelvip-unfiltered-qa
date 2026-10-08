@@ -1,0 +1,193 @@
+{
+  "ranAt": "2026-08-12T21:47:40.956Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "Direct CANCEL + missing-field negatives",
+  "fixture": {
+    "br": "BR1786561773208289",
+    "status": "Confirmed",
+    "pnr": "HVEW5Q"
+  },
+  "cases": {
+    "penalty": {
+      "http": 200,
+      "raw": {
+        "bookingReference": "BR1786561773208289",
+        "pnr": "HVEW5Q",
+        "cancellationRequest": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 1350,
+          "estimatedRefund": 1317,
+          "totalAmount": 2667,
+          "totalPenalty": 1350,
+          "penaltyBasis": "PROVIDER",
+          "amount": 2667,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 1000,
+          "cancellationFee": 350,
+          "perPax": [
+            {
+              "paxId": "PAX1",
+              "amount": 2667,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 1000,
+              "cancellationFee": 350,
+              "totalPenalty": 1350,
+              "refund": 1317,
+              "ssrPerPassenger": false
+            }
+          ],
+          "createdAt": "2026-08-12T21:47:21Z"
+        }
+      }
+    },
+    "cancel": {
+      "http": 200,
+      "raw": {
+        "bookingReference": "BR1786561773208289",
+        "pnr": "HVEW5Q",
+        "cancellationRequest": {
+          "status": "Cancelled",
+          "estimatedCancellationCharge": 1349,
+          "estimatedRefund": 1318,
+          "totalAmount": 2667,
+          "totalPenalty": 1349,
+          "penaltyBasis": "PROVIDER",
+          "amount": 2667,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 999,
+          "cancellationFee": 350,
+          "perPax": [
+            {
+              "paxId": "PAX1",
+              "amount": 2667,
+              "convenienceFee": 0,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 999,
+              "cancellationFee": 350,
+              "totalPenalty": 1349,
+              "refund": 1318,
+              "ssrPerPassenger": false
+            }
+          ],
+          "createdAt": "2026-08-12T21:47:22Z"
+        },
+        "refundSummary": {
+          "amount": 1318,
+          "cancellationCharge": 1349,
+          "totalPenalty": 1349,
+          "cancellationChargeBreakup": {
+            "airlineCancellationFee": 999,
+            "convenienceFee": 0,
+            "serviceFee": 350,
+            "flexicancelFee": 0
+          }
+        },
+        "transaction": {
+          "id": "616",
+          "amount": 1318,
+          "currency": "INR",
+          "paymentMethod": "wallet",
+          "type": "refund",
+          "status": "success",
+          "createdAt": "2026-08-12T21:47:37Z",
+          "completedAt": "2026-08-12T21:47:37Z"
+        }
+      }
+    },
+    "afterStatus": "Cancelled",
+    "missingAction": {
+      "http": 400,
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid or missing action. Allowed values: PENALTY, CANCEL",
+        "details": "Field 'action' must be one of: PENALTY, CANCEL",
+        "timestamp": "2026-08-12T21:47:40Z",
+        "request_id": "req-1786571260388"
+      },
+      "raw": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid or missing action. Allowed values: PENALTY, CANCEL\",\"details\":\"Field 'action' must be one of: PENALTY, CANCEL\",\"timestamp\":\"2026-08-12T21:47:40Z\",\"request_id\":\"req-1786571260388\"},\"_meta\":{\"correlation_id\":\"920857d1-bd6b-4932-aef4-ffb11e3ba882\"}}"
+    },
+    "missingPnr": {
+      "http": 400,
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "pnr is required",
+        "details": "Field 'pnr' is required and must name a PNR on this booking",
+        "timestamp": "2026-08-12T21:47:40Z",
+        "request_id": "req-1786571260474"
+      },
+      "raw": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"pnr is required\",\"details\":\"Field 'pnr' is required and must name a PNR on this booking\",\"timestamp\":\"2026-08-12T21:47:40Z\",\"request_id\":\"req-1786571260474\"},\"_meta\":{\"correlation_id\":\"920857d1-bd6b-4932-aef4-ffb11e3ba882\"}}"
+    },
+    "recancel": {
+      "http": 409,
+      "error": {
+        "code": "BOOKING_ALREADY_CANCELLED",
+        "message": "Booking is already cancelled",
+        "details": "Booking 'BR1786561773208289' is already cancelled.",
+        "timestamp": "2026-08-12T21:47:40Z",
+        "request_id": "req-1786571260830"
+      },
+      "raw": "{\"error\":{\"code\":\"BOOKING_ALREADY_CANCELLED\",\"message\":\"Booking is already cancelled\",\"details\":\"Booking 'BR1786561773208289' is already cancelled.\",\"timestamp\":\"2026-08-12T21:47:40Z\",\"request_id\":\"req-1786571260830\"},\"_meta\":{\"correlation_id\":\"920857d1-bd6b-4932-aef4-ffb11e3ba882\"}}"
+    }
+  },
+  "table": [
+    {
+      "rule": "N1 PENALTY: Penalty Fetched + amounts",
+      "expected": "Penalty Fetched with total/charge/refund",
+      "actual": "Penalty Fetched total=2667 charge=1350 refund=1317",
+      "status": "PASS"
+    },
+    {
+      "rule": "N1 PENALTY: refund = total − charge",
+      "expected": "math holds",
+      "actual": "refund=1317 total=2667 charge=1350",
+      "status": "PASS"
+    },
+    {
+      "rule": "N1 CANCEL: Cancelled (direct path)",
+      "expected": "Cancelled",
+      "actual": "Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "N1 CANCEL: refund = total − charge",
+      "expected": "math holds",
+      "actual": "refund=1318 total=2667 charge=1349",
+      "status": "PASS"
+    },
+    {
+      "rule": "N1 booking status Cancelled",
+      "expected": "Cancelled",
+      "actual": "Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "N2 missing action rejected",
+      "expected": "4xx + error.code (VALIDATION_ERROR / etc)",
+      "actual": "400 VALIDATION_ERROR",
+      "status": "PASS"
+    },
+    {
+      "rule": "N3 missing pnr rejected",
+      "expected": "4xx + error.code",
+      "actual": "400 VALIDATION_ERROR",
+      "status": "PASS"
+    },
+    {
+      "rule": "N4 re-cancel Cancelled booking rejected/guarded",
+      "expected": "error or failed status (not silent success Cancelled again)",
+      "actual": "409 BOOKING_ALREADY_CANCELLED",
+      "status": "PASS"
+    }
+  ],
+  "score": {
+    "PASS": 8,
+    "BUG": 0
+  }
+}

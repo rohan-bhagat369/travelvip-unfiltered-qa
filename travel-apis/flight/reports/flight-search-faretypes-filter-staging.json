@@ -1,0 +1,941 @@
+{
+  "summary": {
+    "baseUrl": "https://api-staging.travelvip.ai",
+    "path": "/v1/flights/search",
+    "startedAt": "2026-08-24T12:34:38.005Z"
+  },
+  "counts": {
+    "PASS": 24,
+    "BUG": 1,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "tag": "SEARCH",
+      "section": "SETUP",
+      "n": 1,
+      "id": "SETUP.1",
+      "rule": "OW unfiltered search DEL→BOM",
+      "how": "POST /v1/flights/search ECONOMY 1ADT NORMAL",
+      "expected": "",
+      "actual": "HTTP 200 options=20 {}",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 1,
+      "id": "OW.1",
+      "rule": "See the facet (no filter) — filters.ONWARD.fareTypes lists every distinct fare label with counts",
+      "how": "Unfiltered search; compare facet vs option.fares[].fareType",
+      "expected": "filters.ONWARD.fareTypes = distinct fare labels in options, with counts",
+      "actual": "facet=[{\"fareType\":\"Normal\",\"count\":78},{\"fareType\":\"Flexi\",\"count\":68},{\"fareType\":\"Special\",\"count\":2},{\"fareType\":\"SpiceMax\",\"count\":2}] optionLabels=Normal,Flexi,Special,SpiceMax",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 2,
+      "id": "OW.2",
+      "rule": "No filter applied → airlines/stops/refundable/price facets still present (regression)",
+      "how": "Inspect filters.ONWARD without appliedFilters",
+      "expected": "existing facets unchanged",
+      "actual": "{\"airlines\":true,\"stops\":true,\"refundable\":true,\"priceRange\":true,\"fareTypes\":true}",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 3,
+      "id": "OW.3",
+      "rule": "Positive filter fareTypes=[\"Normal\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"Normal\"]",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=20",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Normal"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 4,
+      "id": "OW.4",
+      "rule": "After filtering Normal, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\"],\"filtered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\"]}",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 5,
+      "id": "OW.5",
+      "rule": "Case-insensitive: [\"normal\"] same as [\"Normal\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=20 lower=20 idsMatch=true lowerBugs=",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "normal"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 6,
+      "id": "OW.6",
+      "rule": "Positive filter fareTypes=[\"Flexi\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"Flexi\"]",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=20",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Flexi"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 7,
+      "id": "OW.7",
+      "rule": "After filtering Flexi, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\"],\"filtered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\"]}",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 8,
+      "id": "OW.8",
+      "rule": "Case-insensitive: [\"flexi\"] same as [\"Flexi\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=20 lower=20 idsMatch=false lowerBugs=",
+      "status": "BUG",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "flexi"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 9,
+      "id": "OW.9",
+      "rule": "Positive filter fareTypes=[\"Special\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"Special\"]",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=2",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Special"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 10,
+      "id": "OW.10",
+      "rule": "After filtering Special, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\"],\"filtered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 11,
+      "id": "OW.11",
+      "rule": "Case-insensitive: [\"special\"] same as [\"Special\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=2 lower=2 idsMatch=true lowerBugs=",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "special"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 12,
+      "id": "OW.12",
+      "rule": "Positive filter fareTypes=[\"SpiceMax\"] — options only offer that fare; fares[] reduced; displayPricing matches",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"SpiceMax\"]",
+      "expected": "surviving options only include selected fareType; fares[] only that type; displayPricing = selected fare",
+      "actual": "HTTP 200 options=2",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "SpiceMax"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 13,
+      "id": "OW.13",
+      "rule": "After filtering SpiceMax, filters.ONWARD.fareTypes still shows full facet (not only selected)",
+      "how": "Compare unfiltered vs filtered fareTypes facet",
+      "expected": "full facet remains so client can switch without re-search",
+      "actual": "{\"ok\":true,\"missing\":[],\"unfiltered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\"],\"filtered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\",\"VALUE\",\"PROMO\",\"FLEX\",\"LITE\",\"CLASSIC\",\"SALE\",\"ECOVALU\",\"ECOCLAS\",\"ECOFLX\",\"PEYVALU\",\"NORMAL:-\"]}",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 14,
+      "id": "OW.14",
+      "rule": "Case-insensitive: [\"spicemax\"] same as [\"SpiceMax\"]",
+      "how": "Repeat filter with lowercase fareTypes value",
+      "expected": "same option set as uppercase filter",
+      "actual": "upper=2 lower=2 idsMatch=true lowerBugs=",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "spicemax"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 15,
+      "id": "OW.15",
+      "rule": "Negative: fareTypes=[\"\"] must not wipe all results (treat as no filter)",
+      "how": "appliedFilters.ONWARD.fareTypes=[\"\"]",
+      "expected": "results remain (empty/blank fareTypes ignored)",
+      "actual": "HTTP 200 options=20 unfiltered=20",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 16,
+      "id": "OW.16",
+      "rule": "Negative: fareTypes=[\" \"] must not wipe all results (treat as no filter)",
+      "how": "appliedFilters.ONWARD.fareTypes=[\" \"]",
+      "expected": "results remain (empty/blank fareTypes ignored)",
+      "actual": "HTTP 200 options=20 unfiltered=20",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            " "
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 17,
+      "id": "OW.17",
+      "rule": "Negative: unknown fareTypes=[\"NOT_A_REAL_FARE\"] should not return mismatched fares",
+      "how": "Filter a fare label that does not exist",
+      "expected": "empty options OR only matching fares; never keep other fare families",
+      "actual": "HTTP 200 options=0 mismatched=0",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "NOT_A_REAL_FARE"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "OW",
+      "n": 18,
+      "id": "OW.18",
+      "rule": "Combine fareTypes=[\"Flexi\"] with priceRange.max=10922 below that fare — option excluded (not kept via cheaper Normal)",
+      "how": "Option srch_af96e7a156e24c7a8ffdb802c3632e40 has Normal=5960 and Flexi=10923",
+      "expected": "same option excluded when filtering Flexi with max below its price; cheaper Normal must not keep it",
+      "actual": "HTTP 200 option excluded; remaining=20",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Flexi"
+          ],
+          "priceRange": {
+            "min": 0,
+            "max": 10922
+          }
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "RT-DOM",
+      "n": 1,
+      "id": "RT-DOM.1",
+      "rule": "RT unfiltered — fareTypes facet per direction (ONWARD and RETURN)",
+      "how": "POST ROUND_TRIP BOM↔DEL",
+      "expected": "filters.ONWARD.fareTypes and filters.RETURN.fareTypes present",
+      "actual": "HTTP 200 onwardOpts=20 returnOpts=20 onwardFacet=Normal,Flexi,Special,SpiceMax returnFacet=Special,SpiceMax,Normal,Flexi,RoundtripSpecial",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "RT-DOM",
+      "n": 2,
+      "id": "RT-DOM.2",
+      "rule": "Independent filters ONWARD=[\"Normal\"] vs RETURN=[\"Special\"]",
+      "how": "Different fareTypes per direction on domestic RT",
+      "expected": "each direction filtered independently",
+      "actual": "onwardBugs= returnBugs= o=20 r=2",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Normal"
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            "Special"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "RT-DOM",
+      "n": 3,
+      "id": "RT-DOM.3",
+      "rule": "After RT filter, both direction facets remain full",
+      "how": "Compare unfiltered vs filtered facets",
+      "expected": "",
+      "actual": "{\"onward\":{\"ok\":true,\"missing\":[],\"unfiltered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\"],\"filtered\":[\"NORMAL\",\"FLEXI\",\"SPECIAL\",\"SPICEMAX\"]},\"ret\":{\"ok\":true,\"missing\":[],\"unfiltered\":[\"SPECIAL\",\"SPICEMAX\",\"NORMAL\",\"FLEXI\",\"ROUNDTRIPSPECIAL\"],\"filtered\":[\"SPECIAL\",\"SPICEMAX\",\"NORMAL\",\"FLEXI\",\"ROUNDTRIPSPECIAL\"]}}",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "RT-DOM",
+      "n": 4,
+      "id": "RT-DOM.4",
+      "rule": "Negative RT: empty/whitespace fareTypes must not wipe results",
+      "how": "ONWARD=[\"\"] RETURN=[\" \"]",
+      "expected": "",
+      "actual": "HTTP 200 o=20 r=20",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            ""
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            " "
+          ]
+        }
+      }
+    },
+    {
+      "tag": "SEARCH",
+      "section": "RT-INTL",
+      "n": 1,
+      "id": "RT-INTL.1",
+      "rule": "International RT unfiltered — fareTypes facet per direction",
+      "how": "POST ROUND_TRIP BOM↔DXB",
+      "expected": "",
+      "actual": "HTTP 200 o=5 r=5 oFacet=Economy Saver,NDC:-Economy Saver,Economy Flex,NDC:-Economy Saver/Economy Flex,NDC:-Economy Flex,Economy Flex Plus,NDC:-Economy Flex Plus/Economy Flex,NDC:-Economy Flex/Economy Flex Plus,NDC:-Economy Flex Plus,NDC:-Economy Flex/Economy Saver rFacet=Economy Saver,NDC:-Economy Saver,Economy Flex,NDC:-Economy Flex,NDC:-Economy Flex/Economy Saver,Economy Flex Plus,NDC:-Economy Flex Plus/Economy Flex,NDC:-Economy Flex/Economy Flex Plus,NDC:-Economy Flex Plus,Business Special,NDC:-Economy Saver/Economy Flex",
+      "status": "PASS"
+    },
+    {
+      "tag": "SEARCH",
+      "section": "RT-INTL",
+      "n": 2,
+      "id": "RT-INTL.2",
+      "rule": "Intl independent filters ONWARD=[\"Economy Saver\"] RETURN=[\"NDC:-Economy Saver\"]",
+      "how": "Different fareTypes per direction on BOM↔DXB",
+      "expected": "",
+      "actual": "oBugs= rBugs= o=4 r=3",
+      "status": "PASS",
+      "payload": {
+        "ONWARD": {
+          "fareTypes": [
+            "Economy Saver"
+          ]
+        },
+        "RETURN": {
+          "fareTypes": [
+            "NDC:-Economy Saver"
+          ]
+        }
+      }
+    }
+  ],
+  "dumps": {
+    "pathProbe": [
+      {
+        "path": "/v1/flights/search",
+        "http": 200,
+        "error": null
+      }
+    ],
+    "owUnfiltered": {
+      "http": 200,
+      "optionCount": 20,
+      "facet": [
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        }
+      ],
+      "otherFacets": {
+        "airlines": true,
+        "stops": true,
+        "refundable": true,
+        "priceRange": true,
+        "fareTypes": true
+      },
+      "sampleFares": [
+        {
+          "fareType": "Normal",
+          "price": 5960
+        },
+        {
+          "fareType": "Flexi",
+          "price": 10923
+        }
+      ],
+      "sampleDisplayPricing": {
+        "type": "STARTING_FROM",
+        "fareCategory": "NORMAL",
+        "pricing": {
+          "baseFare": 3700,
+          "taxes": 2260,
+          "convenienceFee": 0,
+          "flexiCancelFee": 0,
+          "platformFee": 0,
+          "totalAmount": 5960,
+          "currency": "INR"
+        }
+      },
+      "sampleFareRaw": {
+        "searchId": "srch_abb129a26d8d47a4ab559f1016f9cc8f",
+        "fareType": "Normal",
+        "fareCategory": "NORMAL",
+        "pricing": {
+          "baseFare": 3700,
+          "taxes": 2260,
+          "convenienceFee": 0,
+          "flexiCancelFee": 0,
+          "platformFee": 0,
+          "totalAmount": 5960,
+          "currency": "INR"
+        },
+        "fareBasisCode": "S0IP",
+        "refundable": true,
+        "baggage": {
+          "checkIn": "15 KG",
+          "cabin": "7 Kg"
+        }
+      },
+      "filtersKeys": [
+        "ONWARD"
+      ],
+      "resultsType": "array",
+      "error": null
+    },
+    "owFilter_Normal": {
+      "http": 200,
+      "requested": "Normal",
+      "optionCount": 20,
+      "sampleFares": [
+        "Normal"
+      ],
+      "sampleDisplay": 5960,
+      "facetAfter": [
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "NORMAL",
+          "FLEXI",
+          "SPECIAL",
+          "SPICEMAX"
+        ],
+        "filtered": [
+          "NORMAL",
+          "FLEXI",
+          "SPECIAL",
+          "SPICEMAX"
+        ]
+      }
+    },
+    "owFilter_Flexi": {
+      "http": 200,
+      "requested": "Flexi",
+      "optionCount": 20,
+      "sampleFares": [
+        "Flexi"
+      ],
+      "sampleDisplay": 6859,
+      "facetAfter": [
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "NORMAL",
+          "FLEXI",
+          "SPECIAL",
+          "SPICEMAX"
+        ],
+        "filtered": [
+          "NORMAL",
+          "FLEXI",
+          "SPECIAL",
+          "SPICEMAX"
+        ]
+      }
+    },
+    "owFilter_Special": {
+      "http": 200,
+      "requested": "Special",
+      "optionCount": 2,
+      "sampleFares": [
+        "Special"
+      ],
+      "sampleDisplay": 6794,
+      "facetAfter": [
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "NORMAL",
+          "FLEXI",
+          "SPECIAL",
+          "SPICEMAX"
+        ],
+        "filtered": [
+          "NORMAL",
+          "FLEXI",
+          "SPECIAL",
+          "SPICEMAX",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "owFilter_SpiceMax": {
+      "http": 200,
+      "requested": "SpiceMax",
+      "optionCount": 2,
+      "sampleFares": [
+        "SpiceMax"
+      ],
+      "sampleDisplay": 7852,
+      "facetAfter": [
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "VALUE",
+          "count": 15
+        },
+        {
+          "fareType": "PROMO",
+          "count": 10
+        },
+        {
+          "fareType": "FLEX",
+          "count": 15
+        },
+        {
+          "fareType": "LITE",
+          "count": 12
+        },
+        {
+          "fareType": "CLASSIC",
+          "count": 13
+        },
+        {
+          "fareType": "SALE",
+          "count": 1
+        },
+        {
+          "fareType": "ECOVALU",
+          "count": 45
+        },
+        {
+          "fareType": "ECOCLAS",
+          "count": 33
+        },
+        {
+          "fareType": "ECOFLX",
+          "count": 33
+        },
+        {
+          "fareType": "PEYVALU",
+          "count": 28
+        },
+        {
+          "fareType": "Normal:-",
+          "count": 1
+        }
+      ],
+      "bugs": [],
+      "facetStillFull": {
+        "ok": true,
+        "missing": [],
+        "unfiltered": [
+          "NORMAL",
+          "FLEXI",
+          "SPECIAL",
+          "SPICEMAX"
+        ],
+        "filtered": [
+          "NORMAL",
+          "FLEXI",
+          "SPECIAL",
+          "SPICEMAX",
+          "VALUE",
+          "PROMO",
+          "FLEX",
+          "LITE",
+          "CLASSIC",
+          "SALE",
+          "ECOVALU",
+          "ECOCLAS",
+          "ECOFLX",
+          "PEYVALU",
+          "NORMAL:-"
+        ]
+      }
+    },
+    "priceRangeCombo": {
+      "searchId": "srch_af96e7a156e24c7a8ffdb802c3632e40",
+      "cheapFare": {
+        "t": "Normal",
+        "p": 5960
+      },
+      "expensiveFare": {
+        "t": "Flexi",
+        "p": 10923
+      },
+      "max": 10922,
+      "keptSame": false,
+      "optionCount": 20,
+      "keptSample": null
+    },
+    "rtUnfiltered": {
+      "http": 200,
+      "onward": 20,
+      "ret": 20,
+      "onwardFacet": [
+        {
+          "fareType": "Normal",
+          "count": 78
+        },
+        {
+          "fareType": "Flexi",
+          "count": 68
+        },
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        }
+      ],
+      "returnFacet": [
+        {
+          "fareType": "Special",
+          "count": 2
+        },
+        {
+          "fareType": "SpiceMax",
+          "count": 2
+        },
+        {
+          "fareType": "Normal",
+          "count": 80
+        },
+        {
+          "fareType": "Flexi",
+          "count": 64
+        },
+        {
+          "fareType": "RoundtripSpecial",
+          "count": 3
+        }
+      ],
+      "error": null
+    },
+    "intlUnfiltered": {
+      "http": 200,
+      "onward": 5,
+      "ret": 5,
+      "onwardFacet": [
+        {
+          "fareType": "Economy Saver",
+          "count": 4
+        },
+        {
+          "fareType": "NDC:-Economy Saver",
+          "count": 4
+        },
+        {
+          "fareType": "Economy Flex",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Saver/Economy Flex",
+          "count": 4
+        },
+        {
+          "fareType": "NDC:-Economy Flex",
+          "count": 5
+        },
+        {
+          "fareType": "Economy Flex Plus",
+          "count": 3
+        },
+        {
+          "fareType": "NDC:-Economy Flex Plus/Economy Flex",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Flex/Economy Flex Plus",
+          "count": 4
+        },
+        {
+          "fareType": "NDC:-Economy Flex Plus",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Flex/Economy Saver",
+          "count": 1
+        }
+      ],
+      "returnFacet": [
+        {
+          "fareType": "Economy Saver",
+          "count": 3
+        },
+        {
+          "fareType": "NDC:-Economy Saver",
+          "count": 3
+        },
+        {
+          "fareType": "Economy Flex",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Flex",
+          "count": 4
+        },
+        {
+          "fareType": "NDC:-Economy Flex/Economy Saver",
+          "count": 3
+        },
+        {
+          "fareType": "Economy Flex Plus",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Flex Plus/Economy Flex",
+          "count": 4
+        },
+        {
+          "fareType": "NDC:-Economy Flex/Economy Flex Plus",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Flex Plus",
+          "count": 5
+        },
+        {
+          "fareType": "Business Special",
+          "count": 5
+        },
+        {
+          "fareType": "NDC:-Economy Saver/Economy Flex",
+          "count": 2
+        }
+      ],
+      "error": null
+    }
+  },
+  "finishedAt": "2026-08-24T12:35:20.939Z"
+}

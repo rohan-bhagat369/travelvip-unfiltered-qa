@@ -1,0 +1,504 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "at": "2026-10-06T14:47:29.220Z",
+  "maxAdults": 9,
+  "summary": {
+    "PASS": 1,
+    "NOT TESTED": 5
+  },
+  "rows": [
+    {
+      "id": "OW-2ADT",
+      "label": "OW 2ADT + seat/meal/bag each",
+      "journeyType": "ONE_WAY",
+      "adults": 2,
+      "br": "BR1791294406400660",
+      "status": "Confirmed",
+      "route": "BOM-GOI",
+      "days": 36,
+      "ssrAttached": {
+        "adults": 2,
+        "meals": 2,
+        "baggage": 2,
+        "seats": 2,
+        "seatNames": [
+          "3A",
+          "3B"
+        ],
+        "amount": 17257.05
+      },
+      "pricingTotal": 7086.31,
+      "attempts": [
+        {
+          "tag": "try1",
+          "ok": true,
+          "stage": "booked",
+          "br": "BR1791294368390442",
+          "status": "Failed",
+          "rawStatus": "Failed",
+          "polls": 4,
+          "route": "BOM-BLR",
+          "days": 34,
+          "journeyType": "ONE_WAY",
+          "adults": 2,
+          "priceId": "price_16591fc28c4741c686d8a44f1fe7fc91",
+          "searchIds": [
+            "srch_ccd518e476dd4e96a111156feadf346b"
+          ],
+          "ssrAttached": {
+            "adults": 2,
+            "meals": 2,
+            "baggage": 2,
+            "seats": 2,
+            "seatNames": [
+              "3A",
+              "3B"
+            ],
+            "amount": 16980.21
+          },
+          "pricingTotal": 9349.76,
+          "issueHttp": 200,
+          "duplicate": false
+        },
+        {
+          "tag": "try1",
+          "ok": true,
+          "stage": "booked",
+          "br": "BR1791294393795160",
+          "status": "Failed",
+          "rawStatus": "Failed",
+          "polls": 3,
+          "route": "BOM-BLR",
+          "days": 41,
+          "journeyType": "ONE_WAY",
+          "adults": 2,
+          "priceId": "price_586d21427b1a499b88b3cb30e6614cad",
+          "searchIds": [
+            "srch_baedd8b6f5084fd29c472efa9b789029"
+          ],
+          "ssrAttached": {
+            "adults": 2,
+            "meals": 2,
+            "baggage": 2,
+            "seats": 2,
+            "seatNames": [
+              "1A",
+              "1B"
+            ],
+            "amount": 17257.05
+          },
+          "pricingTotal": 9349.76,
+          "issueHttp": 200,
+          "duplicate": false
+        },
+        {
+          "tag": "try1",
+          "ok": true,
+          "stage": "booked",
+          "br": "BR1791294406400660",
+          "status": "Confirmed",
+          "rawStatus": "Confirmed",
+          "polls": 2,
+          "route": "BOM-GOI",
+          "days": 36,
+          "journeyType": "ONE_WAY",
+          "adults": 2,
+          "priceId": "price_fcd4c5e26cce4baeac87f923b8ffa138",
+          "searchIds": [
+            "srch_ef3f0aa59dba44a89cdd3dd20d503204"
+          ],
+          "ssrAttached": {
+            "adults": 2,
+            "meals": 2,
+            "baggage": 2,
+            "seats": 2,
+            "seatNames": [
+              "3A",
+              "3B"
+            ],
+            "amount": 17257.05
+          },
+          "pricingTotal": 7086.31,
+          "issueHttp": 200,
+          "duplicate": false
+        }
+      ],
+      "result": "PASS"
+    },
+    {
+      "id": "OW-3ADT",
+      "label": "OW 3ADT + seat/meal/bag each",
+      "journeyType": "ONE_WAY",
+      "adults": 3,
+      "br": null,
+      "status": null,
+      "route": null,
+      "days": null,
+      "ssrAttached": null,
+      "pricingTotal": null,
+      "attempts": [
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "pricing",
+          "pricingHttp": 400,
+          "pricingErr": "VENDOR_ERROR"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "pricing",
+          "pricingHttp": 400,
+          "pricingErr": "VENDOR_ERROR"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "pricing",
+          "pricingHttp": 400,
+          "pricingErr": "VENDOR_ERROR"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "issue",
+          "issueHttp": 403,
+          "issueCode": "INSUFFICIENT_BALANCE",
+          "issueMsg": "Insufficient wallet balance for this booking",
+          "issueDetails": "Required: INR 6738.33, Available: INR 172.67"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "issue",
+          "issueHttp": 403,
+          "issueCode": "INSUFFICIENT_BALANCE",
+          "issueMsg": "Insufficient wallet balance for this booking",
+          "issueDetails": "Required: INR 6696.33, Available: INR 172.67"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "issue",
+          "issueHttp": 403,
+          "issueCode": "INSUFFICIENT_BALANCE",
+          "issueMsg": "Insufficient wallet balance for this booking",
+          "issueDetails": "Required: INR 6696.33, Available: INR 172.67"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        }
+      ],
+      "result": "NOT TESTED"
+    },
+    {
+      "id": "OW-9ADT-MAX",
+      "label": "OW 9ADT (max) + seat/meal/bag each",
+      "journeyType": "ONE_WAY",
+      "adults": 9,
+      "br": null,
+      "status": null,
+      "route": null,
+      "days": null,
+      "ssrAttached": null,
+      "pricingTotal": null,
+      "attempts": [
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        }
+      ],
+      "result": "NOT TESTED"
+    },
+    {
+      "id": "RT-2ADT",
+      "label": "RT 2ADT + seat/meal/bag each",
+      "journeyType": "ROUND_TRIP",
+      "adults": 2,
+      "br": null,
+      "status": null,
+      "route": null,
+      "days": null,
+      "ssrAttached": null,
+      "pricingTotal": null,
+      "attempts": [
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        }
+      ],
+      "result": "NOT TESTED"
+    },
+    {
+      "id": "RT-3ADT",
+      "label": "RT 3ADT + seat/meal/bag each",
+      "journeyType": "ROUND_TRIP",
+      "adults": 3,
+      "br": null,
+      "status": null,
+      "route": null,
+      "days": null,
+      "ssrAttached": null,
+      "pricingTotal": null,
+      "attempts": [
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        }
+      ],
+      "result": "NOT TESTED"
+    },
+    {
+      "id": "RT-9ADT-MAX",
+      "label": "RT 9ADT (max) + seat/meal/bag each",
+      "journeyType": "ROUND_TRIP",
+      "adults": 9,
+      "br": null,
+      "status": null,
+      "route": null,
+      "days": null,
+      "ssrAttached": null,
+      "pricingTotal": null,
+      "attempts": [
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "try1",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        },
+        {
+          "tag": "retry",
+          "ok": false,
+          "stage": "exception",
+          "error": "fetch failed"
+        }
+      ],
+      "result": "NOT TESTED"
+    }
+  ]
+}

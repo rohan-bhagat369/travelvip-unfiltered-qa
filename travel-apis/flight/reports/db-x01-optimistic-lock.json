@@ -1,0 +1,42 @@
+{
+  "ranAt": "2026-08-12T13:08:51.712Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "scenario": "X01",
+  "checks": [
+    "V094",
+    "V095"
+  ],
+  "fixture": {
+    "br": "BR1786538901965364",
+    "apiStatus": "Confirmed",
+    "note": "booking_item.id + version must come from DB SELECT in SQL"
+  },
+  "interpretation": {
+    "V094": "Writer A's versioned UPDATE (WHERE version=v) succeeds; version becomes v+1",
+    "V095": "Writer B's UPDATE (WHERE version=v stale) affects 0 rows; no lost update"
+  },
+  "sqlFile": "reports/db-x01-optimistic-lock.sql",
+  "autoMysql": null,
+  "results": {
+    "V094": {
+      "id": "V094",
+      "scenario": "X01",
+      "status": "NOT_TESTED",
+      "expected": "A succeeds; version v→v+1",
+      "actual": "No MYSQL_* creds / mysql CLI — paste reports/db-x01-optimistic-lock.sql in phpMyAdmin"
+    },
+    "V095": {
+      "id": "V095",
+      "scenario": "X01",
+      "status": "NOT_TESTED",
+      "expected": "B affects 0 rows",
+      "actual": "No MYSQL_* creds / mysql CLI — paste SQL and report ROW_COUNT for B"
+    }
+  },
+  "howToRun": [
+    "1. Open phpMyAdmin → travelx",
+    "2. Run reports/db-x01-optimistic-lock.sql (fixture BR1786538901965364)",
+    "3. Confirm writer_A_rows_affected=1 and writer_B_rows_affected=0",
+    "4. Or set MYSQL_HOST/USER/PASSWORD and re-run this script for auto PASS/BUG"
+  ]
+}

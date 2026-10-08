@@ -1,0 +1,49 @@
+{
+  "ranAt": "2026-08-11T19:23:38.486Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "B08",
+  "checks": [
+    "V033",
+    "V034",
+    "V035",
+    "G10"
+  ],
+  "expected": {
+    "V033": "notify_* on booking_item (not booking)",
+    "V034": "notify email/phone set from contact override",
+    "V035": "notify name/email ≠ passenger name/email"
+  },
+  "route": "AMD-DEL",
+  "br": "BR1786476212954979",
+  "status": "Confirmed",
+  "pnr": "U1RJSA",
+  "sentContact": {
+    "email": "cardholder.qa@example.com",
+    "mobile": "9000011122",
+    "countryCode": "+91",
+    "name": "Card Holder QA"
+  },
+  "sentPassenger": {
+    "firstName": "Suresh",
+    "lastName": "Patil ptua"
+  },
+  "detailContact": null,
+  "detailPax": {
+    "paxId": "PAX1",
+    "name": "Suresh Patil ptua",
+    "email": null
+  },
+  "usable": true,
+  "dbSql": [
+    "USE travelx;",
+    "SET @br := 'BR1786476212954979';",
+    "-- passenger",
+    "SELECT bp.id, bp.pax_id, bp.first_name, bp.last_name, bp.email, bp.phone\nFROM booking_passenger bp\nJOIN booking b ON b.id = bp.booking_id\nWHERE b.booking_reference = @br;",
+    "-- V033/G10: notify on booking_item (not booking)",
+    "SHOW COLUMNS FROM booking LIKE 'notify%';",
+    "SHOW COLUMNS FROM booking_item LIKE 'notify%';",
+    "SELECT bi.id, bi.notify_name, bi.notify_email, bi.notify_phone, bi.notify_country_code\nFROM booking_item bi\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br;",
+    "-- V035: compare notify vs passenger",
+    "SELECT\n  bp.first_name, bp.last_name, bp.email AS pax_email, bp.phone AS pax_phone,\n  bi.notify_name, bi.notify_email, bi.notify_phone\nFROM booking_passenger bp\nJOIN booking b ON b.id = bp.booking_id\nJOIN booking_item bi ON bi.booking_id = b.id\nWHERE b.booking_reference = @br;"
+  ]
+}

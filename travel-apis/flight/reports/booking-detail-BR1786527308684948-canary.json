@@ -1,0 +1,545 @@
+{
+  "summary": {
+    "baseUrl": "https://canary-api.travelvip.ai",
+    "bookingReference": "BR1786527308684948",
+    "bookingStatus": "Partially cancelled",
+    "statusApi": "Partially cancelled",
+    "journeyType": "TICKET",
+    "passengers": [
+      {
+        "paxId": "PAX1",
+        "type": "ADULT",
+        "title": "Mr",
+        "name": "Rohan Bhagat",
+        "dob": "2001-05-29"
+      }
+    ],
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "BV1FRF",
+        "legNumber": 1,
+        "totalStops": 0,
+        "totalDurationMinutes": 125,
+        "onlineCancellation": true,
+        "refundable": true,
+        "refundText": "Refundable",
+        "segments": [
+          {
+            "seq": 1,
+            "flight": "IX IX 1038",
+            "airline": "AIR INDIA EXPRESS",
+            "route": "DEL→NMI",
+            "dep": "2026-09-02T17:35",
+            "arr": "2026-09-02T19:40",
+            "durationMinutes": 125,
+            "cabinClass": "ECONOMY",
+            "baggage": {
+              "checkIn": "15Kg",
+              "cabin": "7 Kg"
+            }
+          }
+        ]
+      },
+      {
+        "direction": "RETURN",
+        "pnr": "PGBBWH",
+        "legNumber": 2,
+        "totalStops": 0,
+        "totalDurationMinutes": 130,
+        "onlineCancellation": true,
+        "refundable": true,
+        "refundText": "Refundable",
+        "segments": [
+          {
+            "seq": 1,
+            "flight": "SG SG 252",
+            "airline": "SPICEJET AIRLINES",
+            "route": "BOM→DEL",
+            "dep": "2026-09-09T06:25",
+            "arr": "2026-09-09T08:35",
+            "durationMinutes": 130,
+            "cabinClass": "ECONOMY",
+            "baggage": {
+              "checkIn": "15KG",
+              "cabin": "7 Kg"
+            }
+          }
+        ]
+      }
+    ],
+    "pnrs": [
+      "BV1FRF",
+      "PGBBWH"
+    ],
+    "salesSummary": {
+      "basePrice": 2899,
+      "subTotal": 2899,
+      "tax": 2586,
+      "convenienceFee": 0,
+      "totalAmount": 5485,
+      "totalDiscount": 0,
+      "currency": "INR",
+      "campaignId": null
+    },
+    "cancellationRequest": [
+      {
+        "status": "Cancellation Failed",
+        "pnr": "BV1FRF",
+        "estimatedCancellationCharge": null,
+        "estimatedRefund": null,
+        "createdAt": "2026-08-12T09:36:02Z"
+      },
+      {
+        "status": "Cancelled",
+        "pnr": "PGBBWH",
+        "estimatedCancellationCharge": 350,
+        "estimatedRefund": 5135,
+        "createdAt": "2026-08-12T09:37:23Z"
+      }
+    ],
+    "onlineCancellation": true,
+    "contactDetails": {
+      "email": "rohan@travelvip.ai",
+      "countryCode": "+91",
+      "mobile": "9876543210"
+    },
+    "error": null,
+    "http": {
+      "status": 200,
+      "detail": 200
+    }
+  },
+  "status": {
+    "status": "Partially cancelled",
+    "bookingResponse": {
+      "bookingReferenceId": "BR1786527308684948",
+      "bookingType": "TICKET",
+      "summary": {
+        "tripType": "R",
+        "totalPassengers": 1,
+        "journeys": 2,
+        "bookingDate": "2026-08-12T09:35:08",
+        "isFlexiCancel": 0
+      },
+      "itinerary": [
+        {
+          "direction": "ONWARD",
+          "legId": "IX1038-DEL-NMI-2026-09-02T17:35-2026-09-02T19:40",
+          "legNumber": 1,
+          "totalStops": 0,
+          "totalDurationMinutes": 125,
+          "refundable": true,
+          "refundText": "Refundable",
+          "segments": [
+            {
+              "segmentId": "SEG_1",
+              "segmentNumber": 1,
+              "segmentReference": "IX1038-DEL-NMI-2026-09-02T17:35-2026-09-02T19:40",
+              "flightNumber": "IX 1038",
+              "airlineCode": "IX",
+              "airline": {
+                "code": "IX",
+                "name": "AIR INDIA EXPRESS",
+                "logo": "https://img.travelx.ai/cstx_images/airline/logo/air_india_express_fv.png"
+              },
+              "operatingCarrier": null,
+              "cabinClass": "ECONOMY",
+              "aircraft": "Boeing 7M8",
+              "durationMinutes": 125,
+              "stops": 0,
+              "vendorFlightId": "IX1038-DEL-NMI-2026-09-02T17:35-2026-09-02T19:40",
+              "baggage": {
+                "checkIn": "15Kg",
+                "cabin": "7 Kg"
+              },
+              "departure": {
+                "time": "2026-09-02T17:35",
+                "terminal": "1",
+                "airportCode": "DEL",
+                "airportName": "Indira Gandhi International Airport",
+                "city": "New Delhi",
+                "country": "India"
+              },
+              "arrival": {
+                "time": "2026-09-02T19:40",
+                "terminal": "",
+                "airportCode": "NMI",
+                "airportName": null,
+                "city": null,
+                "country": null
+              }
+            }
+          ],
+          "onlineCancellation": true,
+          "cancellationPolicies": null,
+          "mandatorySsr": {
+            "meal": false,
+            "seat": false,
+            "baggage": false,
+            "types": []
+          },
+          "pnr": "BV1FRF"
+        },
+        {
+          "direction": "RETURN",
+          "legId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+          "legNumber": 2,
+          "totalStops": 0,
+          "totalDurationMinutes": 130,
+          "refundable": true,
+          "refundText": "Refundable",
+          "segments": [
+            {
+              "segmentId": "SEG_1",
+              "segmentNumber": 1,
+              "segmentReference": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+              "flightNumber": "SG 252",
+              "airlineCode": "SG",
+              "airline": {
+                "code": "SG",
+                "name": "SPICEJET AIRLINES",
+                "logo": "https://img.travelx.ai/cstx_images/airline/logo/spicejet_airlines_fv.png"
+              },
+              "operatingCarrier": null,
+              "cabinClass": "ECONOMY",
+              "aircraft": "Boeing 73H",
+              "durationMinutes": 130,
+              "stops": 0,
+              "vendorFlightId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+              "baggage": {
+                "checkIn": "15KG",
+                "cabin": "7 Kg"
+              },
+              "departure": {
+                "time": "2026-09-09T06:25",
+                "terminal": "1",
+                "airportCode": "BOM",
+                "airportName": "Chhatrapati Shivaji International Airport",
+                "city": "Mumbai",
+                "country": "India"
+              },
+              "arrival": {
+                "time": "2026-09-09T08:35",
+                "terminal": "1D",
+                "airportCode": "DEL",
+                "airportName": "Indira Gandhi International Airport",
+                "city": "New Delhi",
+                "country": "India"
+              }
+            }
+          ],
+          "onlineCancellation": true,
+          "cancellationPolicies": null,
+          "mandatorySsr": {
+            "meal": false,
+            "seat": false,
+            "baggage": false,
+            "types": []
+          },
+          "pnr": "PGBBWH"
+        }
+      ],
+      "passengers": [
+        {
+          "paxId": "PAX1",
+          "paxType": "ADULT",
+          "profile": {
+            "title": "Mr",
+            "firstName": "Rohan",
+            "lastName": "Bhagat",
+            "dob": "2001-05-29"
+          },
+          "passport": {
+            "number": null,
+            "expiry": null,
+            "issuedDate": null,
+            "issuedCountryCode": null
+          },
+          "pnrs": [
+            {
+              "legId": "IX1038-DEL-NMI-2026-09-02T17:35-2026-09-02T19:40",
+              "pnr": "BV1FRF",
+              "eticketNumber": "BX12HH00861-1"
+            },
+            {
+              "legId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+              "pnr": "PGBBWH",
+              "eticketNumber": "BX12HH00871-1"
+            }
+          ],
+          "ssr": {
+            "baggage": [],
+            "meal": [],
+            "seat": []
+          },
+          "PaxAncillary": []
+        }
+      ],
+      "salesSummary": {
+        "basePrice": 2899,
+        "subTotal": 2899,
+        "tax": 2586,
+        "convenienceFee": 0,
+        "totalAmount": 5485,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "campaignId": null
+      },
+      "contactDetails": {
+        "email": "rohan@travelvip.ai",
+        "countryCode": "+91",
+        "mobile": "9876543210"
+      },
+      "userId": 20688,
+      "onlineCancellation": true,
+      "gstBreakup": [
+        {
+          "legId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+          "code": "CGST27",
+          "amount": 68
+        },
+        {
+          "legId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+          "code": "SGST27",
+          "amount": 68
+        }
+      ],
+      "cancellationRequest": [
+        {
+          "status": "Cancellation Failed",
+          "pnr": "BV1FRF",
+          "estimatedCancellationCharge": null,
+          "estimatedRefund": null,
+          "createdAt": "2026-08-12T09:36:02Z"
+        },
+        {
+          "status": "Cancelled",
+          "pnr": "PGBBWH",
+          "estimatedCancellationCharge": 350,
+          "estimatedRefund": 5135,
+          "createdAt": "2026-08-12T09:37:23Z"
+        }
+      ]
+    },
+    "_meta": {
+      "correlation_id": "046a6a03-56c0-418a-b9f3-3acfdebae03a"
+    }
+  },
+  "detail": {
+    "status": "Partially cancelled",
+    "bookingResponse": {
+      "bookingReferenceId": "BR1786527308684948",
+      "bookingType": "TICKET",
+      "summary": {
+        "tripType": "R",
+        "totalPassengers": 1,
+        "journeys": 2,
+        "bookingDate": "2026-08-12T09:35:08",
+        "isFlexiCancel": 0
+      },
+      "itinerary": [
+        {
+          "direction": "ONWARD",
+          "legId": "IX1038-DEL-NMI-2026-09-02T17:35-2026-09-02T19:40",
+          "legNumber": 1,
+          "totalStops": 0,
+          "totalDurationMinutes": 125,
+          "refundable": true,
+          "refundText": "Refundable",
+          "segments": [
+            {
+              "segmentId": "SEG_1",
+              "segmentNumber": 1,
+              "segmentReference": "IX1038-DEL-NMI-2026-09-02T17:35-2026-09-02T19:40",
+              "flightNumber": "IX 1038",
+              "airlineCode": "IX",
+              "airline": {
+                "code": "IX",
+                "name": "AIR INDIA EXPRESS",
+                "logo": "https://img.travelx.ai/cstx_images/airline/logo/air_india_express_fv.png"
+              },
+              "operatingCarrier": null,
+              "cabinClass": "ECONOMY",
+              "aircraft": "Boeing 7M8",
+              "durationMinutes": 125,
+              "stops": 0,
+              "vendorFlightId": "IX1038-DEL-NMI-2026-09-02T17:35-2026-09-02T19:40",
+              "baggage": {
+                "checkIn": "15Kg",
+                "cabin": "7 Kg"
+              },
+              "departure": {
+                "time": "2026-09-02T17:35",
+                "terminal": "1",
+                "airportCode": "DEL",
+                "airportName": "Indira Gandhi International Airport",
+                "city": "New Delhi",
+                "country": "India"
+              },
+              "arrival": {
+                "time": "2026-09-02T19:40",
+                "terminal": "",
+                "airportCode": "NMI",
+                "airportName": null,
+                "city": null,
+                "country": null
+              }
+            }
+          ],
+          "onlineCancellation": true,
+          "cancellationPolicies": null,
+          "mandatorySsr": {
+            "meal": false,
+            "seat": false,
+            "baggage": false,
+            "types": []
+          },
+          "pnr": "BV1FRF"
+        },
+        {
+          "direction": "RETURN",
+          "legId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+          "legNumber": 2,
+          "totalStops": 0,
+          "totalDurationMinutes": 130,
+          "refundable": true,
+          "refundText": "Refundable",
+          "segments": [
+            {
+              "segmentId": "SEG_1",
+              "segmentNumber": 1,
+              "segmentReference": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+              "flightNumber": "SG 252",
+              "airlineCode": "SG",
+              "airline": {
+                "code": "SG",
+                "name": "SPICEJET AIRLINES",
+                "logo": "https://img.travelx.ai/cstx_images/airline/logo/spicejet_airlines_fv.png"
+              },
+              "operatingCarrier": null,
+              "cabinClass": "ECONOMY",
+              "aircraft": "Boeing 73H",
+              "durationMinutes": 130,
+              "stops": 0,
+              "vendorFlightId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+              "baggage": {
+                "checkIn": "15KG",
+                "cabin": "7 Kg"
+              },
+              "departure": {
+                "time": "2026-09-09T06:25",
+                "terminal": "1",
+                "airportCode": "BOM",
+                "airportName": "Chhatrapati Shivaji International Airport",
+                "city": "Mumbai",
+                "country": "India"
+              },
+              "arrival": {
+                "time": "2026-09-09T08:35",
+                "terminal": "1D",
+                "airportCode": "DEL",
+                "airportName": "Indira Gandhi International Airport",
+                "city": "New Delhi",
+                "country": "India"
+              }
+            }
+          ],
+          "onlineCancellation": true,
+          "cancellationPolicies": null,
+          "mandatorySsr": {
+            "meal": false,
+            "seat": false,
+            "baggage": false,
+            "types": []
+          },
+          "pnr": "PGBBWH"
+        }
+      ],
+      "passengers": [
+        {
+          "paxId": "PAX1",
+          "paxType": "ADULT",
+          "profile": {
+            "title": "Mr",
+            "firstName": "Rohan",
+            "lastName": "Bhagat",
+            "dob": "2001-05-29"
+          },
+          "passport": {
+            "number": null,
+            "expiry": null,
+            "issuedDate": null,
+            "issuedCountryCode": null
+          },
+          "pnrs": [
+            {
+              "legId": "IX1038-DEL-NMI-2026-09-02T17:35-2026-09-02T19:40",
+              "pnr": "BV1FRF",
+              "eticketNumber": "BX12HH00861-1"
+            },
+            {
+              "legId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+              "pnr": "PGBBWH",
+              "eticketNumber": "BX12HH00871-1"
+            }
+          ],
+          "ssr": {
+            "baggage": [],
+            "meal": [],
+            "seat": []
+          },
+          "PaxAncillary": []
+        }
+      ],
+      "salesSummary": {
+        "basePrice": 2899,
+        "subTotal": 2899,
+        "tax": 2586,
+        "convenienceFee": 0,
+        "totalAmount": 5485,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "campaignId": null
+      },
+      "contactDetails": {
+        "email": "rohan@travelvip.ai",
+        "countryCode": "+91",
+        "mobile": "9876543210"
+      },
+      "userId": 20688,
+      "onlineCancellation": true,
+      "gstBreakup": [
+        {
+          "legId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+          "code": "CGST27",
+          "amount": 68
+        },
+        {
+          "legId": "SG252-BOM-DEL-2026-09-09T06:25-2026-09-09T08:35",
+          "code": "SGST27",
+          "amount": 68
+        }
+      ],
+      "cancellationRequest": [
+        {
+          "status": "Cancellation Failed",
+          "pnr": "BV1FRF",
+          "estimatedCancellationCharge": null,
+          "estimatedRefund": null,
+          "createdAt": "2026-08-12T09:36:02Z"
+        },
+        {
+          "status": "Cancelled",
+          "pnr": "PGBBWH",
+          "estimatedCancellationCharge": 350,
+          "estimatedRefund": 5135,
+          "createdAt": "2026-08-12T09:37:23Z"
+        }
+      ]
+    },
+    "_meta": {
+      "correlation_id": "046a6a03-56c0-418a-b9f3-3acfdebae03a"
+    }
+  }
+}

@@ -1,0 +1,1103 @@
+{
+  "ranAt": "2026-09-02T12:40:53.045Z",
+  "baseUrl": "https://api.travelvip.ai",
+  "tierId": "19597201",
+  "api": "GET /v1/flights/airports",
+  "note": "Prod gap pass: new IATA codes + rename/official name queries. No book.",
+  "counts": {
+    "PASS": 23,
+    "BUG": 1,
+    "NOT_TESTED": 0
+  },
+  "bugCount": 1,
+  "bugs": [
+    {
+      "id": 1,
+      "section": "IATA",
+      "rule": "Exact airport=DXN",
+      "actual": "HTTP 200 rank(DXN)=3 top=DEL:New Delhi | HDO:Ghaziabad | DXN:Noida | HRH:Aligarh"
+    }
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "section": "IATA",
+      "rule": "Exact airport=DXN",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=DXN",
+      "expected": "DXN rank 1-2",
+      "status": "BUG",
+      "actual": "HTTP 200 rank(DXN)=3 top=DEL:New Delhi | HDO:Ghaziabad | DXN:Noida | HRH:Aligarh",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India"
+        },
+        {
+          "airportCode": "HRH",
+          "airportName": "Dhanipur Airstrip",
+          "city": "Aligarh",
+          "country": "India"
+        },
+        {
+          "airportCode": "LRL",
+          "airportName": "Niamtougou International Airport",
+          "city": "Niamtougou",
+          "country": "Togo"
+        },
+        {
+          "airportCode": "AGR",
+          "airportName": "Agra Airport / Agra Air Force Station",
+          "city": "Agra",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "section": "IATA",
+      "rule": "Exact airport=HSR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=HSR",
+      "expected": "HSR rank 1-2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank(HSR)=1 top=HSR:Rajkot | RAJ:Rajkot | JGA:Jamnagar | IXY:Kandla",
+      "hits": [
+        {
+          "airportCode": "HSR",
+          "airportName": "Rajkot International Airport",
+          "city": "Rajkot",
+          "country": "India"
+        },
+        {
+          "airportCode": "RAJ",
+          "airportName": "Rajkot Airport",
+          "city": "Rajkot",
+          "country": "India"
+        },
+        {
+          "airportCode": "JGA",
+          "airportName": "Jamnagar Airport",
+          "city": "Jamnagar",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXY",
+          "airportName": "Kandla Airport",
+          "city": "Kandla",
+          "country": "India"
+        },
+        {
+          "airportCode": "BHU",
+          "airportName": "Bhavnagar Airport",
+          "city": "Bhavnagar",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXK",
+          "airportName": "Keshod Airport",
+          "city": "Keshod",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "section": "IATA",
+      "rule": "Exact airport=RQY",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=RQY",
+      "expected": "RQY rank 1-2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank(RQY)=1 top=RQY:Shivamogga | IXE:Mangaluru | HBX:Hubballi | VDY:Ballari",
+      "hits": [
+        {
+          "airportCode": "RQY",
+          "airportName": "Shivamogga Airport",
+          "city": "Shivamogga",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXE",
+          "airportName": "Mangaluru International Airport",
+          "city": "Mangaluru",
+          "country": "India"
+        },
+        {
+          "airportCode": "HBX",
+          "airportName": "Hubli Airport",
+          "city": "Hubballi",
+          "country": "India"
+        },
+        {
+          "airportCode": "VDY",
+          "airportName": "Jindal Vijaynagar Airport",
+          "city": "Ballari",
+          "country": "India"
+        },
+        {
+          "airportCode": "BEP",
+          "airportName": "Bellary Airport",
+          "city": "Ballari",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "section": "IATA",
+      "rule": "Exact airport=KBK",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=KBK",
+      "expected": "KBK rank 1-2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank(KBK)=1 top=KBK:Kushinagar | GOP:Gorakhpur | AZH:Azamgarh | MZU:Muzaffarpur",
+      "hits": [
+        {
+          "airportCode": "KBK",
+          "airportName": "Kushinagar International Airport",
+          "city": "Kushinagar",
+          "country": "India"
+        },
+        {
+          "airportCode": "GOP",
+          "airportName": "Gorakhpur Airport",
+          "city": "Gorakhpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "AZH",
+          "airportName": "Azamgarh Airport",
+          "city": "Azamgarh",
+          "country": "India"
+        },
+        {
+          "airportCode": "MZU",
+          "airportName": "Muzaffarpur Airport",
+          "city": "Muzaffarpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "BFK",
+          "airportName": "Buckley Space Force Base",
+          "city": "Aurora",
+          "country": "United States"
+        },
+        {
+          "airportCode": "BKL",
+          "airportName": "Burke Lakefront Airport",
+          "city": "Cleveland",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "section": "IATA",
+      "rule": "Exact airport=PYG",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=PYG",
+      "expected": "PYG rank 1-2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank(PYG)=1 top=PYG:Pakyong | IXB:Siliguri | COH:Cooch Behar | RUP:Dhubri",
+      "hits": [
+        {
+          "airportCode": "PYG",
+          "airportName": "Pakyong Airport",
+          "city": "Pakyong",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXB",
+          "airportName": "Bagdogra International Airport",
+          "city": "Siliguri",
+          "country": "India"
+        },
+        {
+          "airportCode": "COH",
+          "airportName": "Cooch Behar Airport",
+          "city": "Cooch Behar",
+          "country": "India"
+        },
+        {
+          "airportCode": "RUP",
+          "airportName": "Rupsi Airport",
+          "city": "Dhubri",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "section": "IATA",
+      "rule": "Exact airport=HGI",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=HGI",
+      "expected": "HGI rank 1-2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank(HGI)=1 top=HGI:Gohpur | IXI:North Lakhimpur | JRH:Jorhat | ZER:Ziro",
+      "hits": [
+        {
+          "airportCode": "HGI",
+          "airportName": "Itanagar Donyi Polo Hollongi Airport",
+          "city": "Gohpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXI",
+          "airportName": "Lilabari North Lakhimpur Airport",
+          "city": "North Lakhimpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "JRH",
+          "airportName": "Jorhat Airport",
+          "city": "Jorhat",
+          "country": "India"
+        },
+        {
+          "airportCode": "ZER",
+          "airportName": "Ziro Airport",
+          "city": "Ziro",
+          "country": "India"
+        },
+        {
+          "airportCode": "DMU",
+          "airportName": "Dimapur Airport",
+          "city": "Dimapur",
+          "country": "India"
+        },
+        {
+          "airportCode": "TEZ",
+          "airportName": "Tezpur Airport",
+          "city": "Tezpur",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "section": "RENAME",
+      "rule": "navi mumbai → NMI|BOM",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=navi+mumbai",
+      "expected": "NMI|BOM in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(NMI) top=NMI:Navi Mumbai | BOM:Mumbai | PNQ:Pune | ISK:Ozar",
+      "query": "navi mumbai",
+      "hits": [
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India"
+        },
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India"
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India"
+        },
+        {
+          "airportCode": "ISK",
+          "airportName": "Nashik Airport",
+          "city": "Ozar",
+          "country": "India"
+        },
+        {
+          "airportCode": "NAN",
+          "airportName": "Nadi International Airport",
+          "city": "Nadi",
+          "country": "Fiji Islands"
+        },
+        {
+          "airportCode": "NVI",
+          "airportName": "Navoi Airport",
+          "city": "Navoiy",
+          "country": "Uzbekistan"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "section": "RENAME",
+      "rule": "mopa → GOX",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=mopa",
+      "expected": "GOX in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(GOX) top=GOX:Mopa | GOI:Vasco da Gama | SDW:Sindhudurg | IXG:Belagavi",
+      "query": "mopa",
+      "hits": [
+        {
+          "airportCode": "GOX",
+          "airportName": "Manohar International Airport",
+          "city": "Mopa",
+          "country": "India"
+        },
+        {
+          "airportCode": "GOI",
+          "airportName": "Dabolim Airport, Goa",
+          "city": "Vasco da Gama",
+          "country": "India"
+        },
+        {
+          "airportCode": "SDW",
+          "airportName": "Sindhudurg Chipi Airport",
+          "city": "Sindhudurg",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXG",
+          "airportName": "Belagavi Airport",
+          "city": "Belagavi",
+          "country": "India"
+        },
+        {
+          "airportCode": "MKQ",
+          "airportName": "Mopah International Airport",
+          "city": "Kabupaten Merauke",
+          "country": "Indonesia"
+        },
+        {
+          "airportCode": "MXX",
+          "airportName": "Mora Airport",
+          "city": "Mora",
+          "country": "Sweden"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "section": "RENAME",
+      "rule": "manohar international → GOX",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=manohar+international",
+      "expected": "GOX in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(GOX) top=GOX:Mopa | GOI:Vasco da Gama | SDW:Sindhudurg | IXG:Belagavi",
+      "query": "manohar international",
+      "hits": [
+        {
+          "airportCode": "GOX",
+          "airportName": "Manohar International Airport",
+          "city": "Mopa",
+          "country": "India"
+        },
+        {
+          "airportCode": "GOI",
+          "airportName": "Dabolim Airport, Goa",
+          "city": "Vasco da Gama",
+          "country": "India"
+        },
+        {
+          "airportCode": "SDW",
+          "airportName": "Sindhudurg Chipi Airport",
+          "city": "Sindhudurg",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXG",
+          "airportName": "Belagavi Airport",
+          "city": "Belagavi",
+          "country": "India"
+        },
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India"
+        },
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "section": "RENAME",
+      "rule": "dabolim → GOI",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=dabolim",
+      "expected": "GOI in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(GOI) top=GOI:Vasco da Gama | GOX:Mopa | SDW:Sindhudurg | IXG:Belagavi",
+      "query": "dabolim",
+      "hits": [
+        {
+          "airportCode": "GOI",
+          "airportName": "Dabolim Airport, Goa",
+          "city": "Vasco da Gama",
+          "country": "India"
+        },
+        {
+          "airportCode": "GOX",
+          "airportName": "Manohar International Airport",
+          "city": "Mopa",
+          "country": "India"
+        },
+        {
+          "airportCode": "SDW",
+          "airportName": "Sindhudurg Chipi Airport",
+          "city": "Sindhudurg",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXG",
+          "airportName": "Belagavi Airport",
+          "city": "Belagavi",
+          "country": "India"
+        },
+        {
+          "airportCode": "HBX",
+          "airportName": "Hubli Airport",
+          "city": "Hubballi",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "section": "RENAME",
+      "rule": "rajkot international → HSR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=rajkot+international",
+      "expected": "HSR in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(HSR) top=HSR:Rajkot | RAJ:Rajkot | JGA:Jamnagar | IXY:Kandla",
+      "query": "rajkot international",
+      "hits": [
+        {
+          "airportCode": "HSR",
+          "airportName": "Rajkot International Airport",
+          "city": "Rajkot",
+          "country": "India"
+        },
+        {
+          "airportCode": "RAJ",
+          "airportName": "Rajkot Airport",
+          "city": "Rajkot",
+          "country": "India"
+        },
+        {
+          "airportCode": "JGA",
+          "airportName": "Jamnagar Airport",
+          "city": "Jamnagar",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXY",
+          "airportName": "Kandla Airport",
+          "city": "Kandla",
+          "country": "India"
+        },
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India"
+        },
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "section": "RENAME",
+      "rule": "hirasar → HSR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=hirasar",
+      "expected": "HSR in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(HSR) top=HSR:Rajkot | RAJ:Rajkot | JGA:Jamnagar | IXY:Kandla",
+      "query": "hirasar",
+      "hits": [
+        {
+          "airportCode": "HSR",
+          "airportName": "Rajkot International Airport",
+          "city": "Rajkot",
+          "country": "India"
+        },
+        {
+          "airportCode": "RAJ",
+          "airportName": "Rajkot Airport",
+          "city": "Rajkot",
+          "country": "India"
+        },
+        {
+          "airportCode": "JGA",
+          "airportName": "Jamnagar Airport",
+          "city": "Jamnagar",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXY",
+          "airportName": "Kandla Airport",
+          "city": "Kandla",
+          "country": "India"
+        },
+        {
+          "airportCode": "MJR",
+          "airportName": "Miramar Airport",
+          "city": "Miramar",
+          "country": "Argentina"
+        },
+        {
+          "airportCode": "HSS",
+          "airportName": "Hissar Airport",
+          "city": "Hisar",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "section": "RENAME",
+      "rule": "noida international → DXN|DEL",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=noida+international",
+      "expected": "DXN|DEL in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(DXN) top=DXN:Noida | HRH:Aligarh | HDO:Ghaziabad | DEL:New Delhi",
+      "query": "noida international",
+      "hits": [
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India"
+        },
+        {
+          "airportCode": "HRH",
+          "airportName": "Dhanipur Airstrip",
+          "city": "Aligarh",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India"
+        },
+        {
+          "airportCode": "TRV",
+          "airportName": "Thiruvananthapuram International Airport",
+          "city": "Thiruvananthapuram",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "section": "RENAME",
+      "rule": "jewar → DXN|DEL",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=jewar",
+      "expected": "DXN|DEL in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(DXN) top=DXN:Noida | HRH:Aligarh | HDO:Ghaziabad | DEL:New Delhi",
+      "query": "jewar",
+      "hits": [
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India"
+        },
+        {
+          "airportCode": "HRH",
+          "airportName": "Dhanipur Airstrip",
+          "city": "Aligarh",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "COH",
+          "airportName": "Cooch Behar Airport",
+          "city": "Cooch Behar",
+          "country": "India"
+        },
+        {
+          "airportCode": "SWQ",
+          "airportName": "Sumbawa Besar Airport",
+          "city": "Sumbawa Besar",
+          "country": "Indonesia"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "section": "RENAME",
+      "rule": "shivamogga → RQY",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=shivamogga",
+      "expected": "RQY in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(RQY) top=RQY:Shivamogga | IXE:Mangaluru | HBX:Hubballi | VDY:Ballari",
+      "query": "shivamogga",
+      "hits": [
+        {
+          "airportCode": "RQY",
+          "airportName": "Shivamogga Airport",
+          "city": "Shivamogga",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXE",
+          "airportName": "Mangaluru International Airport",
+          "city": "Mangaluru",
+          "country": "India"
+        },
+        {
+          "airportCode": "HBX",
+          "airportName": "Hubli Airport",
+          "city": "Hubballi",
+          "country": "India"
+        },
+        {
+          "airportCode": "VDY",
+          "airportName": "Jindal Vijaynagar Airport",
+          "city": "Ballari",
+          "country": "India"
+        },
+        {
+          "airportCode": "BEP",
+          "airportName": "Bellary Airport",
+          "city": "Ballari",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "section": "RENAME",
+      "rule": "kushinagar → KBK",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=kushinagar",
+      "expected": "KBK in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(KBK) top=KBK:Kushinagar | GOP:Gorakhpur | AZH:Azamgarh | MZU:Muzaffarpur",
+      "query": "kushinagar",
+      "hits": [
+        {
+          "airportCode": "KBK",
+          "airportName": "Kushinagar International Airport",
+          "city": "Kushinagar",
+          "country": "India"
+        },
+        {
+          "airportCode": "GOP",
+          "airportName": "Gorakhpur Airport",
+          "city": "Gorakhpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "AZH",
+          "airportName": "Azamgarh Airport",
+          "city": "Azamgarh",
+          "country": "India"
+        },
+        {
+          "airportCode": "MZU",
+          "airportName": "Muzaffarpur Airport",
+          "city": "Muzaffarpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "VNS",
+          "airportName": "Lal Bahadur Shastri Airport",
+          "city": "Varanasi",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "section": "RENAME",
+      "rule": "chhatrapati sambhaji nagar → IXU",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=chhatrapati+sambhaji+nagar",
+      "expected": "IXU in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(IXU) top=IXU:Aurangabad | SAG:Shirdi | JLG:Jalgaon | ISK:Ozar",
+      "query": "chhatrapati sambhaji nagar",
+      "hits": [
+        {
+          "airportCode": "IXU",
+          "airportName": "Chhatrapati Sambhaji Maharaj Airport",
+          "city": "Aurangabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "SAG",
+          "airportName": "Shirdi Airport",
+          "city": "Shirdi",
+          "country": "India"
+        },
+        {
+          "airportCode": "JLG",
+          "airportName": "Jalgaon Airport",
+          "city": "Jalgaon",
+          "country": "India"
+        },
+        {
+          "airportCode": "ISK",
+          "airportName": "Nashik Airport",
+          "city": "Ozar",
+          "country": "India"
+        },
+        {
+          "airportCode": "AKD",
+          "airportName": "Akola Airport",
+          "city": "Akola",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "section": "RENAME",
+      "rule": "aurangabad → IXU",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=aurangabad",
+      "expected": "IXU in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(IXU) top=IXU:Aurangabad | SAG:Shirdi | JLG:Jalgaon | ISK:Ozar",
+      "query": "aurangabad",
+      "hits": [
+        {
+          "airportCode": "IXU",
+          "airportName": "Chhatrapati Sambhaji Maharaj Airport",
+          "city": "Aurangabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "SAG",
+          "airportName": "Shirdi Airport",
+          "city": "Shirdi",
+          "country": "India"
+        },
+        {
+          "airportCode": "JLG",
+          "airportName": "Jalgaon Airport",
+          "city": "Jalgaon",
+          "country": "India"
+        },
+        {
+          "airportCode": "ISK",
+          "airportName": "Nashik Airport",
+          "city": "Ozar",
+          "country": "India"
+        },
+        {
+          "airportCode": "AKD",
+          "airportName": "Akola Airport",
+          "city": "Akola",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "section": "RENAME",
+      "rule": "pakyong → PYG",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=pakyong",
+      "expected": "PYG in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(PYG) top=PYG:Pakyong | IXB:Siliguri | COH:Cooch Behar | RUP:Dhubri",
+      "query": "pakyong",
+      "hits": [
+        {
+          "airportCode": "PYG",
+          "airportName": "Pakyong Airport",
+          "city": "Pakyong",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXB",
+          "airportName": "Bagdogra International Airport",
+          "city": "Siliguri",
+          "country": "India"
+        },
+        {
+          "airportCode": "COH",
+          "airportName": "Cooch Behar Airport",
+          "city": "Cooch Behar",
+          "country": "India"
+        },
+        {
+          "airportCode": "RUP",
+          "airportName": "Rupsi Airport",
+          "city": "Dhubri",
+          "country": "India"
+        },
+        {
+          "airportCode": "GYS",
+          "airportName": "Guangyuan Panlong Airport",
+          "city": "Guangyuan",
+          "country": "China"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "section": "RENAME",
+      "rule": "hollongi → HGI",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=hollongi",
+      "expected": "HGI in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(HGI) top=HGI:Gohpur | IXI:North Lakhimpur | JRH:Jorhat | ZER:Ziro",
+      "query": "hollongi",
+      "hits": [
+        {
+          "airportCode": "HGI",
+          "airportName": "Itanagar Donyi Polo Hollongi Airport",
+          "city": "Gohpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXI",
+          "airportName": "Lilabari North Lakhimpur Airport",
+          "city": "North Lakhimpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "JRH",
+          "airportName": "Jorhat Airport",
+          "city": "Jorhat",
+          "country": "India"
+        },
+        {
+          "airportCode": "ZER",
+          "airportName": "Ziro Airport",
+          "city": "Ziro",
+          "country": "India"
+        },
+        {
+          "airportCode": "DMU",
+          "airportName": "Dimapur Airport",
+          "city": "Dimapur",
+          "country": "India"
+        },
+        {
+          "airportCode": "TEZ",
+          "airportName": "Tezpur Airport",
+          "city": "Tezpur",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "section": "RENAME",
+      "rule": "itanagar → HGI|IXA",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=itanagar",
+      "expected": "HGI|IXA in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(HGI) top=HGI:Gohpur | IXI:North Lakhimpur | JRH:Jorhat | ZER:Ziro",
+      "query": "itanagar",
+      "hits": [
+        {
+          "airportCode": "HGI",
+          "airportName": "Itanagar Donyi Polo Hollongi Airport",
+          "city": "Gohpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXI",
+          "airportName": "Lilabari North Lakhimpur Airport",
+          "city": "North Lakhimpur",
+          "country": "India"
+        },
+        {
+          "airportCode": "JRH",
+          "airportName": "Jorhat Airport",
+          "city": "Jorhat",
+          "country": "India"
+        },
+        {
+          "airportCode": "ZER",
+          "airportName": "Ziro Airport",
+          "city": "Ziro",
+          "country": "India"
+        },
+        {
+          "airportCode": "DMU",
+          "airportName": "Dimapur Airport",
+          "city": "Dimapur",
+          "country": "India"
+        },
+        {
+          "airportCode": "TEZ",
+          "airportName": "Tezpur Airport",
+          "city": "Tezpur",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "section": "RENAME",
+      "rule": "kempegowda → BLR",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=kempegowda",
+      "expected": "BLR in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(BLR) top=BLR:Bengaluru | PUT:Puttaparthi | MYQ:Mysuru | SXV:Salem",
+      "query": "kempegowda",
+      "hits": [
+        {
+          "airportCode": "BLR",
+          "airportName": "Kempegowda International Airport",
+          "city": "Bengaluru",
+          "country": "India"
+        },
+        {
+          "airportCode": "PUT",
+          "airportName": "Sri Sathya Sai Airport",
+          "city": "Puttaparthi",
+          "country": "India"
+        },
+        {
+          "airportCode": "MYQ",
+          "airportName": "Mysuru Airport",
+          "city": "Mysuru",
+          "country": "India"
+        },
+        {
+          "airportCode": "SXV",
+          "airportName": "Salem Airport",
+          "city": "Salem",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "section": "RENAME",
+      "rule": "chhatrapati shivaji → BOM",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=chhatrapati+shivaji",
+      "expected": "BOM in top 2",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(BOM) top=BOM:Mumbai | NMI:Navi Mumbai | PNQ:Pune | NMB:Daman",
+      "query": "chhatrapati shivaji",
+      "hits": [
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India"
+        },
+        {
+          "airportCode": "NMI",
+          "airportName": "Navi Mumbai International Airport",
+          "city": "Navi Mumbai",
+          "country": "India"
+        },
+        {
+          "airportCode": "PNQ",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "city": "Pune",
+          "country": "India"
+        },
+        {
+          "airportCode": "NMB",
+          "airportName": "Daman Airport",
+          "city": "Daman",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXU",
+          "airportName": "Chhatrapati Sambhaji Maharaj Airport",
+          "city": "Aurangabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "ISK",
+          "airportName": "Nashik Airport",
+          "city": "Ozar",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "section": "RENAME",
+      "rule": "indira gandhi → DEL",
+      "how": "GET /v1/flights/airports?lang=en&currency=INR&perpage=10&page=0&airport=indira+gandhi",
+      "expected": "DEL in top 3",
+      "status": "PASS",
+      "actual": "HTTP 200 rank=1(DEL) top=DEL:New Delhi | HDO:Ghaziabad | DXN:Noida | HRH:Aligarh",
+      "query": "indira gandhi",
+      "hits": [
+        {
+          "airportCode": "DEL",
+          "airportName": "Indira Gandhi International Airport",
+          "city": "New Delhi",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDO",
+          "airportName": "Ghaziabad Hindon Airport",
+          "city": "Ghaziabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "DXN",
+          "airportName": "Noida International Airport",
+          "city": "Noida",
+          "country": "India"
+        },
+        {
+          "airportCode": "HRH",
+          "airportName": "Dhanipur Airstrip",
+          "city": "Aligarh",
+          "country": "India"
+        },
+        {
+          "airportCode": "HYD",
+          "airportName": "Rajiv Gandhi International Airport",
+          "city": "Hyderabad",
+          "country": "India"
+        },
+        {
+          "airportCode": "BOM",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "city": "Mumbai",
+          "country": "India"
+        }
+      ]
+    }
+  ]
+}

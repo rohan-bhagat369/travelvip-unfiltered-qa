@@ -1,0 +1,487 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "counts": {
+    "PASS": 19,
+    "BUG": 0,
+    "FAIL": 0,
+    "total": 19
+  },
+  "bugs": [],
+  "fails": [],
+  "rows": [
+    {
+      "id": "V1",
+      "title": "Valid RT different cities DEL-BOM / BOM-DEL",
+      "status": "PASS",
+      "note": "accepted valid RT OD",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ROUND_TRIP\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null},\"timingReference\":\"/uuasQgOYWSYuPG74UVaCbyjMIJB0o4R87vG2HDO0/5Rs8ZGNIPkOwlWXvlU0UwKe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDHjAim3kSR1SpMA0BDmuIlo9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB0ttLzznhrlvI2xCYc0M9hU2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdngFyOw",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BOM",
+          "destination": "DEL",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:08.435Z"
+    },
+    {
+      "id": "V2",
+      "title": "Valid RT different cities BOM-BLR / BLR-BOM",
+      "status": "PASS",
+      "note": "accepted valid RT OD",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ROUND_TRIP\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":4550,\"message\":null},\"timingReference\":\"D7RjAOuCqXZHhWChp1t/bKC9rBDgINibH2qyP3lAL7qgQEZx/H51XVCCbNkrfFhtmzzjrafz2vEuKlfbIka3vme13pzy+k4HJEQYJK6J36CI6O27BnhnSt8ewR7IbaaNRJkKWnTMy36L1N7EVG0GFj+tFaMW1DFILOy1GPb2gjGvHSYU7upe+gnDyjiLzoAww426Y8y/Kqvez0wCThkMTUsR7pLjUdMiC2KKxguRvZUEtRrPxsXnU4Lta93C++41GONkovNHxtQHM4P0h0GSq",
+      "itinerary": [
+        {
+          "origin": "BOM",
+          "destination": "BLR",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BLR",
+          "destination": "BOM",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:08.561Z"
+    },
+    {
+      "id": "S1",
+      "title": "Same OD on onward (DEL-DEL / BOM-DEL)",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Origin and destination cannot be the same (DEL) for flight segment 1.",
+        "For a round trip the return segment must be DEL to DEL, but BOM to DEL was provided."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Origin and destination cannot be the same (DEL) for flight segment 1.\",\"For a round trip the return segment must be DEL to DEL, but BOM to DEL was provided.\"],\"timestamp\":\"2026-08-17T11:30:08Z\",\"request_id\":\"req-1786966208561\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "DEL",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BOM",
+          "destination": "DEL",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:08.650Z"
+    },
+    {
+      "id": "S2",
+      "title": "Same OD on return (DEL-BOM / BOM-BOM)",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Origin and destination cannot be the same (BOM) for flight segment 2.",
+        "For a round trip the return segment must be BOM to DEL, but BOM to BOM was provided."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Origin and destination cannot be the same (BOM) for flight segment 2.\",\"For a round trip the return segment must be BOM to DEL, but BOM to BOM was provided.\"],\"timestamp\":\"2026-08-17T11:30:08Z\",\"request_id\":\"req-1786966208650\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BOM",
+          "destination": "BOM",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:08.949Z"
+    },
+    {
+      "id": "S3",
+      "title": "Same OD on both journeys (DEL-DEL / DEL-DEL)",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Origin and destination cannot be the same (DEL) for flight segment 1.",
+        "Origin and destination cannot be the same (DEL) for flight segment 2.",
+        "Both flight segments are the same route (DEL to DEL). On a round trip the return segment must fly back from DEL to DEL."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Origin and destination cannot be the same (DEL) for flight segment 1.\",\"Origin and destination cannot be the same (DEL) for flight segment 2.\",\"Both flight segments are the same route (DEL to DEL). On a round trip the return segment must fly back from DEL to DEL.\"],\"timestamp\":\"2026-08-17T11:30:08Z\",\"reque",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "DEL",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "DEL",
+          "destination": "DEL",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.036Z"
+    },
+    {
+      "id": "S4",
+      "title": "Same OD both journeys BOM-BOM / BOM-BOM",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Origin and destination cannot be the same (BOM) for flight segment 1.",
+        "Origin and destination cannot be the same (BOM) for flight segment 2.",
+        "Both flight segments are the same route (BOM to BOM). On a round trip the return segment must fly back from BOM to BOM."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Origin and destination cannot be the same (BOM) for flight segment 1.\",\"Origin and destination cannot be the same (BOM) for flight segment 2.\",\"Both flight segments are the same route (BOM to BOM). On a round trip the return segment must fly back from BOM to BOM.\"],\"timestamp\":\"2026-08-17T11:30:08Z\",\"reque",
+      "itinerary": [
+        {
+          "origin": "BOM",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BOM",
+          "destination": "BOM",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.124Z"
+    },
+    {
+      "id": "D1",
+      "title": "Both journeys same direction DEL-BOM / DEL-BOM",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Both flight segments are the same route (DEL to BOM). On a round trip the return segment must fly back from BOM to DEL."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Both flight segments are the same route (DEL to BOM). On a round trip the return segment must fly back from BOM to DEL.\"],\"timestamp\":\"2026-08-17T11:30:08Z\",\"request_id\":\"req-1786966209125\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.215Z"
+    },
+    {
+      "id": "D2",
+      "title": "Return not reverse (DEL-BOM / HYD-DEL)",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "For a round trip the return segment must be BOM to DEL, but HYD to DEL was provided."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"For a round trip the return segment must be BOM to DEL, but HYD to DEL was provided.\"],\"timestamp\":\"2026-08-17T11:30:08Z\",\"request_id\":\"req-1786966209216\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "HYD",
+          "destination": "DEL",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.305Z"
+    },
+    {
+      "id": "D3",
+      "title": "Open jaw different cities DEL-BOM / HYD-MAA",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "For a round trip the return segment must be BOM to DEL, but HYD to MAA was provided."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"For a round trip the return segment must be BOM to DEL, but HYD to MAA was provided.\"],\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966209306\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "HYD",
+          "destination": "MAA",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.400Z"
+    },
+    {
+      "id": "D4",
+      "title": "Return origin != onward destination (DEL-BOM / DEL-DEL)",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Origin and destination cannot be the same (DEL) for flight segment 2.",
+        "For a round trip the return segment must be BOM to DEL, but DEL to DEL was provided."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Origin and destination cannot be the same (DEL) for flight segment 2.\",\"For a round trip the return segment must be BOM to DEL, but DEL to DEL was provided.\"],\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966209400\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "DEL",
+          "destination": "DEL",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.485Z"
+    },
+    {
+      "id": "M1",
+      "title": "Missing onward origin",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Origin airport is required for flight segment 1."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Origin airport is required for flight segment 1.\"],\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966209486\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BOM",
+          "destination": "DEL",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.570Z"
+    },
+    {
+      "id": "M2",
+      "title": "Missing onward destination",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Destination airport is required for flight segment 1."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Destination airport is required for flight segment 1.\"],\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966209570\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BOM",
+          "destination": "DEL",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.654Z"
+    },
+    {
+      "id": "M3",
+      "title": "Blank origin onward",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Origin airport is required for flight segment 1."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Origin airport is required for flight segment 1.\"],\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966209654\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BOM",
+          "destination": "DEL",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.747Z"
+    },
+    {
+      "id": "M4",
+      "title": "Blank destination return",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Destination airport is required for flight segment 2."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Destination airport is required for flight segment 2.\"],\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966209748\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BOM",
+          "destination": "",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.838Z"
+    },
+    {
+      "id": "M5",
+      "title": "Invalid airport codes XXX-YYY / YYY-XXX",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "INVALID_AIRPORT",
+      "details": [
+        "Unknown airport code: XXX"
+      ],
+      "snippet": "{\"error\":{\"code\":\"INVALID_AIRPORT\",\"message\":\"Unknown airport code: XXX\",\"details\":null,\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966209839\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "XXX",
+          "destination": "YYY",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "YYY",
+          "destination": "XXX",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:09.951Z"
+    },
+    {
+      "id": "R1",
+      "title": "ROUND_TRIP with single itinerary leg",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "A round trip must have exactly 2 flight segments (1 provided)."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"A round trip must have exactly 2 flight segments (1 provided).\"],\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966209952\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        }
+      ],
+      "at": "2026-08-17T11:30:10.040Z"
+    },
+    {
+      "id": "R2",
+      "title": "ROUND_TRIP with 3 itinerary legs",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "A round trip must have exactly 2 flight segments (3 provided)."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"A round trip must have exactly 2 flight segments (3 provided).\"],\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966210041\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "BOM",
+          "destination": "DEL",
+          "date": "2026-09-13"
+        },
+        {
+          "origin": "DEL",
+          "destination": "HYD",
+          "date": "2026-09-16"
+        }
+      ],
+      "at": "2026-08-17T11:30:10.127Z"
+    },
+    {
+      "id": "U1",
+      "title": "Same origin in both journeys + same dest in both (DEL-BOM / DEL-BOM)",
+      "status": "PASS",
+      "note": "rejected as expected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Both flight segments are the same route (DEL to BOM). On a round trip the return segment must fly back from BOM to DEL."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Both flight segments are the same route (DEL to BOM). On a round trip the return segment must fly back from BOM to DEL.\"],\"timestamp\":\"2026-08-17T11:30:09Z\",\"request_id\":\"req-1786966210128\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:10.210Z"
+    },
+    {
+      "id": "V3",
+      "title": "Valid RT lowercase del-bom / bom-del",
+      "status": "PASS",
+      "note": "accepted valid RT OD",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ROUND_TRIP\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":4591,\"message\":null},\"timingReference\":\"3OUtyEvtdlBhOwIm4Ss7CD5MLalZjYlH+Ee28Fh+QGQbwSm5wAA8q3J9j5VUei5vdRqOoCE6eK7IjSE1KyS8ES2TXibb3+jNbjL8VBqI3nwazWbVDuqI2GRsX0Iz9uun44Cpp9iZIFRUApomaoYtP/ra9z08NzyV/n7b107fQxQwO5Hwp800Shfr7kPzquwuTkaDQ999lc+GkKCqUH2AxOlgN5idtjlZMKUf5vfGa0q2r0emDiBL0B/FiIfAeqVynaR1uLzKGklpu5H8jH+9i",
+      "itinerary": [
+        {
+          "origin": "del",
+          "destination": "bom",
+          "date": "2026-09-06"
+        },
+        {
+          "origin": "bom",
+          "destination": "del",
+          "date": "2026-09-13"
+        }
+      ],
+      "at": "2026-08-17T11:30:22.197Z"
+    }
+  ]
+}

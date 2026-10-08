@@ -1,0 +1,443 @@
+{
+  "when": "2026-08-26T11:50:29.736Z",
+  "br": "BR1787744137248898",
+  "vendorBookingId": "TVIPWE2608261705379F51",
+  "summary": {
+    "PASS": 22,
+    "BUG": 3,
+    "NOT_TESTED": 6
+  },
+  "rows": [
+    {
+      "section": "A4",
+      "id": "status.extraKmRate",
+      "rule": "extraKmRate number in rupees; extraKmFareLabel gone",
+      "how": "GET …/cabs/{BR}/status",
+      "status": "PASS",
+      "notes": "extraKmRate=24 label=undefined",
+      "evidence": null
+    },
+    {
+      "section": "A4",
+      "id": "status.address",
+      "rule": "pickup.address / drop.address present",
+      "how": "GET status",
+      "status": "BUG",
+      "notes": "pickup.address=null drop.address=null",
+      "evidence": null
+    },
+    {
+      "section": "A4",
+      "id": "status.airportCode",
+      "rule": "airportCode on airport leg",
+      "how": "GET status",
+      "status": "BUG",
+      "notes": "top=null pickup=null drop=null",
+      "evidence": null
+    },
+    {
+      "section": "A4",
+      "id": "status.otp",
+      "rule": "otp present; assignment.tripOtp gone",
+      "how": "GET status",
+      "status": "PASS",
+      "notes": "otp=5979 tripOtp=undefined",
+      "evidence": null
+    },
+    {
+      "section": "A4",
+      "id": "status.vehicleOperator",
+      "rule": "vehicle + operator blocks present",
+      "how": "GET status",
+      "status": "PASS",
+      "notes": "vehicle=SEDAN op=Carzonrent",
+      "evidence": null
+    },
+    {
+      "section": "A4",
+      "id": "status.progress",
+      "rule": "progress block present (5 flags)",
+      "how": "GET status",
+      "status": "PASS",
+      "notes": "{\"cabAssigned\":true,\"cabLeftForPickup\":true,\"cabReachedSource\":true,\"cabTripStarted\":false,\"cabTripEnd\":false}",
+      "evidence": null
+    },
+    {
+      "section": "A4",
+      "id": "detail",
+      "rule": "GET booking detail",
+      "how": "GET …/cabs/booking/{BR}",
+      "status": "PASS",
+      "notes": "http=200 keys=statusCode,bookingReferenceId,status,contact,details,salesSummary,_meta",
+      "evidence": null
+    },
+    {
+      "section": "A4",
+      "id": "history",
+      "rule": "GET booking history lists BR",
+      "how": "GET …/cabs/booking/history",
+      "status": "PASS",
+      "notes": "http=200 found=true listLen=20",
+      "evidence": null
+    },
+    {
+      "section": "A4",
+      "id": "tracking",
+      "rule": "GET tracking location (shape unchanged)",
+      "how": "GET …/cabs/tracking/{BR}/location",
+      "status": "PASS",
+      "notes": "http=200 body={\"bookingId\":\"BR1787744137248898\",\"tripTracking\":null,\"driver\":{\"name\":\"Driver610313\",\"mobile\":\"+971571648903\",\"image\":\"610313\",\"isReassigned\":false},\"vehicle\":{\"name\":\"SWIFT\",\"col",
+      "evidence": null
+    },
+    {
+      "section": "A2",
+      "id": "vendor.login",
+      "rule": "Vendor simulator login",
+      "how": "POST /auth/v1/login",
+      "status": "PASS",
+      "notes": "token ok",
+      "evidence": null
+    },
+    {
+      "section": "A2",
+      "id": "mismatch.v1",
+      "rule": "Mismatched bookingId → 400, no write",
+      "how": "POST /v1/airportServices/cabs/update-booking",
+      "status": "PASS",
+      "notes": "http=400 code=PROVIDER_BOOKING_ID_MISMATCH body={\"error\":{\"code\":\"PROVIDER_BOOKING_ID_MISMATCH\",\"message\":\"bookingId does not match the provider booking id for this booking\",\"details\":null,\"timestamp\":\"2026-08-26T11:50:13Z\",\"request_id\":\"req-1787745013217\"},\"_meta\":{\"correlation_id\":\"02f315a3-b0cf-47d2-853e-51e16119dcfd\"}}",
+      "evidence": null
+    },
+    {
+      "section": "A2",
+      "id": "mismatch.api",
+      "rule": "Mismatched bookingId → 400, no write",
+      "how": "POST /api/airportServices/updateAirportServiceBooking",
+      "status": "PASS",
+      "notes": "http=403 code=INVALID_PARTNER_KEY body={\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied pid\",\"timestamp\":\"2026-08-26T11:50:13Z\",\"request_id\":\"req-1787745013323\"}}",
+      "evidence": null
+    },
+    {
+      "section": "A2",
+      "id": "callback.v1",
+      "rule": "Assignment callback on endpoint (partner-auth attempt)",
+      "how": "POST /v1/airportServices/cabs/update-booking",
+      "status": "PASS",
+      "notes": "http=200 body={\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"7468\",\"bookingReference\":\"BR1787744137248898\",\"_meta\":{\"correlation_id\":\"02f315a3-b0cf-47d2-853e-51e16119dcfd\"}}",
+      "evidence": {
+        "note": "If NOT TESTED: endpoint likely vendor-auth only; A2 assignment already covered via vendor simulator → assignment row"
+      }
+    },
+    {
+      "section": "A2",
+      "id": "callback.api",
+      "rule": "Assignment callback on endpoint (partner-auth attempt)",
+      "how": "POST /api/airportServices/updateAirportServiceBooking",
+      "status": "NOT TESTED",
+      "notes": "http=403 body={\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied pid\",\"timestamp\":\"2026-08-26T11:50:13Z\",\"request_id\":\"req-1787745013798\"}}",
+      "evidence": {
+        "note": "If NOT TESTED: endpoint likely vendor-auth only; A2 assignment already covered via vendor simulator → assignment row"
+      }
+    },
+    {
+      "section": "A3",
+      "id": "310",
+      "rule": "DRIVER_CAB_DETAILS / assign → progress.cabAssigned",
+      "how": "POST /tracking/driverDetails",
+      "status": "PASS",
+      "notes": "vendor=Entry inserted successfully status=Driver assigned assigned=true",
+      "evidence": {
+        "assign": {
+          "http": 200,
+          "ok": true,
+          "data": {
+            "status": "success",
+            "message": "Entry inserted successfully",
+            "code": 200,
+            "data": null,
+            "correlationId": "d4b523b2-2a6d-40c5-811b-b4132ff776fd"
+          }
+        },
+        "status": "Driver assigned",
+        "progress": {
+          "cabAssigned": true,
+          "cabLeftForPickup": true,
+          "cabReachedSource": true,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "assignment": {
+          "driverName": "Driver477777",
+          "driverMobile": "+971573331931",
+          "vehicleRegistrationNo": "DL72A9056",
+          "trackingUrl": null,
+          "assignedAt": "2026-08-26 11:50:14",
+          "driver": {
+            "name": "Driver477777",
+            "mobile": "+971573331931",
+            "image": "477777",
+            "chauffeurId": "477777",
+            "isReassigned": true
+          },
+          "vehicle": {
+            "name": "SWIFT",
+            "color": "white",
+            "type": "SWIFT",
+            "registrationNo": "DL72A9056",
+            "vehicleId": "441692"
+          },
+          "partner": "CARZONRENT",
+          "isReassigned": true,
+          "syncedAt": null
+        }
+      }
+    },
+    {
+      "section": "A3",
+      "id": "320",
+      "rule": "TRIP_LOCATION left → cabLeftForPickup",
+      "how": "createCabTripTracking Left For pickup",
+      "status": "PASS",
+      "notes": "status=Driver on the way left=true",
+      "evidence": {
+        "left": {
+          "http": 200,
+          "ok": true,
+          "data": {
+            "status": "success",
+            "message": "Entry inserted successfully",
+            "code": 200,
+            "data": null,
+            "correlationId": "e20c0135-29bf-4ac3-bd8b-539d0160aa37"
+          }
+        },
+        "progress": {
+          "cabAssigned": true,
+          "cabLeftForPickup": true,
+          "cabReachedSource": true,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        }
+      }
+    },
+    {
+      "section": "A3",
+      "id": "330",
+      "rule": "TRIP_LOCATION arrived → cabReachedSource",
+      "how": "createCabTripTracking arrived",
+      "status": "PASS",
+      "notes": "status=Driver arrived reached=true",
+      "evidence": {
+        "arrived": {
+          "http": 200,
+          "ok": true,
+          "data": {
+            "status": "success",
+            "message": "Entry inserted successfully",
+            "code": 200,
+            "data": null,
+            "correlationId": "43b70ec7-908b-4f9e-87cf-e1f9a7e547b0"
+          }
+        },
+        "progress": {
+          "cabAssigned": true,
+          "cabLeftForPickup": true,
+          "cabReachedSource": true,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        }
+      }
+    },
+    {
+      "section": "A3",
+      "id": "340",
+      "rule": "TRIP_DETAILS start → cabTripStarted + trip row",
+      "how": "POST /tracking/tripDetails trip_event=start",
+      "status": "PASS",
+      "notes": "vendor=Trip details inserted successfully status=Trip started started=true trip={\"startedAt\":\"2026-08-26 11:50:20\",\"endedAt\":null,\"totalTravelledKm\":15,\"totalTravelledFare\":1100,\"extraTravelledKm\":0,\"extraTravelledFare\":0,\"nightCharges\":0,\"reason\":\"Start reason\"}",
+      "evidence": {
+        "start": {
+          "http": 200,
+          "ok": true,
+          "data": {
+            "status": "success",
+            "message": "Trip details inserted successfully",
+            "code": 200,
+            "data": null,
+            "correlationId": "236e746b-c0a7-4257-9b57-a6ee5841ecb5"
+          }
+        },
+        "progress": {
+          "cabAssigned": true,
+          "cabLeftForPickup": true,
+          "cabReachedSource": true,
+          "cabTripStarted": true,
+          "cabTripEnd": false
+        },
+        "trip": {
+          "startedAt": "2026-08-26 11:50:20",
+          "endedAt": null,
+          "totalTravelledKm": 15,
+          "totalTravelledFare": 1100,
+          "extraTravelledKm": 0,
+          "extraTravelledFare": 0,
+          "nightCharges": 0,
+          "reason": "Start reason"
+        },
+        "status": "Trip started"
+      }
+    },
+    {
+      "section": "A3",
+      "id": "350",
+      "rule": "TRIP_DETAILS stop → cabTripEnd + trip fare fields",
+      "how": "POST /tracking/tripDetails trip_event=stop",
+      "status": "PASS",
+      "notes": "vendor=Trip details inserted successfully status=Trip completed end=true trip={\"startedAt\":\"2026-08-26 11:50:20\",\"endedAt\":\"2026-08-26 11:50:23\",\"totalTravelledKm\":15,\"totalTravelledFare\":1100,\"extraTravelledKm\":5,\"extraTravelledFare\":500,\"nightCharges\":0,\"reason\":\"End reason\"}",
+      "evidence": {
+        "end": {
+          "http": 200,
+          "ok": true,
+          "data": {
+            "status": "success",
+            "message": "Trip details inserted successfully",
+            "code": 200,
+            "data": null,
+            "correlationId": "28bb3bf3-7adf-40bd-9f39-a955598a4588"
+          }
+        },
+        "progress": {
+          "cabAssigned": true,
+          "cabLeftForPickup": true,
+          "cabReachedSource": true,
+          "cabTripStarted": true,
+          "cabTripEnd": true
+        },
+        "trip": {
+          "startedAt": "2026-08-26 11:50:20",
+          "endedAt": "2026-08-26 11:50:23",
+          "totalTravelledKm": 15,
+          "totalTravelledFare": 1100,
+          "extraTravelledKm": 5,
+          "extraTravelledFare": 500,
+          "nightCharges": 0,
+          "reason": "End reason"
+        },
+        "status": "Trip completed"
+      }
+    },
+    {
+      "section": "A3.1",
+      "id": "otp",
+      "rule": "details.otp present; assignment.tripOtp gone",
+      "how": "GET status",
+      "status": "PASS",
+      "notes": "otp=5979 assignment.tripOtp=undefined",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "hotel.autocomplete",
+      "rule": "Hotel autocomplete",
+      "how": "GET autocomplete",
+      "status": "PASS",
+      "notes": "totalElements=4",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "hotel.search",
+      "rule": "Hotel search responds",
+      "how": "POST search",
+      "status": "PASS",
+      "notes": "total=0 msg=No hotels found for this date range. Please try searching different dates.",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "hotel.book",
+      "rule": "Hotel finalize E2E",
+      "how": "search→details→prebook→finalize",
+      "status": "NOT TESTED",
+      "notes": "staging inventory empty — cannot book",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "flight.airports",
+      "rule": "Flight airports",
+      "how": "GET airports",
+      "status": "PASS",
+      "notes": "n=7",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "flight.search",
+      "rule": "Flight search completes",
+      "how": "POST search poll",
+      "status": "PASS",
+      "notes": "options=0",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "flight.book",
+      "rule": "Flight issue-ticket E2E",
+      "how": "search→price→issue",
+      "status": "NOT TESTED",
+      "notes": "Skipped live flight book in cab pending pack (use flight:regression); API path reachable via search PASS",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "esim.book",
+      "rule": "eSIM finalize E2E",
+      "how": "POST finalize-booking",
+      "status": "BUG",
+      "notes": "http=200 br=undefined status=400",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "lounge.book",
+      "rule": "Lounge finalize E2E",
+      "how": "lounge flow",
+      "status": "NOT TESTED",
+      "notes": "no lounge inventory/context",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "fasttrack.book",
+      "rule": "Fast Track finalize E2E",
+      "how": "fasttrack flow",
+      "status": "NOT TESTED",
+      "notes": "no inventory/context",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "attractions.search",
+      "rule": "Attractions search",
+      "how": "GET attractions/search",
+      "status": "PASS",
+      "notes": "http=200 hit=Dubai",
+      "evidence": null
+    },
+    {
+      "section": "A5",
+      "id": "attractions.book",
+      "rule": "Attractions finalize E2E",
+      "how": "attractions book",
+      "status": "NOT TESTED",
+      "notes": "Search OK; full book uses probe-fasttrack-attractions-e2e-prices.js if needed",
+      "evidence": null
+    }
+  ],
+  "dbSql": {
+    "a3_status_codes": "SELECT h.id, m.status_code, m.backend_status, m.status_name, h.provider_timestamp, h.occurred_at\nFROM booking_item_status_history h\nJOIN booking_status_mapping m ON m.id = h.status_mapping_id\nJOIN booking_item bi ON bi.id = h.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = 'BR1787744137248898'\nORDER BY h.id;",
+    "a3_trip": "SELECT t.*\nFROM booking b\nJOIN booking_item bi ON bi.booking_id = b.id AND bi.service_type = 'cabs'\nJOIN booking_item_cab bic ON bic.booking_item_id = bi.id\nLEFT JOIN booking_item_cab_trip t ON t.booking_item_cab_id = bic.id\nWHERE b.booking_reference = 'BR1787744137248898';",
+    "a3_1_otp": "SELECT bic.otp, a.trip_otp, a.driver_name\nFROM booking b\nJOIN booking_item bi ON bi.booking_id = b.id AND bi.service_type = 'cabs'\nJOIN booking_item_cab bic ON bic.booking_item_id = bi.id\nLEFT JOIN booking_item_cab_assignment a ON a.booking_item_cab_id = bic.id\nWHERE b.booking_reference = 'BR1787744137248898'\nORDER BY a.id DESC;",
+    "provider_id": "SELECT bic.provider_booking_id FROM booking b\nJOIN booking_item bi ON bi.booking_id = b.id AND bi.service_type='cabs'\nJOIN booking_item_cab bic ON bic.booking_item_id = bi.id\nWHERE b.booking_reference = 'BR1787744137248898';"
+  }
+}

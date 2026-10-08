@@ -1,0 +1,431 @@
+{
+  "ranAt": "2026-09-07T11:49:13.854Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "noBook": true,
+  "hotelDates": {
+    "checkin": "2027-01-15",
+    "checkout": "2027-01-16"
+  },
+  "flightDate": "2027-01-15",
+  "counts": {
+    "PASS": 13,
+    "BUG": 9,
+    "NOT_TESTED": 0
+  },
+  "bugs": [
+    {
+      "id": 14,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=pune",
+      "how": "GET /v1/hotels/autocomplete?q=pune",
+      "expected": "HTTP 200 content[]; prefer CITY; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=85",
+      "ms": 85,
+      "sample": []
+    },
+    {
+      "id": 15,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=mumbai",
+      "how": "GET /v1/hotels/autocomplete?q=mumbai",
+      "expected": "HTTP 200 content[]; prefer CITY; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=48",
+      "ms": 48,
+      "sample": []
+    },
+    {
+      "id": 16,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=dubai",
+      "how": "GET /v1/hotels/autocomplete?q=dubai",
+      "expected": "HTTP 200 content[]; prefer CITY; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=157",
+      "ms": 157,
+      "sample": []
+    },
+    {
+      "id": 17,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=delhi",
+      "how": "GET /v1/hotels/autocomplete?q=delhi",
+      "expected": "HTTP 200 content[]; prefer CITY; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=59",
+      "ms": 59,
+      "sample": []
+    },
+    {
+      "id": 18,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=hiltop",
+      "how": "GET /v1/hotels/autocomplete?q=hiltop",
+      "expected": "HTTP 200 content[]; prefer HOTEL; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=103",
+      "ms": 103,
+      "sample": []
+    },
+    {
+      "id": 19,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=taj",
+      "how": "GET /v1/hotels/autocomplete?q=taj",
+      "expected": "HTTP 200 content[]; prefer any; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=139",
+      "ms": 139,
+      "sample": []
+    },
+    {
+      "id": 20,
+      "section": "HOTEL_SEARCH",
+      "rule": "CITY search Mumbai (no book)",
+      "how": "POST /v1/hotels/search 357389:IN",
+      "expected": "HTTP 200 total>0; Brand filter absent; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 total=0 page1=0 brand=absent ms=352",
+      "ms": 352,
+      "filters": []
+    },
+    {
+      "id": 21,
+      "section": "HOTEL_SEARCH",
+      "rule": "CITY search Delhi (no book)",
+      "how": "POST /v1/hotels/search 227760:IN",
+      "expected": "HTTP 200 total>0; Brand filter absent; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 total=0 page1=0 brand=absent ms=133",
+      "ms": 133,
+      "filters": []
+    },
+    {
+      "id": 22,
+      "section": "HOTEL_SEARCH",
+      "rule": "CITY search Dubai (no book)",
+      "how": "POST /v1/hotels/search 221688:AE",
+      "expected": "HTTP 200 total>0; Brand filter absent; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 total=0 page1=0 brand=absent ms=75",
+      "ms": 75,
+      "filters": []
+    }
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "section": "FLIGHT_AIRPORT",
+      "rule": "airport=BOM → BOM",
+      "how": "GET /v1/flights/airports?airport=BOM",
+      "expected": "BOM in top 2; <30000ms",
+      "status": "PASS",
+      "actual": "HTTP 200 n=7 rank=1 ms=49 top=BOM,LVR,LAZ",
+      "ms": 49
+    },
+    {
+      "id": 2,
+      "section": "FLIGHT_AIRPORT",
+      "rule": "airport=DEL → DEL",
+      "how": "GET /v1/flights/airports?airport=DEL",
+      "expected": "DEL in top 2; <30000ms",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 rank=1 ms=79 top=DEL,BJX,AGP",
+      "ms": 79
+    },
+    {
+      "id": 3,
+      "section": "FLIGHT_AIRPORT",
+      "rule": "airport=BLR → BLR",
+      "how": "GET /v1/flights/airports?airport=BLR",
+      "expected": "BLR in top 2; <30000ms",
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 rank=1 ms=58 top=BLR",
+      "ms": 58
+    },
+    {
+      "id": 4,
+      "section": "FLIGHT_AIRPORT",
+      "rule": "airport=bombay → BOM",
+      "how": "GET /v1/flights/airports?airport=bombay",
+      "expected": "BOM in top 2; <30000ms",
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 rank=1 ms=121 top=BOM",
+      "ms": 121
+    },
+    {
+      "id": 5,
+      "section": "FLIGHT_AIRPORT",
+      "rule": "airport=delhi → DEL",
+      "how": "GET /v1/flights/airports?airport=delhi",
+      "expected": "DEL in top 2; <30000ms",
+      "status": "PASS",
+      "actual": "HTTP 200 n=3 rank=1 ms=43 top=DEL,DXN,DQO",
+      "ms": 43
+    },
+    {
+      "id": 6,
+      "section": "FLIGHT_AIRPORT",
+      "rule": "Blank airport → 400 MISSING_AIRPORT",
+      "how": "GET /v1/flights/airports (no airport)",
+      "expected": "HTTP 400 MISSING_AIRPORT; never 500",
+      "status": "PASS",
+      "actual": "HTTP 400 code=MISSING_AIRPORT ms=33",
+      "ms": 33
+    },
+    {
+      "id": 7,
+      "section": "FLIGHT_CITY",
+      "rule": "citySearch q=Pune",
+      "how": "GET /v1/flights/citySearch?q=Pune",
+      "expected": "HTTP 200 non-empty; <30s",
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 ms=220",
+      "ms": 220,
+      "sample": [
+        {
+          "city": "Pune",
+          "state": "Maharashtra",
+          "country": "India",
+          "type": "CITY",
+          "latitude": "18.51957000",
+          "longitude": "73.85535000"
+        },
+        {
+          "city": "Pune Division",
+          "state": "Maharashtra",
+          "country": "India",
+          "type": "CITY",
+          "latitude": "18.74673000",
+          "longitude": "73.75465000"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "section": "FLIGHT_CITY",
+      "rule": "citySearch q=Mumbai",
+      "how": "GET /v1/flights/citySearch?q=Mumbai",
+      "expected": "HTTP 200 non-empty; <30s",
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 ms=77",
+      "ms": 77,
+      "sample": [
+        {
+          "city": "Mumbai",
+          "state": "Maharashtra",
+          "country": "India",
+          "type": "CITY",
+          "latitude": "19.07283000",
+          "longitude": "72.88261000"
+        },
+        {
+          "city": "Sion Mumbai",
+          "state": "Maharashtra",
+          "country": "India",
+          "type": "CITY",
+          "latitude": "19.04000000",
+          "longitude": "72.86000000"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "section": "FLIGHT_CITY",
+      "rule": "citySearch q=Dubai",
+      "how": "GET /v1/flights/citySearch?q=Dubai",
+      "expected": "HTTP 200 non-empty; <30s",
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 ms=86",
+      "ms": 86,
+      "sample": [
+        {
+          "city": "Dubai",
+          "state": "Dubai",
+          "country": "United Arab Emirates",
+          "type": "CITY",
+          "latitude": "25.06570000",
+          "longitude": "55.17128000"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "section": "FLIGHT_CITY",
+      "rule": "citySearch q=Delhi",
+      "how": "GET /v1/flights/citySearch?q=Delhi",
+      "expected": "HTTP 200 non-empty; <30s",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 ms=88",
+      "ms": 88,
+      "sample": [
+        {
+          "city": "Delhi",
+          "state": "Louisiana",
+          "country": "United States",
+          "type": "CITY",
+          "latitude": "32.45764000",
+          "longitude": "-91.49317000"
+        },
+        {
+          "city": "Delhi",
+          "state": "New York",
+          "country": "United States",
+          "type": "CITY",
+          "latitude": "42.27814000",
+          "longitude": "-74.91599000"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "section": "FLIGHT_CITY",
+      "rule": "citySearch q=Bangkok",
+      "how": "GET /v1/flights/citySearch?q=Bangkok",
+      "expected": "HTTP 200 non-empty; <30s",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 ms=96",
+      "ms": 96,
+      "sample": [
+        {
+          "city": "Bangkok",
+          "state": "Bangkok",
+          "country": "Thailand",
+          "type": "CITY",
+          "latitude": "13.75398000",
+          "longitude": "100.50144000"
+        },
+        {
+          "city": "Bangkok Noi",
+          "state": "Bangkok",
+          "country": "Thailand",
+          "type": "CITY",
+          "latitude": "13.76551000",
+          "longitude": "100.46988000"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "section": "FLIGHT_AIRLINE",
+      "rule": "airlines AI",
+      "how": "GET /v1/flights/airlines?airline=AI",
+      "expected": "HTTP 200 non-empty",
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 ms=78",
+      "ms": 78
+    },
+    {
+      "id": 13,
+      "section": "FLIGHT_SEARCH",
+      "rule": "OW DEL→BOM 2027-01-15 (no book)",
+      "how": "POST /v1/flights/search",
+      "expected": "HTTP 200; options or progress; never 500; <30s preferred",
+      "status": "PASS",
+      "actual": "HTTP 200 options=10 progress=COMPLETE ms=15600",
+      "ms": 15600
+    },
+    {
+      "id": 14,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=pune",
+      "how": "GET /v1/hotels/autocomplete?q=pune",
+      "expected": "HTTP 200 content[]; prefer CITY; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=85",
+      "ms": 85,
+      "sample": []
+    },
+    {
+      "id": 15,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=mumbai",
+      "how": "GET /v1/hotels/autocomplete?q=mumbai",
+      "expected": "HTTP 200 content[]; prefer CITY; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=48",
+      "ms": 48,
+      "sample": []
+    },
+    {
+      "id": 16,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=dubai",
+      "how": "GET /v1/hotels/autocomplete?q=dubai",
+      "expected": "HTTP 200 content[]; prefer CITY; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=157",
+      "ms": 157,
+      "sample": []
+    },
+    {
+      "id": 17,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=delhi",
+      "how": "GET /v1/hotels/autocomplete?q=delhi",
+      "expected": "HTTP 200 content[]; prefer CITY; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=59",
+      "ms": 59,
+      "sample": []
+    },
+    {
+      "id": 18,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=hiltop",
+      "how": "GET /v1/hotels/autocomplete?q=hiltop",
+      "expected": "HTTP 200 content[]; prefer HOTEL; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=103",
+      "ms": 103,
+      "sample": []
+    },
+    {
+      "id": 19,
+      "section": "HOTEL_AUTOCOMPLETE",
+      "rule": "autocomplete q=taj",
+      "how": "GET /v1/hotels/autocomplete?q=taj",
+      "expected": "HTTP 200 content[]; prefer any; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 types= ms=139",
+      "ms": 139,
+      "sample": []
+    },
+    {
+      "id": 20,
+      "section": "HOTEL_SEARCH",
+      "rule": "CITY search Mumbai (no book)",
+      "how": "POST /v1/hotels/search 357389:IN",
+      "expected": "HTTP 200 total>0; Brand filter absent; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 total=0 page1=0 brand=absent ms=352",
+      "ms": 352,
+      "filters": []
+    },
+    {
+      "id": 21,
+      "section": "HOTEL_SEARCH",
+      "rule": "CITY search Delhi (no book)",
+      "how": "POST /v1/hotels/search 227760:IN",
+      "expected": "HTTP 200 total>0; Brand filter absent; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 total=0 page1=0 brand=absent ms=133",
+      "ms": 133,
+      "filters": []
+    },
+    {
+      "id": 22,
+      "section": "HOTEL_SEARCH",
+      "rule": "CITY search Dubai (no book)",
+      "how": "POST /v1/hotels/search 221688:AE",
+      "expected": "HTTP 200 total>0; Brand filter absent; <30s",
+      "status": "BUG",
+      "actual": "HTTP 200 total=0 page1=0 brand=absent ms=75",
+      "ms": 75,
+      "filters": []
+    }
+  ]
+}

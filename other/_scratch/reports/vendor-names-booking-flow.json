@@ -1,0 +1,1282 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "at": "2026-08-14T12:46:07.108Z",
+  "hotel": [
+    {
+      "flow": "hotel",
+      "api": "Hotel Autocomplete",
+      "method": "GET",
+      "path": "/v1/hotels/autocomplete",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "content",
+        "pageable",
+        "totalElements",
+        "totalPages",
+        "first",
+        "last",
+        "empty",
+        "_meta"
+      ],
+      "vendorHits": [],
+      "vendorsFound": [],
+      "sampleKeys": []
+    },
+    {
+      "flow": "hotel",
+      "api": "Hotel Search",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "page",
+        "size",
+        "totalResults",
+        "totalPages",
+        "availableResults",
+        "results",
+        "currency",
+        "fromCache",
+        "cacheTimeStamp",
+        "priceRangeFilter",
+        "filters",
+        "requestId",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "results[0].price.currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        }
+      ],
+      "vendorsFound": [],
+      "hotelName": "Hilltop Hotel Mumbai",
+      "sampleHotelKeys": [
+        "id",
+        "name",
+        "address",
+        "distance",
+        "image",
+        "starRating",
+        "available",
+        "refundableNotes",
+        "price",
+        "amenities",
+        "refundable",
+        "isGSTClaimable"
+      ],
+      "hasRooms": false
+    },
+    {
+      "flow": "hotel",
+      "api": "Hotel Details",
+      "method": "POST",
+      "path": "/v1/hotels/details",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "page",
+        "size",
+        "totalResults",
+        "totalPages",
+        "availableResults",
+        "results",
+        "fromCache",
+        "cacheTimeStamp",
+        "requestId",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "results[0].price.currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        },
+        {
+          "path": "results[0].rooms[0].bookingCode",
+          "kind": "value",
+          "value": "39627872!TB!RIYA!TB!5cf0ab76-5a2c-4fd2-a765-e002fc7bf04c~a41bbd65-8420-46c9-bbd5-70b77546829f~c7845d66-6d00-4961-b8b7-92f82147c4b8~a7254c68-f85e-4d9a-bbd7-e49925fb005e~4b4b58ec-176…",
+          "parsedSupplier": "RIYA"
+        },
+        {
+          "path": "results[0].rooms[0].price.currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        },
+        {
+          "path": "results[0].rooms[1].bookingCode",
+          "kind": "value",
+          "value": "39627872!TB!RIYA!TB!5cf0ab76-5a2c-4fd2-a765-e002fc7bf04c~fb5c1cb3-68b4-4833-940d-560d1ef6e4f2~4057bf95-5d6f-4921-888d-b2f74c0e21d5~6434c193-eaa9-4c90-a3cf-79a6c8433344~4b4b58ec-176…",
+          "parsedSupplier": "RIYA"
+        },
+        {
+          "path": "results[0].rooms[1].price.currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        },
+        {
+          "path": "results[0].rooms[2].bookingCode",
+          "kind": "value",
+          "value": "39627872!TB!RIYA!TB!5cf0ab76-5a2c-4fd2-a765-e002fc7bf04c~ca3d1278-76cb-4e73-9979-9bfb486523f9~0f16f26c-3597-4db3-8120-9eff006401a3~d253c2ee-9568-480e-abe7-70966c2844af~4b4b58ec-176…",
+          "parsedSupplier": "RIYA"
+        },
+        {
+          "path": "results[0].rooms[2].price.currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        },
+        {
+          "path": "results[0].rooms[3].bookingCode",
+          "kind": "value",
+          "value": "39627872!TB!RIYA!TB!5cf0ab76-5a2c-4fd2-a765-e002fc7bf04c~8ae5ea09-780c-4dbc-b476-3245e3c4058c~3a8d2a09-d788-47e1-97d5-98b82f71bae8~0bf91b34-0753-4031-af8a-c3ffb888d474~4b4b58ec-176…",
+          "parsedSupplier": "RIYA"
+        },
+        {
+          "path": "results[0].rooms[3].price.currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        },
+        {
+          "path": "results[0].rooms[4].bookingCode",
+          "kind": "value",
+          "value": "39627872!TB!RIYA!TB!5cf0ab76-5a2c-4fd2-a765-e002fc7bf04c~89c17cff-45e0-42ec-bef9-828899f1e48e~19759998-85a1-40c7-955a-b7c9aa447d5b~505941c9-39e6-4b81-8cd5-bc8d29a2976c~4b4b58ec-176…",
+          "parsedSupplier": "RIYA"
+        },
+        {
+          "path": "results[0].rooms[4].price.currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        }
+      ],
+      "vendorsFound": [
+        "RIYA"
+      ],
+      "hotelName": "Hilltop Hotel Mumbai",
+      "roomCount": 5,
+      "sampleRoomKeys": [
+        "bookingCode",
+        "title",
+        "name",
+        "roomType",
+        "mealType",
+        "price",
+        "refundableNotes",
+        "cancelPolicies",
+        "benefitsIcon",
+        "amenitiesIcon",
+        "inclusion",
+        "exclusion",
+        "bookingCondition",
+        "refundable",
+        "isCancellable",
+        "isPANMandatory",
+        "isGSTClaimable"
+      ],
+      "bookingCodeSuppliers": [
+        "RIYA"
+      ],
+      "sampleBookingCode": "39627872!TB!RIYA!TB!5cf0ab76-5a2c-4fd2-a765-e002fc7bf04c~a41bbd65-8420-46c9-bbd5-70b77546829f~c7845d66-6d00-4961-b8b7-92f82147c4b8~a7254c68-f85e-4d9a-bbd7-e49925fb005e~4b4b58ec-176f-4328-912a-7ebc40293e82",
+      "isPANMandatory": true,
+      "isGSTClaimable": true
+    },
+    {
+      "flow": "hotel",
+      "api": "Hotel Prebook",
+      "method": "POST",
+      "path": "/v1/hotels/prebook",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "page",
+        "size",
+        "totalResults",
+        "totalPages",
+        "availableResults",
+        "results",
+        "bookingContext",
+        "fromCache",
+        "cacheTimeStamp",
+        "requestId",
+        "checkinDate",
+        "checkoutDate",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "results[0].price.currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        },
+        {
+          "path": "results[0].rooms[0].bookingCode",
+          "kind": "value",
+          "value": "39627872!TB!RIYA!TB!5cf0ab76-5a2c-4fd2-a765-e002fc7bf04c~a41bbd65-8420-46c9-bbd5-70b77546829f~c7845d66-6d00-4961-b8b7-92f82147c4b8~a7254c68-f85e-4d9a-bbd7-e49925fb005e~4b4b58ec-176…",
+          "parsedSupplier": "RIYA"
+        },
+        {
+          "path": "results[0].rooms[0].price.currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        }
+      ],
+      "vendorsFound": [
+        "RIYA"
+      ],
+      "prebookOk": true,
+      "hasBookingContext": true,
+      "sampleKeys": [
+        "page",
+        "size",
+        "totalResults",
+        "totalPages",
+        "availableResults",
+        "results",
+        "bookingContext",
+        "fromCache",
+        "cacheTimeStamp",
+        "requestId",
+        "checkinDate",
+        "checkoutDate",
+        "_meta"
+      ],
+      "isPANMandatory": true
+    },
+    {
+      "flow": "hotel",
+      "api": "Hotel Booking History",
+      "method": "GET",
+      "path": "/v1/hotels/bookings/history",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "status",
+        "totalCount",
+        "page",
+        "perPage",
+        "bookings",
+        "_meta"
+      ],
+      "vendorHits": [],
+      "vendorsFound": [],
+      "count": 20,
+      "sampleItemKeys": [
+        "bookingId",
+        "hotelName",
+        "hotelLocation",
+        "checkin",
+        "checkout",
+        "bookingDate",
+        "status",
+        "confirmationNumber",
+        "totalAmount",
+        "currency",
+        "rooms",
+        "roomType"
+      ],
+      "sampleIds": [
+        "BR1786711327778765",
+        "BR1786711315796945",
+        "BR1786711307635767",
+        "BR1786711301102965",
+        "BR1786711294806942"
+      ]
+    },
+    {
+      "flow": "hotel",
+      "api": "Hotel Booking Status",
+      "method": "GET",
+      "path": "/v1/hotels/bookings/BR1786711327778765/status",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "bookingReferenceId",
+        "status",
+        "confirmationNumber",
+        "checkin",
+        "checkout",
+        "checkinTime",
+        "checkoutTime",
+        "message",
+        "hotelDetails",
+        "roomDetails",
+        "rooms",
+        "salesSummary",
+        "_meta"
+      ],
+      "vendorHits": [],
+      "vendorsFound": [],
+      "br": "BR1786711327778765",
+      "sampleKeys": [
+        "bookingReferenceId",
+        "status",
+        "confirmationNumber",
+        "checkin",
+        "checkout",
+        "checkinTime",
+        "checkoutTime",
+        "message",
+        "hotelDetails",
+        "roomDetails",
+        "rooms",
+        "salesSummary",
+        "_meta"
+      ]
+    },
+    {
+      "flow": "hotel",
+      "api": "Hotel Booking Detail",
+      "method": "GET",
+      "path": "/v1/hotels/bookings/BR1786711327778765",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "status",
+        "confirmationNumber",
+        "checkIn",
+        "checkInTime",
+        "checkOut",
+        "checkOutTime",
+        "bookingDate",
+        "noOfRooms",
+        "message",
+        "hotelDetails",
+        "roomDetails",
+        "rooms",
+        "salesSummary",
+        "_meta"
+      ],
+      "vendorHits": [],
+      "vendorsFound": [],
+      "br": "BR1786711327778765",
+      "sampleKeys": [
+        "status",
+        "confirmationNumber",
+        "checkIn",
+        "checkInTime",
+        "checkOut",
+        "checkOutTime",
+        "bookingDate",
+        "noOfRooms",
+        "message",
+        "hotelDetails",
+        "roomDetails",
+        "rooms",
+        "salesSummary",
+        "_meta"
+      ]
+    },
+    {
+      "flow": "hotel",
+      "api": "Hotel Penalty Check",
+      "method": "GET",
+      "path": "/v1/hotels/bookings/BR1786711327778765/penalty-check",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "status",
+        "statusMessage",
+        "data",
+        "_meta"
+      ],
+      "vendorHits": [],
+      "vendorsFound": [],
+      "br": "BR1786711327778765",
+      "sampleKeys": [
+        "status",
+        "statusMessage",
+        "data",
+        "_meta"
+      ]
+    },
+    {
+      "flow": "hotel",
+      "api": "Hotel Finalize Booking",
+      "method": "POST",
+      "path": "/v1/hotels/finalize-booking",
+      "skipped": "Not called (creates a booking). Request bookingCode carries supplier; prior reports show response has no supplier field.",
+      "vendorHits": [],
+      "vendorsFound": []
+    },
+    {
+      "flow": "hotel",
+      "api": "Hotel Cancel",
+      "method": "GET",
+      "path": "/v1/hotels/bookings/{br}/cancel",
+      "skipped": "Not called (destructive).",
+      "vendorHits": [],
+      "vendorsFound": []
+    }
+  ],
+  "flight": [
+    {
+      "flow": "flight",
+      "api": "Flight Search",
+      "method": "POST",
+      "path": "/v1/flights/search",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "journeyType",
+        "currency",
+        "currencyConversion",
+        "progress",
+        "timingReference",
+        "selection",
+        "results",
+        "totalResults",
+        "filters",
+        "sorts",
+        "cacheTimeStamp",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "results[0].options[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "6E46-DEL-BOM-2026-09-28T15:00-2026-09-28T16:50"
+        },
+        {
+          "path": "results[0].options[1].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1056-DEL-BOM-2026-09-28T17:50-2026-09-28T20:10"
+        },
+        {
+          "path": "results[0].options[2].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1235-DEL-BOM-2026-09-28T23:25-2026-09-29T01:50"
+        },
+        {
+          "path": "results[0].options[3].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1049-DEL-GOX-2026-09-28T18:40-2026-09-28T21:15"
+        },
+        {
+          "path": "results[0].options[3].segments[1].vendorFlightId",
+          "kind": "key",
+          "value": "IX1209-GOX-BOM-2026-09-28T22:35-2026-09-29T00:05"
+        },
+        {
+          "path": "results[0].options[4].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1038-DEL-NMI-2026-09-28T17:35-2026-09-28T19:40"
+        },
+        {
+          "path": "results[0].options[5].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1080-DEL-NMI-2026-09-28T18:40-2026-09-28T21:05"
+        },
+        {
+          "path": "results[0].options[6].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1067-DEL-IXB-2026-09-28T06:10-2026-09-28T08:15"
+        },
+        {
+          "path": "results[0].options[6].segments[1].vendorFlightId",
+          "kind": "key",
+          "value": "IX1547-IXB-BOM-2026-09-28T18:55-2026-09-28T21:55"
+        },
+        {
+          "path": "results[0].options[7].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1273-DEL-IXB-2026-09-28T12:05-2026-09-28T14:15"
+        },
+        {
+          "path": "results[0].options[7].segments[1].vendorFlightId",
+          "kind": "key",
+          "value": "IX1547-IXB-BOM-2026-09-28T18:55-2026-09-28T21:55"
+        }
+      ],
+      "vendorsFound": [],
+      "searchId": "srch_52d172c2529c45aea426f8cc13bab108",
+      "optionKeys": [
+        "searchId",
+        "combinationRefs",
+        "selected",
+        "totalStops",
+        "refundable",
+        "refundText",
+        "totalDurationMinutes",
+        "displayPricing",
+        "combinedPricing",
+        "segments",
+        "fares",
+        "vsearchReference",
+        "lcc"
+      ],
+      "fareKeys": [
+        "searchId",
+        "fareType",
+        "fareCategory",
+        "pricing",
+        "fareBasisCode",
+        "refundable",
+        "baggage"
+      ],
+      "segmentKeys": [
+        "segmentId",
+        "segmentNumber",
+        "segmentReference",
+        "flightNumber",
+        "airlineCode",
+        "airline",
+        "operatingCarrier",
+        "cabinClass",
+        "aircraft",
+        "durationMinutes",
+        "stops",
+        "vendorFlightId",
+        "baggage",
+        "departure",
+        "arrival"
+      ],
+      "sampleSearchId": "srch_52d172c2529c45aea426f8cc13bab108"
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Details",
+      "method": "POST",
+      "path": "/v1/flights/details",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "journeyType",
+        "timingReference",
+        "selection",
+        "pricing",
+        "currencyConversion",
+        "passengerOptions",
+        "itinerary",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "6E46-DEL-BOM-2026-09-28T15:00-2026-09-28T16:50"
+        }
+      ],
+      "vendorsFound": [],
+      "itineraryKeys": [
+        "direction",
+        "legId",
+        "legNumber",
+        "totalStops",
+        "totalDurationMinutes",
+        "refundable",
+        "refundText",
+        "segments",
+        "onlineCancellation",
+        "cancellationPolicies",
+        "mandatorySsr"
+      ],
+      "segmentKeys": [
+        "segmentId",
+        "segmentNumber",
+        "segmentReference",
+        "flightNumber",
+        "airlineCode",
+        "airline",
+        "operatingCarrier",
+        "cabinClass",
+        "aircraft",
+        "durationMinutes",
+        "stops",
+        "vendorFlightId",
+        "baggage",
+        "departure",
+        "arrival"
+      ]
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Fare Rules",
+      "method": "POST",
+      "path": "/v1/flights/fareRules",
+      "http": 400,
+      "ok": false,
+      "topKeys": [
+        "error",
+        "_meta"
+      ],
+      "vendorHits": [],
+      "vendorsFound": [],
+      "sampleKeys": [
+        "error",
+        "_meta"
+      ],
+      "fareRuleKeys": []
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Pricing",
+      "method": "POST",
+      "path": "/v1/flights/pricing",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "priceId",
+        "timingReference",
+        "journeyType",
+        "passportType",
+        "addGstInfo",
+        "selection",
+        "expiresAt",
+        "pricing",
+        "currencyConversion",
+        "gstBreakup",
+        "cancellationFee",
+        "itinerary",
+        "passengerOptions",
+        "descriptions",
+        "notices",
+        "priceChange",
+        "capabilities",
+        "bookingContext",
+        "vpricingReference",
+        "refreshToken",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        },
+        {
+          "path": "itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "6E46-DEL-BOM-2026-09-28T15:00-2026-09-28T16:50"
+        }
+      ],
+      "vendorsFound": [],
+      "sampleKeys": [
+        "priceId",
+        "timingReference",
+        "journeyType",
+        "passportType",
+        "addGstInfo",
+        "selection",
+        "expiresAt",
+        "pricing",
+        "currencyConversion",
+        "gstBreakup",
+        "cancellationFee",
+        "itinerary",
+        "passengerOptions",
+        "descriptions",
+        "notices",
+        "priceChange",
+        "capabilities",
+        "bookingContext",
+        "vpricingReference",
+        "refreshToken",
+        "_meta"
+      ],
+      "priceId": "price_ffd585ece9dd45a4b18bcc2be9305973",
+      "hasBookingContext": true
+    },
+    {
+      "flow": "flight",
+      "api": "Flight SSR",
+      "method": "POST",
+      "path": "/v1/flights/ssr",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "priceId",
+        "timingReference",
+        "journeyType",
+        "expiresAt",
+        "currencyConversion",
+        "meal",
+        "baggage",
+        "MultipleBaggageAllowed",
+        "MultipleMealsAllowed",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "currencyConversion.source",
+          "kind": "key",
+          "value": "INR"
+        }
+      ],
+      "vendorsFound": [],
+      "sampleKeys": [
+        "priceId",
+        "timingReference",
+        "journeyType",
+        "expiresAt",
+        "currencyConversion",
+        "meal",
+        "baggage",
+        "MultipleBaggageAllowed",
+        "MultipleMealsAllowed",
+        "_meta"
+      ]
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Seat Map",
+      "method": "POST",
+      "path": "/v1/flights/seatmap",
+      "http": 400,
+      "ok": false,
+      "topKeys": [
+        "error",
+        "_meta"
+      ],
+      "vendorHits": [],
+      "vendorsFound": [],
+      "sampleKeys": [
+        "error",
+        "_meta"
+      ]
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Booking History",
+      "method": "GET",
+      "path": "/v1/flights/bookings/history",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "status",
+        "totalCount",
+        "page",
+        "perPage",
+        "bookings",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "bookings[0].itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "6E46-DEL-BOM-2026-09-28T15:00-2026-09-28T16:50"
+        },
+        {
+          "path": "bookings[0].source",
+          "kind": "key",
+          "value": "v2"
+        },
+        {
+          "path": "bookings[1].itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "6E46-DEL-BOM-2026-09-23T15:00-2026-09-23T16:50"
+        },
+        {
+          "path": "bookings[1].source",
+          "kind": "key",
+          "value": "v2"
+        },
+        {
+          "path": "bookings[2].itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "6E7917-BLR-SXV-2026-09-11T11:35-2026-09-11T12:35"
+        },
+        {
+          "path": "bookings[2].source",
+          "kind": "key",
+          "value": "v2"
+        },
+        {
+          "path": "bookings[3].itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "AI2933-DEL-BOM-2026-09-18T15:45-2026-09-18T17:45"
+        },
+        {
+          "path": "bookings[3].source",
+          "kind": "key",
+          "value": "v2"
+        },
+        {
+          "path": "bookings[4].itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "6E820-DEL-BLR-2026-10-08T03:00-2026-10-08T05:55"
+        },
+        {
+          "path": "bookings[4].itinerary[0].segments[1].vendorFlightId",
+          "kind": "key",
+          "value": "6E5051-BLR-BOM-2026-10-08T08:30-2026-10-08T10:15"
+        },
+        {
+          "path": "bookings[4].source",
+          "kind": "key",
+          "value": "v2"
+        },
+        {
+          "path": "bookings[5].itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "AI1767-DEL-JAI-2026-09-15T07:05-2026-09-15T07:55"
+        },
+        {
+          "path": "bookings[5].itinerary[1].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX8105-JAI-DEL-2026-09-30T19:30-2026-09-30T21:00"
+        },
+        {
+          "path": "bookings[5].source",
+          "kind": "key",
+          "value": "v2"
+        },
+        {
+          "path": "bookings[6].itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "6E46-DEL-BOM-2026-09-28T15:00-2026-09-28T16:50"
+        },
+        {
+          "path": "bookings[6].source",
+          "kind": "key",
+          "value": "v2"
+        },
+        {
+          "path": "bookings[7].itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1056-DEL-BOM-2026-10-03T17:50-2026-10-03T20:10"
+        },
+        {
+          "path": "bookings[7].source",
+          "kind": "key",
+          "value": "v2"
+        }
+      ],
+      "vendorsFound": [],
+      "count": 10,
+      "sampleItemKeys": [
+        "bookingId",
+        "status",
+        "tripType",
+        "bookingDate",
+        "travelDate",
+        "itinerary",
+        "passengers",
+        "totalAmount",
+        "currency",
+        "isFlexiCancel",
+        "source"
+      ],
+      "sampleIds": [
+        "BR1786710714603622",
+        "BR1786709637836185",
+        "BR1786707035889322",
+        "BR1786706183553699",
+        "BR1786705367907593"
+      ]
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Booking Status",
+      "method": "GET",
+      "path": "/v1/flights/booking/BR1786611048856961/status",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "status",
+        "bookingResponse",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "bookingResponse.itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1001-DEL-IXB-2026-09-17T09:00-2026-09-17T11:10"
+        },
+        {
+          "path": "bookingResponse.itinerary[0].segments[1].vendorFlightId",
+          "kind": "key",
+          "value": "IX1547-IXB-BOM-2026-09-17T18:55-2026-09-17T21:55"
+        }
+      ],
+      "vendorsFound": [],
+      "br": "BR1786611048856961",
+      "sampleKeys": [
+        "status",
+        "bookingResponse",
+        "_meta"
+      ],
+      "brspKeys": [
+        "bookingReferenceId",
+        "bookingType",
+        "summary",
+        "itinerary",
+        "passengers",
+        "salesSummary",
+        "contactDetails",
+        "userId",
+        "onlineCancellation",
+        "gstBreakup",
+        "cancellationRequest"
+      ],
+      "segmentKeys": [
+        "segmentId",
+        "segmentNumber",
+        "segmentReference",
+        "flightNumber",
+        "airlineCode",
+        "airline",
+        "operatingCarrier",
+        "cabinClass",
+        "aircraft",
+        "durationMinutes",
+        "stops",
+        "vendorFlightId",
+        "baggage",
+        "departure",
+        "arrival"
+      ]
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Booking Detail",
+      "method": "GET",
+      "path": "/v1/flights/booking/BR1786611048856961",
+      "http": 200,
+      "ok": true,
+      "topKeys": [
+        "status",
+        "bookingResponse",
+        "_meta"
+      ],
+      "vendorHits": [
+        {
+          "path": "bookingResponse.itinerary[0].segments[0].vendorFlightId",
+          "kind": "key",
+          "value": "IX1001-DEL-IXB-2026-09-17T09:00-2026-09-17T11:10"
+        },
+        {
+          "path": "bookingResponse.itinerary[0].segments[1].vendorFlightId",
+          "kind": "key",
+          "value": "IX1547-IXB-BOM-2026-09-17T18:55-2026-09-17T21:55"
+        }
+      ],
+      "vendorsFound": [],
+      "br": "BR1786611048856961",
+      "sampleKeys": [
+        "status",
+        "bookingResponse",
+        "_meta"
+      ],
+      "brspKeys": [
+        "bookingReferenceId",
+        "bookingType",
+        "summary",
+        "itinerary",
+        "passengers",
+        "salesSummary",
+        "contactDetails",
+        "userId",
+        "onlineCancellation",
+        "gstBreakup",
+        "cancellationRequest"
+      ],
+      "segmentKeys": [
+        "segmentId",
+        "segmentNumber",
+        "segmentReference",
+        "flightNumber",
+        "airlineCode",
+        "airline",
+        "operatingCarrier",
+        "cabinClass",
+        "aircraft",
+        "durationMinutes",
+        "stops",
+        "vendorFlightId",
+        "baggage",
+        "departure",
+        "arrival"
+      ]
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Penalty (cancel PENALTY)",
+      "method": "POST",
+      "path": "/v1/flights/booking/BR1786611048856961/cancel",
+      "http": 400,
+      "ok": false,
+      "topKeys": [
+        "error",
+        "_meta"
+      ],
+      "vendorHits": [],
+      "vendorsFound": [],
+      "br": "BR1786611048856961",
+      "sampleKeys": [
+        "error",
+        "_meta"
+      ],
+      "dataKeys": []
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Issue Ticket",
+      "method": "POST",
+      "path": "/api/v2/flights/booking/issue-ticket",
+      "skipped": "Not called (creates a booking). Issue response historically has bookingReference/status only.",
+      "vendorHits": [],
+      "vendorsFound": []
+    },
+    {
+      "flow": "flight",
+      "api": "Flight Cancel",
+      "method": "POST",
+      "path": "/v1/flights/booking/{br}/cancel action=CANCEL",
+      "skipped": "Not called (destructive). Penalty action was called above.",
+      "vendorHits": [],
+      "vendorsFound": []
+    }
+  ],
+  "summary": {
+    "hotel": [
+      {
+        "api": "Hotel Autocomplete",
+        "path": "/v1/hotels/autocomplete",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Hotel Search",
+        "path": "/v1/hotels/search",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 1,
+        "hitPaths": [
+          "results[0].price.currencyConversion.source"
+        ]
+      },
+      {
+        "api": "Hotel Details",
+        "path": "/v1/hotels/details",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [
+          "RIYA"
+        ],
+        "hitCount": 11,
+        "hitPaths": [
+          "results[0].price.currencyConversion.source",
+          "results[0].rooms[0].bookingCode",
+          "results[0].rooms[0].price.currencyConversion.source",
+          "results[0].rooms[1].bookingCode",
+          "results[0].rooms[1].price.currencyConversion.source",
+          "results[0].rooms[2].bookingCode",
+          "results[0].rooms[2].price.currencyConversion.source",
+          "results[0].rooms[3].bookingCode"
+        ]
+      },
+      {
+        "api": "Hotel Prebook",
+        "path": "/v1/hotels/prebook",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [
+          "RIYA"
+        ],
+        "hitCount": 3,
+        "hitPaths": [
+          "results[0].price.currencyConversion.source",
+          "results[0].rooms[0].bookingCode",
+          "results[0].rooms[0].price.currencyConversion.source"
+        ]
+      },
+      {
+        "api": "Hotel Booking History",
+        "path": "/v1/hotels/bookings/history",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Hotel Booking Status",
+        "path": "/v1/hotels/bookings/BR1786711327778765/status",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Hotel Booking Detail",
+        "path": "/v1/hotels/bookings/BR1786711327778765",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Hotel Penalty Check",
+        "path": "/v1/hotels/bookings/BR1786711327778765/penalty-check",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Hotel Finalize Booking",
+        "path": "/v1/hotels/finalize-booking",
+        "skipped": "Not called (creates a booking). Request bookingCode carries supplier; prior reports show response has no supplier field.",
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Hotel Cancel",
+        "path": "/v1/hotels/bookings/{br}/cancel",
+        "skipped": "Not called (destructive).",
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      }
+    ],
+    "flight": [
+      {
+        "api": "Flight Search",
+        "path": "/v1/flights/search",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 11,
+        "hitPaths": [
+          "results[0].options[0].segments[0].vendorFlightId",
+          "results[0].options[1].segments[0].vendorFlightId",
+          "results[0].options[2].segments[0].vendorFlightId",
+          "results[0].options[3].segments[0].vendorFlightId",
+          "results[0].options[3].segments[1].vendorFlightId",
+          "results[0].options[4].segments[0].vendorFlightId",
+          "results[0].options[5].segments[0].vendorFlightId",
+          "results[0].options[6].segments[0].vendorFlightId"
+        ]
+      },
+      {
+        "api": "Flight Details",
+        "path": "/v1/flights/details",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 1,
+        "hitPaths": [
+          "itinerary[0].segments[0].vendorFlightId"
+        ]
+      },
+      {
+        "api": "Flight Fare Rules",
+        "path": "/v1/flights/fareRules",
+        "http": 400,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Flight Pricing",
+        "path": "/v1/flights/pricing",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 2,
+        "hitPaths": [
+          "currencyConversion.source",
+          "itinerary[0].segments[0].vendorFlightId"
+        ]
+      },
+      {
+        "api": "Flight SSR",
+        "path": "/v1/flights/ssr",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 1,
+        "hitPaths": [
+          "currencyConversion.source"
+        ]
+      },
+      {
+        "api": "Flight Seat Map",
+        "path": "/v1/flights/seatmap",
+        "http": 400,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Flight Booking History",
+        "path": "/v1/flights/bookings/history",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 18,
+        "hitPaths": [
+          "bookings[0].itinerary[0].segments[0].vendorFlightId",
+          "bookings[0].source",
+          "bookings[1].itinerary[0].segments[0].vendorFlightId",
+          "bookings[1].source",
+          "bookings[2].itinerary[0].segments[0].vendorFlightId",
+          "bookings[2].source",
+          "bookings[3].itinerary[0].segments[0].vendorFlightId",
+          "bookings[3].source"
+        ]
+      },
+      {
+        "api": "Flight Booking Status",
+        "path": "/v1/flights/booking/BR1786611048856961/status",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 2,
+        "hitPaths": [
+          "bookingResponse.itinerary[0].segments[0].vendorFlightId",
+          "bookingResponse.itinerary[0].segments[1].vendorFlightId"
+        ]
+      },
+      {
+        "api": "Flight Booking Detail",
+        "path": "/v1/flights/booking/BR1786611048856961",
+        "http": 200,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 2,
+        "hitPaths": [
+          "bookingResponse.itinerary[0].segments[0].vendorFlightId",
+          "bookingResponse.itinerary[0].segments[1].vendorFlightId"
+        ]
+      },
+      {
+        "api": "Flight Penalty (cancel PENALTY)",
+        "path": "/v1/flights/booking/BR1786611048856961/cancel",
+        "http": 400,
+        "skipped": null,
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Flight Issue Ticket",
+        "path": "/api/v2/flights/booking/issue-ticket",
+        "skipped": "Not called (creates a booking). Issue response historically has bookingReference/status only.",
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      },
+      {
+        "api": "Flight Cancel",
+        "path": "/v1/flights/booking/{br}/cancel action=CANCEL",
+        "skipped": "Not called (destructive). Penalty action was called above.",
+        "vendorsFound": [],
+        "hitCount": 0,
+        "hitPaths": []
+      }
+    ]
+  }
+}

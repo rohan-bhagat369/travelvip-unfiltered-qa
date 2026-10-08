@@ -1,0 +1,181 @@
+{
+  "ranAt": "2026-08-12T07:14:27.956Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "results": [
+    {
+      "label": "SG happy path source",
+      "br": "BR1786017179800507",
+      "pnr": "B7SVXP",
+      "status": "Cancelled",
+      "legs": [
+        {
+          "direction": "ONWARD",
+          "pnr": "B7SVXP"
+        }
+      ],
+      "priced": {
+        "route": "DEL-BOM",
+        "days": 28,
+        "airlines": "SG",
+        "searchId": "srch_88848cb4fb4f487d9719034a671e1df0",
+        "priceId": "price_fc4e9ee6a2bc4a19bd53d7f591af6990",
+        "bookingContext": "SNg3M7f8J4BjoAUQ7VdcMt8iUV/syUU19fky/Oj40F0iWmWN6wnDBRNCooi3CMScEzcK5ynkIUpNOr+Lt3OaDX8Hanuxd5KPMK5f50WFV4XuOqEr+mFvU+UtreJPILaWluqTmlXy8nPASuECSBGfDo+QJ5zte4aFvM/ikhdR0HfuuUohFRMKa3tZEKeAORWFDJElVWH5LWv5E3MPNzpzAAFdmL/Ve2k2B+CdwZ0J2C++EpF1ui1QloaE9TYd3uTspCQ25zQXP/Ym+WRNPSEz8iW/3qE4KGm4GIhA5/P8UqEY80FLOHJfNxpSqGlZS3AWBCa4RWdYl72XbxYH5siZxbaw6BCOshIKg6KRJf83linaSI6dpbitvPJC2GcG1nu/iZpq+rKtkYF6o4MBZWXmZW/sg9oeSJ2eqbFHgI5vSZiZvTeY5mvvSB7M8IDMxD7ndcO2HjTRCq0munf2Q2QR6vCKfJOFsPf3jk+4RDlwO4IbzJfAGmzUhOzanTNV4QUvAZsnpVFrDN5uEvlr6pHFFCTJW0uLsNZt/RQSuJiyRhuqcy76eyUPLef3V0PLJfQyydZQYcSq9wxUq4M3R/c0veh42+YNLFmF/c7zdLx4ukxjnTPIWl0vKOyJrEcQP1Qc/mbVtgnvmbZJVR009nMV5VFUvS3Q6duATAiHHqDBGZm/huQyRHJrGhcDEDE3c5YsOUnrJbHiUIY3TnbP3Qt3RhHZDwgzCUPiwOHieWbq4obye1sfjxAvN/QlncrOaNPHJNZcEMoea5uAhZsXGkKI/tAuhcpZVLEXows7pqdC3SKlstdtlHX6cxg29yXjfA+Dmwfb4t/MFcNvkmL4uzSR9lOvw46REuAAcrLc1+16GPTZPbRDq4bzsfr72n7YMT+XebaTkpDryhfzjUA9SkjJFk7mhXpkl2TR4TzuVKwbLOWz6aqkZ9GG+Jcap4bkm6CX/zEG4WUALvX3jAOlDGZ908HwMINUjl/ysXbyDHEQhfQ=",
+        "total": 6008
+      },
+      "reschedule": {
+        "v2": {
+          "path": "/api/v2/flights/booking/issue-ticket",
+          "http": 200,
+          "code": "RESCHEDULING_REFERENCE_ALREADY_USED",
+          "newBr": null,
+          "newStatus": null,
+          "ok": false,
+          "body": "{\"error\":{\"code\":\"RESCHEDULING_REFERENCE_ALREADY_USED\",\"message\":\"Original booking has already been rescheduled\",\"details\":\"Booking 'BR1786017179800507' was already rescheduled as 'BR1786017237353711'\",\"timestamp\":\"2026-08-12T07:10:48Z\",\"request_id\":\"req-1786518648483\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"ed9fd29d-dd48-4d6d-9261-df32e38264da\"}}"
+        },
+        "v1": {
+          "path": "/v1/flights/booking/issue-ticket",
+          "http": 200,
+          "code": "RESCHEDULING_REFERENCE_ALREADY_USED",
+          "newBr": null,
+          "newStatus": null,
+          "ok": false,
+          "body": "{\"error\":{\"code\":\"RESCHEDULING_REFERENCE_ALREADY_USED\",\"message\":\"Original booking has already been rescheduled\",\"details\":\"Booking 'BR1786017179800507' was already rescheduled as 'BR1786017237353711'\",\"timestamp\":\"2026-08-12T07:10:48Z\",\"request_id\":\"req-1786518648483\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"ed9fd29d-dd48-4d6d-9261-df32e38264da\"}}"
+        }
+      },
+      "outcome": "FAIL",
+      "newBr": null,
+      "newStatus": null
+    },
+    {
+      "label": "SG DEL-BOM cancel",
+      "br": "BR1786361308728715",
+      "pnr": "KCIE7A",
+      "status": "Cancelled",
+      "legs": [
+        {
+          "direction": "ONWARD",
+          "pnr": "KCIE7A"
+        }
+      ],
+      "priced": {
+        "route": "DEL-BOM",
+        "days": 28,
+        "airlines": "SG",
+        "searchId": "srch_88848cb4fb4f487d9719034a671e1df0",
+        "priceId": "price_fc4e9ee6a2bc4a19bd53d7f591af6990",
+        "bookingContext": "SNg3M7f8J4BjoAUQ7VdcMt8iUV/syUU19fky/Oj40F0iWmWN6wnDBRNCooi3CMScEzcK5ynkIUpNOr+Lt3OaDX8Hanuxd5KPMK5f50WFV4XuOqEr+mFvU+UtreJPILaWluqTmlXy8nPASuECSBGfDo+QJ5zte4aFvM/ikhdR0HfuuUohFRMKa3tZEKeAORWFDJElVWH5LWv5E3MPNzpzAAFdmL/Ve2k2B+CdwZ0J2C++EpF1ui1QloaE9TYd3uTspCQ25zQXP/Ym+WRNPSEz8iW/3qE4KGm4GIhA5/P8UqEY80FLOHJfNxpSqGlZS3AWBCa4RWdYl72XbxYH5siZxbaw6BCOshIKg6KRJf83linaSI6dpbitvPJC2GcG1nu/iZpq+rKtkYF6o4MBZWXmZW/sg9oeSJ2eqbFHgI5vSZiZvTeY5mvvSB7M8IDMxD7ndcO2HjTRCq0munf2Q2QR6vCKfJOFsPf3jk+4RDlwO4IbzJfAGmzUhOzanTNV4QUvAZsnpVFrDN5uEvlr6pHFFCTJW0uLsNZt/RQSuJiyRhuqcy76eyUPLef3V0PLJfQyydZQYcSq9wxUq4M3R/c0veh42+YNLFmF/c7zdLx4ukxjnTPIWl0vKOyJrEcQP1Qc/mbVtgnvmbZJVR009nMV5VFUvS3Q6duATAiHHqDBGZm/huQyRHJrGhcDEDE3c5YsOUnrJbHiUIY3TnbP3Qt3RhHZDwgzCUPiwOHieWbq4obye1sfjxAvN/QlncrOaNPHJNZcEMoea5uAhZsXGkKI/tAuhcpZVLEXows7pqdC3SKlstdtlHX6cxg29yXjfA+Dmwfb4t/MFcNvkmL4uzSR9lOvw46REuAAcrLc1+16GPTZPbRDq4bzsfr72n7YMT+XebaTkpDryhfzjUA9SkjJFk7mhXpkl2TR4TzuVKwbLOWz6aqkZ9GG+Jcap4bkm6CX/zEG4WUALvX3jAOlDGZ908HwMINUjl/ysXbyDHEQhfQ=",
+        "total": 6008
+      },
+      "reschedule": {
+        "v2": {
+          "path": "/api/v2/flights/booking/issue-ticket",
+          "http": 200,
+          "code": null,
+          "newBr": "BR1786518802768076",
+          "newStatus": "Confirmed",
+          "ok": true,
+          "body": "{\"bookingReference\":\"BR1786518802768076\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"ed9fd29d-dd48-4d6d-9261-df32e38264da\"}}"
+        },
+        "v1": null
+      },
+      "outcome": "PASS",
+      "newBr": "BR1786518802768076",
+      "newStatus": "Confirmed"
+    },
+    {
+      "label": "SG cancel scan",
+      "br": "BR1786361337462087",
+      "pnr": "FEG3NK",
+      "status": "Cancelled",
+      "legs": [
+        {
+          "direction": "ONWARD",
+          "pnr": "FEG3NK"
+        }
+      ],
+      "priced": {
+        "route": "DEL-BOM",
+        "days": 28,
+        "airlines": "SG",
+        "searchId": "srch_88848cb4fb4f487d9719034a671e1df0",
+        "priceId": "price_2d35b541504944f1a22c2a4511f42d69",
+        "bookingContext": "SNg3M7f8J4BjoAUQ7VdcMt8iUV/syUU19fky/Oj40F0iWmWN6wnDBRNCooi3CMScEzcK5ynkIUpNOr+Lt3OaDX8Hanuxd5KPMK5f50WFV4XuOqEr+mFvU+UtreJPILaWluqTmlXy8nPASuECSBGfDo+QJ5zte4aFvM/ikhdR0HfuuUohFRMKa3tZEKeAORWFDJElVWH5LWv5E3MPNzpzAI3E87urzGjcQy8ruhL1bvnzJJ3d7AM81NNsjK9hD/27pCQ25zQXP/Ym+WRNPSEz8iW/3qE4KGm4GIhA5/P8UqF8CR+jkoecrhWbMg+aJ6q2/Mnm0TvMx5W96HLTI2ctQraw6BCOshIKg6KRJf83linaSI6dpbitvPJC2GcG1nu/iZpq+rKtkYF6o4MBZWXmZW/sg9oeSJ2eqbFHgI5vSZiZvTeY5mvvSB7M8IDMxD7ndcO2HjTRCq0munf2Q2QR6vCKfJOFsPf3jk+4RDlwO4IbzJfAGmzUhOzanTNV4QUvAZsnpVFrDN5uEvlr6pHFFCTJW0uLsNZt/RQSuJiyRhuqcy76eyUPLef3V0PLJfQyydZQYcSq9wxUq4M3R/c0veh42+YNLFmF/c7zdLx4ukxjnTPIWl0vKOyJrEcQP1Qc/mbVtgnvmbZJVR009nMV5VFUvS3Q6duATAiHHqDBGZm/huQyRHJrGhcDEDE3c5YsOUnrJbHiUIY3TnbP3Qt3RhHZDwgzCUPiwOHieWbq4oZZpuEsMlyOXvEmgadF/xhkDMZhgdJTyuv0JL6c0o0mmv73LqZ2wMUFlSioaU8FTUrU2oPGLkpeJu0LiezpwoqGb8GVWHFQMKdOuVOoW2Vw71Ovw46REuAAcrLc1+16GPTZPbRDq4bzsfr72n7YMT+XebaTkpDryhfzjUA9SkjJFhh+kbUOQGO3KPkYwQ0UMztI6/upj4VX9Kzhbkc2H/BB9uV6szC32JPzyJDry8W40MHwMINUjl/ysXbyDHEQhfQ=",
+        "total": 6008
+      },
+      "reschedule": {
+        "v2": {
+          "path": "/api/v2/flights/booking/issue-ticket",
+          "http": 200,
+          "code": null,
+          "newBr": "BR1786518815342467",
+          "newStatus": "Inprogress",
+          "ok": false,
+          "body": "{\"bookingReference\":\"BR1786518815342467\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"ed9fd29d-dd48-4d6d-9261-df32e38264da\"}}"
+        },
+        "v1": {
+          "path": "/v1/flights/booking/issue-ticket",
+          "http": 200,
+          "code": null,
+          "newBr": "BR1786518815342467",
+          "newStatus": "Inprogress",
+          "ok": false,
+          "body": "{\"bookingReference\":\"BR1786518815342467\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"ed9fd29d-dd48-4d6d-9261-df32e38264da\"}}"
+        }
+      },
+      "outcome": "FAIL",
+      "newBr": "BR1786518815342467",
+      "newStatus": "Inprogress"
+    },
+    {
+      "label": "Canary 2ADT full cancel",
+      "br": "BR1786450253892994",
+      "pnr": "CQRUVC",
+      "canaryOnly": true,
+      "status": "Cancelled",
+      "legs": [
+        {
+          "direction": "ONWARD",
+          "pnr": "CQRUVC"
+        }
+      ],
+      "priced": {
+        "route": "DEL-BOM",
+        "days": 28,
+        "airlines": "SG",
+        "searchId": "srch_88848cb4fb4f487d9719034a671e1df0",
+        "priceId": "price_fbb8b106973c456da32c01361b2dbe70",
+        "bookingContext": "SNg3M7f8J4BjoAUQ7VdcMt8iUV/syUU19fky/Oj40F0iWmWN6wnDBRNCooi3CMScEzcK5ynkIUpNOr+Lt3OaDX8Hanuxd5KPMK5f50WFV4XuOqEr+mFvU+UtreJPILaWluqTmlXy8nPASuECSBGfDo+QJ5zte4aFvM/ikhdR0HfuuUohFRMKa3tZEKeAORWFDJElVWH5LWv5E3MPNzpzACCruhWOB0BFgqVgou/yv0Xn+a3BR2Mqq/wkUa913AHDpCQ25zQXP/Ym+WRNPSEz8iW/3qE4KGm4GIhA5/P8UqHeR/ld4W1QxBABzxmFZnju8/mxDqPzzN3UawbhSM2GoLaw6BCOshIKg6KRJf83linaSI6dpbitvPJC2GcG1nu/iZpq+rKtkYF6o4MBZWXmZW/sg9oeSJ2eqbFHgI5vSZiZvTeY5mvvSB7M8IDMxD7ndcO2HjTRCq0munf2Q2QR6vCKfJOFsPf3jk+4RDlwO4IbzJfAGmzUhOzanTNV4QUvAZsnpVFrDN5uEvlr6pHFFCTJW0uLsNZt/RQSuJiyRhuqcy76eyUPLef3V0PLJfQyydZQYcSq9wxUq4M3R/c0veh42+YNLFmF/c7zdLx4ukxjnTPIWl0vKOyJrEcQP1Qc/mbVtgnvmbZJVR009nMV5VFUvS3Q6duATAiHHqDBGZm/huQyRHJrGhcDEDE3c5YsOUnrJbHiUIY3TnbP3Qt3RhHZDwgzCUPiwOHieWbq4oaj3sN3O9CtQHH7w4YligfOZqwS6ywg1+dy1cXI7P874hhhi+cRmdUTXd0cWKOSs7cV9Rxu6o2ciyhI/vEYigz9x7jNBGZW9O0xUfB3Rg/irVOvw46REuAAcrLc1+16GPTZPbRDq4bzsfr72n7YMT+XebaTkpDryhfzjUA9SkjJFl48JZIrSJeJ3jVVPV4RgeTYyTUjz2KR1et/nZ1Yz5Tkf8mMj/OxGajb34VuqWs9WsHwMINUjl/ysXbyDHEQhfQ=",
+        "total": 6008
+      },
+      "reschedule": {
+        "v2": {
+          "path": "/api/v2/flights/booking/issue-ticket",
+          "http": 200,
+          "code": null,
+          "newBr": "BR1786518844282958",
+          "newStatus": "Inprogress",
+          "ok": false,
+          "body": "{\"bookingReference\":\"BR1786518844282958\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"ed9fd29d-dd48-4d6d-9261-df32e38264da\"}}"
+        },
+        "v1": {
+          "path": "/v1/flights/booking/issue-ticket",
+          "http": 200,
+          "code": null,
+          "newBr": "BR1786518844282958",
+          "newStatus": "Inprogress",
+          "ok": false,
+          "body": "{\"bookingReference\":\"BR1786518844282958\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"ed9fd29d-dd48-4d6d-9261-df32e38264da\"}}"
+        }
+      },
+      "outcome": "FAIL",
+      "newBr": "BR1786518844282958",
+      "newStatus": "Inprogress"
+    }
+  ],
+  "summary": {
+    "tried": 4,
+    "pass": 1,
+    "fail": 3,
+    "skipped": 0
+  }
+}

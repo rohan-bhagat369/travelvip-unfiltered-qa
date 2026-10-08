@@ -1,0 +1,276 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "counts": {
+    "PASS": 18,
+    "BUG": 0,
+    "FAIL": 0,
+    "total": 18
+  },
+  "bugs": [],
+  "rows": [
+    {
+      "id": "S1",
+      "field": "itinerary.date YYYY-MM-DD valid",
+      "input": "2026-09-15",
+      "expectReject": false,
+      "status": "PASS",
+      "note": "valid accepted",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null},\"timingReference\":\"haaeQmjvBXCcAcQbahRwTNGwfxN9rQoZ8f3kwIYAMya7Rqp2SX3cwXwoHrfEQdcye2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDHjAim3kSR1SpMA0BDmuIlo9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB3lUieiQoiJ7HBrQJhHUxJ",
+      "at": "2026-08-17T11:29:51.809Z"
+    },
+    {
+      "id": "S2",
+      "field": "itinerary.date DD-MM-YYYY",
+      "input": "15-09-2026",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "invalid rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Departure date '15-09-2026' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Departure date '15-09-2026' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-17T11:29:51Z\",\"request_id\":\"req-1786966191810\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:51.894Z"
+    },
+    {
+      "id": "S3",
+      "field": "itinerary.date DD/MM/YYYY",
+      "input": "15/09/2026",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "invalid rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Departure date '15/09/2026' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Departure date '15/09/2026' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-17T11:29:51Z\",\"request_id\":\"req-1786966191894\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:52.222Z"
+    },
+    {
+      "id": "S4",
+      "field": "itinerary.date MM/DD/YYYY",
+      "input": "09/15/2026",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "invalid rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Departure date '09/15/2026' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Departure date '09/15/2026' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-17T11:29:51Z\",\"request_id\":\"req-1786966192222\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:52.316Z"
+    },
+    {
+      "id": "S5",
+      "field": "itinerary.date YYYY/MM/DD",
+      "input": "2026/09/15",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "invalid rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Departure date '2026/09/15' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Departure date '2026/09/15' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-17T11:29:52Z\",\"request_id\":\"req-1786966192316\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:52.430Z"
+    },
+    {
+      "id": "S6",
+      "field": "itinerary.date YYYYMMDD",
+      "input": "20260915",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "invalid rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Departure date '20260915' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Departure date '20260915' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-17T11:29:52Z\",\"request_id\":\"req-1786966192431\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:52.518Z"
+    },
+    {
+      "id": "D1",
+      "field": "passenger.dob YYYY-MM-DD valid",
+      "input": "2001-05-29",
+      "expectReject": false,
+      "status": "PASS",
+      "note": "not date-blocked (HTTP 200 null)",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1786966197198039\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:59.192Z"
+    },
+    {
+      "id": "D2",
+      "field": "passenger.dob DD-MM-YYYY",
+      "input": "29-05-2001",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "invalid DOB rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-08-17T11:29:58Z\",\"request_id\":\"req-1786966199193\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:59.332Z"
+    },
+    {
+      "id": "D3",
+      "field": "passenger.dob DD/MM/YYYY",
+      "input": "29/05/2001",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "invalid DOB rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-08-17T11:29:59Z\",\"request_id\":\"req-1786966199333\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:59.624Z"
+    },
+    {
+      "id": "D4",
+      "field": "passenger.dob MM/DD/YYYY",
+      "input": "05/29/2001",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "invalid DOB rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-08-17T11:29:59Z\",\"request_id\":\"req-1786966199624\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:59.732Z"
+    },
+    {
+      "id": "D5",
+      "field": "passenger.dob YYYY/MM/DD",
+      "input": "2001/05/29",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "invalid DOB rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-08-17T11:29:59Z\",\"request_id\":\"req-1786966199732\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:29:59.836Z"
+    },
+    {
+      "id": "P1",
+      "field": "passport.expiry YYYY-MM-DD valid",
+      "input": "see mutator",
+      "expectReject": false,
+      "status": "PASS",
+      "note": "HTTP 200 null",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1786966204511197\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:30:06.605Z"
+    },
+    {
+      "id": "P2",
+      "field": "passport.expiry DD-MM-YYYY",
+      "input": "invalid format",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].passport.expiry' must be a valid date in YYYY-MM-DD format"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.expiry' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-08-17T11:30:06Z\",\"request_id\":\"req-1786966206605\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:30:06.696Z"
+    },
+    {
+      "id": "P3",
+      "field": "passport.expiry DD/MM/YYYY",
+      "input": "invalid format",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].passport.expiry' must be a valid date in YYYY-MM-DD format"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.expiry' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-08-17T11:30:06Z\",\"request_id\":\"req-1786966206697\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:30:06.993Z"
+    },
+    {
+      "id": "P4",
+      "field": "passport.issuedDate DD-MM-YYYY",
+      "input": "invalid format",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].passport.issuedDate' must be a valid date in YYYY-MM-DD format"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.issuedDate' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-08-17T11:30:06Z\",\"request_id\":\"req-1786966206994\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:30:07.090Z"
+    },
+    {
+      "id": "P5",
+      "field": "passport.issuedDate DD/MM/YYYY",
+      "input": "invalid format",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].passport.issuedDate' must be a valid date in YYYY-MM-DD format"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.issuedDate' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-08-17T11:30:06Z\",\"request_id\":\"req-1786966207091\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:30:07.192Z"
+    },
+    {
+      "id": "R1",
+      "field": "RT return date DD-MM-YYYY",
+      "input": "20-09-2026",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Departure date '20-09-2026' for flight segment 2 is not a valid date. Use the format YYYY-MM-DD."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Departure date '20-09-2026' for flight segment 2 is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-17T11:30:06Z\",\"request_id\":\"req-1786966207192\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:30:07.282Z"
+    },
+    {
+      "id": "R2",
+      "field": "RT onward date DD-MM-YYYY",
+      "input": "10-09-2026",
+      "expectReject": true,
+      "status": "PASS",
+      "note": "rejected",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Departure date '10-09-2026' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Departure date '10-09-2026' for flight segment 1 is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-17T11:30:07Z\",\"request_id\":\"req-1786966207283\"},\"_meta\":{\"correlation_id\":\"8d6d041a-b0da-4a73-80b1-83ae991b3e6e\"}}",
+      "at": "2026-08-17T11:30:07.371Z"
+    }
+  ]
+}

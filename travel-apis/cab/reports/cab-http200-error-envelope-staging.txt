@@ -1,0 +1,78 @@
+=== CAB HTTP-200 ERROR ENVELOPE SCAN (all APIs) ===
+Generated: 2026-08-31T11:19:22.104Z
+Counts: {"PASS_SUCCESS":9,"PASS_HTTP_4xx":40,"PASS_OR_AMBIGUOUS":15,"BUG_ACCEPTED_INVALID":1}
+P0: 1 | P1: 0
+
+--- P0: HTTP 200 + body 500 / real 5xx / invalid accepted ---
+[BUG_ACCEPTED_INVALID] BOOK-bad-priceId POST /v1/airportServices/cabs/finalize-booking
+  mutation: BOOK-bad-priceId
+  http=200 bodyStatus=null — Invalid input accepted with success-shaped body
+  body: {"status":"Pending","statusCode":200,"bookingRefId":"BR1788175156457569"}
+
+--- P1: HTTP 200 + body 4xx (wrong status; validation message may be OK) ---
+--- ALL ROWS ---
+PASS_SUCCESS             200/  -  POS-SEARCH
+PASS_SUCCESS             200/  -  POS-FARE
+PASS_HTTP_4xx            400/  -  SEARCH-empty
+PASS_HTTP_4xx            400/  -  SEARCH-missing-journeyType
+PASS_HTTP_4xx            400/  -  SEARCH-invalid-journeyType
+PASS_OR_AMBIGUOUS        200/  -  SEARCH-airport-XXX
+PASS_HTTP_4xx            400/  -  SEARCH-past-datetime
+PASS_HTTP_4xx            400/  -  SEARCH-bad-datetime
+PASS_HTTP_4xx            400/  -  SEARCH-lat999
+PASS_HTTP_4xx            400/  -  SEARCH-neg-distance
+PASS_HTTP_4xx            400/  -  SEARCH-html-journeyType
+PASS_OR_AMBIGUOUS        200/  -  SEARCH-comma-airport
+PASS_HTTP_4xx            400/  -  FARE-missing-searchId
+PASS_HTTP_4xx            400/  -  FARE-empty-searchId
+PASS_OR_AMBIGUOUS        200/  -  FARE-ROHAN
+PASS_OR_AMBIGUOUS        200/  -  FARE-garbage
+PASS_OR_AMBIGUOUS        200/  -  FARE-uuid-only
+PASS_OR_AMBIGUOUS        200/  -  FARE-html
+PASS_OR_AMBIGUOUS        200/  -  FARE-comma
+PASS_HTTP_4xx            400/  -  BOOK-bad-ref
+BUG_ACCEPTED_INVALID     200/  -  BOOK-bad-priceId
+PASS_HTTP_4xx            400/  -  BOOK-empty-body
+PASS_HTTP_4xx            400/  -  BOOK-bad-email
+PASS_HTTP_4xx            400/  -  BOOK-html-name
+PASS_HTTP_4xx            400/  -  BOOK-comma-mobile
+PASS_HTTP_4xx            404/  -  STATUS-ROHAN
+PASS_HTTP_4xx            404/  -  DETAIL-ROHAN
+PASS_HTTP_4xx            404/  -  TRACK-ROHAN
+PASS_OR_AMBIGUOUS        200/  -  CANCEL-ROHAN
+PASS_HTTP_4xx            404/  -  STATUS-BR_NOT_REAL_000
+PASS_HTTP_4xx            404/  -  DETAIL-BR_NOT_REAL_000
+PASS_HTTP_4xx            404/  -  TRACK-BR_NOT_REAL_000
+PASS_OR_AMBIGUOUS        200/  -  CANCEL-BR_NOT_REAL_000
+PASS_HTTP_4xx            404/  -  STATUS-BR
+PASS_HTTP_4xx            404/  -  DETAIL-BR
+PASS_HTTP_4xx            404/  -  TRACK-BR
+PASS_OR_AMBIGUOUS        200/  -  CANCEL-BR
+PASS_HTTP_4xx            404/  -  STATUS-BR0000000000000001
+PASS_HTTP_4xx            404/  -  DETAIL-BR0000000000000001
+PASS_HTTP_4xx            404/  -  TRACK-BR0000000000000001
+PASS_OR_AMBIGUOUS        200/  -  CANCEL-BR0000000000000001
+PASS_HTTP_4xx            404/404  STATUS-<script>
+PASS_HTTP_4xx            404/404  DETAIL-<script>
+PASS_HTTP_4xx            404/404  TRACK-<script>
+PASS_HTTP_4xx            404/404  CANCEL-<script>
+PASS_HTTP_4xx            404/404  STATUS-abc,
+PASS_HTTP_4xx            404/404  DETAIL-abc,
+PASS_HTTP_4xx            404/404  TRACK-abc,
+PASS_HTTP_4xx            404/404  CANCEL-abc,
+PASS_SUCCESS             200/  0  HISTORY-ok
+PASS_OR_AMBIGUOUS        200/  0  HISTORY-neg-page
+PASS_OR_AMBIGUOUS        200/  0  HISTORY-zero-perpage
+PASS_OR_AMBIGUOUS        200/  0  HISTORY-abc-page
+PASS_SUCCESS             200/  -  LOC-ok
+PASS_HTTP_4xx            400/  -  LOC-missing-coords
+PASS_HTTP_4xx            400/  -  LOC-bad-coords
+PASS_SUCCESS             200/  -  PLACE-ok
+PASS_HTTP_4xx            400/  -  PLACE-empty
+PASS_OR_AMBIGUOUS        200/  -  PLACE-html
+PASS_HTTP_4xx            400/  -  PLACE-missing
+PASS_SUCCESS             200/  -  POS-BOOK
+PASS_SUCCESS             200/  -  POS-STATUS
+PASS_SUCCESS             200/  -  POS-DETAIL
+PASS_SUCCESS             200/  -  POS-TRACK
+PASS_HTTP_4xx            400/  -  POS-CANCEL

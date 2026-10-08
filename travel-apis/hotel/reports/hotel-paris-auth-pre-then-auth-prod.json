@@ -1,0 +1,184 @@
+{
+  "at": "2026-09-08T09:49:39.542Z",
+  "flow": "auth preprod → searches → auth prod → same searches",
+  "sameCredentials": "vgm / same secret / tier 19597201 on both hosts",
+  "dates": [
+    [
+      "2026-12-01",
+      "2026-12-02"
+    ],
+    [
+      "2026-12-03",
+      "2026-12-04"
+    ],
+    [
+      "2026-12-05",
+      "2026-12-06"
+    ]
+  ],
+  "preprod": [
+    {
+      "env": "PREPROD",
+      "checkin": "2026-12-01",
+      "checkout": "2026-12-02",
+      "ms": 11132,
+      "fromCache": false,
+      "total": 37,
+      "fiveStar": 26,
+      "n": 20,
+      "mode": "EARLY",
+      "top": "Bvlgari Hotel Paris"
+    },
+    {
+      "env": "PREPROD",
+      "checkin": "2026-12-03",
+      "checkout": "2026-12-04",
+      "ms": 10114,
+      "fromCache": false,
+      "total": 37,
+      "fiveStar": 26,
+      "n": 20,
+      "mode": "EARLY",
+      "top": "Bvlgari Hotel Paris"
+    },
+    {
+      "env": "PREPROD",
+      "checkin": "2026-12-05",
+      "checkout": "2026-12-06",
+      "ms": 10885,
+      "fromCache": false,
+      "total": 37,
+      "fiveStar": 26,
+      "n": 20,
+      "mode": "EARLY",
+      "top": "Bvlgari Hotel Paris"
+    }
+  ],
+  "prod": [
+    {
+      "env": "PROD",
+      "checkin": "2026-12-01",
+      "checkout": "2026-12-02",
+      "ms": 1488,
+      "fromCache": true,
+      "total": 2444,
+      "fiveStar": 160,
+      "n": 20,
+      "mode": "CACHE",
+      "top": "Hotel du Globe 18"
+    },
+    {
+      "env": "PROD",
+      "checkin": "2026-12-03",
+      "checkout": "2026-12-04",
+      "ms": 813,
+      "fromCache": true,
+      "total": 76,
+      "fiveStar": 26,
+      "n": 20,
+      "mode": "CACHE",
+      "top": "Bvlgari Hotel Paris"
+    },
+    {
+      "env": "PROD",
+      "checkin": "2026-12-05",
+      "checkout": "2026-12-06",
+      "ms": 856,
+      "fromCache": true,
+      "total": 37,
+      "fiveStar": 26,
+      "n": 20,
+      "mode": "CACHE",
+      "top": "Bvlgari Hotel Paris"
+    }
+  ],
+  "compare": [
+    {
+      "dates": "2026-12-01→2026-12-02",
+      "preprod": {
+        "env": "PREPROD",
+        "checkin": "2026-12-01",
+        "checkout": "2026-12-02",
+        "ms": 11132,
+        "fromCache": false,
+        "total": 37,
+        "fiveStar": 26,
+        "n": 20,
+        "mode": "EARLY",
+        "top": "Bvlgari Hotel Paris"
+      },
+      "prod": {
+        "env": "PROD",
+        "checkin": "2026-12-01",
+        "checkout": "2026-12-02",
+        "ms": 1488,
+        "fromCache": true,
+        "total": 2444,
+        "fiveStar": 160,
+        "n": 20,
+        "mode": "CACHE",
+        "top": "Hotel du Globe 18"
+      },
+      "deltaMs": -9644,
+      "note": "prod CACHE after preprod"
+    },
+    {
+      "dates": "2026-12-03→2026-12-04",
+      "preprod": {
+        "env": "PREPROD",
+        "checkin": "2026-12-03",
+        "checkout": "2026-12-04",
+        "ms": 10114,
+        "fromCache": false,
+        "total": 37,
+        "fiveStar": 26,
+        "n": 20,
+        "mode": "EARLY",
+        "top": "Bvlgari Hotel Paris"
+      },
+      "prod": {
+        "env": "PROD",
+        "checkin": "2026-12-03",
+        "checkout": "2026-12-04",
+        "ms": 813,
+        "fromCache": true,
+        "total": 76,
+        "fiveStar": 26,
+        "n": 20,
+        "mode": "CACHE",
+        "top": "Bvlgari Hotel Paris"
+      },
+      "deltaMs": -9301,
+      "note": "prod CACHE after preprod"
+    },
+    {
+      "dates": "2026-12-05→2026-12-06",
+      "preprod": {
+        "env": "PREPROD",
+        "checkin": "2026-12-05",
+        "checkout": "2026-12-06",
+        "ms": 10885,
+        "fromCache": false,
+        "total": 37,
+        "fiveStar": 26,
+        "n": 20,
+        "mode": "EARLY",
+        "top": "Bvlgari Hotel Paris"
+      },
+      "prod": {
+        "env": "PROD",
+        "checkin": "2026-12-05",
+        "checkout": "2026-12-06",
+        "ms": 856,
+        "fromCache": true,
+        "total": 37,
+        "fiveStar": 26,
+        "n": 20,
+        "mode": "CACHE",
+        "top": "Bvlgari Hotel Paris"
+      },
+      "deltaMs": -10029,
+      "note": "prod CACHE after preprod"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "ranAt": "2026-08-17T09:20:36.684Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "hotel": {
+    "br": "BR1786958209326832",
+    "penaltyHttp": 200,
+    "cancelHttp": 200,
+    "afterStatus": "Cancelled",
+    "cancel": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786958209326832",
+        "cancellationRequest": {
+          "status": "Cancelled",
+          "cancellationCharge": 0,
+          "refund": 7364.86,
+          "createdAt": "2026-08-17T09:20:10Z"
+        }
+      },
+      "_meta": {
+        "correlation_id": "2b463e22-54e3-4b5c-a2a4-ae12a790812c"
+      }
+    },
+    "penalty": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786958209326832",
+        "confirmationNumber": "SNHAPI00010762",
+        "currency": "INR",
+        "cancellationRequest": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 0,
+          "estimatedRefund": 7364.86,
+          "createdAt": "2026-08-17T09:20:10Z"
+        }
+      },
+      "_meta": {
+        "correlation_id": "2b463e22-54e3-4b5c-a2a4-ae12a790812c"
+      }
+    }
+  },
+  "flight": {
+    "br": "BR1786958342483741",
+    "pnr": "LS2WPB",
+    "penaltyHttp": 200,
+    "cancelHttp": 200,
+    "afterStatus": "Confirmed",
+    "penalty": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786958342483741",
+        "pnr": "LS2WPB",
+        "cancellationRequest": {
+          "status": "Penalty Check Failed",
+          "message": "Unable to get Penalty details. Kindly contact customer care.",
+          "createdAt": "2026-08-17T09:20:27Z"
+        }
+      },
+      "_meta": {
+        "correlation_id": "2b463e22-54e3-4b5c-a2a4-ae12a790812c"
+      }
+    },
+    "cancel": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786958342483741",
+        "pnr": "LS2WPB",
+        "cancellationRequest": {
+          "status": "Cancellation Requested",
+          "message": "Your requested PNR is waiting for cancellation. Kindly contact customer care.",
+          "createdAt": "2026-08-17T09:20:27Z"
+        }
+      },
+      "_meta": {
+        "correlation_id": "2b463e22-54e3-4b5c-a2a4-ae12a790812c"
+      }
+    }
+  }
+}

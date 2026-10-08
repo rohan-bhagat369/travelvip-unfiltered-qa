@@ -1,0 +1,181 @@
+<timestamp>Monday, Sep 7, 2026, 6:43 PM (UTC+5:30)</timestamp>
+<user_query>
+atalog-platform · flights v2 · handover to QA
+
+Fare Lanes QA Handover
+Multi-fare-type flight search: what changed, what to test on preprod, and where the risk actually sits.
+
+Branch feat/v2-fare-lanes
+HEAD ac688c1f6
+Commits 24 · 27 Aug – 7 Sep
+Vendor Riya
+Test on proxy-server:8586
+Ready — test on port 8586
+http://proxy-server:8586 is running build ac688c1, which is the branch head. Everything in this document is deployed there, including the two newest changes.
+
+Not 8587. That instance is down and carries an older build — ignore it.
+
+Smoke-checked on arrival: a cold three-fare-type search returns all three categories, an unknown fareType is rejected with INVALID_FARE_TYPE, and combinationRefs is absent from responses.
+
+One live config finding, found while smoke-testing
+QP sells SME fares but is not in RiyaSmeAirlines (currently 6E,AI). The coverage alert fired 40 times: Airline QP carries SME fares but is missing from the configured RiyaSmeAirlines list.
+
+Harmless for your testing — the unfiltered call returns those fares regardless, and they classify correctly as SME. It matters because a narrowed SME call would miss them. Being confirmed with Riya; please don't file it, it is already known.
+
+What changed, in one paragraph
+A fareType=CORPORATE,NORMAL search used to ask Riya for everything, filter out fares matching a corporate label list, and call whatever remained "normal" — a guess that nothing verified. Each fare type is now a lane with its own cache entry and category, and a fare's category comes from Riya's own per-fare tag rather than from pattern-matching its label. A fare that nothing positively identifies is dropped and alerted rather than shown under a category nobody checked.
+
+Normal, corporate and SME all arrive from a single vendor call, so a plain normal search leaves corporate and SME already cached. That matters against Riya's 250:1 look-to-book budget far more than it matters for speed.
+
+Changelog
+Behaviour you can see from the API
+Change	What it means for testing
+fareType accepts a comma-separated list	"CORPORATE,NORMAL", "NORMAL,SME,CORPORATE", etc. Supported: NORMAL, CORPORATE, SME, STUDENT, DEFENCE, SENIOR_CITIZEN. Case-insensitive; blank or omitted means normal.
+Every fare carries fareCategory	In option.fares[]. This is the category, distinct from fares[].fareType, which stays the vendor's free-text label (ECOVALU, Corporate Cluster…).
+Unknown tokens are now rejected	400 INVALID_FARE_TYPE. Previously a typo degraded silently to normal fares. flexi_cancel must be sent alone.
+One card per flight, fares merged	A schedule offering normal and corporate appears once, with both fares in fares[], each with its own searchId.
+Results are cheapest-first across fare types	Page 0 is the cheapest inventory regardless of which fare type found it — not one fare type then the next.
+New facet filters.<DIR>.fareCategories	Counts per category, and usable as appliedFilters.<DIR>.fareCategories. Selecting one prunes fares[] to that category and recomputes the headline price.
+progress.lanesTotal / lanesReady	Present on multi-fare-type searches while INPROGRESS; null for single-fare-type, so existing clients see no change.
+combinationRefs removed from responses	Was present and always empty for domestic. Now internal only. contract change
+Defects fixed
+Fix	The failure it removes
+Fares no longer assumed normal	Anything the old whitelist did not match was published as a normal fare. P0
+Deadlock on multi-lane search	A search for three uncached fare types made no vendor call at all and returned nothing. Caused a preprod outage. P0
+Facets no longer over-count	A CORPORATE,NORMAL search showed 16 corporate fares in its facets and offered 7 — the rest came back normal-only and were unbookable. P0
+International round-trip pricing shape	Priced as two per-leg itineraries instead of the single combined one Riya requires. P0
+IX / Air India Express corporate fares recovered	Riya tags them I, not C; they were being dropped — roughly 41% of corporate inventory on sampled routes. P0
+Pagination on cached searches	totalResults reported the page size, telling clients there was no next page.
+Cross-fare-type round trips blocked	A corporate onward could be paired with a normal return and failed late, at pricing.
+Eviction reaches merged listings	A merged listing kept serving searchIds whose options had been evicted → SEARCH_ID_NOT_FOUND instead of "no longer available".
+Classification-mode flip now invalidates merged listings	Flipping the mode left multi-fare-type listings serving the rejected classification until end of day.
+Narrowed corporate/SME calls no longer trusted newest	A narrowed FareType=M call can fail while the unfiltered call returns SME fares. The empty result cached as "no SME here" for everyone. Cost: a lone corporate or SME search now makes 2 vendor calls, not 1.
+Empty-result alerts only from the deciding call newest	The hedge is narrowed to a few airlines; it returning nothing said nothing about the route, but alerted anyway.
+Before you start
+Provider metadata that must be set
+On provider riya-flights-prod-api. Classification depends on these — wrong values produce plausible-looking but wrong categories, which is exactly the failure mode to watch for.
+
+Key	Value	Note
+RiyaFareClassificationMode	indicator	Default. whitelist is the fallback only.
+RiyaCorporateAirlines	SG,QP,IX	Vendor-confirmed
+RiyaSmeAirlines	6E,AI	Vendor-confirmed
+RiyaFareIndicatorMap	{"I":"CORPORATE"}	Temporary — recovers IX corporate. Removed once Riya emits C.
+RiyaIgnoredFareIndicators	B,S	Products we do not sell; dropped silently
+RiyaCorporateFareType	corporate labels	Renamed from RiyaFareType, which stays for V1
+RiyaSmeFareType	SME labels	6E's SME label is literally "Corporate"
+A metadata change takes up to 10 minutes, or a restart
+Three caches sit between the database and the classifier, and the policy service keeps its own 10-minute copy downstream of the metadata cache. Clearing the metadata cache alone is not enough. If a config change appears not to have taken effect, this is usually why — wait ten minutes or restart, rather than concluding the value is wrong.
+
+Sample request
+POST http://proxy-server:8586/api/flights/catalog-v2/search?pid=vgm&tierId=10546901
+      &subscriptionId=183622664269d927&page=0&size=20
+X-API-Key: <key>
+
+{
+  "itinerary": [{ "origin": "DEL", "destination": "BOM", "date": "2026-10-10" }],
+  "travellers": { "adults": 1, "children": 0, "infants": 0 },
+  "cabinClass": "ECONOMY",
+  "journeyType": "ONE_WAY",
+  "currency": "INR",
+  "fareType": "NORMAL,SME,CORPORATE",
+  "selection": { "selectedSearchIds": [] }
+}
+A cold search returns INPROGRESS — keep polling the same request until progress.state is COMPLETE. Vendor latency runs 3–25 seconds, so allow up to a minute.
+
+Test cases
+P0
+blocks release
+P1
+core behaviour
+P2
+edge case
+newest
+not previously tested by anyone
+A · Request validation
+ID	Send fareType	Expected
+A-1	omitted / "" / NORMAL / normal	200, identical results across all four. P1
+A-2	each of the six tokens alone	200. Every fare's fareCategory matches the token requested — nothing else leaks in. P0
+A-3	CORPORATE,NORMAL · NORMAL,SME · NORMAL,SME,CORPORATE	200, both/all categories present. P0
+A-4	NORMAL , SME (spaces) · CORPORATE,CORPORATE	200. Whitespace trimmed; duplicate collapses. P2
+A-5	BUSINESS · NORMAL,BUSINESS	400 INVALID_FARE_TYPE, listing supported tokens. P0
+A-6	flexi_cancel alone / with anything else	Alone: 200. Combined (either order): 400 INVALID_FARE_TYPE. P1
+B · Classification — the heart of the change
+ID	Scenario	Expected
+B-1	Search NORMAL only, on a route that has corporate and SME	Only NORMAL in fares[].fareCategory. No corporate or SME leaks in. P0
+B-2	Search CORPORATE only	Only CORPORATE. No normal fares. P0
+B-3	Search all three, page through every page	Every fare has a non-null fareCategory. No fare appears under two categories. P0
+B-4	Compare the fareCategories facet against fares actually offered across all pages	They match. This is the shipped bug — facets said 16 corporate, 7 were offered. P0
+B-5	Check corporate results include IX / Air India Express, not only QP	IX corporate present. If absent, RiyaFareIndicatorMap is not set. P0
+B-6	Watch logs/server.log for v2.corpFare during testing	Unclassified fare means inventory is being dropped — report it with the tag and labels. P1
+C · Merged results, ordering, pagination
+ID	Scenario	Expected
+C-1	Multi-fare-type search, inspect a schedule offering two categories	One card, both fares in fares[], each with its own searchId. P0
+C-2	Same card	The card's headline displayPricing equals its cheapest fare. P1
+C-3	Page 0 of a three-fare-type search	Cheapest-first across categories. Not all of one category then the next. P0
+C-4	Page to the last page, sum the options	Sum equals totalResults. No phantom empty final page. P1
+C-5	Repeat a cached search with size=5, then size=50	totalResults identical. Cards still carry every category's fares at size=5. P0
+C-6	appliedFilters.ONWARD.fareCategories = ["CORPORATE"]	Only options offering corporate; their fares[] pruned to corporate; price recomputed. P1
+C-7	Same filter set to [""]	Treated as no filter — full result set. P2
+C-8	Single-fare-type search	progress.lanesTotal and lanesReady are null. P1
+D · Round trips — highest risk
+The supported flow is select a leg → re-search with that searchId in selection.selectedSearchIds → pick the counter-leg from the narrowed list. Test against that flow.
+
+ID	Scenario	Expected
+D-1	Domestic RT, NORMAL,SME. Select an SME onward fare, re-search	Both directions narrow to SME only. P0
+D-2	Same, selecting a NORMAL onward	Both directions narrow to NORMAL only. P0
+D-3	Select using a fare-level searchId (from fares[], not the card)	Same narrowing. P0
+D-4	Force a cross-category pair → /pricing	400 INVALID_COMBINATION. P0
+D-5	Same cross pair → /details and /fare-rules	INVALID_COMBINATION at both. P1
+D-6	Same-category onward + return → /pricing	Succeeds. Guards against over-blocking. P0
+D-7	Legs from two different searches of the same route	Rejected. P1
+D-8	International RT: select onward, re-search, price the pair	Return list narrows; pricing succeeds. P0
+D-9	Book a domestic round trip end to end	Ticketed. P0 newest
+D-10	Book an international round trip end to end	Ticketed. Exercises the combined-itinerary pricing shape. P0 newest
+E · Downstream endpoints
+ID	Scenario	Expected
+E-1	Take a corporate searchId from a mixed search → /details, /pricing, /fare-rules	All 200, pricing the corporate fare. P0
+E-2	Take the normal fare from that same card → /pricing	Prices as normal, not as corporate. P0
+E-3	All six fare types end to end through the three endpoints	All 200, correct category preserved. P1
+E-4	SME searchId → /fare-rules	Corporate static rules branch — SME inherits corporate downstream. P1
+E-5	SME searchId → /pricing	flexiCancelFee is 0 — flexi behaviour must not leak into SME. P1
+E-6	/pricing → /pricing/refresh-token → /selection/pricing	Category survives the whole chain. P1
+E-7	/ssr and /seatmap on a priced selection	200. Unaffected by fare lanes. P2
+F · Regression — the single-fare-type path must be untouched
+ID	Scenario	Expected
+F-1	Existing flows with no fareType at all	Unchanged, apart from combinationRefs no longer appearing. P0
+F-2	One-way search, every fare type	Correct results per type. P1
+F-3	Any response — search, pricing, details, fare-rules	combinationRefs is absent everywhere. P1
+F-4	preferences: maxStops, refundableOnly, directFlightsOnly, airlines	Applied across all categories. P1
+F-5	Filters that exclude everything	200 with an empty list plus facets, not 404. P1
+F-6	A route with genuinely no flights	404 NO_FLIGHTS_FOUND. P1
+F-7	V1 flight flows	Untouched — V1 is a separate package and flow. P1
+F-8	Book a one-way flight end to end	Ticketed. P0 newest
+Where to focus
+Already verified by engineering — 104 of 122 cases
+Validation, call shapes, classification, cache reuse, merging and pagination, round-trip combination rules, and all six fare types downstream were exercised against preprod and pass. Re-run them as a smoke pass rather than a deep dive.
+
+Full detail: https://claude.ai/code/artifact/d326bef2-2207-43d9-8ccf-f6f2cc59ba83
+
+Nobody has tested these
+Real bookings — D-9, D-10, F-8. No ticket has been issued on this branch by anyone. The international round trip is the one to prioritise: its pricing request shape was silently broken once already and is only correct in theory until a booking proves it.
+
+The two newest changes — narrowed corporate/SME calls no longer trusted, and empty-result alert gating — are covered by unit tests but have never run on preprod.
+
+Known and expected
+A lone corporate or SME search now makes two vendor calls, not one. Deliberate — the narrowed call proved unreliable. The second call fills all three categories, so the next search on that route is free.
+Riya's response size varies between identical calls. Two calls seconds apart returned 568 and 722 items. Results cache until end of day, so a route can legitimately show fewer options than a repeat search would. Not a bug in this branch, but it will look like flakiness — please note the route and time rather than filing it as a lane defect.
+Riya is changing the SME fare type (their message of 2 Sep, API and frontend). If SME behaviour looks wrong, check whether their change has landed before raising it.
+Six pre-existing unit-test failures are unrelated to this branch and were deliberately left alone.
+./mvnw test-compile is currently broken by an unrelated cab change (#1428) — does not affect the running application.
+Reporting a defect
+Please include:
+
+The full request body, and pid / tierId / subscriptionId
+X-Correlation-ID if you set one — it makes the server log searchable
+Route, date and the time of the search, since results cache until midnight
+Whether the response was COMPLETE or still INPROGRESS
+Any v2.corpFare lines from logs/server.log around that time
+For anything about a missing or miscategorised fare, the v2.corpFare lines are usually the whole answer — they name the vendor tag and the labels for each dropped or disputed fare.
+
+in qa HANDOVER mentioned all this info
+</user_query>

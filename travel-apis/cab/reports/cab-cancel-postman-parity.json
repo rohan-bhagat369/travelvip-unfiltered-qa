@@ -1,0 +1,117 @@
+{
+  "ranAt": "2026-09-11T10:59:15.382Z",
+  "booked": {
+    "br": "BR1789124337787225",
+    "status": "Confirmed",
+    "providerBookingId": "TVIPWE110926162857YXP9"
+  },
+  "attempts": [
+    {
+      "label": "signed+query+USER",
+      "http": 400,
+      "code": "CANCELLATION_FAILED",
+      "message": "Booking cancellation unsuccessful",
+      "result": {
+        "bookingStatus": "FAILED"
+      },
+      "statusAfter": "Confirmed",
+      "data": {
+        "error": {
+          "code": "CANCELLATION_FAILED",
+          "message": "Booking cancellation unsuccessful",
+          "details": null,
+          "timestamp": "2026-09-11T10:58:59Z",
+          "request_id": "req-1789124340156",
+          "bookingRefId": "BR1789124337787225",
+          "type": "cancel",
+          "result": {
+            "bookingStatus": "FAILED"
+          }
+        },
+        "_meta": {
+          "correlation_id": "0483f513-9a7a-4c61-9071-9e77da3c2efd"
+        }
+      }
+    },
+    {
+      "label": "unsigned+query+USER",
+      "http": 401,
+      "code": "MISSING_SIGNATURE_HEADERS",
+      "message": "Missing X-Timestamp header",
+      "statusAfter": "Confirmed",
+      "data": {
+        "error": {
+          "code": "MISSING_SIGNATURE_HEADERS",
+          "message": "Missing X-Timestamp header",
+          "details": "Missing required header(s): X-Timestamp",
+          "timestamp": "2026-09-11T10:58:59Z",
+          "request_id": "req-1789124340571"
+        },
+        "_meta": {
+          "correlation_id": "0483f513-9a7a-4c61-9071-9e77da3c2efd"
+        }
+      }
+    },
+    {
+      "label": "unsigned+noQuery+USER",
+      "http": 401,
+      "code": "MISSING_SIGNATURE_HEADERS",
+      "message": "Missing X-Timestamp header",
+      "statusAfter": "Confirmed",
+      "data": {
+        "error": {
+          "code": "MISSING_SIGNATURE_HEADERS",
+          "message": "Missing X-Timestamp header",
+          "details": "Missing required header(s): X-Timestamp",
+          "timestamp": "2026-09-11T10:59:11Z",
+          "request_id": "req-1789124352367"
+        },
+        "_meta": {
+          "correlation_id": "0483f513-9a7a-4c61-9071-9e77da3c2efd"
+        }
+      }
+    },
+    {
+      "label": "unsigned+query+ADMIN",
+      "http": 401,
+      "code": "MISSING_SIGNATURE_HEADERS",
+      "message": "Missing X-Timestamp header",
+      "statusAfter": "Confirmed",
+      "data": {
+        "error": {
+          "code": "MISSING_SIGNATURE_HEADERS",
+          "message": "Missing X-Timestamp header",
+          "details": "Missing required header(s): X-Timestamp",
+          "timestamp": "2026-09-11T10:59:14Z",
+          "request_id": "req-1789124354985"
+        },
+        "_meta": {
+          "correlation_id": "0483f513-9a7a-4c61-9071-9e77da3c2efd"
+        }
+      }
+    },
+    {
+      "label": "signed+query+USER+remarks",
+      "http": 200,
+      "statusAfter": "Cancelled",
+      "data": {
+        "status": 0,
+        "bookingRefId": "BR1789124337787225",
+        "type": "cancel",
+        "result": {
+          "bookingStatus": "CANCELLED",
+          "message": "Booking cancelled successfully",
+          "providerBookingId": "JCRWE110926162913I396",
+          "totalPrice": 686.7,
+          "penaltyAmount": 50,
+          "refundAmount": 636.7,
+          "currency": "INR"
+        },
+        "_meta": {
+          "correlation_id": "0483f513-9a7a-4c61-9071-9e77da3c2efd"
+        }
+      }
+    }
+  ],
+  "pass": true
+}

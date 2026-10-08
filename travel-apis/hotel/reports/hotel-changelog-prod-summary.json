@@ -1,0 +1,85 @@
+{
+  "ranAt": "2026-08-26T17:45:22.754Z",
+  "environment": "B2B Prod",
+  "baseUrl": "https://api.travelvip.ai",
+  "tierId": "19597201",
+  "partnerId": "vgm",
+  "dates": {
+    "checkin": "2026-09-23",
+    "checkout": "2026-09-24"
+  },
+  "scope": "Changelog verification — search/details listing only. NO book / prebook / finalize / cancel.",
+  "changelogItems": [
+    {
+      "id": "STAR",
+      "title": "Star rating bucket mapping on listing",
+      "rule": "-1,0,1→1 | 1.5,2→2 | 2.5,3→3 | 3.5,4→4 | 4.5,5→5; listing starRating must be int 1..5",
+      "verdict": "PASS",
+      "detailReport": "reports/hotel-star-gst-listing-prod.json",
+      "score": {
+        "PASS": 8,
+        "BUG": 0,
+        "NOT_TESTED": 0
+      }
+    },
+    {
+      "id": "GST_FLAG",
+      "title": "isGSTClaimable present on search listing",
+      "rule": "Every search result includes boolean isGSTClaimable",
+      "verdict": "PASS",
+      "detailReport": "reports/hotel-star-gst-listing-prod.json",
+      "score": {
+        "PASS": 8,
+        "BUG": 0,
+        "NOT_TESTED": 0
+      }
+    },
+    {
+      "id": "GST_FILTER",
+      "title": "GST Claimable filter uses listing flag",
+      "rule": "fq GST:Claimable filters by search results[].isGSTClaimable (not details room flag); filtered hotels all true; total matches facet",
+      "verdict": "PASS",
+      "detailReport": "reports/hotel-gst-filter-listing-prod.json",
+      "score": {
+        "PASS": 8,
+        "BUG": 0,
+        "NOT_TESTED": 0
+      }
+    },
+    {
+      "id": "NEG_PRICE",
+      "title": "Hotel 39657625 Towers Rotana — no negative prices through details",
+      "rule": "HOTEL search + details: no negative baseFare/taxes/totalAmount/gstAmount/convenienceFee on hotel or any room",
+      "verdict": "PASS",
+      "detailReport": "reports/hotel-39657625-no-negative-prod.json",
+      "score": {
+        "PASS": 1,
+        "BUG": 0,
+        "NOT_TESTED": 0
+      },
+      "actual": {
+        "hotel": "Towers Rotana",
+        "searchPrice": {
+          "baseFare": 6076.43,
+          "taxes": 0,
+          "convenienceFee": 0,
+          "totalAmount": 6076.43,
+          "currency": "INR",
+          "priceReference": null,
+          "gstAmount": 0,
+          "currencyConversion": {
+            "source": "INR",
+            "destination": "INR",
+            "rate": 1
+          }
+        },
+        "rooms": 2041,
+        "minTotal": 6076.43,
+        "maxTotal": 60665.509999999995,
+        "negativeRooms": 0
+      }
+    }
+  ],
+  "overall": "PASS",
+  "bookingsMade": 0
+}

@@ -1,0 +1,2027 @@
+{
+  "ranAt": "2026-09-11T15:23:11.891Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "doc": "https://api-docs.travelvip.ai/#tag/Cabs",
+  "summary": {
+    "PASS": 202,
+    "BUG": 3,
+    "NOTE": 16,
+    "NOT TESTED": 0
+  },
+  "bugs": [
+    {
+      "id": "OUTSTATION.ST5",
+      "rule": "NON-AIRPORT airportCode should be null/empty (doc)",
+      "actual": "PNQ",
+      "status": "BUG"
+    },
+    {
+      "id": "RENTAL.ST5",
+      "rule": "NON-AIRPORT airportCode should be null/empty (doc)",
+      "actual": "PNQ",
+      "status": "BUG"
+    },
+    {
+      "id": "VAL.SR.rentalDiff",
+      "rule": "invalid search rejected (VAL.SR.rentalDiff)",
+      "actual": "HTTP 200 code=none",
+      "status": "BUG",
+      "error": null
+    }
+  ],
+  "notes": [
+    {
+      "id": "AIRPORT_DEPARTURE.F.extraKmFare",
+      "rule": "fare has extraKmFare",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.F.distanceKm",
+      "rule": "fare has distanceKm",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.F.durationMin",
+      "rule": "fare has durationMin",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.ST6",
+      "rule": "otp present on confirm (string)",
+      "actual": "null",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.F.extraKmFare",
+      "rule": "fare has extraKmFare",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.F.distanceKm",
+      "rule": "fare has distanceKm",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.F.durationMin",
+      "rule": "fare has durationMin",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.ST6",
+      "rule": "otp present on confirm (string)",
+      "actual": "null",
+      "status": "NOTE"
+    },
+    {
+      "id": "OUTSTATION.F.extraKmFare",
+      "rule": "fare has extraKmFare",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "OUTSTATION.F.distanceKm",
+      "rule": "fare has distanceKm",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "OUTSTATION.F.durationMin",
+      "rule": "fare has durationMin",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "OUTSTATION.ST6",
+      "rule": "otp present on confirm (string)",
+      "actual": "null",
+      "status": "NOTE"
+    },
+    {
+      "id": "RENTAL.F.extraKmFare",
+      "rule": "fare has extraKmFare",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "RENTAL.F.distanceKm",
+      "rule": "fare has distanceKm",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "RENTAL.F.durationMin",
+      "rule": "fare has durationMin",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "RENTAL.ST6",
+      "rule": "otp present on confirm (string)",
+      "actual": "null",
+      "status": "NOTE"
+    }
+  ],
+  "nullSummary": [
+    {
+      "id": "AIRPORT_DEPARTURE",
+      "nullFields": [
+        "status.details.pickup.address",
+        "status.details.pickup.airportCode",
+        "status.details.drop.address",
+        "status.details.vehicle.makeYear",
+        "status.details.otp",
+        "status.details.assignment",
+        "status.details.trip",
+        "details.details.pickup.address",
+        "details.details.pickup.airportCode",
+        "details.details.drop.address",
+        "details.details.vehicle.makeYear",
+        "details.details.otp",
+        "details.details.assignment",
+        "details.details.trip",
+        "tracking.tripTracking",
+        "tracking.driver",
+        "tracking.vehicle",
+        "tracking.otp",
+        "tracking.trip"
+      ]
+    },
+    {
+      "id": "AIRPORT_ARRIVAL",
+      "nullFields": [
+        "status.details.pickup.address",
+        "status.details.drop.address",
+        "status.details.drop.airportCode",
+        "status.details.vehicle.makeYear",
+        "status.details.otp",
+        "status.details.assignment",
+        "status.details.trip",
+        "details.details.pickup.address",
+        "details.details.drop.address",
+        "details.details.drop.airportCode",
+        "details.details.vehicle.makeYear",
+        "details.details.otp",
+        "details.details.assignment",
+        "details.details.trip",
+        "tracking.tripTracking",
+        "tracking.driver",
+        "tracking.vehicle",
+        "tracking.otp",
+        "tracking.trip"
+      ]
+    },
+    {
+      "id": "OUTSTATION",
+      "nullFields": [
+        "status.details.pickup.address",
+        "status.details.pickup.airportCode",
+        "status.details.drop.address",
+        "status.details.vehicle.makeYear",
+        "status.details.otp",
+        "status.details.assignment",
+        "status.details.trip",
+        "details.details.pickup.address",
+        "details.details.pickup.airportCode",
+        "details.details.drop.address",
+        "details.details.vehicle.makeYear",
+        "details.details.otp",
+        "details.details.assignment",
+        "details.details.trip",
+        "tracking.tripTracking",
+        "tracking.driver",
+        "tracking.vehicle",
+        "tracking.otp",
+        "tracking.trip"
+      ]
+    },
+    {
+      "id": "RENTAL",
+      "nullFields": [
+        "status.details.pickup.address",
+        "status.details.pickup.airportCode",
+        "status.details.drop.address",
+        "status.details.vehicle.makeYear",
+        "status.details.otp",
+        "status.details.assignment",
+        "status.details.trip",
+        "details.details.pickup.address",
+        "details.details.pickup.airportCode",
+        "details.details.drop.address",
+        "details.details.vehicle.makeYear",
+        "details.details.otp",
+        "details.details.assignment",
+        "details.details.trip",
+        "tracking.tripTracking",
+        "tracking.driver",
+        "tracking.vehicle",
+        "tracking.otp",
+        "tracking.trip"
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "id": "AIRPORT_DEPARTURE",
+      "steps": {
+        "search": {
+          "http": 200,
+          "cabs": 8
+        },
+        "fare": {
+          "http": 200,
+          "priceId": true
+        },
+        "finalize": {
+          "http": 200,
+          "br": "BR1789140108949241",
+          "status": "Pending"
+        },
+        "status": {
+          "http": 200,
+          "status": "Confirmed"
+        },
+        "details": {
+          "http": 200
+        },
+        "tracking": {
+          "http": 200
+        },
+        "history": {
+          "http": 200
+        },
+        "cancel": {
+          "http": 200,
+          "cancelled": true,
+          "statusAfter": "Cancelled"
+        }
+      },
+      "nulls": {
+        "searchCab": [],
+        "fare": [],
+        "finalize": [],
+        "status": [
+          "status.details.pickup.address",
+          "status.details.pickup.airportCode",
+          "status.details.drop.address",
+          "status.details.vehicle.makeYear",
+          "status.details.otp",
+          "status.details.assignment",
+          "status.details.trip"
+        ],
+        "details": [
+          "details.details.pickup.address",
+          "details.details.pickup.airportCode",
+          "details.details.drop.address",
+          "details.details.vehicle.makeYear",
+          "details.details.otp",
+          "details.details.assignment",
+          "details.details.trip"
+        ],
+        "tracking": [
+          "tracking.tripTracking",
+          "tracking.driver",
+          "tracking.vehicle",
+          "tracking.otp",
+          "tracking.trip"
+        ]
+      },
+      "bugs": []
+    },
+    {
+      "id": "AIRPORT_ARRIVAL",
+      "steps": {
+        "search": {
+          "http": 200,
+          "cabs": 8
+        },
+        "fare": {
+          "http": 200,
+          "priceId": true
+        },
+        "finalize": {
+          "http": 200,
+          "br": "BR1789140125102684",
+          "status": "Pending"
+        },
+        "status": {
+          "http": 200,
+          "status": "Confirmed"
+        },
+        "details": {
+          "http": 200
+        },
+        "tracking": {
+          "http": 200
+        },
+        "history": {
+          "http": 200
+        },
+        "cancel": {
+          "http": 200,
+          "cancelled": true,
+          "statusAfter": "Cancelled"
+        }
+      },
+      "nulls": {
+        "searchCab": [],
+        "fare": [],
+        "finalize": [],
+        "status": [
+          "status.details.pickup.address",
+          "status.details.drop.address",
+          "status.details.drop.airportCode",
+          "status.details.vehicle.makeYear",
+          "status.details.otp",
+          "status.details.assignment",
+          "status.details.trip"
+        ],
+        "details": [
+          "details.details.pickup.address",
+          "details.details.drop.address",
+          "details.details.drop.airportCode",
+          "details.details.vehicle.makeYear",
+          "details.details.otp",
+          "details.details.assignment",
+          "details.details.trip"
+        ],
+        "tracking": [
+          "tracking.tripTracking",
+          "tracking.driver",
+          "tracking.vehicle",
+          "tracking.otp",
+          "tracking.trip"
+        ]
+      },
+      "bugs": []
+    },
+    {
+      "id": "OUTSTATION",
+      "steps": {
+        "search": {
+          "http": 200,
+          "cabs": 3
+        },
+        "fare": {
+          "http": 200,
+          "priceId": true
+        },
+        "finalize": {
+          "http": 200,
+          "br": "BR1789140141269152",
+          "status": "Pending"
+        },
+        "status": {
+          "http": 200,
+          "status": "Confirmed"
+        },
+        "details": {
+          "http": 200
+        },
+        "tracking": {
+          "http": 200
+        },
+        "history": {
+          "http": 200
+        },
+        "cancel": {
+          "http": 200,
+          "cancelled": true,
+          "statusAfter": "Cancelled"
+        }
+      },
+      "nulls": {
+        "searchCab": [],
+        "fare": [],
+        "finalize": [],
+        "status": [
+          "status.details.pickup.address",
+          "status.details.pickup.airportCode",
+          "status.details.drop.address",
+          "status.details.vehicle.makeYear",
+          "status.details.otp",
+          "status.details.assignment",
+          "status.details.trip"
+        ],
+        "details": [
+          "details.details.pickup.address",
+          "details.details.pickup.airportCode",
+          "details.details.drop.address",
+          "details.details.vehicle.makeYear",
+          "details.details.otp",
+          "details.details.assignment",
+          "details.details.trip"
+        ],
+        "tracking": [
+          "tracking.tripTracking",
+          "tracking.driver",
+          "tracking.vehicle",
+          "tracking.otp",
+          "tracking.trip"
+        ]
+      },
+      "bugs": []
+    },
+    {
+      "id": "RENTAL",
+      "steps": {
+        "search": {
+          "http": 200,
+          "cabs": 9
+        },
+        "fare": {
+          "http": 200,
+          "priceId": true
+        },
+        "finalize": {
+          "http": 200,
+          "br": "BR1789140167586310",
+          "status": "Pending"
+        },
+        "status": {
+          "http": 200,
+          "status": "Confirmed"
+        },
+        "details": {
+          "http": 200
+        },
+        "tracking": {
+          "http": 200
+        },
+        "history": {
+          "http": 200
+        },
+        "cancel": {
+          "http": 200,
+          "cancelled": true,
+          "statusAfter": "Cancelled"
+        }
+      },
+      "nulls": {
+        "searchCab": [],
+        "fare": [],
+        "finalize": [],
+        "status": [
+          "status.details.pickup.address",
+          "status.details.pickup.airportCode",
+          "status.details.drop.address",
+          "status.details.vehicle.makeYear",
+          "status.details.otp",
+          "status.details.assignment",
+          "status.details.trip"
+        ],
+        "details": [
+          "details.details.pickup.address",
+          "details.details.pickup.airportCode",
+          "details.details.drop.address",
+          "details.details.vehicle.makeYear",
+          "details.details.otp",
+          "details.details.assignment",
+          "details.details.trip"
+        ],
+        "tracking": [
+          "tracking.tripTracking",
+          "tracking.driver",
+          "tracking.vehicle",
+          "tracking.otp",
+          "tracking.trip"
+        ]
+      },
+      "bugs": []
+    }
+  ],
+  "rows": [
+    {
+      "id": "LOC.1",
+      "rule": "GET locations?query=Delhi → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "LOC.2",
+      "rule": "locations returns array with items",
+      "actual": "type=object len=4",
+      "status": "PASS"
+    },
+    {
+      "id": "LOC.item.name",
+      "rule": "LOC.item has name",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "LOC.item.city",
+      "rule": "LOC.item has city",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "LOC.item.latitude",
+      "rule": "LOC.item has latitude",
+      "actual": "number",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "LOC.item.longitude",
+      "rule": "LOC.item has longitude",
+      "actual": "number",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.S1",
+      "rule": "AIRPORT_DEPARTURE search → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.S2",
+      "rule": "AIRPORT_DEPARTURE search returns cabs[]",
+      "actual": "cabs=8",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.search.currency",
+      "rule": "AIRPORT_DEPARTURE.search has currency",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.search.cabs",
+      "rule": "AIRPORT_DEPARTURE.search has cabs",
+      "actual": "array",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.cab.searchId",
+      "rule": "AIRPORT_DEPARTURE.cab has searchId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.cab.vehicle",
+      "rule": "AIRPORT_DEPARTURE.cab has vehicle",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.cab.operator",
+      "rule": "AIRPORT_DEPARTURE.cab has operator",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.cab.price",
+      "rule": "AIRPORT_DEPARTURE.cab has price",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.cab.price.totalAmount",
+      "rule": "AIRPORT_DEPARTURE.cab has price.totalAmount",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.cab.price.currency",
+      "rule": "AIRPORT_DEPARTURE.cab has price.currency",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.S3",
+      "rule": "search cab journeyType/travelType coherent for AIRPORT_DEPARTURE",
+      "actual": "req=AIRPORT/DEPARTURE",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.S4",
+      "rule": "AIRPORT search included airportCode",
+      "actual": "DEL",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.F1",
+      "rule": "AIRPORT_DEPARTURE fare → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.fare.bookingReference",
+      "rule": "AIRPORT_DEPARTURE.fare has bookingReference",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.fare.priceId",
+      "rule": "AIRPORT_DEPARTURE.fare has priceId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.fare.price",
+      "rule": "AIRPORT_DEPARTURE.fare has price",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.fare.price.totalAmount",
+      "rule": "AIRPORT_DEPARTURE.fare has price.totalAmount",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.F.vehicle",
+      "rule": "fare has vehicle",
+      "actual": "object",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.F.operator",
+      "rule": "fare has operator",
+      "actual": "object",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.F.extraKmFare",
+      "rule": "fare has extraKmFare",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.F.distanceKm",
+      "rule": "fare has distanceKm",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.F.durationMin",
+      "rule": "fare has durationMin",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.B1",
+      "rule": "AIRPORT_DEPARTURE finalize → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.finalize.bookingRefId",
+      "rule": "AIRPORT_DEPARTURE.finalize has bookingRefId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.finalize.status",
+      "rule": "AIRPORT_DEPARTURE.finalize has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.B2",
+      "rule": "finalize returns bookingRefId or bookingReferenceId",
+      "actual": "BR1789140108949241",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.ST1",
+      "rule": "AIRPORT_DEPARTURE status → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.ST2",
+      "rule": "AIRPORT_DEPARTURE reaches Confirmed",
+      "actual": "Confirmed",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.status.status",
+      "rule": "AIRPORT_DEPARTURE.status has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.status.details",
+      "rule": "AIRPORT_DEPARTURE.status has details",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.status.details.journeyType",
+      "rule": "AIRPORT_DEPARTURE.status has details.journeyType",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.status.details.pickup",
+      "rule": "AIRPORT_DEPARTURE.status has details.pickup",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.status.details.drop",
+      "rule": "AIRPORT_DEPARTURE.status has details.drop",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.status.details.pickupDatetime",
+      "rule": "AIRPORT_DEPARTURE.status has details.pickupDatetime",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.ST3",
+      "rule": "status.details.journeyType matches search",
+      "actual": "AIRPORT vs AIRPORT",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.ST4",
+      "rule": "status.details.travelType matches search",
+      "actual": "DEPARTURE vs DEPARTURE",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.ST5",
+      "rule": "AIRPORT status has airportCode",
+      "actual": "DEL",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.ST6",
+      "rule": "otp present on confirm (string)",
+      "actual": "null",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.D1",
+      "rule": "AIRPORT_DEPARTURE details → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.details.status",
+      "rule": "AIRPORT_DEPARTURE.details has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.details.details",
+      "rule": "AIRPORT_DEPARTURE.details has details",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.details.salesSummary",
+      "rule": "AIRPORT_DEPARTURE.details has salesSummary",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.SS.basePrice",
+      "rule": "salesSummary.basePrice",
+      "actual": "623",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.SS.tax",
+      "rule": "salesSummary.tax",
+      "actual": "31",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.SS.convenienceFee",
+      "rule": "salesSummary.convenienceFee",
+      "actual": "32.7",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.SS.totalAmount",
+      "rule": "salesSummary.totalAmount",
+      "actual": "686.7",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.SS.currency",
+      "rule": "salesSummary.currency",
+      "actual": "INR",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.SS.math",
+      "rule": "basePrice+tax+convenienceFee ≈ totalAmount (±2)",
+      "actual": "sum=686.7 total=686.7",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.T1",
+      "rule": "AIRPORT_DEPARTURE tracking → 200 (pre-dispatch OK)",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.H1",
+      "rule": "AIRPORT_DEPARTURE history → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.H2",
+      "rule": "history lists this BR",
+      "actual": "found",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.C1",
+      "rule": "AIRPORT_DEPARTURE POST cancel succeeds (future pickup)",
+      "actual": "CANCELLED http=200",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.S1",
+      "rule": "AIRPORT_ARRIVAL search → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.S2",
+      "rule": "AIRPORT_ARRIVAL search returns cabs[]",
+      "actual": "cabs=8",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.search.currency",
+      "rule": "AIRPORT_ARRIVAL.search has currency",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.search.cabs",
+      "rule": "AIRPORT_ARRIVAL.search has cabs",
+      "actual": "array",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.cab.searchId",
+      "rule": "AIRPORT_ARRIVAL.cab has searchId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.cab.vehicle",
+      "rule": "AIRPORT_ARRIVAL.cab has vehicle",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.cab.operator",
+      "rule": "AIRPORT_ARRIVAL.cab has operator",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.cab.price",
+      "rule": "AIRPORT_ARRIVAL.cab has price",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.cab.price.totalAmount",
+      "rule": "AIRPORT_ARRIVAL.cab has price.totalAmount",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.cab.price.currency",
+      "rule": "AIRPORT_ARRIVAL.cab has price.currency",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.S3",
+      "rule": "search cab journeyType/travelType coherent for AIRPORT_ARRIVAL",
+      "actual": "req=AIRPORT/ARRIVAL",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.S4",
+      "rule": "AIRPORT search included airportCode",
+      "actual": "DEL",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.F1",
+      "rule": "AIRPORT_ARRIVAL fare → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.fare.bookingReference",
+      "rule": "AIRPORT_ARRIVAL.fare has bookingReference",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.fare.priceId",
+      "rule": "AIRPORT_ARRIVAL.fare has priceId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.fare.price",
+      "rule": "AIRPORT_ARRIVAL.fare has price",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.fare.price.totalAmount",
+      "rule": "AIRPORT_ARRIVAL.fare has price.totalAmount",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.F.vehicle",
+      "rule": "fare has vehicle",
+      "actual": "object",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.F.operator",
+      "rule": "fare has operator",
+      "actual": "object",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.F.extraKmFare",
+      "rule": "fare has extraKmFare",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.F.distanceKm",
+      "rule": "fare has distanceKm",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.F.durationMin",
+      "rule": "fare has durationMin",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.B1",
+      "rule": "AIRPORT_ARRIVAL finalize → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.finalize.bookingRefId",
+      "rule": "AIRPORT_ARRIVAL.finalize has bookingRefId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.finalize.status",
+      "rule": "AIRPORT_ARRIVAL.finalize has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.B2",
+      "rule": "finalize returns bookingRefId or bookingReferenceId",
+      "actual": "BR1789140125102684",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.ST1",
+      "rule": "AIRPORT_ARRIVAL status → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.ST2",
+      "rule": "AIRPORT_ARRIVAL reaches Confirmed",
+      "actual": "Confirmed",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.status.status",
+      "rule": "AIRPORT_ARRIVAL.status has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.status.details",
+      "rule": "AIRPORT_ARRIVAL.status has details",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.status.details.journeyType",
+      "rule": "AIRPORT_ARRIVAL.status has details.journeyType",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.status.details.pickup",
+      "rule": "AIRPORT_ARRIVAL.status has details.pickup",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.status.details.drop",
+      "rule": "AIRPORT_ARRIVAL.status has details.drop",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.status.details.pickupDatetime",
+      "rule": "AIRPORT_ARRIVAL.status has details.pickupDatetime",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.ST3",
+      "rule": "status.details.journeyType matches search",
+      "actual": "AIRPORT vs AIRPORT",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.ST4",
+      "rule": "status.details.travelType matches search",
+      "actual": "ARRIVAL vs ARRIVAL",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.ST5",
+      "rule": "AIRPORT status has airportCode",
+      "actual": "DEL",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.ST6",
+      "rule": "otp present on confirm (string)",
+      "actual": "null",
+      "status": "NOTE"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.D1",
+      "rule": "AIRPORT_ARRIVAL details → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.details.status",
+      "rule": "AIRPORT_ARRIVAL.details has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.details.details",
+      "rule": "AIRPORT_ARRIVAL.details has details",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.details.salesSummary",
+      "rule": "AIRPORT_ARRIVAL.details has salesSummary",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.SS.basePrice",
+      "rule": "salesSummary.basePrice",
+      "actual": "519",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.SS.tax",
+      "rule": "salesSummary.tax",
+      "actual": "39",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.SS.convenienceFee",
+      "rule": "salesSummary.convenienceFee",
+      "actual": "27.9",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.SS.totalAmount",
+      "rule": "salesSummary.totalAmount",
+      "actual": "585.9",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.SS.currency",
+      "rule": "salesSummary.currency",
+      "actual": "INR",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.SS.math",
+      "rule": "basePrice+tax+convenienceFee ≈ totalAmount (±2)",
+      "actual": "sum=585.9 total=585.9",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.T1",
+      "rule": "AIRPORT_ARRIVAL tracking → 200 (pre-dispatch OK)",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.H1",
+      "rule": "AIRPORT_ARRIVAL history → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.H2",
+      "rule": "history lists this BR",
+      "actual": "found",
+      "status": "PASS"
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.C1",
+      "rule": "AIRPORT_ARRIVAL POST cancel succeeds (future pickup)",
+      "actual": "CANCELLED http=200",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.S1",
+      "rule": "OUTSTATION search → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "OUTSTATION.S2",
+      "rule": "OUTSTATION search returns cabs[]",
+      "actual": "cabs=3",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.search.currency",
+      "rule": "OUTSTATION.search has currency",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.search.cabs",
+      "rule": "OUTSTATION.search has cabs",
+      "actual": "array",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.cab.searchId",
+      "rule": "OUTSTATION.cab has searchId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.cab.vehicle",
+      "rule": "OUTSTATION.cab has vehicle",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.cab.operator",
+      "rule": "OUTSTATION.cab has operator",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.cab.price",
+      "rule": "OUTSTATION.cab has price",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "OUTSTATION.cab.price.totalAmount",
+      "rule": "OUTSTATION.cab has price.totalAmount",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "OUTSTATION.cab.price.currency",
+      "rule": "OUTSTATION.cab has price.currency",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "OUTSTATION.S3",
+      "rule": "search cab journeyType/travelType coherent for OUTSTATION",
+      "actual": "req=OUTSTATION/DEPARTURE",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.F1",
+      "rule": "OUTSTATION fare → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "OUTSTATION.fare.bookingReference",
+      "rule": "OUTSTATION.fare has bookingReference",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.fare.priceId",
+      "rule": "OUTSTATION.fare has priceId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.fare.price",
+      "rule": "OUTSTATION.fare has price",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "OUTSTATION.fare.price.totalAmount",
+      "rule": "OUTSTATION.fare has price.totalAmount",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "OUTSTATION.F.vehicle",
+      "rule": "fare has vehicle",
+      "actual": "object",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.F.operator",
+      "rule": "fare has operator",
+      "actual": "object",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.F.extraKmFare",
+      "rule": "fare has extraKmFare",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "OUTSTATION.F.distanceKm",
+      "rule": "fare has distanceKm",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "OUTSTATION.F.durationMin",
+      "rule": "fare has durationMin",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "OUTSTATION.B1",
+      "rule": "OUTSTATION finalize → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "OUTSTATION.finalize.bookingRefId",
+      "rule": "OUTSTATION.finalize has bookingRefId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.finalize.status",
+      "rule": "OUTSTATION.finalize has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.B2",
+      "rule": "finalize returns bookingRefId or bookingReferenceId",
+      "actual": "BR1789140141269152",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.ST1",
+      "rule": "OUTSTATION status → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "OUTSTATION.ST2",
+      "rule": "OUTSTATION reaches Confirmed",
+      "actual": "Confirmed",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.status.status",
+      "rule": "OUTSTATION.status has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.status.details",
+      "rule": "OUTSTATION.status has details",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.status.details.journeyType",
+      "rule": "OUTSTATION.status has details.journeyType",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.status.details.pickup",
+      "rule": "OUTSTATION.status has details.pickup",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.status.details.drop",
+      "rule": "OUTSTATION.status has details.drop",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.status.details.pickupDatetime",
+      "rule": "OUTSTATION.status has details.pickupDatetime",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.ST3",
+      "rule": "status.details.journeyType matches search",
+      "actual": "OUTSTATION vs OUTSTATION",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.ST4",
+      "rule": "status.details.travelType matches search",
+      "actual": "DEPARTURE vs DEPARTURE",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.ST5",
+      "rule": "NON-AIRPORT airportCode should be null/empty (doc)",
+      "actual": "PNQ",
+      "status": "BUG"
+    },
+    {
+      "id": "OUTSTATION.ST6",
+      "rule": "otp present on confirm (string)",
+      "actual": "null",
+      "status": "NOTE"
+    },
+    {
+      "id": "OUTSTATION.D1",
+      "rule": "OUTSTATION details → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "OUTSTATION.details.status",
+      "rule": "OUTSTATION.details has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.details.details",
+      "rule": "OUTSTATION.details has details",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.details.salesSummary",
+      "rule": "OUTSTATION.details has salesSummary",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "OUTSTATION.SS.basePrice",
+      "rule": "salesSummary.basePrice",
+      "actual": "483",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.SS.tax",
+      "rule": "salesSummary.tax",
+      "actual": "24",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.SS.convenienceFee",
+      "rule": "salesSummary.convenienceFee",
+      "actual": "25.35",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.SS.totalAmount",
+      "rule": "salesSummary.totalAmount",
+      "actual": "532.35",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.SS.currency",
+      "rule": "salesSummary.currency",
+      "actual": "INR",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.SS.math",
+      "rule": "basePrice+tax+convenienceFee ≈ totalAmount (±2)",
+      "actual": "sum=532.35 total=532.35",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.T1",
+      "rule": "OUTSTATION tracking → 200 (pre-dispatch OK)",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "OUTSTATION.H1",
+      "rule": "OUTSTATION history → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "OUTSTATION.H2",
+      "rule": "history lists this BR",
+      "actual": "found",
+      "status": "PASS"
+    },
+    {
+      "id": "OUTSTATION.C1",
+      "rule": "OUTSTATION POST cancel succeeds (future pickup)",
+      "actual": "CANCELLED http=200",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.S1",
+      "rule": "RENTAL search → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "RENTAL.S2",
+      "rule": "RENTAL search returns cabs[]",
+      "actual": "cabs=9",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.search.currency",
+      "rule": "RENTAL.search has currency",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.search.cabs",
+      "rule": "RENTAL.search has cabs",
+      "actual": "array",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.cab.searchId",
+      "rule": "RENTAL.cab has searchId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.cab.vehicle",
+      "rule": "RENTAL.cab has vehicle",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.cab.operator",
+      "rule": "RENTAL.cab has operator",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.cab.price",
+      "rule": "RENTAL.cab has price",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "RENTAL.cab.price.totalAmount",
+      "rule": "RENTAL.cab has price.totalAmount",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "RENTAL.cab.price.currency",
+      "rule": "RENTAL.cab has price.currency",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "RENTAL.S3",
+      "rule": "search cab journeyType/travelType coherent for RENTAL",
+      "actual": "req=RENTAL/DEPARTURE",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.F1",
+      "rule": "RENTAL fare → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "RENTAL.fare.bookingReference",
+      "rule": "RENTAL.fare has bookingReference",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.fare.priceId",
+      "rule": "RENTAL.fare has priceId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.fare.price",
+      "rule": "RENTAL.fare has price",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "RENTAL.fare.price.totalAmount",
+      "rule": "RENTAL.fare has price.totalAmount",
+      "actual": "N/A (field is priceDetail)",
+      "status": "PASS",
+      "note": "Harness false positive: API uses priceDetail (Postman/docs). Reclassified 2026-09-11."
+    },
+    {
+      "id": "RENTAL.F.vehicle",
+      "rule": "fare has vehicle",
+      "actual": "object",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.F.operator",
+      "rule": "fare has operator",
+      "actual": "object",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.F.extraKmFare",
+      "rule": "fare has extraKmFare",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "RENTAL.F.distanceKm",
+      "rule": "fare has distanceKm",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "RENTAL.F.durationMin",
+      "rule": "fare has durationMin",
+      "actual": "MISSING",
+      "status": "NOTE"
+    },
+    {
+      "id": "RENTAL.B1",
+      "rule": "RENTAL finalize → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "RENTAL.finalize.bookingRefId",
+      "rule": "RENTAL.finalize has bookingRefId",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.finalize.status",
+      "rule": "RENTAL.finalize has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.B2",
+      "rule": "finalize returns bookingRefId or bookingReferenceId",
+      "actual": "BR1789140167586310",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.ST1",
+      "rule": "RENTAL status → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "RENTAL.ST2",
+      "rule": "RENTAL reaches Confirmed",
+      "actual": "Confirmed",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.status.status",
+      "rule": "RENTAL.status has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.status.details",
+      "rule": "RENTAL.status has details",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.status.details.journeyType",
+      "rule": "RENTAL.status has details.journeyType",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.status.details.pickup",
+      "rule": "RENTAL.status has details.pickup",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.status.details.drop",
+      "rule": "RENTAL.status has details.drop",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.status.details.pickupDatetime",
+      "rule": "RENTAL.status has details.pickupDatetime",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.ST3",
+      "rule": "status.details.journeyType matches search",
+      "actual": "RENTAL vs RENTAL",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.ST4",
+      "rule": "status.details.travelType matches search",
+      "actual": "DEPARTURE vs DEPARTURE",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.ST5",
+      "rule": "NON-AIRPORT airportCode should be null/empty (doc)",
+      "actual": "PNQ",
+      "status": "BUG"
+    },
+    {
+      "id": "RENTAL.ST6",
+      "rule": "otp present on confirm (string)",
+      "actual": "null",
+      "status": "NOTE"
+    },
+    {
+      "id": "RENTAL.D1",
+      "rule": "RENTAL details → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "RENTAL.details.status",
+      "rule": "RENTAL.details has status",
+      "actual": "string",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.details.details",
+      "rule": "RENTAL.details has details",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.details.salesSummary",
+      "rule": "RENTAL.details has salesSummary",
+      "actual": "object",
+      "status": "PASS",
+      "note": null
+    },
+    {
+      "id": "RENTAL.SS.basePrice",
+      "rule": "salesSummary.basePrice",
+      "actual": "1206",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.SS.tax",
+      "rule": "salesSummary.tax",
+      "actual": "73",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.SS.convenienceFee",
+      "rule": "salesSummary.convenienceFee",
+      "actual": "63.95",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.SS.totalAmount",
+      "rule": "salesSummary.totalAmount",
+      "actual": "1342.95",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.SS.currency",
+      "rule": "salesSummary.currency",
+      "actual": "INR",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.SS.math",
+      "rule": "basePrice+tax+convenienceFee ≈ totalAmount (±2)",
+      "actual": "sum=1342.95 total=1342.95",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.T1",
+      "rule": "RENTAL tracking → 200 (pre-dispatch OK)",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "RENTAL.H1",
+      "rule": "RENTAL history → 200",
+      "how": "200",
+      "actual": "HTTP OK",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "RENTAL.H2",
+      "rule": "history lists this BR",
+      "actual": "found",
+      "status": "PASS"
+    },
+    {
+      "id": "RENTAL.C1",
+      "rule": "RENTAL POST cancel succeeds (future pickup)",
+      "actual": "CANCELLED http=200",
+      "status": "PASS"
+    },
+    {
+      "id": "VAL.SR.journey",
+      "rule": "invalid search rejected (VAL.SR.journey)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid journeyType 'BUS'. Allowed values are AIRPORT, RENTAL or OUTSTATION.",
+        "details": null,
+        "timestamp": "2026-09-11T15:22:59Z",
+        "request_id": "req-1789140180008"
+      }
+    },
+    {
+      "id": "VAL.SR.travel",
+      "rule": "invalid search rejected (VAL.SR.travel)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid travelType 'SIDEWAYS'. Allowed values are DEPARTURE (city to airport) or ARRIVAL (airport to city).",
+        "details": null,
+        "timestamp": "2026-09-11T15:22:59Z",
+        "request_id": "req-1789140180207"
+      }
+    },
+    {
+      "id": "VAL.SR.past",
+      "rule": "invalid search rejected (VAL.SR.past)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime: 2020-01-01T10:00:00Z is in the past. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-09-11T17:22:59Z (now 2026-09-11T15:22:59Z).",
+        "details": null,
+        "timestamp": "2026-09-11T15:22:59Z",
+        "request_id": "req-1789140180447"
+      }
+    },
+    {
+      "id": "VAL.SR.badDate",
+      "rule": "invalid search rejected (VAL.SR.badDate)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid pickupDatetime '15-09-2026'. It must be a UTC datetime in the format YYYY-MM-DDTHH:MM:SSZ, e.g. 2026-08-20T15:35:58Z.",
+        "details": null,
+        "timestamp": "2026-09-11T15:22:59Z",
+        "request_id": "req-1789140180519"
+      }
+    },
+    {
+      "id": "VAL.SR.noAirport",
+      "rule": "invalid search rejected (VAL.SR.noAirport)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Missing required field 'airportCode'. airportCode is mandatory when journeyType is AIRPORT.",
+        "details": null,
+        "timestamp": "2026-09-11T15:22:59Z",
+        "request_id": "req-1789140180578"
+      }
+    },
+    {
+      "id": "VAL.SR.coords",
+      "rule": "invalid search rejected (VAL.SR.coords)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid coordinates for pickup: latitude must be between -90 and 90 and longitude between -180 and 180 (got latitude 999, longitude 77.1591).",
+        "details": null,
+        "timestamp": "2026-09-11T15:22:59Z",
+        "request_id": "req-1789140180653"
+      }
+    },
+    {
+      "id": "VAL.SR.rentalDiff",
+      "rule": "invalid search rejected (VAL.SR.rentalDiff)",
+      "actual": "HTTP 200 code=none",
+      "status": "BUG",
+      "error": null
+    },
+    {
+      "id": "VAL.FR.empty",
+      "rule": "fare empty searchId → 4xx",
+      "actual": "HTTP 400 VALIDATION_ERROR",
+      "status": "PASS"
+    },
+    {
+      "id": "VAL.FB.bad",
+      "rule": "finalize bad refs → 4xx (no BR)",
+      "actual": "HTTP 400 VALIDATION_ERROR",
+      "status": "PASS"
+    }
+  ],
+  "reclassification": {
+    "at": "2026-09-11",
+    "note": "20 price* rows reclassified after confirming live priceDetail on all journey types"
+  }
+}

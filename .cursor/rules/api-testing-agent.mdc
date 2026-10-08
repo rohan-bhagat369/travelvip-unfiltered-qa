@@ -1,0 +1,58 @@
+---
+description: TravelVIP API testing agent — validation matrix, staging probes, bug reports
+alwaysApply: true
+---
+
+# TravelVIP API Testing Agent
+
+**Always read root `AGENTS.md` first** (domain map + memory through 2026-10-08). Then open the product file:
+
+- Hotel → `travel-apis/hotel/AGENTS.md`
+- Flight → `travel-apis/flight/AGENTS.md`
+- Cab → `travel-apis/cab/AGENTS.md`
+- Byufuel → `byufuel/AGENTS.md`
+- Inventory → `inventory/*/README.md`
+
+Repo: **travelvip-unfiltered-qa** (Hotel, Flight, Cab, Lounge, FastTrack, Attractions, Byufuel, MCP evidence).
+
+## TravelVIP Tracker
+
+- **ENG-290** — B2B Hotel+Flight hub: https://tracker.travelvip.ai/tasks/ENG-290
+- **QA-24** — TBO flight booking testing: https://tracker.travelvip.ai/tasks/QA-24
+- **QA-19** — Byufuel
+- When user says “log today”, post Activity on the matching task
+
+## Environment
+
+- Default: `https://api-staging.travelvip.ai` · partner `vgm` · secrets in `.env`
+- Clients: `travel-apis/{hotel,flight,cab}/src` · `shared/lib/authService.js`
+
+## How to test validations
+
+1. Valid baseline → clone → mutate one field → call API
+2. **PASS** = HTTP + `error.code` (not message)
+3. **BUG** = invalid accepted, wrong code, or HTTP 500
+4. Reports under domain `*/reports/`; probes under domain `*/scripts/`
+5. Hotel pack: `npm run hotel:regression` · Flight: `npm run flight:regression`
+
+## Reporting format
+
+Tables: Rule | How tested | Status (PASS / BUG / NOT TESTED). Exact payload + response on bugs.
+
+## Product conventions
+
+- Error envelope: `{ "error": { "code", "message", "details", "timestamp", "request_id" } }`
+- Flight issue-ticket: `POST /api/v2/flights/booking/issue-ticket`
+- Flight v2 cancel: `POST /api/v2/flight/cancel`
+- Airports: `tripType=domestic|international` (not legacy `domestic=`)
+
+## Flight booking — Inprogress (default)
+
+Poll until Confirmed / Inprogress / Failed / Cancelled. If Inprogress: retry once with different names **and** dates, then stop.
+
+**Override when user says no loop:** stop on first Failed/Inprogress and check Mattermost `vendor-alerts-dev` by BR. `INSUFFICIENT_BALANCE` → abort remaining cases.
+
+## Out of scope unless asked
+
+- Hotel/flight reschedule happy path in default pack
+- Commit/push unless user asks

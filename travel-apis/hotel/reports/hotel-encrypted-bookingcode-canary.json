@@ -1,0 +1,343 @@
+{
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "at": "2026-08-15T14:59:57.935Z",
+  "score": {
+    "PASS": 6,
+    "BUG": 0,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "rule": "1. Details bookingCode encrypted (not entityId!TB!RIYA!TB!)",
+      "how": "POST /v1/hotels/details on Hilltop/Treebo",
+      "expected": "bookingCode has no !TB!RIYA!TB! and does not contain RIYA",
+      "actual": "n=5 encrypted=5 hasRiya=0 sample=cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBR/PCZmdys0V/Ge4c",
+      "status": "PASS"
+    },
+    {
+      "rule": "2. Prebook bookingCode encrypted (no RIYA)",
+      "how": "POST /v1/hotels/prebook with details bookingCode",
+      "expected": "prebook rooms[].bookingCode encrypted, no RIYA",
+      "actual": "n=1 encrypted=1 hasRiya=0 sample=cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBR/PCZmdys0V/Ge4c",
+      "status": "PASS"
+    },
+    {
+      "rule": "3. Encrypted bookingCode is bookable E2E",
+      "how": "prebook → finalize → poll status Confirmed",
+      "expected": "HTTP 200 finalize + terminal Confirmed",
+      "actual": "Confirmed BR1786805991819863 Hilltop Hotel Mumbai amt=7364.86 conf=SNHAPI00010720",
+      "status": "PASS"
+    },
+    {
+      "rule": "4. No RIYA/RHK in any hotel API response",
+      "how": "Scan autocomplete/search/details/prebook/finalize/status/detail/history/penalty responses (skip image URLs)",
+      "expected": "Zero matches for RIYA / RHK / RateHawk",
+      "actual": "Scanned 9 API responses — no RIYA/RHK hits",
+      "status": "PASS"
+    },
+    {
+      "rule": "5. No RIYA/RHK in any hotel API request",
+      "how": "Scan search/details/prebook/finalize request bodies (bookingCode included)",
+      "expected": "Zero matches for RIYA / !TB!RIYA!TB!",
+      "actual": "Scanned 8 request bodies — no RIYA/RHK hits",
+      "status": "PASS"
+    },
+    {
+      "rule": "6. Search/details still return hotel rooms after encryption deploy",
+      "how": "POST /v1/hotels/search and POST /v1/hotels/details must return results[].rooms, not empty {_meta} envelope",
+      "expected": "HTTP 200 with hotel room bookingCodes",
+      "actual": "Catalog payloads have results. details rooms n=5",
+      "status": "PASS"
+    }
+  ],
+  "booked": {
+    "br": "BR1786805991819863",
+    "hotelName": "Hilltop Hotel Mumbai",
+    "entityId": "39627872",
+    "checkin": "2026-09-12",
+    "checkout": "2026-09-13",
+    "amount": 7364.86,
+    "status": "Confirmed",
+    "confirmationNumber": "SNHAPI00010720",
+    "detailsBookingCode": "cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBR/PCZmdys0V/Ge4cInVV1OdZ8A60x/5q4az9hTTmlTb4LjywksFV2RWOosclFkLQAo1KNXAUZT20QWPln4hilwzu0oi0ww8Xn1xigYGQsbRZBZd7H/7WzwCNCR/s+XicOQQSE3KCeesGx3yeSU91/AQuqNsMhf5PWFb7fC/ykggA0lwsNANmpuQ2FtTjQiJN4eKclwIKCTkyZX8uGWkFag==",
+    "prebookBookingCode": "cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBR/PCZmdys0V/Ge4cInVV1OdZ8A60x/5q4az9hTTmlTb4LjywksFV2RWOosclFkLQAo1KNXAUZT20QWPln4hilwzu0oi0ww8Xn1xigYGQsbRZBZd7H/7WzwCNCR/s+XicOQQSE3KCeesGx3yeSU91/AQuqNsMhf5PWFb7fC/ykggA0lwsNANmpuQ2FtTjQiJN4eKclwIKCTkyZX8uGWkFag==",
+    "detailsCodeEncrypted": true,
+    "prebookCodeEncrypted": true
+  },
+  "attempts": [
+    {
+      "entityId": "39627872",
+      "days": 28,
+      "br": "BR1786805991819863",
+      "status": "Confirmed",
+      "message": "Successful"
+    }
+  ],
+  "apiScans": [
+    {
+      "api": "GET /v1/hotels/autocomplete",
+      "http": 200,
+      "payload": {
+        "keys": [
+          "content",
+          "pageable",
+          "totalElements",
+          "totalPages",
+          "first",
+          "last",
+          "empty",
+          "_meta"
+        ],
+        "bytes": 205,
+        "emptyEnvelope": false
+      },
+      "vendorHits": [],
+      "requestHits": []
+    },
+    {
+      "api": "POST /v1/hotels/search",
+      "http": 200,
+      "payload": {
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "currency",
+          "fromCache",
+          "cacheTimeStamp",
+          "priceRangeFilter",
+          "filters",
+          "sorts",
+          "requestId",
+          "_meta"
+        ],
+        "bytes": 1097,
+        "emptyEnvelope": false
+      },
+      "vendorHits": [],
+      "requestHits": [],
+      "bookingCodes": []
+    },
+    {
+      "api": "POST /v1/hotels/details",
+      "http": 200,
+      "hotelName": "Hilltop Hotel Mumbai",
+      "payload": {
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "sorts",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "_meta"
+        ],
+        "bytes": 20052,
+        "emptyEnvelope": false
+      },
+      "vendorHits": [],
+      "requestHits": [],
+      "bookingCodes": [
+        {
+          "bookingCode": "cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBR/PCZmdys0V/Ge4cInVV1OdZ8A60x/5q4az9hTTmlTb4LjywksFV2RWOosclFkLQAo1KNXAUZT20QWPln4hilwzu0oi0ww8Xn1xigYGQsbRZBZd7H/7WzwCNCR/s+XicOQQSE3KCeesGx3yeSU91/AQuqNsMhf5PWFb7fC/ykggA0lwsNANmpuQ2FtTjQiJN4eKclwIKCTkyZX8uGWkFag==",
+          "encrypted": true,
+          "hasTbRiya": false,
+          "hasRiya": false,
+          "amount": 7364.86,
+          "title": "Basic Studio",
+          "isGSTClaimable": false,
+          "isPANMandatory": true
+        },
+        {
+          "bookingCode": "cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBW22bN4dVCbDK1THwJ7MZJapuQcuwnr0yi8Z7TAUKANPhs2eUYP2AJJw29UA9uLrVV9DLznlzYAa9MVXGHH3UtcThISv0q1RG8qoN9vXzMVN6PJfyxcAoLl56+fk88myA4AXkJmH2hgcH0TEZDxuMFphI4CZQVXu6gtlSQHMpqNgA0lwsNANmpuQ2FtTjQiJN4eKclwIKCTkyZX8uGWkFag==",
+          "encrypted": true,
+          "hasTbRiya": false,
+          "hasRiya": false,
+          "amount": 10030.41,
+          "title": "Standard Double Room",
+          "isGSTClaimable": false,
+          "isPANMandatory": true
+        },
+        {
+          "bookingCode": "cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBpUXs20aKXEYDG2YoaoxdNNH0DIJ6edokz/XFy57G3680UVLaqCYb4lLOnG2LOSTGwLHbtvO4tS43ZVzde9Sy/NoKoGFj4JElsOYjkpZKINRd2ZpfY2rsKUWC4glKfiryudFiw7mF/V874rQPIKGFlU5H2ggHWvNVCyYAC+UE8BAA0lwsNANmpuQ2FtTjQiJN4eKclwIKCTkyZX8uGWkFag==",
+          "encrypted": true,
+          "hasTbRiya": false,
+          "hasRiya": false,
+          "amount": 11760.039999999999,
+          "title": "Executive Room",
+          "isGSTClaimable": false,
+          "isPANMandatory": true
+        },
+        {
+          "bookingCode": "cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBPvIpO4Zs+P8cL9qwSH77PxzLjeU3D0HYLw26xnIaYQLIR1Knl6RBbD8X23sKqhAsqq93E6oPDOnA3Xce2QSJDHMZ0IYLBsadIygONCaHnEVRLug2WRVhDk6D1pYzj1pbveKW5DC51+9EnRoapMY7I63i8zPWSYkH8Aam57PLeUIA0lwsNANmpuQ2FtTjQiJN4eKclwIKCTkyZX8uGWkFag==",
+          "encrypted": true,
+          "hasTbRiya": false,
+          "hasRiya": false,
+          "amount": 13489.69,
+          "title": "Deluxe Room",
+          "isGSTClaimable": false,
+          "isPANMandatory": true
+        },
+        {
+          "bookingCode": "cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBqXXKy5+ZB2A4qkybtYGyTmdSQhNE6gL8MVqxfzkFx2n9io0T6Goel1XB8wwWgc/46SQg+f9E83ElVqeVPk28cnF1o37WjE4h8KcpXQlgYf/75cwo6qxNbrfzVBAPUcm/lGfnMPlbshldbDXkmdehxAmpIfvIrAw+4cqXDrrdbh0A0lwsNANmpuQ2FtTjQiJN4eKclwIKCTkyZX8uGWkFag==",
+          "encrypted": true,
+          "hasTbRiya": false,
+          "hasRiya": false,
+          "amount": 23866.58,
+          "title": "Suite",
+          "isGSTClaimable": false,
+          "isPANMandatory": true
+        }
+      ]
+    },
+    {
+      "api": "POST /v1/hotels/prebook",
+      "http": 200,
+      "ok": true,
+      "payload": {
+        "keys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "bookingContext",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "checkinDate",
+          "checkoutDate",
+          "_meta"
+        ],
+        "bytes": 17123,
+        "emptyEnvelope": false
+      },
+      "vendorHits": [],
+      "requestHits": [],
+      "bookingCodes": [
+        {
+          "bookingCode": "cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBR/PCZmdys0V/Ge4cInVV1OdZ8A60x/5q4az9hTTmlTb4LjywksFV2RWOosclFkLQAo1KNXAUZT20QWPln4hilwzu0oi0ww8Xn1xigYGQsbRZBZd7H/7WzwCNCR/s+XicOQQSE3KCeesGx3yeSU91/AQuqNsMhf5PWFb7fC/ykggA0lwsNANmpuQ2FtTjQiJN4eKclwIKCTkyZX8uGWkFag==",
+          "encrypted": true,
+          "hasTbRiya": false,
+          "hasRiya": false,
+          "amount": 7364.86,
+          "title": "Basic Studio",
+          "isGSTClaimable": false,
+          "isPANMandatory": true
+        }
+      ],
+      "requestBookingCode": "cut0IuOUxBvO5olcbHqZwiOJQVrFH0JNBgbTdMAoNGl1S/ZXGgWdTM9J5IqqKlNBR/PCZmdys0V/Ge4cInVV1OdZ8A60x/5q4az9hTTmlTb4LjywksFV2RWOosclFkLQAo1KNXAUZT20QWPln4hilwzu0oi0ww8Xn1xigYGQsbRZBZd7H/7WzwCNCR/s+XicOQQSE3KCeesGx3yeSU91/AQuqNsMhf5PWFb7fC/ykggA0lwsNANmpuQ2FtTjQiJN4eKclwIKCTkyZX8uGWkFag=="
+    },
+    {
+      "api": "POST /v1/hotels/finalize-booking",
+      "http": 200,
+      "br": "BR1786805991819863",
+      "payload": {
+        "keys": [
+          "status",
+          "statusCode",
+          "bookingRefId",
+          "_meta"
+        ],
+        "bytes": 139,
+        "emptyEnvelope": false
+      },
+      "vendorHits": [],
+      "requestHits": []
+    },
+    {
+      "api": "GET /v1/hotels/bookings/BR1786805991819863/status",
+      "http": 200,
+      "status": "Confirmed",
+      "payload": {
+        "keys": [
+          "bookingReferenceId",
+          "status",
+          "confirmationNumber",
+          "checkin",
+          "checkout",
+          "checkinTime",
+          "checkoutTime",
+          "message",
+          "hotelDetails",
+          "roomDetails",
+          "rooms",
+          "salesSummary",
+          "_meta"
+        ],
+        "bytes": 758,
+        "emptyEnvelope": false
+      },
+      "vendorHits": [],
+      "requestHits": []
+    },
+    {
+      "api": "GET /v1/hotels/bookings/BR1786805991819863",
+      "http": 200,
+      "status": "Confirmed",
+      "payload": {
+        "keys": [
+          "status",
+          "confirmationNumber",
+          "checkIn",
+          "checkInTime",
+          "checkOut",
+          "checkOutTime",
+          "bookingDate",
+          "noOfRooms",
+          "message",
+          "hotelDetails",
+          "roomDetails",
+          "rooms",
+          "salesSummary",
+          "_meta"
+        ],
+        "bytes": 4497,
+        "emptyEnvelope": false
+      },
+      "vendorHits": [],
+      "requestHits": []
+    },
+    {
+      "api": "GET /v1/hotels/bookings/history",
+      "http": 200,
+      "payload": {
+        "keys": [
+          "status",
+          "totalCount",
+          "page",
+          "perPage",
+          "bookings",
+          "_meta"
+        ],
+        "bytes": 4183,
+        "emptyEnvelope": false
+      },
+      "vendorHits": []
+    },
+    {
+      "api": "GET /v1/hotels/bookings/BR1786805991819863/penalty-check",
+      "http": 200,
+      "payload": {
+        "keys": [
+          "status",
+          "statusMessage",
+          "data",
+          "_meta"
+        ],
+        "bytes": 352,
+        "emptyEnvelope": false
+      },
+      "vendorHits": [],
+      "requestHits": []
+    }
+  ]
+}

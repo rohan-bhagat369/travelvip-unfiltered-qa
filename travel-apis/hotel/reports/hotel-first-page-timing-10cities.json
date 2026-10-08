@@ -1,0 +1,619 @@
+{
+  "at": "2026-09-08T10:00:56.987Z",
+  "noBook": true,
+  "note": "Postman-style first page. SAME_DATES=1 fires pre+prod in parallel. EARLY=total<80, FULL=total>=200. Includes 5★ facet + bytes.",
+  "preCorrelation": "917394fa-5850-48cb-9b64-462faf995d7f",
+  "prodCorrelation": "b30c6e9b-8392-414f-a301-9a36992198a1",
+  "summary": {
+    "sameDates": true,
+    "preAvg": 14053,
+    "prodAvg": 14536,
+    "preEarly": 7,
+    "prodEarly": 7,
+    "preFull": 2,
+    "prodFull": 2,
+    "bothCacheFalse": 8,
+    "preprodFaster": 3,
+    "prodFaster": 7
+  },
+  "rows": [
+    {
+      "city": "Delhi",
+      "size": "large",
+      "entityId": "227760:IN",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-04-16",
+          "checkout": "2027-04-17"
+        },
+        "ms": 10532,
+        "http": 200,
+        "ok": true,
+        "total": 34,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18800,
+        "star5": 29,
+        "star4": 5,
+        "stars": {
+          "4": 5,
+          "5": 29
+        },
+        "shape": "EARLY",
+        "top3": [
+          "The Park New Delhi Hotel",
+          "The Lodhi - A member of The Leading Hotels Of The World",
+          "The Imperial New Delhi"
+        ]
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-04-16",
+          "checkout": "2027-04-17"
+        },
+        "ms": 10587,
+        "http": 200,
+        "ok": true,
+        "total": 34,
+        "n": 20,
+        "fromCache": true,
+        "cacheTimeStamp": null,
+        "bytes": 18799,
+        "star5": 29,
+        "star4": 5,
+        "stars": {
+          "4": 5,
+          "5": 29
+        },
+        "shape": "EARLY",
+        "top3": [
+          "The Park New Delhi Hotel",
+          "The Lodhi - A member of The Leading Hotels Of The World",
+          "The Imperial New Delhi"
+        ]
+      },
+      "deltaMs": 55,
+      "faster": "preprod"
+    },
+    {
+      "city": "Mumbai",
+      "size": "large",
+      "entityId": "357389:IN",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-04-20",
+          "checkout": "2027-04-21"
+        },
+        "ms": 16491,
+        "http": 200,
+        "ok": true,
+        "total": 29,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18312,
+        "star5": 21,
+        "star4": 8,
+        "stars": {
+          "4": 8,
+          "5": 21
+        },
+        "shape": "EARLY",
+        "top3": [
+          "Radisson Mumbai Andheri MIDC",
+          "ROSWYN, A MORGANS ORIGINALS HOTEL",
+          "Trident, Bandra Kurla, Mumbai"
+        ]
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-04-20",
+          "checkout": "2027-04-21"
+        },
+        "ms": 16490,
+        "http": 200,
+        "ok": true,
+        "total": 29,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18312,
+        "star5": 21,
+        "star4": 8,
+        "stars": {
+          "4": 8,
+          "5": 21
+        },
+        "shape": "EARLY",
+        "top3": [
+          "Radisson Mumbai Andheri MIDC",
+          "ROSWYN, A MORGANS ORIGINALS HOTEL",
+          "Trident, Bandra Kurla, Mumbai"
+        ]
+      },
+      "deltaMs": -1,
+      "faster": "prod"
+    },
+    {
+      "city": "Dubai",
+      "size": "large",
+      "entityId": "221688:AE",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-04-24",
+          "checkout": "2027-04-25"
+        },
+        "ms": 17236,
+        "http": 200,
+        "ok": true,
+        "total": 19,
+        "n": 19,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 16763,
+        "star5": 12,
+        "star4": 7,
+        "stars": {
+          "4": 7,
+          "5": 12
+        },
+        "shape": "EARLY",
+        "top3": [
+          "The Galleria Residence, Hyatt Regency Dubai",
+          "Sheraton Grand Hotel, Dubai",
+          "DoubleTree by Hilton Dubai M Square Hotel & Residences"
+        ]
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-04-24",
+          "checkout": "2027-04-25"
+        },
+        "ms": 17084,
+        "http": 200,
+        "ok": true,
+        "total": 19,
+        "n": 19,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 16763,
+        "star5": 12,
+        "star4": 7,
+        "stars": {
+          "4": 7,
+          "5": 12
+        },
+        "shape": "EARLY",
+        "top3": [
+          "The Galleria Residence, Hyatt Regency Dubai",
+          "Sheraton Grand Hotel, Dubai",
+          "DoubleTree by Hilton Dubai M Square Hotel & Residences"
+        ]
+      },
+      "deltaMs": -152,
+      "faster": "prod"
+    },
+    {
+      "city": "Bangkok",
+      "size": "large",
+      "entityId": "328619:TH",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-04-28",
+          "checkout": "2027-04-29"
+        },
+        "ms": 14742,
+        "http": 200,
+        "ok": true,
+        "total": 20,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18401,
+        "star5": 20,
+        "star4": null,
+        "stars": {
+          "5": 20
+        },
+        "shape": "EARLY",
+        "top3": [
+          "Park Hyatt Bangkok",
+          "Waldorf Astoria Bangkok",
+          "The St. Regis Bangkok"
+        ]
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-04-28",
+          "checkout": "2027-04-29"
+        },
+        "ms": 14787,
+        "http": 200,
+        "ok": true,
+        "total": 20,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18401,
+        "star5": 20,
+        "star4": null,
+        "stars": {
+          "5": 20
+        },
+        "shape": "EARLY",
+        "top3": [
+          "Park Hyatt Bangkok",
+          "Waldorf Astoria Bangkok",
+          "The St. Regis Bangkok"
+        ]
+      },
+      "deltaMs": 45,
+      "faster": "preprod"
+    },
+    {
+      "city": "Paris",
+      "size": "large",
+      "entityId": "437227:FR",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-02",
+          "checkout": "2027-05-03"
+        },
+        "ms": 11990,
+        "http": 200,
+        "ok": true,
+        "total": 36,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18549,
+        "star5": 25,
+        "star4": 11,
+        "stars": {
+          "4": 11,
+          "5": 25
+        },
+        "shape": "EARLY",
+        "top3": [
+          "Bvlgari Hotel Paris",
+          "Park Hyatt Paris Vendome",
+          "Prince de Galles, a Luxury Collection Hotel, Paris"
+        ]
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-02",
+          "checkout": "2027-05-03"
+        },
+        "ms": 11973,
+        "http": 200,
+        "ok": true,
+        "total": 36,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18549,
+        "star5": 25,
+        "star4": 11,
+        "stars": {
+          "4": 11,
+          "5": 25
+        },
+        "shape": "EARLY",
+        "top3": [
+          "Bvlgari Hotel Paris",
+          "Park Hyatt Paris Vendome",
+          "Prince de Galles, a Luxury Collection Hotel, Paris"
+        ]
+      },
+      "deltaMs": -17,
+      "faster": "prod"
+    },
+    {
+      "city": "Jaipur",
+      "size": "mid",
+      "entityId": "227736:IN",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-06",
+          "checkout": "2027-05-07"
+        },
+        "ms": 20044,
+        "http": 200,
+        "ok": true,
+        "total": 17,
+        "n": 17,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 15381,
+        "star5": 9,
+        "star4": 8,
+        "stars": {
+          "4": 8,
+          "5": 9
+        },
+        "shape": "EARLY",
+        "top3": [
+          "V Sarovar Portico MI Road Jaipur",
+          "Radisson Jaipur City Center",
+          "Rajmahal Palace RAAS"
+        ]
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-06",
+          "checkout": "2027-05-07"
+        },
+        "ms": 19796,
+        "http": 200,
+        "ok": true,
+        "total": 17,
+        "n": 17,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 15381,
+        "star5": 9,
+        "star4": 8,
+        "stars": {
+          "4": 8,
+          "5": 9
+        },
+        "shape": "EARLY",
+        "top3": [
+          "V Sarovar Portico MI Road Jaipur",
+          "Radisson Jaipur City Center",
+          "Rajmahal Palace RAAS"
+        ]
+      },
+      "deltaMs": -248,
+      "faster": "prod"
+    },
+    {
+      "city": "Kochi",
+      "size": "mid",
+      "entityId": "329184:IN",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-10",
+          "checkout": "2027-05-11"
+        },
+        "ms": 18299,
+        "http": 200,
+        "ok": true,
+        "total": 14,
+        "n": 14,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 12490,
+        "star5": 5,
+        "star4": 9,
+        "stars": {
+          "4": 9,
+          "5": 5
+        },
+        "shape": "EARLY",
+        "top3": [
+          "Le Colonial 1506",
+          "The Malabar House",
+          "Ginger House Museum Hotel"
+        ]
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-10",
+          "checkout": "2027-05-11"
+        },
+        "ms": 23471,
+        "http": 200,
+        "ok": true,
+        "total": 14,
+        "n": 14,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 12490,
+        "star5": 5,
+        "star4": 9,
+        "stars": {
+          "4": 9,
+          "5": 5
+        },
+        "shape": "EARLY",
+        "top3": [
+          "Le Colonial 1506",
+          "The Malabar House",
+          "Ginger House Museum Hotel"
+        ]
+      },
+      "deltaMs": 5172,
+      "faster": "preprod"
+    },
+    {
+      "city": "Pune",
+      "size": "mid",
+      "entityId": "228371:IN",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-14",
+          "checkout": "2027-05-15"
+        },
+        "ms": 7800,
+        "http": 200,
+        "ok": true,
+        "total": 0,
+        "n": 0,
+        "fromCache": true,
+        "cacheTimeStamp": null,
+        "bytes": 513,
+        "star5": null,
+        "star4": null,
+        "stars": {},
+        "shape": "EMPTY",
+        "top3": []
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-14",
+          "checkout": "2027-05-15"
+        },
+        "ms": 7776,
+        "http": 200,
+        "ok": true,
+        "total": 0,
+        "n": 0,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 514,
+        "star5": null,
+        "star4": null,
+        "stars": {},
+        "shape": "EMPTY",
+        "top3": []
+      },
+      "deltaMs": -24,
+      "faster": "prod"
+    },
+    {
+      "city": "Manali",
+      "size": "small",
+      "entityId": "334045:IN",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-18",
+          "checkout": "2027-05-19"
+        },
+        "ms": 11845,
+        "http": 200,
+        "ok": true,
+        "total": 276,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18247,
+        "star5": 10,
+        "star4": 48,
+        "stars": {
+          "3": 147,
+          "4": 48,
+          "5": 10
+        },
+        "shape": "FULL",
+        "top3": [
+          "Simsa Heights Manali",
+          "Naturevilas Sarovar Premiere Manali",
+          "Bookmark Resorts, Manali"
+        ]
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-18",
+          "checkout": "2027-05-19"
+        },
+        "ms": 11842,
+        "http": 200,
+        "ok": true,
+        "total": 276,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18247,
+        "star5": 10,
+        "star4": 48,
+        "stars": {
+          "3": 147,
+          "4": 48,
+          "5": 10
+        },
+        "shape": "FULL",
+        "top3": [
+          "Simsa Heights Manali",
+          "Naturevilas Sarovar Premiere Manali",
+          "Bookmark Resorts, Manali"
+        ]
+      },
+      "deltaMs": -3,
+      "faster": "prod"
+    },
+    {
+      "city": "Rishikesh",
+      "size": "small",
+      "entityId": "329199:IN",
+      "preprod": {
+        "base": "https://preprod-api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-22",
+          "checkout": "2027-05-23"
+        },
+        "ms": 11554,
+        "http": 200,
+        "ok": true,
+        "total": 270,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18311,
+        "star5": 3,
+        "star4": 37,
+        "stars": {
+          "3": 156,
+          "4": 37,
+          "5": 3
+        },
+        "shape": "FULL",
+        "top3": [
+          "The Penthouse Rishikesh",
+          "Luxury Heaven By Harihar Group",
+          "Best Property Of India, Near to Ganges"
+        ]
+      },
+      "prod": {
+        "base": "https://api.travelvip.ai",
+        "dates": {
+          "checkin": "2027-05-22",
+          "checkout": "2027-05-23"
+        },
+        "ms": 11553,
+        "http": 200,
+        "ok": true,
+        "total": 270,
+        "n": 20,
+        "fromCache": false,
+        "cacheTimeStamp": null,
+        "bytes": 18311,
+        "star5": 3,
+        "star4": 37,
+        "stars": {
+          "3": 156,
+          "4": 37,
+          "5": 3
+        },
+        "shape": "FULL",
+        "top3": [
+          "The Penthouse Rishikesh",
+          "Luxury Heaven By Harihar Group",
+          "Best Property Of India, Near to Ganges"
+        ]
+      },
+      "deltaMs": -1,
+      "faster": "prod"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "br": "BR1787744137248898",
+  "vendorBookingId": "TVIPWE2608261705379F51",
+  "rows": [
+    {
+      "case": "mismatch.key+pid",
+      "http": 403,
+      "code": "INVALID_PARTNER_KEY",
+      "message": "Invalid or missing partner key",
+      "body": {
+        "error": {
+          "code": "INVALID_PARTNER_KEY",
+          "message": "Invalid or missing partner key",
+          "details": "The key query parameter is missing or does not match the supplied pid",
+          "timestamp": "2026-08-26T11:52:13Z",
+          "request_id": "req-1787745133193"
+        }
+      }
+    },
+    {
+      "case": "callback.key+pid",
+      "http": 403,
+      "code": "INVALID_PARTNER_KEY",
+      "message": "Invalid or missing partner key",
+      "body": {
+        "error": {
+          "code": "INVALID_PARTNER_KEY",
+          "message": "Invalid or missing partner key",
+          "details": "The key query parameter is missing or does not match the supplied pid",
+          "timestamp": "2026-08-26T11:52:13Z",
+          "request_id": "req-1787745133341"
+        }
+      }
+    },
+    {
+      "case": "mismatch.pid-only",
+      "http": 403,
+      "code": "INVALID_PARTNER_KEY",
+      "message": "Invalid or missing partner key",
+      "body": {
+        "error": {
+          "code": "INVALID_PARTNER_KEY",
+          "message": "Invalid or missing partner key",
+          "details": "The key query parameter is missing or does not match the supplied pid",
+          "timestamp": "2026-08-26T11:52:13Z",
+          "request_id": "req-1787745133641"
+        }
+      }
+    },
+    {
+      "case": "callback.pid-only",
+      "http": 403,
+      "code": "INVALID_PARTNER_KEY",
+      "message": "Invalid or missing partner key",
+      "body": {
+        "error": {
+          "code": "INVALID_PARTNER_KEY",
+          "message": "Invalid or missing partner key",
+          "details": "The key query parameter is missing or does not match the supplied pid",
+          "timestamp": "2026-08-26T11:52:13Z",
+          "request_id": "req-1787745133741"
+        }
+      }
+    },
+    {
+      "case": "mismatch.key=partnerId",
+      "http": 403,
+      "code": "INVALID_PARTNER_KEY",
+      "message": "Invalid or missing partner key",
+      "body": {
+        "error": {
+          "code": "INVALID_PARTNER_KEY",
+          "message": "Invalid or missing partner key",
+          "details": "The key query parameter is missing or does not match the supplied pid",
+          "timestamp": "2026-08-26T11:52:13Z",
+          "request_id": "req-1787745133841"
+        }
+      }
+    },
+    {
+      "case": "callback.key=partnerId",
+      "http": 403,
+      "code": "INVALID_PARTNER_KEY",
+      "message": "Invalid or missing partner key",
+      "body": {
+        "error": {
+          "code": "INVALID_PARTNER_KEY",
+          "message": "Invalid or missing partner key",
+          "details": "The key query parameter is missing or does not match the supplied pid",
+          "timestamp": "2026-08-26T11:52:13Z",
+          "request_id": "req-1787745133949"
+        }
+      }
+    },
+    {
+      "case": "callback.v1",
+      "http": 200,
+      "code": 200,
+      "message": "Booking updated successfully",
+      "body": {
+        "status": 200,
+        "message": "Booking updated successfully",
+        "bookingId": "7468",
+        "bookingReference": "BR1787744137248898",
+        "_meta": {
+          "correlation_id": "058c7155-6383-4a19-b959-2386b2152d8a"
+        }
+      }
+    }
+  ]
+}

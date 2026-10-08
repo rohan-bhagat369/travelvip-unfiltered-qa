@@ -1,0 +1,787 @@
+{
+  "meta": {
+    "comparedAt": "2026-09-07T13:47:54.970Z",
+    "noBook": true,
+    "preprod": {
+      "baseUrl": "https://preprod-api.travelvip.ai",
+      "correlationId": "ca22093d-a8c4-446f-b650-080893e199de",
+      "summary": {
+        "PASS": 49,
+        "BUG": 2,
+        "NOT_TESTED": 6
+      }
+    },
+    "prod": {
+      "baseUrl": "https://api.travelvip.ai",
+      "correlationId": "2d4061c6-0b65-4583-9ddd-24e36863c037",
+      "summary": {
+        "PASS": 29,
+        "BUG": 18,
+        "NOT_TESTED": 10
+      }
+    },
+    "summary": {
+      "preprod": {
+        "PASS": 49,
+        "BUG": 2,
+        "NOT_TESTED": 6
+      },
+      "prod": {
+        "PASS": 29,
+        "BUG": 18,
+        "NOT_TESTED": 10
+      },
+      "same": 37,
+      "prod_worse": 16,
+      "prod_better": 0,
+      "prod_skipped": 4
+    },
+    "headline": "Fare Lanes is on preprod; production still behaves like pre-lanes (no SME lane, unknown fareType accepted, combinationRefs present, no fareCategories facet)."
+  },
+  "rows": [
+    {
+      "id": "A-1",
+      "section": "A",
+      "rule": "omitted / \"\" / NORMAL / normal → 200 identical",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "omitted:http=200 n=20 cats=NORMAL | empty:http=200 n=20 cats=NORMAL | NORMAL:http=200 n=20 cats=NORMAL | normal:http=200 n=20 cats=NORMAL",
+      "preActual": "omitted:http=200 n=20 cats=NORMAL | empty:http=200 n=20 cats=NORMAL | NORMAL:http=200 n=20 cats=NORMAL | normal:http=200 n=20 cats=NORMAL"
+    },
+    {
+      "id": "A-2-NORMAL",
+      "section": "A",
+      "rule": "alone NORMAL → only that fareCategory",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "http=200 n=20 cats=NORMAL leak=",
+      "preActual": "http=200 n=20 cats=NORMAL leak="
+    },
+    {
+      "id": "A-2-CORPORATE",
+      "section": "A",
+      "rule": "alone CORPORATE → only that fareCategory",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "http=200 n=20 cats=CORPORATE leak=",
+      "preActual": "http=200 n=20 cats=CORPORATE leak="
+    },
+    {
+      "id": "A-2-SME",
+      "section": "A",
+      "rule": "alone SME → only that fareCategory",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "http=200 n=20 cats=NORMAL leak=NORMAL",
+      "preActual": "http=200 n=20 cats=SME leak="
+    },
+    {
+      "id": "A-2-STUDENT",
+      "section": "A",
+      "rule": "alone STUDENT → only that fareCategory",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "http=200 n=20 cats=STUDENT leak=",
+      "preActual": "http=200 n=20 cats=STUDENT leak="
+    },
+    {
+      "id": "A-2-DEFENCE",
+      "section": "A",
+      "rule": "alone DEFENCE → only that fareCategory",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "http=200 n=6 cats=DEFENCE leak=",
+      "preActual": "http=200 n=6 cats=DEFENCE leak="
+    },
+    {
+      "id": "A-2-SENIOR_CITIZEN",
+      "section": "A",
+      "rule": "alone SENIOR_CITIZEN → only that fareCategory",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "http=200 n=20 cats=SENIOR_CITIZEN leak=",
+      "preActual": "http=200 n=20 cats=SENIOR_CITIZEN leak="
+    },
+    {
+      "id": "A-3a",
+      "section": "A",
+      "rule": "multi CORPORATE,NORMAL → all categories present",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "found=CORPORATE,NORMAL n=20",
+      "preActual": "found=CORPORATE,NORMAL n=20"
+    },
+    {
+      "id": "A-3b",
+      "section": "A",
+      "rule": "multi NORMAL,SME → all categories present",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "found=NORMAL n=20",
+      "preActual": "found=NORMAL,SME n=20"
+    },
+    {
+      "id": "A-3c",
+      "section": "A",
+      "rule": "multi NORMAL,SME,CORPORATE → all categories present",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "found=CORPORATE,NORMAL n=20",
+      "preActual": "found=CORPORATE,NORMAL,SME n=20"
+    },
+    {
+      "id": "A-4a",
+      "section": "A",
+      "rule": "NORMAL , SME (spaces) trimmed",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "NORMAL",
+      "preActual": "NORMAL,SME"
+    },
+    {
+      "id": "A-4b",
+      "section": "A",
+      "rule": "CORPORATE,CORPORATE collapses",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "CORPORATE",
+      "preActual": "CORPORATE"
+    },
+    {
+      "id": "A-5a",
+      "section": "A",
+      "rule": "BUSINESS → 400 INVALID_FARE_TYPE",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "http=200 code=null",
+      "preActual": "http=400 code=INVALID_FARE_TYPE"
+    },
+    {
+      "id": "A-5b",
+      "section": "A",
+      "rule": "NORMAL,BUSINESS → 400 INVALID_FARE_TYPE",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "http=200 code=null",
+      "preActual": "http=400 code=INVALID_FARE_TYPE"
+    },
+    {
+      "id": "A-6a",
+      "section": "A",
+      "rule": "flexi_cancel alone → 200",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "http=200 code=null",
+      "preActual": "http=200 code=null"
+    },
+    {
+      "id": "A-6b",
+      "section": "A",
+      "rule": "flexi_cancel + other → 400 INVALID_FARE_TYPE",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "NORMAL,flexi=200/null; flexi,SME=200/null",
+      "preActual": "NORMAL,flexi=400/INVALID_FARE_TYPE; flexi,SME=400/INVALID_FARE_TYPE"
+    },
+    {
+      "id": "B-1",
+      "section": "B",
+      "rule": "NORMAL only — no CORP/SME leak",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "cats=NORMAL leak=",
+      "preActual": "cats=NORMAL leak="
+    },
+    {
+      "id": "B-2",
+      "section": "B",
+      "rule": "CORPORATE only — no normal leak",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "cats=CORPORATE leak=",
+      "preActual": "cats=CORPORATE leak="
+    },
+    {
+      "id": "B-3",
+      "section": "B",
+      "rule": "All pages: every fare has fareCategory; no dual category",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "fares=1061 null=0 dual=false",
+      "preActual": "fares=734 null=0 dual=false"
+    },
+    {
+      "id": "B-4",
+      "section": "B",
+      "rule": "fareCategories facet matches fares offered across pages",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"facet\":[],\"offeredOpt\":{\"CORPORATE\":177,\"NORMAL\":182},\"mismatches\":[\"CORPORATE: offered=177 but missing from facet\",\"NORMAL: offered=182 but missing from facet\"]}",
+      "preActual": "{\"facet\":[{\"value\":\"CORPORATE\",\"count\":30},{\"value\":\"NORMAL\",\"count\":183},{\"value\":\"SME\",\"count\":153}],\"offeredOpt\":{\"CORPORATE\":30,\"NORMAL\":183,\"SME\":153},\"mismatches\":[]}"
+    },
+    {
+      "id": "B-5",
+      "section": "B",
+      "rule": "IX / Air India Express corporate present",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "IX CORPORATE VALUE sid=srch_3f178f060bb84d9592ca759db8e00015",
+      "preActual": "IX CORPORATE VALUE sid=srch_df0e6b2ac6294f2caaff91fa8f52be5c"
+    },
+    {
+      "id": "B-6",
+      "section": "B",
+      "rule": "Watch logs for v2.corpFare unclassified",
+      "preprod": "NOT TESTED",
+      "prod": "NOT TESTED",
+      "delta": "same",
+      "prodActual": "no log access from this harness",
+      "preActual": "no log access from this harness"
+    },
+    {
+      "id": "C-1",
+      "section": "C",
+      "rule": "One card with 2+ categories, distinct searchIds",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "{\"airlines\":\"IX\",\"fares\":[{\"cat\":\"CORPORATE\",\"fareType\":\"CORPORATE VALUE\",\"searchId\":\"srch_e38bd1b7a3874f5ab326f3b4d4e95a96\",\"price\":6168},{\"cat\":\"NORMAL\",\"fareType\":\"VALUE\",\"searchId\":\"srch_9d55d81b45234505ab5e0bf31cecaf42\",\"price\":6539},{\"cat\":\"NORMAL\",\"fareType\":\"CLASSIC\",\"searchId\":\"srch_15fa300089f94f61ab18df1e1984f302\",\"price\":7065},{\"cat\":\"NORMAL\",\"fareType\":\"FLEX\",\"searchId\":\"srch_2bbffba4ec3340a991beaa88fcdba5c1\",\"price\":7485}],\"searchIds\":[\"srch_e38bd1b7a3874f5ab326f3b4d4e95a96\",\"srch_9d55d81b45234505ab5e0bf31cecaf42\",\"srch_15fa300089f94f61ab18df1e1984f302\",\"srch_2bbffba4ec3340a991beaa88fcdba5c1\"]}",
+      "preActual": "{\"airlines\":\"IX\",\"fares\":[{\"cat\":\"CORPORATE\",\"fareType\":\"CORPORATE VALUE\",\"searchId\":\"srch_df0e6b2ac6294f2caaff91fa8f52be5c\",\"price\":6168},{\"cat\":\"NORMAL\",\"fareType\":\"VALUE\",\"searchId\":\"srch_bf796056f14a453d8c838e2fa3369b88\",\"price\":6539},{\"cat\":\"NORMAL\",\"fareType\":\"CLASSIC\",\"searchId\":\"srch_81a87ae973a542e6bde90b0931775059\",\"price\":7065},{\"cat\":\"NORMAL\",\"fareType\":\"FLEX\",\"searchId\":\"srch_1157d5c2261a47258d41239d1bb785cd\",\"price\":7485}],\"searchIds\":[\"srch_df0e6b2ac6294f2caaff91fa8f52be5c\",\"srch_bf796056f14a453d8c838e2fa3369b88\",\"srch_81a87ae973a542e6bde90b0931775059\",\"srch_1157d5c2261a47258d41239d1bb785cd\"]}"
+    },
+    {
+      "id": "C-2",
+      "section": "C",
+      "rule": "displayPricing equals cheapest fare",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "display=6168 fares=6168,6539,7065,7485",
+      "preActual": "display=6168 fares=6168,6539,7065,7485"
+    },
+    {
+      "id": "C-3",
+      "section": "C",
+      "rule": "Page 0 cheapest-first across categories",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "switches=0 nonDec=true cats=CORPORATE",
+      "preActual": "switches=3 nonDec=true cats=CORPORATE,NORMAL"
+    },
+    {
+      "id": "C-4",
+      "section": "C",
+      "rule": "Sum of options across pages = totalResults",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "sum=184 total=184 pages=10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,4",
+      "preActual": "sum=183 total=183 pages=10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,3"
+    },
+    {
+      "id": "C-5",
+      "section": "C",
+      "rule": "Cached size=5 vs size=50: same totalResults; cards keep categories",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "{\"t5\":184,\"t50\":184,\"n5\":5,\"n50\":50,\"multiOnSmall\":true,\"cats5\":[\"CORPORATE\",\"NORMAL\"]}",
+      "preActual": "{\"t5\":183,\"t50\":183,\"n5\":5,\"n50\":50,\"multiOnSmall\":true,\"cats5\":[\"CORPORATE\",\"NORMAL\",\"SME\"]}"
+    },
+    {
+      "id": "C-6",
+      "section": "C",
+      "rule": "appliedFilters fareCategories=[\"CORPORATE\"] prunes fares",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"n\":20,\"cats\":[\"CORPORATE\",\"NORMAL\"],\"bad\":90,\"facet\":[]}",
+      "preActual": "{\"n\":20,\"cats\":[\"CORPORATE\"],\"bad\":0,\"facet\":[{\"value\":\"CORPORATE\",\"count\":30},{\"value\":\"NORMAL\",\"count\":183},{\"value\":\"SME\",\"count\":153}]}"
+    },
+    {
+      "id": "C-7",
+      "section": "C",
+      "rule": "fareCategories=[\"\"] treated as no filter",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "n=20 cats=CORPORATE,NORMAL",
+      "preActual": "n=20 cats=CORPORATE,NORMAL,SME"
+    },
+    {
+      "id": "C-8",
+      "section": "C",
+      "rule": "Single-fare-type: progress.lanesTotal/lanesReady null",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "lanesTotal=undefined lanesReady=undefined",
+      "preActual": "lanesTotal=null lanesReady=null"
+    },
+    {
+      "id": "D-1",
+      "section": "D",
+      "rule": "RT NORMAL,SME — select SME onward → both dirs SME",
+      "preprod": "PASS",
+      "prod": "NOT TESTED",
+      "delta": "prod_skipped",
+      "prodActual": "{\"reason\":\"no SME onward\"}",
+      "preActual": "{\"onward\":[\"SME\"],\"ret\":[\"SME\"]}"
+    },
+    {
+      "id": "D-2",
+      "section": "D",
+      "rule": "RT — select NORMAL onward → both dirs NORMAL",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "{\"onward\":[\"NORMAL\"],\"ret\":[\"NORMAL\"]}",
+      "preActual": "{\"onward\":[\"NORMAL\"],\"ret\":[\"NORMAL\"]}"
+    },
+    {
+      "id": "D-3",
+      "section": "D",
+      "rule": "Select using fare-level searchId from fares[]",
+      "preprod": "PASS",
+      "prod": "NOT TESTED",
+      "delta": "prod_skipped",
+      "prodActual": "no SME onward",
+      "preActual": "returnCats=SME"
+    },
+    {
+      "id": "D-4",
+      "section": "D",
+      "rule": "Cross-category RT pair → pricing INVALID_COMBINATION",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "http=400 code=INVALID_SELECTION",
+      "preActual": "http=400 code=INVALID_COMBINATION"
+    },
+    {
+      "id": "D-5",
+      "section": "D",
+      "rule": "Cross pair → details + fareRules INVALID_COMBINATION",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "details=200/null rules=400/INVALID_SELECTION",
+      "preActual": "details=400/INVALID_COMBINATION rules=400/INVALID_COMBINATION"
+    },
+    {
+      "id": "D-6",
+      "section": "D",
+      "rule": "Same-category RT → pricing succeeds",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "http=200 code=null",
+      "preActual": "http=200 code=null"
+    },
+    {
+      "id": "D-7",
+      "section": "D",
+      "rule": "Legs from two different searches rejected",
+      "preprod": "BUG",
+      "prod": "BUG",
+      "delta": "same",
+      "prodActual": "http=200 code=null",
+      "preActual": "http=200 code=null"
+    },
+    {
+      "id": "D-8",
+      "section": "D",
+      "rule": "Intl RT select onward, re-search, price succeeds",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "http=200 code=null returnN=4",
+      "preActual": "http=200 code=null returnN=4"
+    },
+    {
+      "id": "D-9",
+      "section": "D",
+      "rule": "Book domestic RT end to end",
+      "preprod": "NOT TESTED",
+      "prod": "NOT TESTED",
+      "delta": "same"
+    },
+    {
+      "id": "D-10",
+      "section": "D",
+      "rule": "Book intl RT end to end",
+      "preprod": "NOT TESTED",
+      "prod": "NOT TESTED",
+      "delta": "same"
+    },
+    {
+      "id": "E-1",
+      "section": "E",
+      "rule": "Corporate searchId → details/pricing/fareRules 200",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "{\"det\":200,\"price\":200,\"rules\":200,\"total\":6168}",
+      "preActual": "{\"det\":200,\"price\":200,\"rules\":200,\"total\":6168}"
+    },
+    {
+      "id": "E-2",
+      "section": "E",
+      "rule": "Normal fare from same card prices as normal (≠ corporate)",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "{\"tN\":6539,\"tC\":6168,\"nOk\":true,\"cOk\":true}",
+      "preActual": "{\"tN\":6539,\"tC\":6168,\"nOk\":true,\"cOk\":true}"
+    },
+    {
+      "id": "E-3",
+      "section": "E",
+      "rule": "All six fare types through details/pricing/fareRules",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "[{\"token\":\"NORMAL\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"CORPORATE\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"SME\",\"status\":\"NOT TESTED\"},{\"token\":\"STUDENT\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"DEFENCE\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"SENIOR_CITIZEN\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null}]",
+      "preActual": "[{\"token\":\"NORMAL\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"CORPORATE\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"SME\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"STUDENT\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"DEFENCE\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null},{\"token\":\"SENIOR_CITIZEN\",\"status\":\"PASS\",\"det\":200,\"price\":200,\"rules\":200,\"code\":null}]"
+    },
+    {
+      "id": "E-4",
+      "section": "E",
+      "rule": "SME → fareRules (corporate rules branch)",
+      "preprod": "PASS",
+      "prod": "NOT TESTED",
+      "delta": "prod_skipped",
+      "preActual": "http=200 code=null"
+    },
+    {
+      "id": "E-5",
+      "section": "E",
+      "rule": "SME pricing flexiCancelFee is 0",
+      "preprod": "PASS",
+      "prod": "NOT TESTED",
+      "delta": "prod_skipped",
+      "preActual": "flexi=0 http=200"
+    },
+    {
+      "id": "E-6",
+      "section": "E",
+      "rule": "pricing → refresh-token → selection/pricing category survives",
+      "preprod": "NOT TESTED",
+      "prod": "NOT TESTED",
+      "delta": "same",
+      "prodActual": "[{\"name\":\"refresh-token\",\"http\":404,\"code\":null},{\"name\":\"selection-pricing\",\"http\":404,\"code\":null}]",
+      "preActual": "[{\"name\":\"refresh-token\",\"http\":404,\"code\":null},{\"name\":\"selection-pricing\",\"http\":404,\"code\":null}]"
+    },
+    {
+      "id": "E-7",
+      "section": "E",
+      "rule": "ssr + seatmap on priced selection",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "{\"priceOk\":true,\"ssr\":200,\"seat\":200,\"ssrCode\":null,\"seatCode\":null}",
+      "preActual": "{\"priceOk\":true,\"ssr\":200,\"seat\":200,\"ssrCode\":null,\"seatCode\":null}"
+    },
+    {
+      "id": "F-1",
+      "section": "F",
+      "rule": "No fareType — works; combinationRefs absent",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"http\":200,\"n\":20,\"hasCombinationRefs\":true,\"cats\":[\"NORMAL\"]}",
+      "preActual": "{\"http\":200,\"n\":20,\"hasCombinationRefs\":false,\"cats\":[\"NORMAL\"]}"
+    },
+    {
+      "id": "F-2",
+      "section": "F",
+      "rule": "OW every main fare type correct",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "[{\"token\":\"NORMAL\",\"ok\":true,\"found\":[\"NORMAL\"],\"leak\":[],\"n\":20},{\"token\":\"CORPORATE\",\"ok\":true,\"found\":[\"CORPORATE\"],\"leak\":[],\"n\":20},{\"token\":\"SME\",\"ok\":false,\"found\":[\"NORMAL\"],\"leak\":[\"NORMAL\"],\"n\":20}]",
+      "preActual": "[{\"token\":\"NORMAL\",\"ok\":true,\"found\":[\"NORMAL\"],\"leak\":[],\"n\":20},{\"token\":\"CORPORATE\",\"ok\":true,\"found\":[\"CORPORATE\"],\"leak\":[],\"n\":20},{\"token\":\"SME\",\"ok\":true,\"found\":[\"SME\"],\"leak\":[],\"n\":20}]"
+    },
+    {
+      "id": "F-3",
+      "section": "F",
+      "rule": "combinationRefs absent on search/details/pricing/fareRules",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "[{\"kind\":\"search\",\"has\":true},{\"kind\":\"details\",\"has\":false},{\"kind\":\"pricing\",\"has\":false},{\"kind\":\"fareRules\",\"has\":false}]",
+      "preActual": "[{\"kind\":\"search\",\"has\":false},{\"kind\":\"details\",\"has\":false},{\"kind\":\"pricing\",\"has\":false},{\"kind\":\"fareRules\",\"has\":false}]"
+    },
+    {
+      "id": "F-4",
+      "section": "F",
+      "rule": "preferences airlines/maxStops applied across categories",
+      "preprod": "BUG",
+      "prod": "BUG",
+      "delta": "same",
+      "prodActual": "{\"n\":20,\"badAirline\":0,\"badStops\":3,\"cats\":[\"CORPORATE\",\"NORMAL\"]}",
+      "preActual": "{\"n\":20,\"badAirline\":0,\"badStops\":3,\"cats\":[\"NORMAL\",\"SME\"]}"
+    },
+    {
+      "id": "F-5",
+      "section": "F",
+      "rule": "Filters excluding everything → 200 empty + facets, not 404",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "{\"http\":200,\"code\":null,\"n\":0,\"hasFilters\":true}",
+      "preActual": "{\"http\":200,\"code\":null,\"n\":0,\"hasFilters\":true}"
+    },
+    {
+      "id": "F-6",
+      "section": "F",
+      "rule": "No flights route → NO_FLIGHTS_FOUND",
+      "preprod": "PASS",
+      "prod": "PASS",
+      "delta": "same",
+      "prodActual": "http=400 code=NO_FLIGHTS_FOUND",
+      "preActual": "http=400 code=NO_FLIGHTS_FOUND"
+    },
+    {
+      "id": "F-7",
+      "section": "F",
+      "rule": "V1 flight flows untouched",
+      "preprod": "NOT TESTED",
+      "prod": "NOT TESTED",
+      "delta": "same"
+    },
+    {
+      "id": "F-8",
+      "section": "F",
+      "rule": "Book OW end to end",
+      "preprod": "NOT TESTED",
+      "prod": "NOT TESTED",
+      "delta": "same"
+    },
+    {
+      "id": "X-1",
+      "section": "X",
+      "rule": "GARBAGE / SMEE → INVALID_FARE_TYPE (no silent NORMAL)",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"GARBAGE\":{\"http\":200,\"code\":null},\"SMEE\":{\"http\":200,\"code\":null}}",
+      "preActual": "{\"GARBAGE\":{\"http\":400,\"code\":\"INVALID_FARE_TYPE\"},\"SMEE\":{\"http\":400,\"code\":\"INVALID_FARE_TYPE\"}}"
+    },
+    {
+      "id": "X-2",
+      "section": "X",
+      "rule": "SME fares can have label Corporate but fareCategory=SME",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"n\":49,\"labelCorporateAsSme\":0,\"sample\":[]}",
+      "preActual": "{\"n\":20,\"labelCorporateAsSme\":20,\"sample\":[\"Corporate\",\"Corporate\",\"Corporate\"]}"
+    }
+  ],
+  "prodOnlyBugs": [
+    {
+      "id": "A-2-SME",
+      "section": "A",
+      "rule": "alone SME → only that fareCategory",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "http=200 n=20 cats=NORMAL leak=NORMAL",
+      "preActual": "http=200 n=20 cats=SME leak="
+    },
+    {
+      "id": "A-3b",
+      "section": "A",
+      "rule": "multi NORMAL,SME → all categories present",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "found=NORMAL n=20",
+      "preActual": "found=NORMAL,SME n=20"
+    },
+    {
+      "id": "A-3c",
+      "section": "A",
+      "rule": "multi NORMAL,SME,CORPORATE → all categories present",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "found=CORPORATE,NORMAL n=20",
+      "preActual": "found=CORPORATE,NORMAL,SME n=20"
+    },
+    {
+      "id": "A-4a",
+      "section": "A",
+      "rule": "NORMAL , SME (spaces) trimmed",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "NORMAL",
+      "preActual": "NORMAL,SME"
+    },
+    {
+      "id": "A-5a",
+      "section": "A",
+      "rule": "BUSINESS → 400 INVALID_FARE_TYPE",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "http=200 code=null",
+      "preActual": "http=400 code=INVALID_FARE_TYPE"
+    },
+    {
+      "id": "A-5b",
+      "section": "A",
+      "rule": "NORMAL,BUSINESS → 400 INVALID_FARE_TYPE",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "http=200 code=null",
+      "preActual": "http=400 code=INVALID_FARE_TYPE"
+    },
+    {
+      "id": "A-6b",
+      "section": "A",
+      "rule": "flexi_cancel + other → 400 INVALID_FARE_TYPE",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "NORMAL,flexi=200/null; flexi,SME=200/null",
+      "preActual": "NORMAL,flexi=400/INVALID_FARE_TYPE; flexi,SME=400/INVALID_FARE_TYPE"
+    },
+    {
+      "id": "B-4",
+      "section": "B",
+      "rule": "fareCategories facet matches fares offered across pages",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"facet\":[],\"offeredOpt\":{\"CORPORATE\":177,\"NORMAL\":182},\"mismatches\":[\"CORPORATE: offered=177 but missing from facet\",\"NORMAL: offered=182 but missing from facet\"]}",
+      "preActual": "{\"facet\":[{\"value\":\"CORPORATE\",\"count\":30},{\"value\":\"NORMAL\",\"count\":183},{\"value\":\"SME\",\"count\":153}],\"offeredOpt\":{\"CORPORATE\":30,\"NORMAL\":183,\"SME\":153},\"mismatches\":[]}"
+    },
+    {
+      "id": "C-6",
+      "section": "C",
+      "rule": "appliedFilters fareCategories=[\"CORPORATE\"] prunes fares",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"n\":20,\"cats\":[\"CORPORATE\",\"NORMAL\"],\"bad\":90,\"facet\":[]}",
+      "preActual": "{\"n\":20,\"cats\":[\"CORPORATE\"],\"bad\":0,\"facet\":[{\"value\":\"CORPORATE\",\"count\":30},{\"value\":\"NORMAL\",\"count\":183},{\"value\":\"SME\",\"count\":153}]}"
+    },
+    {
+      "id": "D-4",
+      "section": "D",
+      "rule": "Cross-category RT pair → pricing INVALID_COMBINATION",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "http=400 code=INVALID_SELECTION",
+      "preActual": "http=400 code=INVALID_COMBINATION"
+    },
+    {
+      "id": "D-5",
+      "section": "D",
+      "rule": "Cross pair → details + fareRules INVALID_COMBINATION",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "details=200/null rules=400/INVALID_SELECTION",
+      "preActual": "details=400/INVALID_COMBINATION rules=400/INVALID_COMBINATION"
+    },
+    {
+      "id": "F-1",
+      "section": "F",
+      "rule": "No fareType — works; combinationRefs absent",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"http\":200,\"n\":20,\"hasCombinationRefs\":true,\"cats\":[\"NORMAL\"]}",
+      "preActual": "{\"http\":200,\"n\":20,\"hasCombinationRefs\":false,\"cats\":[\"NORMAL\"]}"
+    },
+    {
+      "id": "F-2",
+      "section": "F",
+      "rule": "OW every main fare type correct",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "[{\"token\":\"NORMAL\",\"ok\":true,\"found\":[\"NORMAL\"],\"leak\":[],\"n\":20},{\"token\":\"CORPORATE\",\"ok\":true,\"found\":[\"CORPORATE\"],\"leak\":[],\"n\":20},{\"token\":\"SME\",\"ok\":false,\"found\":[\"NORMAL\"],\"leak\":[\"NORMAL\"],\"n\":20}]",
+      "preActual": "[{\"token\":\"NORMAL\",\"ok\":true,\"found\":[\"NORMAL\"],\"leak\":[],\"n\":20},{\"token\":\"CORPORATE\",\"ok\":true,\"found\":[\"CORPORATE\"],\"leak\":[],\"n\":20},{\"token\":\"SME\",\"ok\":true,\"found\":[\"SME\"],\"leak\":[],\"n\":20}]"
+    },
+    {
+      "id": "F-3",
+      "section": "F",
+      "rule": "combinationRefs absent on search/details/pricing/fareRules",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "[{\"kind\":\"search\",\"has\":true},{\"kind\":\"details\",\"has\":false},{\"kind\":\"pricing\",\"has\":false},{\"kind\":\"fareRules\",\"has\":false}]",
+      "preActual": "[{\"kind\":\"search\",\"has\":false},{\"kind\":\"details\",\"has\":false},{\"kind\":\"pricing\",\"has\":false},{\"kind\":\"fareRules\",\"has\":false}]"
+    },
+    {
+      "id": "X-1",
+      "section": "X",
+      "rule": "GARBAGE / SMEE → INVALID_FARE_TYPE (no silent NORMAL)",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"GARBAGE\":{\"http\":200,\"code\":null},\"SMEE\":{\"http\":200,\"code\":null}}",
+      "preActual": "{\"GARBAGE\":{\"http\":400,\"code\":\"INVALID_FARE_TYPE\"},\"SMEE\":{\"http\":400,\"code\":\"INVALID_FARE_TYPE\"}}"
+    },
+    {
+      "id": "X-2",
+      "section": "X",
+      "rule": "SME fares can have label Corporate but fareCategory=SME",
+      "preprod": "PASS",
+      "prod": "BUG",
+      "delta": "prod_worse",
+      "prodActual": "{\"n\":49,\"labelCorporateAsSme\":0,\"sample\":[]}",
+      "preActual": "{\"n\":20,\"labelCorporateAsSme\":20,\"sample\":[\"Corporate\",\"Corporate\",\"Corporate\"]}"
+    }
+  ],
+  "bothBugs": [
+    {
+      "id": "D-7",
+      "section": "D",
+      "rule": "Legs from two different searches rejected",
+      "preprod": "BUG",
+      "prod": "BUG",
+      "delta": "same",
+      "prodActual": "http=200 code=null",
+      "preActual": "http=200 code=null"
+    },
+    {
+      "id": "F-4",
+      "section": "F",
+      "rule": "preferences airlines/maxStops applied across categories",
+      "preprod": "BUG",
+      "prod": "BUG",
+      "delta": "same",
+      "prodActual": "{\"n\":20,\"badAirline\":0,\"badStops\":3,\"cats\":[\"CORPORATE\",\"NORMAL\"]}",
+      "preActual": "{\"n\":20,\"badAirline\":0,\"badStops\":3,\"cats\":[\"NORMAL\",\"SME\"]}"
+    }
+  ]
+}

@@ -1,0 +1,2840 @@
+{
+  "ranAt": "2026-08-27T10:02:22.525Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "tierId": "19597201",
+  "api": "GET /v1/flights/airports",
+  "note": "Misspell/near-miss canary after bangalor→Bangor. Catalog only, no book.",
+  "counts": {
+    "PASS": 59,
+    "BUG": 23,
+    "NOT_TESTED": 0
+  },
+  "bugCount": 23,
+  "bugs": [
+    {
+      "id": 1,
+      "query": "bangalor",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": "BGR:Bangor",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "BGR",
+          "city": "Bangor",
+          "airportName": "Bangor International Airport",
+          "country": "United States"
+        }
+      ],
+      "actual": "HTTP 200 n=1 expect@MISS(-) top=BGR:Bangor — wrong/miss; top1=BGR:Bangor"
+    },
+    {
+      "id": 2,
+      "query": "banglor",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": "BGR:Bangor",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "BGR",
+          "city": "Bangor",
+          "airportName": "Bangor International Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "BKK",
+          "city": "Bangkok",
+          "airportName": "Suvarnabhumi Airport",
+          "country": "Thailand"
+        },
+        {
+          "airportCode": "PKG",
+          "city": "Lumut",
+          "airportName": "Pulau Pangkor Airport",
+          "country": "Malaysia"
+        },
+        {
+          "airportCode": "DMK",
+          "city": "Bangkok",
+          "airportName": "Don Mueang International Airport",
+          "country": "Thailand"
+        }
+      ],
+      "actual": "HTTP 200 n=4 expect@MISS(-) top=BGR:Bangor | BKK:Bangkok | PKG:Lumut | DMK:Bangkok — wrong/miss; top1=BGR:Bangor"
+    },
+    {
+      "id": 3,
+      "query": "bangalore",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 5,
+      "query": "bengaloor",
+      "expect": [
+        "BLR"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 10,
+      "query": "bombay",
+      "expect": [
+        "BOM"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 15,
+      "query": "newdelh",
+      "expect": [
+        "DEL"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 17,
+      "query": "newdlhi",
+      "expect": [
+        "DEL"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 20,
+      "query": "madrass",
+      "expect": [
+        "MAA"
+      ],
+      "wrongTop": "MDJ:Madras",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "MDJ",
+          "city": "Madras",
+          "airportName": "Madras Municipal Airport",
+          "country": "United States"
+        }
+      ],
+      "actual": "HTTP 200 n=1 expect@MISS(-) top=MDJ:Madras — wrong/miss; top1=MDJ:Madras"
+    },
+    {
+      "id": 21,
+      "query": "madras",
+      "expect": [
+        "MAA"
+      ],
+      "wrongTop": "MDJ:Madras",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "MDJ",
+          "city": "Madras",
+          "airportName": "Madras Municipal Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "MAE",
+          "city": "Madera",
+          "airportName": "Madera Municipal Airport",
+          "country": "United States"
+        }
+      ],
+      "actual": "HTTP 200 n=2 expect@MISS(-) top=MDJ:Madras | MAE:Madera — wrong/miss; top1=MDJ:Madras"
+    },
+    {
+      "id": 28,
+      "query": "calcuta",
+      "expect": [
+        "CCU"
+      ],
+      "wrongTop": "ALU:Caluula",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "ALU",
+          "city": "Caluula",
+          "airportName": "Caluula Airport",
+          "country": "Somalia"
+        },
+        {
+          "airportCode": "CCJ",
+          "city": "Kozhikode",
+          "airportName": "Calicut International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "CVI",
+          "city": "Caleta Olivia",
+          "airportName": "Caleta Olivia Airport",
+          "country": "Argentina"
+        }
+      ],
+      "actual": "HTTP 200 n=3 expect@MISS(-) top=ALU:Caluula | CCJ:Kozhikode | CVI:Caleta Olivia — wrong/miss; top1=ALU:Caluula"
+    },
+    {
+      "id": 29,
+      "query": "calcutta",
+      "expect": [
+        "CCU"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 34,
+      "query": "amdavad",
+      "expect": [
+        "AMD"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 38,
+      "query": "pone",
+      "expect": [
+        "PNQ"
+      ],
+      "wrongTop": "PIC:Pine Cay",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "PIC",
+          "city": "Pine Cay",
+          "airportName": "Pine Cay Airport",
+          "country": "Turks And Caicos Islands"
+        },
+        {
+          "airportCode": "XPR",
+          "city": "Pine Ridge",
+          "airportName": "Pine Ridge Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "CZP",
+          "city": "North Pole",
+          "airportName": "Cape Pole Sea Plane Base",
+          "country": "United States"
+        },
+        {
+          "airportCode": "PBF",
+          "city": "Pine Bluff",
+          "airportName": "Pine Bluff Regional Airport, Grider Field",
+          "country": "United States"
+        },
+        {
+          "airportCode": "LNP",
+          "city": "Wise",
+          "airportName": "Lonesome Pine Airport",
+          "country": "United States"
+        }
+      ],
+      "actual": "HTTP 200 n=10 expect@MISS(-) top=PIC:Pine Cay | XPR:Pine Ridge | CZP:North Pole | PBF:Pine Bluff | LNP:Wise — wrong/miss; top1=PIC:Pine Cay"
+    },
+    {
+      "id": 40,
+      "query": "poona",
+      "expect": [
+        "PNQ"
+      ],
+      "wrongTop": "AON:Kainantu",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "AON",
+          "city": "Kainantu",
+          "airportName": "Arona Airport",
+          "country": "Papua new Guinea"
+        },
+        {
+          "airportCode": "BNV",
+          "city": "Lae",
+          "airportName": "Boana Airport",
+          "country": "Papua new Guinea"
+        }
+      ],
+      "actual": "HTTP 200 n=2 expect@MISS(-) top=AON:Kainantu | BNV:Lae — wrong/miss; top1=AON:Kainantu"
+    },
+    {
+      "id": 42,
+      "query": "goaa",
+      "expect": [
+        "GOI",
+        "GOX"
+      ],
+      "wrongTop": "OYA:Goya",
+      "rank": 5,
+      "top": [
+        {
+          "airportCode": "OYA",
+          "city": "Goya",
+          "airportName": "Goya Airport",
+          "country": "Argentina"
+        },
+        {
+          "airportCode": "BGN",
+          "city": "Belaya Gora",
+          "airportName": "Belaya Gora Airport",
+          "country": "Russia"
+        },
+        {
+          "airportCode": "GOM",
+          "city": "Goma",
+          "airportName": "Goma International Airport",
+          "country": "Democratic Republic of the Congo"
+        },
+        {
+          "airportCode": "GOC",
+          "city": "Popondetta",
+          "airportName": "Gora Airstrip",
+          "country": "Papua new Guinea"
+        },
+        {
+          "airportCode": "GOI",
+          "city": "Vasco da Gama",
+          "airportName": "Dabolim Airport, Goa",
+          "country": "India"
+        }
+      ],
+      "actual": "HTTP 200 n=10 expect@5(GOI) top=OYA:Goya | BGN:Belaya Gora | GOM:Goma | GOC:Popondetta | GOI:Vasco da Gama — wrong/miss; top1=OYA:Goya"
+    },
+    {
+      "id": 48,
+      "query": "lakhnau",
+      "expect": [
+        "LKO"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 54,
+      "query": "trivandrum",
+      "expect": [
+        "TRV"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 55,
+      "query": "trivandrm",
+      "expect": [
+        "TRV"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 61,
+      "query": "benaras",
+      "expect": [
+        "VNS"
+      ],
+      "wrongTop": null,
+      "rank": null,
+      "top": [],
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)"
+    },
+    {
+      "id": 62,
+      "query": "banaras",
+      "expect": [
+        "VNS"
+      ],
+      "wrongTop": "NAS:Nassau",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "NAS",
+          "city": "Nassau",
+          "airportName": "Lynden Pindling International Airport",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "WZY",
+          "city": "Nassau",
+          "airportName": "Paradise Island-Seaplane Base",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "GTC",
+          "city": "Marsh Harbour",
+          "airportName": "Green Turtle Airport",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "HBI",
+          "city": "Dunmore Town",
+          "airportName": "Harbour Island Airport",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "NSB",
+          "city": "Alice Town",
+          "airportName": "Bimini North Seaplane Base",
+          "country": "The Bahamas"
+        }
+      ],
+      "actual": "HTTP 200 n=10 expect@MISS(-) top=NAS:Nassau | WZY:Nassau | GTC:Marsh Harbour | HBI:Dunmore Town | NSB:Alice Town — wrong/miss; top1=NAS:Nassau"
+    },
+    {
+      "id": 65,
+      "query": "nagpr",
+      "expect": [
+        "NAG"
+      ],
+      "wrongTop": "RMD:Ramagundam",
+      "rank": 4,
+      "top": [
+        {
+          "airportCode": "RMD",
+          "city": "Ramagundam",
+          "airportName": "Basanth Nagar Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "ANE",
+          "city": "Seiches-sur-le-Loir",
+          "airportName": "Angers-Loire Airport",
+          "country": "France"
+        },
+        {
+          "airportCode": "NDR",
+          "city": "Al Aaroui",
+          "airportName": "Nador Al Aaroui International Airport",
+          "country": "Morocco"
+        },
+        {
+          "airportCode": "NAG",
+          "city": "Nagpur",
+          "airportName": "Dr. Babasaheb Ambedkar International Airport",
+          "country": "India"
+        }
+      ],
+      "actual": "HTTP 200 n=4 expect@4(NAG) top=RMD:Ramagundam | ANE:Seiches-sur-le-Loir | NDR:Al Aaroui | NAG:Nagpur — wrong/miss; top1=RMD:Ramagundam"
+    },
+    {
+      "id": 71,
+      "query": "gauhati",
+      "expect": [
+        "GAU"
+      ],
+      "wrongTop": "WLN:Craig",
+      "rank": null,
+      "top": [
+        {
+          "airportCode": "WLN",
+          "city": "Craig",
+          "airportName": "Little Naukati Airport",
+          "country": "United States"
+        }
+      ],
+      "actual": "HTTP 200 n=1 expect@MISS(-) top=WLN:Craig — wrong/miss; top1=WLN:Craig"
+    },
+    {
+      "id": 82,
+      "query": "newyrok",
+      "expect": [
+        "NYC",
+        "JFK",
+        "EWR",
+        "LGA"
+      ],
+      "wrongTop": null,
+      "rank": 1,
+      "top": [
+        {
+          "airportCode": "EWR",
+          "city": "Newark",
+          "airportName": "Newark Liberty International Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "WWT",
+          "city": "Azle",
+          "airportName": "Newtok Airport",
+          "country": "United States"
+        }
+      ],
+      "actual": "HTTP 200 n=2 expect@1(EWR) top=EWR:Newark | WWT:Azle"
+    }
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "query": "bangalor",
+      "expect": [
+        "BLR"
+      ],
+      "note": "known: may hit Bangor",
+      "status": "BUG",
+      "actual": "HTTP 200 n=1 expect@MISS(-) top=BGR:Bangor — wrong/miss; top1=BGR:Bangor",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "BGR:Bangor",
+      "top": [
+        {
+          "airportCode": "BGR",
+          "city": "Bangor",
+          "airportName": "Bangor International Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "query": "banglor",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=4 expect@MISS(-) top=BGR:Bangor | BKK:Bangkok | PKG:Lumut | DMK:Bangkok — wrong/miss; top1=BGR:Bangor",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "BGR:Bangor",
+      "top": [
+        {
+          "airportCode": "BGR",
+          "city": "Bangor",
+          "airportName": "Bangor International Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "BKK",
+          "city": "Bangkok",
+          "airportName": "Suvarnabhumi Airport",
+          "country": "Thailand"
+        },
+        {
+          "airportCode": "PKG",
+          "city": "Lumut",
+          "airportName": "Pulau Pangkor Airport",
+          "country": "Malaysia"
+        },
+        {
+          "airportCode": "DMK",
+          "city": "Bangkok",
+          "airportName": "Don Mueang International Airport",
+          "country": "Thailand"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "query": "bangalore",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 4,
+      "query": "bengaluru",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@1(BLR) top=BLR:Bengaluru | IXE:Mangaluru",
+      "rank": 1,
+      "matchedCode": "BLR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "BLR",
+          "city": "Bengaluru",
+          "airportName": "Kempegowda International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "IXE",
+          "city": "Mangaluru",
+          "airportName": "Mangaluru International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "query": "bengaloor",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 6,
+      "query": "bengalur",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(BLR) top=BLR:Bengaluru",
+      "rank": 1,
+      "matchedCode": "BLR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "BLR",
+          "city": "Bengaluru",
+          "airportName": "Kempegowda International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "query": "bangaluru",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@2(BLR) top=IXE:Mangaluru | BLR:Bengaluru",
+      "rank": 2,
+      "matchedCode": "BLR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "IXE",
+          "city": "Mangaluru",
+          "airportName": "Mangaluru International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "BLR",
+          "city": "Bengaluru",
+          "airportName": "Kempegowda International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "query": "bengaluruu",
+      "expect": [
+        "BLR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(BLR) top=BLR:Bengaluru",
+      "rank": 1,
+      "matchedCode": "BLR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "BLR",
+          "city": "Bengaluru",
+          "airportName": "Kempegowda International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "query": "mumbi",
+      "expect": [
+        "BOM"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=7 expect@2(BOM) top=NMI:Navi Mumbai | BOM:Mumbai | MCZ:Maceió | GHD:Gimbi | DUM:Dumai",
+      "rank": 2,
+      "matchedCode": "BOM",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "NMI",
+          "city": "Navi Mumbai",
+          "airportName": "Navi Mumbai International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "BOM",
+          "city": "Mumbai",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "MCZ",
+          "city": "Maceió",
+          "airportName": "Zumbi dos Palmares Airport",
+          "country": "Brazil"
+        },
+        {
+          "airportCode": "GHD",
+          "city": "Gimbi",
+          "airportName": "Ghimbi Airport",
+          "country": "Ethiopia"
+        },
+        {
+          "airportCode": "DUM",
+          "city": "Dumai",
+          "airportName": "Pinang Kampai Airport",
+          "country": "Indonesia"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "query": "bombay",
+      "expect": [
+        "BOM"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 11,
+      "query": "mumabai",
+      "expect": [
+        "BOM"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@2(BOM) top=NMI:Navi Mumbai | BOM:Mumbai",
+      "rank": 2,
+      "matchedCode": "BOM",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "NMI",
+          "city": "Navi Mumbai",
+          "airportName": "Navi Mumbai International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "BOM",
+          "city": "Mumbai",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "query": "muumbai",
+      "expect": [
+        "BOM"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@2(BOM) top=NMI:Navi Mumbai | BOM:Mumbai",
+      "rank": 2,
+      "matchedCode": "BOM",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "NMI",
+          "city": "Navi Mumbai",
+          "airportName": "Navi Mumbai International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "BOM",
+          "city": "Mumbai",
+          "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "query": "dehli",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(DEL) top=DEL:New Delhi",
+      "rank": 1,
+      "matchedCode": "DEL",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "DEL",
+          "city": "New Delhi",
+          "airportName": "Indira Gandhi International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "query": "delli",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 expect@1(DEL) top=DEL:New Delhi | LSV:Las Vegas | OAJ:Richlands | GAG:Ellis County",
+      "rank": 1,
+      "matchedCode": "DEL",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "DEL",
+          "city": "New Delhi",
+          "airportName": "Indira Gandhi International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "LSV",
+          "city": "Las Vegas",
+          "airportName": "Nellis Air Force Base",
+          "country": "United States"
+        },
+        {
+          "airportCode": "OAJ",
+          "city": "Richlands",
+          "airportName": "Albert J Ellis Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "GAG",
+          "city": "Ellis County",
+          "airportName": "Gage Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "query": "newdelh",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 16,
+      "query": "new delh",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 expect@1(DEL) top=DEL:New Delhi | AKL:Auckland | NYC:New York City | KBZ:New Plymouth | NPL:New Plymouth",
+      "rank": 1,
+      "matchedCode": "DEL",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "DEL",
+          "city": "New Delhi",
+          "airportName": "Indira Gandhi International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "AKL",
+          "city": "Auckland",
+          "airportName": "Auckland International Airport",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "NYC",
+          "city": "New York City",
+          "airportName": "All Airports",
+          "country": "United States"
+        },
+        {
+          "airportCode": "KBZ",
+          "city": "New Plymouth",
+          "airportName": "Kaikoura Airport",
+          "country": "New Zealand"
+        },
+        {
+          "airportCode": "NPL",
+          "city": "New Plymouth",
+          "airportName": "New Plymouth Airport",
+          "country": "New Zealand"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "query": "newdlhi",
+      "expect": [
+        "DEL"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 18,
+      "query": "chenai",
+      "expect": [
+        "MAA"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=3 expect@1(MAA) top=MAA:Chennai | CEX:Fairbanks North Star Borough | REQ:Chagai",
+      "rank": 1,
+      "matchedCode": "MAA",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "MAA",
+          "city": "Chennai",
+          "airportName": "Chennai International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "CEX",
+          "city": "Fairbanks North Star Borough",
+          "airportName": "Chena Hot Springs Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "REQ",
+          "city": "Chagai",
+          "airportName": "Reko Diq Airport",
+          "country": "Pakistan"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "query": "chennaii",
+      "expect": [
+        "MAA"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(MAA) top=MAA:Chennai",
+      "rank": 1,
+      "matchedCode": "MAA",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "MAA",
+          "city": "Chennai",
+          "airportName": "Chennai International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "query": "madrass",
+      "expect": [
+        "MAA"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=1 expect@MISS(-) top=MDJ:Madras — wrong/miss; top1=MDJ:Madras",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "MDJ:Madras",
+      "top": [
+        {
+          "airportCode": "MDJ",
+          "city": "Madras",
+          "airportName": "Madras Municipal Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "query": "madras",
+      "expect": [
+        "MAA"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=2 expect@MISS(-) top=MDJ:Madras | MAE:Madera — wrong/miss; top1=MDJ:Madras",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "MDJ:Madras",
+      "top": [
+        {
+          "airportCode": "MDJ",
+          "city": "Madras",
+          "airportName": "Madras Municipal Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "MAE",
+          "city": "Madera",
+          "airportName": "Madera Municipal Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "query": "hydrabd",
+      "expect": [
+        "HYD"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=3 expect@1(HYD) top=HYD:Hyderabad | HDD:Hyderabad | BPM:Hyderabad",
+      "rank": 1,
+      "matchedCode": "HYD",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "HYD",
+          "city": "Hyderabad",
+          "airportName": "Rajiv Gandhi International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDD",
+          "city": "Hyderabad",
+          "airportName": "Airport",
+          "country": "Pakistan"
+        },
+        {
+          "airportCode": "BPM",
+          "city": "Hyderabad",
+          "airportName": "Begumpet Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "query": "hyderabd",
+      "expect": [
+        "HYD"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=3 expect@1(HYD) top=HYD:Hyderabad | HDD:Hyderabad | BPM:Hyderabad",
+      "rank": 1,
+      "matchedCode": "HYD",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "HYD",
+          "city": "Hyderabad",
+          "airportName": "Rajiv Gandhi International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDD",
+          "city": "Hyderabad",
+          "airportName": "Airport",
+          "country": "Pakistan"
+        },
+        {
+          "airportCode": "BPM",
+          "city": "Hyderabad",
+          "airportName": "Begumpet Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "query": "hyderbad",
+      "expect": [
+        "HYD"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=3 expect@1(HYD) top=HYD:Hyderabad | HDD:Hyderabad | BPM:Hyderabad",
+      "rank": 1,
+      "matchedCode": "HYD",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "HYD",
+          "city": "Hyderabad",
+          "airportName": "Rajiv Gandhi International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDD",
+          "city": "Hyderabad",
+          "airportName": "Airport",
+          "country": "Pakistan"
+        },
+        {
+          "airportCode": "BPM",
+          "city": "Hyderabad",
+          "airportName": "Begumpet Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "query": "hydrabad",
+      "expect": [
+        "HYD"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=3 expect@1(HYD) top=HYD:Hyderabad | HDD:Hyderabad | BPM:Hyderabad",
+      "rank": 1,
+      "matchedCode": "HYD",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "HYD",
+          "city": "Hyderabad",
+          "airportName": "Rajiv Gandhi International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "HDD",
+          "city": "Hyderabad",
+          "airportName": "Airport",
+          "country": "Pakistan"
+        },
+        {
+          "airportCode": "BPM",
+          "city": "Hyderabad",
+          "airportName": "Begumpet Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "query": "kolkat",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=5 expect@1(CCU) top=CCU:Kolkata | IDR:Indore | DEX:Kabupaten Yahukimo | KXB:Kabupaten Kolaka | PUM:Kabupaten Kolaka",
+      "rank": 1,
+      "matchedCode": "CCU",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "CCU",
+          "city": "Kolkata",
+          "airportName": "Netaji Subhas Chandra Bose International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "IDR",
+          "city": "Indore",
+          "airportName": "Devi Ahilyabai Holkar Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "DEX",
+          "city": "Kabupaten Yahukimo",
+          "airportName": "Nop Goliat Dekai Airport",
+          "country": "Indonesia"
+        },
+        {
+          "airportCode": "KXB",
+          "city": "Kabupaten Kolaka",
+          "airportName": "Sangia Nibandera Airport",
+          "country": "Indonesia"
+        },
+        {
+          "airportCode": "PUM",
+          "city": "Kabupaten Kolaka",
+          "airportName": "Pomala Airport",
+          "country": "Indonesia"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "query": "kolkataa",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(CCU) top=CCU:Kolkata",
+      "rank": 1,
+      "matchedCode": "CCU",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "CCU",
+          "city": "Kolkata",
+          "airportName": "Netaji Subhas Chandra Bose International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "query": "calcuta",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=3 expect@MISS(-) top=ALU:Caluula | CCJ:Kozhikode | CVI:Caleta Olivia — wrong/miss; top1=ALU:Caluula",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "ALU:Caluula",
+      "top": [
+        {
+          "airportCode": "ALU",
+          "city": "Caluula",
+          "airportName": "Caluula Airport",
+          "country": "Somalia"
+        },
+        {
+          "airportCode": "CCJ",
+          "city": "Kozhikode",
+          "airportName": "Calicut International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "CVI",
+          "city": "Caleta Olivia",
+          "airportName": "Caleta Olivia Airport",
+          "country": "Argentina"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "query": "calcutta",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 30,
+      "query": "kolkatta",
+      "expect": [
+        "CCU"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(CCU) top=CCU:Kolkata",
+      "rank": 1,
+      "matchedCode": "CCU",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "CCU",
+          "city": "Kolkata",
+          "airportName": "Netaji Subhas Chandra Bose International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "query": "ahmedabd",
+      "expect": [
+        "AMD"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(AMD) top=AMD:Ahmedabad",
+      "rank": 1,
+      "matchedCode": "AMD",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "AMD",
+          "city": "Ahmedabad",
+          "airportName": "Sardar Vallabhbhai Patel International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "query": "ahmdabad",
+      "expect": [
+        "AMD"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(AMD) top=AMD:Ahmedabad",
+      "rank": 1,
+      "matchedCode": "AMD",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "AMD",
+          "city": "Ahmedabad",
+          "airportName": "Sardar Vallabhbhai Patel International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "query": "ahmedabaad",
+      "expect": [
+        "AMD"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(AMD) top=AMD:Ahmedabad",
+      "rank": 1,
+      "matchedCode": "AMD",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "AMD",
+          "city": "Ahmedabad",
+          "airportName": "Sardar Vallabhbhai Patel International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "query": "amdavad",
+      "expect": [
+        "AMD"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 35,
+      "query": "amritsa",
+      "expect": [
+        "ATQ"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(ATQ) top=ATQ:Amritsar",
+      "rank": 1,
+      "matchedCode": "ATQ",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "ATQ",
+          "city": "Amritsar",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "query": "amristsar",
+      "expect": [
+        "ATQ"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(ATQ) top=ATQ:Amritsar",
+      "rank": 1,
+      "matchedCode": "ATQ",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "ATQ",
+          "city": "Amritsar",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "query": "amritsar",
+      "expect": [
+        "ATQ"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(ATQ) top=ATQ:Amritsar",
+      "rank": 1,
+      "matchedCode": "ATQ",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "ATQ",
+          "city": "Amritsar",
+          "airportName": "Sri Guru Ram Dass Jee International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "query": "pone",
+      "expect": [
+        "PNQ"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=10 expect@MISS(-) top=PIC:Pine Cay | XPR:Pine Ridge | CZP:North Pole | PBF:Pine Bluff | LNP:Wise — wrong/miss; top1=PIC:Pine Cay",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "PIC:Pine Cay",
+      "top": [
+        {
+          "airportCode": "PIC",
+          "city": "Pine Cay",
+          "airportName": "Pine Cay Airport",
+          "country": "Turks And Caicos Islands"
+        },
+        {
+          "airportCode": "XPR",
+          "city": "Pine Ridge",
+          "airportName": "Pine Ridge Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "CZP",
+          "city": "North Pole",
+          "airportName": "Cape Pole Sea Plane Base",
+          "country": "United States"
+        },
+        {
+          "airportCode": "PBF",
+          "city": "Pine Bluff",
+          "airportName": "Pine Bluff Regional Airport, Grider Field",
+          "country": "United States"
+        },
+        {
+          "airportCode": "LNP",
+          "city": "Wise",
+          "airportName": "Lonesome Pine Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "query": "punne",
+      "expect": [
+        "PNQ"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 expect@1(PNQ) top=PNQ:Pune | CEQ:Cannes | JCA:Cannes | PCH:Juan Francisco Bulnes",
+      "rank": 1,
+      "matchedCode": "PNQ",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "PNQ",
+          "city": "Pune",
+          "airportName": "Pune Airport / Lohagaon Air Force Station",
+          "country": "India"
+        },
+        {
+          "airportCode": "CEQ",
+          "city": "Cannes",
+          "airportName": "Cannes-Mandelieu Airport",
+          "country": "France"
+        },
+        {
+          "airportCode": "JCA",
+          "city": "Cannes",
+          "airportName": "Croisette Heliport",
+          "country": "France"
+        },
+        {
+          "airportCode": "PCH",
+          "city": "Juan Francisco Bulnes",
+          "airportName": "Palacios Airport",
+          "country": "Honduras"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "query": "poona",
+      "expect": [
+        "PNQ"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=2 expect@MISS(-) top=AON:Kainantu | BNV:Lae — wrong/miss; top1=AON:Kainantu",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "AON:Kainantu",
+      "top": [
+        {
+          "airportCode": "AON",
+          "city": "Kainantu",
+          "airportName": "Arona Airport",
+          "country": "Papua new Guinea"
+        },
+        {
+          "airportCode": "BNV",
+          "city": "Lae",
+          "airportName": "Boana Airport",
+          "country": "Papua new Guinea"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "query": "goa",
+      "expect": [
+        "GOI",
+        "GOX"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@2(GOI) top=GOA:Mele | GOI:Vasco da Gama",
+      "rank": 2,
+      "matchedCode": "GOI",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "GOA",
+          "city": "Mele",
+          "airportName": "Genoa Cristoforo Colombo Airport",
+          "country": "Italy"
+        },
+        {
+          "airportCode": "GOI",
+          "city": "Vasco da Gama",
+          "airportName": "Dabolim Airport, Goa",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "query": "goaa",
+      "expect": [
+        "GOI",
+        "GOX"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=10 expect@5(GOI) top=OYA:Goya | BGN:Belaya Gora | GOM:Goma | GOC:Popondetta | GOI:Vasco da Gama — wrong/miss; top1=OYA:Goya",
+      "rank": 5,
+      "matchedCode": "GOI",
+      "wrongTop": "OYA:Goya",
+      "top": [
+        {
+          "airportCode": "OYA",
+          "city": "Goya",
+          "airportName": "Goya Airport",
+          "country": "Argentina"
+        },
+        {
+          "airportCode": "BGN",
+          "city": "Belaya Gora",
+          "airportName": "Belaya Gora Airport",
+          "country": "Russia"
+        },
+        {
+          "airportCode": "GOM",
+          "city": "Goma",
+          "airportName": "Goma International Airport",
+          "country": "Democratic Republic of the Congo"
+        },
+        {
+          "airportCode": "GOC",
+          "city": "Popondetta",
+          "airportName": "Gora Airstrip",
+          "country": "Papua new Guinea"
+        },
+        {
+          "airportCode": "GOI",
+          "city": "Vasco da Gama",
+          "airportName": "Dabolim Airport, Goa",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "query": "dabolim",
+      "expect": [
+        "GOI"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(GOI) top=GOI:Vasco da Gama",
+      "rank": 1,
+      "matchedCode": "GOI",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "GOI",
+          "city": "Vasco da Gama",
+          "airportName": "Dabolim Airport, Goa",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "query": "jaipu",
+      "expect": [
+        "JAI"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@1(JAI) top=JAI:Jaipur | MXQ:Cairu",
+      "rank": 1,
+      "matchedCode": "JAI",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "JAI",
+          "city": "Jaipur",
+          "airportName": "Jaipur International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "MXQ",
+          "city": "Cairu",
+          "airportName": "Morro de São Paulo Airport",
+          "country": "Brazil"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "query": "jaipurr",
+      "expect": [
+        "JAI"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=3 expect@1(JAI) top=JAI:Jaipur | RGT:Kabupaten Indragiri Hulu | RPR:Raipur",
+      "rank": 1,
+      "matchedCode": "JAI",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "JAI",
+          "city": "Jaipur",
+          "airportName": "Jaipur International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "RGT",
+          "city": "Kabupaten Indragiri Hulu",
+          "airportName": "Japura Airport",
+          "country": "Indonesia"
+        },
+        {
+          "airportCode": "RPR",
+          "city": "Raipur",
+          "airportName": "Swami Vivekananda Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "query": "jaypur",
+      "expect": [
+        "JAI"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 expect@1(JAI) top=JAI:Jaipur | KNU:Kanpur | YJA:Jasper Park Lodge | KNU:Kanpur | JAS:Jasper",
+      "rank": 1,
+      "matchedCode": "JAI",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "JAI",
+          "city": "Jaipur",
+          "airportName": "Jaipur International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "KNU",
+          "city": "Kanpur",
+          "airportName": "Kanpur Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "YJA",
+          "city": "Jasper Park Lodge",
+          "airportName": "Jasper Airport",
+          "country": "Canada"
+        },
+        {
+          "airportCode": "KNU",
+          "city": "Kanpur",
+          "airportName": "Kanpur Civil Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "JAS",
+          "city": "Jasper",
+          "airportName": "Jasper County Airport Bell Field",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "query": "lucknw",
+      "expect": [
+        "LKO"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(LKO) top=LKO:Lucknow",
+      "rank": 1,
+      "matchedCode": "LKO",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "LKO",
+          "city": "Lucknow",
+          "airportName": "Chaudhary Charan Singh International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "query": "lakhnau",
+      "expect": [
+        "LKO"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 49,
+      "query": "lucknou",
+      "expect": [
+        "LKO"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@2(LKO) top=NKG:Nanjing | LKO:Lucknow",
+      "rank": 2,
+      "matchedCode": "LKO",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "NKG",
+          "city": "Nanjing",
+          "airportName": "Nanjing Lukou International Airport",
+          "country": "China"
+        },
+        {
+          "airportCode": "LKO",
+          "city": "Lucknow",
+          "airportName": "Chaudhary Charan Singh International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "query": "kochi",
+      "expect": [
+        "COK"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=5 expect@1(COK) top=COK:Kochi | KCZ:Nankoku | AER:Sochi | LMM:Los Mochis | OCH:Nacogdoches",
+      "rank": 1,
+      "matchedCode": "COK",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "COK",
+          "city": "Kochi",
+          "airportName": "Cochin International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "KCZ",
+          "city": "Nankoku",
+          "airportName": "Kochi Ryoma Airport",
+          "country": "Japan"
+        },
+        {
+          "airportCode": "AER",
+          "city": "Sochi",
+          "airportName": "Sochi International Airport",
+          "country": "Russia"
+        },
+        {
+          "airportCode": "LMM",
+          "city": "Los Mochis",
+          "airportName": "Valle del Fuerte International Airport",
+          "country": "Mexico"
+        },
+        {
+          "airportCode": "OCH",
+          "city": "Nacogdoches",
+          "airportName": "A L Mangham Jr. Regional Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "query": "cochin",
+      "expect": [
+        "COK"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(COK) top=COK:Kochi",
+      "rank": 1,
+      "matchedCode": "COK",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "COK",
+          "city": "Kochi",
+          "airportName": "Cochin International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "query": "cochinn",
+      "expect": [
+        "COK"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=3 expect@1(COK) top=COK:Kochi | CWX:Willcox | TRM:Palm Springs",
+      "rank": 1,
+      "matchedCode": "COK",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "COK",
+          "city": "Kochi",
+          "airportName": "Cochin International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "CWX",
+          "city": "Willcox",
+          "airportName": "Cochise County Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "TRM",
+          "city": "Palm Springs",
+          "airportName": "Jacqueline Cochran Regional Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "query": "kocchi",
+      "expect": [
+        "COK"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@2(COK) top=KCZ:Nankoku | COK:Kochi",
+      "rank": 2,
+      "matchedCode": "COK",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "KCZ",
+          "city": "Nankoku",
+          "airportName": "Kochi Ryoma Airport",
+          "country": "Japan"
+        },
+        {
+          "airportCode": "COK",
+          "city": "Kochi",
+          "airportName": "Cochin International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "query": "trivandrum",
+      "expect": [
+        "TRV"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 55,
+      "query": "trivandrm",
+      "expect": [
+        "TRV"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 56,
+      "query": "thiruvananthapuram",
+      "expect": [
+        "TRV"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(TRV) top=TRV:Thiruvananthapuram",
+      "rank": 1,
+      "matchedCode": "TRV",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "TRV",
+          "city": "Thiruvananthapuram",
+          "airportName": "Thiruvananthapuram International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "query": "srinagr",
+      "expect": [
+        "SXR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(SXR) top=SXR:Srinagar",
+      "rank": 1,
+      "matchedCode": "SXR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "SXR",
+          "city": "Srinagar",
+          "airportName": "Srinagar International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "query": "srinagar",
+      "expect": [
+        "SXR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(SXR) top=SXR:Srinagar",
+      "rank": 1,
+      "matchedCode": "SXR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "SXR",
+          "city": "Srinagar",
+          "airportName": "Srinagar International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "query": "varanasi",
+      "expect": [
+        "VNS"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(VNS) top=VNS:Varanasi",
+      "rank": 1,
+      "matchedCode": "VNS",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "VNS",
+          "city": "Varanasi",
+          "airportName": "Lal Bahadur Shastri Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "query": "varanasi",
+      "expect": [
+        "VNS"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(VNS) top=VNS:Varanasi",
+      "rank": 1,
+      "matchedCode": "VNS",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "VNS",
+          "city": "Varanasi",
+          "airportName": "Lal Bahadur Shastri Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "query": "benaras",
+      "expect": [
+        "VNS"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=0 expect@MISS(-) top=(none) — empty (expected city miss)",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": null,
+      "top": []
+    },
+    {
+      "id": 62,
+      "query": "banaras",
+      "expect": [
+        "VNS"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=10 expect@MISS(-) top=NAS:Nassau | WZY:Nassau | GTC:Marsh Harbour | HBI:Dunmore Town | NSB:Alice Town — wrong/miss; top1=NAS:Nassau",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "NAS:Nassau",
+      "top": [
+        {
+          "airportCode": "NAS",
+          "city": "Nassau",
+          "airportName": "Lynden Pindling International Airport",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "WZY",
+          "city": "Nassau",
+          "airportName": "Paradise Island-Seaplane Base",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "GTC",
+          "city": "Marsh Harbour",
+          "airportName": "Green Turtle Airport",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "HBI",
+          "city": "Dunmore Town",
+          "airportName": "Harbour Island Airport",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "NSB",
+          "city": "Alice Town",
+          "airportName": "Bimini North Seaplane Base",
+          "country": "The Bahamas"
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "query": "indor",
+      "expect": [
+        "IDR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=8 expect@1(IDR) top=IDR:Indore | SAQ:San Andros | ASD:Andros Town | RCP:Lake and Peninsula Borough | SAI:Srŏk Prasat Bakong",
+      "rank": 1,
+      "matchedCode": "IDR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "IDR",
+          "city": "Indore",
+          "airportName": "Devi Ahilyabai Holkar Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "SAQ",
+          "city": "San Andros",
+          "airportName": "San Andros Airport",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "ASD",
+          "city": "Andros Town",
+          "airportName": "Andros Town Airport",
+          "country": "The Bahamas"
+        },
+        {
+          "airportCode": "RCP",
+          "city": "Lake and Peninsula Borough",
+          "airportName": "Cinder Park Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "SAI",
+          "city": "Srŏk Prasat Bakong",
+          "airportName": "Siem Reap-Ankor International Airport",
+          "country": "Cambodia"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "query": "indoor",
+      "expect": [
+        "IDR"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@1(IDR) top=IDR:Indore | YQG:Windsor",
+      "rank": 1,
+      "matchedCode": "IDR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "IDR",
+          "city": "Indore",
+          "airportName": "Devi Ahilyabai Holkar Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "YQG",
+          "city": "Windsor",
+          "airportName": "Windsor Airport",
+          "country": "Canada"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "query": "nagpr",
+      "expect": [
+        "NAG"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=4 expect@4(NAG) top=RMD:Ramagundam | ANE:Seiches-sur-le-Loir | NDR:Al Aaroui | NAG:Nagpur — wrong/miss; top1=RMD:Ramagundam",
+      "rank": 4,
+      "matchedCode": "NAG",
+      "wrongTop": "RMD:Ramagundam",
+      "top": [
+        {
+          "airportCode": "RMD",
+          "city": "Ramagundam",
+          "airportName": "Basanth Nagar Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "ANE",
+          "city": "Seiches-sur-le-Loir",
+          "airportName": "Angers-Loire Airport",
+          "country": "France"
+        },
+        {
+          "airportCode": "NDR",
+          "city": "Al Aaroui",
+          "airportName": "Nador Al Aaroui International Airport",
+          "country": "Morocco"
+        },
+        {
+          "airportCode": "NAG",
+          "city": "Nagpur",
+          "airportName": "Dr. Babasaheb Ambedkar International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "query": "nagpur",
+      "expect": [
+        "NAG"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 expect@1(NAG) top=NAG:Nagpur | KNU:Kanpur | KNU:Kanpur | JAI:Jaipur",
+      "rank": 1,
+      "matchedCode": "NAG",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "NAG",
+          "city": "Nagpur",
+          "airportName": "Dr. Babasaheb Ambedkar International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "KNU",
+          "city": "Kanpur",
+          "airportName": "Kanpur Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "KNU",
+          "city": "Kanpur",
+          "airportName": "Kanpur Civil Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "JAI",
+          "city": "Jaipur",
+          "airportName": "Jaipur International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "query": "chandigar",
+      "expect": [
+        "IXC"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@1(IXC) top=IXC:Chandigarh | WCR:Azle",
+      "rank": 1,
+      "matchedCode": "IXC",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "IXC",
+          "city": "Chandigarh",
+          "airportName": "Chandigarh International Airport",
+          "country": "India"
+        },
+        {
+          "airportCode": "WCR",
+          "city": "Azle",
+          "airportName": "Chandalar Lake Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "query": "chandigrah",
+      "expect": [
+        "IXC"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(IXC) top=IXC:Chandigarh",
+      "rank": 1,
+      "matchedCode": "IXC",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "IXC",
+          "city": "Chandigarh",
+          "airportName": "Chandigarh International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "query": "guwhati",
+      "expect": [
+        "GAU"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(GAU) top=GAU:Guwahati",
+      "rank": 1,
+      "matchedCode": "GAU",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "GAU",
+          "city": "Guwahati",
+          "airportName": "Lokpriya Gopinath Bordoloi International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "query": "guwahati",
+      "expect": [
+        "GAU"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=1 expect@1(GAU) top=GAU:Guwahati",
+      "rank": 1,
+      "matchedCode": "GAU",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "GAU",
+          "city": "Guwahati",
+          "airportName": "Lokpriya Gopinath Bordoloi International Airport",
+          "country": "India"
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "query": "gauhati",
+      "expect": [
+        "GAU"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=1 expect@MISS(-) top=WLN:Craig — wrong/miss; top1=WLN:Craig",
+      "rank": null,
+      "matchedCode": null,
+      "wrongTop": "WLN:Craig",
+      "top": [
+        {
+          "airportCode": "WLN",
+          "city": "Craig",
+          "airportName": "Little Naukati Airport",
+          "country": "United States"
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "query": "singapor",
+      "expect": [
+        "SIN"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 expect@1(SIN) top=SIN:Singapore | XSP:Singapore | TGA:Singapore | QPG:Singapore",
+      "rank": 1,
+      "matchedCode": "SIN",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "SIN",
+          "city": "Singapore",
+          "airportName": "Singapore Changi Airport",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "XSP",
+          "city": "Singapore",
+          "airportName": "Seletar Airport",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "TGA",
+          "city": "Singapore",
+          "airportName": "Tengah Air Base",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "QPG",
+          "city": "Singapore",
+          "airportName": "Paya Lebar Air Base",
+          "country": "Singapore"
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "query": "singpore",
+      "expect": [
+        "SIN"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 expect@1(SIN) top=SIN:Singapore | XSP:Singapore | TGA:Singapore | QPG:Singapore",
+      "rank": 1,
+      "matchedCode": "SIN",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "SIN",
+          "city": "Singapore",
+          "airportName": "Singapore Changi Airport",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "XSP",
+          "city": "Singapore",
+          "airportName": "Seletar Airport",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "TGA",
+          "city": "Singapore",
+          "airportName": "Tengah Air Base",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "QPG",
+          "city": "Singapore",
+          "airportName": "Paya Lebar Air Base",
+          "country": "Singapore"
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "query": "singapre",
+      "expect": [
+        "SIN"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=4 expect@1(SIN) top=SIN:Singapore | XSP:Singapore | TGA:Singapore | QPG:Singapore",
+      "rank": 1,
+      "matchedCode": "SIN",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "SIN",
+          "city": "Singapore",
+          "airportName": "Singapore Changi Airport",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "XSP",
+          "city": "Singapore",
+          "airportName": "Seletar Airport",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "TGA",
+          "city": "Singapore",
+          "airportName": "Tengah Air Base",
+          "country": "Singapore"
+        },
+        {
+          "airportCode": "QPG",
+          "city": "Singapore",
+          "airportName": "Paya Lebar Air Base",
+          "country": "Singapore"
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "query": "dubia",
+      "expect": [
+        "DXB"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=8 expect@1(DXB) top=DXB:Dubai | XNB:Dubai | BUX:Bunia | MZL:Manizales | DPE:Dieppe",
+      "rank": 1,
+      "matchedCode": "DXB",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "DXB",
+          "city": "Dubai",
+          "airportName": "Dubai International Airport",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "XNB",
+          "city": "Dubai",
+          "airportName": "Dubai Bus Station",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "BUX",
+          "city": "Bunia",
+          "airportName": "Bunia Airport",
+          "country": "Democratic Republic of the Congo"
+        },
+        {
+          "airportCode": "MZL",
+          "city": "Manizales",
+          "airportName": "La Nubia Airport",
+          "country": "Colombia"
+        },
+        {
+          "airportCode": "DPE",
+          "city": "Dieppe",
+          "airportName": "St Aubin Airport",
+          "country": "France"
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "query": "duabi",
+      "expect": [
+        "DXB"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=9 expect@1(DXB) top=DXB:Dubai | XNB:Dubai | ZVJ:Abu Dhabi | SBE:Arawa | DWC:Dubai",
+      "rank": 1,
+      "matchedCode": "DXB",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "DXB",
+          "city": "Dubai",
+          "airportName": "Dubai International Airport",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "XNB",
+          "city": "Dubai",
+          "airportName": "Dubai Bus Station",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "ZVJ",
+          "city": "Abu Dhabi",
+          "airportName": "Abu Dhabi EK Bus Station",
+          "country": "United Arab Emirates"
+        },
+        {
+          "airportCode": "SBE",
+          "city": "Arawa",
+          "airportName": "Suabi Airport",
+          "country": "Papua new Guinea"
+        },
+        {
+          "airportCode": "DWC",
+          "city": "Dubai",
+          "airportName": "Al Maktoum International Airport",
+          "country": "United Arab Emirates"
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "query": "bangkock",
+      "expect": [
+        "BKK",
+        "DMK"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=2 expect@1(BKK) top=BKK:Bangkok | DMK:Bangkok",
+      "rank": 1,
+      "matchedCode": "BKK",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "BKK",
+          "city": "Bangkok",
+          "airportName": "Suvarnabhumi Airport",
+          "country": "Thailand"
+        },
+        {
+          "airportCode": "DMK",
+          "city": "Bangkok",
+          "airportName": "Don Mueang International Airport",
+          "country": "Thailand"
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "query": "bankok",
+      "expect": [
+        "BKK",
+        "DMK"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=6 expect@3(BKK) top=BGR:Bangor | BDY:Bandon | BKK:Bangkok | DVO:Davao | FKI:Kisangani",
+      "rank": 3,
+      "matchedCode": "BKK",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "BGR",
+          "city": "Bangor",
+          "airportName": "Bangor International Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "BDY",
+          "city": "Bandon",
+          "airportName": "Bandon State Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "BKK",
+          "city": "Bangkok",
+          "airportName": "Suvarnabhumi Airport",
+          "country": "Thailand"
+        },
+        {
+          "airportCode": "DVO",
+          "city": "Davao",
+          "airportName": "Francisco Bangoy International Airport",
+          "country": "Philippines"
+        },
+        {
+          "airportCode": "FKI",
+          "city": "Kisangani",
+          "airportName": "Bangoka International Airport",
+          "country": "Democratic Republic of the Congo"
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "query": "londn",
+      "expect": [
+        "LON",
+        "LHR",
+        "LGW",
+        "STN",
+        "LCY"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 expect@1(LHR) top=LHR:London | LGW:London | YXU:London | LCY:London | LTN:London",
+      "rank": 1,
+      "matchedCode": "LHR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "LHR",
+          "city": "London",
+          "airportName": "London Heathrow Airport",
+          "country": "United Kingdom"
+        },
+        {
+          "airportCode": "LGW",
+          "city": "London",
+          "airportName": "London Gatwick Airport",
+          "country": "United Kingdom"
+        },
+        {
+          "airportCode": "YXU",
+          "city": "London",
+          "airportName": "London Airport",
+          "country": "Canada"
+        },
+        {
+          "airportCode": "LCY",
+          "city": "London",
+          "airportName": "London City Airport",
+          "country": "United Kingdom"
+        },
+        {
+          "airportCode": "LTN",
+          "city": "London",
+          "airportName": "London Luton Airport",
+          "country": "United Kingdom"
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "query": "pariss",
+      "expect": [
+        "PAR",
+        "CDG",
+        "ORY"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 expect@1(ORY) top=ORY:Paris | PAR:Paris | GAS:Garissa | LBG:Paris | CDG:Paris",
+      "rank": 1,
+      "matchedCode": "ORY",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "ORY",
+          "city": "Paris",
+          "airportName": "Paris-Orly Airport",
+          "country": "France"
+        },
+        {
+          "airportCode": "PAR",
+          "city": "Paris",
+          "airportName": "All Airports",
+          "country": "France"
+        },
+        {
+          "airportCode": "GAS",
+          "city": "Garissa",
+          "airportName": "Garissa Airport",
+          "country": "Kenya"
+        },
+        {
+          "airportCode": "LBG",
+          "city": "Paris",
+          "airportName": "Paris-Le Bourget Airport",
+          "country": "France"
+        },
+        {
+          "airportCode": "CDG",
+          "city": "Paris",
+          "airportName": "Charles de Gaulle International Airport",
+          "country": "France"
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "query": "tokoyo",
+      "expect": [
+        "TYO",
+        "HND",
+        "NRT"
+      ],
+      "note": null,
+      "status": "PASS",
+      "actual": "HTTP 200 n=10 expect@1(TYO) top=TYO:Tokyo | HND:Tokyo | BKR:Bokoro | OKK:Kokomo | OKG:Ewo",
+      "rank": 1,
+      "matchedCode": "TYO",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "TYO",
+          "city": "Tokyo",
+          "airportName": "Tokyo",
+          "country": "Japan"
+        },
+        {
+          "airportCode": "HND",
+          "city": "Tokyo",
+          "airportName": "Tokyo Haneda International Airport",
+          "country": "Japan"
+        },
+        {
+          "airportCode": "BKR",
+          "city": "Bokoro",
+          "airportName": "Bokoro Airport",
+          "country": "Chad"
+        },
+        {
+          "airportCode": "OKK",
+          "city": "Kokomo",
+          "airportName": "Kokomo Municipal Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "OKG",
+          "city": "Ewo",
+          "airportName": "Okoyo Airport",
+          "country": "Congo"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "query": "newyrok",
+      "expect": [
+        "NYC",
+        "JFK",
+        "EWR",
+        "LGA"
+      ],
+      "note": null,
+      "status": "BUG",
+      "actual": "HTTP 200 n=2 expect@1(EWR) top=EWR:Newark | WWT:Azle",
+      "rank": 1,
+      "matchedCode": "EWR",
+      "wrongTop": null,
+      "top": [
+        {
+          "airportCode": "EWR",
+          "city": "Newark",
+          "airportName": "Newark Liberty International Airport",
+          "country": "United States"
+        },
+        {
+          "airportCode": "WWT",
+          "city": "Azle",
+          "airportName": "Newtok Airport",
+          "country": "United States"
+        }
+      ]
+    }
+  ]
+}

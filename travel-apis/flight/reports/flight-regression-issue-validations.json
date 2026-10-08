@@ -1,0 +1,1774 @@
+{
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "issuePath": "/api/v2/flights/booking/issue-ticket",
+  "searchMeta": {
+    "days": 14,
+    "searchId": "srch_58b0d5ee471e4a678a30626594c36b58",
+    "priceId": "price_0f95bdc067f54bbf943f7e6bc9e69053",
+    "departDate": "2026-09-21"
+  },
+  "counts": {
+    "PASS": 78,
+    "FAIL": 0,
+    "BUG": 7,
+    "INFO": 1,
+    "total": 86
+  },
+  "bugs": [
+    {
+      "id": "SC5",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — currency with trailing comma (INR,)",
+      "how": "Clone priced issue-ticket; set currency=\"INR,\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "Accepted payload that added extra special characters / comma",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted payload that added extra special characters / comma",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1788789458686152\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"bookingReference\":\"BR1788789458686152\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:41.719Z"
+    },
+    {
+      "id": "SC6",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — type with trailing comma (ticket,)",
+      "how": "Clone priced issue-ticket; set type=\"ticket,\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "Accepted payload that added extra special characters / comma",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted payload that added extra special characters / comma",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1788789461276791\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"bookingReference\":\"BR1788789461276791\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:42.255Z"
+    },
+    {
+      "id": "SC10",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — searchId with trailing comma",
+      "how": "Clone priced issue-ticket; append comma to searchIds[0]; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "HTTP 500 Internal Server Error after special chars — expected 4xx error envelope",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "HTTP 500 Internal Server Error after special chars — expected 4xx error envelope",
+      "http": 500,
+      "code": "PRICING_FETCH_FAILED",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"PRICING_FETCH_FAILED\",\"message\":\"Failed to fetch flight pricing details\",\"details\":null,\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462421\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"PRICING_FETCH_FAILED\",\"message\":\"Failed to fetch flight pricing details\",\"details\":null,\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462421\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:42.484Z"
+    },
+    {
+      "id": "SC11",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — cityName with comma and punctuation",
+      "how": "Clone priced issue-ticket; set city.cityName=\"Pune, <>!\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "Accepted payload that added extra special characters / comma",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted payload that added extra special characters / comma",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1788789462364083\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"bookingReference\":\"BR1788789462364083\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:42.980Z"
+    },
+    {
+      "id": "V1-T1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /v1/flights/booking/issue-ticket — omit type",
+      "how": "Clone priced ticket body, omit type, POST /v1/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx VALIDATION_ERROR (never 500)",
+      "actual": "Accepted invalid v1 payload",
+      "expectedDetailHint": "/type/",
+      "status": "BUG",
+      "note": "Accepted invalid v1 payload",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'type' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'type' is required\"],\"timestamp\":\"2026-09-07T13:57:25Z\",\"request_id\":\"req-1788789445811\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'type' is required\"],\"timestamp\":\"2026-09-07T13:57:25Z\",\"request_id\":\"req-1788789445811\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:43.028Z"
+    },
+    {
+      "id": "V1-SC1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /v1/flights/booking/issue-ticket — firstName with trailing comma",
+      "how": "Clone priced ticket body, set firstName=\"Rohan,\", POST /v1/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx (never 500)",
+      "actual": "Accepted v1 payload with comma in firstName",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted v1 payload with comma in firstName",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.firstName' must contain only letters and spaces"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458304\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458304\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:43.075Z"
+    },
+    {
+      "id": "V1-SC2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /v1/flights/booking/issue-ticket — searchId with trailing comma",
+      "how": "Clone priced ticket body, append comma to searchIds[0], POST /v1/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx (never 500)",
+      "actual": "Accepted v1 payload with comma on searchId",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted v1 payload with comma on searchId",
+      "http": 200,
+      "code": "PRICING_FETCH_FAILED",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"PRICING_FETCH_FAILED\",\"message\":\"Failed to fetch flight pricing details\",\"details\":null,\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462421\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"PRICING_FETCH_FAILED\",\"message\":\"Failed to fetch flight pricing details\",\"details\":null,\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462421\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:43.142Z"
+    }
+  ],
+  "fails": [],
+  "rows": [
+    {
+      "id": "S0",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — valid priced issue-ticket body is accepted (not VALIDATION_ERROR)",
+      "how": "Priced OW BOM→DEL (searchId=srch_58b0d5ee471e4a678a30626594c36b58, priceId=price_0f95bdc067f54bbf943f7e6bc9e69053), then POST /api/v2/flights/booking/issue-ticket with a complete ticket body (passengers, contact, priceId, bookingReference).",
+      "expected": "Must not return VALIDATION_ERROR (HTTP 200 book or a later business error is OK)",
+      "actual": "Not validation-blocked (HTTP 200 code=null)",
+      "expectedDetailHint": "none",
+      "status": "PASS",
+      "note": "Not validation-blocked (HTTP 200 code=null)",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1788789443265183\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"bookingReference\":\"BR1788789443265183\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:25.811Z"
+    },
+    {
+      "id": "T1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — type required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (type required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /type/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/type/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'type' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'type' is required\"],\"timestamp\":\"2026-09-07T13:57:25Z\",\"request_id\":\"req-1788789445811\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'type' is required\"],\"timestamp\":\"2026-09-07T13:57:25Z\",\"request_id\":\"req-1788789445811\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:25.866Z"
+    },
+    {
+      "id": "T2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — type non-empty",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (type non-empty), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /type/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/type/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'type' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'type' is required\"],\"timestamp\":\"2026-09-07T13:57:25Z\",\"request_id\":\"req-1788789445867\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'type' is required\"],\"timestamp\":\"2026-09-07T13:57:25Z\",\"request_id\":\"req-1788789445867\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.047Z"
+    },
+    {
+      "id": "T3",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — currency required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (currency required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /currency/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/currency/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'currency' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'currency' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446047\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'currency' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446047\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.097Z"
+    },
+    {
+      "id": "T4",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — currency non-empty",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (currency non-empty), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /currency/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/currency/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'currency' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'currency' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446098\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'currency' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446098\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.158Z"
+    },
+    {
+      "id": "T5",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — language required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (language required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /language/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/language/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'language' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'language' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446158\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'language' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446158\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.210Z"
+    },
+    {
+      "id": "T6",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — timezone required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (timezone required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /timezone/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/timezone/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'timezone' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'timezone' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446210\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'timezone' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446210\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.262Z"
+    },
+    {
+      "id": "T7",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — bookingReference required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (bookingReference required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /bookingReference/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/bookingReference/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446262\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446262\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.320Z"
+    },
+    {
+      "id": "T8",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — searchIds required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (searchIds required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /searchIds/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/searchIds/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'searchIds' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'searchIds' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446320\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'searchIds' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446320\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.371Z"
+    },
+    {
+      "id": "T9",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — searchIds non-empty",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (searchIds non-empty), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /searchIds/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/searchIds/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'searchIds' must be a non-empty array"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'searchIds' must be a non-empty array\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446371\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'searchIds' must be a non-empty array\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446371\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.428Z"
+    },
+    {
+      "id": "T10",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — journeyType required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (journeyType required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /journeyType/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/journeyType/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'journeyType' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'journeyType' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446429\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'journeyType' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446429\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.475Z"
+    },
+    {
+      "id": "T11",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — journeyType enum",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (journeyType enum), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /journeyType|ONE_WAY|ROUND_TRIP|MULTI_CITY/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/journeyType|ONE_WAY|ROUND_TRIP|MULTI_CITY/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'journeyType' must be one of: ONE_WAY, ROUND_TRIP, MULTI_CITY"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'journeyType' must be one of: ONE_WAY, ROUND_TRIP, MULTI_CITY\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446476\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'journeyType' must be one of: ONE_WAY, ROUND_TRIP, MULTI_CITY\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446476\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.529Z"
+    },
+    {
+      "id": "D1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — data required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (data required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /data/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/data/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data' object is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data' object is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446530\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data' object is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446530\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.579Z"
+    },
+    {
+      "id": "D2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — priceId required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (priceId required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /priceId/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/priceId/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.priceId' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.priceId' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446579\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.priceId' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446579\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.627Z"
+    },
+    {
+      "id": "D3",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — priceId non-empty",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (priceId non-empty), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /priceId/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/priceId/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.priceId' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.priceId' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446628\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.priceId' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446628\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.678Z"
+    },
+    {
+      "id": "D4",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — passportType required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (passportType required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passportType/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/passportType/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passportType' is required and must be one of: NONE, MINI, FULL"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passportType' is required and must be one of: NONE, MINI, FULL\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446678\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passportType' is required and must be one of: NONE, MINI, FULL\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446678\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.731Z"
+    },
+    {
+      "id": "D5",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — passportType enum",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (passportType enum), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passportType|NONE|MINI|FULL/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/passportType|NONE|MINI|FULL/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passportType' is required and must be one of: NONE, MINI, FULL",
+        "'data.passengers[0].passport.number' is required when passportType is 'PARTIAL'",
+        "'data.passengers[0].passport.expiry' is required when passportType is 'PARTIAL'"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passportType' is required and must be one of: NONE, MINI, FULL\",\"'data.passengers[0].passport.number' is required when passportType is 'PARTIAL'\",\"'data.passengers[0].passport.expiry' is required when passportType is 'PARTIAL'\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446731\"},\"_meta\":{\"correlat",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passportType' is required and must be one of: NONE, MINI, FULL\",\"'data.passengers[0].passport.number' is required when passportType is 'PARTIAL'\",\"'data.passengers[0].passport.expiry' is required when passportType is 'PARTIAL'\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446731\"},\"_meta\":{\"correlat",
+      "at": "2026-09-07T13:57:26.816Z"
+    },
+    {
+      "id": "D6",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — includeGst required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (includeGst required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /includeGst/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/includeGst/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.includeGst' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.includeGst' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446816\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.includeGst' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446816\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.869Z"
+    },
+    {
+      "id": "C1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — contact.email required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (contact.email required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /email/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/email/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.email' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.email' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446870\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.email' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446870\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.921Z"
+    },
+    {
+      "id": "C2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — contact.email format",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (contact.email format), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /email/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/email/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.email' is not a valid email address"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.email' is not a valid email address\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446921\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.email' is not a valid email address\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446921\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:26.973Z"
+    },
+    {
+      "id": "C3",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — contact.mobile required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (contact.mobile required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /mobile/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/mobile/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.mobile' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446974\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' is required\"],\"timestamp\":\"2026-09-07T13:57:26Z\",\"request_id\":\"req-1788789446974\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.032Z"
+    },
+    {
+      "id": "C4",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — contact.mobile too short",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (contact.mobile too short), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /mobile|7 to 15|digits/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/mobile|7 to 15|digits/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.mobile' must contain 7 to 15 digits"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' must contain 7 to 15 digits\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447032\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' must contain 7 to 15 digits\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447032\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.086Z"
+    },
+    {
+      "id": "C5",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — contact.mobile too long",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (contact.mobile too long), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /mobile|7 to 15|digits/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/mobile|7 to 15|digits/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.mobile' must contain 7 to 15 digits"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' must contain 7 to 15 digits\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447086\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' must contain 7 to 15 digits\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447086\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.139Z"
+    },
+    {
+      "id": "C6",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — contact.mobile non-digits",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (contact.mobile non-digits), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /mobile|digit/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/mobile|digit/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.mobile' must contain 7 to 15 digits"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' must contain 7 to 15 digits\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447139\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' must contain 7 to 15 digits\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447139\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.188Z"
+    },
+    {
+      "id": "C7",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — contact.countryCode required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (contact.countryCode required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /countryCode/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/countryCode/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.countryCode' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.countryCode' is required\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447188\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.countryCode' is required\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447188\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.240Z"
+    },
+    {
+      "id": "G1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — gstDetails required when includeGst true",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (gstDetails required when includeGst true), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /gst/i",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/gst/i",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.gstDetails' is required when includeGst is true"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.gstDetails' is required when includeGst is true\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447240\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.gstDetails' is required when includeGst is true\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447240\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.302Z"
+    },
+    {
+      "id": "G2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — gstNumber required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (gstNumber required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /gstNumber/i",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/gstNumber/i",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.gstDetails.gstNumber' is required when includeGst is true"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.gstDetails.gstNumber' is required when includeGst is true\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447302\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.gstDetails.gstNumber' is required when includeGst is true\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447302\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.352Z"
+    },
+    {
+      "id": "G3",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — gstEmailID format",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (gstEmailID format), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /gstEmail|email/i",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/gstEmail|email/i",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.gstDetails.gstEmailID' is not a valid email address"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.gstDetails.gstEmailID' is not a valid email address\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447352\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.gstDetails.gstEmailID' is not a valid email address\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447352\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.402Z"
+    },
+    {
+      "id": "P1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — passengers required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (passengers required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passenger/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/passenger/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers' is required and must be a non-empty array"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers' is required and must be a non-empty array\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447402\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers' is required and must be a non-empty array\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447402\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.454Z"
+    },
+    {
+      "id": "P2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — passengers non-empty",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (passengers non-empty), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passenger/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/passenger/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers' is required and must be a non-empty array"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers' is required and must be a non-empty array\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447454\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers' is required and must be a non-empty array\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447454\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.503Z"
+    },
+    {
+      "id": "P3",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — paxId required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (paxId required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /paxId/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/paxId/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].paxId' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].paxId' is required\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447503\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].paxId' is required\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447503\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.556Z"
+    },
+    {
+      "id": "P4",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — type required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (type required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /type|adult|child|infant/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/type|adult|child|infant/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].type' is required",
+        "'data.passengers[0].isLead' can only be true for an adult passenger"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].type' is required\",\"'data.passengers[0].isLead' can only be true for an adult passenger\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447556\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].type' is required\",\"'data.passengers[0].isLead' can only be true for an adult passenger\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447556\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.602Z"
+    },
+    {
+      "id": "P5",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — type enum",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (type enum), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /adult|child|infant/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/adult|child|infant/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].type' must be one of: adult, child, infant",
+        "'data.passengers[0].isLead' can only be true for an adult passenger"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].type' must be one of: adult, child, infant\",\"'data.passengers[0].isLead' can only be true for an adult passenger\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447602\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].type' must be one of: adult, child, infant\",\"'data.passengers[0].isLead' can only be true for an adult passenger\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447602\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.648Z"
+    },
+    {
+      "id": "P6",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — isLead required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (isLead required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /isLead/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/isLead/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].isLead' is required",
+        "exactly one passenger must have 'isLead' set to true"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].isLead' is required\",\"exactly one passenger must have 'isLead' set to true\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447649\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].isLead' is required\",\"exactly one passenger must have 'isLead' set to true\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447649\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.696Z"
+    },
+    {
+      "id": "PF1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — title required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (title required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /title/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/title/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.title' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.title' is required\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447696\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.title' is required\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447696\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.745Z"
+    },
+    {
+      "id": "PF2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — Mrs + Male mismatch",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (Mrs + Male mismatch), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /Mrs|Female|gender|title/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/Mrs|Female|gender|title/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.title' Mrs supports Female gender only"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.title' Mrs supports Female gender only\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447746\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.title' Mrs supports Female gender only\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447746\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.791Z"
+    },
+    {
+      "id": "PF3",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — Mr + Female mismatch",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (Mr + Female mismatch), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /Mr|Male|gender|title/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/Mr|Male|gender|title/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.title' Mr supports Male gender only"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.title' Mr supports Male gender only\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447792\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.title' Mr supports Male gender only\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447792\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.841Z"
+    },
+    {
+      "id": "PF4",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — firstName too short",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (firstName too short), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /firstName|2/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/firstName|2/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.firstName' must be at least 2 characters"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must be at least 2 characters\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447841\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must be at least 2 characters\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447841\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.888Z"
+    },
+    {
+      "id": "PF5",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — firstName non-letters",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (firstName non-letters), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /firstName|letter/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/firstName|letter/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.firstName' must contain only letters and spaces"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447888\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447888\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.936Z"
+    },
+    {
+      "id": "PF6",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — lastName too short",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (lastName too short), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /lastName|2/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/lastName|2/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.lastName' must be at least 2 characters"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.lastName' must be at least 2 characters\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447936\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.lastName' must be at least 2 characters\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447936\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:27.988Z"
+    },
+    {
+      "id": "PF7",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — gender required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (gender required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /gender/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/gender/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.gender' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.gender' is required\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447988\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.gender' is required\"],\"timestamp\":\"2026-09-07T13:57:27Z\",\"request_id\":\"req-1788789447988\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:28.040Z"
+    },
+    {
+      "id": "PF8",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — gender enum",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (gender enum), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /Male|Female|gender/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/Male|Female|gender/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.title' Mr supports Male gender only"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.title' Mr supports Male gender only\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448040\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.title' Mr supports Male gender only\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448040\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:28.099Z"
+    },
+    {
+      "id": "PF9",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — dob required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (dob required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /dob/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/dob/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' is required\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448099\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' is required\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448099\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:28.150Z"
+    },
+    {
+      "id": "PF10",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — dob future",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (dob future), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /dob|future/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/dob|future/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' must not be in the future"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' must not be in the future\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448150\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' must not be in the future\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448150\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:28.200Z"
+    },
+    {
+      "id": "PF11",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — dob format",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (dob format), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /dob|YYYY|format/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/dob|YYYY|format/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448200\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' must be a valid date in YYYY-MM-DD format\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448200\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:28.250Z"
+    },
+    {
+      "id": "PF12",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — nationality required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (nationality required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /nationality/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/nationality/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.nationality' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.nationality' is required\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448250\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.nationality' is required\"],\"timestamp\":\"2026-09-07T13:57:28Z\",\"request_id\":\"req-1788789448250\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:28.309Z"
+    },
+    {
+      "id": "PF13",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — adult age too young (child dob)",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (adult age too young (child dob)), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /age|adult|12|dob|child/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/age|adult|12|dob|child/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' makes this passenger 5 on the departure date (2026-09-21); an adult must be 12 years or older"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' makes this passenger 5 on the departure date (2026-09-21); an adult must be 12 years or older\"],\"timestamp\":\"2026-09-07T13:57:36Z\",\"request_id\":\"req-1788789448309\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' makes this passenger 5 on the departure date (2026-09-21); an adult must be 12 years or older\"],\"timestamp\":\"2026-09-07T13:57:36Z\",\"request_id\":\"req-1788789448309\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:36.864Z"
+    },
+    {
+      "id": "PF14",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — adult 11 years on depart (1 day under 12)",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (adult 11 years on depart (1 day under 12)), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /adult|12|dob|age/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/adult|12|dob|age/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' makes this passenger 11 on the departure date (2026-09-21); an adult must be 12 years or older"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' makes this passenger 11 on the departure date (2026-09-21); an adult must be 12 years or older\"],\"timestamp\":\"2026-09-07T13:57:36Z\",\"request_id\":\"req-1788789456864\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' makes this passenger 11 on the departure date (2026-09-21); an adult must be 12 years or older\"],\"timestamp\":\"2026-09-07T13:57:36Z\",\"request_id\":\"req-1788789456864\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.040Z"
+    },
+    {
+      "id": "PF15",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — adult with infant dob (~6 months)",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (adult with infant dob (~6 months)), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /adult|12|dob|age|infant/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/adult|12|dob|age|infant/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.dob' makes this passenger 0 on the departure date (2026-09-21); an adult must be 12 years or older"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' makes this passenger 0 on the departure date (2026-09-21); an adult must be 12 years or older\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457040\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.dob' makes this passenger 0 on the departure date (2026-09-21); an adult must be 12 years or older\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457040\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.110Z"
+    },
+    {
+      "id": "PF16",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — child dob makes 12+ on depart (adult age)",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (child dob makes 12+ on depart (adult age)), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /child|12|adult|dob|age/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/child|12|adult|dob|age/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[1].profile.dob' makes this passenger 12 on the departure date (2026-09-21); a child must be between 2 and 11 years old"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.dob' makes this passenger 12 on the departure date (2026-09-21); a child must be between 2 and 11 years old\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457110\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.dob' makes this passenger 12 on the departure date (2026-09-21); a child must be between 2 and 11 years old\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457110\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.182Z"
+    },
+    {
+      "id": "PF17",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — child dob makes under 2 on depart (infant age)",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (child dob makes under 2 on depart (infant age)), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /child|2|infant|dob|age/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/child|2|infant|dob|age/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[1].profile.dob' makes this passenger 1 on the departure date (2026-09-21); a child must be between 2 and 11 years old"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.dob' makes this passenger 1 on the departure date (2026-09-21); a child must be between 2 and 11 years old\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457182\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.dob' makes this passenger 1 on the departure date (2026-09-21); a child must be between 2 and 11 years old\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457182\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.256Z"
+    },
+    {
+      "id": "PF18",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — infant dob makes 2+ on depart (child age)",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (infant dob makes 2+ on depart (child age)), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /infant|2|child|dob|age/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/infant|2|child|dob|age/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[1].profile.dob' makes this passenger 2 on the departure date (2026-09-21); an infant must be under 2 years old"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.dob' makes this passenger 2 on the departure date (2026-09-21); an infant must be under 2 years old\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457256\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.dob' makes this passenger 2 on the departure date (2026-09-21); an infant must be under 2 years old\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457256\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.330Z"
+    },
+    {
+      "id": "PF19",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — infant dob makes 12+ on depart (adult age)",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (infant dob makes 12+ on depart (adult age)), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /infant|2|adult|dob|age/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/infant|2|adult|dob|age/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[1].profile.dob' makes this passenger 20 on the departure date (2026-09-21); an infant must be under 2 years old"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.dob' makes this passenger 20 on the departure date (2026-09-21); an infant must be under 2 years old\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457331\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.dob' makes this passenger 20 on the departure date (2026-09-21); an infant must be under 2 years old\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457331\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.401Z"
+    },
+    {
+      "id": "CY1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — cityCode required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (cityCode required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /cityCode/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/cityCode/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].city.cityCode' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].city.cityCode' is required\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457401\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].city.cityCode' is required\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457401\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.453Z"
+    },
+    {
+      "id": "CY2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — cityName required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (cityName required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /cityName/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/cityName/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].city.cityName' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].city.cityName' is required\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457453\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].city.cityName' is required\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457453\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.511Z"
+    },
+    {
+      "id": "PP1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — passport required for MINI",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (passport required for MINI), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passport|number|expiry/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/passport|number|expiry/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].passport.number' is required when passportType is 'MINI'",
+        "'data.passengers[0].passport.expiry' is required when passportType is 'MINI'"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.number' is required when passportType is 'MINI'\",\"'data.passengers[0].passport.expiry' is required when passportType is 'MINI'\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457511\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.number' is required when passportType is 'MINI'\",\"'data.passengers[0].passport.expiry' is required when passportType is 'MINI'\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457511\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.562Z"
+    },
+    {
+      "id": "PP2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — passport number length",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (passport number length), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passport|number|6 to 12|alphanumeric/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/passport|number|6 to 12|alphanumeric/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].passport.number' must be 6 to 12 alphanumeric characters"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.number' must be 6 to 12 alphanumeric characters\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457562\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.number' must be 6 to 12 alphanumeric characters\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457562\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.613Z"
+    },
+    {
+      "id": "PP3",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — passport expiry too soon",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (passport expiry too soon), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passport|expiry|6 month/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/passport|expiry|6 month/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].passport.expiry' must be a date in the future"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.expiry' must be a date in the future\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457613\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.expiry' must be a date in the future\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457613\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.666Z"
+    },
+    {
+      "id": "PP4",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — FULL issuedDate required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (FULL issuedDate required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /issuedDate|passport/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/issuedDate|passport/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].passport.issuedDate' is required when passportType is 'FULL'"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.issuedDate' is required when passportType is 'FULL'\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457667\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.issuedDate' is required when passportType is 'FULL'\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457667\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.722Z"
+    },
+    {
+      "id": "PP5",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — FULL issuedCountryCode required",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (FULL issuedCountryCode required), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /issuedCountry|passport/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/issuedCountry|passport/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].passport.issuedCountryCode' is required when passportType is 'FULL'"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.issuedCountryCode' is required when passportType is 'FULL'\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457722\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].passport.issuedCountryCode' is required when passportType is 'FULL'\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457722\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.776Z"
+    },
+    {
+      "id": "X1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — exactly one isLead",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (exactly one isLead), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /isLead|lead|one/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/isLead|lead|one/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "only one passenger may have 'isLead' set to true; 2 were sent"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"only one passenger may have 'isLead' set to true; 2 were sent\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457777\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"only one passenger may have 'isLead' set to true; 2 were sent\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457777\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.825Z"
+    },
+    {
+      "id": "X2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — no isLead",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (no isLead), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /isLead|lead/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/isLead|lead/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "exactly one passenger must have 'isLead' set to true"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"exactly one passenger must have 'isLead' set to true\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457825\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"exactly one passenger must have 'isLead' set to true\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457825\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.889Z"
+    },
+    {
+      "id": "X3",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — duplicate paxId",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (duplicate paxId), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /paxId|unique/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/paxId|unique/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[1].paxId' duplicates the paxId of data.passengers[0]"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].paxId' duplicates the paxId of data.passengers[0]\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457889\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].paxId' duplicates the paxId of data.passengers[0]\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457889\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.942Z"
+    },
+    {
+      "id": "X4",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — duplicate first+last name",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (duplicate first+last name), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /firstName|lastName|same|unique|identical|duplicate/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/firstName|lastName|same|unique|identical|duplicate/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[1].profile' duplicates the name of data.passengers[0]; every passenger must have a distinct first and last name"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile' duplicates the name of data.passengers[0]; every passenger must have a distinct first and last name\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457942\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile' duplicates the name of data.passengers[0]; every passenger must have a distinct first and last name\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457942\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:37.992Z"
+    },
+    {
+      "id": "X5",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — firstName == lastName",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (firstName == lastName), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /firstName|lastName|identical|same/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/firstName|lastName|identical|same/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.firstName' and 'data.passengers[0].profile.lastName' must not be the same"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' and 'data.passengers[0].profile.lastName' must not be the same\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457993\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' and 'data.passengers[0].profile.lastName' must not be the same\"],\"timestamp\":\"2026-09-07T13:57:37Z\",\"request_id\":\"req-1788789457993\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.045Z"
+    },
+    {
+      "id": "X6",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — child as only lead",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (child as only lead), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /isLead|adult|lead/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/isLead|adult|lead/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].isLead' can only be true for an adult passenger"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].isLead' can only be true for an adult passenger\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458045\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].isLead' can only be true for an adult passenger\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458045\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.098Z"
+    },
+    {
+      "id": "X7",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — more infants than adults",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (more infants than adults), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /infant|adult/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/infant|adult/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers' cannot contain more infants (2) than adults (1)"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers' cannot contain more infants (2) than adults (1)\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458099\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers' cannot contain more infants (2) than adults (1)\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458099\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.150Z"
+    },
+    {
+      "id": "X8",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — wrong order child before adult",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (wrong order child before adult), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /order|adult|child|infant/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/order|adult|child|infant/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers' must be ordered adults first, then children, then infants; data.passengers[1] (adult) is out of order"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers' must be ordered adults first, then children, then infants; data.passengers[1] (adult) is out of order\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458151\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers' must be ordered adults first, then children, then infants; data.passengers[1] (adult) is out of order\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458151\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.201Z"
+    },
+    {
+      "id": "X9",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — child title Mr invalid",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (child title Mr invalid), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /title|child|Mstr|Miss/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/title|child|Mstr|Miss/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[1].profile.title' must be one of: Mstr, Miss for passenger type 'child'"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.title' must be one of: Mstr, Miss for passenger type 'child'\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458201\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].profile.title' must be one of: Mstr, Miss for passenger type 'child'\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458201\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.253Z"
+    },
+    {
+      "id": "X10",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — duplicate passport numbers",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (duplicate passport numbers), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: /passport|unique|same|duplicate/",
+      "actual": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "expectedDetailHint": "/passport|unique|same|duplicate/",
+      "status": "PASS",
+      "note": "rejected as expected HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[1].passport.number' duplicates the passport number of data.passengers[0]"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].passport.number' duplicates the passport number of data.passengers[0]\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458253\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[1].passport.number' duplicates the passport number of data.passengers[0]\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458253\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.304Z"
+    },
+    {
+      "id": "SC1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — firstName with trailing comma",
+      "how": "Clone priced issue-ticket; set passengers[0].profile.firstName=\"Rohan,\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "expectedDetailHint": "no-500",
+      "status": "PASS",
+      "note": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.firstName' must contain only letters and spaces"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458304\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458304\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.355Z"
+    },
+    {
+      "id": "SC2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — lastName with trailing comma",
+      "how": "Clone priced issue-ticket; set passengers[0].profile.lastName=\"Bhagat,\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "expectedDetailHint": "no-500",
+      "status": "PASS",
+      "note": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.lastName' must contain only letters and spaces"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.lastName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458356\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.lastName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458356\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.404Z"
+    },
+    {
+      "id": "SC3",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — firstName with punctuation !@#$",
+      "how": "Clone priced issue-ticket; set firstName=\"Rohan!@#$\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "expectedDetailHint": "no-500",
+      "status": "PASS",
+      "note": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.firstName' must contain only letters and spaces"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458404\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458404\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.453Z"
+    },
+    {
+      "id": "SC4",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — firstName with HTML/script chars",
+      "how": "Clone priced issue-ticket; set firstName=\"Rohan<script>\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "expectedDetailHint": "no-500",
+      "status": "PASS",
+      "note": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.firstName' must contain only letters and spaces"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458453\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458453\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:38.528Z"
+    },
+    {
+      "id": "SC5",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — currency with trailing comma (INR,)",
+      "how": "Clone priced issue-ticket; set currency=\"INR,\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "Accepted payload that added extra special characters / comma",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted payload that added extra special characters / comma",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1788789458686152\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"bookingReference\":\"BR1788789458686152\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:41.719Z"
+    },
+    {
+      "id": "SC6",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — type with trailing comma (ticket,)",
+      "how": "Clone priced issue-ticket; set type=\"ticket,\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "Accepted payload that added extra special characters / comma",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted payload that added extra special characters / comma",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1788789461276791\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"bookingReference\":\"BR1788789461276791\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:42.255Z"
+    },
+    {
+      "id": "SC7",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — journeyType with trailing comma",
+      "how": "Clone priced issue-ticket; set journeyType=\"ONE_WAY,\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "expectedDetailHint": "no-500",
+      "status": "PASS",
+      "note": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'journeyType' must be one of: ONE_WAY, ROUND_TRIP, MULTI_CITY"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'journeyType' must be one of: ONE_WAY, ROUND_TRIP, MULTI_CITY\"],\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462255\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'journeyType' must be one of: ONE_WAY, ROUND_TRIP, MULTI_CITY\"],\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462255\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:42.304Z"
+    },
+    {
+      "id": "SC8",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — contact.email with comma",
+      "how": "Clone priced issue-ticket; set contact.email=\"rohan,bhagat@travelvip.ai\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "expectedDetailHint": "no-500",
+      "status": "PASS",
+      "note": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.email' is not a valid email address"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.email' is not a valid email address\"],\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462304\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.email' is not a valid email address\"],\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462304\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:42.357Z"
+    },
+    {
+      "id": "SC9",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — contact.mobile with comma",
+      "how": "Clone priced issue-ticket; set contact.mobile=\"98765,43210\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "expectedDetailHint": "no-500",
+      "status": "PASS",
+      "note": "HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.mobile' must contain 7 to 15 digits"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' must contain 7 to 15 digits\"],\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462358\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' must contain 7 to 15 digits\"],\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462358\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:42.421Z"
+    },
+    {
+      "id": "SC10",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — searchId with trailing comma",
+      "how": "Clone priced issue-ticket; append comma to searchIds[0]; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "HTTP 500 Internal Server Error after special chars — expected 4xx error envelope",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "HTTP 500 Internal Server Error after special chars — expected 4xx error envelope",
+      "http": 500,
+      "code": "PRICING_FETCH_FAILED",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"PRICING_FETCH_FAILED\",\"message\":\"Failed to fetch flight pricing details\",\"details\":null,\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462421\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"PRICING_FETCH_FAILED\",\"message\":\"Failed to fetch flight pricing details\",\"details\":null,\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462421\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:42.484Z"
+    },
+    {
+      "id": "SC11",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — cityName with comma and punctuation",
+      "how": "Clone priced issue-ticket; set city.cityName=\"Pune, <>!\"; POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx with error.code (VALIDATION_ERROR preferred). Must never be HTTP 500.",
+      "actual": "Accepted payload that added extra special characters / comma",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted payload that added extra special characters / comma",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1788789462364083\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"bookingReference\":\"BR1788789462364083\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:42.980Z"
+    },
+    {
+      "id": "V1-T1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /v1/flights/booking/issue-ticket — omit type",
+      "how": "Clone priced ticket body, omit type, POST /v1/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx VALIDATION_ERROR (never 500)",
+      "actual": "Accepted invalid v1 payload",
+      "expectedDetailHint": "/type/",
+      "status": "BUG",
+      "note": "Accepted invalid v1 payload",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'type' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'type' is required\"],\"timestamp\":\"2026-09-07T13:57:25Z\",\"request_id\":\"req-1788789445811\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'type' is required\"],\"timestamp\":\"2026-09-07T13:57:25Z\",\"request_id\":\"req-1788789445811\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:43.028Z"
+    },
+    {
+      "id": "V1-SC1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /v1/flights/booking/issue-ticket — firstName with trailing comma",
+      "how": "Clone priced ticket body, set firstName=\"Rohan,\", POST /v1/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx (never 500)",
+      "actual": "Accepted v1 payload with comma in firstName",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted v1 payload with comma in firstName",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].profile.firstName' must contain only letters and spaces"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458304\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].profile.firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-09-07T13:57:38Z\",\"request_id\":\"req-1788789458304\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:43.075Z"
+    },
+    {
+      "id": "V1-SC2",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /v1/flights/booking/issue-ticket — searchId with trailing comma",
+      "how": "Clone priced ticket body, append comma to searchIds[0], POST /v1/flights/booking/issue-ticket.",
+      "expected": "HTTP 4xx (never 500)",
+      "actual": "Accepted v1 payload with comma on searchId",
+      "expectedDetailHint": "no-500",
+      "status": "BUG",
+      "note": "Accepted v1 payload with comma on searchId",
+      "http": 200,
+      "code": "PRICING_FETCH_FAILED",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"PRICING_FETCH_FAILED\",\"message\":\"Failed to fetch flight pricing details\",\"details\":null,\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462421\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"error\":{\"code\":\"PRICING_FETCH_FAILED\",\"message\":\"Failed to fetch flight pricing details\",\"details\":null,\"timestamp\":\"2026-09-07T13:57:42Z\",\"request_id\":\"req-1788789462421\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:43.142Z"
+    },
+    {
+      "id": "A1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — multiple validation errors aggregated",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (multiple validation errors aggregated), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: >=2 details",
+      "actual": "details count=4",
+      "expectedDetailHint": ">=2 details",
+      "status": "PASS",
+      "note": "details count=4",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'currency' is required",
+        "'data.contact.email' is not a valid email address",
+        "'data.contact.mobile' must contain 7 to 15 digits",
+        "'data.passengers[0].profile.firstName' must be at least 2 characters"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'currency' is required\",\"'data.contact.email' is not a valid email address\",\"'data.contact.mobile' must contain 7 to 15 digits\",\"'data.passengers[0].profile.firstName' must be at least 2 characters\"],\"timestamp\":\"2026-09-07T13:57:43Z\",\"request_id\":\"req-1788789463142\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a4",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'currency' is required\",\"'data.contact.email' is not a valid email address\",\"'data.contact.mobile' must contain 7 to 15 digits\",\"'data.passengers[0].profile.firstName' must be at least 2 characters\"],\"timestamp\":\"2026-09-07T13:57:43Z\",\"request_id\":\"req-1788789463142\"},\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a4",
+      "at": "2026-09-07T13:57:43.190Z"
+    },
+    {
+      "id": "OBS1",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "rule": "POST /api/v2/flights/booking/issue-ticket — type=book (doc example)",
+      "how": "Clone that priced issue-ticket body, change only this field/rule (type=book (doc example)), then POST /api/v2/flights/booking/issue-ticket.",
+      "expected": "HTTP 400 VALIDATION_ERROR with details mentioning the field (never HTTP 500). Hint: observe",
+      "actual": "HTTP 200 code=null details=",
+      "expectedDetailHint": "observe",
+      "status": "INFO",
+      "note": "HTTP 200 code=null details=",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"BR1788789463925245\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "responseSnippet": "{\"bookingReference\":\"BR1788789463925245\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"b3fbc832-da66-4a24-9510-a43300176d9e\"}}",
+      "at": "2026-09-07T13:57:43.957Z"
+    }
+  ]
+}

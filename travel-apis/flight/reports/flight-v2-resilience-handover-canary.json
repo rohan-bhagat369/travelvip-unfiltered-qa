@@ -1,0 +1,381 @@
+{
+  "ranAt": "2026-09-07T14:05:33.241Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "handover": "Flights V2 Resilience — timeouts, seat pre-check, price rebook, GST",
+  "branch": "feat/flights-v2-book-timeout-reconciliation / feat/flights-v2-gst-validation / PRs 1568,1566,1548",
+  "summary": {
+    "PASS": 10,
+    "BUG": 1,
+    "NOT_TESTED": 25
+  },
+  "byArea": {
+    "Setup": {
+      "PASS": 2,
+      "BUG": 0,
+      "NOT_TESTED": 1
+    },
+    "Timeouts": {
+      "PASS": 2,
+      "BUG": 0,
+      "NOT_TESTED": 5
+    },
+    "Seat": {
+      "PASS": 3,
+      "BUG": 0,
+      "NOT_TESTED": 6
+    },
+    "Price": {
+      "PASS": 1,
+      "BUG": 1,
+      "NOT_TESTED": 7
+    },
+    "GST": {
+      "PASS": 1,
+      "BUG": 0,
+      "NOT_TESTED": 6
+    },
+    "Regression": {
+      "PASS": 1,
+      "BUG": 0,
+      "NOT_TESTED": 0
+    }
+  },
+  "rows": [
+    {
+      "id": "SETUP.1",
+      "area": "Setup",
+      "rule": "Baseline priced OW",
+      "how": "DEL-BOM d+35 6E 6E 828 / 6E 6E 6283 airline=6E",
+      "expected": "priceId + bookingContext",
+      "status": "PASS",
+      "actual": "addGstInfo=false supportsSeats=true"
+    },
+    {
+      "id": "TC-TMO-01",
+      "area": "Timeouts",
+      "rule": "RIYA stall → worker bounded timeout (no hang / no instant FAILED)",
+      "how": "Requires routing RIYA endpoint to stalling host (ops/staging only)",
+      "expected": "Returns within Book timeout (~180s); never hangs; never instant FAILED",
+      "status": "NOT TESTED",
+      "actual": "cannot stall RIYA host from partner API harness"
+    },
+    {
+      "id": "TC-TMO-02",
+      "area": "Timeouts",
+      "rule": "Ambiguous Book fail + TrackStatus CONFIRMED → recover",
+      "how": "Requires forced transport fail after RIYA accepted Book",
+      "expected": "requestStatus=CONFIRMED; recovered via TrackStatus; no second Book",
+      "status": "NOT TESTED",
+      "actual": "needs injectable transport failure + TrackStatus harness"
+    },
+    {
+      "id": "TC-TMO-03",
+      "area": "Timeouts",
+      "rule": "Ambiguous Book + TrackStatus pending → IN_PROGRESS",
+      "how": "Forced transport fail + pending TrackStatus",
+      "expected": "IN_PROGRESS never FAILED; no auto-retry",
+      "status": "NOT TESTED",
+      "actual": "needs injectable transport failure"
+    },
+    {
+      "id": "TC-TMO-04",
+      "area": "Timeouts",
+      "rule": "Ambiguous Book + TrackStatus also fails → still IN_PROGRESS",
+      "how": "Forced dual transport fail",
+      "expected": "IN_PROGRESS; never silent FAILED",
+      "status": "NOT TESTED",
+      "actual": "needs injectable transport failure"
+    },
+    {
+      "id": "TC-TMO-05",
+      "area": "Timeouts",
+      "rule": "Book fails before TrackId exists → FAILED with itinerary in alert",
+      "how": "Defensive edge; transport fail pre-TrackId",
+      "expected": "FAILED fallback; alert includes itinerary",
+      "status": "NOT TESTED",
+      "actual": "needs injectable transport failure + alert channel access"
+    },
+    {
+      "id": "TC-TMO-06a",
+      "area": "Timeouts",
+      "rule": "Regression — normal Book success path still works",
+      "how": "issue-ticket → poll BR1788788762924366",
+      "expected": "BR issued; status Confirmed/Pending/Inprogress (not instant FAILED)",
+      "status": "PASS",
+      "actual": "HTTP 200 issueMs=1949 status=Confirmed",
+      "br": "BR1788788762924366",
+      "ms": 1949
+    },
+    {
+      "id": "TC-TMO-06b",
+      "area": "Timeouts",
+      "rule": "Regression — vendor/business validation still 4xx (not hung)",
+      "how": "issue-ticket with firstName length < 2",
+      "expected": "4xx VALIDATION_ERROR (or similar); no hang; no BR",
+      "status": "PASS",
+      "actual": "HTTP 400 66ms code=VALIDATION_ERROR br=none"
+    },
+    {
+      "id": "SETUP.2",
+      "area": "Setup",
+      "rule": "Seat-enabled fixture + live seatmap",
+      "how": "DEL-BOM d+35 IX IX 1049 / IX IX 1209",
+      "expected": "supportsSeats + seatmap rows",
+      "status": "PASS",
+      "actual": "open=352 closed=0 smOk=true"
+    },
+    {
+      "id": "TC-SEAT-01",
+      "area": "Seat",
+      "rule": "No seats selected → proceed; seatmap not required",
+      "how": "issue-ticket with empty ssr.seats",
+      "expected": "Accepted (BR) — seat pre-check skipped",
+      "status": "PASS",
+      "actual": "HTTP 200 br=BR1788788788397853 code=n/a",
+      "br": "BR1788788788397853"
+    },
+    {
+      "id": "TC-SEAT-02",
+      "area": "Seat",
+      "rule": "All selected seats available → proceed",
+      "how": "issue with Open 3A; poll BR1788788797498546",
+      "expected": "BR + Confirmed/Pending/Inprogress (seat kept)",
+      "status": "PASS",
+      "actual": "status=Confirmed",
+      "br": "BR1788788797498546",
+      "seat": "3A"
+    },
+    {
+      "id": "TC-SEAT-03",
+      "area": "Seat",
+      "rule": "Pre-check runs once per attempt (not twice on retry)",
+      "how": "Worker/log assertion on seatmap call count",
+      "expected": "Exactly one GetAvailSeatMap per attempt",
+      "status": "NOT TESTED",
+      "actual": "requires worker/log access; not visible on partner API"
+    },
+    {
+      "id": "TC-SEAT-04",
+      "area": "Seat",
+      "rule": "Seatmap fail/timeout → fail open",
+      "how": "Would need forced seatmap outage",
+      "expected": "Booking proceeds as before check existed",
+      "status": "NOT TESTED",
+      "actual": "cannot force RIYA seatmap outage from harness"
+    },
+    {
+      "id": "TC-SEAT-05",
+      "area": "Seat",
+      "rule": "Unavailable seat + no fallback → SEAT_NOT_AVAILABLE",
+      "how": "issue Closed/stale seat without bookWithoutSeat field",
+      "expected": "Blocked SEAT_NOT_AVAILABLE",
+      "status": "NOT TESTED",
+      "actual": "partner/vgm appears to allow drop/retry (got BR BR1788788812455104 status=Confirmed seats=0); cannot force flag OFF",
+      "br": "BR1788788812455104"
+    },
+    {
+      "id": "TC-SEAT-06",
+      "area": "Seat",
+      "rule": "Unavailable seat dropped; booking proceeds (partner fallback ON)",
+      "how": "stale/closed seat → BR1788788812455104",
+      "expected": "Confirmed without seat OR seat dropped; no amounts leak in error",
+      "status": "PASS",
+      "actual": "status=Confirmed seatsOnDetail=0",
+      "br": "BR1788788812455104"
+    },
+    {
+      "id": "TC-PRICE-08a",
+      "area": "Price",
+      "rule": "bookWithoutSeatIfUnavailable=true permits seat drop",
+      "how": "issue with flag true + stale seat → BR1788788838816183",
+      "expected": "Accepted / Confirmed (or Pending) without blocking SEAT_NOT_AVAILABLE",
+      "status": "PASS",
+      "actual": "HTTP 200 status=Confirmed",
+      "br": "BR1788788838816183"
+    },
+    {
+      "id": "TC-SEAT-07",
+      "area": "Seat",
+      "rule": "Mandatory-seat fare + unavailable seat → SEAT_MANDATORY (always blocks)",
+      "how": "Needs fare that mandates seat on a leg",
+      "expected": "Blocked SEAT_MANDATORY even with fallback",
+      "status": "NOT TESTED",
+      "actual": "no reliable mandatory-seat fare locator on canary this run"
+    },
+    {
+      "id": "TC-SEAT-08",
+      "area": "Seat",
+      "rule": "RT two seats; only one gone → drop only unavailable",
+      "how": "Needs RT seatmap with mixed Open/Closed across directions",
+      "expected": "Only gone seat dropped; other kept",
+      "status": "NOT TESTED",
+      "actual": "RT dual-seat fixture not built this run (OW probe)"
+    },
+    {
+      "id": "TC-SEAT-09",
+      "area": "Seat",
+      "rule": "Live RIYA: seat taken by another pax mid-flow",
+      "how": "Select Open seat; race another book; submit",
+      "expected": "GetAvailSeatMap reports gone; follows TC-SEAT-05/06",
+      "status": "NOT TESTED",
+      "actual": "approximated via Closed/stale seat against live GetAvailSeatMap; true race needs parallel books"
+    },
+    {
+      "id": "TC-PRICE-01",
+      "area": "Price",
+      "rule": "Reactive retry re-price; fare same/lower → auto book",
+      "how": "Needs seat-sold-out or session-expired that triggers retry with flat/lower fare",
+      "expected": "Retries; books; no price detail to client",
+      "status": "NOT TESTED",
+      "actual": "cannot force vendor seat-sold-out/session-expired on demand"
+    },
+    {
+      "id": "TC-PRICE-02",
+      "area": "Price",
+      "rule": "Reactive retry fare ↑ ≥₹1 → PRICE_CHANGED + rebookToken",
+      "how": "Needs forced fare increase on re-price path",
+      "expected": "FAILED PRICE_CHANGED; data.priceChange + data.rebook; no amounts in message",
+      "status": "NOT TESTED",
+      "actual": "cannot force fare increase on canary this run"
+    },
+    {
+      "id": "TC-PRICE-03",
+      "area": "Price",
+      "rule": "Seat-sold-out retry with session-expired flag OFF still re-prices",
+      "how": "Needs partner flag combo + seat-sold-out error",
+      "expected": "Re-prices before retry (no confusing session-expired)",
+      "status": "NOT TESTED",
+      "actual": "cannot toggle partner flags from harness"
+    },
+    {
+      "id": "TC-PRICE-04",
+      "area": "Price",
+      "rule": "Reuse bookingReferenceId without / garbage rebookToken → DUPLICATE",
+      "how": "first BR=BR1788788861656331; replay same priceId/context; then garbage token",
+      "expected": "Rejected DUPLICATE_BOOKING_REFERENCE; no second vendor Book",
+      "status": "BUG",
+      "actual": "replay HTTP 200 br=BR1788788872457081 dupFlag=undefined code=null; garbage HTTP 200 br=BR1788788876359484 code=null",
+      "firstBr": "BR1788788861656331",
+      "replayBr": "BR1788788872457081",
+      "garbageBr": "BR1788788876359484"
+    },
+    {
+      "id": "TC-PRICE-05",
+      "area": "Price",
+      "rule": "Resubmit PRICE_CHANGED rebook payload → completes without re-selection",
+      "how": "Depends on TC-PRICE-02 producing rebookToken",
+      "expected": "Accepted as rebook; books to completion",
+      "status": "NOT TESTED",
+      "actual": "blocked on TC-PRICE-02 (no fare-increase repro)"
+    },
+    {
+      "id": "TC-PRICE-06",
+      "area": "Price",
+      "rule": "rebookToken replayed on different bookingReferenceId → reject mismatch",
+      "how": "Needs valid rebookToken from PRICE_CHANGED",
+      "expected": "Rejected; logged as mismatch (not plain duplicate)",
+      "status": "NOT TESTED",
+      "actual": "no rebookToken available without PRICE_CHANGED"
+    },
+    {
+      "id": "TC-PRICE-07",
+      "area": "Price",
+      "rule": "Expired rebookToken → reject expired",
+      "how": "Needs token past expiresAt",
+      "expected": "Rejected as expired",
+      "status": "NOT TESTED",
+      "actual": "no rebookToken / cannot wait out TTL this run"
+    },
+    {
+      "id": "TC-PRICE-08b",
+      "area": "Price",
+      "rule": "bookWithoutSeatIfUnavailable=false reverts to blocking",
+      "how": "Flip field false after true path",
+      "expected": "Blocks again in pre-check + reactive paths",
+      "status": "NOT TESTED",
+      "actual": "partner flag may override; cannot isolate field-only OFF vs partner retry flag"
+    },
+    {
+      "id": "SETUP.3",
+      "area": "Setup",
+      "rule": "Find addGstInfo=true fare",
+      "how": "search CORPORATE/NORMAL until pricing.addGstInfo",
+      "expected": "GST-required priceId",
+      "status": "NOT TESTED",
+      "actual": "no addGstInfo=true inventory on canary routes this run"
+    },
+    {
+      "id": "TC-GST-02",
+      "area": "GST",
+      "rule": "TC-GST-02",
+      "how": "needs addGstInfo=true fixture",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare found"
+    },
+    {
+      "id": "TC-GST-03",
+      "area": "GST",
+      "rule": "TC-GST-03",
+      "how": "needs addGstInfo=true fixture",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare found"
+    },
+    {
+      "id": "TC-GST-04",
+      "area": "GST",
+      "rule": "TC-GST-04",
+      "how": "needs addGstInfo=true fixture",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare found"
+    },
+    {
+      "id": "TC-GST-05",
+      "area": "GST",
+      "rule": "TC-GST-05",
+      "how": "needs addGstInfo=true fixture",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare found"
+    },
+    {
+      "id": "TC-GST-06",
+      "area": "GST",
+      "rule": "TC-GST-06",
+      "how": "needs addGstInfo=true fixture",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare found"
+    },
+    {
+      "id": "TC-GST-07",
+      "area": "GST",
+      "rule": "TC-GST-07",
+      "how": "needs addGstInfo=true fixture",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare found"
+    },
+    {
+      "id": "TC-GST-01",
+      "area": "GST",
+      "rule": "addGstInfo=false → accepted; no GST block to vendor",
+      "how": "issue-ticket without gstDetails on non-GST fare",
+      "expected": "BR accepted",
+      "status": "PASS",
+      "actual": "HTTP 200 br=BR1788789932434869 addGstInfo=false",
+      "br": "BR1788789932434869"
+    },
+    {
+      "id": "REG.SEARCH",
+      "area": "Regression",
+      "rule": "Search still healthy on canary",
+      "how": "POST /v1/flights/search DEL→BOM",
+      "expected": "HTTP 200; options or progress",
+      "status": "PASS",
+      "actual": "HTTP 200 options=20 complete=true"
+    }
+  ]
+}

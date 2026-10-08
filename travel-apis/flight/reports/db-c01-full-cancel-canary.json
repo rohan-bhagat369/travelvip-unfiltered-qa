@@ -1,0 +1,62 @@
+{
+  "ranAt": "2026-08-11T18:27:20.669Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "C01",
+  "checks": [
+    "V051",
+    "V052",
+    "V053",
+    "V054",
+    "V055",
+    "V056",
+    "V057",
+    "V058",
+    "V059",
+    "V060",
+    "V061",
+    "V062",
+    "V063"
+  ],
+  "note": "Full cancel — interpretation from C01 intent; paste sheet Expected to align exactly.",
+  "interpretation": {
+    "V051": "cancellation_request row created for PNR",
+    "V052": "cancellation_type FULL (full booking/PNR cancel)",
+    "V053": "mode ONLINE",
+    "V054": "status requested→completed (or failed if vendor)",
+    "V055": "cancellation_passenger covers all pax on PNR",
+    "V056": "cells linked via flight_journey_passenger_id",
+    "V057": "booking cancelled_at set when success",
+    "V058": "journey/cells cancelled when success",
+    "V059": "refund fields populated when success",
+    "V060_V063": "money/refund legs — check if present"
+  },
+  "fixture": {
+    "br": "BR1786472799656466",
+    "pnr": "N2LGPM",
+    "status": "Confirmed",
+    "route": "MAA-BOM"
+  },
+  "cancelResult": {
+    "http": 200,
+    "code": null,
+    "cancelStatus": "Cancellation Failed",
+    "paxScope": null,
+    "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786472799656466\",\"pnr\":\"N2LGPM\",\"cancellationRequest\":{\"status\":\"Cancellation Failed\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":3499,\"message\":\"Unable to get Penalty details. Kindly contact customer care.\",\"createdAt\":\"2026-08-11T18:26:47Z\"}},\"_meta\":{\"correlation_id\":\"3ddfb4f2-44e4-45d9-8e9b-3396d65e9719\"}}"
+  },
+  "afterStatus": "Confirmed",
+  "afterDetailStatus": "Confirmed",
+  "dbSql": [
+    "USE travelx;",
+    "SET @br := 'BR1786472799656466';",
+    "",
+    "SELECT id, booking_reference, confirmed_at, cancelled_at\nFROM booking WHERE booking_reference = @br;",
+    "",
+    "SELECT fj.id, fj.sequence, fj.direction, fj.airline_pnr\nFROM flight_journey fj\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br;",
+    "",
+    "SELECT cr.*\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cr.id DESC;",
+    "",
+    "SELECT cp.*, bp.pax_id, bp.first_name\nFROM cancellation_passenger cp\nJOIN cancellation_request cr ON cr.id = cp.cancellation_request_id\nJOIN booking_passenger bp ON bp.id = cp.booking_passenger_id\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cp.id;",
+    "",
+    "SELECT bp.pax_id, fjp.id AS cell_id, fjp.eticket_number, fjp.pnr_override, fj.airline_pnr\nFROM flight_journey_passenger fjp\nJOIN flight_journey fj ON fj.id = fjp.flight_journey_id\nJOIN booking_passenger bp ON bp.id = fjp.booking_passenger_id\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br;"
+  ]
+}

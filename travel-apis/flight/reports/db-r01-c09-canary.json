@@ -1,0 +1,64 @@
+{
+  "ranAt": "2026-08-12T07:00:20.965Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenarios": [
+    "R01",
+    "C09"
+  ],
+  "fixture": {
+    "br": "BR1786517972927912",
+    "status": "Confirmed",
+    "route": "BLR-HYD",
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "D8NHHH"
+      },
+      {
+        "direction": "RETURN",
+        "pnr": "V9QVUH"
+      }
+    ],
+    "onwardPnr": "D8NHHH",
+    "returnPnr": "V9QVUH",
+    "pnrs": [
+      "D8NHHH",
+      "V9QVUH"
+    ]
+  },
+  "cancel": {
+    "http": 200,
+    "cancelStatus": "Cancellation Failed",
+    "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786517972927912\",\"pnr\":\"V9QVUH\",\"cancellationRequest\":{\"status\":\"Cancellation Failed\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":5298,\"message\":\"Unable to get Penalty details. Kindly contact customer care.\",\"createdAt\":\"2026-08-12T06:59:52Z\"}},\"_meta\":{\"correlation_id\":\"bf7e8560-d1ce-42d1-9610-cafe88ff7add\"}}"
+  },
+  "afterCancelStatus": "Confirmed",
+  "reschedule": null,
+  "marks": {
+    "R01": "FAIL / BLOCKED — cancel=Cancellation Failed",
+    "C09": "NOT TESTED — cancel failed (no supplier recovery row expected)"
+  },
+  "dbSql": {
+    "m01_m02_x01_useBr": "BR1786475320743051",
+    "r01_c09_br": "BR1786517972927912",
+    "sql": [
+      "USE travelx;",
+      "-- ===== M01 GST (B07) =====",
+      "SET @br := 'BR1786475320743051';",
+      "SELECT fj.id, fj.direction, fj.gst_total, fj.gst_breakup, bi.vendor_price, bi.vendor_price_cents\nFROM flight_journey fj\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br;",
+      "-- ===== M02 money schema =====",
+      "SHOW COLUMNS FROM booking_item LIKE 'vendor_price%';",
+      "SHOW COLUMNS FROM payment_transaction LIKE 'amount';",
+      "SELECT COLUMN_NAME, COLUMN_TYPE FROM information_schema.COLUMNS\nWHERE TABLE_SCHEMA='travelx' AND TABLE_NAME='payment_transaction' AND COLUMN_NAME='amount';",
+      "-- ===== X01 optimistic lock (READ first, then dual UPDATE in 2 tabs) =====",
+      "SELECT bi.id, bi.version FROM booking_item bi\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = 'BR1786475320743051';",
+      "-- Tab A: UPDATE booking_item SET version = version + 1 WHERE id = <id> AND version = <v>;",
+      "-- Tab B (same version): same UPDATE — expect 0 rows affected on loser",
+      "-- ===== R01 / C09 on RT fixture =====",
+      "SET @br2 := 'BR1786517972927912';",
+      "SELECT cr.id, cr.pnr, cr.cancellation_type, cr.mode, cr.status, cr.refund_status, cr.provider_status\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br2 ORDER BY cr.id DESC;",
+      "SELECT fj.id, fj.sequence, fj.direction, fj.airline_pnr, fj.rescheduled_from_journey_id\nFROM flight_journey fj\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br2 ORDER BY fj.sequence;",
+      "SHOW TABLES LIKE '%supplier_refund%';",
+      "SHOW TABLES LIKE '%recovery%';"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "ranAt": "2026-09-09T14:00:00+05:30",
+  "url": "https://tracker.travelvip.ai",
+  "user": "rohan@travelvip.ai",
+  "session": "Browser MCP — Claude 1 / tab 1061625249",
+  "verdict": "POC is usable for core ENG task flow. Several list/search gaps vs Jira-like expectations. No blocking auth/sync failures observed.",
+  "fixturesCreated": {
+    "parent": {
+      "key": "ENG-2",
+      "title": "QA POC: Tracker E2E smoke (Browser MCP)",
+      "statusEnd": "In Progress",
+      "assignee": "Rohan Bhagat",
+      "following": true,
+      "ccSelf": true
+    },
+    "subtask": {
+      "key": "ENG-3",
+      "title": "Subtask: verify List view + Cmd+K",
+      "status": "Todo",
+      "parent": "ENG-2"
+    }
+  },
+  "cases": [
+    { "id": 1, "rule": "Google OIDC login as rohan@travelvip.ai", "how": "Existing Chrome session; avatar R + email title on sidebar", "status": "PASS" },
+    { "id": 2, "rule": "Empty ENG workspace empty-state copy", "how": "Board before create showed importer hint", "status": "PASS" },
+    { "id": 3, "rule": "Synced indicator green", "how": "Footer Synced throughout session", "status": "PASS" },
+    { "id": 4, "rule": "Create task (ENG team, Todo default)", "how": "+ New Task → title → Ctrl+Enter → ENG-2 on board Todo", "status": "PASS" },
+    { "id": 5, "rule": "Task detail modal at /tasks/ENG-2", "how": "Click card → modal with fields + deps + subtasks + activity", "status": "PASS" },
+    { "id": 6, "rule": "Change status Todo → In Progress updates board column", "how": "Status picker → In Progress; Todo 0 / In Progress 1", "status": "PASS" },
+    { "id": 7, "rule": "Assign to me → My Tasks count", "how": "Assignees → Assign to me; My Tasks 0→1; card avatar R", "status": "PASS" },
+    { "id": 8, "rule": "Follow → Following count + CC self", "how": "Follow → Following 1; CC shows R; button becomes Following", "status": "PASS" },
+    { "id": 9, "rule": "Create subtask ENG-3 under ENG-2", "how": "+ Add subtask → Create; card chip 0/1; All Tasks 2", "status": "PASS" },
+    { "id": 10, "rule": "Activity comment", "how": "textarea name=body + Comment submit; appears under Activity", "status": "PASS" },
+    { "id": 11, "rule": "List view groups by Status", "how": "/tasks List active; Group: Status; ENG-2 under In Progress", "status": "PASS" },
+    { "id": 12, "rule": "Board view columns + drag affordance", "how": "Board columns Backlog→Canceled; cards draggable=true", "status": "PASS" },
+    { "id": 13, "rule": "Following filter shows followed task", "how": "/tasks?following=true → ENG-2", "status": "PASS" },
+    { "id": 14, "rule": "Command palette Ctrl+K", "how": "Ctrl+K → Go to All Tasks/Board/My Tasks/Following/ENG + nav hints", "status": "PASS" },
+    { "id": 15, "rule": "Search by title finds subtask", "how": "q=Subtask → ENG-3 under Todo", "status": "PASS" },
+    { "id": 16, "rule": "Search by task key ENG-3", "how": "q=ENG-3 → No tasks match these filters", "status": "BUG" },
+    { "id": 17, "rule": "List with Show Subtasks surfaces ENG-3", "how": "subtasksShown default/true: All Tasks=2 but only ENG-2 row; no Todo group / no nest under parent", "status": "BUG" },
+    { "id": 18, "rule": "Board shows subtask cards when All Tasks=2", "how": "Board In Progress count 1 only; ENG-3 never on board", "status": "NOT TESTED" },
+    { "id": 19, "rule": "Sprint / Project / Label assign", "how": "No sprints/projects in workspace; labels exist (API, Bug, …) not exercised save", "status": "NOT TESTED" },
+    { "id": 20, "rule": "Dependencies Blocked by / Blocks", "how": "UI present; not linked", "status": "NOT TESTED" },
+    { "id": 21, "rule": "Importer pilot data", "how": "Empty-state mentions importer; no entry found in nav", "status": "NOT TESTED" },
+    { "id": 22, "rule": "Drag-drop status on board", "how": "Status changed via picker only", "status": "NOT TESTED" }
+  ],
+  "score": { "PASS": 15, "BUG": 2, "NOT TESTED": 5 },
+  "bugs": [
+    {
+      "id": "T-SEARCH-KEY",
+      "expected": "Search q=ENG-3 finds task by key (Jira-like)",
+      "actual": "HTTP UI shows empty state 'No tasks match these filters' at /tasks?q=ENG-3",
+      "note": "Title search q=Subtask works"
+    },
+    {
+      "id": "T-LIST-SUBTASKS",
+      "expected": "With Hide Subtasks available (subtasks shown), ENG-3 appears nested under ENG-2 and/or as Todo row; counts match visible rows",
+      "actual": "Header/sidebar All Tasks=2 / Active=2 but List only renders ENG-2 under In Progress; Expand all does not reveal ENG-3",
+      "note": "ENG-3 reachable via title search and parent detail Subtasks section"
+    }
+  ],
+  "productNotes": {
+    "stack": "Next.js + Auth.js Google OIDC; /api/health postgres+redis ok",
+    "team": "ENG Engineering only; users Akshay, Mayur, Rohan, Shubham",
+    "labelsSeeded": ["API", "Android", "Blocker", "Bug", "Feature", "Improvement", "Performance", "Regression", "Test case", "iOS"],
+    "projectsSprints": "empty arrays in page props",
+    "followSemantics": "Follow adds self to CC; tooltip 'Everyone on CC follows this task'"
+  }
+}

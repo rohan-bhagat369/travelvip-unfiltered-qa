@@ -1,0 +1,772 @@
+{
+  "sheetFilledCount": 0,
+  "testedNotUpdatedCount": 84,
+  "pendingDriveCount": 11,
+  "mismatchCount": 0,
+  "testedNotUpdated": [
+    {
+      "id": "V001",
+      "scenario": "B01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Exactly 1 booking row; booking_reference unique; confirmed_at set."
+    },
+    {
+      "id": "V002",
+      "scenario": "B01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "1 row, service_type='flight', current_status_mapping_id -> CONFIRMED, version=1."
+    },
+    {
+      "id": "V003",
+      "scenario": "B01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "1 row; segments_json/booking_payload present; travel_date = first segment depart"
+    },
+    {
+      "id": "V004",
+      "scenario": "B01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "1 row, sequence=1; origin/destination set; airline_pnr populated; gst_total in c"
+    },
+    {
+      "id": "V005",
+      "scenario": "B01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "1 row, sequence=1, provider_segment_id present."
+    },
+    {
+      "id": "V006",
+      "scenario": "B01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "1 cell; pnr_override NULL; status='BOOKED'; eticket_number populated."
+    },
+    {
+      "id": "V007",
+      "scenario": "B01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "1 row; is_lead=1; NO pnr column present on table."
+    },
+    {
+      "id": "V008",
+      "scenario": "B01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "payment.status=captured; 1 CAPTURE txn; amount bigint cents."
+    },
+    {
+      "id": "V009",
+      "scenario": "B02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "1 journey; origin=A, destination=B (not the stop H)."
+    },
+    {
+      "id": "V010",
+      "scenario": "B02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "2 rows, sequence 1 (A->H) and 2 (H->B), same flight_journey_id."
+    },
+    {
+      "id": "V011",
+      "scenario": "B02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "seg2.departure_at > seg1.arrival_at; gap = layover (no separate layover field)."
+    },
+    {
+      "id": "V012",
+      "scenario": "B02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "1 cell for the single pax across the one journey."
+    },
+    {
+      "id": "V013",
+      "scenario": "B03",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "3 rows; exactly one is_lead=1."
+    },
+    {
+      "id": "V014",
+      "scenario": "B03",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "3 rows linking all 3 pax to the flight item."
+    },
+    {
+      "id": "V015",
+      "scenario": "B03",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "3 cells (1 journey x 3 pax); unique per (journey,pax)."
+    },
+    {
+      "id": "V016",
+      "scenario": "B04",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "2 rows, sequence 1 & 2; each has its own airline_pnr."
+    },
+    {
+      "id": "V017",
+      "scenario": "B04",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "2 cells (2 journeys x 1 pax)."
+    },
+    {
+      "id": "V018",
+      "scenario": "B05",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "6 rows."
+    },
+    {
+      "id": "V019",
+      "scenario": "B05",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "12 cells (2 journeys x 6 pax); UNIQUE(flight_journey_id,booking_passenger_id) ho"
+    },
+    {
+      "id": "V020",
+      "scenario": "B05",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "Attempt to insert a duplicate (journey,pax) is rejected by unique key."
+    },
+    {
+      "id": "V021",
+      "scenario": "B06",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "3 rows, sequence 1/2/3; each origin=first seg origin, destination=last seg desti"
+    },
+    {
+      "id": "V022",
+      "scenario": "B06",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "5 rows total: 2 on leg1, 1 on leg2, 2 on leg3; sequence resets per journey."
+    },
+    {
+      "id": "V023",
+      "scenario": "B06",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "Leg1 and leg3 each show a layover gap between their two segments (via DXB)."
+    },
+    {
+      "id": "V024",
+      "scenario": "B06",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "6 cells (3 x 2); each pnr_override NULL; each has eticket_number."
+    },
+    {
+      "id": "V025",
+      "scenario": "B06",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "3 distinct airline_pnr values across the 3 legs."
+    },
+    {
+      "id": "V026",
+      "scenario": "B06",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "COALESCE(cell.pnr_override, journey.airline_pnr) returns the correct leg PNR for"
+    },
+    {
+      "id": "V027",
+      "scenario": "B06",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "travel_date = departure of first segment of leg 1."
+    },
+    {
+      "id": "V028",
+      "scenario": "B07",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Seat rows exist ONLY for pax1; each row's flight_segment_id resolves (no varchar"
+    },
+    {
+      "id": "V029",
+      "scenario": "B07",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Meal row exists only for pax1, tied to the correct flight_segment_id."
+    },
+    {
+      "id": "V030",
+      "scenario": "B07",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Baggage row exists only for pax2."
+    },
+    {
+      "id": "V031",
+      "scenario": "B07",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "N-A",
+      "expected": "A 2nd booking_item, service_type='lounge', linked via booking_item_passenger to "
+    },
+    {
+      "id": "V032",
+      "scenario": "B07",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Lounge item covers pax3 only; flight item covers all 3."
+    },
+    {
+      "id": "V036",
+      "scenario": "B09",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "A PARTIAL_DEPOSIT payment then a REMAINING_BALANCE payment for the booking."
+    },
+    {
+      "id": "V037",
+      "scenario": "B09",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "Separate CAPTURE txns; amounts bigint cents; sum = booking total."
+    },
+    {
+      "id": "V038",
+      "scenario": "B10",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "booking_session row with expires_at; status starts 'initiated'."
+    },
+    {
+      "id": "V039",
+      "scenario": "B10",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "refresh_token stored on booking_session_item (NOT on any flight row)."
+    },
+    {
+      "id": "V040",
+      "scenario": "B10",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "NO durable booking/booking_item rows exist while payment is unpaid/failed."
+    },
+    {
+      "id": "V041",
+      "scenario": "B10",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "On success, session.status='converted_to_booking'; durable booking graph now exi"
+    },
+    {
+      "id": "V043",
+      "scenario": "P01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Every cell pnr_override IS NULL at booking time."
+    },
+    {
+      "id": "V044",
+      "scenario": "P01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "All pax on a leg resolve to the same journey.airline_pnr."
+    },
+    {
+      "id": "V045",
+      "scenario": "P02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "Only pax2's RETURN cell has pnr_override set; onward cell still NULL."
+    },
+    {
+      "id": "V046",
+      "scenario": "P02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "All other pax cells remain pnr_override NULL."
+    },
+    {
+      "id": "V047",
+      "scenario": "P02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "Split is NOT recorded on booking_passenger (column does not exist)."
+    },
+    {
+      "id": "V048",
+      "scenario": "P02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "pax2 return resolves to override PNR; pax2 onward + all pax1 cells resolve to jo"
+    },
+    {
+      "id": "V049",
+      "scenario": "P03",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Every cell has a non-null eticket_number."
+    },
+    {
+      "id": "V050",
+      "scenario": "P03",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Two pax on the same leg have different eticket_number values."
+    },
+    {
+      "id": "V051",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "1 row; flight_journey_id NULL (whole item); cancellation_type='FULL'; mode='ONLI"
+    },
+    {
+      "id": "V052",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "12 rows — one per cancelled cell; each with per-leg refund & penalty."
+    },
+    {
+      "id": "V053",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "Each row's flight_journey_passenger_id is set (not the legacy booking_item_passe"
+    },
+    {
+      "id": "V054",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "All 12 cells status='CANCELLED'."
+    },
+    {
+      "id": "V055",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "Both journeys current_status_mapping_id -> CANCELLED."
+    },
+    {
+      "id": "V056",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "status CANCELLED; version incremented."
+    },
+    {
+      "id": "V057",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "booking.cancelled_at set (sole item cancelled)."
+    },
+    {
+      "id": "V058",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "1 row; destination_type='SOURCE'; amount = expected refund cents; reverses the c"
+    },
+    {
+      "id": "V059",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "Recovery row(s) (destination WALLET) linked to the cancellation_request."
+    },
+    {
+      "id": "V060",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "New REVISED row is_current=1; prior ORIGINAL row is_current flipped to 0."
+    },
+    {
+      "id": "V061",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "A history row records transition to CANCELLED."
+    },
+    {
+      "id": "V062",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "payment.status='refunded'."
+    },
+    {
+      "id": "V063",
+      "scenario": "C01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "6 identities still present (people are not deleted)."
+    },
+    {
+      "id": "V064",
+      "scenario": "C02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "mode='OFFLINE'; status transitions requested->in_review->submitted_to_airline->c"
+    },
+    {
+      "id": "V065",
+      "scenario": "C02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "One row per CS action; actor/action set; artifact_ref captures airline correspon"
+    },
+    {
+      "id": "V066",
+      "scenario": "C02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "Refund created only AFTER status='confirmed'."
+    },
+    {
+      "id": "V067",
+      "scenario": "C03",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "flight_journey_id = the RETURN journey id (not NULL)."
+    },
+    {
+      "id": "V068",
+      "scenario": "C03",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "Only return-journey cells -> CANCELLED; onward cells stay BOOKED."
+    },
+    {
+      "id": "V069",
+      "scenario": "C03",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Onward journey status unchanged; return journey CANCELLED."
+    },
+    {
+      "id": "V070",
+      "scenario": "C03",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Item NOT fully cancelled (onward remains)."
+    },
+    {
+      "id": "V071",
+      "scenario": "C04",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Rows only for pax2's cells across every leg."
+    },
+    {
+      "id": "V072",
+      "scenario": "C04",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "pax2 cells CANCELLED on all legs; other pax cells unchanged."
+    },
+    {
+      "id": "V073",
+      "scenario": "C04",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PASS",
+      "expected": "Journeys remain active (other pax still travelling)."
+    },
+    {
+      "id": "V074",
+      "scenario": "C05",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "Exactly 1 cancellation_passenger row (the one cell)."
+    },
+    {
+      "id": "V075",
+      "scenario": "C05",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "Exactly 1 cell CANCELLED (correct pax + correct leg); all others unchanged."
+    },
+    {
+      "id": "V076",
+      "scenario": "C06",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "2 cancellation_request rows, each flight_journey_id-scoped: one mode='ONLINE', o"
+    },
+    {
+      "id": "V077",
+      "scenario": "C06",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "Both requests resolve to the same booking_item (whole-booking intent)."
+    },
+    {
+      "id": "V078",
+      "scenario": "C07",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "destination_type='APP_WALLET'; wallet_ledger_id set."
+    },
+    {
+      "id": "V079",
+      "scenario": "C07",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "A REFUND (or REFUND_PARTIAL) ledger row for the amount."
+    },
+    {
+      "id": "V080",
+      "scenario": "C07",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "wallet.balance increased by the refund amount."
+    },
+    {
+      "id": "V081",
+      "scenario": "C08",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "destination_type='AIRLINE_CREDIT_SHELL'."
+    },
+    {
+      "id": "V082",
+      "scenario": "C08",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "No SOURCE refund and no wallet_ledger cash entry for this leg."
+    },
+    {
+      "id": "V083",
+      "scenario": "C09",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "BLOCKED",
+      "expected": "Row(s) linked to cancellation_request; destination='WALLET'; provider='RIYA'; am"
+    },
+    {
+      "id": "V089",
+      "scenario": "M01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "gst_total == SUM(gst_breakup[].amount) in matching units for every journey."
+    },
+    {
+      "id": "V090",
+      "scenario": "M01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "gst_total and every breakup amount are in cents."
+    },
+    {
+      "id": "V091",
+      "scenario": "M02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "vendor_price_cents is bigint; legacy varchar vendor_price is absent (post Phase "
+    },
+    {
+      "id": "V092",
+      "scenario": "M02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "amount is bigint (not int(11)); no overflow for high-value bookings."
+    },
+    {
+      "id": "V093",
+      "scenario": "M02",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "FAIL",
+      "expected": "No money value stored as varchar/text anywhere in the flight subgraph."
+    }
+  ],
+  "pendingDrive": [
+    {
+      "id": "V033",
+      "scenario": "B08",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PENDING_SQL",
+      "expected": "notify_name/email/phone populated on booking_item; a non-passenger value is allo"
+    },
+    {
+      "id": "V034",
+      "scenario": "B08",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PENDING_SQL",
+      "expected": "booking table has NO notify_* columns (item-level only)."
+    },
+    {
+      "id": "V035",
+      "scenario": "B08",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "PENDING_SQL",
+      "expected": "No booking_passenger row is required to match the notify contact."
+    },
+    {
+      "id": "V042",
+      "scenario": "B10",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "NOT_TESTED",
+      "expected": "refresh_token column is absent from booking_item_flight (post Phase D)."
+    },
+    {
+      "id": "V084",
+      "scenario": "C09",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "NOT_TESTED",
+      "expected": "customer refund (refund_transaction) minus supplier recovery is computable = ret"
+    },
+    {
+      "id": "V085",
+      "scenario": "R01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "NOT_TESTED",
+      "expected": "Old return journey status CANCELLED (via a cancellation_request, reason=RESCHEDU"
+    },
+    {
+      "id": "V086",
+      "scenario": "R01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "NOT_TESTED",
+      "expected": "New return journey created; rescheduled_from_journey_id = old journey id."
+    },
+    {
+      "id": "V087",
+      "scenario": "R01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "NOT_TESTED",
+      "expected": "Onward journey unchanged."
+    },
+    {
+      "id": "V088",
+      "scenario": "R01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "NOT_TESTED",
+      "expected": "New cells created for the new journey; old journey cells CANCELLED."
+    },
+    {
+      "id": "V094",
+      "scenario": "X01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "NOT_TESTED",
+      "expected": "Writer A's versioned UPDATE (WHERE version=1) succeeds; version becomes 2."
+    },
+    {
+      "id": "V095",
+      "scenario": "X01",
+      "sheet": "",
+      "sheetNorm": "EMPTY",
+      "known": "NOT_TESTED",
+      "expected": "Writer B's UPDATE (WHERE version=1) affects 0 rows and is retried; no silent ove"
+    }
+  ],
+  "mismatch": [],
+  "sheetFilledIds": []
+}

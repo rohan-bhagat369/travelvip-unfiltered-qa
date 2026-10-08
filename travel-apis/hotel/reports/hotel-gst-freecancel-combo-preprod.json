@@ -1,0 +1,1854 @@
+{
+  "ranAt": "2026-08-26T17:07:11.069Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "tierId": "19597201",
+  "checkin": "2026-10-14",
+  "checkout": "2026-10-15",
+  "note": "No book. Compare listing totals for GST / Free cancellation alone vs together.",
+  "cities": [
+    {
+      "city": "Mumbai",
+      "entityId": "357389:IN",
+      "policyFacet": {
+        "indexField": "Reservation policy",
+        "facetKey": "Free cancellation",
+        "count": 1054,
+        "found": true
+      },
+      "gstFacet": {
+        "indexField": "GST",
+        "facetKey": "Claimable",
+        "count": 10,
+        "found": true
+      },
+      "facetNames": [
+        {
+          "name": "Star Rating",
+          "indexField": "df_long_star_rating",
+          "keys": [
+            {
+              "key": "5",
+              "count": 79
+            },
+            {
+              "key": "4",
+              "count": 91
+            },
+            {
+              "key": "3",
+              "count": 539
+            }
+          ]
+        },
+        {
+          "name": "Free cancellation",
+          "indexField": "Reservation policy",
+          "keys": [
+            {
+              "key": "Free cancellation",
+              "count": 1054
+            }
+          ]
+        },
+        {
+          "name": "GST",
+          "indexField": "GST",
+          "keys": [
+            {
+              "key": "Claimable",
+              "count": 10
+            }
+          ]
+        }
+      ],
+      "runs": [
+        {
+          "label": "unfiltered_obj",
+          "fq": {},
+          "http": 200,
+          "ok": true,
+          "totalResults": 946,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "41617696",
+              "name": "Indigo 66 - Boys Hostel near Seepz MIDC Andheri",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "15079424",
+              "name": "New Shahana - Hostel",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "41631156",
+              "name": "AFRA DORMITORY",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "31325671",
+              "name": "Perfect Dormitory",
+              "starRating": 5,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "51359546",
+              "name": "Rest Inn Hostel Dormitory",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 0,
+          "gstFalse": 20,
+          "error": null
+        },
+        {
+          "label": "GST_only_obj",
+          "fq": {
+            "GST": [
+              "Claimable"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 10,
+          "pageHotels": 10,
+          "sample": [
+            {
+              "id": "70692312",
+              "name": "THE HOSTELLER MUMBAI, INTERNATIONAL AIRP",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "16794751",
+              "name": "Mumbai House Luxury Apartment",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41521792",
+              "name": "Hotel Mumbai House - Juhu",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41509397",
+              "name": "Adiva Residency Beacon, Grant Road, Mumbai",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15720321",
+              "name": "HOTEL MUMBAI HOUSE - ANDHERI",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 10,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "FreeCancel_only_obj",
+          "fq": {
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 792,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "41617696",
+              "name": "Indigo 66 - Boys Hostel near Seepz MIDC Andheri",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "15079424",
+              "name": "New Shahana - Hostel",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "41631156",
+              "name": "AFRA DORMITORY",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "31325671",
+              "name": "Perfect Dormitory",
+              "starRating": 5,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "51359546",
+              "name": "Rest Inn Hostel Dormitory",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 0,
+          "gstFalse": 20,
+          "error": null
+        },
+        {
+          "label": "GST+FreeCancel_obj",
+          "fq": {
+            "GST": [
+              "Claimable"
+            ],
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 9,
+          "pageHotels": 9,
+          "sample": [
+            {
+              "id": "70692312",
+              "name": "THE HOSTELLER MUMBAI, INTERNATIONAL AIRP",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "16794751",
+              "name": "Mumbai House Luxury Apartment",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41521792",
+              "name": "Hotel Mumbai House - Juhu",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41509397",
+              "name": "Adiva Residency Beacon, Grant Road, Mumbai",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15720321",
+              "name": "HOTEL MUMBAI HOUSE - ANDHERI",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 9,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "Star4+GST+FreeCancel_obj",
+          "fq": {
+            "df_long_star_rating": [
+              4
+            ],
+            "GST": [
+              "Claimable"
+            ],
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 3,
+          "pageHotels": 3,
+          "sample": [
+            {
+              "id": "70692312",
+              "name": "THE HOSTELLER MUMBAI, INTERNATIONAL AIRP",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15401164",
+              "name": "Bawa International",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15340408",
+              "name": "The Mirador Hotel",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 3,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "GST_only_arr",
+          "fq": [
+            "GST:Claimable"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 10,
+          "pageHotels": 10,
+          "sample": [
+            {
+              "id": "70692312",
+              "name": "THE HOSTELLER MUMBAI, INTERNATIONAL AIRP",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "16794751",
+              "name": "Mumbai House Luxury Apartment",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41521792",
+              "name": "Hotel Mumbai House - Juhu",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41509397",
+              "name": "Adiva Residency Beacon, Grant Road, Mumbai",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15720321",
+              "name": "HOTEL MUMBAI HOUSE - ANDHERI",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 10,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "FreeCancel_only_arr",
+          "fq": [
+            "Reservation policy:Free cancellation"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 792,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "41617696",
+              "name": "Indigo 66 - Boys Hostel near Seepz MIDC Andheri",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "15079424",
+              "name": "New Shahana - Hostel",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "41631156",
+              "name": "AFRA DORMITORY",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "31325671",
+              "name": "Perfect Dormitory",
+              "starRating": 5,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "51359546",
+              "name": "Rest Inn Hostel Dormitory",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 0,
+          "gstFalse": 20,
+          "error": null
+        },
+        {
+          "label": "GST+FreeCancel_arr",
+          "fq": [
+            "GST:Claimable",
+            "Reservation policy:Free cancellation"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 9,
+          "pageHotels": 9,
+          "sample": [
+            {
+              "id": "70692312",
+              "name": "THE HOSTELLER MUMBAI, INTERNATIONAL AIRP",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "16794751",
+              "name": "Mumbai House Luxury Apartment",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41521792",
+              "name": "Hotel Mumbai House - Juhu",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41509397",
+              "name": "Adiva Residency Beacon, Grant Road, Mumbai",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15720321",
+              "name": "HOTEL MUMBAI HOUSE - ANDHERI",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 9,
+          "gstFalse": 0,
+          "error": null
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Delhi",
+      "entityId": "227760:IN",
+      "policyFacet": {
+        "indexField": "Reservation policy",
+        "facetKey": "Free cancellation",
+        "count": 2019,
+        "found": true
+      },
+      "gstFacet": {
+        "indexField": "GST",
+        "facetKey": "Claimable",
+        "count": 7,
+        "found": true
+      },
+      "facetNames": [
+        {
+          "name": "Star Rating",
+          "indexField": "df_long_star_rating",
+          "keys": [
+            {
+              "key": "5",
+              "count": 89
+            },
+            {
+              "key": "4",
+              "count": 254
+            },
+            {
+              "key": "3",
+              "count": 986
+            }
+          ]
+        },
+        {
+          "name": "Free cancellation",
+          "indexField": "Reservation policy",
+          "keys": [
+            {
+              "key": "Free cancellation",
+              "count": 2019
+            }
+          ]
+        },
+        {
+          "name": "GST",
+          "indexField": "GST",
+          "keys": [
+            {
+              "key": "Claimable",
+              "count": 7
+            }
+          ]
+        }
+      ],
+      "runs": [
+        {
+          "label": "unfiltered_obj",
+          "fq": {},
+          "http": 200,
+          "ok": true,
+          "totalResults": 1541,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "60692516",
+              "name": "Hotel Krone Delhi Near IGI Airport Delhi",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": false
+            },
+            {
+              "id": "70440667",
+              "name": "Plazzo Prime Plaza",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": false
+            },
+            {
+              "id": "50350635",
+              "name": "FRAZYONE HOSTEL",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "71082488",
+              "name": "Mauryan Signature hotel Devli Khanpur",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": false
+            },
+            {
+              "id": "72390430",
+              "name": "Transit POD Stay – New Delhi | Airport Transit",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 0,
+          "gstFalse": 20,
+          "error": null
+        },
+        {
+          "label": "GST_only_obj",
+          "fq": {
+            "GST": [
+              "Claimable"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 7,
+          "pageHotels": 7,
+          "sample": [
+            {
+              "id": "38442194",
+              "name": "The Hosteller Delhi",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39818535",
+              "name": "The Oakland Plaza by Orion Hotels",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "32539552",
+              "name": "The Orion - Greater Kailash",
+              "starRating": 5,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39676546",
+              "name": "Best Western Darbar",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39962752",
+              "name": "Amber Inn by Orion Hotels",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 7,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "FreeCancel_only_obj",
+          "fq": {
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 1229,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "50350635",
+              "name": "FRAZYONE HOSTEL",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72390430",
+              "name": "Transit POD Stay – New Delhi | Airport Transit",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "39618090",
+              "name": "AmigosIndia",
+              "starRating": 1,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72459441",
+              "name": "GAVARI INDIA DELHI HOSTEL",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72420098",
+              "name": "ROYAL RESIDENCY",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 0,
+          "gstFalse": 20,
+          "error": null
+        },
+        {
+          "label": "GST+FreeCancel_obj",
+          "fq": {
+            "GST": [
+              "Claimable"
+            ],
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 7,
+          "pageHotels": 7,
+          "sample": [
+            {
+              "id": "38442194",
+              "name": "The Hosteller Delhi",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39818535",
+              "name": "The Oakland Plaza by Orion Hotels",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "32539552",
+              "name": "The Orion - Greater Kailash",
+              "starRating": 5,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39676546",
+              "name": "Best Western Darbar",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39962752",
+              "name": "Amber Inn by Orion Hotels",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 7,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "Star4+GST+FreeCancel_obj",
+          "fq": {
+            "df_long_star_rating": [
+              4
+            ],
+            "GST": [
+              "Claimable"
+            ],
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 1,
+          "pageHotels": 1,
+          "sample": [
+            {
+              "id": "39962752",
+              "name": "Amber Inn by Orion Hotels",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 1,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "GST_only_arr",
+          "fq": [
+            "GST:Claimable"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 7,
+          "pageHotels": 7,
+          "sample": [
+            {
+              "id": "38442194",
+              "name": "The Hosteller Delhi",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39818535",
+              "name": "The Oakland Plaza by Orion Hotels",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "32539552",
+              "name": "The Orion - Greater Kailash",
+              "starRating": 5,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39676546",
+              "name": "Best Western Darbar",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39962752",
+              "name": "Amber Inn by Orion Hotels",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 7,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "FreeCancel_only_arr",
+          "fq": [
+            "Reservation policy:Free cancellation"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 1229,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "50350635",
+              "name": "FRAZYONE HOSTEL",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72390430",
+              "name": "Transit POD Stay – New Delhi | Airport Transit",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "39618090",
+              "name": "AmigosIndia",
+              "starRating": 1,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72459441",
+              "name": "GAVARI INDIA DELHI HOSTEL",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72420098",
+              "name": "ROYAL RESIDENCY",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 0,
+          "gstFalse": 20,
+          "error": null
+        },
+        {
+          "label": "GST+FreeCancel_arr",
+          "fq": [
+            "GST:Claimable",
+            "Reservation policy:Free cancellation"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 7,
+          "pageHotels": 7,
+          "sample": [
+            {
+              "id": "38442194",
+              "name": "The Hosteller Delhi",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39818535",
+              "name": "The Oakland Plaza by Orion Hotels",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "32539552",
+              "name": "The Orion - Greater Kailash",
+              "starRating": 5,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39676546",
+              "name": "Best Western Darbar",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39962752",
+              "name": "Amber Inn by Orion Hotels",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 7,
+          "gstFalse": 0,
+          "error": null
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Bangalore",
+      "entityId": "341153:IN",
+      "policyFacet": {
+        "indexField": "Reservation policy",
+        "facetKey": "Free cancellation",
+        "count": 1388,
+        "found": true
+      },
+      "gstFacet": {
+        "indexField": "GST",
+        "facetKey": "Claimable",
+        "count": 34,
+        "found": true
+      },
+      "facetNames": [
+        {
+          "name": "Star Rating",
+          "indexField": "df_long_star_rating",
+          "keys": [
+            {
+              "key": "5",
+              "count": 89
+            },
+            {
+              "key": "4",
+              "count": 185
+            },
+            {
+              "key": "3",
+              "count": 948
+            }
+          ]
+        },
+        {
+          "name": "Free cancellation",
+          "indexField": "Reservation policy",
+          "keys": [
+            {
+              "key": "Free cancellation",
+              "count": 1388
+            }
+          ]
+        },
+        {
+          "name": "GST",
+          "indexField": "GST",
+          "keys": [
+            {
+              "key": "Claimable",
+              "count": 34
+            }
+          ]
+        }
+      ],
+      "runs": [
+        {
+          "label": "unfiltered_obj",
+          "fq": {},
+          "http": 200,
+          "ok": true,
+          "totalResults": 1534,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "72310999",
+              "name": "SGR Paradise",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72256697",
+              "name": "Stopover Backpackers Stay",
+              "starRating": 1,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "70510420",
+              "name": "Essotto Recreation Hub",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "71197028",
+              "name": "Soloscape budget friendly backpackers hostel",
+              "starRating": 1,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72267327",
+              "name": "goSTOPS Bengaluru Jayanagar",
+              "starRating": 1,
+              "isGSTClaimable": false,
+              "refundable": false
+            }
+          ],
+          "gstTrue": 3,
+          "gstFalse": 17,
+          "error": null
+        },
+        {
+          "label": "GST_only_obj",
+          "fq": {
+            "GST": [
+              "Claimable"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 34,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "54103093",
+              "name": "The Hosteller Bangalore, Koramangala",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "70823228",
+              "name": "The Hosteller Bangalore, Manyata Tech Park",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15392897",
+              "name": "The Hosteller Bangalore, Marathahalli",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "72382643",
+              "name": "The Hosteller Bangalore, HSR Layout",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "70779816",
+              "name": "The Hosteller Bangalore, Indiranagar",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 20,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "FreeCancel_only_obj",
+          "fq": {
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 1291,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "72310999",
+              "name": "SGR Paradise",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72256697",
+              "name": "Stopover Backpackers Stay",
+              "starRating": 1,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "70510420",
+              "name": "Essotto Recreation Hub",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "71197028",
+              "name": "Soloscape budget friendly backpackers hostel",
+              "starRating": 1,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "55395580",
+              "name": " Zylo Indiranagar",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 3,
+          "gstFalse": 17,
+          "error": null
+        },
+        {
+          "label": "GST+FreeCancel_obj",
+          "fq": {
+            "GST": [
+              "Claimable"
+            ],
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 27,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "54103093",
+              "name": "The Hosteller Bangalore, Koramangala",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "70823228",
+              "name": "The Hosteller Bangalore, Manyata Tech Park",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15392897",
+              "name": "The Hosteller Bangalore, Marathahalli",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "72382643",
+              "name": "The Hosteller Bangalore, HSR Layout",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "70779816",
+              "name": "The Hosteller Bangalore, Indiranagar",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 20,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "Star4+GST+FreeCancel_obj",
+          "fq": {
+            "df_long_star_rating": [
+              4
+            ],
+            "GST": [
+              "Claimable"
+            ],
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 5,
+          "pageHotels": 5,
+          "sample": [
+            {
+              "id": "39739405",
+              "name": "Tea pavilion",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "70522597",
+              "name": "Axon Bellandur By Axon Hotels",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "44339369",
+              "name": "Aiden by Best Western Hennur Bengaluru",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39523069",
+              "name": "juSTa MG Road",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39031653",
+              "name": "juSTa OFF MG Road",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 5,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "GST_only_arr",
+          "fq": [
+            "GST:Claimable"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 34,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "54103093",
+              "name": "The Hosteller Bangalore, Koramangala",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "70823228",
+              "name": "The Hosteller Bangalore, Manyata Tech Park",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15392897",
+              "name": "The Hosteller Bangalore, Marathahalli",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "72382643",
+              "name": "The Hosteller Bangalore, HSR Layout",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "70779816",
+              "name": "The Hosteller Bangalore, Indiranagar",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 20,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "FreeCancel_only_arr",
+          "fq": [
+            "Reservation policy:Free cancellation"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 1291,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "72310999",
+              "name": "SGR Paradise",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72256697",
+              "name": "Stopover Backpackers Stay",
+              "starRating": 1,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "70510420",
+              "name": "Essotto Recreation Hub",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "71197028",
+              "name": "Soloscape budget friendly backpackers hostel",
+              "starRating": 1,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "55395580",
+              "name": " Zylo Indiranagar",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 3,
+          "gstFalse": 17,
+          "error": null
+        },
+        {
+          "label": "GST+FreeCancel_arr",
+          "fq": [
+            "GST:Claimable",
+            "Reservation policy:Free cancellation"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 27,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "54103093",
+              "name": "The Hosteller Bangalore, Koramangala",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "70823228",
+              "name": "The Hosteller Bangalore, Manyata Tech Park",
+              "starRating": 1,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15392897",
+              "name": "The Hosteller Bangalore, Marathahalli",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "72382643",
+              "name": "The Hosteller Bangalore, HSR Layout",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "70779816",
+              "name": "The Hosteller Bangalore, Indiranagar",
+              "starRating": 2,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 20,
+          "gstFalse": 0,
+          "error": null
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "city": "Pune",
+      "entityId": "328605:IN",
+      "policyFacet": {
+        "indexField": "Reservation policy",
+        "facetKey": "Free cancellation",
+        "count": 440,
+        "found": true
+      },
+      "gstFacet": {
+        "indexField": "GST",
+        "facetKey": "Claimable",
+        "count": 8,
+        "found": true
+      },
+      "facetNames": [
+        {
+          "name": "Star Rating",
+          "indexField": "df_long_star_rating",
+          "keys": [
+            {
+              "key": "5",
+              "count": 36
+            },
+            {
+              "key": "4",
+              "count": 64
+            },
+            {
+              "key": "3",
+              "count": 379
+            }
+          ]
+        },
+        {
+          "name": "Free cancellation",
+          "indexField": "Reservation policy",
+          "keys": [
+            {
+              "key": "Free cancellation",
+              "count": 440
+            }
+          ]
+        },
+        {
+          "name": "GST",
+          "indexField": "GST",
+          "keys": [
+            {
+              "key": "Claimable",
+              "count": 8
+            }
+          ]
+        }
+      ],
+      "runs": [
+        {
+          "label": "unfiltered_obj",
+          "fq": {},
+          "http": 200,
+          "ok": true,
+          "totalResults": 541,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "51962885",
+              "name": "Backpackers hostel",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "70808638",
+              "name": "Elephant House Coliving Pune",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "70456961",
+              "name": "Galaxy Executive",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "39065394",
+              "name": "HOSHTEL99 - STAY, COWORK & CAFE",
+              "starRating": 4,
+              "isGSTClaimable": false,
+              "refundable": false
+            },
+            {
+              "id": "72420257",
+              "name": "Fabhotel Swapanpurti Sai Avenue",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 0,
+          "gstFalse": 20,
+          "error": null
+        },
+        {
+          "label": "GST_only_obj",
+          "fq": {
+            "GST": [
+              "Claimable"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 8,
+          "pageHotels": 8,
+          "sample": [
+            {
+              "id": "70496724",
+              "name": "The Altruist Wagholi Hotel",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": false
+            },
+            {
+              "id": "70488218",
+              "name": "VITS Select Kharadi Pune",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39772682",
+              "name": "Magnus Vosiv Suites",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": false
+            },
+            {
+              "id": "15531224",
+              "name": "Mastiff Hotel Chinchwad by OTHPL",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39672140",
+              "name": "Spree Shivai Hotel Pimpri",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 8,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "FreeCancel_only_obj",
+          "fq": {
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 410,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "51962885",
+              "name": "Backpackers hostel",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "70808638",
+              "name": "Elephant House Coliving Pune",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "70456961",
+              "name": "Galaxy Executive",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72420257",
+              "name": "Fabhotel Swapanpurti Sai Avenue",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "54599102",
+              "name": "Zostel Pune (Viman Nagar)",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 0,
+          "gstFalse": 20,
+          "error": null
+        },
+        {
+          "label": "GST+FreeCancel_obj",
+          "fq": {
+            "GST": [
+              "Claimable"
+            ],
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 5,
+          "pageHotels": 5,
+          "sample": [
+            {
+              "id": "70488218",
+              "name": "VITS Select Kharadi Pune",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15531224",
+              "name": "Mastiff Hotel Chinchwad by OTHPL",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39672140",
+              "name": "Spree Shivai Hotel Pimpri",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41437406",
+              "name": "Zip By Spree Hotels Chakan",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "57535743",
+              "name": "Kyriad Hotel Pimpri",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 5,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "Star4+GST+FreeCancel_obj",
+          "fq": {
+            "df_long_star_rating": [
+              4
+            ],
+            "GST": [
+              "Claimable"
+            ],
+            "Reservation policy": [
+              "Free cancellation"
+            ]
+          },
+          "http": 200,
+          "ok": true,
+          "totalResults": 3,
+          "pageHotels": 3,
+          "sample": [
+            {
+              "id": "15531224",
+              "name": "Mastiff Hotel Chinchwad by OTHPL",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39672140",
+              "name": "Spree Shivai Hotel Pimpri",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "57535743",
+              "name": "Kyriad Hotel Pimpri",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 3,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "GST_only_arr",
+          "fq": [
+            "GST:Claimable"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 8,
+          "pageHotels": 8,
+          "sample": [
+            {
+              "id": "70496724",
+              "name": "The Altruist Wagholi Hotel",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": false
+            },
+            {
+              "id": "70488218",
+              "name": "VITS Select Kharadi Pune",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39772682",
+              "name": "Magnus Vosiv Suites",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": false
+            },
+            {
+              "id": "15531224",
+              "name": "Mastiff Hotel Chinchwad by OTHPL",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39672140",
+              "name": "Spree Shivai Hotel Pimpri",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 8,
+          "gstFalse": 0,
+          "error": null
+        },
+        {
+          "label": "FreeCancel_only_arr",
+          "fq": [
+            "Reservation policy:Free cancellation"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 410,
+          "pageHotels": 20,
+          "sample": [
+            {
+              "id": "51962885",
+              "name": "Backpackers hostel",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "70808638",
+              "name": "Elephant House Coliving Pune",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "70456961",
+              "name": "Galaxy Executive",
+              "starRating": 2,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "72420257",
+              "name": "Fabhotel Swapanpurti Sai Avenue",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            },
+            {
+              "id": "54599102",
+              "name": "Zostel Pune (Viman Nagar)",
+              "starRating": 3,
+              "isGSTClaimable": false,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 0,
+          "gstFalse": 20,
+          "error": null
+        },
+        {
+          "label": "GST+FreeCancel_arr",
+          "fq": [
+            "GST:Claimable",
+            "Reservation policy:Free cancellation"
+          ],
+          "http": 200,
+          "ok": true,
+          "totalResults": 5,
+          "pageHotels": 5,
+          "sample": [
+            {
+              "id": "70488218",
+              "name": "VITS Select Kharadi Pune",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "15531224",
+              "name": "Mastiff Hotel Chinchwad by OTHPL",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "39672140",
+              "name": "Spree Shivai Hotel Pimpri",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "41437406",
+              "name": "Zip By Spree Hotels Chakan",
+              "starRating": 3,
+              "isGSTClaimable": true,
+              "refundable": true
+            },
+            {
+              "id": "57535743",
+              "name": "Kyriad Hotel Pimpri",
+              "starRating": 4,
+              "isGSTClaimable": true,
+              "refundable": true
+            }
+          ],
+          "gstTrue": 5,
+          "gstFalse": 0,
+          "error": null
+        }
+      ],
+      "verdict": "PASS"
+    }
+  ]
+}

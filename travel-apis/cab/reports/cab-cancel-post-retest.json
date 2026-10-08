@@ -1,0 +1,149 @@
+{
+  "ranAt": "2026-09-11T10:48:59.507Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "summary": {
+    "PASS": 0,
+    "BUG": 3,
+    "NOT TESTED": 0
+  },
+  "rows": [
+    {
+      "id": "AIR-USER",
+      "booked": {
+        "ok": true,
+        "br": "BR1789123711764269",
+        "status": "Confirmed",
+        "pickup": "2026-09-28T18:35:58+00:00",
+        "freeCancellationTillMin": 30,
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "providerBookingId": "TVIPWE110926161831DKDV"
+      },
+      "cancel": {
+        "http": 400,
+        "ok": false,
+        "code": "CANCELLATION_FAILED",
+        "message": "Booking cancellation unsuccessful",
+        "result": {
+          "bookingStatus": "FAILED"
+        },
+        "data": {
+          "error": {
+            "code": "CANCELLATION_FAILED",
+            "message": "Booking cancellation unsuccessful",
+            "details": null,
+            "timestamp": "2026-09-11T10:48:34Z",
+            "request_id": "req-1789123714609",
+            "bookingRefId": "BR1789123711764269",
+            "type": "cancel",
+            "result": {
+              "bookingStatus": "FAILED"
+            }
+          },
+          "_meta": {
+            "correlation_id": "2bbbd52a-8590-485e-a479-a872f577aece"
+          }
+        },
+        "statusAfter": "Confirmed"
+      },
+      "status": "BUG"
+    },
+    {
+      "id": "OUT-USER",
+      "booked": {
+        "ok": true,
+        "br": "BR1789123724588916",
+        "status": "Confirmed",
+        "pickup": "2026-09-29T18:35:58+00:00",
+        "freeCancellationTillMin": 30,
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "providerBookingId": "TVIPWE1109261618449NP7"
+      },
+      "cancel": {
+        "http": 400,
+        "ok": false,
+        "code": "CANCELLATION_FAILED",
+        "message": "Booking cancellation unsuccessful",
+        "result": {
+          "bookingStatus": "FAILED"
+        },
+        "data": {
+          "error": {
+            "code": "CANCELLATION_FAILED",
+            "message": "Booking cancellation unsuccessful",
+            "details": null,
+            "timestamp": "2026-09-11T10:48:47Z",
+            "request_id": "req-1789123727894",
+            "bookingRefId": "BR1789123724588916",
+            "type": "cancel",
+            "result": {
+              "bookingStatus": "FAILED"
+            }
+          },
+          "_meta": {
+            "correlation_id": "2bbbd52a-8590-485e-a479-a872f577aece"
+          }
+        },
+        "statusAfter": "Confirmed"
+      },
+      "status": "BUG"
+    },
+    {
+      "id": "AIR-ADMIN",
+      "booked": {
+        "ok": true,
+        "br": "BR1789123735759576",
+        "status": "Confirmed",
+        "pickup": "2026-09-30T18:35:58+00:00",
+        "freeCancellationTillMin": 30,
+        "progress": {
+          "cabAssigned": false,
+          "cabLeftForPickup": false,
+          "cabReachedSource": false,
+          "cabTripStarted": false,
+          "cabTripEnd": false
+        },
+        "providerBookingId": "TVIPWE11092616185615GE"
+      },
+      "cancel": {
+        "http": 400,
+        "ok": false,
+        "code": "CANCELLATION_FAILED",
+        "message": "Booking cancellation unsuccessful",
+        "result": {
+          "bookingStatus": "FAILED"
+        },
+        "data": {
+          "error": {
+            "code": "CANCELLATION_FAILED",
+            "message": "Booking cancellation unsuccessful",
+            "details": null,
+            "timestamp": "2026-09-11T10:48:58Z",
+            "request_id": "req-1789123739052",
+            "bookingRefId": "BR1789123735759576",
+            "type": "cancel",
+            "result": {
+              "bookingStatus": "FAILED"
+            }
+          },
+          "_meta": {
+            "correlation_id": "2bbbd52a-8590-485e-a479-a872f577aece"
+          }
+        },
+        "statusAfter": "Confirmed"
+      },
+      "status": "BUG"
+    }
+  ]
+}

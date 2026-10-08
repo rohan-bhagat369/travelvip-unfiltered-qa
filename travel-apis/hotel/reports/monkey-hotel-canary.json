@@ -1,0 +1,1025 @@
+{
+  "ranAt": "2026-08-19T08:37:05.897Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "counts": {
+    "PASS": 31,
+    "BUG": 9,
+    "NOT TESTED": 0,
+    "total": 40
+  },
+  "rows": [
+    {
+      "id": "AC-BASE",
+      "api": "GET /v1/hotels/autocomplete",
+      "how": "q=pune baseline",
+      "payload": {
+        "q": "pune"
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 200 content=0 items",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "SEARCH-BASE",
+      "api": "POST /v1/hotels/search",
+      "how": "Hilltop Mumbai entityId=39627872 +28d/2n baseline",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 200 results=1",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "S-PAST-CHECKIN",
+      "api": "POST /v1/hotels/search",
+      "how": "checkin in the past",
+      "payload": {
+        "checkin": "2024-01-01",
+        "checkout": "2024-01-03",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Check-in date cannot be in the past."
+      ]
+    },
+    {
+      "id": "S-DDMMYYYY",
+      "api": "POST /v1/hotels/search",
+      "how": "dates DD-MM-YYYY format",
+      "payload": {
+        "checkin": "01-01-2027",
+        "checkout": "03-01-2027",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Check-in date is not a valid date. Use the format YYYY-MM-DD.",
+        "Check-out date is not a valid date. Use the format YYYY-MM-DD."
+      ]
+    },
+    {
+      "id": "S-SLASH",
+      "api": "POST /v1/hotels/search",
+      "how": "dates with slashes",
+      "payload": {
+        "checkin": "2027/01/01",
+        "checkout": "2027/01/03",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Check-in date is not a valid date. Use the format YYYY-MM-DD.",
+        "Check-out date is not a valid date. Use the format YYYY-MM-DD."
+      ]
+    },
+    {
+      "id": "S-CHECKOUT-BEFORE",
+      "api": "POST /v1/hotels/search",
+      "how": "checkout before checkin",
+      "payload": {
+        "checkin": "2026-09-18",
+        "checkout": "2026-09-16",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Check-out date must be after the check-in date."
+      ]
+    },
+    {
+      "id": "S-ADULTS-0",
+      "api": "POST /v1/hotels/search",
+      "how": "adults=0",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 0,
+            "children": 0,
+            "childrenAges": []
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Room 1 must have between 1 and 6 adults."
+      ]
+    },
+    {
+      "id": "S-ADULTS-STR",
+      "api": "POST /v1/hotels/search",
+      "how": "adults as string \"1\"",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": "1",
+            "children": 0,
+            "childrenAges": []
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Room 1 adults must be a whole number."
+      ]
+    },
+    {
+      "id": "S-ADULTS-7",
+      "api": "POST /v1/hotels/search",
+      "how": "adults=7 (exceeds max)",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 7,
+            "children": 0,
+            "childrenAges": []
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Room 1 must have between 1 and 6 adults."
+      ]
+    },
+    {
+      "id": "S-NO-ENTITY",
+      "api": "POST /v1/hotels/search",
+      "how": "missing entityId",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Please select a destination to search."
+      ]
+    },
+    {
+      "id": "S-NO-TYPE",
+      "api": "POST /v1/hotels/search",
+      "how": "missing type",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Destination type is required."
+      ]
+    },
+    {
+      "id": "S-NAT-BAD",
+      "api": "POST /v1/hotels/search",
+      "how": "nationality not 2-letter",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "INDIA",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Nationality must be a valid 2-letter country code (for example IN, US or AE)."
+      ]
+    },
+    {
+      "id": "S-ROOMS-7",
+      "api": "POST /v1/hotels/search",
+      "how": ">6 rooms",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 0,
+            "childrenAges": []
+          },
+          {
+            "adults": 1,
+            "children": 0,
+            "childrenAges": []
+          },
+          {
+            "adults": 1,
+            "children": 0,
+            "childrenAges": []
+          },
+          {
+            "adults": 1,
+            "children": 0,
+            "childrenAges": []
+          },
+          {
+            "adults": 1,
+            "children": 0,
+            "childrenAges": []
+          },
+          {
+            "adults": 1,
+            "children": 0,
+            "childrenAges": []
+          },
+          {
+            "adults": 1,
+            "children": 0,
+            "childrenAges": []
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "A maximum of 6 rooms is allowed per booking."
+      ]
+    },
+    {
+      "id": "S-HTML-ENTITY",
+      "api": "POST /v1/hotels/search",
+      "how": "entityId with HTML",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872<script>",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "BUG",
+      "actual": "Accepted invalid payload: HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "S-COMMA-NAT",
+      "api": "POST /v1/hotels/search",
+      "how": "nationality with trailing comma",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN,",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Nationality must be a valid 2-letter country code (for example IN, US or AE)."
+      ]
+    },
+    {
+      "id": "S-CHILDREN-NO-AGES",
+      "api": "POST /v1/hotels/search",
+      "how": "children without ages",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 2,
+            "childrenAges": []
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Please provide an age for each child in room 1 (2 age(s) expected)."
+      ]
+    },
+    {
+      "id": "S-CHILD-AGE-18",
+      "api": "POST /v1/hotels/search",
+      "how": "child age 18",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              18
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Child age in room 1 must be between 0 and 17."
+      ]
+    },
+    {
+      "id": "S-INVALID-DATE",
+      "api": "POST /v1/hotels/search",
+      "how": "invalid date Feb 30",
+      "payload": {
+        "checkin": "2026-02-30",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "type": "HOTEL",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Check-in date is not a valid date. Use the format YYYY-MM-DD."
+      ]
+    },
+    {
+      "id": "DET-BASE",
+      "api": "POST /v1/hotels/details",
+      "how": "Hilltop Mumbai details baseline",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 200 requestId=yes rooms=4",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "DET-PAST",
+      "api": "POST /v1/hotels/details",
+      "how": "details: past dates",
+      "payload": {
+        "checkin": "2024-01-01",
+        "checkout": "2024-01-03",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "BUG",
+      "actual": "Accepted invalid payload: HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "DET-SLASH",
+      "api": "POST /v1/hotels/details",
+      "how": "details: slash date format",
+      "payload": {
+        "checkin": "2027/01/01",
+        "checkout": "2026-09-18",
+        "entityId": "39627872",
+        "nationality": "IN",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Check-in date is not a valid date. Use the format YYYY-MM-DD."
+      ]
+    },
+    {
+      "id": "DET-HTML",
+      "api": "POST /v1/hotels/details",
+      "how": "details: HTML entityId",
+      "payload": {
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "entityId": "<script>alert(1)</script>",
+        "nationality": "IN",
+        "rooms": [
+          {
+            "adults": 1,
+            "children": 1,
+            "childrenAges": [
+              9
+            ]
+          }
+        ]
+      },
+      "verdict": "BUG",
+      "actual": "Accepted invalid payload: HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "PB-BLANK-CODE",
+      "api": "POST /v1/hotels/prebook",
+      "how": "blank bookingCode",
+      "payload": {
+        "bookingCode": "",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff"
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingCode' is required"
+      ]
+    },
+    {
+      "id": "PB-BLANK-REQ",
+      "api": "POST /v1/hotels/prebook",
+      "how": "blank requestId",
+      "payload": {
+        "bookingCode": "cut0IuOUxBvO5olcbHqZwpU2oULLveou9ftmfWYg9Rc4h2uRSutzLfZ4R7qbTIiEE1kQVzY4usdQ6u8bB4gR5al0yOWx1Xxdi+/bq+Qq95HWHmUNifYaGlmmfLa+kw/a+eXNECqPVKjuOAioC/ueZ5egqR7wbWUDlSkZmFE1LT74YSnLen0DeVbFIYdVCKKT6R+1hSUy7bfHFksM7UNk1YBpxEJTZpVnVq+MqWtFI0VzeovNcOjJB4YihuHu2dLrrzDpnOLCWYs+ySuZ0vMMrw==",
+        "requestId": ""
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'requestId' is required"
+      ]
+    },
+    {
+      "id": "PB-BOTH-MISSING",
+      "api": "POST /v1/hotels/prebook",
+      "how": "both bookingCode and requestId blank",
+      "payload": {
+        "bookingCode": "",
+        "requestId": ""
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingCode' is required",
+        "'requestId' is required"
+      ]
+    },
+    {
+      "id": "PB-HTML-CODE",
+      "api": "POST /v1/hotels/prebook",
+      "how": "HTML in bookingCode",
+      "payload": {
+        "bookingCode": "<script>alert(1)</script>",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff"
+      },
+      "verdict": "BUG",
+      "actual": "Accepted invalid payload: HTTP 200",
+      "http": 200,
+      "code": "INTERNAL_SERVER_ERROR",
+      "details": []
+    },
+    {
+      "id": "PB-COMMA-REQ",
+      "api": "POST /v1/hotels/prebook",
+      "how": "requestId with trailing comma",
+      "payload": {
+        "bookingCode": "cut0IuOUxBvO5olcbHqZwpU2oULLveou9ftmfWYg9Rc4h2uRSutzLfZ4R7qbTIiEE1kQVzY4usdQ6u8bB4gR5al0yOWx1Xxdi+/bq+Qq95HWHmUNifYaGlmmfLa+kw/a+eXNECqPVKjuOAioC/ueZ5egqR7wbWUDlSkZmFE1LT74YSnLen0DeVbFIYdVCKKT6R+1hSUy7bfHFksM7UNk1YBpxEJTZpVnVq+MqWtFI0VzeovNcOjJB4YihuHu2dLrrzDpnOLCWYs+ySuZ0vMMrw==",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff,"
+      },
+      "verdict": "BUG",
+      "actual": "Accepted invalid payload: HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "FIN-HTML-FIRST",
+      "api": "POST /v1/hotels/finalize-booking",
+      "how": "finalize: HTML in firstName",
+      "payload": {
+        "bookingContext": "fake_context",
+        "bookingCode": "cut0IuOUxBvO5olcbHqZwpU2oULLveou9ftmfWYg9Rc4h2uRSutzLfZ4R7qbTIiEE1kQVzY4usdQ6u8bB4gR5al0yOWx1Xxdi+/bq+Qq95HWHmUNifYaGlmmfLa+kw/a+eXNECqPVKjuOAioC/ueZ5egqR7wbWUDlSkZmFE1LT74YSnLen0DeVbFIYdVCKKT6R+1hSUy7bfHFksM7UNk1YBpxEJTZpVnVq+MqWtFI0VzeovNcOjJB4YihuHu2dLrrzDpnOLCWYs+ySuZ0vMMrw==",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff",
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "rooms": [
+          {
+            "guests": [
+              {
+                "title": "Mr.",
+                "firstName": "<script>",
+                "lastName": "Bhagat",
+                "type": "Adult",
+                "isLead": true
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "email": "rohan@travelvip.ai",
+          "countryCode": "+91",
+          "mobile": "9876543210"
+        }
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' could not be decrypted; the value is invalid"
+      ]
+    },
+    {
+      "id": "FIN-COMMA-EMAIL",
+      "api": "POST /v1/hotels/finalize-booking",
+      "how": "finalize: email with trailing comma",
+      "payload": {
+        "bookingContext": "fake_context",
+        "bookingCode": "cut0IuOUxBvO5olcbHqZwpU2oULLveou9ftmfWYg9Rc4h2uRSutzLfZ4R7qbTIiEE1kQVzY4usdQ6u8bB4gR5al0yOWx1Xxdi+/bq+Qq95HWHmUNifYaGlmmfLa+kw/a+eXNECqPVKjuOAioC/ueZ5egqR7wbWUDlSkZmFE1LT74YSnLen0DeVbFIYdVCKKT6R+1hSUy7bfHFksM7UNk1YBpxEJTZpVnVq+MqWtFI0VzeovNcOjJB4YihuHu2dLrrzDpnOLCWYs+ySuZ0vMMrw==",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff",
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "rooms": [
+          {
+            "guests": [
+              {
+                "title": "Mr.",
+                "firstName": "Rohan",
+                "lastName": "Bhagat",
+                "type": "Adult",
+                "isLead": true
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "email": "rohan@travelvip.ai,",
+          "countryCode": "+91",
+          "mobile": "9876543210"
+        }
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' could not be decrypted; the value is invalid"
+      ]
+    },
+    {
+      "id": "FIN-COMMA-MOBILE",
+      "api": "POST /v1/hotels/finalize-booking",
+      "how": "finalize: mobile with trailing comma",
+      "payload": {
+        "bookingContext": "fake_context",
+        "bookingCode": "cut0IuOUxBvO5olcbHqZwpU2oULLveou9ftmfWYg9Rc4h2uRSutzLfZ4R7qbTIiEE1kQVzY4usdQ6u8bB4gR5al0yOWx1Xxdi+/bq+Qq95HWHmUNifYaGlmmfLa+kw/a+eXNECqPVKjuOAioC/ueZ5egqR7wbWUDlSkZmFE1LT74YSnLen0DeVbFIYdVCKKT6R+1hSUy7bfHFksM7UNk1YBpxEJTZpVnVq+MqWtFI0VzeovNcOjJB4YihuHu2dLrrzDpnOLCWYs+ySuZ0vMMrw==",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff",
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "rooms": [
+          {
+            "guests": [
+              {
+                "title": "Mr.",
+                "firstName": "Rohan",
+                "lastName": "Bhagat",
+                "type": "Adult",
+                "isLead": true
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "email": "rohan@travelvip.ai",
+          "countryCode": "+91",
+          "mobile": "9876543210,"
+        }
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' could not be decrypted; the value is invalid"
+      ]
+    },
+    {
+      "id": "FIN-DDMMYYYY",
+      "api": "POST /v1/hotels/finalize-booking",
+      "how": "finalize: dates DD-MM-YYYY",
+      "payload": {
+        "bookingContext": "fake_context",
+        "bookingCode": "cut0IuOUxBvO5olcbHqZwpU2oULLveou9ftmfWYg9Rc4h2uRSutzLfZ4R7qbTIiEE1kQVzY4usdQ6u8bB4gR5al0yOWx1Xxdi+/bq+Qq95HWHmUNifYaGlmmfLa+kw/a+eXNECqPVKjuOAioC/ueZ5egqR7wbWUDlSkZmFE1LT74YSnLen0DeVbFIYdVCKKT6R+1hSUy7bfHFksM7UNk1YBpxEJTZpVnVq+MqWtFI0VzeovNcOjJB4YihuHu2dLrrzDpnOLCWYs+ySuZ0vMMrw==",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff",
+        "checkin": "01-01-2027",
+        "checkout": "03-01-2027",
+        "rooms": [
+          {
+            "guests": [
+              {
+                "title": "Mr.",
+                "firstName": "Rohan",
+                "lastName": "Bhagat",
+                "type": "Adult",
+                "isLead": true
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "email": "rohan@travelvip.ai",
+          "countryCode": "+91",
+          "mobile": "9876543210"
+        }
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' could not be decrypted; the value is invalid"
+      ]
+    },
+    {
+      "id": "FIN-NO-LEAD",
+      "api": "POST /v1/hotels/finalize-booking",
+      "how": "finalize: no lead guest (isLead=false)",
+      "payload": {
+        "bookingContext": "fake_context",
+        "bookingCode": "cut0IuOUxBvO5olcbHqZwpU2oULLveou9ftmfWYg9Rc4h2uRSutzLfZ4R7qbTIiEE1kQVzY4usdQ6u8bB4gR5al0yOWx1Xxdi+/bq+Qq95HWHmUNifYaGlmmfLa+kw/a+eXNECqPVKjuOAioC/ueZ5egqR7wbWUDlSkZmFE1LT74YSnLen0DeVbFIYdVCKKT6R+1hSUy7bfHFksM7UNk1YBpxEJTZpVnVq+MqWtFI0VzeovNcOjJB4YihuHu2dLrrzDpnOLCWYs+ySuZ0vMMrw==",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff",
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "rooms": [
+          {
+            "guests": [
+              {
+                "title": "Mr.",
+                "firstName": "Rohan",
+                "lastName": "Bhagat",
+                "type": "Adult",
+                "isLead": false
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "email": "rohan@travelvip.ai",
+          "countryCode": "+91",
+          "mobile": "9876543210"
+        }
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' could not be decrypted; the value is invalid"
+      ]
+    },
+    {
+      "id": "FIN-INFANT",
+      "api": "POST /v1/hotels/finalize-booking",
+      "how": "finalize: guest type Infant",
+      "payload": {
+        "bookingContext": "fake_context",
+        "bookingCode": "cut0IuOUxBvO5olcbHqZwpU2oULLveou9ftmfWYg9Rc4h2uRSutzLfZ4R7qbTIiEE1kQVzY4usdQ6u8bB4gR5al0yOWx1Xxdi+/bq+Qq95HWHmUNifYaGlmmfLa+kw/a+eXNECqPVKjuOAioC/ueZ5egqR7wbWUDlSkZmFE1LT74YSnLen0DeVbFIYdVCKKT6R+1hSUy7bfHFksM7UNk1YBpxEJTZpVnVq+MqWtFI0VzeovNcOjJB4YihuHu2dLrrzDpnOLCWYs+ySuZ0vMMrw==",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff",
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "rooms": [
+          {
+            "guests": [
+              {
+                "title": "Mr.",
+                "firstName": "Rohan",
+                "lastName": "Bhagat",
+                "type": "Infant",
+                "isLead": true
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "email": "rohan@travelvip.ai",
+          "countryCode": "+91",
+          "mobile": "9876543210"
+        }
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' could not be decrypted; the value is invalid"
+      ]
+    },
+    {
+      "id": "FIN-SPECIALCHAR-LAST",
+      "api": "POST /v1/hotels/finalize-booking",
+      "how": "finalize: special chars in lastName",
+      "payload": {
+        "bookingContext": "fake_context",
+        "bookingCode": "cut0IuOUxBvO5olcbHqZwpU2oULLveou9ftmfWYg9Rc4h2uRSutzLfZ4R7qbTIiEE1kQVzY4usdQ6u8bB4gR5al0yOWx1Xxdi+/bq+Qq95HWHmUNifYaGlmmfLa+kw/a+eXNECqPVKjuOAioC/ueZ5egqR7wbWUDlSkZmFE1LT74YSnLen0DeVbFIYdVCKKT6R+1hSUy7bfHFksM7UNk1YBpxEJTZpVnVq+MqWtFI0VzeovNcOjJB4YihuHu2dLrrzDpnOLCWYs+ySuZ0vMMrw==",
+        "requestId": "c5c06c77-836a-4dcf-bcdd-0666d55776ff",
+        "checkin": "2026-09-16",
+        "checkout": "2026-09-18",
+        "rooms": [
+          {
+            "guests": [
+              {
+                "title": "Mr.",
+                "firstName": "Rohan",
+                "lastName": "Bhagat!@#$",
+                "type": "Adult",
+                "isLead": true
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "email": "rohan@travelvip.ai",
+          "countryCode": "+91",
+          "mobile": "9876543210"
+        }
+      },
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' could not be decrypted; the value is invalid"
+      ]
+    },
+    {
+      "id": "BR-STATUS",
+      "api": "GET /v1/hotels/bookings/BR0000000000000001/status",
+      "how": "GET status fake BR BR0000000000000001",
+      "payload": null,
+      "verdict": "BUG",
+      "actual": "HTTP 200 accepted fake BR",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "BR-DETAIL",
+      "api": "GET /v1/hotels/bookings/BR0000000000000001",
+      "how": "GET detail fake BR BR0000000000000001",
+      "payload": null,
+      "verdict": "BUG",
+      "actual": "HTTP 200 accepted fake BR",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "BR-CANCEL",
+      "api": "GET /v1/hotels/bookings/BR0000000000000001/cancel",
+      "how": "GET cancel fake BR BR0000000000000001",
+      "payload": null,
+      "verdict": "PASS",
+      "actual": "HTTP 404 code=BOOKING_NOT_FOUND",
+      "http": 404,
+      "code": "BOOKING_NOT_FOUND",
+      "details": [
+        "No booking exists for bookingId 'BR0000000000000001'"
+      ]
+    },
+    {
+      "id": "BR-PENALTY",
+      "api": "GET /v1/hotels/bookings/BR0000000000000001/penalty-check",
+      "how": "GET penalty-check fake BR BR0000000000000001",
+      "payload": null,
+      "verdict": "PASS",
+      "actual": "HTTP 404 code=BOOKING_NOT_FOUND",
+      "http": 404,
+      "code": "BOOKING_NOT_FOUND",
+      "details": [
+        "No booking exists for bookingId 'BR0000000000000001'"
+      ]
+    },
+    {
+      "id": "BR-HTML",
+      "api": "GET /v1/hotels/bookings/<script>/status",
+      "how": "GET status with HTML in BR path",
+      "payload": null,
+      "verdict": "BUG",
+      "actual": "HTTP 200 accepted fake BR",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "BR-COMMA",
+      "api": "GET /v1/hotels/bookings/BR123,/status",
+      "how": "GET status with comma in BR path",
+      "payload": null,
+      "verdict": "BUG",
+      "actual": "HTTP 200 accepted fake BR",
+      "http": 200,
+      "code": null,
+      "details": []
+    }
+  ]
+}

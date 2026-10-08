@@ -1,0 +1,444 @@
+{
+  "ranAt": "2026-09-10T13:46:52.146Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "target": 10,
+  "requirement": "10 canary flights: OW + RT, multipax (2–3 ADT ± CHD), SSR seat+meal+baggage on lead",
+  "counts": {
+    "PASS": 8,
+    "BUG": 2,
+    "NOT TESTED": 0,
+    "total": 10,
+    "confirmedBrs": [
+      "BR1789046884125446",
+      "BR1789047001741511",
+      "BR1789047065998559",
+      "BR1789047283662921",
+      "BR1789047462874569",
+      "BR1789047526444266",
+      "BR1789047878881494",
+      "BR1789047961382606"
+    ]
+  },
+  "rows": [
+    {
+      "id": "OW-01",
+      "journeyType": "ONE_WAY",
+      "adults": 2,
+      "children": 0,
+      "verdict": "BUG",
+      "br": null,
+      "status": null,
+      "route": null,
+      "days": null,
+      "ssr": null,
+      "totalAmount": null,
+      "attempts": [
+        {
+          "stage": "pricing",
+          "br": null,
+          "route": "DEL-BOM",
+          "days": 35,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": null,
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789046717370492",
+          "route": "DEL-BOM",
+          "days": 42,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789046760203450",
+          "route": "DEL-BOM",
+          "days": 49,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789046798105924",
+          "route": "BOM-BLR",
+          "days": 36,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789046836859159",
+          "route": "BOM-BLR",
+          "days": 43,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "OW-02",
+      "journeyType": "ONE_WAY",
+      "adults": 2,
+      "children": 1,
+      "verdict": "PASS",
+      "br": "BR1789046884125446",
+      "status": "Confirmed",
+      "route": "DEL-GOI",
+      "days": 37,
+      "ssr": {
+        "mealCode": "Veg Meal|VGML",
+        "bagCode": "ExcessBaggage 3KG|XBPE",
+        "seatName": "4A",
+        "amount": 2647
+      },
+      "totalAmount": 17256,
+      "attempts": [
+        {
+          "stage": "issued",
+          "br": "BR1789046884125446",
+          "route": "DEL-GOI",
+          "days": 37,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Confirmed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "OW-03",
+      "journeyType": "ONE_WAY",
+      "adults": 2,
+      "children": 0,
+      "verdict": "PASS",
+      "br": "BR1789047001741511",
+      "status": "Confirmed",
+      "route": "DEL-HYD",
+      "days": 40,
+      "ssr": {
+        "mealCode": "Veg Meal|VGML",
+        "bagCode": "ExcessBaggage 3KG|XBPE",
+        "seatName": "4A",
+        "amount": 2647
+      },
+      "totalAmount": 9522,
+      "attempts": [
+        {
+          "stage": "issued",
+          "br": "BR1789046928486008",
+          "route": "BOM-HYD",
+          "days": 39,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789046961116340",
+          "route": "BOM-HYD",
+          "days": 46,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789047001741511",
+          "route": "DEL-HYD",
+          "days": 40,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Confirmed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "OW-04",
+      "journeyType": "ONE_WAY",
+      "adults": 3,
+      "children": 0,
+      "verdict": "PASS",
+      "br": "BR1789047065998559",
+      "status": "Confirmed",
+      "route": "DEL-BOM",
+      "days": 41,
+      "ssr": {
+        "mealCode": "Masala Chai|TMAI/MiFNQ0ZCUkZRLSFUTUFJISFCT00hSVghNjM5MjgxMzc2MDAwMDAwMDAwIURFTCExMDU2ISA-|MCFBRFQ-",
+        "bagCode": "3 KG|PBCA/MSFNQ0ZCUkZRLSFQQkNBISFCT00hSVghNjM5MjgxMzc2MDAwMDAwMDAwIURFTCExMDU2ISA-|MCFBRFQ-",
+        "seatName": "1A",
+        "amount": 3900
+      },
+      "totalAmount": 6864,
+      "attempts": [
+        {
+          "stage": "issued",
+          "br": "BR1789047065998559",
+          "route": "DEL-BOM",
+          "days": 41,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Confirmed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "OW-05",
+      "journeyType": "ONE_WAY",
+      "adults": 2,
+      "children": 0,
+      "verdict": "BUG",
+      "br": null,
+      "status": null,
+      "route": null,
+      "days": null,
+      "ssr": null,
+      "totalAmount": null,
+      "attempts": [
+        {
+          "stage": "issued",
+          "br": "BR1789047101946892",
+          "route": "DEL-MAA",
+          "days": 43,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789047139510532",
+          "route": "DEL-MAA",
+          "days": 50,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789047182565715",
+          "route": "BOM-DEL",
+          "days": 44,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "pricing",
+          "br": null,
+          "route": "BOM-DEL",
+          "days": 51,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "RT-01",
+      "journeyType": "ROUND_TRIP",
+      "adults": 2,
+      "children": 0,
+      "verdict": "PASS",
+      "br": "BR1789047283662921",
+      "status": "Confirmed",
+      "route": "DEL-BOM",
+      "days": 45,
+      "ssr": {
+        "mealCode": "Masala Chai|TMAI/MiFNQ0ZCUkZRLSFUTUFJISFERUwhSVghNjM5MjkwODgwMDAwMDAwMDAwIUJPTSE4MDA2ISA-|MCFBRFQ-",
+        "bagCode": "3 KG|PBCA/MSFNQ0ZCUkZRLSFQQkNBISFERUwhSVghNjM5MjkwODgwMDAwMDAwMDAwIUJPTSE4MDA2ISA-|MCFBRFQ-",
+        "seatName": "1A",
+        "amount": 3900
+      },
+      "totalAmount": 7240,
+      "attempts": [
+        {
+          "stage": "issued",
+          "br": "BR1789047283662921",
+          "route": "DEL-BOM",
+          "days": 45,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Confirmed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "RT-02",
+      "journeyType": "ROUND_TRIP",
+      "adults": 2,
+      "children": 1,
+      "verdict": "PASS",
+      "br": "BR1789047462874569",
+      "status": "Confirmed",
+      "route": "DEL-GOI",
+      "days": 55,
+      "ssr": {
+        "mealCode": "Veg Meal|VGML",
+        "bagCode": "ExcessBaggage 3KG|XBPE",
+        "seatName": "4A",
+        "amount": 2647
+      },
+      "totalAmount": 25794,
+      "attempts": [
+        {
+          "stage": "issued",
+          "br": "BR1789047340134186",
+          "route": "BOM-GOI",
+          "days": 47,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789047391859150",
+          "route": "BOM-GOI",
+          "days": 54,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Failed",
+          "error": null
+        },
+        {
+          "stage": "pricing",
+          "br": null,
+          "route": "DEL-GOI",
+          "days": 48,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": null,
+          "error": null
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789047462874569",
+          "route": "DEL-GOI",
+          "days": 55,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Confirmed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "RT-03",
+      "journeyType": "ROUND_TRIP",
+      "adults": 2,
+      "children": 0,
+      "verdict": "PASS",
+      "br": "BR1789047526444266",
+      "status": "Confirmed",
+      "route": "DEL-HYD",
+      "days": 49,
+      "ssr": {
+        "mealCode": "Masala Chai|TMAI/MiFNQ0ZCUkZRLSFUTUFJISFHT1ghSVghNjM5Mjg4Mjg4MDAwMDAwMDAwIURFTCExMDQ5ISA-|MCFBRFQ-",
+        "bagCode": "3 KG|PBCA/MSFNQ0ZCUkZRLSFQQkNBISFIWUQhSVghNjM5Mjg4Mjg4MDAwMDAwMDAwIURFTCExMDQ5ISA-|MCFBRFQ-",
+        "seatName": "1A",
+        "amount": 3900
+      },
+      "totalAmount": 18334,
+      "attempts": [
+        {
+          "stage": "issued",
+          "br": "BR1789047526444266",
+          "route": "DEL-HYD",
+          "days": 49,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Confirmed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "RT-04",
+      "journeyType": "ROUND_TRIP",
+      "adults": 3,
+      "children": 0,
+      "verdict": "PASS",
+      "br": "BR1789047878881494",
+      "status": "Confirmed",
+      "route": "BOM-DEL",
+      "days": 58,
+      "ssr": {
+        "mealCode": "Masala Chai|TMAI/MiFNQ0ZCUkZRLSFUTUFJISFERUwhSVghNjM5Mjk2MDY0MDAwMDAwMDAwIUJPTSE4MDA2ISA-|MCFBRFQ-",
+        "bagCode": "3 KG|PBCA/MSFNQ0ZCUkZRLSFQQkNBISFERUwhSVghNjM5Mjk2MDY0MDAwMDAwMDAwIUJPTSE4MDA2ISA-|MCFBRFQ-",
+        "seatName": "1A",
+        "amount": 3900
+      },
+      "totalAmount": 10860,
+      "attempts": [
+        {
+          "stage": "exception",
+          "br": null,
+          "route": "BOM-DEL",
+          "days": 51,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": null,
+          "error": "Round-trip flight search did not complete after 60 attempts"
+        },
+        {
+          "stage": "issued",
+          "br": "BR1789047878881494",
+          "route": "BOM-DEL",
+          "days": 58,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Confirmed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "RT-05",
+      "journeyType": "ROUND_TRIP",
+      "adults": 2,
+      "children": 0,
+      "verdict": "PASS",
+      "br": "BR1789047961382606",
+      "status": "Confirmed",
+      "route": "DEL-MAA",
+      "days": 53,
+      "ssr": {
+        "mealCode": "Masala Chai|TMAI/MiFNQ0ZCUkZRLSFUTUFJISFJWEIhSVghNjM5MjkxNzQ0MDAwMDAwMDAwIURFTCExMDY3ISA-|MCFBRFQ-",
+        "bagCode": "3 KG|PBCA/MSFNQ0ZCUkZRLSFQQkNBISFNQUEhSVghNjM5MjkxNzQ0MDAwMDAwMDAwIURFTCExMDY3ISA-|MCFBRFQ-",
+        "seatName": "1A",
+        "amount": 3900
+      },
+      "totalAmount": 22984,
+      "attempts": [
+        {
+          "stage": "issued",
+          "br": "BR1789047961382606",
+          "route": "DEL-MAA",
+          "days": 53,
+          "missingSsr": null,
+          "issueCode": null,
+          "classified": "Confirmed",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

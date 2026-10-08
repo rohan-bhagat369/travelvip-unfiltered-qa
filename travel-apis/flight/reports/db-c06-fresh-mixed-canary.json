@@ -1,0 +1,90 @@
+{
+  "ranAt": "2026-08-12T11:13:21.817Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "C06",
+  "checks": [
+    "V076",
+    "V077"
+  ],
+  "fixture": {
+    "br": "BR1786533143855096",
+    "route": "DEL-BOM",
+    "legs": [
+      {
+        "direction": "ONWARD",
+        "pnr": "YBVUWW",
+        "onlineCancellation": true,
+        "airline": "SG"
+      },
+      {
+        "direction": "RETURN",
+        "pnr": "M7WDHC",
+        "onlineCancellation": true,
+        "airline": "SG"
+      }
+    ],
+    "pnrs": [
+      "YBVUWW",
+      "M7WDHC"
+    ],
+    "o": "DEL",
+    "d": "BOM",
+    "od": 21,
+    "rd": 25,
+    "onwardAir": [
+      "6E"
+    ],
+    "returnAir": [
+      "SG"
+    ]
+  },
+  "bookAttempts": [
+    {
+      "o": "DEL",
+      "d": "BOM",
+      "od": 20,
+      "rd": 25,
+      "onwardAir": [
+        "SG"
+      ],
+      "returnAir": [
+        "6E"
+      ],
+      "result": "NO_PRICING"
+    }
+  ],
+  "cancels": [
+    {
+      "pnr": "YBVUWW",
+      "penalty": {
+        "http": 200,
+        "status": "Penalty Fetched",
+        "message": "",
+        "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786533143855096\",\"pnr\":\"YBVUWW\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":8047,\"createdAt\":\"2026-08-12T11:12:53Z\"}},\"_meta\":{\"correlation_id\":\"eb0e4faf-2350-4b6f-83e9-74dc61a57c57\"}}"
+      },
+      "cancel": {
+        "http": 200,
+        "status": "Cancelled",
+        "message": "",
+        "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786533143855096\",\"pnr\":\"YBVUWW\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":8047,\"createdAt\":\"2026-08-12T11:12:54Z\"},\"refundSummary\":{\"amount\":8047,\"cancellationCharge\":350,\"cancellationChargeBreakup\":{\"airlineCancellationFee\":0,\"convenienceFee\":0,\"serviceFee\":350,\"flexicancelFee\":0}},\"transaction\":{\"id\":\"403\",\"amount\":8047,\"currency\":\"INR\",\"paymentMethod\":\"wallet\",\"type\":\"ref"
+      }
+    },
+    {
+      "pnr": "M7WDHC",
+      "penalty": {
+        "http": 200,
+        "status": "Penalty Fetched",
+        "message": "",
+        "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786533143855096\",\"pnr\":\"M7WDHC\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":8047,\"createdAt\":\"2026-08-12T11:13:10Z\"}},\"_meta\":{\"correlation_id\":\"eb0e4faf-2350-4b6f-83e9-74dc61a57c57\"}}"
+      },
+      "cancel": {
+        "http": 200,
+        "status": "Cancelled",
+        "message": "",
+        "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786533143855096\",\"pnr\":\"M7WDHC\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":8047,\"createdAt\":\"2026-08-12T11:13:12Z\"},\"refundSummary\":{\"amount\":8047,\"cancellationCharge\":350,\"cancellationChargeBreakup\":{\"airlineCancellationFee\":0,\"convenienceFee\":0,\"serviceFee\":350,\"flexicancelFee\":0}},\"transaction\":{\"id\":\"404\",\"amount\":8047,\"currency\":\"INR\",\"paymentMethod\":\"wallet\",\"type\":\"ref"
+      }
+    }
+  ],
+  "afterStatus": "Cancelled",
+  "dbSql": "USE travelx;\nSET @br := 'BR1786533143855096';\nSELECT cr.id, cr.pnr, cr.flight_journey_id, fj.direction, cr.mode, cr.status, cr.cancellation_type\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nLEFT JOIN flight_journey fj ON fj.id = cr.flight_journey_id\nWHERE b.booking_reference = @br ORDER BY cr.id;\nSELECT cr.id, cr.booking_item_id, COUNT(*) OVER (PARTITION BY cr.booking_item_id) AS reqs_on_item\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br;"
+}

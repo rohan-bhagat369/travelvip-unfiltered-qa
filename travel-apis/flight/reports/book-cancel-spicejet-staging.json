@@ -1,0 +1,104 @@
+{
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "airline": "SG",
+  "route": "DEL→BOM",
+  "days": 28,
+  "pricedTotal": 6008,
+  "flights": [
+    {
+      "flight": "SG SG 476",
+      "route": "DEL→BOM",
+      "dep": "2026-09-09T16:30"
+    }
+  ],
+  "bookingReference": "BR1786519618166221",
+  "statusAfterBook": "Confirmed",
+  "pnrs": [
+    "BEI28H"
+  ],
+  "penalty": {
+    "endpoint": "POST /v1/flights/booking/BR1786519618166221/cancel",
+    "payload": {
+      "retryCount": 2,
+      "action": "PENALTY",
+      "pnr": "BEI28H"
+    },
+    "http": 200,
+    "response": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786519618166221",
+        "pnr": "BEI28H",
+        "cancellationRequest": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 350,
+          "estimatedRefund": 5658,
+          "createdAt": "2026-08-12T07:27:14Z"
+        }
+      },
+      "_meta": {
+        "correlation_id": "c8fd24be-02be-4366-a8b1-565dd26d791f"
+      }
+    },
+    "result": {
+      "ok": true,
+      "reason": "ACCEPTED",
+      "status": "Penalty Fetched",
+      "message": ""
+    }
+  },
+  "cancel": {
+    "endpoint": "POST /v1/flights/booking/BR1786519618166221/cancel",
+    "payload": {
+      "retryCount": 2,
+      "action": "CANCEL",
+      "pnr": "BEI28H"
+    },
+    "http": 200,
+    "response": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786519618166221",
+        "pnr": "BEI28H",
+        "cancellationRequest": {
+          "status": "Cancelled",
+          "estimatedCancellationCharge": 350,
+          "estimatedRefund": 5658,
+          "createdAt": "2026-08-12T07:27:14Z"
+        },
+        "refundSummary": {
+          "amount": 5658,
+          "cancellationCharge": 350,
+          "cancellationChargeBreakup": {
+            "airlineCancellationFee": 0,
+            "convenienceFee": 0,
+            "serviceFee": 350,
+            "flexicancelFee": 0
+          }
+        },
+        "transaction": {
+          "id": "391",
+          "amount": 5658,
+          "currency": "INR",
+          "paymentMethod": "wallet",
+          "type": "refund",
+          "status": "success",
+          "createdAt": "2026-08-12T07:27:23Z",
+          "completedAt": "2026-08-12T07:27:23Z"
+        }
+      },
+      "_meta": {
+        "correlation_id": "c8fd24be-02be-4366-a8b1-565dd26d791f"
+      }
+    },
+    "result": {
+      "ok": true,
+      "reason": "ACCEPTED",
+      "status": "Cancelled",
+      "message": ""
+    }
+  },
+  "statusAfterCancel": "Cancelled"
+}

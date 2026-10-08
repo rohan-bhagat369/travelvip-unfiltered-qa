@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Hotel B2B regression</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; background: #f5f7fb; color: #1a2b4a; }
+  h1,h2,h3 { color: #1a2b4a; }
+  .cards { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px; }
+  .card { background: #fff; padding: 14px 18px; border-radius: 8px; box-shadow: 0 1px 4px #0001; min-width: 110px; }
+  .card.bug { border-top: 4px solid #ef4444; }
+  .card.pass { border-top: 4px solid #22c55e; }
+  .card.nt { border-top: 4px solid #94a3b8; }
+  table { border-collapse: collapse; width: 100%; background: #fff; margin: 8px 0 24px; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; font-size: 13px; vertical-align: top; }
+  th { background: #1a2b4a; color: #fff; }
+  tr.pass { background: #f0fdf4; }
+  tr.bug { background: #fef2f2; }
+  tr.not-tested { background: #f8fafc; }
+  .bug { background: #fff; padding: 16px; border-left: 4px solid #ef4444; margin: 12px 0; border-radius: 6px; }
+  pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 6px; overflow: auto; font-size: 12px; }
+  small { color: #64748b; font-weight: 400; }
+</style></head><body>
+  <h1>Hotel B2B regression</h1>
+  <p>https://api-staging.travelvip.ai · 2026-09-04T09:51:33.472Z · tags AUTH, VALIDATE</p>
+  <div class="cards">
+    <div class="card pass"><strong>PASS</strong><br>57</div>
+    <div class="card bug"><strong>BUG</strong><br>3</div>
+    <div class="card nt"><strong>NOT TESTED</strong><br>0</div>
+    <div class="card"><strong>Total</strong><br>60</div>
+  </div>
+  <p>Correlation <code>ebf4fba7-234d-4c45-92ec-bb742ba9c0da</code>
+     · BR <code>—</code>
+     · status —</p>
+  <h2>AUTH <small>24 PASS / 0 BUG / 0 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="pass">
+        <td>1</td>
+        <td>POST /auth/partner/token — valid partner_id + partner_secret returns access_token and refresh_token</td>
+        <td>POST /auth/partner/token with partner_id/partner_secret from env (this is the baseline for mutations below).</td>
+        <td>HTTP 200 with access_token + refresh_token</td>
+        <td>HTTP 200 tokens present</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td>POST /auth/partner/token — omit partner_id</td>
+        <td>POST /auth/partner/token body { partner_secret } only.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>3</td>
+        <td>POST /auth/partner/token — omit partner_secret</td>
+        <td>POST /auth/partner/token body { partner_id } only.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>4</td>
+        <td>POST /auth/partner/token — empty JSON body</td>
+        <td>POST /auth/partner/token body {}.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>5</td>
+        <td>POST /auth/partner/token — partner_id with trailing comma</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>6</td>
+        <td>POST /auth/partner/token — partner_secret with trailing comma</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>7</td>
+        <td>POST /auth/partner/token — partner_id with punctuation !@#$</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>8</td>
+        <td>POST /auth/partner/token — partner_id with HTML/script chars</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>9</td>
+        <td>POST /auth/partner/token — partner_id with quote/semicolon</td>
+        <td>POST /auth/partner/token clone valid credentials then change the named field (extra comma / special chars).</td>
+        <td>HTTP 4xx with error.code (never 500; must not issue tokens)</td>
+        <td>HTTP 401 code=AUTH_TOKEN_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>10</td>
+        <td>POST /auth/partner/refresh — valid refresh_token returns a new access_token</td>
+        <td>POST /auth/partner/refresh body { refresh_token } from the access-token response.</td>
+        <td>HTTP 200 with access_token (never 500)</td>
+        <td>HTTP 200 tokens present</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>11</td>
+        <td>POST /auth/partner/refresh — empty refresh_token</td>
+        <td>POST /auth/partner/refresh body { refresh_token: "" }.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>12</td>
+        <td>POST /auth/partner/refresh — refresh_token with trailing comma</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>13</td>
+        <td>POST /auth/partner/refresh — refresh_token punctuation !@#$</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>14</td>
+        <td>POST /auth/partner/refresh — refresh_token HTML/script chars</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>15</td>
+        <td>POST /auth/partner/refresh — refresh_token is only a comma</td>
+        <td>POST /auth/partner/refresh clone/mutate refresh_token with extra comma or special chars.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=AUTH_REFRESH_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>16</td>
+        <td>POST /v1/auth/session — valid X-Partner-Key + tierId returns auth_token</td>
+        <td>POST /v1/auth/session with X-Partner-Key = partner access_token and body { tierId } from env.</td>
+        <td>HTTP 200 with auth_token (never 500)</td>
+        <td>HTTP 200 tokens present</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>17</td>
+        <td>POST /v1/auth/session — omit X-Partner-Key</td>
+        <td>POST /v1/auth/session with no X-Partner-Key header, body { tierId }.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=MISSING_HEADER — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>18</td>
+        <td>POST /v1/auth/session — invalid X-Partner-Key</td>
+        <td>POST /v1/auth/session X-Partner-Key=gmr_at_invalid_access_token, body { tierId }.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>19</td>
+        <td>POST /v1/auth/session — X-Partner-Key with trailing comma</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on X-Partner-Key.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>20</td>
+        <td>POST /v1/auth/session — X-Partner-Key with punctuation</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on X-Partner-Key.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>21</td>
+        <td>POST /v1/auth/session — X-Partner-Key with HTML/script chars</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on X-Partner-Key.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 401 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>22</td>
+        <td>POST /v1/auth/session — tierId with trailing comma</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on tierId.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>23</td>
+        <td>POST /v1/auth/session — tierId with punctuation</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on tierId.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>24</td>
+        <td>POST /v1/auth/session — tierId with HTML/script chars</td>
+        <td>POST /v1/auth/session clone valid user-auth request then add extra comma / special chars on tierId.</td>
+        <td>HTTP 4xx with error.code (never 500)</td>
+        <td>HTTP 400 code=PARTNER_AUTH_SESSION_ERROR — valid client error, not 500</td>
+        <td><strong>PASS</strong></td>
+      </tr></tbody>
+      </table><h2>VALIDATE <small>33 PASS / 3 BUG / 0 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="pass">
+        <td>1</td>
+        <td>POST /v1/hotels/search — valid search body with YYYY-MM-DD checkin/checkout and 1 adult</td>
+        <td>POST /v1/hotels/search with a complete valid catalog search (entityId + dates + 1 adult). This is the baseline for the mutations below.</td>
+        <td>HTTP 2xx (not VALIDATION_ERROR)</td>
+        <td>HTTP 200</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td>POST /v1/hotels/search — checkin DD-MM-YYYY rejected</td>
+        <td>Clone a valid A. Search payload, change only this: checkin DD-MM-YYYY rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-in date is not a valid date. Use the format YYYY-MM-DD."] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>3</td>
+        <td>POST /v1/hotels/search — checkin slashes YYYY/MM/DD rejected</td>
+        <td>Clone a valid A. Search payload, change only this: checkin slashes YYYY/MM/DD rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-in date is not a valid date. Use the format YYYY-MM-DD."] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>4</td>
+        <td>POST /v1/hotels/search — checkin unpadded YYYY-M-D rejected</td>
+        <td>Clone a valid A. Search payload, change only this: checkin unpadded YYYY-M-D rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-in date is not a valid date. Use the format YYYY-MM-DD."] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>5</td>
+        <td>POST /v1/hotels/search — checkin impossible 2026-02-30 rejected</td>
+        <td>Clone a valid A. Search payload, change only this: checkin impossible 2026-02-30 rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-in date is not a valid date. Use the format YYYY-MM-DD."] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>6</td>
+        <td>POST /v1/hotels/search — checkout DD-MM-YYYY rejected</td>
+        <td>Clone a valid A. Search payload, change only this: checkout DD-MM-YYYY rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-out date is not a valid date. Use the format YYYY-MM-DD."] msg=Check-out date is not a valid date. Use the format YYYY-MM-DD. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>7</td>
+        <td>POST /v1/hotels/search — checkout before checkin rejected</td>
+        <td>Clone a valid A. Search payload, change only this: checkout before checkin rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-out date must be after the check-in date."] msg=Check-out date must be after the check-in date. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>8</td>
+        <td>POST /v1/hotels/search — checkin in the past rejected</td>
+        <td>Clone a valid A. Search payload, change only this: checkin in the past rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-in date cannot be in the past."] msg=Check-in date cannot be in the past. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>9</td>
+        <td>POST /v1/hotels/search — checkout &gt;1 year from today rejected</td>
+        <td>Clone a valid A. Search payload, change only this: checkout &gt;1 year from today rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-out date cannot be more than one year from today."] msg=Check-out date cannot be more than one year from today. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>10</td>
+        <td>POST /v1/hotels/search — adults as string "1" rejected</td>
+        <td>Clone a valid A. Search payload, change only this: adults as string "1" rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Room 1 adults must be a whole number."] msg=Room 1 adults must be a whole number. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>11</td>
+        <td>POST /v1/hotels/search — adults decimal 1.5 rejected</td>
+        <td>Clone a valid A. Search payload, change only this: adults decimal 1.5 rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Room 1 adults must be a whole number."] msg=Room 1 adults must be a whole number. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>12</td>
+        <td>POST /v1/hotels/search — adults 0 rejected</td>
+        <td>Clone a valid A. Search payload, change only this: adults 0 rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Room 1 must have between 1 and 6 adults."] msg=Room 1 must have between 1 and 6 adults. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>13</td>
+        <td>POST /v1/hotels/search — adults 7 rejected</td>
+        <td>Clone a valid A. Search payload, change only this: adults 7 rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Room 1 must have between 1 and 6 adults."] msg=Room 1 must have between 1 and 6 adults. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>14</td>
+        <td>POST /v1/hotels/search — children decimal rejected</td>
+        <td>Clone a valid A. Search payload, change only this: children decimal rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Room 1 children must be a whole number."] msg=Room 1 children must be a whole number. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>15</td>
+        <td>POST /v1/hotels/search — children 5 rejected</td>
+        <td>Clone a valid A. Search payload, change only this: children 5 rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Room 1 can have at most 4 children."] msg=Room 1 can have at most 4 children. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>16</td>
+        <td>POST /v1/hotels/search — children&gt;0 without childrenAges rejected</td>
+        <td>Clone a valid A. Search payload, change only this: children&gt;0 without childrenAges rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Please provide an age for each child in room 1 (1 age(s) expected)."] msg=Please provide an age for each child in room 1 (1 age(s) expected). | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>17</td>
+        <td>POST /v1/hotels/search — childrenAges length mismatch rejected</td>
+        <td>Clone a valid A. Search payload, change only this: childrenAges length mismatch rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Please provide an age for each child in room 1 (2 age(s) expected)."] msg=Please provide an age for each child in room 1 (2 age(s) expected). | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>18</td>
+        <td>POST /v1/hotels/search — childrenAges entry 18 rejected</td>
+        <td>Clone a valid A. Search payload, change only this: childrenAges entry 18 rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Child age in room 1 must be between 0 and 17."] msg=Child age in room 1 must be between 0 and 17. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>19</td>
+        <td>POST /v1/hotels/search — childrenAges as string rejected</td>
+        <td>Clone a valid A. Search payload, change only this: childrenAges as string rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Room 1 childrenAges must be an array of whole numbers."] msg=Room 1 childrenAges must be an array of whole numbers. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>20</td>
+        <td>POST /v1/hotels/search — valid children + childrenAges accepted</td>
+        <td>Clone a valid A. Search payload, apply: valid children + childrenAges accepted, then POST /v1/hotels/search.</td>
+        <td>Accepted (not VALIDATION_ERROR, not HTTP 500)</td>
+        <td>HTTP 200 code=null</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>21</td>
+        <td>POST /v1/hotels/search — missing entityId rejected</td>
+        <td>Clone a valid A. Search payload, change only this: missing entityId rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Please select a destination to search."] msg=Please select a destination to search. | Validation failed</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>22</td>
+        <td>POST /v1/hotels/search — missing type rejected</td>
+        <td>Clone a valid A. Search payload, change only this: missing type rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Destination type is required."] msg=Destination type is required. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>23</td>
+        <td>POST /v1/hotels/search — nationality not 2-letter rejected</td>
+        <td>Clone a valid A. Search payload, change only this: nationality not 2-letter rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Nationality must be a valid 2-letter country code (for example IN, US or AE)."] msg=Nationality must be a valid 2-letter country code (for example IN, US or AE). | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>24</td>
+        <td>POST /v1/hotels/search — nationality with trailing comma (IN,)</td>
+        <td>Clone a valid A. Search payload, add extra comma/special chars (nationality with trailing comma (IN,)), then POST /v1/hotels/search.</td>
+        <td>HTTP 4xx with error.code (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR (valid client error, not 500)</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>25</td>
+        <td>POST /v1/hotels/search — entityId with extra punctuation</td>
+        <td>Clone a valid A. Search payload, add extra comma/special chars (entityId with extra punctuation), then POST /v1/hotels/search.</td>
+        <td>HTTP 4xx with error.code (never HTTP 500)</td>
+        <td>Accepted payload that added extra special characters / comma</td>
+        <td><strong>BUG</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>26</td>
+        <td>POST /v1/hotels/search — &gt;6 rooms rejected</td>
+        <td>Clone a valid A. Search payload, change only this: &gt;6 rooms rejected, then POST /v1/hotels/search.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["A maximum of 6 rooms is allowed per booking."] msg=A maximum of 6 rooms is allowed per booking. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>27</td>
+        <td>POST /v1/hotels/details — checkin DD-MM-YYYY rejected</td>
+        <td>Clone a valid B. Details payload, change only this: checkin DD-MM-YYYY rejected, then POST /v1/hotels/details.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-in date is not a valid date. Use the format YYYY-MM-DD."] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>28</td>
+        <td>POST /v1/hotels/details — checkin slashes rejected</td>
+        <td>Clone a valid B. Details payload, change only this: checkin slashes rejected, then POST /v1/hotels/details.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-in date is not a valid date. Use the format YYYY-MM-DD."] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>29</td>
+        <td>POST /v1/hotels/details — checkin unpadded rejected</td>
+        <td>Clone a valid B. Details payload, change only this: checkin unpadded rejected, then POST /v1/hotels/details.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-in date is not a valid date. Use the format YYYY-MM-DD."] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>30</td>
+        <td>POST /v1/hotels/details — impossible date 2026-02-30 rejected</td>
+        <td>Clone a valid B. Details payload, change only this: impossible date 2026-02-30 rejected, then POST /v1/hotels/details.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Check-in date is not a valid date. Use the format YYYY-MM-DD."] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>31</td>
+        <td>POST /v1/hotels/details — past checkin accepted (lookup)</td>
+        <td>Clone a valid B. Details payload, apply: past checkin accepted (lookup), then POST /v1/hotels/details.</td>
+        <td>Accepted (not VALIDATION_ERROR, not HTTP 500)</td>
+        <td>HTTP 200 code=null</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>32</td>
+        <td>POST /v1/hotels/details — checkout before checkin still accepted (no compare)</td>
+        <td>Clone a valid B. Details payload, apply: checkout before checkin still accepted (no compare), then POST /v1/hotels/details.</td>
+        <td>Accepted (not VALIDATION_ERROR, not HTTP 500)</td>
+        <td>HTTP 200 code=null</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>33</td>
+        <td>POST /v1/hotels/prebook — blank bookingCode rejected</td>
+        <td>Clone a valid C. Prebook payload, change only this: blank bookingCode rejected, then POST /v1/hotels/prebook.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["'bookingCode' is required"] msg='bookingCode' is required | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>34</td>
+        <td>POST /v1/hotels/prebook — blank requestId rejected</td>
+        <td>Clone a valid C. Prebook payload, change only this: blank requestId rejected, then POST /v1/hotels/prebook.</td>
+        <td>HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</td>
+        <td>HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["'requestId' is required"] msg='requestId' is required | Validation failed</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>35</td>
+        <td>Both bookingCode + requestId missing reported together</td>
+        <td>POST prebook {}</td>
+        <td>HTTP 400 VALIDATION_ERROR with both fields in details</td>
+        <td>HTTP 400 code=VALIDATION_ERROR details=["Request body must be a non-empty JSON object containing 'bookingCode' and 'requestId'"]</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="bug">
+        <td>36</td>
+        <td>search → details → POST /v1/hotels/prebook — search → details → prebook to get a bookingContext for finalize tests</td>
+        <td>POST /v1/hotels/search, then POST /v1/hotels/details, then POST /v1/hotels/prebook with the returned bookingCode + requestId.</td>
+        <td>prebook returns bookingContext used as finalize baseline</td>
+        <td>FAIL search=200 details=200</td>
+        <td><strong>BUG</strong></td>
+      </tr></tbody>
+      </table>
+  <h2>Bugs for Dev</h2>
+  
+      <section class="bug">
+        <h3>BUG 1 — VALIDATE.21 POST /v1/hotels/search — missing entityId rejected</h3>
+        <p><strong>How:</strong> Clone a valid A. Search payload, change only this: missing entityId rejected, then POST /v1/hotels/search.</p>
+        <p><strong>Expected:</strong> HTTP 400 VALIDATION_ERROR + details[] (never HTTP 500)</p>
+        <p><strong>Actual:</strong> HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=["Please select a destination to search."] msg=Please select a destination to search. | Validation failed</p>
+        <pre>{"error":{"code":"VALIDATION_ERROR","message":"Validation failed","details":["Please select a destination to search."],"timestamp":"2026-09-04T09:51:31Z","request_id":"req-1788515491735"},"_meta":{"correlation_id":"ebf4fba7-234d-4c45-92ec-bb742ba9c0da"}}</pre>
+      </section>
+      <section class="bug">
+        <h3>BUG 2 — VALIDATE.25 POST /v1/hotels/search — entityId with extra punctuation</h3>
+        <p><strong>How:</strong> Clone a valid A. Search payload, add extra comma/special chars (entityId with extra punctuation), then POST /v1/hotels/search.</p>
+        <p><strong>Expected:</strong> HTTP 4xx with error.code (never HTTP 500)</p>
+        <p><strong>Actual:</strong> Accepted payload that added extra special characters / comma</p>
+        <pre>{"page":0,"size":20,"offset":0,"totalResults":0,"totalPages":0,"availableResults":0,"last":true,"results":[],"message":"No hotels found for this date range. Please try searching different dates.","currency":"INR","fromCache":false,"cacheTimeStamp":null,"priceRangeFilter":null,"filters":null,"sorts":[{"name":"Price Low to High","key":"price_ASC"},{"name":"Price High to Low","key":"price_DESC"}],"requestId":"23f8e5a0-20b6-4208-bedf-6a2f1e12cef2","_meta":{"correlation_id":"ebf4fba7-234d-4c45-92ec-b</pre>
+      </section>
+      <section class="bug">
+        <h3>BUG 3 — VALIDATE.36 search → details → POST /v1/hotels/prebook — search → details → prebook to get a bookingContext for finalize tests</h3>
+        <p><strong>How:</strong> POST /v1/hotels/search, then POST /v1/hotels/details, then POST /v1/hotels/prebook with the returned bookingCode + requestId.</p>
+        <p><strong>Expected:</strong> prebook returns bookingContext used as finalize baseline</p>
+        <p><strong>Actual:</strong> FAIL search=200 details=200</p>
+        <pre>{"page":0,"size":20,"offset":0,"totalResults":0,"totalPages":0,"availableResults":0,"last":true,"results":[],"message":"No hotels found for this date range. Please try searching different dates.","currency":"INR","fromCache":false,"cacheTimeStamp":null,"priceRangeFilter":null,"filters":null,"sorts":[{"name":"Price Low to High","key":"price_ASC"},{"name":"Price High to Low","key":"price_DESC"}],"re</pre>
+      </section>
+</body></html>

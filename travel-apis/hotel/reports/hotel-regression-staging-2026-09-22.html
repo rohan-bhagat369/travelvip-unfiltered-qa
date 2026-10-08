@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Hotel B2B regression</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; background: #f5f7fb; color: #1a2b4a; }
+  h1,h2,h3 { color: #1a2b4a; }
+  .cards { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px; }
+  .card { background: #fff; padding: 14px 18px; border-radius: 8px; box-shadow: 0 1px 4px #0001; min-width: 110px; }
+  .card.bug { border-top: 4px solid #ef4444; }
+  .card.pass { border-top: 4px solid #22c55e; }
+  .card.nt { border-top: 4px solid #94a3b8; }
+  table { border-collapse: collapse; width: 100%; background: #fff; margin: 8px 0 24px; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; font-size: 13px; vertical-align: top; }
+  th { background: #1a2b4a; color: #fff; }
+  tr.pass { background: #f0fdf4; }
+  tr.bug { background: #fef2f2; }
+  tr.not-tested { background: #f8fafc; }
+  .bug { background: #fff; padding: 16px; border-left: 4px solid #ef4444; margin: 12px 0; border-radius: 6px; }
+  pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 6px; overflow: auto; font-size: 12px; }
+  small { color: #64748b; font-weight: 400; }
+</style></head><body>
+  <h1>Hotel B2B regression</h1>
+  <p>https://api-staging.travelvip.ai · 2026-09-22T07:55:19.211Z · tags NEGPRICE</p>
+  <div class="cards">
+    <div class="card pass"><strong>PASS</strong><br>32</div>
+    <div class="card bug"><strong>BUG</strong><br>0</div>
+    <div class="card nt"><strong>NOT TESTED</strong><br>5</div>
+    <div class="card"><strong>Total</strong><br>37</div>
+  </div>
+  <p>Correlation <code>11e599f3-1e27-4a34-ab8a-d4f117c7ea96</code>
+     · BR <code>—</code>
+     · status —</p>
+  <h2>NEGPRICE <small>32 PASS / 0 BUG / 5 NT</small></h2>
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>How tested</th><th>Expected</th><th>Actual</th><th>Status</th></tr></thead>
+        <tbody>
+      <tr class="pass">
+        <td>1</td>
+        <td>H-NP-Hilltop-S</td>
+        <td>POST /v1/hotels/search type=HOTEL entityId=39627872 2026-10-20</td>
+        <td>HTTP 200; baseFare/taxes/totalAmount/breakup all &gt;= 0</td>
+        <td>http=200 available=true base=6583.31 taxes=359.96 total=6943.27 neg=0</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>2</td>
+        <td>H-NP-Hilltop-D</td>
+        <td>POST /v1/hotels/details entityId=39627872 2026-10-20</td>
+        <td>HTTP 200; hotel + rooms[].price baseFare/taxes/gst/convenienceFee/totalAmount all &gt;= 0</td>
+        <td>http=200 rooms=5 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>3</td>
+        <td>H-NP-Rotana-S</td>
+        <td>POST /v1/hotels/search type=HOTEL entityId=39657625 2026-10-20</td>
+        <td>HTTP 200; baseFare/taxes/totalAmount/breakup all &gt;= 0</td>
+        <td>http=200 available=true base=13183.55 taxes=3118.17 total=16301.72 neg=0</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>4</td>
+        <td>H-NP-Rotana-D</td>
+        <td>POST /v1/hotels/details entityId=39657625 2026-10-20</td>
+        <td>HTTP 200; hotel + rooms[].price baseFare/taxes/gst/convenienceFee/totalAmount all &gt;= 0</td>
+        <td>http=200 rooms=42 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>5</td>
+        <td>H-NP-City-Mumbai-S</td>
+        <td>POST /v1/hotels/search type=CITY entityId=357389:IN page=0 perpage=20</td>
+        <td>All available results: price.baseFare/taxes/totalAmount/gst/fee &gt;= 0 (empty/5xx = NOT TESTED)</td>
+        <td>http=200 available=20/page=20 fieldNeg=0 badHits=0</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>6</td>
+        <td>H-NP-City-Mumbai-D1</td>
+        <td>POST /v1/hotels/details entityId=39627872 (from Mumbai CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=HiltopHotel rooms=5 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>7</td>
+        <td>H-NP-City-Mumbai-D2</td>
+        <td>POST /v1/hotels/details entityId=38964472 (from Mumbai CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=HotelSubaInternati rooms=7 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>8</td>
+        <td>H-NP-City-Mumbai-D3</td>
+        <td>POST /v1/hotels/details entityId=30959020 (from Mumbai CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=Theory9PremiumServ rooms=4 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>9</td>
+        <td>H-NP-City-Delhi-S</td>
+        <td>POST /v1/hotels/search type=CITY entityId=227760:IN page=0 perpage=20</td>
+        <td>All available results: price.baseFare/taxes/totalAmount/gst/fee &gt;= 0 (empty/5xx = NOT TESTED)</td>
+        <td>http=200 available=20/page=20 fieldNeg=0 badHits=0</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>10</td>
+        <td>H-NP-City-Delhi-D1</td>
+        <td>POST /v1/hotels/details entityId=72377756 (from Delhi CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=HotelAmanContinent rooms=4 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>11</td>
+        <td>H-NP-City-Delhi-D2</td>
+        <td>POST /v1/hotels/details entityId=72318789 (from Delhi CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=HAVELIYAHOMESBBRES rooms=2 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>12</td>
+        <td>H-NP-City-Delhi-D3</td>
+        <td>POST /v1/hotels/details entityId=39658270 (from Delhi CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=TheImperialNewDelh rooms=19 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>13</td>
+        <td>H-NP-City-Bangalore-S</td>
+        <td>POST /v1/hotels/search type=CITY entityId=341153:IN page=0 perpage=20</td>
+        <td>All available results: price.baseFare/taxes/totalAmount/gst/fee &gt;= 0 (empty/5xx = NOT TESTED)</td>
+        <td>http=200 available=20/page=20 fieldNeg=0 badHits=0</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>14</td>
+        <td>H-NP-City-Bangalore-D1</td>
+        <td>POST /v1/hotels/details entityId=53602106 (from Bangalore CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=BLOOMHOTELHSRLAYOU rooms=6 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>15</td>
+        <td>H-NP-City-Bangalore-D2</td>
+        <td>POST /v1/hotels/details entityId=15339986 (from Bangalore CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=UrbanStay rooms=1 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>16</td>
+        <td>H-NP-City-Bangalore-D3</td>
+        <td>POST /v1/hotels/details entityId=71197028 (from Bangalore CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=Soloscapebudgetfri rooms=1 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>17</td>
+        <td>H-NP-City-Pune-S</td>
+        <td>POST /v1/hotels/search type=CITY entityId=328605:IN page=0 perpage=20</td>
+        <td>All available results: price.baseFare/taxes/totalAmount/gst/fee &gt;= 0 (empty/5xx = NOT TESTED)</td>
+        <td>http=200 available=20/page=20 fieldNeg=0 badHits=0</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>18</td>
+        <td>H-NP-City-Pune-D1</td>
+        <td>POST /v1/hotels/details entityId=15237042 (from Pune CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=KEYSPRIMALEMONTREE rooms=20 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>19</td>
+        <td>H-NP-City-Pune-D2</td>
+        <td>POST /v1/hotels/details entityId=70496724 (from Pune CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=THEALTRUISTHOTELKH rooms=6 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>20</td>
+        <td>H-NP-City-Pune-D3</td>
+        <td>POST /v1/hotels/details entityId=15380909 (from Pune CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=COCOONHOTEL rooms=6 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>21</td>
+        <td>H-NP-City-Goa-S</td>
+        <td>POST /v1/hotels/search type=CITY entityId=328649:IN page=0 perpage=20</td>
+        <td>All available results: price.baseFare/taxes/totalAmount/gst/fee &gt;= 0 (empty/5xx = NOT TESTED)</td>
+        <td>http=200 available=20/page=20 fieldNeg=0 badHits=0</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>22</td>
+        <td>H-NP-City-Goa-D1</td>
+        <td>POST /v1/hotels/details entityId=38906785 (from Goa CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=VivantaGoaPanaji rooms=26 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>23</td>
+        <td>H-NP-City-Goa-D2</td>
+        <td>POST /v1/hotels/details entityId=39692768 (from Goa CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=ParkPrimeGoa rooms=3 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>24</td>
+        <td>H-NP-City-Goa-D3</td>
+        <td>POST /v1/hotels/details entityId=16059559 (from Goa CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=VillaDonna rooms=2 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>25</td>
+        <td>H-NP-City-Dubai-S</td>
+        <td>POST /v1/hotels/search type=CITY entityId=221688:AE page=0 perpage=20</td>
+        <td>All available results: price.baseFare/taxes/totalAmount/gst/fee &gt;= 0 (empty/5xx = NOT TESTED)</td>
+        <td>http=200 available=20/page=20 fieldNeg=0 badHits=0</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>26</td>
+        <td>H-NP-City-Dubai-D1</td>
+        <td>POST /v1/hotels/details entityId=70491369 (from Dubai CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=MandarinOrientalDo rooms=90 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>27</td>
+        <td>H-NP-City-Dubai-D2</td>
+        <td>POST /v1/hotels/details entityId=70480231 (from Dubai CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=NAJIBAHOTEL rooms=4 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>28</td>
+        <td>H-NP-City-Dubai-D3</td>
+        <td>POST /v1/hotels/details entityId=39658268 (from Dubai CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=RadissonBluHotelDu rooms=8 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="not-tested">
+        <td>29</td>
+        <td>H-NP-City-Singapore-S</td>
+        <td>POST /v1/hotels/search type=CITY entityId=246673:SG page=0 perpage=20</td>
+        <td>All available results: price.baseFare/taxes/totalAmount/gst/fee &gt;= 0 (empty/5xx = NOT TESTED)</td>
+        <td>http=200 available=0/page=0 fieldNeg=0 badHits=0</td>
+        <td><strong>NOT TESTED</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>30</td>
+        <td>H-NP-City-Singapore-S2</td>
+        <td>POST /v1/hotels/search type=CITY entityId=246673:SG 2026-10-27</td>
+        <td>Available results non-negative after date retry</td>
+        <td>http=200 available=20 fieldNeg=0 badHits=0</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>31</td>
+        <td>H-NP-City-Singapore-D1</td>
+        <td>POST /v1/hotels/details entityId=16042274 (from Singapore CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=ibisbudgetSingapor rooms=10 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>32</td>
+        <td>H-NP-City-Singapore-D2</td>
+        <td>POST /v1/hotels/details entityId=39672686 (from Singapore CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=HolidayInnSingapor rooms=14 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="pass">
+        <td>33</td>
+        <td>H-NP-City-Singapore-D3</td>
+        <td>POST /v1/hotels/details entityId=39777619 (from Singapore CITY SRP)</td>
+        <td>HTTP 200; rooms[].price baseFare/taxes/gst/fee/totalAmount all &gt;= 0</td>
+        <td>http=200 hotel=METTSingapore rooms=20 fieldNeg=0 roomNeg=0 hotelPriceNeg=false</td>
+        <td><strong>PASS</strong></td>
+      </tr>
+      <tr class="not-tested">
+        <td>34</td>
+        <td>H-NP-City-Bangkok-S</td>
+        <td>POST /v1/hotels/search type=CITY entityId=328619:TH page=0 perpage=20</td>
+        <td>All available results: price.baseFare/taxes/totalAmount/gst/fee &gt;= 0 (empty/5xx = NOT TESTED)</td>
+        <td>http=200 available=0/page=0 fieldNeg=0 badHits=0</td>
+        <td><strong>NOT TESTED</strong></td>
+      </tr>
+      <tr class="not-tested">
+        <td>35</td>
+        <td>H-NP-City-Bangkok-D0</td>
+        <td>CITY search returned no priced hotels</td>
+        <td>At least 1 available hotel for details price scan</td>
+        <td>available=0</td>
+        <td><strong>NOT TESTED</strong></td>
+      </tr>
+      <tr class="not-tested">
+        <td>36</td>
+        <td>H-NP-City-Paris-S</td>
+        <td>POST /v1/hotels/search type=CITY entityId=437227:FR page=0 perpage=20</td>
+        <td>All available results: price.baseFare/taxes/totalAmount/gst/fee &gt;= 0 (empty/5xx = NOT TESTED)</td>
+        <td>http=504 available=0/page=0 fieldNeg=0 badHits=0</td>
+        <td><strong>NOT TESTED</strong></td>
+      </tr>
+      <tr class="not-tested">
+        <td>37</td>
+        <td>H-NP-City-Paris-D0</td>
+        <td>CITY search returned no priced hotels</td>
+        <td>At least 1 available hotel for details price scan</td>
+        <td>available=0</td>
+        <td><strong>NOT TESTED</strong></td>
+      </tr></tbody>
+      </table>
+  <h2>Bugs for Dev</h2>
+  <p>None this run.</p>
+</body></html>

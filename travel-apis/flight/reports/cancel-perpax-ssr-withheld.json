@@ -1,0 +1,156 @@
+{
+  "ranAt": "2026-08-12T21:32:10.488Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "SSR withheld from refund",
+  "fixture": {
+    "br": "BR1786570315695002",
+    "pnr": "P2B8WN",
+    "status": "Confirmed",
+    "airline": "6E",
+    "fareType": "NORMAL",
+    "route": "BOM-BLR",
+    "onlineCancellation": true,
+    "fareTotal": 4243,
+    "ssrExpected": 2420,
+    "mealAmount": 320,
+    "bagAmount": 2100,
+    "left": []
+  },
+  "penalty": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786570315695002",
+      "pnr": "P2B8WN",
+      "cancellationRequest": {
+        "status": "Penalty Fetched",
+        "estimatedCancellationCharge": 3770,
+        "estimatedRefund": 473,
+        "totalAmount": 4243,
+        "totalPenalty": 1350,
+        "perPax": {
+          "paxCount": 1,
+          "chargedPax": 1,
+          "amount": 1823,
+          "convenienceFee": 0,
+          "ssr": 2420,
+          "flexiCancelFee": 0,
+          "penalty": 1000,
+          "cancellationFee": 350,
+          "refund": 473,
+          "penaltyBasis": "PROVIDER"
+        },
+        "createdAt": "2026-08-12T21:32:01Z"
+      }
+    }
+  },
+  "cancel": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786570315695002",
+      "pnr": "P2B8WN",
+      "cancellationRequest": {
+        "status": "Cancelled",
+        "estimatedCancellationCharge": 3769,
+        "estimatedRefund": 2894,
+        "totalAmount": 6663,
+        "totalPenalty": 1349,
+        "perPax": {
+          "paxCount": 1,
+          "chargedPax": 1,
+          "amount": 4243,
+          "convenienceFee": 0,
+          "ssr": 2420,
+          "flexiCancelFee": 0,
+          "penalty": 999,
+          "cancellationFee": 350,
+          "refund": 2894,
+          "penaltyBasis": "PROVIDER"
+        },
+        "createdAt": "2026-08-12T21:32:02Z"
+      },
+      "refundSummary": {
+        "amount": 2894,
+        "cancellationCharge": 3769,
+        "totalPenalty": 1349,
+        "cancellationChargeBreakup": {
+          "airlineCancellationFee": 999,
+          "convenienceFee": 0,
+          "serviceFee": 350,
+          "flexicancelFee": 0,
+          "ssrCharge": 2420
+        }
+      },
+      "transaction": {
+        "id": "615",
+        "amount": 2894,
+        "currency": "INR",
+        "paymentMethod": "wallet",
+        "type": "refund",
+        "status": "success",
+        "createdAt": "2026-08-12T21:32:09Z",
+        "completedAt": "2026-08-12T21:32:09Z"
+      }
+    }
+  },
+  "used": {
+    "status": "Cancelled",
+    "totalAmount": 6663,
+    "charge": 3769,
+    "refund": 2894,
+    "perPax": {
+      "paxCount": 1,
+      "chargedPax": 1,
+      "amount": 4243,
+      "convenienceFee": 0,
+      "ssr": 2420,
+      "flexiCancelFee": 0,
+      "penalty": 999,
+      "cancellationFee": 350,
+      "refund": 2894,
+      "penaltyBasis": "PROVIDER"
+    },
+    "breakup": {
+      "airlineCancellationFee": 999,
+      "convenienceFee": 0,
+      "serviceFee": 350,
+      "flexicancelFee": 0,
+      "ssrCharge": 2420
+    }
+  },
+  "table": [
+    {
+      "rule": "Cancel/PENALTY amounts present",
+      "expected": "total, charge, refund numeric",
+      "actual": "total=6663 charge=3769 refund=2894 status=Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "refund = total − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=2894 total=6663 charge=3769",
+      "status": "PASS"
+    },
+    {
+      "rule": "SSR amount present on quote (perPax.ssr > 0)",
+      "expected": "perPax.ssr ≈ booked SSR (2420) or > 0",
+      "actual": "perPax.ssr=2420 booked=2420 meal=320 bag=2100",
+      "status": "PASS"
+    },
+    {
+      "rule": "SSR withheld (included in charge / not refunded)",
+      "expected": "charge >= ssr (SSR deducted); refund does not return SSR",
+      "actual": "charge=3769 ssr=2420 refund=2894",
+      "status": "PASS"
+    },
+    {
+      "rule": "Cancel completed (or request path)",
+      "expected": "Cancelled / Cancellation Requested (provider fail = note only)",
+      "actual": "Cancelled",
+      "status": "PASS"
+    }
+  ],
+  "score": {
+    "PASS": 5,
+    "BUG": 0
+  }
+}

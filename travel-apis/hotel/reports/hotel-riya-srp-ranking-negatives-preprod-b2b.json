@@ -1,0 +1,407 @@
+{
+  "ranAt": "2026-09-02T10:11:00.960Z",
+  "channel": "B2B",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 19597201,
+  "noBook": true,
+  "checkin": "2026-11-22",
+  "checkout": "2026-11-23",
+  "baselineTop": [
+    "39624369",
+    "71042622",
+    "39659376",
+    "32799941",
+    "51117724"
+  ],
+  "score": {
+    "PASS": 37,
+    "BUG": 1,
+    "NOT TESTED": 0,
+    "total": 38
+  },
+  "rows": [
+    {
+      "n": 1,
+      "section": "Baseline",
+      "rule": "Valid Mumbai search baseline",
+      "how": "POST /v1/hotels/search 2026-11-22",
+      "expected": "HTTP 200 total>0 premium-heavy page 1",
+      "actual": "http=200 total=988 premiumTop10=10 top=39624369 | 71042622 | 39659376 | 32799941 | 51117724",
+      "status": "PASS",
+      "requestId": "8668cf3e-9f25-4d1c-a3ce-4f13a04e06e5"
+    },
+    {
+      "n": 2,
+      "section": "Payload",
+      "rule": "checkin DD-MM-YYYY",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343862442"
+    },
+    {
+      "n": 3,
+      "section": "Payload",
+      "rule": "checkin impossible 2026-02-30",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343862518"
+    },
+    {
+      "n": 4,
+      "section": "Payload",
+      "rule": "checkout before checkin",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343862675"
+    },
+    {
+      "n": 5,
+      "section": "Payload",
+      "rule": "checkin in the past",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343862723"
+    },
+    {
+      "n": 6,
+      "section": "Payload",
+      "rule": "adults as string \"1\"",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343862775"
+    },
+    {
+      "n": 7,
+      "section": "Payload",
+      "rule": "adults 0",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343862844"
+    },
+    {
+      "n": 8,
+      "section": "Payload",
+      "rule": "adults 7",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343862904"
+    },
+    {
+      "n": 9,
+      "section": "Payload",
+      "rule": "missing entityId",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343862955"
+    },
+    {
+      "n": 10,
+      "section": "Payload",
+      "rule": "nationality not 2-letter",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343863004"
+    },
+    {
+      "n": 11,
+      "section": "Payload",
+      "rule": "nationality trailing comma IN,",
+      "how": "special chars / edge fq",
+      "expected": "HTTP 4xx or empty 200, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS"
+    },
+    {
+      "n": 12,
+      "section": "Payload",
+      "rule": "entityId with punctuation (!) must not return full city results",
+      "how": "entityId=357389:IN!",
+      "expected": "HTTP 4xx or empty 200; never 200 with 988 Mumbai hotels",
+      "actual": "http=200 total=988 results=20",
+      "status": "BUG",
+      "requestId": "fd7150f6-74fc-4c3f-8e02-617732814a5d"
+    },
+    {
+      "n": 13,
+      "section": "Payload",
+      "rule": ">6 rooms",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343863861"
+    },
+    {
+      "n": 14,
+      "section": "Query",
+      "rule": "offset=-1",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343863911"
+    },
+    {
+      "n": 15,
+      "section": "Query",
+      "rule": "limit=0",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343863965"
+    },
+    {
+      "n": 16,
+      "section": "Query",
+      "rule": "offset=abc",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343864014"
+    },
+    {
+      "n": 17,
+      "section": "Query",
+      "rule": "unknown sort=rating_DESC",
+      "how": "invalid sort/filter ignored",
+      "expected": "HTTP 200 or 4xx, never 500; ranking unaffected on valid retry",
+      "actual": "HTTP 200 total=988 results=10 code=none",
+      "status": "PASS",
+      "requestId": "8f782319-b535-4c82-80b0-266764c6db8c"
+    },
+    {
+      "n": 18,
+      "section": "Query",
+      "rule": "unknown sort=GARBAGE_SORT",
+      "how": "invalid sort/filter ignored",
+      "expected": "HTTP 200 or 4xx, never 500; ranking unaffected on valid retry",
+      "actual": "HTTP 200 total=988 results=10 code=none",
+      "status": "PASS",
+      "requestId": "4e0ddc7b-555d-4cea-a2a1-2c8edc05cb0d"
+    },
+    {
+      "n": 19,
+      "section": "Query",
+      "rule": "unknown sort=price_ASC,price_DESC",
+      "how": "invalid sort/filter ignored",
+      "expected": "HTTP 200 or 4xx, never 500; ranking unaffected on valid retry",
+      "actual": "HTTP 200 total=988 results=10 code=none",
+      "status": "PASS",
+      "requestId": "eaa29fe2-0684-464c-8806-6ed642e5be91"
+    },
+    {
+      "n": 20,
+      "section": "Query",
+      "rule": "unknown sort=star_DESC",
+      "how": "invalid sort/filter ignored",
+      "expected": "HTTP 200 or 4xx, never 500; ranking unaffected on valid retry",
+      "actual": "HTTP 200 total=988 results=10 code=none",
+      "status": "PASS",
+      "requestId": "286f3185-e955-49b7-ab57-f2bba2b80392"
+    },
+    {
+      "n": 21,
+      "section": "Query",
+      "rule": "price_ASC still monotonic after unknown sort attempts",
+      "how": "sort=price_ASC limit=15",
+      "expected": "non-decreasing fares; cheap can beat premium",
+      "actual": "mono=true first=New Shahana - Hostel ₹332.25",
+      "status": "PASS",
+      "requestId": "50082c29-1ce5-4a1b-89ea-c999f8b8032c"
+    },
+    {
+      "n": 22,
+      "section": "Query",
+      "rule": "offset=99999 beyond last page",
+      "how": "offset=99999",
+      "expected": "HTTP 200 empty page (not 500); total unchanged",
+      "actual": "http=200 total=988 results=0 msg=No hotels found for this date range. Please try searching different dates.",
+      "status": "PASS",
+      "requestId": "102ad8a1-2f8d-4765-8088-d9f4bb40e474"
+    },
+    {
+      "n": 23,
+      "section": "Query",
+      "rule": "limit=9999 oversized page",
+      "how": "limit=9999",
+      "expected": "HTTP 200 with results or 4xx, never 500",
+      "actual": "http=400 n=0 total=NaN",
+      "status": "PASS",
+      "requestId": "req-1788343866858"
+    },
+    {
+      "n": 24,
+      "section": "Filter",
+      "rule": "unknown chain facetKey",
+      "how": "invalid sort/filter ignored",
+      "expected": "HTTP 200 or 4xx, never 500; ranking unaffected on valid retry",
+      "actual": "HTTP 200 total=0 results=0 ",
+      "status": "PASS",
+      "requestId": "5052d329-c6ef-45fa-b4b5-ecfd54aed9fc"
+    },
+    {
+      "n": 25,
+      "section": "Filter",
+      "rule": "chain value HTML/script",
+      "how": "special chars / edge fq",
+      "expected": "HTTP 200 ignore or 4xx, never 500",
+      "actual": "HTTP 200 code=none",
+      "status": "PASS",
+      "requestId": "0e56f019-2755-4116-91b9-3c513eb3081e"
+    },
+    {
+      "n": 26,
+      "section": "Filter",
+      "rule": "chain comma multi-select (wrong sep)",
+      "how": "special chars / edge fq",
+      "expected": "HTTP 200 ignore or 4xx, never 500",
+      "actual": "HTTP 200 code=none",
+      "status": "PASS",
+      "requestId": "638ca05b-2684-41de-a9fe-94c900575c3c"
+    },
+    {
+      "n": 27,
+      "section": "Filter",
+      "rule": "valueless chain fq ignored",
+      "how": "fq Chain:",
+      "expected": "HTTP 200; total ≈ baseline (filter ignored)",
+      "actual": "http=200 total=988 baseline=988",
+      "status": "PASS",
+      "requestId": "b7056552-63b1-4b81-909f-cab94b673d67"
+    },
+    {
+      "n": 28,
+      "section": "Filter",
+      "rule": "unknown brand facetKey",
+      "how": "invalid sort/filter ignored",
+      "expected": "HTTP 200 or 4xx, never 500; ranking unaffected on valid retry",
+      "actual": "HTTP 200 total=0 results=0 ",
+      "status": "PASS",
+      "requestId": "6d9b54bd-db42-4810-8621-242b82ea1177"
+    },
+    {
+      "n": 29,
+      "section": "Filter",
+      "rule": "brand empty value",
+      "how": "special chars / edge fq",
+      "expected": "HTTP 200 ignore or 4xx, never 500",
+      "actual": "HTTP 200 code=none",
+      "status": "PASS",
+      "requestId": "e96ddc04-1335-446f-b9cf-872e57ae40fb"
+    },
+    {
+      "n": 30,
+      "section": "Filter",
+      "rule": "unknown star bucket 99",
+      "how": "fq df_long_star_rating:99",
+      "expected": "HTTP 200 empty or narrowed; never 500",
+      "actual": "http=200 total=0",
+      "status": "PASS",
+      "requestId": "caad9f26-5dcc-4f4c-9122-45fc096fca39"
+    },
+    {
+      "n": 31,
+      "section": "Filter",
+      "rule": "fq as string not array",
+      "how": "special chars / edge fq",
+      "expected": "HTTP 200 ignore or 4xx, never 500",
+      "actual": "HTTP 200 code=none",
+      "status": "PASS",
+      "requestId": "c0385837-825b-4b01-9ae0-dad65702cd56"
+    },
+    {
+      "n": 32,
+      "section": "Filter",
+      "rule": "fq HTML in property type slot",
+      "how": "special chars / edge fq",
+      "expected": "HTTP 200 ignore or 4xx, never 500",
+      "actual": "HTTP 200 code=none",
+      "status": "PASS",
+      "requestId": "872a67c3-1dac-470a-b9d8-4b00f6c3d06c"
+    },
+    {
+      "n": 33,
+      "section": "Regression",
+      "rule": "Default ranking unchanged after negative batch — Mumbai",
+      "how": "repeat valid search same dates",
+      "expected": "top 3 hotel ids match baseline; premium-heavy page 1",
+      "actual": "sameTop3=true baselineTop=39624369 | 71042622 | 39659376 afterTop=39624369 | 71042622 | 39659376 premium=10/10",
+      "status": "PASS",
+      "requestId": "235aa544-0db7-491a-bc78-dcfdfb9f4c8b",
+      "note": "exact top3 match (cache)"
+    },
+    {
+      "n": 34,
+      "section": "Regression",
+      "rule": "Default order after invalid sort attempts",
+      "how": "no sort param",
+      "expected": "still premium 4-5★ at top",
+      "actual": "premiumTop10=10 top=39624369 | 71042622 | 39659376",
+      "status": "PASS",
+      "requestId": "160630e0-2e6d-43bc-9a6a-919967962219"
+    },
+    {
+      "n": 35,
+      "section": "Multi-city",
+      "rule": "Delhi checkout before checkin",
+      "how": "mutate one field",
+      "expected": "HTTP 4xx VALIDATION_ERROR, never 500",
+      "actual": "HTTP 400 code=VALIDATION_ERROR",
+      "status": "PASS",
+      "requestId": "req-1788343871248"
+    },
+    {
+      "n": 36,
+      "section": "Multi-city",
+      "rule": "Dubai fake entityId graceful empty",
+      "how": "entityId=999999:AE",
+      "expected": "HTTP 200 empty/message or 4xx; never 500 with wrong ranked results",
+      "actual": "http=200 total=0 results=0 msg=No hotels found for this date range. Please try searching different dates.",
+      "status": "PASS",
+      "requestId": "0d03f344-8286-4870-97f6-5f13f6f51ec5"
+    },
+    {
+      "n": 37,
+      "section": "Multi-city",
+      "rule": "Dubai valid search after negatives — intl",
+      "how": "entity 221688:AE",
+      "expected": "HTTP 200; premium/intl hotels top; not broken by ranking change",
+      "actual": "http=200 total=872 premiumTop10=10 top=38688667 | 39961925 | 39600369",
+      "status": "PASS",
+      "requestId": "8a96e43d-0a8f-4b6d-9a4a-8674d34b03b2",
+      "city": "Dubai",
+      "checkin": "2026-11-22",
+      "checkout": "2026-11-23"
+    },
+    {
+      "n": 38,
+      "section": "Auth",
+      "rule": "omit Bearer token",
+      "how": "auth:false",
+      "expected": "HTTP 4xx never 500",
+      "actual": "HTTP 401 code=none",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+{
+  "ranAt": "2026-08-12T22:05:52.796Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "CORPORATE OW 3ADT full PNR cancel",
+  "fixture": {
+    "br": "BR1786572337739872",
+    "pnr": "MUE5SW",
+    "status": "Confirmed",
+    "airline": "6E",
+    "totalAmount": 12180
+  },
+  "penalty": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786572337739872",
+      "pnr": "MUE5SW",
+      "cancellationRequest": {
+        "status": "Penalty Fetched",
+        "estimatedCancellationCharge": 2050,
+        "estimatedRefund": 10130,
+        "totalAmount": 12180,
+        "totalPenalty": 2050,
+        "penaltyBasis": "PROVIDER",
+        "amount": 12180,
+        "convenienceFee": 0,
+        "ssr": 0,
+        "flexiCancelFee": 0,
+        "penalty": 1000,
+        "cancellationFee": 1050,
+        "perPax": [
+          {
+            "paxId": "PAX1",
+            "amount": 4060,
+            "convenienceFee": 0,
+            "ssr": 0,
+            "flexiCancelFee": 0,
+            "penalty": 333.33,
+            "cancellationFee": 350,
+            "totalPenalty": 683.33,
+            "refund": 3376.67,
+            "ssrPerPassenger": false
+          },
+          {
+            "paxId": "PAX2",
+            "amount": 4060,
+            "convenienceFee": 0,
+            "ssr": 0,
+            "flexiCancelFee": 0,
+            "penalty": 333.33,
+            "cancellationFee": 350,
+            "totalPenalty": 683.33,
+            "refund": 3376.67,
+            "ssrPerPassenger": false
+          },
+          {
+            "paxId": "PAX3",
+            "amount": 4060,
+            "convenienceFee": 0,
+            "ssr": 0,
+            "flexiCancelFee": 0,
+            "penalty": 333.34,
+            "cancellationFee": 350,
+            "totalPenalty": 683.34,
+            "refund": 3376.66,
+            "ssrPerPassenger": false
+          }
+        ],
+        "createdAt": "2026-08-12T22:05:43Z"
+      }
+    },
+    "status": "Penalty Fetched",
+    "totalAmount": 12180,
+    "charge": 2050,
+    "refund": 10130,
+    "perPax": [
+      {
+        "paxId": "PAX1",
+        "amount": 4060,
+        "convenienceFee": 0,
+        "ssr": 0,
+        "flexiCancelFee": 0,
+        "penalty": 333.33,
+        "cancellationFee": 350,
+        "totalPenalty": 683.33,
+        "refund": 3376.67,
+        "ssrPerPassenger": false
+      },
+      {
+        "paxId": "PAX2",
+        "amount": 4060,
+        "convenienceFee": 0,
+        "ssr": 0,
+        "flexiCancelFee": 0,
+        "penalty": 333.33,
+        "cancellationFee": 350,
+        "totalPenalty": 683.33,
+        "refund": 3376.67,
+        "ssrPerPassenger": false
+      },
+      {
+        "paxId": "PAX3",
+        "amount": 4060,
+        "convenienceFee": 0,
+        "ssr": 0,
+        "flexiCancelFee": 0,
+        "penalty": 333.34,
+        "cancellationFee": 350,
+        "totalPenalty": 683.34,
+        "refund": 3376.66,
+        "ssrPerPassenger": false
+      }
+    ],
+    "paxScope": null
+  },
+  "cancel": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786572337739872",
+      "pnr": "MUE5SW",
+      "cancellationRequest": {
+        "status": "Cancelled",
+        "estimatedCancellationCharge": 4047,
+        "estimatedRefund": 8133,
+        "totalAmount": 12180,
+        "totalPenalty": 4047,
+        "penaltyBasis": "PROVIDER",
+        "amount": 12180,
+        "convenienceFee": 0,
+        "ssr": 0,
+        "flexiCancelFee": 0,
+        "penalty": 2997,
+        "cancellationFee": 1050,
+        "perPax": [
+          {
+            "paxId": "PAX1",
+            "amount": 4060,
+            "convenienceFee": 0,
+            "ssr": 0,
+            "flexiCancelFee": 0,
+            "penalty": 999,
+            "cancellationFee": 350,
+            "totalPenalty": 1349,
+            "refund": 2711,
+            "ssrPerPassenger": false
+          },
+          {
+            "paxId": "PAX2",
+            "amount": 4060,
+            "convenienceFee": 0,
+            "ssr": 0,
+            "flexiCancelFee": 0,
+            "penalty": 999,
+            "cancellationFee": 350,
+            "totalPenalty": 1349,
+            "refund": 2711,
+            "ssrPerPassenger": false
+          },
+          {
+            "paxId": "PAX3",
+            "amount": 4060,
+            "convenienceFee": 0,
+            "ssr": 0,
+            "flexiCancelFee": 0,
+            "penalty": 999,
+            "cancellationFee": 350,
+            "totalPenalty": 1349,
+            "refund": 2711,
+            "ssrPerPassenger": false
+          }
+        ],
+        "createdAt": "2026-08-12T22:05:45Z"
+      },
+      "refundSummary": {
+        "amount": 8133,
+        "cancellationCharge": 4047,
+        "totalPenalty": 4047,
+        "cancellationChargeBreakup": {
+          "airlineCancellationFee": 2997,
+          "convenienceFee": 0,
+          "serviceFee": 1050,
+          "flexicancelFee": 0
+        }
+      },
+      "transaction": {
+        "id": "621",
+        "amount": 8133,
+        "currency": "INR",
+        "paymentMethod": "wallet",
+        "type": "refund",
+        "status": "success",
+        "createdAt": "2026-08-12T22:05:52Z",
+        "completedAt": "2026-08-12T22:05:52Z"
+      }
+    },
+    "status": "Cancelled",
+    "totalAmount": 12180,
+    "charge": 4047,
+    "refund": 8133,
+    "perPax": [
+      {
+        "paxId": "PAX1",
+        "amount": 4060,
+        "convenienceFee": 0,
+        "ssr": 0,
+        "flexiCancelFee": 0,
+        "penalty": 999,
+        "cancellationFee": 350,
+        "totalPenalty": 1349,
+        "refund": 2711,
+        "ssrPerPassenger": false
+      },
+      {
+        "paxId": "PAX2",
+        "amount": 4060,
+        "convenienceFee": 0,
+        "ssr": 0,
+        "flexiCancelFee": 0,
+        "penalty": 999,
+        "cancellationFee": 350,
+        "totalPenalty": 1349,
+        "refund": 2711,
+        "ssrPerPassenger": false
+      },
+      {
+        "paxId": "PAX3",
+        "amount": 4060,
+        "convenienceFee": 0,
+        "ssr": 0,
+        "flexiCancelFee": 0,
+        "penalty": 999,
+        "cancellationFee": 350,
+        "totalPenalty": 1349,
+        "refund": 2711,
+        "ssrPerPassenger": false
+      }
+    ],
+    "paxScope": null
+  },
+  "afterStatus": "Cancelled",
+  "table": [
+    {
+      "rule": "PENALTY: amounts",
+      "expected": "total/charge/refund numeric",
+      "actual": "total=12180 charge=2050 refund=10130",
+      "status": "PASS"
+    },
+    {
+      "rule": "PENALTY: refund math",
+      "expected": "refund = total - charge",
+      "actual": "refund=10130 total=12180 charge=2050",
+      "status": "PASS"
+    },
+    {
+      "rule": "PENALTY: no PARTIAL_PAX (full PNR)",
+      "expected": "paxScope absent or not PARTIAL_PAX",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "PENALTY: perPax covers 3 pax",
+      "expected": "array len 3 OR chargedPax/paxCount=3",
+      "actual": "len=3 [{\"paxId\":\"PAX1\",\"amount\":4060,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":333.33,\"cancellationFee\":350,\"totalPenalty\":683.33,\"refund\":3376.67,\"ssrPerPassenger\":false},{\"paxId\":\"PAX2\",\"amount\":4060,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":333.33,\"cancel",
+      "status": "PASS"
+    },
+    {
+      "rule": "PENALTY: cancellationFee × 3 in totals",
+      "expected": "fee field 1050 implies ×3 contribution 1050 or per-pax 350×3",
+      "actual": "cancellationFee=1050 charge=2050",
+      "status": "PASS"
+    },
+    {
+      "rule": "PENALTY: status",
+      "expected": "Penalty Fetched / Cancelled / Cancellation Requested",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "CANCEL: amounts",
+      "expected": "total/charge/refund numeric",
+      "actual": "total=12180 charge=4047 refund=8133",
+      "status": "PASS"
+    },
+    {
+      "rule": "CANCEL: refund math",
+      "expected": "refund = total - charge",
+      "actual": "refund=8133 total=12180 charge=4047",
+      "status": "PASS"
+    },
+    {
+      "rule": "CANCEL: no PARTIAL_PAX (full PNR)",
+      "expected": "paxScope absent or not PARTIAL_PAX",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "CANCEL: perPax covers 3 pax",
+      "expected": "array len 3 OR chargedPax/paxCount=3",
+      "actual": "len=3 [{\"paxId\":\"PAX1\",\"amount\":4060,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":999,\"cancellationFee\":350,\"totalPenalty\":1349,\"refund\":2711,\"ssrPerPassenger\":false},{\"paxId\":\"PAX2\",\"amount\":4060,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":999,\"cancellationFee\":",
+      "status": "PASS"
+    },
+    {
+      "rule": "CANCEL: cancellationFee × 3 in totals",
+      "expected": "fee field 1050 implies ×3 contribution 1050 or per-pax 350×3",
+      "actual": "cancellationFee=1050 charge=4047",
+      "status": "PASS"
+    },
+    {
+      "rule": "CANCEL: status",
+      "expected": "Penalty Fetched / Cancelled / Cancellation Requested",
+      "actual": "Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "Final booking Cancelled",
+      "expected": "Cancelled",
+      "actual": "Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "Charge ≈ 3 × single-pax unit (849)",
+      "expected": "≈ 2547",
+      "actual": "4047",
+      "status": "BUG"
+    }
+  ],
+  "score": {
+    "PASS": 13,
+    "BUG": 1
+  }
+}

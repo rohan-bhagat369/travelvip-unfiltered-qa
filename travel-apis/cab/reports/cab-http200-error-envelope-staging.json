@@ -1,0 +1,929 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "generatedAt": "2026-08-31T11:19:22.104Z",
+  "focus": "HTTP 200 wrapping body 4xx/5xx + real 5xx + invalid accepted across all cab APIs",
+  "counts": {
+    "PASS_SUCCESS": 9,
+    "PASS_HTTP_4xx": 40,
+    "PASS_OR_AMBIGUOUS": 15,
+    "BUG_ACCEPTED_INVALID": 1
+  },
+  "p0Count": 1,
+  "p1Count": 0,
+  "rows": [
+    {
+      "id": "POS-SEARCH",
+      "mutation": "valid AIRPORT DEPARTURE",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_SUCCESS",
+      "severity": null,
+      "note": "Happy path OK",
+      "body": {},
+      "extra": {
+        "cabCount": 5,
+        "searchId": "6ff2a65b-792b-4d10-bc8d-41f57f38e197|4ff"
+      }
+    },
+    {
+      "id": "POS-FARE",
+      "mutation": "valid searchId",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_SUCCESS",
+      "severity": null,
+      "note": "Happy path OK",
+      "body": {},
+      "extra": {
+        "priceId": true,
+        "bookingReference": true
+      }
+    },
+    {
+      "id": "SEARCH-empty",
+      "mutation": "{}",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "SEARCH-missing-journeyType",
+      "mutation": "{\"travelType\":\"DEPARTURE\",\"airportCode\":\"DEL\",\"pickup\":{\"name\":\"Vasant Kunj, Delhi\",\"city\":\"Delhi\",\"latitude\":28.5201,\"l",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "SEARCH-invalid-journeyType",
+      "mutation": "{\"journeyType\":\"INVALID\",\"travelType\":\"DEPARTURE\",\"airportCode\":\"DEL\",\"pickup\":{\"name\":\"Vasant Kunj, Delhi\",\"city\":\"Delh",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "SEARCH-airport-XXX",
+      "mutation": "{\"journeyType\":\"AIRPORT\",\"travelType\":\"DEPARTURE\",\"airportCode\":\"XXX\",\"pickup\":{\"name\":\"Vasant Kunj, Delhi\",\"city\":\"Delh",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "NOT_FOUND"
+      }
+    },
+    {
+      "id": "SEARCH-past-datetime",
+      "mutation": "{\"journeyType\":\"AIRPORT\",\"travelType\":\"DEPARTURE\",\"airportCode\":\"DEL\",\"pickup\":{\"name\":\"Vasant Kunj, Delhi\",\"city\":\"Delh",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "SEARCH-bad-datetime",
+      "mutation": "{\"journeyType\":\"AIRPORT\",\"travelType\":\"DEPARTURE\",\"airportCode\":\"DEL\",\"pickup\":{\"name\":\"Vasant Kunj, Delhi\",\"city\":\"Delh",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "SEARCH-lat999",
+      "mutation": "{\"journeyType\":\"AIRPORT\",\"travelType\":\"DEPARTURE\",\"airportCode\":\"DEL\",\"pickup\":{\"name\":\"X\",\"city\":\"Y\",\"latitude\":999,\"lo",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "SEARCH-neg-distance",
+      "mutation": "{\"journeyType\":\"AIRPORT\",\"travelType\":\"DEPARTURE\",\"airportCode\":\"DEL\",\"pickup\":{\"name\":\"Vasant Kunj, Delhi\",\"city\":\"Delh",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "SEARCH-html-journeyType",
+      "mutation": "{\"journeyType\":\"<script>alert(1)</script>\",\"travelType\":\"DEPARTURE\",\"airportCode\":\"DEL\",\"pickup\":{\"name\":\"Vasant Kunj, D",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "SEARCH-comma-airport",
+      "mutation": "{\"journeyType\":\"AIRPORT\",\"travelType\":\"DEPARTURE\",\"airportCode\":\"DEL,\",\"pickup\":{\"name\":\"Vasant Kunj, Delhi\",\"city\":\"Del",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "FARE-missing-searchId",
+      "mutation": "{}",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "FARE-empty-searchId",
+      "mutation": "{\"searchId\":\"\"}",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "FARE-ROHAN",
+      "mutation": "{\"searchId\":\"ROHAN\"}",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "FARE-garbage",
+      "mutation": "{\"searchId\":\"not-a-real-search-id\"}",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "FARE-uuid-only",
+      "mutation": "{\"searchId\":\"00000000-0000-0000-0000-000000000000\"}",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "FARE-html",
+      "mutation": "{\"searchId\":\"<script>x</script>\"}",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "FARE-comma",
+      "mutation": "{\"searchId\":\"abc,\"}",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "BOOK-bad-ref",
+      "mutation": "BOOK-bad-ref",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/finalize-booking",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "BOOK-bad-priceId",
+      "mutation": "BOOK-bad-priceId",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/finalize-booking",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "BUG_ACCEPTED_INVALID",
+      "severity": "P0",
+      "note": "Invalid input accepted with success-shaped body",
+      "body": {
+        "status": "Pending",
+        "statusCode": 200,
+        "bookingRefId": "BR1788175156457569"
+      }
+    },
+    {
+      "id": "BOOK-empty-body",
+      "mutation": "BOOK-empty-body",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/finalize-booking",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "BOOK-bad-email",
+      "mutation": "BOOK-bad-email",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/finalize-booking",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "BOOK-html-name",
+      "mutation": "BOOK-html-name",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/finalize-booking",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "BOOK-comma-mobile",
+      "mutation": "BOOK-comma-mobile",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/finalize-booking",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "STATUS-ROHAN",
+      "mutation": "bookingRef=ROHAN",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/ROHAN/status",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "DETAIL-ROHAN",
+      "mutation": "bookingRef=ROHAN",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/ROHAN",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "TRACK-ROHAN",
+      "mutation": "bookingRef=ROHAN",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/tracking/ROHAN/location",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "CANCEL-ROHAN",
+      "mutation": "bookingRef=ROHAN",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/bookings/ROHAN/cancel",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "STATUS-BR_NOT_REAL_000",
+      "mutation": "bookingRef=BR_NOT_REAL_000",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/BR_NOT_REAL_000/status",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "DETAIL-BR_NOT_REAL_000",
+      "mutation": "bookingRef=BR_NOT_REAL_000",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/BR_NOT_REAL_000",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "TRACK-BR_NOT_REAL_000",
+      "mutation": "bookingRef=BR_NOT_REAL_000",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/tracking/BR_NOT_REAL_000/location",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "CANCEL-BR_NOT_REAL_000",
+      "mutation": "bookingRef=BR_NOT_REAL_000",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/bookings/BR_NOT_REAL_000/cancel",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "STATUS-BR",
+      "mutation": "bookingRef=BR",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/BR/status",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "DETAIL-BR",
+      "mutation": "bookingRef=BR",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/BR",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "TRACK-BR",
+      "mutation": "bookingRef=BR",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/tracking/BR/location",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "CANCEL-BR",
+      "mutation": "bookingRef=BR",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/bookings/BR/cancel",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "STATUS-BR0000000000000001",
+      "mutation": "bookingRef=BR0000000000000001",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/BR0000000000000001/status",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "DETAIL-BR0000000000000001",
+      "mutation": "bookingRef=BR0000000000000001",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/BR0000000000000001",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "TRACK-BR0000000000000001",
+      "mutation": "bookingRef=BR0000000000000001",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/tracking/BR0000000000000001/location",
+      "httpStatus": 404,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "CANCEL-BR0000000000000001",
+      "mutation": "bookingRef=BR0000000000000001",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/bookings/BR0000000000000001/cancel",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "code": "BOOKING_NOT_FOUND"
+      }
+    },
+    {
+      "id": "STATUS-<script>",
+      "mutation": "bookingRef=<script>",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/%3Cscript%3E/status",
+      "httpStatus": 404,
+      "bodyStatus": 404,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "status": 404
+      }
+    },
+    {
+      "id": "DETAIL-<script>",
+      "mutation": "bookingRef=<script>",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/%3Cscript%3E",
+      "httpStatus": 404,
+      "bodyStatus": 404,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "status": 404
+      }
+    },
+    {
+      "id": "TRACK-<script>",
+      "mutation": "bookingRef=<script>",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/tracking/%3Cscript%3E/location",
+      "httpStatus": 404,
+      "bodyStatus": 404,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "status": 404
+      }
+    },
+    {
+      "id": "CANCEL-<script>",
+      "mutation": "bookingRef=<script>",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/bookings/%3Cscript%3E/cancel",
+      "httpStatus": 404,
+      "bodyStatus": 404,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "status": 404
+      }
+    },
+    {
+      "id": "STATUS-abc,",
+      "mutation": "bookingRef=abc,",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/abc%2C/status",
+      "httpStatus": 404,
+      "bodyStatus": 404,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "status": 404
+      }
+    },
+    {
+      "id": "DETAIL-abc,",
+      "mutation": "bookingRef=abc,",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/abc%2C",
+      "httpStatus": 404,
+      "bodyStatus": 404,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "status": 404
+      }
+    },
+    {
+      "id": "TRACK-abc,",
+      "mutation": "bookingRef=abc,",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/tracking/abc%2C/location",
+      "httpStatus": 404,
+      "bodyStatus": 404,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "status": 404
+      }
+    },
+    {
+      "id": "CANCEL-abc,",
+      "mutation": "bookingRef=abc,",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/bookings/abc%2C/cancel",
+      "httpStatus": 404,
+      "bodyStatus": 404,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "status": 404
+      }
+    },
+    {
+      "id": "HISTORY-ok",
+      "mutation": "page=0&perpage=10",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/history",
+      "httpStatus": 200,
+      "bodyStatus": 0,
+      "kind": "PASS_SUCCESS",
+      "severity": null,
+      "note": "Happy path OK",
+      "body": {
+        "status": 0
+      }
+    },
+    {
+      "id": "HISTORY-neg-page",
+      "mutation": "page=-1",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/history",
+      "httpStatus": 200,
+      "bodyStatus": 0,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "status": 0
+      }
+    },
+    {
+      "id": "HISTORY-zero-perpage",
+      "mutation": "perpage=0",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/history",
+      "httpStatus": 200,
+      "bodyStatus": 0,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "status": 0
+      }
+    },
+    {
+      "id": "HISTORY-abc-page",
+      "mutation": "page=abc",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/history",
+      "httpStatus": 200,
+      "bodyStatus": 0,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {
+        "status": 0
+      }
+    },
+    {
+      "id": "LOC-ok",
+      "mutation": "lat/long Pune",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/locations",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_SUCCESS",
+      "severity": null,
+      "note": "Happy path OK",
+      "body": {}
+    },
+    {
+      "id": "LOC-missing-coords",
+      "mutation": "no lat/long",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/locations",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "LOC-bad-coords",
+      "mutation": "lat=999",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/locations",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "PLACE-ok",
+      "mutation": "searchText=viman nagar",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/places/autocomplete",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_SUCCESS",
+      "severity": null,
+      "note": "Happy path OK",
+      "body": {}
+    },
+    {
+      "id": "PLACE-empty",
+      "mutation": "searchText empty",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/places/autocomplete",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "PLACE-html",
+      "mutation": "searchText HTML",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/places/autocomplete",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_OR_AMBIGUOUS",
+      "severity": null,
+      "note": "HTTP 200 without clear error body",
+      "body": {}
+    },
+    {
+      "id": "PLACE-missing",
+      "mutation": "no searchText",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/places/autocomplete",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "VALIDATION_ERROR"
+      }
+    },
+    {
+      "id": "POS-BOOK",
+      "mutation": "valid finalize",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/finalize-booking",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_SUCCESS",
+      "severity": null,
+      "note": "Happy path OK",
+      "body": {
+        "status": "Pending",
+        "statusCode": 200,
+        "bookingRefId": "BR1788175161693282"
+      }
+    },
+    {
+      "id": "POS-STATUS",
+      "mutation": "BR1788175161693282",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/BR1788175161693282/status",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_SUCCESS",
+      "severity": null,
+      "note": "Happy path OK",
+      "body": {
+        "status": "Pending",
+        "statusCode": 200,
+        "bookingRefId": "BR1788175161693282"
+      }
+    },
+    {
+      "id": "POS-DETAIL",
+      "mutation": "BR1788175161693282",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/BR1788175161693282",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_SUCCESS",
+      "severity": null,
+      "note": "Happy path OK",
+      "body": {
+        "status": "Pending",
+        "statusCode": 200,
+        "bookingRefId": "BR1788175161693282"
+      }
+    },
+    {
+      "id": "POS-TRACK",
+      "mutation": "BR1788175161693282",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/tracking/BR1788175161693282/location",
+      "httpStatus": 200,
+      "bodyStatus": null,
+      "kind": "PASS_SUCCESS",
+      "severity": null,
+      "note": "Happy path OK",
+      "body": {}
+    },
+    {
+      "id": "POS-CANCEL",
+      "mutation": "BR1788175161693282",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/bookings/BR1788175161693282/cancel",
+      "httpStatus": 400,
+      "bodyStatus": null,
+      "kind": "PASS_HTTP_4xx",
+      "severity": null,
+      "note": "Proper HTTP 4xx rejection",
+      "body": {
+        "code": "BOOKING_NOT_CANCELLABLE"
+      }
+    }
+  ]
+}

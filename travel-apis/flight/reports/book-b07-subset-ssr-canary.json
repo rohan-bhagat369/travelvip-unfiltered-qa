@@ -1,0 +1,48 @@
+{
+  "ranAt": "2026-08-11T19:08:49.009Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "B07",
+  "expected": "PAX1 seat+meal; PAX2 baggage; PAX3 none; no lounge",
+  "route": "BLR-HYD",
+  "br": "BR1786475320743051",
+  "status": "Confirmed",
+  "pnr": "QZQJWF",
+  "applied": {
+    "mealPax1": true,
+    "seatPax1": true,
+    "bagPax2": true,
+    "lounge": false
+  },
+  "paxOut": [
+    {
+      "paxId": "PAX1",
+      "name": "Aditya Verma qiuk",
+      "meals": 1,
+      "bags": 0,
+      "seats": 1
+    },
+    {
+      "paxId": "PAX2",
+      "name": "Kavya Rao qiuk",
+      "meals": 0,
+      "bags": 1,
+      "seats": 0
+    },
+    {
+      "paxId": "PAX3",
+      "name": "Milan Shah qiuk",
+      "meals": 0,
+      "bags": 0,
+      "seats": 0
+    }
+  ],
+  "usable": true,
+  "dbSql": [
+    "USE travelx;",
+    "SET @br := 'BR1786475320743051';",
+    "SELECT bp.pax_id, bp.first_name, bp.last_name FROM booking_passenger bp\nJOIN booking b ON b.id = bp.booking_id WHERE b.booking_reference = @br ORDER BY bp.pax_id;",
+    "SELECT pm.*, bp.pax_id FROM passenger_meal pm\nJOIN booking_passenger bp ON bp.id = pm.booking_passenger_id\nJOIN booking b ON b.id = bp.booking_id WHERE b.booking_reference = @br;",
+    "SELECT pb.*, bp.pax_id FROM passenger_baggage pb\nJOIN booking_passenger bp ON bp.id = pb.booking_passenger_id\nJOIN booking b ON b.id = bp.booking_id WHERE b.booking_reference = @br;",
+    "SELECT ps.*, bp.pax_id FROM passenger_seat ps\nJOIN booking_passenger bp ON bp.id = ps.booking_passenger_id\nJOIN booking b ON b.id = bp.booking_id WHERE b.booking_reference = @br;"
+  ]
+}

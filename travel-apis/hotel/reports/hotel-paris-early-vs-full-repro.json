@@ -1,0 +1,124 @@
+{
+  "at": "2026-09-08T09:26:32.530Z",
+  "note": "No filters. Paris only. Measuring first response time + early vs full via totalResults/5star facet.",
+  "independent": {
+    "prodFirst": [
+      {
+        "label": "PROD",
+        "checkin": "2027-08-01",
+        "ms": 20602,
+        "fromCache": false,
+        "total": 32,
+        "fiveStar": 23,
+        "sizeKB": 18,
+        "mode": "EARLY",
+        "n": 20
+      },
+      {
+        "label": "PROD",
+        "checkin": "2027-08-03",
+        "ms": 11009,
+        "fromCache": false,
+        "total": 32,
+        "fiveStar": 23,
+        "sizeKB": 18,
+        "mode": "EARLY",
+        "n": 20
+      },
+      {
+        "label": "PROD",
+        "checkin": "2027-08-05",
+        "ms": 10844,
+        "fromCache": false,
+        "total": 32,
+        "fiveStar": 23,
+        "sizeKB": 18,
+        "mode": "EARLY",
+        "n": 20
+      }
+    ],
+    "preprodSecond": [
+      {
+        "label": "PREPROD",
+        "checkin": "2027-08-11",
+        "ms": 10731,
+        "fromCache": false,
+        "total": 32,
+        "fiveStar": 23,
+        "sizeKB": 18,
+        "mode": "EARLY",
+        "n": 20
+      },
+      {
+        "label": "PREPROD",
+        "checkin": "2027-08-13",
+        "ms": 16799,
+        "fromCache": false,
+        "total": 32,
+        "fiveStar": 23,
+        "sizeKB": 18,
+        "mode": "EARLY",
+        "n": 20
+      },
+      {
+        "label": "PREPROD",
+        "checkin": "2027-08-15",
+        "ms": 11002,
+        "fromCache": false,
+        "total": 32,
+        "fiveStar": 23,
+        "sizeKB": 18,
+        "mode": "EARLY",
+        "n": 20
+      }
+    ]
+  },
+  "parallel1": {
+    "pre": {
+      "label": "PREPROD-par",
+      "checkin": "2027-08-20",
+      "ms": 12210,
+      "fromCache": false,
+      "total": 31,
+      "fiveStar": 22,
+      "sizeKB": 18,
+      "mode": "EARLY",
+      "n": 20
+    },
+    "prod": {
+      "label": "PROD-par",
+      "checkin": "2027-08-20",
+      "ms": 12347,
+      "fromCache": true,
+      "total": 31,
+      "fiveStar": 22,
+      "sizeKB": 18,
+      "mode": "CACHE",
+      "n": 20
+    }
+  },
+  "parallel2": {
+    "pre": {
+      "label": "PROD-par2",
+      "checkin": "2027-08-22",
+      "ms": 11975,
+      "fromCache": false,
+      "total": 25,
+      "fiveStar": 17,
+      "sizeKB": 18,
+      "mode": "EARLY",
+      "n": 20
+    },
+    "prod": {
+      "label": "PREPROD-par2",
+      "checkin": "2027-08-22",
+      "ms": 11886,
+      "fromCache": false,
+      "total": 25,
+      "fiveStar": 17,
+      "sizeKB": 18,
+      "mode": "EARLY",
+      "n": 20
+    }
+  }
+}

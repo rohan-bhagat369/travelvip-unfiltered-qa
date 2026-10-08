@@ -1,0 +1,472 @@
+{
+  "ranAt": "2026-08-13T00:48:32.504Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "contract": "Flight cancellation — request/response examples (summary vs detailed)",
+  "pathUsed": "v1",
+  "left": [],
+  "scenarios": {
+    "s1": {
+      "booking": {
+        "br": "BR1786582060873946",
+        "status": "Confirmed",
+        "pnr": "DV1MWT",
+        "onlineCancellation": true,
+        "airline": "6E",
+        "flight": "6E 6E 353",
+        "totalAmount": 7952,
+        "adults": 2,
+        "fareType": "CORPORATE",
+        "passengers": [
+          "Ishaanfk Kapoorgpqc",
+          "Meera Kapoorgpqc"
+        ]
+      },
+      "path": "v1",
+      "penalty": {
+        "request": {
+          "action": "PENALTY",
+          "pnr": "DV1MWT",
+          "cancellationPaxList": [
+            "PAX1"
+          ],
+          "cancellationReason": "shape-1a"
+        },
+        "http": 200,
+        "response": {
+          "status": 0,
+          "statusMessage": "Success",
+          "data": {
+            "bookingReference": "BR1786582060873946",
+            "pnr": "DV1MWT",
+            "cancellationPaxList": [
+              "PAX1"
+            ],
+            "cancellationRequest": {
+              "status": "Penalty Fetched",
+              "estimatedCancellationCharge": 849,
+              "estimatedRefund": 3127
+            }
+          },
+          "_meta": {
+            "correlation_id": "dd5b8e56-3b6b-409e-ac3d-8c997c17781d"
+          }
+        }
+      },
+      "cancel": {
+        "request": {
+          "action": "CANCEL",
+          "pnr": "DV1MWT",
+          "cancellationPaxList": [
+            "PAX1"
+          ],
+          "cancellationReason": "shape-1",
+          "remarks": "requested by partner"
+        },
+        "http": 200,
+        "response": {
+          "status": 0,
+          "statusMessage": "Success",
+          "data": {
+            "bookingReference": "BR1786582060873946",
+            "pnr": "DV1MWT",
+            "cancellationPaxList": [
+              "PAX1"
+            ],
+            "cancellationRequest": {
+              "status": "Cancellation Requested",
+              "estimatedCancellationCharge": 849,
+              "estimatedRefund": 3127
+            }
+          },
+          "_meta": {
+            "correlation_id": "dd5b8e56-3b6b-409e-ac3d-8c997c17781d"
+          }
+        }
+      }
+    },
+    "s3": {
+      "booking": {
+        "br": "BR1786582091518455",
+        "status": "Confirmed",
+        "pnr": "IW2JVL",
+        "onlineCancellation": true,
+        "airline": "6E",
+        "flight": "6E 6E 2314",
+        "totalAmount": 6286,
+        "adults": 1,
+        "fareType": "CORPORATE",
+        "passengers": [
+          "Rudra Sethiijek"
+        ]
+      },
+      "path": "v1",
+      "penalty": {
+        "request": {
+          "action": "PENALTY",
+          "pnr": "IW2JVL",
+          "cancellationReason": "shape-3a"
+        },
+        "http": 200,
+        "response": {
+          "status": 0,
+          "statusMessage": "Success",
+          "data": {
+            "bookingReference": "BR1786582091518455",
+            "pnr": "IW2JVL",
+            "cancellationRequest": {
+              "status": "Penalty Fetched",
+              "estimatedCancellationCharge": 1350,
+              "estimatedRefund": 4936
+            }
+          },
+          "_meta": {
+            "correlation_id": "dd5b8e56-3b6b-409e-ac3d-8c997c17781d"
+          }
+        }
+      },
+      "cancel": {
+        "request": {
+          "action": "CANCEL",
+          "pnr": "IW2JVL",
+          "cancellationReason": "shape-3",
+          "remarks": "cancelled by user"
+        },
+        "http": 200,
+        "response": {
+          "status": 0,
+          "statusMessage": "Success",
+          "data": {
+            "bookingReference": "BR1786582091518455",
+            "pnr": "IW2JVL",
+            "cancellationRequest": {
+              "status": "Cancelled",
+              "estimatedCancellationCharge": 4949,
+              "estimatedRefund": 1337,
+              "totalAmount": 6286,
+              "totalPenalty": 4949,
+              "convenienceFee": 0,
+              "totalSsr": 0,
+              "flexiCancelFee": 0,
+              "cancellationFee": 350,
+              "perPax": [
+                {
+                  "paxId": "PAX1",
+                  "baseAmount": 6286,
+                  "ssr": 0,
+                  "flexiCancelFee": 0,
+                  "penalty": 4599,
+                  "cancellationFee": 350,
+                  "totalPenalty": 4949,
+                  "refund": 1337
+                }
+              ],
+              "createdAt": "2026-08-13T00:48:20Z"
+            },
+            "refundSummary": {
+              "amount": 1337,
+              "cancellationCharge": 4949,
+              "totalPenalty": 4949,
+              "cancellationChargeBreakup": {
+                "airlineCancellationFee": 4599,
+                "convenienceFee": 0,
+                "serviceFee": 350,
+                "flexicancelFee": 0
+              }
+            },
+            "transaction": {
+              "id": "638",
+              "status": "completed",
+              "amount": 1337,
+              "currency": "INR",
+              "paymentMethod": "wallet"
+            }
+          },
+          "_meta": {
+            "correlation_id": "dd5b8e56-3b6b-409e-ac3d-8c997c17781d"
+          }
+        }
+      }
+    }
+  },
+  "table": [
+    {
+      "rule": "1a PENALTY subset: HTTP 200",
+      "expected": "200",
+      "actual": "200",
+      "status": "PASS"
+    },
+    {
+      "rule": "1a PENALTY subset: status",
+      "expected": "Penalty Fetched",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "1a PENALTY subset: data.cancellationPaxList echoed",
+      "expected": "[\"PAX1\"]",
+      "actual": "[\"PAX1\"]",
+      "status": "PASS"
+    },
+    {
+      "rule": "1a PENALTY subset: summary has status",
+      "expected": "present",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "1a PENALTY subset: summary has estimatedCancellationCharge",
+      "expected": "present",
+      "actual": "849",
+      "status": "PASS"
+    },
+    {
+      "rule": "1a PENALTY subset: summary has estimatedRefund",
+      "expected": "present",
+      "actual": "3127",
+      "status": "PASS"
+    },
+    {
+      "rule": "1a PENALTY subset: summary has NO detailed fields (perPax/totalAmount/…)",
+      "expected": "only estimates + status (+ message)",
+      "actual": "clean summary",
+      "status": "PASS"
+    },
+    {
+      "rule": "1a PENALTY subset: no refundSummary/transaction",
+      "expected": "absent",
+      "actual": "refundSummary=false transaction=false",
+      "status": "PASS"
+    },
+    {
+      "rule": "1a PENALTY subset: no paxScope (not in new contract examples)",
+      "expected": "absent",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 CANCEL subset: HTTP 200",
+      "expected": "200",
+      "actual": "200",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 CANCEL subset: status",
+      "expected": "Cancellation Requested",
+      "actual": "Cancellation Requested",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 CANCEL subset: data.cancellationPaxList echoed",
+      "expected": "[\"PAX1\"]",
+      "actual": "[\"PAX1\"]",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 CANCEL subset: summary has status",
+      "expected": "present",
+      "actual": "Cancellation Requested",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 CANCEL subset: summary has estimatedCancellationCharge",
+      "expected": "present",
+      "actual": "849",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 CANCEL subset: summary has estimatedRefund",
+      "expected": "present",
+      "actual": "3127",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 CANCEL subset: summary has NO detailed fields (perPax/totalAmount/…)",
+      "expected": "only estimates + status (+ message)",
+      "actual": "clean summary",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 CANCEL subset: no refundSummary/transaction",
+      "expected": "absent",
+      "actual": "refundSummary=false transaction=false",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 CANCEL subset: no paxScope (not in new contract examples)",
+      "expected": "absent",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "1 vs 1a: same estimated charge/refund",
+      "expected": "PENALTY estimates === CANCEL estimates",
+      "actual": "pen 849/3127 vs can 849/3127",
+      "status": "PASS"
+    },
+    {
+      "rule": "3a PENALTY full online: HTTP 200",
+      "expected": "200",
+      "actual": "200",
+      "status": "PASS"
+    },
+    {
+      "rule": "3a PENALTY full online: status",
+      "expected": "Penalty Fetched",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "3a PENALTY full online: data.cancellationPaxList absent",
+      "expected": "absent / undefined",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "3a PENALTY full online: summary has status",
+      "expected": "present",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "3a PENALTY full online: summary has estimatedCancellationCharge",
+      "expected": "present",
+      "actual": "1350",
+      "status": "PASS"
+    },
+    {
+      "rule": "3a PENALTY full online: summary has estimatedRefund",
+      "expected": "present",
+      "actual": "4936",
+      "status": "PASS"
+    },
+    {
+      "rule": "3a PENALTY full online: summary has NO detailed fields (perPax/totalAmount/…)",
+      "expected": "only estimates + status (+ message)",
+      "actual": "clean summary",
+      "status": "PASS"
+    },
+    {
+      "rule": "3a PENALTY full online: no refundSummary/transaction",
+      "expected": "absent",
+      "actual": "refundSummary=false transaction=false",
+      "status": "PASS"
+    },
+    {
+      "rule": "3a PENALTY full online: no paxScope (not in new contract examples)",
+      "expected": "absent",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: HTTP 200",
+      "expected": "200",
+      "actual": "200",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: status Cancelled",
+      "expected": "Cancelled",
+      "actual": "Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: detailed has estimatedCancellationCharge",
+      "expected": "present",
+      "actual": "4949",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: detailed has estimatedRefund",
+      "expected": "present",
+      "actual": "1337",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: detailed has totalAmount",
+      "expected": "present",
+      "actual": "6286",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: detailed has totalPenalty",
+      "expected": "present",
+      "actual": "4949",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: detailed has convenienceFee",
+      "expected": "present",
+      "actual": "0",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: detailed has cancellationFee",
+      "expected": "present",
+      "actual": "350",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: detailed has perPax",
+      "expected": "present",
+      "actual": "array(1)",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: refundSummary present",
+      "expected": "present",
+      "actual": "{\"amount\":1337,\"cancellationCharge\":4949,\"totalPenalty\":4949,\"cancellationChargeBreakup\":{\"airlineCa",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: transaction present",
+      "expected": "present",
+      "actual": "{\"id\":\"638\",\"status\":\"completed\",\"amount\":1337,\"currency\":\"INR\",\"paymentMethod\":\"wallet\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: perPax identity base−penalty−fee = refund",
+      "expected": "each row holds (±2)",
+      "actual": "PAX1:6286-4599-350=1337",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: sum(perPax.refund) = estimatedRefund",
+      "expected": "1337",
+      "actual": "1337",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: sum(perPax.totalPenalty) = totalPenalty",
+      "expected": "4949",
+      "actual": "4949",
+      "status": "PASS"
+    },
+    {
+      "rule": "3 CANCEL online detailed: data.cancellationPaxList absent (whole leg)",
+      "expected": "absent",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "2 / 2a offline whole-leg (online_cancellation=0)",
+      "expected": "Confirmed offline inventory",
+      "actual": "NOT_TESTED — no live offline Confirmed inventory (needs seed)",
+      "status": "NOT_TESTED"
+    },
+    {
+      "rule": "3a vs 3: PENALTY estimates === CANCEL estimates (doc: same figures)",
+      "expected": "PENALTY summary may differ from final Cancelled (by design)",
+      "actual": "PENALTY 1350/4936 vs CANCEL 4949/1337",
+      "status": "PASS",
+      "note": "EXPECTED — online detailed Cancelled can differ from PENALTY summary quote (provider settle)"
+    }
+  ],
+  "score": {
+    "PASS": 44,
+    "BUG": 0,
+    "NOT_TESTED": 1
+  },
+  "notes": [
+    "PENALTY vs CANCEL amount gap on online detailed path reclassified as EXPECTED per product"
+  ]
+}

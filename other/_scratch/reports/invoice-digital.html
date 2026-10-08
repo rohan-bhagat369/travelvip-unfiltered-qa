@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gajanan Tours & Travels — Invoices</title>
+  <style>
+    @page { size: A4; margin: 12mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111;
+      font-size: 11px;
+      line-height: 1.25;
+    }
+    .page {
+      width: 186mm;
+      min-height: 273mm;
+      margin: 0 auto;
+      page-break-after: always;
+      border: 1.5px solid #222;
+      padding: 8px 10px 10px;
+      position: relative;
+    }
+    .page:last-child { page-break-after: auto; }
+
+    .header {
+      display: grid;
+      grid-template-columns: 58px 1fr 150px;
+      gap: 8px;
+      align-items: start;
+      border-bottom: 1.5px solid #222;
+      padding-bottom: 6px;
+      margin-bottom: 6px;
+    }
+    .logo {
+      width: 54px;
+      height: 54px;
+      border: 2.5px solid #1a5fa8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #1a5fa8;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .logo .gtt { font-size: 15px; letter-spacing: 0.5px; }
+    .logo .sub { font-size: 7px; margin-top: 2px; font-weight: 700; }
+
+    .brand h1 {
+      margin: 0 0 3px;
+      font-size: 18px;
+      letter-spacing: 0.4px;
+      font-weight: 800;
+    }
+    .brand .meta { font-size: 10px; }
+    .brand .meta div { margin: 1px 0; }
+
+    .bill-box {
+      border: 1.5px solid #222;
+      padding: 8px 10px;
+      font-size: 11px;
+      min-width: 150px;
+    }
+    .bill-box .row {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      gap: 8px;
+      margin: 5px 0;
+      align-items: baseline;
+      white-space: nowrap;
+    }
+    .bill-box .label { font-weight: 700; white-space: nowrap; flex: 0 0 auto; }
+    .bill-box .val {
+      flex: 1 1 auto;
+      border-bottom: 1px solid #333;
+      padding: 0 4px 1px;
+      font-weight: 700;
+      font-size: 13px;
+      text-align: left;
+      min-height: 16px;
+      white-space: nowrap;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3px;
+      margin-bottom: 6px;
+    }
+    .fline {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 4px;
+      align-items: end;
+      min-height: 18px;
+    }
+    .fline.two {
+      grid-template-columns: 92px 1fr 70px 1fr;
+    }
+    .fline.veh {
+      grid-template-columns: 92px 1.1fr 52px 0.7fr 70px 0.7fr;
+    }
+    .fline.driver {
+      grid-template-columns: 92px 1fr;
+    }
+    .fline.times {
+      grid-template-columns: 92px 1fr 40px 0.9fr 36px 0.7fr;
+    }
+    .fline.summary {
+      grid-template-columns: 92px 0.7fr 78px 0.5fr 78px 0.5fr 70px 0.5fr;
+    }
+    .flabel { font-weight: 700; font-size: 10.5px; padding-bottom: 1px; }
+    .fval {
+      border-bottom: 1px solid #444;
+      min-height: 16px;
+      padding: 0 3px 1px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    table.items {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+      font-size: 10.5px;
+    }
+    table.items th, table.items td {
+      border: 1px solid #222;
+      padding: 4px 5px;
+      vertical-align: middle;
+    }
+    table.items th {
+      background: #f3f3f3;
+      font-weight: 700;
+      text-align: center;
+    }
+    table.items td.no { width: 42px; text-align: center; font-weight: 700; }
+    table.items td.amt { width: 70px; text-align: right; font-weight: 700; font-size: 12px; }
+    table.items td.ps { width: 36px; text-align: center; }
+    table.items td.mid { width: 88px; font-size: 10px; color: #333; }
+    .tick { color: #0a7a2f; font-weight: 800; margin-right: 4px; }
+
+    .rupees {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 4px;
+      margin-top: 6px;
+      align-items: end;
+    }
+    .rupees .lab { font-weight: 800; font-size: 11px; }
+    .rupees .val {
+      border-bottom: 1px solid #333;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 2px 4px;
+      min-height: 18px;
+    }
+
+    .totals {
+      width: 180px;
+      margin-left: auto;
+      margin-top: 4px;
+      border-collapse: collapse;
+    }
+    .totals td {
+      border: 1px solid #222;
+      padding: 4px 6px;
+      font-size: 11px;
+    }
+    .totals td.k { font-weight: 700; width: 70px; }
+    .totals td.v { text-align: right; font-weight: 800; font-size: 12px; width: 70px; }
+    .totals td.p { width: 36px; text-align: center; }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1.35fr 0.7fr 0.95fr;
+      gap: 8px;
+      margin-top: 10px;
+      align-items: end;
+    }
+    .terms {
+      font-size: 9px;
+      line-height: 1.35;
+      color: #222;
+    }
+    .terms strong { font-size: 9.5px; }
+    .prep {
+      text-align: center;
+      font-size: 10px;
+      padding-bottom: 8px;
+    }
+    .sign {
+      text-align: center;
+      border-top: 1px solid #222;
+      padding-top: 4px;
+      font-size: 10px;
+    }
+    .sign .for { font-weight: 800; font-size: 10px; margin-bottom: 4px; }
+    .sign .sig-img {
+      display: block;
+      margin: 2px auto 2px;
+      height: 42px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+    }
+    .sign .role { font-weight: 700; margin-top: 2px; }
+    .eoe { font-weight: 700; margin-top: 6px; font-size: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- ========== BILL 172 ========== -->
+  <section class="page">
+    <div class="header">
+      <div class="logo">
+        <div class="gtt">GTT</div>
+        <div class="sub">TOURS</div>
+      </div>
+      <div class="brand">
+        <h1>GAJANAN TOURS &amp; TRAVELS</h1>
+        <div class="meta">
+          <div><strong>Office :</strong> Sr. No. 105 107 108 Fl, 1001, D Wing, Tulip Infinity, Haveli, Pimpri Chinchwad(M. Corp.), 412 105</div>
+          <div><strong>Prop. :</strong> Shivaji Katkar</div>
+          <div><strong>Mob. :</strong> 9892873189 / 9284302352</div>
+          <div><strong>Emai ID :</strong> gajanantours&amp;travels86@gmail.com</div>
+        </div>
+      </div>
+      <div class="bill-box">
+        <div class="row"><span class="label">Bill No.</span><span class="val">172</span></div>
+        <div class="row"><span class="label">Date</span><span class="val">10/8/026</span></div>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="fline"><div class="flabel">To,</div><div class="fval"></div></div>
+      <div class="fline"><div class="flabel">User's Name</div><div class="fval">Dr Srikanta Panigrahi</div></div>
+      <div class="fline"><div class="flabel">Add</div><div class="fval">Mumbai Airport T2 To Trident BKC</div></div>
+      <div class="fline"><div class="flabel">Itinerary : In City / Out City</div><div class="fval"></div></div>
+      <div class="fline veh">
+        <div class="flabel">Vehicle No.</div><div class="fval">MH 02 WJ 8747</div>
+        <div class="flabel">Model</div><div class="fval">Dizire</div>
+        <div class="flabel">Ac / No Ac</div><div class="fval"></div>
+      </div>
+      <div class="fline driver"><div class="flabel">Driver Name</div><div class="fval">Suresh</div></div>
+      <div class="fline times">
+        <div class="flabel">Closing Km.</div><div class="fval"></div>
+        <div class="flabel">Date</div><div class="fval">10 / 8 / 026</div>
+        <div class="flabel">Time</div><div class="fval">7:30 PM</div>
+      </div>
+      <div class="fline times">
+        <div class="flabel">Starting Km.</div><div class="fval"></div>
+        <div class="flabel">Date</div><div class="fval">10 / 8 / 026</div>
+        <div class="flabel">Time</div><div class="fval">11:45 AM</div>
+      </div>
+      <div class="fline summary">
+        <div class="flabel">Total Kms.</div><div class="fval"></div>
+        <div class="flabel">No.Of Days</div><div class="fval"></div>
+        <div class="flabel">No.Of Night.</div><div class="fval"></div>
+        <div class="flabel">Total Hrs.</div><div class="fval"></div>
+      </div>
+    </div>
+
+    <table class="items">
+      <thead>
+        <tr>
+          <th>Item No.</th>
+          <th>Particulars</th>
+          <th></th>
+          <th>Amount Rs.</th>
+          <th>Ps.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="no">1</td><td>MIN 300 Kms.Per day</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">2</td><td><span class="tick">✓</span>Local Package 8Hrs /80 Km</td><td class="mid">Per Km —</td><td class="amt">2500</td><td class="ps"></td></tr>
+        <tr><td class="no">3</td><td>Extra Kms.@ Rs. —</td><td class="mid">Per Hrs —</td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">4</td><td>EXT Hrs. —</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">5</td><td>Patmit Charges (T.P)</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">6</td><td>Outation Chages @ Rs.</td><td class="mid">Per Night</td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">7</td><td>Driver Charges @ Rs.</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">8</td><td>Half-day/Air-Rail Transfers (subject to) Toll &amp; Parking</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">9</td><td>Other Charges</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="rupees">
+      <div class="lab">RUPEES</div>
+      <div class="val">Two Thousand Five hundrad Ruppes only</div>
+    </div>
+
+    <table class="totals">
+      <tr><td class="k">Total</td><td class="v">2500</td><td class="p"></td></tr>
+      <tr><td class="k">Tax</td><td class="v">—</td><td class="p"></td></tr>
+      <tr><td class="k">G.Total</td><td class="v">2500</td><td class="p"></td></tr>
+    </table>
+
+    <div class="footer">
+      <div class="terms">
+        <div>Par Day Time 12 to 12</div>
+        <div>Kms.@ hours will be counted from our office.</div>
+        <div>Bill not settled within fifteen days, subject to interest Thereafter @24</div>
+        <div>(Vehicle are Insured against accident or damage crashed,</div>
+        <div>Insurance of Passenger is not insured in the quoted rates.)</div>
+        <div class="eoe">E.&amp;O.E.</div>
+      </div>
+      <div class="prep">Prepared by</div>
+      <div class="sign">
+        <div class="for">FOR GAJANAN TOURS &amp; TRAVELS</div>
+        <img class="sig-img" alt="Proprietor signature" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAwwAAADwCAIAAAAipXTTAAAACXBIWXMAAAsTAAALEwEAmpwYAAALQ0lEQVR4nO3d0XLcKBAFUP3/T88+pMrlnbnWIAQSoHMeNx7UDQJu7GyyvYCmtnZGW5m62jq13HXqysds/vROHVU898xnS5amYY9fhyqvbcB9N4KteFkXs2xjcLGttaFWsLq8fl33nr3yMds+vVM7XZ9btrZhwFad/nz2r0EOVcX+Kr/SrK46acs2BhcrvydmPKyrqy1v/OgMXDCThWO2fXq/dioeffLjXwdptXx1y3Tl3C5pe8A0LtsYXOCvYzcexPMe0NW3S/n8VExIq3HKH1FeScOHnh+zfJDzDy0fYX/5fj57KItXlDfLHhzWtvo0LtsY9FZyyn+eIDOeKV+bOvSpt49X31iFE35G4ZitCjjf0c7Explv3sj+43o7Ux51ttWncdnGoJO34/Xo8T3j6VxxLdVNyEoh6fdHzk/X0QRQEeIPFRA/Xt5Lc83XlKNT+lrUso1Bc7ef73epqLy86+rZuGBWC8csqeTrhHz94pMT0k/d01sVf3JNp9iA3Mj7AX9vj6sMvgZHyz7Ub/VUXDCr5aNtLXwd8IIaejs67WfGKRz/zFAsz/sB/98SAxhtSY6WeqjB6t4vmMlDQ5XUc6jOina28byGNHh5jMMrwqP9Piu38bzGcKjCir7qWr5gAvsV1vtPGRfW8DZsdamwKm8/z3X0Iml+bVz2oJPKy6ubvYqWCx/U8OcyZz7bcJDzNeyP2XYCYXY2AI/2eR+UXyf9yrjy0efL2/my/f9e8qt1JTWZuoaTXz3O+XaOzk/DCYQFePt5tAvu2s8nninjNfwsfZa630V1j/GDTebt5MfbOl9M4TK1ehysxAbg6favkB63xcm/L+f6q6u8qljemV89VFVhtXXD3qWihcJBSvJ6oyZgVvYA3PMjtu+b89xlf2Ul+4Xtf0F1XzsfrCgy/mWMrzFUT9HXofa/5kTJsAjbAEb/cxiHbvorn15Y1devqWuqZDYqih9q6f9pXuTOaCPPA1zPNuDRprgj/7nrRj+eMUJV+19Q19ShTx2q/FAZl6mbpaNjth0fZmcb8FAz3gq3XGbl8eKvkr5+TV1Hhz5V18WhenrrV9vIXcO9bAMeZ/C78KuLK//6uK3WzghNCuv6F4S+7tCvqkEahNHYCTzIUBdetX4tNPxjPSX+esSZeTj6x7dbaTH9p7puUsnFvbCY7Y4d0ds6nUCJu+62tnrc03GorZuddk7OQ8NKqsfpbZxKWNLnu7TNsC96mL4B+GrJDdy2l+1yTXo589C6+RnwT7ONUwmza7uhtiVeyOkbgK+GutJa6ZEArtSql+qHwpM13Mjb0vtu7urhq8V27G9N+jp5PlaP1rCX8vLgaba7vSY3fQOwY70d+1uT1poffHUjLLxMcKVtAK+FLNUM/Fh+6zYMFv1OwPJBll8s6KRkwx7d44Xb9gme2DNP8ISN3er86npQFo7jOIbmW7WatfhhLljE798wDfsvS7TV6lDreoAWDuWMhrh96jZpvx39NGaHRTxq/zdvs+thWjjg8qsGzbfkUZbgKFPG3B54KFzTY8PJLFyd5RcOzh9ohUx1K6aSuT3wvLisu1YzWbg6a68avIl7oeRAs0eu5CRiYiXny2stV3bXcDJLzvq1F46HaPiv+izzl1ZPzewzpfJTZhnXd9fwiXU3BAyu4sX2/s/FScSUnnbL3tJdw4f+tUDPWUFm9/lmHg4+u2+1939MjiGmVH0STefG7ho+dL+F5ReRZ/5f93VP7zEs1Uw383nOIXJvdw2f+7WLhReRoby9YFsLnSq85nHsM93M5znHx70NNnz010aesJpcpu2/xXHXC3l7AQhJTOnt1FjyBLn9fGxbQOGV4z7g/HvVhIXgH68C81n4UBunteZlFA640mpSYbuEpaGQd4X5LHnkjXaaN69knNYYxNbN3Z2xDi8T81nsQBzzrG9ezFDdcYG4yufCj/eHqzmnmMwaZ+X4537z2kZulmr+mXrW5pxiPlNftPf+zrj8WULSk8X3ZOvjvi7hOy8oU5rikB3tnjj00OYVTnc7PupG3/q4uy04y0vMlAY/kQe8Qo4+vUepw65X3fKN3MLRRs64u0voyPvNrAY5ssv/2rob///2ilnqMau3L9bXeipMWvYUncLtvPdMr99Bv8YF81PAoXp61D/CtDRc0x4tNC/vrkZgDTYGK9jG8xrG73rKy+vRzl2z1GTVmhe/3eRk2fAoNgyrcfd8zsbnjwWPTmOnpWkybPnjfj/0aAG/v/ivFu569z4rAZqwr1jfk6+it7LLW+jR9WWT+faI3j8Uuzgete0F2GG/wcqqb9keF/MF933XDNEn8ziEYVz2J6ys+lbucZH3ywdnRtuu1apl4AJ2LCyu7p7udLXflRgkHqCCkASLGyok/Qx+8uM7TfXIQy2aBuZj88PKqm/9W1LCdodrWgNm5ICAlVUng8uSRP8U1L0FYFUODlhZdWKoThj9087hXgDqOF9gZdXB4utHOief0joB+nEGwcqq84f0AyAkweJ2QlLFLx1yd+sApzjFYGXVyUYSAhCSYAUx61R/+6cwSAGszWEH06gLPeV56Mw/YwKwHscfPCIPlUcfCQngHyEJhtAvBglJAHWEJOjuM7v89bOto2mpuoa/Pls9PsB6HIJwTzz6K5HsfB+obTFxQAkJ4IeQBB29/ev0b7/0mVR6fwtnPyRJSAC/CUnQReG3bb7+l/PP/f1NqZ2cJCEBvBGSoIsYVr5+o+jzG0vlY5Y/rq42gKdxIEKfrXWfk+V5IQD+cSBCF62+CdQjIf1VUodpAJiYYxE67Ku/M8fnL30mla9f0KNUIQngjZAE7e3HGnEEYApCEvTZWo1+KAbAXRzW0G13/T8PSUgAcxGSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkAIBCSAAACIQkA4PXpP3xxHSzR0RktAAAAAElFTkSuQmCC" />
+        <div class="role">Proprietor</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BILL 173 ========== -->
+  <section class="page">
+    <div class="header">
+      <div class="logo">
+        <div class="gtt">GTT</div>
+        <div class="sub">TOURS</div>
+      </div>
+      <div class="brand">
+        <h1>GAJANAN TOURS &amp; TRAVELS</h1>
+        <div class="meta">
+          <div><strong>Office :</strong> Sr. No. 105 107 108 Fl, 1001, D Wing, Tulip Infinity, Haveli, Pimpri Chinchwad(M. Corp.), 412 105</div>
+          <div><strong>Prop. :</strong> Shivaji Katkar</div>
+          <div><strong>Mob. :</strong> 9892873189 / 9284302352</div>
+          <div><strong>Emai ID :</strong> gajanantours&amp;travels86@gmail.com</div>
+        </div>
+      </div>
+      <div class="bill-box">
+        <div class="row"><span class="label">Bill No.</span><span class="val">173</span></div>
+        <div class="row"><span class="label">Date</span><span class="val">11/8/2026</span></div>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="fline"><div class="flabel">To,</div><div class="fval"></div></div>
+      <div class="fline"><div class="flabel">User's Name</div><div class="fval">Dr. Srikanta Panigrahi</div></div>
+      <div class="fline"><div class="flabel">Add</div><div class="fval">Trident BKC To SEBI Bhawan BKC To Trident BKC To Mumbai Airport Drop</div></div>
+      <div class="fline"><div class="flabel">Itinerary : In City / Out City</div><div class="fval">Mumbai Airport Drop</div></div>
+      <div class="fline veh">
+        <div class="flabel">Vehicle No.</div><div class="fval">MH 02 WJ 8747</div>
+        <div class="flabel">Model</div><div class="fval">Dzire</div>
+        <div class="flabel">Ac / No Ac</div><div class="fval"></div>
+      </div>
+      <div class="fline driver"><div class="flabel">Driver Name</div><div class="fval">Suresh</div></div>
+      <div class="fline times">
+        <div class="flabel">Closing Km.</div><div class="fval"></div>
+        <div class="flabel">Date</div><div class="fval">11 / 8 / 2026</div>
+        <div class="flabel">Time</div><div class="fval">3:30 Pm</div>
+      </div>
+      <div class="fline times">
+        <div class="flabel">Starting Km.</div><div class="fval"></div>
+        <div class="flabel">Date</div><div class="fval">11 / 8 / 2026</div>
+        <div class="flabel">Time</div><div class="fval">9:20 Am</div>
+      </div>
+      <div class="fline summary">
+        <div class="flabel">Total Kms.</div><div class="fval"></div>
+        <div class="flabel">No.Of Days</div><div class="fval"></div>
+        <div class="flabel">No.Of Night.</div><div class="fval"></div>
+        <div class="flabel">Total Hrs.</div><div class="fval"></div>
+      </div>
+    </div>
+
+    <table class="items">
+      <thead>
+        <tr>
+          <th>Item No.</th>
+          <th>Particulars</th>
+          <th></th>
+          <th>Amount Rs.</th>
+          <th>Ps.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="no">1</td><td>MIN 300 Kms.Per day</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">2</td><td><span class="tick">✓</span>Local Package 8Hrs /80 Km</td><td class="mid">Per Km —</td><td class="amt">2500</td><td class="ps"></td></tr>
+        <tr><td class="no">3</td><td>Extra Kms.@ Rs. —</td><td class="mid">Per Hrs —</td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">4</td><td>EXT Hrs. —</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">5</td><td>Patmit Charges (T.P)</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">6</td><td>Outation Chages @ Rs.</td><td class="mid">Per Night</td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">7</td><td>Driver Charges @ Rs.</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">8</td><td>Half-day/Air-Rail Transfers (subject to) Toll &amp; Parking</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+        <tr><td class="no">9</td><td>Other Charges</td><td class="mid"></td><td class="amt"></td><td class="ps"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="rupees">
+      <div class="lab">RUPEES</div>
+      <div class="val">Two Thousand Five hundred Rupee only/-</div>
+    </div>
+
+    <table class="totals">
+      <tr><td class="k">Total</td><td class="v">2500</td><td class="p"></td></tr>
+      <tr><td class="k">Tax</td><td class="v">—</td><td class="p"></td></tr>
+      <tr><td class="k">G.Total</td><td class="v">2500</td><td class="p"></td></tr>
+    </table>
+
+    <div class="footer">
+      <div class="terms">
+        <div>Par Day Time 12 to 12</div>
+        <div>Kms.@ hours will be counted from our office.</div>
+        <div>Bill not settled within fifteen days, subject to interest Thereafter @24</div>
+        <div>(Vehicle are Insured against accident or damage crashed,</div>
+        <div>Insurance of Passenger is not insured in the quoted rates.)</div>
+        <div class="eoe">E.&amp;O.E.</div>
+      </div>
+      <div class="prep">Prepared by</div>
+      <div class="sign">
+        <div class="for">FOR GAJANAN TOURS &amp; TRAVELS</div>
+        <img class="sig-img" alt="Proprietor signature" src="data:image/png;base64,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Ggo9AhYAdyJgsRafYAFwAwIWaxGwALgBAYu1CFgA3ICAxVp8hzsANyBgsZzvP4fohwQBuCIBCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAAQsAIC1+QQLACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAAAELAGBtPsECAAgTsAAAwgQsAIAwAQsAIEzAAgAIE7AAAMIELACAMAELACBMwAIACBOwAADCBCwAgDABCwAgTMACAAgTsAAAwgQsAIAwAQsAIEzAAgB4Zv0PWKL6f0P6DR8AAAAASUVORK5CYII=" />
+        <div class="role">Proprietor</div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

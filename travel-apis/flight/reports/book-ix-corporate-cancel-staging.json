@@ -1,0 +1,79 @@
+{
+  "ranAt": "2026-08-13T13:31:28.531Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "ok": true,
+  "fixture": {
+    "br": "BR1786627846756273",
+    "status": "Confirmed",
+    "fareType": "CORPORATE",
+    "trip": "OW",
+    "route": "BLR-DEL",
+    "pnr": "K86IWK",
+    "onlineCancellation": true,
+    "airline": "IX",
+    "flight": "IX 2542",
+    "passenger": "Yuvraj Somanilphw",
+    "totalAmount": 6061,
+    "userId": 20688,
+    "isFlexiCancel": 0,
+    "afterStatus": "Confirmed"
+  },
+  "penalty": {
+    "request": {
+      "action": "PENALTY",
+      "pnr": "K86IWK",
+      "cancellationReason": "IX CORPORATE OW cancel QA"
+    },
+    "http": 200,
+    "response": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786627846756273",
+        "pnr": "K86IWK",
+        "cancellationRequest": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 1050,
+          "estimatedRefund": 5011
+        }
+      },
+      "_meta": {
+        "correlation_id": "d991c30c-24d6-4ba5-a7a5-57b758b79b58"
+      }
+    }
+  },
+  "cancel": {
+    "request": {
+      "action": "CANCEL",
+      "pnr": "K86IWK",
+      "cancellationReason": "IX CORPORATE OW cancel QA",
+      "remarks": "requested by partner"
+    },
+    "http": 200,
+    "response": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1786627846756273",
+        "pnr": "K86IWK",
+        "cancellationRequest": {
+          "status": "Cancellation Requested",
+          "estimatedCancellationCharge": 1050,
+          "estimatedRefund": 5011,
+          "message": "Your requested PNR is waiting for cancellation. Kindly contact customer care."
+        }
+      },
+      "_meta": {
+        "correlation_id": "d991c30c-24d6-4ba5-a7a5-57b758b79b58"
+      }
+    }
+  },
+  "left": [
+    {
+      "br": "BR1786627801579575",
+      "status": "Pending",
+      "route": "DEL-BOM",
+      "name": "Harsh Vohrajaka"
+    }
+  ]
+}

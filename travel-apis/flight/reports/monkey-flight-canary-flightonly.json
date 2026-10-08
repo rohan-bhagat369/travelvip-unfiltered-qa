@@ -1,0 +1,236 @@
+{
+  "ranAt": "2026-08-19T08:37:49.420Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "counts": {
+    "PASS": 16,
+    "BUG": 4,
+    "NOT TESTED": 1,
+    "total": 21
+  },
+  "rows": [
+    {
+      "id": "BASE",
+      "api": "POST /v1/flights/search",
+      "how": "DEL→BOM days=24 airlines=[SG] baseline",
+      "verdict": "NOT_TESTED",
+      "actual": "http=200 ok=true searchId=srch_e9fbdc31ba68404fa7611bf2a0d52f71",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "PRICING_BASE",
+      "api": "POST /v1/flights/pricing",
+      "how": "selectedSearchIds=[srch_e9fbdc31ba68404fa7611bf2a0d52f71] (first priced candidate)",
+      "verdict": "PASS",
+      "actual": "http=200 priceId=yes bookingContext=yes",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "D-EMPTY",
+      "api": "POST /v1/flights/details",
+      "how": "mutate: D-EMPTY",
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=INVALID_SELECTION (not 500)",
+      "http": 400,
+      "code": "INVALID_SELECTION",
+      "details": []
+    },
+    {
+      "id": "D-COMMA",
+      "api": "POST /v1/flights/details",
+      "how": "mutate: D-COMMA",
+      "verdict": "PASS",
+      "actual": "HTTP 404 code=SEARCH_ID_NOT_FOUND (not 500)",
+      "http": 404,
+      "code": "SEARCH_ID_NOT_FOUND",
+      "details": []
+    },
+    {
+      "id": "D-JT-OMIT",
+      "api": "POST /v1/flights/details",
+      "how": "mutate: D-JT-OMIT",
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=INVALID_REQUEST (not 500)",
+      "http": 400,
+      "code": "INVALID_REQUEST",
+      "details": [
+        "[object Object]"
+      ]
+    },
+    {
+      "id": "P-EMPTY",
+      "api": "POST /v1/flights/pricing",
+      "how": "mutate: P-EMPTY",
+      "verdict": "PASS",
+      "actual": "HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'selection.selectedSearchIds' is required and must be a non-empty array of search id strings."
+      ]
+    },
+    {
+      "id": "P-HTML",
+      "api": "POST /v1/flights/pricing",
+      "how": "mutate: P-HTML",
+      "verdict": "PASS",
+      "actual": "HTTP 404 code=SEARCH_ID_NOT_FOUND (not 500)",
+      "http": 404,
+      "code": "SEARCH_ID_NOT_FOUND",
+      "details": []
+    },
+    {
+      "id": "FR-EMPTY",
+      "api": "POST /v1/flights/fareRules",
+      "how": "mutate: FR-EMPTY",
+      "verdict": "PASS",
+      "actual": "HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'selection.selectedSearchIds' is required and must be a non-empty array of search id strings."
+      ]
+    },
+    {
+      "id": "FR-COMMA",
+      "api": "POST /v1/flights/fareRules",
+      "how": "mutate: FR-COMMA",
+      "verdict": "PASS",
+      "actual": "HTTP 404 code=SEARCH_ID_NOT_FOUND (not 500)",
+      "http": 404,
+      "code": "SEARCH_ID_NOT_FOUND",
+      "details": []
+    },
+    {
+      "id": "SSR-OMIT",
+      "api": "POST /v1/flights/ssr",
+      "how": "mutate: SSR-OMIT",
+      "verdict": "PASS",
+      "actual": "HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Request body is empty. Please provide a valid JSON payload with 'priceId'."
+      ]
+    },
+    {
+      "id": "SSR-COMMA",
+      "api": "POST /v1/flights/ssr",
+      "how": "mutate: SSR-COMMA",
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=PRICE_ID_NOT_FOUND (not 500)",
+      "http": 400,
+      "code": "PRICE_ID_NOT_FOUND",
+      "details": []
+    },
+    {
+      "id": "SSR-HTML",
+      "api": "POST /v1/flights/ssr",
+      "how": "mutate: SSR-HTML",
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=PRICE_ID_NOT_FOUND (not 500)",
+      "http": 400,
+      "code": "PRICE_ID_NOT_FOUND",
+      "details": []
+    },
+    {
+      "id": "SM-OMIT",
+      "api": "POST /v1/flights/seatmap",
+      "how": "mutate: SM-OMIT",
+      "verdict": "PASS",
+      "actual": "HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'requestReference' is required and must be a non-empty string."
+      ]
+    },
+    {
+      "id": "SM-COMMA",
+      "api": "POST /v1/flights/seatmap",
+      "how": "mutate: SM-COMMA",
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=INVALID_REQUEST (not 500)",
+      "http": 400,
+      "code": "INVALID_REQUEST",
+      "details": [
+        "[object Object]"
+      ]
+    },
+    {
+      "id": "S-FUZZ-1",
+      "api": "POST /v1/flights/search",
+      "how": "mutate: S-FUZZ-1",
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=INVALID_AIRPORT (not 500)",
+      "http": 400,
+      "code": "INVALID_AIRPORT",
+      "details": []
+    },
+    {
+      "id": "S-FUZZ-2",
+      "api": "POST /v1/flights/search",
+      "how": "mutate: S-FUZZ-2",
+      "verdict": "PASS",
+      "actual": "HTTP 400 code=INVALID_REQUEST (not 500)",
+      "http": 400,
+      "code": "INVALID_REQUEST",
+      "details": []
+    },
+    {
+      "id": "S-FUZZ-3",
+      "api": "POST /v1/flights/search",
+      "how": "mutate: S-FUZZ-3",
+      "verdict": "BUG",
+      "actual": "Accepted unexpected payload: HTTP 200, code=null",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "S-FUZZ-4",
+      "api": "POST /v1/flights/search",
+      "how": "mutate: S-FUZZ-4",
+      "verdict": "PASS",
+      "actual": "HTTP 400 VALIDATION_ERROR",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "Number of adults must be a whole number without quotes, but the text \"1\" was provided for 'adults'."
+      ]
+    },
+    {
+      "id": "ISSUE-NO-PRICEID",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "how": "negative-only: priceId with trailing comma",
+      "verdict": "BUG",
+      "actual": "Accepted unexpected payload: HTTP 200, code=null",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "ISSUE-HTML-PRICEID",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "how": "negative-only: priceId with HTML",
+      "verdict": "BUG",
+      "actual": "Accepted unexpected payload: HTTP 200, code=null",
+      "http": 200,
+      "code": null,
+      "details": []
+    },
+    {
+      "id": "ISSUE-OMIT-SSR",
+      "api": "POST /api/v2/flights/booking/issue-ticket",
+      "how": "negative-only: omit passenger ssr field",
+      "verdict": "BUG",
+      "actual": "Accepted unexpected payload: HTTP 200, code=null",
+      "http": 200,
+      "code": null,
+      "details": []
+    }
+  ]
+}

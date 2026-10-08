@@ -1,0 +1,153 @@
+{
+  "ranAt": "2026-09-11T11:00:29.279Z",
+  "summary": {
+    "PASS": 0,
+    "BUG": 4
+  },
+  "rows": [
+    {
+      "id": "C1_reason_only",
+      "body": {
+        "cancelledBy": "USER",
+        "cancellationReason": "Plans changed"
+      },
+      "booked": {
+        "ok": true,
+        "br": "BR1789124386727399",
+        "status": "Confirmed"
+      },
+      "cancel": {
+        "http": 400,
+        "code": "CANCELLATION_FAILED",
+        "message": "Booking cancellation unsuccessful",
+        "statusAfter": "Confirmed",
+        "data": {
+          "error": {
+            "code": "CANCELLATION_FAILED",
+            "message": "Booking cancellation unsuccessful",
+            "details": null,
+            "timestamp": "2026-09-11T10:59:48Z",
+            "request_id": "req-1789124389481",
+            "bookingRefId": "BR1789124386727399",
+            "type": "cancel",
+            "result": {
+              "bookingStatus": "FAILED"
+            }
+          },
+          "_meta": {
+            "correlation_id": "8be41c03-f8a2-43a2-b3bf-480b22cf08c0"
+          }
+        }
+      },
+      "status": "BUG"
+    },
+    {
+      "id": "C2_remarks_only",
+      "body": {
+        "cancelledBy": "USER",
+        "remarks": "Plans changed"
+      },
+      "booked": {
+        "ok": true,
+        "br": "BR1789124399986318",
+        "status": "Confirmed"
+      },
+      "cancel": {
+        "http": 400,
+        "code": "CANCELLATION_FAILED",
+        "message": "Booking cancellation unsuccessful",
+        "statusAfter": "Confirmed",
+        "data": {
+          "error": {
+            "code": "CANCELLATION_FAILED",
+            "message": "Booking cancellation unsuccessful",
+            "details": null,
+            "timestamp": "2026-09-11T11:00:04Z",
+            "request_id": "req-1789124404932",
+            "bookingRefId": "BR1789124399986318",
+            "type": "cancel",
+            "result": {
+              "bookingStatus": "FAILED"
+            }
+          },
+          "_meta": {
+            "correlation_id": "8be41c03-f8a2-43a2-b3bf-480b22cf08c0"
+          }
+        }
+      },
+      "status": "BUG"
+    },
+    {
+      "id": "C3_reason_and_remarks",
+      "body": {
+        "cancelledBy": "USER",
+        "cancellationReason": "Plans changed",
+        "remarks": "Plans changed"
+      },
+      "booked": {
+        "ok": true,
+        "br": "BR1789124415910727",
+        "status": "Confirmed"
+      },
+      "cancel": {
+        "http": 400,
+        "code": "CANCELLATION_FAILED",
+        "message": "Booking cancellation unsuccessful",
+        "statusAfter": "Confirmed",
+        "data": {
+          "error": {
+            "code": "CANCELLATION_FAILED",
+            "message": "Booking cancellation unsuccessful",
+            "details": null,
+            "timestamp": "2026-09-11T11:00:17Z",
+            "request_id": "req-1789124418180",
+            "bookingRefId": "BR1789124415910727",
+            "type": "cancel",
+            "result": {
+              "bookingStatus": "FAILED"
+            }
+          },
+          "_meta": {
+            "correlation_id": "8be41c03-f8a2-43a2-b3bf-480b22cf08c0"
+          }
+        }
+      },
+      "status": "BUG"
+    },
+    {
+      "id": "C4_cancelledBy_only",
+      "body": {
+        "cancelledBy": "USER"
+      },
+      "booked": {
+        "ok": true,
+        "br": "BR1789124426998632",
+        "status": "Confirmed"
+      },
+      "cancel": {
+        "http": 400,
+        "code": "CANCELLATION_FAILED",
+        "message": "Booking cancellation unsuccessful",
+        "statusAfter": "Confirmed",
+        "data": {
+          "error": {
+            "code": "CANCELLATION_FAILED",
+            "message": "Booking cancellation unsuccessful",
+            "details": null,
+            "timestamp": "2026-09-11T11:00:28Z",
+            "request_id": "req-1789124429042",
+            "bookingRefId": "BR1789124426998632",
+            "type": "cancel",
+            "result": {
+              "bookingStatus": "FAILED"
+            }
+          },
+          "_meta": {
+            "correlation_id": "8be41c03-f8a2-43a2-b3bf-480b22cf08c0"
+          }
+        }
+      },
+      "status": "BUG"
+    }
+  ]
+}

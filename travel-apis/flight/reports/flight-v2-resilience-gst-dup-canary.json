@@ -1,0 +1,112 @@
+{
+  "ranAt": "2026-09-07T14:00:29.014Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "summary": {
+    "PASS": 4,
+    "BUG": 0,
+    "NOT_TESTED": 7
+  },
+  "rows": [
+    {
+      "id": "TC-PRICE-04",
+      "rule": "Reuse same issue-ticket payload / bookingReference without rebookToken",
+      "how": "first=BR1788789443836693; exact replay",
+      "expected": "DUPLICATE_BOOKING_REFERENCE OR same BR + duplicate:true; never a second BR",
+      "status": "PASS",
+      "actual": "replay HTTP 200 br=BR1788789443836693 duplicate=true code= msg=Booking is processing",
+      "firstBr": "BR1788789443836693",
+      "replayBr": "BR1788789443836693",
+      "body": {
+        "bookingReference": "BR1788789443836693",
+        "status": "pending",
+        "message": "Booking is processing",
+        "duplicate": true,
+        "duplicateMessage": "Duplicate payload — returning previously processed response.",
+        "_meta": {
+          "correlation_id": "48afd85b-f495-41a3-97ae-a7db7f847d19"
+        }
+      }
+    },
+    {
+      "id": "TC-PRICE-04b",
+      "rule": "Fresh book with garbage rebookToken field",
+      "how": "new priceId + data.rebookToken=garbage",
+      "expected": "Ignore unknown token OR reject; must not 500",
+      "status": "PASS",
+      "actual": "HTTP 200 br=BR1788789465153033 code=null",
+      "br": "BR1788789465153033"
+    },
+    {
+      "id": "TC-GST-01",
+      "rule": "addGstInfo=false accepted without GST",
+      "how": "issue seatless no gstDetails",
+      "expected": "BR",
+      "status": "PASS",
+      "actual": "HTTP 200 br=BR1788789497772915"
+    },
+    {
+      "id": "TC-GST-02",
+      "rule": "GST case",
+      "how": "needs addGstInfo=true",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare on canary this run"
+    },
+    {
+      "id": "TC-GST-03",
+      "rule": "GST case",
+      "how": "needs addGstInfo=true",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare on canary this run"
+    },
+    {
+      "id": "TC-GST-03b",
+      "rule": "GST case",
+      "how": "needs addGstInfo=true",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare on canary this run"
+    },
+    {
+      "id": "TC-GST-04",
+      "rule": "GST case",
+      "how": "needs addGstInfo=true",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare on canary this run"
+    },
+    {
+      "id": "TC-GST-05",
+      "rule": "GST case",
+      "how": "needs addGstInfo=true",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare on canary this run"
+    },
+    {
+      "id": "TC-GST-06",
+      "rule": "GST case",
+      "how": "needs addGstInfo=true",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare on canary this run"
+    },
+    {
+      "id": "TC-GST-07",
+      "rule": "GST case",
+      "how": "needs addGstInfo=true",
+      "expected": "see handover",
+      "status": "NOT TESTED",
+      "actual": "no GST-required fare on canary this run"
+    },
+    {
+      "id": "REG.SEARCH",
+      "rule": "Search smoke still healthy",
+      "how": "POST /v1/flights/search",
+      "expected": "HTTP <500",
+      "status": "PASS",
+      "actual": "HTTP 200 opts=20"
+    }
+  ]
+}

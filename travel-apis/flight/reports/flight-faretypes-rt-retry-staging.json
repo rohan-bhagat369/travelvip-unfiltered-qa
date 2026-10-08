@@ -1,0 +1,221 @@
+{
+  "counts": {
+    "BUG": 4,
+    "NOT TESTED": 1,
+    "PASS": 1
+  },
+  "rows": [
+    {
+      "id": "RT-DOM-SAME",
+      "rule": "RT domestic same fareTypes Normal/Normal then book",
+      "status": "BUG",
+      "br": null,
+      "details": "200 ",
+      "pricing": "400 VENDOR_ERROR",
+      "searchIds": [
+        "srch_bdfcf7f6fd784ead9a12bf31851ba35e",
+        "srch_d8b8c594c21443519f0e444424e53bed"
+      ],
+      "selected": {
+        "onward": {
+          "searchId": "srch_bdfcf7f6fd784ead9a12bf31851ba35e",
+          "fareType": "Normal",
+          "price": 5430,
+          "flights": "SG SG 476"
+        },
+        "ret": {
+          "searchId": "srch_d8b8c594c21443519f0e444424e53bed",
+          "fareType": "Normal",
+          "price": 5992,
+          "flights": "6E 6E 5296/6E 6E 175"
+        }
+      },
+      "twoStep": false,
+      "inventory": {
+        "o": 2,
+        "r": 20,
+        "labelsO": [
+          "Normal"
+        ],
+        "labelsR": [
+          "Normal"
+        ]
+      }
+    },
+    {
+      "id": "RT-DOM-DIFF",
+      "status": "NOT TESTED",
+      "details": "undefined ",
+      "pricing": "undefined ",
+      "searchIds": [],
+      "selected": {
+        "onward": {
+          "searchId": "srch_854449aedce643158d1ccad6bd826ad3",
+          "fareType": "Normal",
+          "price": 5430,
+          "flights": "SG SG 476"
+        },
+        "ret": null
+      },
+      "skip": "no return after two-step",
+      "twoStep": true,
+      "inventory": {
+        "o": 2,
+        "r": 0,
+        "r2": 0,
+        "labelsO": [
+          "Normal"
+        ],
+        "labelsR": []
+      }
+    },
+    {
+      "id": "RT-INTL-SAME-1",
+      "rule": "Intl RT #1 same fareType Economy Saver both legs then book",
+      "status": "BUG",
+      "br": null,
+      "details": "200 ",
+      "pricing": "400 VENDOR_ERROR",
+      "searchIds": [
+        "srch_66736059ab1b4e7bbfcc4ae9b4fc76ed",
+        "srch_b77b246c44254a778bf4fc3b063118b8"
+      ],
+      "selected": {
+        "onward": {
+          "searchId": "srch_66736059ab1b4e7bbfcc4ae9b4fc76ed",
+          "fareType": "Economy Saver",
+          "price": 28661,
+          "flights": "EK EK 505"
+        },
+        "ret": {
+          "searchId": "srch_b77b246c44254a778bf4fc3b063118b8",
+          "fareType": "Economy Saver",
+          "price": 28661,
+          "flights": "EK EK 506"
+        }
+      },
+      "twoStep": false,
+      "inventory": {
+        "o": 5,
+        "r": 3,
+        "labelsO": [
+          "Economy Saver"
+        ],
+        "labelsR": [
+          "Economy Saver"
+        ]
+      }
+    },
+    {
+      "id": "RT-INTL-SAME-2",
+      "rule": "Intl RT #2 same fareType Economy Flex both legs then book",
+      "status": "BUG",
+      "br": null,
+      "details": "200 ",
+      "pricing": "400 VENDOR_ERROR",
+      "searchIds": [
+        "srch_5c60cc4e0b0c48b0916c99e7a06e8627",
+        "srch_145df0e45db74b4ba3e374ad068f7ad6"
+      ],
+      "selected": {
+        "onward": {
+          "searchId": "srch_5c60cc4e0b0c48b0916c99e7a06e8627",
+          "fareType": "Economy Flex",
+          "price": 39109,
+          "flights": "EK EK 505"
+        },
+        "ret": {
+          "searchId": "srch_145df0e45db74b4ba3e374ad068f7ad6",
+          "fareType": "Economy Flex",
+          "price": 39104,
+          "flights": "EK EK 506"
+        }
+      },
+      "twoStep": false,
+      "inventory": {
+        "o": 5,
+        "r": 6,
+        "labelsO": [
+          "Economy Flex"
+        ],
+        "labelsR": [
+          "Economy Flex"
+        ]
+      }
+    },
+    {
+      "id": "RT-INTL-DIFF-COMPAT",
+      "rule": "Intl RT different published fares Economy Saver + Economy Flex (book if combinable)",
+      "status": "BUG",
+      "br": null,
+      "details": "200 ",
+      "pricing": "400 VENDOR_ERROR",
+      "searchIds": [
+        "srch_a7dc4a73176a47559bc42079758d7e82",
+        "srch_20d4133115f945e29f42c44a25638416"
+      ],
+      "selected": {
+        "onward": {
+          "searchId": "srch_a7dc4a73176a47559bc42079758d7e82",
+          "fareType": "Economy Saver",
+          "price": 28661,
+          "flights": "EK EK 505"
+        },
+        "ret": {
+          "searchId": "srch_20d4133115f945e29f42c44a25638416",
+          "fareType": "Economy Flex",
+          "price": 34841,
+          "flights": "EK EK 506"
+        }
+      },
+      "twoStep": false,
+      "inventory": {
+        "o": 5,
+        "r": 5,
+        "labelsO": [
+          "Economy Saver"
+        ],
+        "labelsR": [
+          "Economy Flex"
+        ]
+      }
+    },
+    {
+      "id": "RT-INTL-DIFF-NDC",
+      "rule": "Intl RT Economy Saver + NDC:-Economy Saver → INVALID_COMBINATION (no book)",
+      "status": "PASS",
+      "br": null,
+      "details": "400 INVALID_COMBINATION",
+      "pricing": "400 INVALID_COMBINATION",
+      "searchIds": [
+        "srch_567eda5f65f14c7daacb698347894e5d",
+        "srch_43bca2cf124f455baf98b5555b1bdb85"
+      ],
+      "selected": {
+        "onward": {
+          "searchId": "srch_567eda5f65f14c7daacb698347894e5d",
+          "fareType": "Economy Saver",
+          "price": 28661,
+          "flights": "EK EK 505"
+        },
+        "ret": {
+          "searchId": "srch_43bca2cf124f455baf98b5555b1bdb85",
+          "fareType": "NDC:-Economy Saver",
+          "price": 28661,
+          "flights": "EK EK 506"
+        }
+      },
+      "twoStep": false,
+      "inventory": {
+        "o": 5,
+        "r": 3,
+        "labelsO": [
+          "Economy Saver"
+        ],
+        "labelsR": [
+          "NDC:-Economy Saver"
+        ]
+      }
+    }
+  ]
+}

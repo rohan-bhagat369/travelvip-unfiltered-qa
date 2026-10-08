@@ -1,0 +1,43 @@
+{
+  "payload": {
+    "bookingContext": "0svuXSujlI9rEkVKcLFZe69xmmpCzQC9eezBFXtj0GuNA8U1sqmaplpAZKU6yEo4ZbJt+sA9oRc6Qh7WBRwfDQkbotOWE+D1159D6oqUd2i5FqpvAb2tMOZeS7Hepn+lExNHptqjAABWIZkIIX6ab1ZGvqIxzM4xsQmGEsQdtTdfzLm2xcDFJsr93VL+hjvv12aUWMGCZYIaozKbJEoBug==",
+    "bookingCode": "2869073!TB!RHK!TB!rh-test_hotel_do_not_book!TB!h-72f01ea2-708d-5c91-8a66-cf1e89d64f21",
+    "requestId": "6031858c-aee1-49ed-b32e-fbe07db3e06c",
+    "checkin": "2026-09-15",
+    "checkout": "2026-09-17",
+    "rooms": [
+      {
+        "guests": [
+          {
+            "title": "Mr.",
+            "firstName": "Rohan",
+            "lastName": "Bhagat",
+            "type": "Adult",
+            "isLead": true
+          }
+        ]
+      }
+    ],
+    "contact": {
+      "email": "rohan@travelvip.ai",
+      "countryCode": "+91",
+      "mobile": "9876543210"
+    },
+    "reschedulingReferenceId": "BR1785243775806830"
+  },
+  "response": {
+    "http": 422,
+    "data": {
+      "error": {
+        "code": "RESCHEDULING_STAY_COMPLETED",
+        "message": "The stay for booking 'BR1785243775806830' has already started and cannot be rescheduled.",
+        "details": "Booking 'BR1785243775806830' (Taj Dubai) was booked from 2026-07-29. Only upcoming stays can be rescheduled.",
+        "timestamp": "2026-08-06T14:53:51Z",
+        "request_id": "req-1786028031073"
+      },
+      "_meta": {
+        "correlation_id": "fe7e085b-6103-4432-b9d4-5549b24e3883"
+      }
+    }
+  }
+}

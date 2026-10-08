@@ -1,0 +1,3377 @@
+{
+  "ranAt": "2026-08-15T15:57:00.686Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "path": "/v1/hotels/search",
+  "pid": "vgm",
+  "correlationId": "0bd455b1-1a34-4dbc-bccd-655dd51e0ce9",
+  "entity": {
+    "checkin": "2026-09-12",
+    "checkout": "2026-09-13",
+    "currency": "INR",
+    "type": "TBOCITY",
+    "entityId": "328605:IN",
+    "label": "Pune TBOCITY (doc sample)",
+    "requestId": "3e5c0463-77c6-46d7-8b65-71b77aec8b84"
+  },
+  "spec": "hotel-listing-v2.md POST /api/hotels/v2/availability/listing — sort+paging query, fq body",
+  "livePath": "/v1/hotels/search",
+  "specPath": "/api/hotels/v2/availability/listing",
+  "score": {
+    "PASS": 9,
+    "BUG": 22,
+    "NOT TESTED": 4,
+    "total": 35
+  },
+  "bySection": {
+    "Shape": {
+      "PASS": 3,
+      "BUG": 1,
+      "NOT TESTED": 0,
+      "total": 4
+    },
+    "Sort": {
+      "PASS": 3,
+      "BUG": 4,
+      "NOT TESTED": 0,
+      "total": 7
+    },
+    "Filter": {
+      "PASS": 2,
+      "BUG": 5,
+      "NOT TESTED": 3,
+      "total": 10
+    },
+    "Paging": {
+      "PASS": 1,
+      "BUG": 12,
+      "NOT TESTED": 1,
+      "total": 14
+    }
+  },
+  "rows": [
+    {
+      "section": "Shape",
+      "id": 1,
+      "rule": "Documented listing path exists on canary",
+      "how": "POST /api/hotels/v2/availability/listing?offset=0&limit=5&sort=price_ASC",
+      "expected": "HTTP 200 listing envelope (not 404 Page not found)",
+      "actual": "HTTP 404 {\"status\":404,\"info\":\"Page not found\"} 46ms",
+      "status": "BUG",
+      "payload": {
+        "path": "/api/hotels/v2/availability/listing",
+        "query": {
+          "pid": "vgm",
+          "tierId": 10546901,
+          "subscriptionId": "15045625496a6327",
+          "offset": 0,
+          "limit": 5,
+          "sort": "price_ASC"
+        },
+        "body": {
+          "checkin": "2026-09-12",
+          "checkout": "2026-09-13",
+          "type": "TBOCITY",
+          "entityId": "328605:IN",
+          "nationality": "IN",
+          "rooms": [
+            {
+              "adults": 1,
+              "children": 0,
+              "childrenAges": []
+            }
+          ],
+          "currency": "INR",
+          "language": "en",
+          "rt": "compact",
+          "requestId": ""
+        }
+      },
+      "response": {
+        "http": 404,
+        "code": null,
+        "elapsedMs": 46,
+        "resultCount": 0,
+        "hotels": [],
+        "sorts": [],
+        "filterNames": [],
+        "snippet": "{\"status\":404,\"info\":\"Page not found\"}"
+      }
+    },
+    {
+      "section": "Shape",
+      "id": 2,
+      "rule": "Valid listing envelope (live /v1/hotels/search)",
+      "how": "POST /v1/hotels/search offset=0&limit=5&sort=price_ASC entity=328605:IN",
+      "expected": "HTTP 200 with results[], totalResults, offset, size, last, filters, sorts, requestId",
+      "actual": "HTTP 200 results=10 total=302 last=false sorts=2 filters=2 5322ms",
+      "status": "PASS",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 5322,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "3e5c0463-77c6-46d7-8b65-71b77aec8b84",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Shape",
+      "id": 3,
+      "rule": "sorts[] exposes price_ASC and price_DESC",
+      "how": "Read sorts from first listing response",
+      "expected": "keys include price_ASC and price_DESC",
+      "actual": "sorts=[{\"name\":\"Price Low to High\",\"key\":\"price_ASC\"},{\"name\":\"Price High to Low\",\"key\":\"price_DESC\"}]",
+      "status": "PASS",
+      "evidence": [
+        {
+          "name": "Price Low to High",
+          "key": "price_ASC"
+        },
+        {
+          "name": "Price High to Low",
+          "key": "price_DESC"
+        }
+      ]
+    },
+    {
+      "section": "Shape",
+      "id": 4,
+      "rule": "filters[] includes Star Rating with facetKey",
+      "how": "Read filters from first listing response",
+      "expected": "Star rating filter with facets[].facetKey",
+      "actual": "star={\"name\":\"Star Rating\",\"indexField\":\"df_long_star_rating\",\"facets\":[{\"name\":\"5 Star\",\"count\":10,\"facetKey\":\"5\",\"iconDTO\":null},{\"name\":\"4 Star\",\"count\":8,\"facetKey\":\"4\",\"iconDTO\":null},{\"name\":\"3 Star\",\"count\":184,\"facetKey\":\"3\",\"iconDTO\":null}]}",
+      "status": "PASS",
+      "evidence": {
+        "name": "Star Rating",
+        "indexField": "df_long_star_rating",
+        "facets": [
+          {
+            "name": "5 Star",
+            "count": 10,
+            "facetKey": "5",
+            "iconDTO": null
+          },
+          {
+            "name": "4 Star",
+            "count": 8,
+            "facetKey": "4",
+            "iconDTO": null
+          },
+          {
+            "name": "3 Star",
+            "count": 184,
+            "facetKey": "3",
+            "iconDTO": null
+          }
+        ]
+      }
+    },
+    {
+      "section": "Sort",
+      "id": 1,
+      "rule": "price_ASC orders this page by price.baseFare",
+      "how": "query sort=price_ASC limit=5 (baseline)",
+      "expected": "results non-decreasing by price.baseFare",
+      "actual": "fares=[5713.6,1333.68,1230.93,1971.62,1370.69,2052,4400,1631.7,2179.62,1017.42]",
+      "status": "BUG",
+      "evidence": {
+        "fares": [
+          5713.6,
+          1333.68,
+          1230.93,
+          1971.62,
+          1370.69,
+          2052,
+          4400,
+          1631.7,
+          2179.62,
+          1017.42
+        ],
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ]
+      }
+    },
+    {
+      "section": "Sort",
+      "id": 2,
+      "rule": "price_DESC orders this page by price.baseFare",
+      "how": "clone baseline → query sort=price_DESC",
+      "expected": "results non-increasing by price.baseFare",
+      "actual": "HTTP 200 fares=[5713.6,1333.68,1230.93,1971.62,1370.69,2052,4400,1631.7,2179.62,1017.42] 510ms",
+      "status": "BUG",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 510,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "f687656b-db8e-4495-92a4-0153bdc01811",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Sort",
+      "id": 3,
+      "rule": "DESC first fare >= ASC first fare",
+      "how": "Compare first hotel of price_ASC vs price_DESC on same search",
+      "expected": "price_DESC[0].baseFare >= price_ASC[0].baseFare",
+      "actual": "ASC first=5713.6 DESC first=5713.6",
+      "status": "BUG"
+    },
+    {
+      "section": "Sort",
+      "id": 4,
+      "rule": "sort on every page — page 2 continues global ASC",
+      "how": "same body + requestId; query offset=10&sort=price_ASC",
+      "expected": "page2[0].baseFare >= page1[last].baseFare; page 2 still ASC; no overlapping ids",
+      "actual": "HTTP 200 p2fares=[5713.6,1333.68,1230.93,1971.62,1370.69,2052,4400,1631.7,2179.62,1017.42] lastP1=1017.42 overlap=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148",
+      "status": "BUG",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 302,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "6cddfb83-fb53-432b-b3d2-9e1e62f0bce3",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Sort",
+      "id": 5,
+      "rule": "Unknown sort key is ignored",
+      "how": "clone → query sort=not_a_real_sort_key",
+      "expected": "HTTP 200, vendor order (not 4xx)",
+      "actual": "HTTP 200 code=- results=10 299ms",
+      "status": "PASS",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 299,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "de348784-2359-4e4c-bd07-8165d0791672",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Sort",
+      "id": 6,
+      "rule": "Star rating is a filter, not a sort — unknown sort ignored",
+      "how": "clone → query sort=star_DESC",
+      "expected": "HTTP 200 (ignored), not a 4xx; does not become star-sorted requirement",
+      "actual": "HTTP 200 code=- results=10",
+      "status": "PASS",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 297,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "835b5dfe-bf6d-41f4-83a6-007911178608",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Sort",
+      "id": 7,
+      "rule": "Empty sort query still returns listing",
+      "how": "clone → query sort=",
+      "expected": "HTTP 200 vendor order (or omit treated as default)",
+      "actual": "HTTP 200 code=- results=10",
+      "status": "PASS",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 308,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "fb23ffa8-55fe-46dc-b866-96152ade1e17",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Filter",
+      "id": 1,
+      "rule": "Single facet fq filters results",
+      "how": "clone → fq=[\"df_long_star_rating:5\"]",
+      "expected": "HTTP 200; every result starRating=5; totalResults reflects filtered set",
+      "actual": "HTTP 200 n=10 stars=[3,3,3,3,3,0,3,0,3,2] total=302 unfiltered=302 307ms",
+      "status": "BUG",
+      "payload": {
+        "fq": [
+          "df_long_star_rating:5"
+        ]
+      },
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 307,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "b8a402d5-0b97-475f-8ec7-1923a8214ee8",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Filter",
+      "id": 2,
+      "rule": "Facet counts computed before filtering — other options stay visible",
+      "how": "After applying one star facet, inspect filters[].facets",
+      "expected": "Other star facets still present (counts pre-filter)",
+      "actual": "facets=[{\"name\":\"5 Star\",\"count\":10,\"facetKey\":\"5\",\"iconDTO\":null},{\"name\":\"4 Star\",\"count\":8,\"facetKey\":\"4\",\"iconDTO\":null},{\"name\":\"3 Star\",\"count\":184,\"facetKey\":\"3\",\"iconDTO\":null}] filtered=false",
+      "status": "NOT TESTED",
+      "evidence": {
+        "name": "Star Rating",
+        "indexField": "df_long_star_rating",
+        "facets": [
+          {
+            "name": "5 Star",
+            "count": 10,
+            "facetKey": "5",
+            "iconDTO": null
+          },
+          {
+            "name": "4 Star",
+            "count": 8,
+            "facetKey": "4",
+            "iconDTO": null
+          },
+          {
+            "name": "3 Star",
+            "count": 184,
+            "facetKey": "3",
+            "iconDTO": null
+          }
+        ]
+      },
+      "note": "Blocked — fq did not filter"
+    },
+    {
+      "section": "Filter",
+      "id": 3,
+      "rule": "Several values use semicolon, not comma",
+      "how": "clone → fq=[\"df_long_star_rating:5;4\"]",
+      "expected": "HTTP 200; every starRating in {5,4}",
+      "actual": "HTTP 200 n=10 stars=[3,3,3,3,3,0,3,0,3,2] total=302",
+      "status": "BUG",
+      "payload": {
+        "fq": [
+          "df_long_star_rating:5;4"
+        ]
+      },
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 304,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "583b29c9-d047-4af1-87c5-018b1709736c",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Filter",
+      "id": 4,
+      "rule": "Several filters combined (AND)",
+      "how": "clone → fq=[\"df_long_star_rating:5\",\"Reservation policy:Free cancellation\"]",
+      "expected": "HTTP 200; star filter still holds; totalResults <= single-star total",
+      "actual": "HTTP 200 n=10 total=302 singleStarTotal=302",
+      "status": "BUG",
+      "payload": {
+        "fq": [
+          "df_long_star_rating:5",
+          "Reservation policy:Free cancellation"
+        ]
+      },
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 313,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "dba487e5-cd59-470d-aec4-76023d4c7d26",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Filter",
+      "id": 5,
+      "rule": "Comma must not be used as multi-value separator",
+      "how": "Blocked — fq not applied so comma vs semicolon cannot be judged",
+      "expected": "comma not = semicolon",
+      "actual": "fq ignored on canary",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "Filter",
+      "id": 6,
+      "rule": "Do not send repeated fq entries for the same field",
+      "how": "Blocked — fq not applied so repeated-entry OR cannot be judged",
+      "expected": "no repeat OR",
+      "actual": "fq ignored on canary",
+      "status": "NOT TESTED"
+    },
+    {
+      "section": "Filter",
+      "id": 7,
+      "rule": "Unknown indexField does not 500",
+      "how": "clone → fq=[\"not_a_real_index_field:5\"]",
+      "expected": "HTTP 200 ignore or 4xx VALIDATION_ERROR — not 500",
+      "actual": "HTTP 200 code=- results=10 total=302",
+      "status": "PASS",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 336,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "364f3e0a-29de-4ee1-bf38-35d89a83839a",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Filter",
+      "id": 8,
+      "rule": "Unknown facetKey does not 500",
+      "how": "clone → fq=[\"df_long_star_rating:99\"]",
+      "expected": "HTTP 200 empty/unfiltered or 4xx — not 500",
+      "actual": "HTTP 200 n=10 total=302",
+      "status": "PASS",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 273,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "e80aea60-be02-4669-8869-31324d875119",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Filter",
+      "id": 9,
+      "rule": "fq must be string array, not object",
+      "how": "clone → fq={ df_long_star_rating: [\"5\"] } (legacy shape)",
+      "expected": "4xx VALIDATION_ERROR or ignore object; must not 500",
+      "actual": "HTTP 200 code=- results=10 snippet={\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pu",
+      "status": "BUG",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 264,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "099823de-6553-42bd-ac5a-7f947208f938",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      },
+      "note": "Object accepted as 200 — spec wants string[]"
+    },
+    {
+      "section": "Filter",
+      "id": 10,
+      "rule": "fq must not be a bare string",
+      "how": "clone → fq=\"indexField:value\" (not array)",
+      "expected": "4xx VALIDATION_ERROR preferred; not 500",
+      "actual": "HTTP 200 code=- snippet={\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pu",
+      "status": "BUG",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 261,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "fcbecb63-9217-406c-bdc8-a45d4451b06d",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 1,
+      "rule": "First page offset=0 limit=5",
+      "how": "query offset=0&limit=5",
+      "expected": "response.offset=0, size=5 (or <=limit), last=false when total>5",
+      "actual": "offset=0 size=10 last=false total=302 page=0",
+      "status": "BUG",
+      "evidence": {
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "page": 0,
+        "totalResults": 302
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 2,
+      "rule": "totalPages = ceil(totalResults / limit)",
+      "how": "Compare totalPages vs ceil(totalResults/limit)",
+      "expected": "totalPages=61",
+      "actual": "totalPages=31 total=302 limit=5",
+      "status": "BUG"
+    },
+    {
+      "section": "Paging",
+      "id": 3,
+      "rule": "Next offset = response.offset + response.size (not page*size)",
+      "how": "query offset=10 (= 0+10) keep dates/entity/fq/sort",
+      "expected": "response.offset=10; no overlapping hotel ids with page 1; last=false unless end",
+      "actual": "HTTP 200 offset=0 overlap=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148 last=false",
+      "status": "BUG",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 302,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "6cddfb83-fb53-432b-b3d2-9e1e62f0bce3",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 4,
+      "rule": "Keep fq and sort identical across pages — same totalResults",
+      "how": "page 2 used same body + sort as page 1",
+      "expected": "totalResults stable (302)",
+      "actual": "p1=302 p2=302 overlap=10",
+      "status": "BUG"
+    },
+    {
+      "section": "Paging",
+      "id": 5,
+      "rule": "Stop when last==true",
+      "how": "query offset=300 (last page of 61)",
+      "expected": "last=true; results.length <= limit",
+      "actual": "HTTP 200 last=false offset=0 n=10 page=0",
+      "status": "BUG",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 267,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "6eaf4086-88d5-4b87-8d22-1a157de827ea",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 6,
+      "rule": "page is offset/limit rounded down — offset=7 reports page 1",
+      "how": "query offset=7&limit=5 — page is display-only",
+      "expected": "HTTP 200; page=1; offset=7; do not advance with page*limit",
+      "actual": "HTTP 200 page=0 offset=0 ids=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148",
+      "status": "BUG",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 265,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "ba107a13-55c3-4a19-b163-b80d43d1cb55",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 7,
+      "rule": "Advancing via page*size after offset=7 would re-show hotels",
+      "how": "Compare offset=5 (if fetched) vs offset=7 — shared ids prove page field is display-only",
+      "expected": "offset=7 shares 3 hotels with offset=5 (doc example)",
+      "actual": "shared=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148 sharedCount=10 off7.offset=0 p5=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148 off7=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148",
+      "status": "BUG",
+      "evidence": {
+        "p5ids": [
+          "15237042",
+          "72379936",
+          "72241152",
+          "39604638",
+          "70487786",
+          "72395060",
+          "72419366",
+          "71037232",
+          "39452499",
+          "15599148"
+        ],
+        "off7ids": [
+          "15237042",
+          "72379936",
+          "72241152",
+          "39604638",
+          "70487786",
+          "72395060",
+          "72419366",
+          "71037232",
+          "39452499",
+          "15599148"
+        ],
+        "shared": [
+          "15237042",
+          "72379936",
+          "72241152",
+          "39604638",
+          "70487786",
+          "72395060",
+          "72419366",
+          "71037232",
+          "39452499",
+          "15599148"
+        ],
+        "withP5": [
+          "15237042",
+          "72379936",
+          "72241152",
+          "39604638",
+          "70487786",
+          "72395060",
+          "72419366",
+          "71037232",
+          "39452499",
+          "15599148"
+        ]
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 8,
+      "rule": "Offset past the end does not 500",
+      "how": "clone → offset=9999",
+      "expected": "HTTP 200 empty results last=true, or 4xx — not 500",
+      "actual": "HTTP 200 n=10 last=false offset=0 code=-",
+      "status": "BUG",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 261,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "33c0a0ef-7a82-4cb3-8583-375555772d07",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 9,
+      "rule": "Negative offset rejected",
+      "how": "clone → offset=-1",
+      "expected": "HTTP 400 VALIDATION_ERROR (or 4xx) — not 200 listing, not 500",
+      "actual": "HTTP 200 code=- n=10 snippet={\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tr",
+      "status": "BUG",
+      "payload": {
+        "offset": -1
+      },
+      "response": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 270,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "ea5c2b2f-a0d2-47ac-b656-9e3dc312ab1d",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 10,
+      "rule": "limit=0 rejected or empty page, not 500",
+      "how": "clone → limit=0",
+      "expected": "4xx VALIDATION_ERROR preferred; HTTP 200 empty is a product call; not 500",
+      "actual": "HTTP 200 code=- n=10 size=10",
+      "status": "BUG",
+      "payload": {
+        "limit": 0
+      },
+      "response": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 287,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "5db8ce96-d0cf-411c-8a57-5876b03e62ff",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 11,
+      "rule": "Non-numeric offset rejected",
+      "how": "clone → offset=abc",
+      "expected": "4xx VALIDATION_ERROR — not 500",
+      "actual": "HTTP 200 code=- snippet={\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tr",
+      "status": "BUG",
+      "payload": {
+        "offset": "abc"
+      },
+      "response": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 335,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "f1932db0-2704-4942-a43b-12231e809db1",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 12,
+      "rule": "Dropping sort on page 2 pages a different order",
+      "how": "page 2 offset=10 without sort vs with sort=price_ASC",
+      "expected": "Docs: send sort on every page. Different id order vs sorted page 2 is expected; must not 500",
+      "actual": "HTTP 200 sortedIds=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148 unsortedIds=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148",
+      "status": "NOT TESTED",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 349,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": false,
+        "totalResults": 302,
+        "availableResults": 302,
+        "totalPages": 31,
+        "requestId": "870714f0-7042-464a-b637-a1b717e628b4",
+        "currency": "INR",
+        "resultCount": 10,
+        "hotels": [
+          {
+            "id": "15237042",
+            "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 5713.6,
+            "totalAmount": 6570.64
+          },
+          {
+            "id": "72379936",
+            "name": "Via Royal Stay I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1333.68,
+            "totalAmount": 1402.21
+          },
+          {
+            "id": "72241152",
+            "name": "Fabhotel Royal Inn I",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1230.93,
+            "totalAmount": 1293.73
+          },
+          {
+            "id": "39604638",
+            "name": "Treebo Diamond Residency - DDPK Inn",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1971.62,
+            "totalAmount": 2072.47
+          },
+          {
+            "id": "70487786",
+            "name": "Fabhotel Prime Athiti Delight Stay",
+            "starRating": 3,
+            "refundable": true,
+            "baseFare": 1370.69,
+            "totalAmount": 1439.22
+          }
+        ],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [
+          "Star Rating|df_long_star_rating|facets=3",
+          "Free cancellation|Reservation policy|facets=1"
+        ],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 13,
+      "rule": "Changing entityId while paging starts a different search",
+      "how": "offset=10 but entityId mutated",
+      "expected": "Not a continuation of page 1 (different requestId and/or hotel set); must not 500",
+      "actual": "HTTP 200 n=0 overlapWithPage2=0 requestId=7caac404-253c-41b4-8057-309828d0295f",
+      "status": "PASS",
+      "evidence": {
+        "http": 200,
+        "code": null,
+        "elapsedMs": 1214,
+        "page": 0,
+        "offset": 0,
+        "size": 10,
+        "last": true,
+        "totalResults": 0,
+        "availableResults": 0,
+        "totalPages": 0,
+        "requestId": "7caac404-253c-41b4-8057-309828d0295f",
+        "currency": "INR",
+        "resultCount": 0,
+        "hotels": [],
+        "sorts": [
+          "price_ASC",
+          "price_DESC"
+        ],
+        "filterNames": [],
+        "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels found for this date range. Please try searching different dates.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"fi"
+      }
+    },
+    {
+      "section": "Paging",
+      "id": 14,
+      "rule": "requestId echoed and reused on follow-up",
+      "how": "Baseline requestId sent back on later listing calls",
+      "expected": "Follow-up responses keep a requestId; baseline requestId was non-empty",
+      "actual": "baseline=3e5c0463-77c6-46d7-8b65-71b77aec8b84 page2=6cddfb83-fb53-432b-b3d2-9e1e62f0bce3",
+      "status": "BUG"
+    }
+  ],
+  "evidence": {
+    "entity": {
+      "checkin": "2026-09-12",
+      "checkout": "2026-09-13",
+      "currency": "INR",
+      "type": "TBOCITY",
+      "entityId": "328605:IN",
+      "label": "Pune TBOCITY (doc sample)",
+      "requestId": "3e5c0463-77c6-46d7-8b65-71b77aec8b84"
+    },
+    "specPath": {
+      "http": 404,
+      "code": null,
+      "elapsedMs": 46,
+      "resultCount": 0,
+      "hotels": [],
+      "sorts": [],
+      "filterNames": [],
+      "snippet": "{\"status\":404,\"info\":\"Page not found\"}"
+    },
+    "livePath": "/v1/hotels/search",
+    "baseline": {
+      "http": 200,
+      "code": null,
+      "elapsedMs": 5322,
+      "page": 0,
+      "offset": 0,
+      "size": 10,
+      "last": false,
+      "totalResults": 302,
+      "availableResults": 302,
+      "totalPages": 31,
+      "requestId": "3e5c0463-77c6-46d7-8b65-71b77aec8b84",
+      "currency": "INR",
+      "resultCount": 10,
+      "hotels": [
+        {
+          "id": "15237042",
+          "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+          "starRating": 3,
+          "refundable": true,
+          "baseFare": 5713.6,
+          "totalAmount": 6570.64
+        },
+        {
+          "id": "72379936",
+          "name": "Via Royal Stay I",
+          "starRating": 3,
+          "refundable": true,
+          "baseFare": 1333.68,
+          "totalAmount": 1402.21
+        },
+        {
+          "id": "72241152",
+          "name": "Fabhotel Royal Inn I",
+          "starRating": 3,
+          "refundable": true,
+          "baseFare": 1230.93,
+          "totalAmount": 1293.73
+        },
+        {
+          "id": "39604638",
+          "name": "Treebo Diamond Residency - DDPK Inn",
+          "starRating": 3,
+          "refundable": true,
+          "baseFare": 1971.62,
+          "totalAmount": 2072.47
+        },
+        {
+          "id": "70487786",
+          "name": "Fabhotel Prime Athiti Delight Stay",
+          "starRating": 3,
+          "refundable": true,
+          "baseFare": 1370.69,
+          "totalAmount": 1439.22
+        }
+      ],
+      "sorts": [
+        "price_ASC",
+        "price_DESC"
+      ],
+      "filterNames": [
+        "Star Rating|df_long_star_rating|facets=3",
+        "Free cancellation|Reservation policy|facets=1"
+      ],
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+    },
+    "bugs": [
+      {
+        "section": "Shape",
+        "id": 1,
+        "rule": "Documented listing path exists on canary",
+        "expected": "HTTP 200 listing envelope (not 404 Page not found)",
+        "actual": "HTTP 404 {\"status\":404,\"info\":\"Page not found\"} 46ms",
+        "payload": {
+          "path": "/api/hotels/v2/availability/listing",
+          "query": {
+            "pid": "vgm",
+            "tierId": 10546901,
+            "subscriptionId": "15045625496a6327",
+            "offset": 0,
+            "limit": 5,
+            "sort": "price_ASC"
+          },
+          "body": {
+            "checkin": "2026-09-12",
+            "checkout": "2026-09-13",
+            "type": "TBOCITY",
+            "entityId": "328605:IN",
+            "nationality": "IN",
+            "rooms": [
+              {
+                "adults": 1,
+                "children": 0,
+                "childrenAges": []
+              }
+            ],
+            "currency": "INR",
+            "language": "en",
+            "rt": "compact",
+            "requestId": ""
+          }
+        },
+        "response": {
+          "http": 404,
+          "code": null,
+          "elapsedMs": 46,
+          "resultCount": 0,
+          "hotels": [],
+          "sorts": [],
+          "filterNames": [],
+          "snippet": "{\"status\":404,\"info\":\"Page not found\"}"
+        }
+      },
+      {
+        "section": "Sort",
+        "id": 1,
+        "rule": "price_ASC orders this page by price.baseFare",
+        "expected": "results non-decreasing by price.baseFare",
+        "actual": "fares=[5713.6,1333.68,1230.93,1971.62,1370.69,2052,4400,1631.7,2179.62,1017.42]",
+        "payload": null,
+        "response": {
+          "fares": [
+            5713.6,
+            1333.68,
+            1230.93,
+            1971.62,
+            1370.69,
+            2052,
+            4400,
+            1631.7,
+            2179.62,
+            1017.42
+          ],
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ]
+        }
+      },
+      {
+        "section": "Sort",
+        "id": 2,
+        "rule": "price_DESC orders this page by price.baseFare",
+        "expected": "results non-increasing by price.baseFare",
+        "actual": "HTTP 200 fares=[5713.6,1333.68,1230.93,1971.62,1370.69,2052,4400,1631.7,2179.62,1017.42] 510ms",
+        "payload": null,
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 510,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "f687656b-db8e-4495-92a4-0153bdc01811",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Sort",
+        "id": 3,
+        "rule": "DESC first fare >= ASC first fare",
+        "expected": "price_DESC[0].baseFare >= price_ASC[0].baseFare",
+        "actual": "ASC first=5713.6 DESC first=5713.6",
+        "payload": null,
+        "response": null
+      },
+      {
+        "section": "Sort",
+        "id": 4,
+        "rule": "sort on every page — page 2 continues global ASC",
+        "expected": "page2[0].baseFare >= page1[last].baseFare; page 2 still ASC; no overlapping ids",
+        "actual": "HTTP 200 p2fares=[5713.6,1333.68,1230.93,1971.62,1370.69,2052,4400,1631.7,2179.62,1017.42] lastP1=1017.42 overlap=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148",
+        "payload": null,
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 302,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "6cddfb83-fb53-432b-b3d2-9e1e62f0bce3",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Filter",
+        "id": 1,
+        "rule": "Single facet fq filters results",
+        "expected": "HTTP 200; every result starRating=5; totalResults reflects filtered set",
+        "actual": "HTTP 200 n=10 stars=[3,3,3,3,3,0,3,0,3,2] total=302 unfiltered=302 307ms",
+        "payload": {
+          "fq": [
+            "df_long_star_rating:5"
+          ]
+        },
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 307,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "b8a402d5-0b97-475f-8ec7-1923a8214ee8",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Filter",
+        "id": 3,
+        "rule": "Several values use semicolon, not comma",
+        "expected": "HTTP 200; every starRating in {5,4}",
+        "actual": "HTTP 200 n=10 stars=[3,3,3,3,3,0,3,0,3,2] total=302",
+        "payload": {
+          "fq": [
+            "df_long_star_rating:5;4"
+          ]
+        },
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 304,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "583b29c9-d047-4af1-87c5-018b1709736c",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Filter",
+        "id": 4,
+        "rule": "Several filters combined (AND)",
+        "expected": "HTTP 200; star filter still holds; totalResults <= single-star total",
+        "actual": "HTTP 200 n=10 total=302 singleStarTotal=302",
+        "payload": {
+          "fq": [
+            "df_long_star_rating:5",
+            "Reservation policy:Free cancellation"
+          ]
+        },
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 313,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "dba487e5-cd59-470d-aec4-76023d4c7d26",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Filter",
+        "id": 9,
+        "rule": "fq must be string array, not object",
+        "expected": "4xx VALIDATION_ERROR or ignore object; must not 500",
+        "actual": "HTTP 200 code=- results=10 snippet={\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pu",
+        "payload": null,
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 264,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "099823de-6553-42bd-ac5a-7f947208f938",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Filter",
+        "id": 10,
+        "rule": "fq must not be a bare string",
+        "expected": "4xx VALIDATION_ERROR preferred; not 500",
+        "actual": "HTTP 200 code=- snippet={\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pu",
+        "payload": null,
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 261,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "fcbecb63-9217-406c-bdc8-a45d4451b06d",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 1,
+        "rule": "First page offset=0 limit=5",
+        "expected": "response.offset=0, size=5 (or <=limit), last=false when total>5",
+        "actual": "offset=0 size=10 last=false total=302 page=0",
+        "payload": null,
+        "response": {
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "page": 0,
+          "totalResults": 302
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 2,
+        "rule": "totalPages = ceil(totalResults / limit)",
+        "expected": "totalPages=61",
+        "actual": "totalPages=31 total=302 limit=5",
+        "payload": null,
+        "response": null
+      },
+      {
+        "section": "Paging",
+        "id": 3,
+        "rule": "Next offset = response.offset + response.size (not page*size)",
+        "expected": "response.offset=10; no overlapping hotel ids with page 1; last=false unless end",
+        "actual": "HTTP 200 offset=0 overlap=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148 last=false",
+        "payload": null,
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 302,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "6cddfb83-fb53-432b-b3d2-9e1e62f0bce3",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 4,
+        "rule": "Keep fq and sort identical across pages — same totalResults",
+        "expected": "totalResults stable (302)",
+        "actual": "p1=302 p2=302 overlap=10",
+        "payload": null,
+        "response": null
+      },
+      {
+        "section": "Paging",
+        "id": 5,
+        "rule": "Stop when last==true",
+        "expected": "last=true; results.length <= limit",
+        "actual": "HTTP 200 last=false offset=0 n=10 page=0",
+        "payload": null,
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 267,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "6eaf4086-88d5-4b87-8d22-1a157de827ea",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 6,
+        "rule": "page is offset/limit rounded down — offset=7 reports page 1",
+        "expected": "HTTP 200; page=1; offset=7; do not advance with page*limit",
+        "actual": "HTTP 200 page=0 offset=0 ids=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148",
+        "payload": null,
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 265,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "ba107a13-55c3-4a19-b163-b80d43d1cb55",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 7,
+        "rule": "Advancing via page*size after offset=7 would re-show hotels",
+        "expected": "offset=7 shares 3 hotels with offset=5 (doc example)",
+        "actual": "shared=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148 sharedCount=10 off7.offset=0 p5=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148 off7=15237042,72379936,72241152,39604638,70487786,72395060,72419366,71037232,39452499,15599148",
+        "payload": null,
+        "response": {
+          "p5ids": [
+            "15237042",
+            "72379936",
+            "72241152",
+            "39604638",
+            "70487786",
+            "72395060",
+            "72419366",
+            "71037232",
+            "39452499",
+            "15599148"
+          ],
+          "off7ids": [
+            "15237042",
+            "72379936",
+            "72241152",
+            "39604638",
+            "70487786",
+            "72395060",
+            "72419366",
+            "71037232",
+            "39452499",
+            "15599148"
+          ],
+          "shared": [
+            "15237042",
+            "72379936",
+            "72241152",
+            "39604638",
+            "70487786",
+            "72395060",
+            "72419366",
+            "71037232",
+            "39452499",
+            "15599148"
+          ],
+          "withP5": [
+            "15237042",
+            "72379936",
+            "72241152",
+            "39604638",
+            "70487786",
+            "72395060",
+            "72419366",
+            "71037232",
+            "39452499",
+            "15599148"
+          ]
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 8,
+        "rule": "Offset past the end does not 500",
+        "expected": "HTTP 200 empty results last=true, or 4xx — not 500",
+        "actual": "HTTP 200 n=10 last=false offset=0 code=-",
+        "payload": null,
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 261,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "33c0a0ef-7a82-4cb3-8583-375555772d07",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 9,
+        "rule": "Negative offset rejected",
+        "expected": "HTTP 400 VALIDATION_ERROR (or 4xx) — not 200 listing, not 500",
+        "actual": "HTTP 200 code=- n=10 snippet={\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tr",
+        "payload": {
+          "offset": -1
+        },
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 270,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "ea5c2b2f-a0d2-47ac-b656-9e3dc312ab1d",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 10,
+        "rule": "limit=0 rejected or empty page, not 500",
+        "expected": "4xx VALIDATION_ERROR preferred; HTTP 200 empty is a product call; not 500",
+        "actual": "HTTP 200 code=- n=10 size=10",
+        "payload": {
+          "limit": 0
+        },
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 287,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "5db8ce96-d0cf-411c-8a57-5876b03e62ff",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 11,
+        "rule": "Non-numeric offset rejected",
+        "expected": "4xx VALIDATION_ERROR — not 500",
+        "actual": "HTTP 200 code=- snippet={\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tr",
+        "payload": {
+          "offset": "abc"
+        },
+        "response": {
+          "http": 200,
+          "code": null,
+          "elapsedMs": 335,
+          "page": 0,
+          "offset": 0,
+          "size": 10,
+          "last": false,
+          "totalResults": 302,
+          "availableResults": 302,
+          "totalPages": 31,
+          "requestId": "f1932db0-2704-4942-a43b-12231e809db1",
+          "currency": "INR",
+          "resultCount": 10,
+          "hotels": [
+            {
+              "id": "15237042",
+              "name": "Keys Prima by Lemon Tree Hotels, Pimpri Pune",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 5713.6,
+              "totalAmount": 6570.64
+            },
+            {
+              "id": "72379936",
+              "name": "Via Royal Stay I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1333.68,
+              "totalAmount": 1402.21
+            },
+            {
+              "id": "72241152",
+              "name": "Fabhotel Royal Inn I",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1230.93,
+              "totalAmount": 1293.73
+            },
+            {
+              "id": "39604638",
+              "name": "Treebo Diamond Residency - DDPK Inn",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1971.62,
+              "totalAmount": 2072.47
+            },
+            {
+              "id": "70487786",
+              "name": "Fabhotel Prime Athiti Delight Stay",
+              "starRating": 3,
+              "refundable": true,
+              "baseFare": 1370.69,
+              "totalAmount": 1439.22
+            }
+          ],
+          "sorts": [
+            "price_ASC",
+            "price_DESC"
+          ],
+          "filterNames": [
+            "Star Rating|df_long_star_rating|facets=3",
+            "Free cancellation|Reservation policy|facets=1"
+          ],
+          "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":302,\"totalPages\":31,\"availableResults\":302,\"last\":false,\"results\":[{\"id\":\"15237042\",\"name\":\"Keys Prima by Lemon Tree Hotels, Pimpri Pune\",\"address\":\"Near PCMC Office, 31/6\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000"
+        }
+      },
+      {
+        "section": "Paging",
+        "id": 14,
+        "rule": "requestId echoed and reused on follow-up",
+        "expected": "Follow-up responses keep a requestId; baseline requestId was non-empty",
+        "actual": "baseline=3e5c0463-77c6-46d7-8b65-71b77aec8b84 page2=6cddfb83-fb53-432b-b3d2-9e1e62f0bce3",
+        "payload": null,
+        "response": null
+      }
+    ]
+  }
+}

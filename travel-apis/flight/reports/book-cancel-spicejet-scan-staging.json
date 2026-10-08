@@ -1,0 +1,121 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "generatedAt": "2026-08-10T11:29:27.909Z",
+  "scanHits": [
+    {
+      "route": "DEL-BOM",
+      "days": 21,
+      "sgCount": 2,
+      "priced": 6374,
+      "flights": [
+        "SG SG 476 DEL→BOM"
+      ],
+      "br": "BR1786361337462087",
+      "bookStatus": "Confirmed",
+      "pnrs": [
+        "FEG3NK"
+      ],
+      "cancelOk": true,
+      "cancelMsg": ""
+    }
+  ],
+  "scanEmptySample": [],
+  "scanTotal": 1,
+  "booked": {
+    "route": "DEL-BOM",
+    "days": 21,
+    "pricedTotal": 6374,
+    "flights": [
+      "SG SG 476 DEL→BOM"
+    ],
+    "bookingReference": "BR1786361337462087",
+    "statusAfterBook": "Confirmed",
+    "pnrs": [
+      "FEG3NK"
+    ],
+    "penalty": {
+      "endpoint": "POST /v1/flights/booking/BR1786361337462087/cancel",
+      "payload": {
+        "retryCount": 2,
+        "action": "PENALTY",
+        "pnr": "FEG3NK"
+      },
+      "http": 200,
+      "response": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786361337462087",
+          "pnr": "FEG3NK",
+          "cancellationRequest": {
+            "status": "Penalty Fetched",
+            "estimatedCancellationCharge": 500,
+            "estimatedRefund": 5874,
+            "createdAt": "2026-08-10T11:29:15Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "4941735a-02d5-4ab7-8528-ba33d647a002"
+        }
+      },
+      "result": {
+        "ok": true,
+        "reason": "ACCEPTED",
+        "status": "Penalty Fetched",
+        "message": ""
+      }
+    },
+    "cancel": {
+      "endpoint": "POST /v1/flights/booking/BR1786361337462087/cancel",
+      "payload": {
+        "retryCount": 2,
+        "action": "CANCEL",
+        "pnr": "FEG3NK"
+      },
+      "http": 200,
+      "response": {
+        "status": 0,
+        "statusMessage": "Success",
+        "data": {
+          "bookingReference": "BR1786361337462087",
+          "pnr": "FEG3NK",
+          "cancellationRequest": {
+            "status": "Cancelled",
+            "estimatedCancellationCharge": 500,
+            "estimatedRefund": 5874,
+            "createdAt": "2026-08-10T11:29:15Z"
+          },
+          "refundSummary": {
+            "amount": 5874,
+            "cancellationCharge": 500,
+            "cancellationChargeBreakup": {
+              "airlineCancellationFee": 150,
+              "convenienceFee": 0,
+              "serviceFee": 350,
+              "flexicancelFee": 0
+            }
+          },
+          "transaction": {
+            "id": "341",
+            "amount": 5874,
+            "currency": "INR",
+            "paymentMethod": "wallet",
+            "type": "refund",
+            "status": "success",
+            "createdAt": "2026-08-10T11:29:27Z",
+            "completedAt": "2026-08-10T11:29:27Z"
+          }
+        },
+        "_meta": {
+          "correlation_id": "4941735a-02d5-4ab7-8528-ba33d647a002"
+        }
+      },
+      "result": {
+        "ok": true,
+        "reason": "ACCEPTED",
+        "status": "Cancelled",
+        "message": ""
+      }
+    }
+  }
+}

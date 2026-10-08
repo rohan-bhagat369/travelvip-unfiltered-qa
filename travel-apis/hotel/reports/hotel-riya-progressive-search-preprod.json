@@ -1,0 +1,725 @@
+{
+  "meta": {
+    "doc": "riya-progressive-search-qa.md",
+    "noBook": true,
+    "preprod": "https://preprod-api.travelvip.ai",
+    "prod": null,
+    "partner": "vgm",
+    "tierId": 19597201,
+    "correlationId": "2633194a-1819-4ad1-b49a-f57fae352c6a",
+    "earlyMsThreshold": 14000,
+    "summary": {
+      "PASS": 12,
+      "BUG": 0,
+      "NOT_TESTED": 4
+    },
+    "startedAt": "2026-09-08T07:42:56.904Z",
+    "finishedAt": "2026-09-08T07:46:00.512Z"
+  },
+  "rows": [
+    {
+      "id": "A1",
+      "rule": "Results appear early (~8–14s), then more",
+      "how": "fresh large-city searches; time first page",
+      "status": "PASS",
+      "expected": "priced hotels within ~14000ms",
+      "actual": "Delhi:10262ms/total=33 | Mumbai:10291ms/total=33 | Dubai:11541ms/total=36",
+      "note": "all first pages ≤14000ms",
+      "correlationIds": [
+        "2633194a-1819-4ad1-b49a-f57fae352c6a",
+        "2633194a-1819-4ad1-b49a-f57fae352c6a",
+        "2633194a-1819-4ad1-b49a-f57fae352c6a"
+      ]
+    },
+    {
+      "id": "A2",
+      "rule": "Paging through several pages to end",
+      "how": "Delhi paginate limit=20",
+      "status": "PASS",
+      "expected": "no blank/stuck/loop; unique hotels",
+      "actual": "{\"pages\":2,\"total\":33,\"dup\":0,\"stuck\":false,\"blank\":false,\"pageNs\":[20,13]}"
+    },
+    {
+      "id": "A3",
+      "rule": "Detail from first-page hotel matches card",
+      "how": "search → details (no book)",
+      "status": "PASS",
+      "expected": "details open; name/star align with card",
+      "actual": "{\"card\":{\"rank\":1,\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC \",\"star\":5,\"price\":20312.25},\"detailsHttp\":200,\"ms\":10342,\"roomCount\":0,\"matchName\":true,\"correlationId\":\"2633194a-1819-4ad1-b49a-f57fae352c6a\"}"
+    },
+    {
+      "id": "A4",
+      "rule": "Book end to end from early result",
+      "how": "SKIP — search only / no book",
+      "status": "NOT TESTED"
+    },
+    {
+      "id": "B1",
+      "rule": "Narrow filter must not falsely end search",
+      "how": "extreme low price fq after/with search",
+      "status": "PASS",
+      "expected": "matching hotels OR honest empty after complete — not stuck false-empty mid-flight",
+      "actual": "{\"dates\":{\"checkin\":\"2026-10-15\",\"checkout\":\"2026-10-18\",\"adults\":2},\"firstTotal\":32,\"filterMs\":884,\"filterN\":20,\"filterTotal\":32,\"laterN\":20,\"laterTotal\":32,\"fq\":[\"df_double_price:[1 TO 50]\"]}",
+      "note": "B2B search is synchronous; progressive mid-flight empty is harder to observe than on UI"
+    },
+    {
+      "id": "B2",
+      "rule": "Hotels from first page still listed after reload (book skipped)",
+      "how": "note early ids → re-search",
+      "status": "PASS",
+      "expected": "early hotels still present (or removed if sold out)",
+      "actual": "{\"earlyIds\":[\"39624369\",\"71042622\",\"39621191\"],\"found\":[\"39624369\",\"71042622\",\"39621191\"],\"earlySample\":[{\"rank\":1,\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC \",\"star\":5,\"price\":62316.3},{\"rank\":2,\"id\":\"71042622\",\"name\":\"ibis Mumbai BKC\",\"star\":4,\"price\":32522.61},{\"rank\":3,\"id\":\"39621191\",\"name\":\"TAJ SANTACRUZ, MUMBAI\",\"star\":5,\"price\":44976.130000000005}]}",
+      "note": "Booking step NOT TESTED (search only)"
+    },
+    {
+      "id": "B3",
+      "rule": "No availability says so honestly",
+      "how": "far dates small city",
+      "status": "PASS",
+      "expected": "clear empty / error — not a short list as whole city",
+      "actual": "{\"dates\":{\"checkin\":\"2027-11-01\",\"checkout\":\"2027-11-02\",\"adults\":2},\"http\":400,\"code\":\"VALIDATION_ERROR\",\"n\":0,\"total\":null,\"fromCache\":null}"
+    },
+    {
+      "id": "B4",
+      "rule": "Same search in parallel — both get full results",
+      "how": "Promise.all two identical searches",
+      "status": "PASS",
+      "expected": "both full sets; neither empty/short",
+      "actual": "wall=10783 a=10775ms/total=35 b=10783ms/total=35 oneEmpty=false"
+    },
+    {
+      "id": "B4b",
+      "rule": "3 parallel identical Mumbai searches",
+      "how": "Promise.all x3",
+      "status": "PASS",
+      "actual": "[{\"ms\":17702,\"total\":32,\"n\":20,\"ok\":true},{\"ms\":17702,\"total\":32,\"n\":20,\"ok\":true},{\"ms\":17727,\"total\":32,\"n\":20,\"ok\":true}]"
+    },
+    {
+      "id": "C1",
+      "rule": "TBO / RateHawk search unaffected",
+      "how": "B2B vgm path is Riya inventory — cannot isolate TBO/RH here",
+      "status": "NOT TESTED",
+      "note": "Partner listing on this channel is Riya; need TBO/RH-routed partner or SMT to verify"
+    },
+    {
+      "id": "C2",
+      "rule": "Riya with progressive flag off",
+      "how": "needs eng to flip config flag",
+      "status": "NOT TESTED"
+    },
+    {
+      "id": "D1",
+      "rule": "Small city timing (known may be slower)",
+      "how": "Manali fresh search",
+      "status": "PASS",
+      "expected": "note timing — may be slower than metros",
+      "actual": "12724ms total=430",
+      "note": "observational"
+    },
+    {
+      "id": "D2",
+      "rule": "Branded hotels on first page (known may be thin)",
+      "how": "Delhi first page brand scan",
+      "status": "PASS",
+      "expected": "note if brands sparse early (known)",
+      "actual": "brandsOnPage1=5: Le Méridien New Delhi, Taj Mahal, New Delhi, ITC Maurya, a Luxury Collection Hotel, New Delhi, NOVOTEL NEW DELHI CITY CENTRE, Taj Palace, New Delhi",
+      "note": "observational — not a fail"
+    },
+    {
+      "id": "D3",
+      "rule": "Result order may change as more arrive (known)",
+      "how": "two searches same criteria",
+      "status": "PASS",
+      "expected": "order change possible — note only",
+      "actual": "order changed",
+      "note": "observational"
+    },
+    {
+      "id": "P1",
+      "rule": "Parallel different-city searches all succeed",
+      "how": "3 cities Promise.all",
+      "status": "PASS",
+      "actual": "preWall=20468 Delhi:20468ms/t=33 | Mumbai:10365ms/t=31 | Jaipur:10367ms/t=26"
+    },
+    {
+      "id": "P2",
+      "rule": "Preprod vs prod compare",
+      "how": "prod auth/skip",
+      "status": "NOT TESTED"
+    }
+  ],
+  "dumps": {
+    "cases": {},
+    "preprodCorrelation": "2633194a-1819-4ad1-b49a-f57fae352c6a",
+    "startedAt": "2026-09-08T07:42:56.904Z",
+    "A1": [
+      {
+        "city": "Delhi",
+        "dates": {
+          "checkin": "2026-10-25",
+          "checkout": "2026-10-26",
+          "adults": 2
+        },
+        "pre": {
+          "ms": 10262,
+          "total": 33,
+          "n": 20,
+          "fromCache": false,
+          "hints": {
+            "progress": null,
+            "partial": null,
+            "status": null,
+            "complete": null
+          },
+          "correlationId": "2633194a-1819-4ad1-b49a-f57fae352c6a",
+          "requestId": "c078f348-9099-450e-928b-d025d128d9c3"
+        },
+        "prod": null
+      },
+      {
+        "city": "Mumbai",
+        "dates": {
+          "checkin": "2026-10-28",
+          "checkout": "2026-10-29",
+          "adults": 1
+        },
+        "pre": {
+          "ms": 10291,
+          "total": 33,
+          "n": 20,
+          "fromCache": false,
+          "hints": {
+            "progress": null,
+            "partial": null,
+            "status": null,
+            "complete": null
+          },
+          "correlationId": "2633194a-1819-4ad1-b49a-f57fae352c6a",
+          "requestId": "4ffe1db7-af9e-46ae-be9b-6934c6643d57"
+        },
+        "prod": null
+      },
+      {
+        "city": "Dubai",
+        "dates": {
+          "checkin": "2026-10-31",
+          "checkout": "2026-11-01",
+          "adults": 2
+        },
+        "pre": {
+          "ms": 11541,
+          "total": 36,
+          "n": 20,
+          "fromCache": false,
+          "hints": {
+            "progress": null,
+            "partial": null,
+            "status": null,
+            "complete": null
+          },
+          "correlationId": "2633194a-1819-4ad1-b49a-f57fae352c6a",
+          "requestId": "8d0fed21-4537-4c0a-bda9-201647593baf"
+        },
+        "prod": null
+      }
+    ],
+    "A2": {
+      "dates": {
+        "checkin": "2026-10-26",
+        "checkout": "2026-10-29",
+        "adults": 1
+      },
+      "total": 33,
+      "pages": [
+        {
+          "p": 0,
+          "offset": 0,
+          "n": 20,
+          "ms": 10431,
+          "last": false,
+          "total": 33
+        },
+        {
+          "p": 1,
+          "offset": 20,
+          "n": 13,
+          "ms": 666,
+          "last": false,
+          "total": 33
+        }
+      ],
+      "dup": 0,
+      "stuck": false,
+      "blank": false
+    },
+    "A3": {
+      "card": {
+        "rank": 1,
+        "id": "39624369",
+        "name": "Sofitel Mumbai BKC ",
+        "star": 5,
+        "price": 20312.25
+      },
+      "detailsHttp": 200,
+      "ms": 10342,
+      "roomCount": 0,
+      "matchName": true,
+      "correlationId": "2633194a-1819-4ad1-b49a-f57fae352c6a"
+    },
+    "B1": {
+      "dates": {
+        "checkin": "2026-10-15",
+        "checkout": "2026-10-18",
+        "adults": 2
+      },
+      "firstTotal": 32,
+      "filterMs": 884,
+      "filterN": 20,
+      "filterTotal": 32,
+      "laterN": 20,
+      "laterTotal": 32,
+      "fq": [
+        "df_double_price:[1 TO 50]"
+      ]
+    },
+    "B2": {
+      "earlyIds": [
+        "39624369",
+        "71042622",
+        "39621191"
+      ],
+      "found": [
+        "39624369",
+        "71042622",
+        "39621191"
+      ],
+      "earlySample": [
+        {
+          "rank": 1,
+          "id": "39624369",
+          "name": "Sofitel Mumbai BKC ",
+          "star": 5,
+          "price": 62316.3
+        },
+        {
+          "rank": 2,
+          "id": "71042622",
+          "name": "ibis Mumbai BKC",
+          "star": 4,
+          "price": 32522.61
+        },
+        {
+          "rank": 3,
+          "id": "39621191",
+          "name": "TAJ SANTACRUZ, MUMBAI",
+          "star": 5,
+          "price": 44976.130000000005
+        }
+      ]
+    },
+    "B3": {
+      "dates": {
+        "checkin": "2027-11-01",
+        "checkout": "2027-11-02",
+        "adults": 2
+      },
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "n": 0,
+      "total": null,
+      "fromCache": null
+    },
+    "B4": {
+      "dates": {
+        "checkin": "2026-11-24",
+        "checkout": "2026-11-25",
+        "adults": 2
+      },
+      "wallMs": 10783,
+      "a": {
+        "ms": 10775,
+        "total": 35,
+        "n": 20,
+        "requestId": "a4319153-cced-4895-8237-edd6b36c5a3a",
+        "top": [
+          {
+            "rank": 1,
+            "id": "39676544",
+            "name": "Le Méridien New Delhi",
+            "star": 5,
+            "price": 30207.6
+          },
+          {
+            "rank": 2,
+            "id": "39645070",
+            "name": "Taj Mahal, New Delhi",
+            "star": 5,
+            "price": 49936.78
+          },
+          {
+            "rank": 3,
+            "id": "16261325",
+            "name": "Ambassador, New Delhi - IHCL SeleQtions",
+            "star": 5,
+            "price": 26695.63
+          },
+          {
+            "rank": 4,
+            "id": "39707491",
+            "name": "ITC Maurya, a Luxury Collection Hotel, New Delhi",
+            "star": 5,
+            "price": 36936.8
+          },
+          {
+            "rank": 5,
+            "id": "70508700",
+            "name": "NOVOTEL NEW DELHI CITY CENTRE",
+            "star": 5,
+            "price": 23079.43
+          }
+        ]
+      },
+      "b": {
+        "ms": 10783,
+        "total": 35,
+        "n": 20,
+        "requestId": "26c19871-6241-4c6e-aefd-68c36f471f8b",
+        "top": [
+          {
+            "rank": 1,
+            "id": "39676544",
+            "name": "Le Méridien New Delhi",
+            "star": 5,
+            "price": 30207.6
+          },
+          {
+            "rank": 2,
+            "id": "39645070",
+            "name": "Taj Mahal, New Delhi",
+            "star": 5,
+            "price": 49936.78
+          },
+          {
+            "rank": 3,
+            "id": "16261325",
+            "name": "Ambassador, New Delhi - IHCL SeleQtions",
+            "star": 5,
+            "price": 26695.63
+          },
+          {
+            "rank": 4,
+            "id": "39707491",
+            "name": "ITC Maurya, a Luxury Collection Hotel, New Delhi",
+            "star": 5,
+            "price": 36936.8
+          },
+          {
+            "rank": 5,
+            "id": "70508700",
+            "name": "NOVOTEL NEW DELHI CITY CENTRE",
+            "star": 5,
+            "price": 23079.43
+          }
+        ]
+      }
+    },
+    "B4b": [
+      {
+        "ms": 17702,
+        "total": 32,
+        "n": 20,
+        "ok": true
+      },
+      {
+        "ms": 17702,
+        "total": 32,
+        "n": 20,
+        "ok": true
+      },
+      {
+        "ms": 17727,
+        "total": 32,
+        "n": 20,
+        "ok": true
+      }
+    ],
+    "D1": {
+      "city": "Manali",
+      "dates": {
+        "checkin": "2026-11-04",
+        "checkout": "2026-11-05",
+        "adults": 2
+      },
+      "ms": 12724,
+      "total": 430,
+      "n": 20
+    },
+    "D2": {
+      "earlyBrandCount": 5,
+      "earlyBrands": [
+        "Le Méridien New Delhi",
+        "Taj Mahal, New Delhi",
+        "ITC Maurya, a Luxury Collection Hotel, New Delhi",
+        "NOVOTEL NEW DELHI CITY CENTRE",
+        "Taj Palace, New Delhi"
+      ],
+      "top": [
+        {
+          "rank": 1,
+          "id": "39676544",
+          "name": "Le Méridien New Delhi",
+          "star": 5,
+          "price": 50379.939999999995
+        },
+        {
+          "rank": 2,
+          "id": "39645070",
+          "name": "Taj Mahal, New Delhi",
+          "star": 5,
+          "price": 86260.87
+        },
+        {
+          "rank": 3,
+          "id": "16261325",
+          "name": "Ambassador, New Delhi - IHCL SeleQtions",
+          "star": 5,
+          "price": 53539.54
+        },
+        {
+          "rank": 4,
+          "id": "39707491",
+          "name": "ITC Maurya, a Luxury Collection Hotel, New Delhi",
+          "star": 5,
+          "price": 56081.92
+        },
+        {
+          "rank": 5,
+          "id": "70508700",
+          "name": "NOVOTEL NEW DELHI CITY CENTRE",
+          "star": 5,
+          "price": 32533
+        },
+        {
+          "rank": 6,
+          "id": "39811711",
+          "name": "Taj Palace, New Delhi",
+          "star": 5,
+          "price": 65539.71
+        },
+        {
+          "rank": 7,
+          "id": "39626509",
+          "name": "The Connaught New Delhi",
+          "star": 4,
+          "price": 39563.53
+        },
+        {
+          "rank": 8,
+          "id": "38415670",
+          "name": "Shangri-La's Eros Hotel",
+          "star": 5,
+          "price": 52862.37
+        },
+        {
+          "rank": 9,
+          "id": "39658270",
+          "name": "The Imperial New Delhi",
+          "star": 5,
+          "price": 132439.82
+        },
+        {
+          "rank": 10,
+          "id": "39624387",
+          "name": "The Claridges New Delhi",
+          "star": 5,
+          "price": 95436.85
+        }
+      ]
+    },
+    "D3": {
+      "changed": true,
+      "first": [
+        {
+          "rank": 1,
+          "id": "39624369",
+          "name": "Sofitel Mumbai BKC ",
+          "star": 5,
+          "price": 111551.5
+        },
+        {
+          "rank": 2,
+          "id": "71042622",
+          "name": "ibis Mumbai BKC",
+          "star": 4,
+          "price": 46396.07
+        },
+        {
+          "rank": 3,
+          "id": "72331941",
+          "name": "ROSWYN, A MORGANS ORIGINALS HOTEL",
+          "star": 5,
+          "price": 105451.18
+        },
+        {
+          "rank": 4,
+          "id": "39621191",
+          "name": "TAJ SANTACRUZ, MUMBAI",
+          "star": 5,
+          "price": 84855.28
+        },
+        {
+          "rank": 5,
+          "id": "51117724",
+          "name": "Taj The Trees, Mumbai",
+          "star": 5,
+          "price": 97570.52
+        }
+      ],
+      "second": [
+        {
+          "rank": 1,
+          "id": "39624369",
+          "name": "Sofitel Mumbai BKC ",
+          "star": 5,
+          "price": 111551.5
+        },
+        {
+          "rank": 2,
+          "id": "71042622",
+          "name": "ibis Mumbai BKC",
+          "star": 4,
+          "price": 49311.17
+        },
+        {
+          "rank": 3,
+          "id": "32799941",
+          "name": "Courtyard by Marriott Mumbai International Airport",
+          "star": 5,
+          "price": 71506.08
+        },
+        {
+          "rank": 4,
+          "id": "39681377",
+          "name": "Grand Hyatt Mumbai",
+          "star": 5,
+          "price": 82525.28
+        },
+        {
+          "rank": 5,
+          "id": "51117724",
+          "name": "Taj The Trees, Mumbai",
+          "star": 5,
+          "price": 97570.52
+        }
+      ]
+    },
+    "parallelCities": {
+      "dates": {
+        "checkin": "2026-10-25",
+        "checkout": "2026-10-27",
+        "adults": 2
+      },
+      "preWall": 20468,
+      "prodWall": null,
+      "cmp": [
+        {
+          "city": "Delhi",
+          "pre": {
+            "ms": 20468,
+            "total": 33,
+            "n": 20,
+            "top": [
+              {
+                "rank": 1,
+                "id": "39676544",
+                "name": "Le Méridien New Delhi",
+                "star": 5,
+                "price": 50405.83
+              },
+              {
+                "rank": 2,
+                "id": "39645070",
+                "name": "Taj Mahal, New Delhi",
+                "star": 5,
+                "price": 84968.14
+              },
+              {
+                "rank": 3,
+                "id": "39707491",
+                "name": "ITC Maurya, a Luxury Collection Hotel, New Delhi",
+                "star": 5,
+                "price": 61665.06
+              }
+            ]
+          },
+          "prod": null
+        },
+        {
+          "city": "Mumbai",
+          "pre": {
+            "ms": 10365,
+            "total": 31,
+            "n": 20,
+            "top": [
+              {
+                "rank": 1,
+                "id": "39624369",
+                "name": "Sofitel Mumbai BKC ",
+                "star": 5,
+                "price": 47810.81
+              },
+              {
+                "rank": 2,
+                "id": "71042622",
+                "name": "ibis Mumbai BKC",
+                "star": 4,
+                "price": 27243.53
+              },
+              {
+                "rank": 3,
+                "id": "39621191",
+                "name": "TAJ SANTACRUZ, MUMBAI",
+                "star": 5,
+                "price": 30937.84
+              }
+            ]
+          },
+          "prod": null
+        },
+        {
+          "city": "Jaipur",
+          "pre": {
+            "ms": 10367,
+            "total": 26,
+            "n": 20,
+            "top": [
+              {
+                "rank": 1,
+                "id": "39749094",
+                "name": "Holiday Inn Jaipur City Centre by IHG",
+                "star": 5,
+                "price": 15910.12
+              },
+              {
+                "rank": 2,
+                "id": "38943230",
+                "name": "Jai Mahal Palace",
+                "star": 5,
+                "price": 48696.23
+              },
+              {
+                "rank": 3,
+                "id": "39755165",
+                "name": "Hilton Jaipur",
+                "star": 5,
+                "price": 17550
+              }
+            ]
+          },
+          "prod": null
+        }
+      ]
+    },
+    "finishedAt": "2026-09-08T07:46:00.512Z"
+  }
+}

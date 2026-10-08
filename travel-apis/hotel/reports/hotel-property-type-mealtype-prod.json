@@ -1,0 +1,1155 @@
+{
+  "ranAt": "2026-09-02T13:16:09.692Z",
+  "baseUrl": "https://api.travelvip.ai",
+  "tierId": "19597201",
+  "checkin": "2026-09-23",
+  "checkout": "2026-09-24",
+  "note": "Search + details only. Property Type facet + board-basis mealType on room cards.",
+  "counts": {
+    "PASS": 56,
+    "BUG": 7,
+    "NOT_TESTED": 1
+  },
+  "mealBugCount": 6,
+  "rows": [
+    {
+      "id": 1,
+      "section": "PropertyType",
+      "rule": "Delhi: Property Type facet present",
+      "how": "CITY 227760:IN",
+      "expected": "Property Type filter with multiple values",
+      "status": "PASS",
+      "actual": "facets=Hotel:1550, Bed & breakfast:39, GuestHouse:35, Apartment:26, Hostel:22, Homestay:5, Resort:5, Aparthotel:4, Inn:4, Private Vacation Home:4, Villa:4, Lodge:1",
+      "city": "Delhi",
+      "facets": [
+        {
+          "key": "Hotel",
+          "name": "Hotel",
+          "count": 1550
+        },
+        {
+          "key": "Bed & breakfast",
+          "name": "Bed & breakfast",
+          "count": 39
+        },
+        {
+          "key": "GuestHouse",
+          "name": "GuestHouse",
+          "count": 35
+        },
+        {
+          "key": "Apartment",
+          "name": "Apartment",
+          "count": 26
+        },
+        {
+          "key": "Hostel",
+          "name": "Hostel",
+          "count": 22
+        },
+        {
+          "key": "Homestay",
+          "name": "Homestay",
+          "count": 5
+        },
+        {
+          "key": "Resort",
+          "name": "Resort",
+          "count": 5
+        },
+        {
+          "key": "Aparthotel",
+          "name": "Aparthotel",
+          "count": 4
+        },
+        {
+          "key": "Inn",
+          "name": "Inn",
+          "count": 4
+        },
+        {
+          "key": "Private Vacation Home",
+          "name": "Private Vacation Home",
+          "count": 4
+        },
+        {
+          "key": "Villa",
+          "name": "Villa",
+          "count": 4
+        },
+        {
+          "key": "Lodge",
+          "name": "Lodge",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "section": "PropertyType",
+      "rule": "Delhi: Unknown not in facet options",
+      "how": "scan Property Type facets",
+      "expected": "Unknown never listed as selectable facet",
+      "status": "PASS",
+      "actual": "no Unknown option",
+      "city": "Delhi"
+    },
+    {
+      "id": 3,
+      "section": "PropertyType",
+      "rule": "Delhi: Apartment filter applies + facet counts stable",
+      "how": "fq [\"Property Type:Apartment\"]",
+      "expected": "total≈26; facet list does not shrink to only Apartment",
+      "status": "PASS",
+      "actual": "http=200 total=26 facetCount=12 baselineFacets=12",
+      "city": "Delhi"
+    },
+    {
+      "id": 4,
+      "section": "PropertyType",
+      "rule": "Delhi: multi-select Apartment;Resort",
+      "how": "fq semicolon multi",
+      "expected": "HTTP 200; total <= baseline; both types allowed",
+      "status": "PASS",
+      "actual": "http=200 total=31 baseline=1851",
+      "city": "Delhi"
+    },
+    {
+      "id": 5,
+      "section": "PropertyType",
+      "rule": "Delhi: Property Type + Star compose",
+      "how": "Apartment + 4★",
+      "expected": "HTTP 200; total <= apartment-only",
+      "status": "PASS",
+      "actual": "http=200 total=12 aptOnly=26",
+      "city": "Delhi"
+    },
+    {
+      "id": 6,
+      "section": "PropertyType",
+      "rule": "Delhi: Property Type + Chain compose",
+      "how": "Apartment + Chain=Fabhotels",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Delhi"
+    },
+    {
+      "id": 7,
+      "section": "PropertyType",
+      "rule": "Delhi: Property Type + GST compose",
+      "how": "Apartment + GST Claimable",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Delhi"
+    },
+    {
+      "id": 8,
+      "section": "PropertyType",
+      "rule": "Mumbai: Property Type facet present",
+      "how": "CITY 357389:IN",
+      "expected": "Property Type filter with multiple values",
+      "status": "PASS",
+      "actual": "facets=Hotel:858, Hostel:56, Apartment:29, GuestHouse:19, Bed & breakfast:6, Resort:6, Aparthotel:5, Lodge:5, Villa:4, Inn:3, Cabin:2, Homestay:1, Palace:1",
+      "city": "Mumbai",
+      "facets": [
+        {
+          "key": "Hotel",
+          "name": "Hotel",
+          "count": 858
+        },
+        {
+          "key": "Hostel",
+          "name": "Hostel",
+          "count": 56
+        },
+        {
+          "key": "Apartment",
+          "name": "Apartment",
+          "count": 29
+        },
+        {
+          "key": "GuestHouse",
+          "name": "GuestHouse",
+          "count": 19
+        },
+        {
+          "key": "Bed & breakfast",
+          "name": "Bed & breakfast",
+          "count": 6
+        },
+        {
+          "key": "Resort",
+          "name": "Resort",
+          "count": 6
+        },
+        {
+          "key": "Aparthotel",
+          "name": "Aparthotel",
+          "count": 5
+        },
+        {
+          "key": "Lodge",
+          "name": "Lodge",
+          "count": 5
+        },
+        {
+          "key": "Villa",
+          "name": "Villa",
+          "count": 4
+        },
+        {
+          "key": "Inn",
+          "name": "Inn",
+          "count": 3
+        },
+        {
+          "key": "Cabin",
+          "name": "Cabin",
+          "count": 2
+        },
+        {
+          "key": "Homestay",
+          "name": "Homestay",
+          "count": 1
+        },
+        {
+          "key": "Palace",
+          "name": "Palace",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "section": "PropertyType",
+      "rule": "Mumbai: Unknown not in facet options",
+      "how": "scan Property Type facets",
+      "expected": "Unknown never listed as selectable facet",
+      "status": "PASS",
+      "actual": "no Unknown option",
+      "city": "Mumbai"
+    },
+    {
+      "id": 10,
+      "section": "PropertyType",
+      "rule": "Mumbai: Apartment filter applies + facet counts stable",
+      "how": "fq [\"Property Type:Apartment\"]",
+      "expected": "total≈29; facet list does not shrink to only Apartment",
+      "status": "PASS",
+      "actual": "http=200 total=29 facetCount=13 baselineFacets=13",
+      "city": "Mumbai"
+    },
+    {
+      "id": 11,
+      "section": "PropertyType",
+      "rule": "Mumbai: multi-select Apartment;Resort",
+      "how": "fq semicolon multi",
+      "expected": "HTTP 200; total <= baseline; both types allowed",
+      "status": "PASS",
+      "actual": "http=200 total=35 baseline=1059",
+      "city": "Mumbai"
+    },
+    {
+      "id": 12,
+      "section": "PropertyType",
+      "rule": "Mumbai: Property Type + Star compose",
+      "how": "Apartment + 4★",
+      "expected": "HTTP 200; total <= apartment-only",
+      "status": "PASS",
+      "actual": "http=200 total=8 aptOnly=29",
+      "city": "Mumbai"
+    },
+    {
+      "id": 13,
+      "section": "PropertyType",
+      "rule": "Mumbai: Property Type + Chain compose",
+      "how": "Apartment + Chain=Fabhotels",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Mumbai"
+    },
+    {
+      "id": 14,
+      "section": "PropertyType",
+      "rule": "Mumbai: Property Type + GST compose",
+      "how": "Apartment + GST Claimable",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Mumbai"
+    },
+    {
+      "id": 15,
+      "section": "PropertyType",
+      "rule": "Bangalore: Property Type facet present",
+      "how": "CITY 341153:IN",
+      "expected": "Property Type filter with multiple values",
+      "status": "PASS",
+      "actual": "facets=Hotel:1312, Apartment:67, Aparthotel:27, Hostel:22, GuestHouse:15, Lodge:12, Villa:10, Resort:9, Bed & breakfast:8, Homestay:8, Inn:6, Private Vacation Home:1",
+      "city": "Bangalore",
+      "facets": [
+        {
+          "key": "Hotel",
+          "name": "Hotel",
+          "count": 1312
+        },
+        {
+          "key": "Apartment",
+          "name": "Apartment",
+          "count": 67
+        },
+        {
+          "key": "Aparthotel",
+          "name": "Aparthotel",
+          "count": 27
+        },
+        {
+          "key": "Hostel",
+          "name": "Hostel",
+          "count": 22
+        },
+        {
+          "key": "GuestHouse",
+          "name": "GuestHouse",
+          "count": 15
+        },
+        {
+          "key": "Lodge",
+          "name": "Lodge",
+          "count": 12
+        },
+        {
+          "key": "Villa",
+          "name": "Villa",
+          "count": 10
+        },
+        {
+          "key": "Resort",
+          "name": "Resort",
+          "count": 9
+        },
+        {
+          "key": "Bed & breakfast",
+          "name": "Bed & breakfast",
+          "count": 8
+        },
+        {
+          "key": "Homestay",
+          "name": "Homestay",
+          "count": 8
+        },
+        {
+          "key": "Inn",
+          "name": "Inn",
+          "count": 6
+        },
+        {
+          "key": "Private Vacation Home",
+          "name": "Private Vacation Home",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "section": "PropertyType",
+      "rule": "Bangalore: Unknown not in facet options",
+      "how": "scan Property Type facets",
+      "expected": "Unknown never listed as selectable facet",
+      "status": "PASS",
+      "actual": "no Unknown option",
+      "city": "Bangalore"
+    },
+    {
+      "id": 17,
+      "section": "PropertyType",
+      "rule": "Bangalore: Apartment filter applies + facet counts stable",
+      "how": "fq [\"Property Type:Apartment\"]",
+      "expected": "total≈67; facet list does not shrink to only Apartment",
+      "status": "PASS",
+      "actual": "http=200 total=67 facetCount=12 baselineFacets=12",
+      "city": "Bangalore"
+    },
+    {
+      "id": 18,
+      "section": "PropertyType",
+      "rule": "Bangalore: multi-select Apartment;Resort",
+      "how": "fq semicolon multi",
+      "expected": "HTTP 200; total <= baseline; both types allowed",
+      "status": "PASS",
+      "actual": "http=200 total=76 baseline=1619",
+      "city": "Bangalore"
+    },
+    {
+      "id": 19,
+      "section": "PropertyType",
+      "rule": "Bangalore: Property Type + Star compose",
+      "how": "Apartment + 4★",
+      "expected": "HTTP 200; total <= apartment-only",
+      "status": "PASS",
+      "actual": "http=200 total=10 aptOnly=67",
+      "city": "Bangalore"
+    },
+    {
+      "id": 20,
+      "section": "PropertyType",
+      "rule": "Bangalore: Property Type + Chain compose",
+      "how": "Apartment + Chain=Fabhotels",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Bangalore"
+    },
+    {
+      "id": 21,
+      "section": "PropertyType",
+      "rule": "Bangalore: Property Type + GST compose",
+      "how": "Apartment + GST Claimable",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Bangalore"
+    },
+    {
+      "id": 22,
+      "section": "PropertyType",
+      "rule": "Chennai: Property Type facet present",
+      "how": "CITY 228269:IN",
+      "expected": "Property Type filter with multiple values",
+      "status": "PASS",
+      "actual": "facets=Hotel:587, Apartment:17, Resort:10, GuestHouse:9, Villa:8, Aparthotel:6, Bed & breakfast:5, Hostel:5, Homestay:4, Lodge:4, Inn:3, Private Vacation Home:1, Residence:1",
+      "city": "Chennai",
+      "facets": [
+        {
+          "key": "Hotel",
+          "name": "Hotel",
+          "count": 587
+        },
+        {
+          "key": "Apartment",
+          "name": "Apartment",
+          "count": 17
+        },
+        {
+          "key": "Resort",
+          "name": "Resort",
+          "count": 10
+        },
+        {
+          "key": "GuestHouse",
+          "name": "GuestHouse",
+          "count": 9
+        },
+        {
+          "key": "Villa",
+          "name": "Villa",
+          "count": 8
+        },
+        {
+          "key": "Aparthotel",
+          "name": "Aparthotel",
+          "count": 6
+        },
+        {
+          "key": "Bed & breakfast",
+          "name": "Bed & breakfast",
+          "count": 5
+        },
+        {
+          "key": "Hostel",
+          "name": "Hostel",
+          "count": 5
+        },
+        {
+          "key": "Homestay",
+          "name": "Homestay",
+          "count": 4
+        },
+        {
+          "key": "Lodge",
+          "name": "Lodge",
+          "count": 4
+        },
+        {
+          "key": "Inn",
+          "name": "Inn",
+          "count": 3
+        },
+        {
+          "key": "Private Vacation Home",
+          "name": "Private Vacation Home",
+          "count": 1
+        },
+        {
+          "key": "Residence",
+          "name": "Residence",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "section": "PropertyType",
+      "rule": "Chennai: Unknown not in facet options",
+      "how": "scan Property Type facets",
+      "expected": "Unknown never listed as selectable facet",
+      "status": "PASS",
+      "actual": "no Unknown option",
+      "city": "Chennai"
+    },
+    {
+      "id": 24,
+      "section": "PropertyType",
+      "rule": "Chennai: Apartment filter applies + facet counts stable",
+      "how": "fq [\"Property Type:Apartment\"]",
+      "expected": "total≈17; facet list does not shrink to only Apartment",
+      "status": "PASS",
+      "actual": "http=200 total=17 facetCount=13 baselineFacets=13",
+      "city": "Chennai"
+    },
+    {
+      "id": 25,
+      "section": "PropertyType",
+      "rule": "Chennai: multi-select Apartment;Resort",
+      "how": "fq semicolon multi",
+      "expected": "HTTP 200; total <= baseline; both types allowed",
+      "status": "PASS",
+      "actual": "http=200 total=27 baseline=711",
+      "city": "Chennai"
+    },
+    {
+      "id": 26,
+      "section": "PropertyType",
+      "rule": "Chennai: Property Type + Star compose",
+      "how": "Apartment + 4★",
+      "expected": "HTTP 200; total <= apartment-only",
+      "status": "PASS",
+      "actual": "http=200 total=2 aptOnly=17",
+      "city": "Chennai"
+    },
+    {
+      "id": 27,
+      "section": "PropertyType",
+      "rule": "Chennai: Property Type + Chain compose",
+      "how": "Apartment + Chain=Fabhotels",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Chennai"
+    },
+    {
+      "id": 28,
+      "section": "PropertyType",
+      "rule": "Chennai: Property Type + GST compose",
+      "how": "Apartment + GST Claimable",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Chennai"
+    },
+    {
+      "id": 29,
+      "section": "PropertyType",
+      "rule": "Pune: Property Type facet present",
+      "how": "CITY 328605:IN",
+      "expected": "Property Type filter with multiple values",
+      "status": "PASS",
+      "actual": "facets=Hotel:416, Resort:10, Apartment:8, Hostel:8, Villa:5, Aparthotel:2, Homestay:2, Lodge:2, Residence:2, Country House:1",
+      "city": "Pune",
+      "facets": [
+        {
+          "key": "Hotel",
+          "name": "Hotel",
+          "count": 416
+        },
+        {
+          "key": "Resort",
+          "name": "Resort",
+          "count": 10
+        },
+        {
+          "key": "Apartment",
+          "name": "Apartment",
+          "count": 8
+        },
+        {
+          "key": "Hostel",
+          "name": "Hostel",
+          "count": 8
+        },
+        {
+          "key": "Villa",
+          "name": "Villa",
+          "count": 5
+        },
+        {
+          "key": "Aparthotel",
+          "name": "Aparthotel",
+          "count": 2
+        },
+        {
+          "key": "Homestay",
+          "name": "Homestay",
+          "count": 2
+        },
+        {
+          "key": "Lodge",
+          "name": "Lodge",
+          "count": 2
+        },
+        {
+          "key": "Residence",
+          "name": "Residence",
+          "count": 2
+        },
+        {
+          "key": "Country House",
+          "name": "Country House",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "section": "PropertyType",
+      "rule": "Pune: Unknown not in facet options",
+      "how": "scan Property Type facets",
+      "expected": "Unknown never listed as selectable facet",
+      "status": "PASS",
+      "actual": "no Unknown option",
+      "city": "Pune"
+    },
+    {
+      "id": 31,
+      "section": "PropertyType",
+      "rule": "Pune: Apartment filter applies + facet counts stable",
+      "how": "fq [\"Property Type:Apartment\"]",
+      "expected": "total≈8; facet list does not shrink to only Apartment",
+      "status": "PASS",
+      "actual": "http=200 total=8 facetCount=10 baselineFacets=10",
+      "city": "Pune"
+    },
+    {
+      "id": 32,
+      "section": "PropertyType",
+      "rule": "Pune: multi-select Apartment;Resort",
+      "how": "fq semicolon multi",
+      "expected": "HTTP 200; total <= baseline; both types allowed",
+      "status": "PASS",
+      "actual": "http=200 total=18 baseline=521",
+      "city": "Pune"
+    },
+    {
+      "id": 33,
+      "section": "PropertyType",
+      "rule": "Pune: Property Type + Star compose",
+      "how": "Apartment + 4★",
+      "expected": "HTTP 200; total <= apartment-only",
+      "status": "PASS",
+      "actual": "http=200 total=0 aptOnly=8",
+      "city": "Pune"
+    },
+    {
+      "id": 34,
+      "section": "PropertyType",
+      "rule": "Pune: Property Type + Chain compose",
+      "how": "Apartment + Chain=Fabhotels",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Pune"
+    },
+    {
+      "id": 35,
+      "section": "PropertyType",
+      "rule": "Pune: Property Type + GST compose",
+      "how": "Apartment + GST Claimable",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Pune"
+    },
+    {
+      "id": 36,
+      "section": "PropertyType",
+      "rule": "Hyderabad: Property Type facet present",
+      "how": "CITY 227706:IN",
+      "expected": "Property Type filter with multiple values",
+      "status": "PASS",
+      "actual": "facets=Hotel:713, Apartment:26, Aparthotel:10, Hostel:7, GuestHouse:6, Resort:6, Bed & breakfast:5, Inn:3, Lodge:2, Villa:2, Homestay:1, Residence:1",
+      "city": "Hyderabad",
+      "facets": [
+        {
+          "key": "Hotel",
+          "name": "Hotel",
+          "count": 713
+        },
+        {
+          "key": "Apartment",
+          "name": "Apartment",
+          "count": 26
+        },
+        {
+          "key": "Aparthotel",
+          "name": "Aparthotel",
+          "count": 10
+        },
+        {
+          "key": "Hostel",
+          "name": "Hostel",
+          "count": 7
+        },
+        {
+          "key": "GuestHouse",
+          "name": "GuestHouse",
+          "count": 6
+        },
+        {
+          "key": "Resort",
+          "name": "Resort",
+          "count": 6
+        },
+        {
+          "key": "Bed & breakfast",
+          "name": "Bed & breakfast",
+          "count": 5
+        },
+        {
+          "key": "Inn",
+          "name": "Inn",
+          "count": 3
+        },
+        {
+          "key": "Lodge",
+          "name": "Lodge",
+          "count": 2
+        },
+        {
+          "key": "Villa",
+          "name": "Villa",
+          "count": 2
+        },
+        {
+          "key": "Homestay",
+          "name": "Homestay",
+          "count": 1
+        },
+        {
+          "key": "Residence",
+          "name": "Residence",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "section": "PropertyType",
+      "rule": "Hyderabad: Unknown not in facet options",
+      "how": "scan Property Type facets",
+      "expected": "Unknown never listed as selectable facet",
+      "status": "PASS",
+      "actual": "no Unknown option",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 38,
+      "section": "PropertyType",
+      "rule": "Hyderabad: Apartment filter applies + facet counts stable",
+      "how": "fq [\"Property Type:Apartment\"]",
+      "expected": "total≈26; facet list does not shrink to only Apartment",
+      "status": "PASS",
+      "actual": "http=200 total=26 facetCount=12 baselineFacets=12",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 39,
+      "section": "PropertyType",
+      "rule": "Hyderabad: multi-select Apartment;Resort",
+      "how": "fq semicolon multi",
+      "expected": "HTTP 200; total <= baseline; both types allowed",
+      "status": "PASS",
+      "actual": "http=200 total=32 baseline=860",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 40,
+      "section": "PropertyType",
+      "rule": "Hyderabad: Property Type + Star compose",
+      "how": "Apartment + 4★",
+      "expected": "HTTP 200; total <= apartment-only",
+      "status": "PASS",
+      "actual": "http=200 total=10 aptOnly=26",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 41,
+      "section": "PropertyType",
+      "rule": "Hyderabad: Property Type + Chain compose",
+      "how": "Apartment + Chain=Fabhotels",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 42,
+      "section": "PropertyType",
+      "rule": "Hyderabad: Property Type + GST compose",
+      "how": "Apartment + GST Claimable",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 43,
+      "section": "PropertyType",
+      "rule": "Goa: Property Type facet present",
+      "how": "CITY 328649:IN",
+      "expected": "Property Type filter with multiple values",
+      "status": "PASS",
+      "actual": "facets=Hotel:79, Apartment:4, GuestHouse:3, Homestay:2, Resort:2, Hostel:1, Villa:1",
+      "city": "Goa",
+      "facets": [
+        {
+          "key": "Hotel",
+          "name": "Hotel",
+          "count": 79
+        },
+        {
+          "key": "Apartment",
+          "name": "Apartment",
+          "count": 4
+        },
+        {
+          "key": "GuestHouse",
+          "name": "GuestHouse",
+          "count": 3
+        },
+        {
+          "key": "Homestay",
+          "name": "Homestay",
+          "count": 2
+        },
+        {
+          "key": "Resort",
+          "name": "Resort",
+          "count": 2
+        },
+        {
+          "key": "Hostel",
+          "name": "Hostel",
+          "count": 1
+        },
+        {
+          "key": "Villa",
+          "name": "Villa",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "section": "PropertyType",
+      "rule": "Goa: Unknown not in facet options",
+      "how": "scan Property Type facets",
+      "expected": "Unknown never listed as selectable facet",
+      "status": "PASS",
+      "actual": "no Unknown option",
+      "city": "Goa"
+    },
+    {
+      "id": 45,
+      "section": "PropertyType",
+      "rule": "Goa: Apartment filter applies + facet counts stable",
+      "how": "fq [\"Property Type:Apartment\"]",
+      "expected": "total≈4; facet list does not shrink to only Apartment",
+      "status": "PASS",
+      "actual": "http=200 total=4 facetCount=7 baselineFacets=7",
+      "city": "Goa"
+    },
+    {
+      "id": 46,
+      "section": "PropertyType",
+      "rule": "Goa: multi-select Apartment;Resort",
+      "how": "fq semicolon multi",
+      "expected": "HTTP 200; total <= baseline; both types allowed",
+      "status": "PASS",
+      "actual": "http=200 total=6 baseline=118",
+      "city": "Goa"
+    },
+    {
+      "id": 47,
+      "section": "PropertyType",
+      "rule": "Goa: Property Type + Star compose",
+      "how": "Apartment + 4★",
+      "expected": "HTTP 200; total <= apartment-only",
+      "status": "PASS",
+      "actual": "http=200 total=0 aptOnly=4",
+      "city": "Goa"
+    },
+    {
+      "id": 48,
+      "section": "PropertyType",
+      "rule": "Goa: Property Type + Chain compose",
+      "how": "Apartment + Chain=Taj Hotels",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Goa"
+    },
+    {
+      "id": 49,
+      "section": "PropertyType",
+      "rule": "Goa: Property Type + GST compose",
+      "how": "Apartment + GST Claimable",
+      "expected": "HTTP 200; filters compose",
+      "status": "PASS",
+      "actual": "http=200 total=0",
+      "city": "Goa"
+    },
+    {
+      "id": 50,
+      "section": "PropertyType",
+      "rule": "Ahmedabad: Property Type facet present",
+      "how": "CITY 246774:IN",
+      "expected": "Property Type filter with multiple values",
+      "status": "PASS",
+      "actual": "facets=Hotel:486, GuestHouse:8, Hostel:3, Bed & breakfast:1, Bungalow:1, Palace:1, Resort:1",
+      "city": "Ahmedabad",
+      "facets": [
+        {
+          "key": "Hotel",
+          "name": "Hotel",
+          "count": 486
+        },
+        {
+          "key": "GuestHouse",
+          "name": "GuestHouse",
+          "count": 8
+        },
+        {
+          "key": "Hostel",
+          "name": "Hostel",
+          "count": 3
+        },
+        {
+          "key": "Bed & breakfast",
+          "name": "Bed & breakfast",
+          "count": 1
+        },
+        {
+          "key": "Bungalow",
+          "name": "Bungalow",
+          "count": 1
+        },
+        {
+          "key": "Palace",
+          "name": "Palace",
+          "count": 1
+        },
+        {
+          "key": "Resort",
+          "name": "Resort",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "section": "PropertyType",
+      "rule": "Ahmedabad: Unknown not in facet options",
+      "how": "scan Property Type facets",
+      "expected": "Unknown never listed as selectable facet",
+      "status": "PASS",
+      "actual": "no Unknown option",
+      "city": "Ahmedabad"
+    },
+    {
+      "id": 52,
+      "section": "PropertyType",
+      "rule": "Ahmedabad: Apartment facet",
+      "how": "unfiltered facets",
+      "expected": "Apartment option",
+      "status": "NOT_TESTED",
+      "actual": "no Apartment facet"
+    },
+    {
+      "id": 53,
+      "section": "MealType",
+      "rule": "Sundeep Inn: details returns rooms",
+      "how": "POST /v1/hotels/details 39637795",
+      "expected": "HTTP 200; rooms[] with mealType",
+      "status": "PASS",
+      "actual": "http=200 rooms=12",
+      "hotel": "Sundeep Inn"
+    },
+    {
+      "id": 54,
+      "section": "MealType",
+      "rule": "Sundeep Inn: Breakfast Included shows breakfast badge",
+      "how": "6 Breakfast Included room(s)",
+      "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+      "status": "BUG",
+      "actual": "0/6 have Breakfast badge/icon",
+      "hotel": "Sundeep Inn"
+    },
+    {
+      "id": 55,
+      "section": "MealType",
+      "rule": "Towers Rotana: details returns rooms",
+      "how": "POST /v1/hotels/details 39657625",
+      "expected": "HTTP 200; rooms[] with mealType",
+      "status": "PASS",
+      "actual": "http=200 rooms=1884",
+      "hotel": "Towers Rotana"
+    },
+    {
+      "id": 56,
+      "section": "MealType",
+      "rule": "Towers Rotana: \"Breakfast and Dinner\" → Half Board",
+      "how": "15 matching room(s)",
+      "expected": "mealType=Half Board",
+      "status": "PASS",
+      "actual": "Half Board:40net B2B HB Non-smoking Half Board. It includes the stay fo | Half Board:40net B2B HB Non-smoking Half Board. It includes the stay fo | Half Board:40net B2B HB Non-smoking Half Board. It includes the stay fo",
+      "hotel": "Towers Rotana"
+    },
+    {
+      "id": 57,
+      "section": "MealType",
+      "rule": "Towers Rotana: Breakfast Included shows breakfast badge",
+      "how": "675 Breakfast Included room(s)",
+      "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+      "status": "PASS",
+      "actual": "675/675 have Breakfast badge/icon",
+      "hotel": "Towers Rotana"
+    },
+    {
+      "id": 58,
+      "section": "MealType",
+      "rule": "Towers Rotana: Half Board shows breakfast badge",
+      "how": "420 Half Board room(s)",
+      "expected": "Breakfast badge/icon on listing card",
+      "status": "PASS",
+      "actual": "420/420 have Breakfast badge/icon",
+      "hotel": "Towers Rotana"
+    },
+    {
+      "id": 59,
+      "section": "MealType",
+      "rule": "Sundeep Inn: breakfast badge/icon for HB/FB/AI/Breakfast Included",
+      "how": "room \"Deluxe Room\"",
+      "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+      "status": "BUG",
+      "actual": "mealType=Breakfast Included; Non-smoking Max guests: 4 Max children: 2 Breakfast Breakfast ",
+      "sample": {
+        "hotelName": "Sundeep Inn",
+        "hotelId": "39637795",
+        "room": "Deluxe Room",
+        "mealType": "Breakfast Included",
+        "rule": "breakfast badge/icon for HB/FB/AI/Breakfast Included",
+        "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+        "actual": "none",
+        "text": "Non-smoking Max guests: 4 Max children: 2 Breakfast Breakfast "
+      }
+    },
+    {
+      "id": 60,
+      "section": "MealType",
+      "rule": "Sundeep Inn: breakfast badge/icon for HB/FB/AI/Breakfast Included",
+      "how": "room \"Standard Room\"",
+      "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+      "status": "BUG",
+      "actual": "mealType=Breakfast Included; Standard Room Non-smoking breakfast Breakfast ",
+      "sample": {
+        "hotelName": "Sundeep Inn",
+        "hotelId": "39637795",
+        "room": "Standard Room",
+        "mealType": "Breakfast Included",
+        "rule": "breakfast badge/icon for HB/FB/AI/Breakfast Included",
+        "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+        "actual": "none",
+        "text": "Standard Room Non-smoking breakfast Breakfast "
+      }
+    },
+    {
+      "id": 61,
+      "section": "MealType",
+      "rule": "Sundeep Inn: breakfast badge/icon for HB/FB/AI/Breakfast Included",
+      "how": "room \"Deluxe Room\"",
+      "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+      "status": "BUG",
+      "actual": "mealType=Breakfast Included; Deluxe Room Non-smoking breakfast Breakfast ",
+      "sample": {
+        "hotelName": "Sundeep Inn",
+        "hotelId": "39637795",
+        "room": "Deluxe Room",
+        "mealType": "Breakfast Included",
+        "rule": "breakfast badge/icon for HB/FB/AI/Breakfast Included",
+        "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+        "actual": "none",
+        "text": "Deluxe Room Non-smoking breakfast Breakfast "
+      }
+    },
+    {
+      "id": 62,
+      "section": "MealType",
+      "rule": "Sundeep Inn: breakfast badge/icon for HB/FB/AI/Breakfast Included",
+      "how": "room \"Super Deluxe Room\"",
+      "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+      "status": "BUG",
+      "actual": "mealType=Breakfast Included; Super Deluxe Room Non-smoking breakfast Breakfast ",
+      "sample": {
+        "hotelName": "Sundeep Inn",
+        "hotelId": "39637795",
+        "room": "Super Deluxe Room",
+        "mealType": "Breakfast Included",
+        "rule": "breakfast badge/icon for HB/FB/AI/Breakfast Included",
+        "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+        "actual": "none",
+        "text": "Super Deluxe Room Non-smoking breakfast Breakfast "
+      }
+    },
+    {
+      "id": 63,
+      "section": "MealType",
+      "rule": "Sundeep Inn: breakfast badge/icon for HB/FB/AI/Breakfast Included",
+      "how": "room \"Standard Room\"",
+      "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+      "status": "BUG",
+      "actual": "mealType=Breakfast Included; Non-smoking Max guests: 2 Max children: 2 Breakfast Breakfast ",
+      "sample": {
+        "hotelName": "Sundeep Inn",
+        "hotelId": "39637795",
+        "room": "Standard Room",
+        "mealType": "Breakfast Included",
+        "rule": "breakfast badge/icon for HB/FB/AI/Breakfast Included",
+        "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+        "actual": "none",
+        "text": "Non-smoking Max guests: 2 Max children: 2 Breakfast Breakfast "
+      }
+    },
+    {
+      "id": 64,
+      "section": "MealType",
+      "rule": "Sundeep Inn: breakfast badge/icon for HB/FB/AI/Breakfast Included",
+      "how": "room \"Super Deluxe Room\"",
+      "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+      "status": "BUG",
+      "actual": "mealType=Breakfast Included; Non-smoking Max guests: 4 Max children: 2 Breakfast Breakfast ",
+      "sample": {
+        "hotelName": "Sundeep Inn",
+        "hotelId": "39637795",
+        "room": "Super Deluxe Room",
+        "mealType": "Breakfast Included",
+        "rule": "breakfast badge/icon for HB/FB/AI/Breakfast Included",
+        "expected": "Breakfast in benefitsIcon or amenitiesIcon",
+        "actual": "none",
+        "text": "Non-smoking Max guests: 4 Max children: 2 Breakfast Breakfast "
+      }
+    }
+  ]
+}

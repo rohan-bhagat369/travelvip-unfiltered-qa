@@ -1,0 +1,46 @@
+{
+  "ranAt": "2026-08-11T17:21:08.257Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "scenario": "C04",
+  "checks": [
+    "V071",
+    "V072",
+    "V073"
+  ],
+  "fixture": {
+    "br": "BR1786468851901659",
+    "pnr": "I6VY4K",
+    "status": "Confirmed",
+    "route": "MAA-BOM",
+    "pax": [
+      "PAX1",
+      "PAX2"
+    ]
+  },
+  "cancel": {
+    "http": 200,
+    "code": null,
+    "cancelStatus": "Cancellation Failed",
+    "paxScope": null,
+    "body": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786468851901659\",\"pnr\":\"I6VY4K\",\"cancellationRequest\":{\"status\":\"Cancellation Failed\",\"estimatedCancellationCharge\":350,\"estimatedRefund\":7348,\"message\":\"Unable to get Penalty details. Kindly contact customer care.\",\"createdAt\":\"2026-08-11T17:20:59Z\"}},\"_meta\":{\"correlation_id\":\"1b8f1c89-4798-41c6-b76d-8426b7328f83\"}}"
+  },
+  "afterStatus": "Confirmed",
+  "afterPax": [
+    {
+      "paxId": "PAX1"
+    },
+    {
+      "paxId": "PAX2"
+    }
+  ],
+  "dbSql": [
+    "USE travelx;",
+    "SET @br := 'BR1786468851901659';",
+    "-- V071: cancellation_request scope PARTIAL for PAX2 only",
+    "SELECT cr.id, cr.scope, cr.channel, cr.status, cr.pnr, cr.created_at\nFROM cancellation_request cr\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cr.id DESC;",
+    "-- V072: cancellation_passenger should list ONLY PAX2 (not all pax)",
+    "SELECT cp.*\nFROM cancellation_passenger cp\nJOIN cancellation_request cr ON cr.id = cp.cancellation_request_id\nJOIN booking_item bi ON bi.id = cr.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY cp.id;",
+    "-- V073 / cells: PAX2 cells cancelled or marked; PAX1 still active",
+    "SELECT bp.pax_id, fjp.id AS cell_id, fjp.eticket_number, fjp.pnr_override,\n       fj.airline_pnr, fj.direction\nFROM flight_journey_passenger fjp\nJOIN flight_journey fj ON fj.id = fjp.flight_journey_id\nJOIN booking_passenger bp ON bp.id = fjp.booking_passenger_id\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br\nORDER BY bp.pax_id;"
+  ]
+}

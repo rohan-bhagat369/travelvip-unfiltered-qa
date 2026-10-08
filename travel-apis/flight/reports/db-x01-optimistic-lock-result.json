@@ -1,0 +1,31 @@
+{
+  "ranAt": "2026-08-12T13:16:00.000Z",
+  "scenario": "X01",
+  "fixture": {
+    "br": "BR1786538901965364",
+    "booking_item_id": 6313,
+    "version_start_observed": 4,
+    "notes": "phpMyAdmin ROW_COUNT() unreliable in multi-query; scored from version transitions"
+  },
+  "results": [
+    {
+      "id": "V094",
+      "scenario": "X01",
+      "table": "booking_item",
+      "how": "Writer A: UPDATE booking_item SET version=version+1 WHERE id=6313 AND version=5",
+      "expected": "A succeeds; version becomes 6",
+      "actual": "version 5 → 6",
+      "status": "PASS"
+    },
+    {
+      "id": "V095",
+      "scenario": "X01",
+      "table": "booking_item",
+      "how": "Writer B: UPDATE … WHERE id=6313 AND version=5 (stale after A)",
+      "expected": "0 rows / no overwrite; version stays 6",
+      "actual": "version_final=6 (unchanged)",
+      "status": "PASS"
+    }
+  ],
+  "score": { "PASS": 2, "BUG": 0, "NOT_TESTED": 0 }
+}

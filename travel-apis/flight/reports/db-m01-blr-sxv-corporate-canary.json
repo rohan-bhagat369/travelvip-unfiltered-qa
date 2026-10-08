@@ -1,0 +1,89 @@
+{
+  "ranAt": "2026-08-12T12:54:41.656Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "M01",
+  "checks": [
+    "V089",
+    "V090"
+  ],
+  "fixture": {
+    "br": "BR1786539278521224",
+    "route": "BLR-SXV",
+    "days": 18,
+    "searchId": "srch_d9f0754f5bb14cf08c5cfbb7ffc339ca",
+    "pnr": null,
+    "status": "Pending",
+    "passenger": {
+      "title": "Mr",
+      "firstName": "Amit",
+      "lastName": "Sharmacqff0",
+      "gender": "Male",
+      "dob": "1985-03-12"
+    },
+    "dbGstUsable": true,
+    "note": "InProgress/Pending — journey GST rows expected in DB",
+    "priceId": "price_896a078368e84ceba5cbc819e29c0126",
+    "addGstInfo": true,
+    "pricingGst": {
+      "addGstInfo": true,
+      "gstBreakup": [
+        {
+          "legId": "6E7917-BLR-SXV-2026-08-30T10:50-2026-08-30T11:55",
+          "code": "29GST",
+          "amount": 158
+        }
+      ],
+      "gstTotal": 158,
+      "sumBreakup": 158,
+      "hasExplicitGstTotal": false,
+      "parity": true
+    }
+  },
+  "pricingGst": {
+    "addGstInfo": true,
+    "gstBreakup": [
+      {
+        "legId": "6E7917-BLR-SXV-2026-08-30T10:50-2026-08-30T11:55",
+        "code": "29GST",
+        "amount": 158
+      }
+    ],
+    "gstTotal": 158,
+    "sumBreakup": 158,
+    "hasExplicitGstTotal": false,
+    "parity": true
+  },
+  "attempts": [
+    {
+      "days": 18,
+      "sid": "srch_d9f0754f5bb14cf08c5cfbb7ffc339ca",
+      "br": "BR1786539278521224",
+      "status": "Pending",
+      "pnr": null,
+      "pax": "Amit Sharmacqff0",
+      "total": 3323,
+      "gstSum": 158
+    }
+  ],
+  "table": [
+    {
+      "rule": "1. M01 GST parity (pricing)",
+      "how": "SUM(gstBreakup) vs gstTotal",
+      "status": "PASS",
+      "actual": "sum=158 breakup=[{\"legId\":\"6E7917-BLR-SXV-2026-08-30T10:50-2026-08-30T11:55\",\"code\":\"29GST\",\"amount\":158}]"
+    },
+    {
+      "rule": "2. gstDetails + multi searchId/pax",
+      "how": "Rotated pax names; tried multiple searchIds",
+      "status": "PASS",
+      "actual": "BR BR1786539278521224 status=Pending pax=Amit Sharmacqff0"
+    },
+    {
+      "rule": "3. M01 GST parity (DB)",
+      "how": "gst_total == SUM(breakup) — valid for InProgress too",
+      "status": "NOT TESTED",
+      "note": "Run dbSql for BR1786539278521224"
+    }
+  ],
+  "dbSql": "USE travelx;\nSET @br := 'BR1786539278521224';\n\n-- M01 / V089: gst_total == SUM(gst_breakup[].amount)\nSELECT fj.id, fj.direction, fj.origin, fj.destination, fj.airline_pnr,\n       fj.gst_total, fj.gst_breakup,\n       (SELECT COALESCE(SUM(jt.amount),0)\n        FROM JSON_TABLE(IFNULL(fj.gst_breakup, JSON_ARRAY()), '$[*]' COLUMNS (amount DECIMAL(18,2) PATH '$.amount')) jt\n       ) AS breakup_sum,\n       CASE\n         WHEN fj.gst_total = (\n           SELECT COALESCE(SUM(jt.amount),0)\n           FROM JSON_TABLE(IFNULL(fj.gst_breakup, JSON_ARRAY()), '$[*]' COLUMNS (amount DECIMAL(18,2) PATH '$.amount')) jt\n         ) THEN 'PASS' ELSE 'FAIL'\n       END AS m01_parity\nFROM flight_journey fj\nJOIN booking_item bi ON bi.id = fj.booking_item_id\nJOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @br;"
+}

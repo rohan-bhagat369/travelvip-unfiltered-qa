@@ -1,0 +1,292 @@
+{
+  "at": "2026-09-28T13:38:06.401Z",
+  "base": "https://api-preprod.travelvip.ai",
+  "noBook": true,
+  "correlationId": "692671f3-d51d-4cbc-a282-b601ee8064c7",
+  "summary": {
+    "PASS": 8,
+    "BUG": 0,
+    "NOT_TESTED": 1
+  },
+  "rows": [
+    {
+      "id": "D-1",
+      "rule": "RT NORMAL,SME — select SME onward → both dirs SME",
+      "status": "PASS",
+      "expected": "ONWARD+RETURN only SME",
+      "actual": "{\"smeSid\":\"srch_d3fc3c295cd04ca8acae38554213a3c1\",\"onwardCats\":[\"SME\"],\"returnCats\":[\"SME\"],\"returnN\":20}"
+    },
+    {
+      "id": "D-1-price",
+      "rule": "SME RT pair → pricing 200 (no book)",
+      "status": "PASS",
+      "actual": "{\"http\":200,\"code\":null,\"priceId\":\"price_59c2ac2f361a41dfa33689a77342a98e\"}"
+    },
+    {
+      "id": "D-2",
+      "rule": "RT — select NORMAL onward → both dirs NORMAL",
+      "status": "PASS",
+      "expected": "ONWARD+RETURN only NORMAL",
+      "actual": "{\"sid\":\"srch_a7bbb656f5d64a148e245fcfb5d67f1f\",\"http\":200,\"code\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"onwardN\":20,\"returnN\":20,\"onwardCats\":[\"NORMAL\"],\"returnCats\":[\"NORMAL\"]}"
+    },
+    {
+      "id": "D-6",
+      "rule": "Same-category RT → pricing succeeds",
+      "status": "PASS",
+      "expected": "200",
+      "actual": "{\"http\":200,\"code\":null,\"priceId\":\"price_883376e48712468ba487da3bd20885b7\"}"
+    },
+    {
+      "id": "D-4",
+      "rule": "Cross-category RT → pricing INVALID_COMBINATION",
+      "status": "PASS",
+      "expected": "400 INVALID_COMBINATION",
+      "actual": "http=400 code=INVALID_COMBINATION",
+      "response": {
+        "code": "INVALID_COMBINATION",
+        "message": "Selected flights come from different searches and cannot be booked together. Select onward and return from the same fare type.",
+        "details": null,
+        "timestamp": "2026-09-28T13:38:29Z",
+        "request_id": "req-1790602710243",
+        "search_again": 1
+      }
+    },
+    {
+      "id": "D-5",
+      "rule": "Cross pair → details + fareRules INVALID_COMBINATION",
+      "status": "PASS",
+      "expected": "INVALID_COMBINATION both",
+      "actual": "details=400/INVALID_COMBINATION rules=400/INVALID_COMBINATION"
+    },
+    {
+      "id": "D-8",
+      "rule": "Intl RT select onward, re-search, price succeeds",
+      "status": "PASS",
+      "expected": "200 pricing",
+      "actual": "{\"bump\":0,\"dates\":[{\"origin\":\"DEL\",\"destination\":\"DXB\",\"date\":\"2026-11-07\"},{\"origin\":\"DXB\",\"destination\":\"DEL\",\"date\":\"2026-11-14\"}],\"onwardN\":71,\"onwardPages\":4,\"returnN\":2,\"onSid\":\"srch_c8551ee875a14bd58ed873aec4d893a8\",\"retSid\":\"srch_596517047c8e442fb75e13cbe8033e33\",\"price\":{\"http\":200,\"code\":null,\"priceId\":\"price_e3c19501074d4ae6897c66c88ac6a3d7\"}}"
+    },
+    {
+      "id": "E-1",
+      "rule": "Corporate searchId → details/pricing/fareRules 200",
+      "status": "PASS",
+      "expected": "all 200 (rules may VENDOR_ERROR)",
+      "actual": "{\"sid\":\"srch_00ec26ff512c4c5bb446b27dce809307\",\"det\":200,\"price\":200,\"rules\":200,\"rulesCode\":null,\"priceId\":\"price_1cabcdda573c42078c68b804cfd38642\"}"
+    },
+    {
+      "id": "E-6",
+      "rule": "pricing → refresh-token / selection-pricing",
+      "status": "NOT TESTED",
+      "actual": "[{\"name\":\"refresh-token\",\"http\":404,\"code\":null},{\"name\":\"selection-pricing\",\"http\":404,\"code\":null}] (paths 404 on B2B)"
+    }
+  ],
+  "dumps": {
+    "at": "2026-09-28T13:38:06.401Z",
+    "base": "https://api-preprod.travelvip.ai",
+    "D1_inventory": {
+      "total": 185,
+      "pages": 10,
+      "n": 185,
+      "page0Cats": [
+        "NORMAL",
+        "SME"
+      ],
+      "allCats": [
+        "NORMAL",
+        "SME"
+      ],
+      "facet": [
+        {
+          "value": "NORMAL",
+          "count": 184
+        },
+        {
+          "value": "SME",
+          "count": 177
+        }
+      ]
+    },
+    "D1": {
+      "smeSid": "srch_d3fc3c295cd04ca8acae38554213a3c1",
+      "onwardCats": [
+        "SME"
+      ],
+      "returnCats": [
+        "SME"
+      ],
+      "returnN": 20
+    },
+    "D1_price": {
+      "http": 200,
+      "code": null,
+      "priceId": "price_59c2ac2f361a41dfa33689a77342a98e"
+    },
+    "D2_inventory": {
+      "total": 185,
+      "pages": 10,
+      "n": 185,
+      "page0Cats": [
+        "NORMAL",
+        "SME"
+      ],
+      "allCats": [
+        "NORMAL",
+        "SME"
+      ]
+    },
+    "D2": {
+      "sid": "srch_a7bbb656f5d64a148e245fcfb5d67f1f",
+      "http": 200,
+      "code": null,
+      "progress": {
+        "partial": false,
+        "state": "COMPLETE",
+        "pollAfterMs": 0,
+        "message": null,
+        "lanesTotal": null,
+        "lanesReady": null
+      },
+      "onwardN": 20,
+      "returnN": 20,
+      "onwardCats": [
+        "NORMAL"
+      ],
+      "returnCats": [
+        "NORMAL"
+      ]
+    },
+    "D6": {
+      "http": 200,
+      "code": null,
+      "priceId": "price_883376e48712468ba487da3bd20885b7"
+    },
+    "D4_inventory": {
+      "total": 185,
+      "pages": 10,
+      "n": 185,
+      "page0Cats": [
+        "CORPORATE",
+        "NORMAL",
+        "SME"
+      ],
+      "allCats": [
+        "CORPORATE",
+        "NORMAL",
+        "SME"
+      ],
+      "facet": [
+        {
+          "value": "NORMAL",
+          "count": 184
+        },
+        {
+          "value": "SME",
+          "count": 177
+        },
+        {
+          "value": "CORPORATE",
+          "count": 6
+        }
+      ]
+    },
+    "D4_ids": {
+      "corpSid": "srch_afb44a7731574f3c82c8f388e4fd68e5",
+      "normalRetSid": "srch_e0b409025f614aa79cc94a4c89d6adde"
+    },
+    "D4": {
+      "http": 400,
+      "code": "INVALID_COMBINATION",
+      "body": {
+        "code": "INVALID_COMBINATION",
+        "message": "Selected flights come from different searches and cannot be booked together. Select onward and return from the same fare type.",
+        "details": null,
+        "timestamp": "2026-09-28T13:38:29Z",
+        "request_id": "req-1790602710243",
+        "search_again": 1
+      }
+    },
+    "D5": {
+      "details": {
+        "http": 400,
+        "code": "INVALID_COMBINATION"
+      },
+      "rules": {
+        "http": 400,
+        "code": "INVALID_COMBINATION"
+      }
+    },
+    "D8": {
+      "bump": 0,
+      "dates": [
+        {
+          "origin": "DEL",
+          "destination": "DXB",
+          "date": "2026-11-07"
+        },
+        {
+          "origin": "DXB",
+          "destination": "DEL",
+          "date": "2026-11-14"
+        }
+      ],
+      "onwardN": 71,
+      "onwardPages": 4,
+      "returnN": 2,
+      "onSid": "srch_c8551ee875a14bd58ed873aec4d893a8",
+      "retSid": "srch_596517047c8e442fb75e13cbe8033e33",
+      "price": {
+        "http": 200,
+        "code": null,
+        "priceId": "price_e3c19501074d4ae6897c66c88ac6a3d7"
+      }
+    },
+    "E1_inventory": {
+      "total": 186,
+      "pages": 10,
+      "n": 186,
+      "page0Cats": [
+        "CORPORATE",
+        "NORMAL",
+        "SME"
+      ],
+      "allCats": [
+        "CORPORATE",
+        "NORMAL",
+        "SME"
+      ],
+      "facet": [
+        {
+          "value": "NORMAL",
+          "count": 184
+        },
+        {
+          "value": "SME",
+          "count": 177
+        },
+        {
+          "value": "CORPORATE",
+          "count": 6
+        }
+      ]
+    },
+    "E1": {
+      "sid": "srch_00ec26ff512c4c5bb446b27dce809307",
+      "det": 200,
+      "price": 200,
+      "rules": 200,
+      "rulesCode": null,
+      "priceId": "price_1cabcdda573c42078c68b804cfd38642"
+    },
+    "E6": [
+      {
+        "name": "refresh-token",
+        "http": 404,
+        "code": null
+      },
+      {
+        "name": "selection-pricing",
+        "http": 404,
+        "code": null
+      }
+    ]
+  }
+}

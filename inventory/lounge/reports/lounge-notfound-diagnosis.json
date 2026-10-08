@@ -1,0 +1,602 @@
+{
+  "ranAt": "2026-10-06T08:02:08.718Z",
+  "byVerdict": {
+    "AIRPORT_MISSING": 5,
+    "TERMINAL_HAS_LOUNGES_BUT_THIS_NAME_MISSING": 5,
+    "TERMINAL_NOT_IN_AIRPORT_CATALOG": 2,
+    "LOUNGE_PRESENT_ON_SHEET_TERMINAL": 4,
+    "LOUNGE_ON_OTHER_TERMINAL": 3
+  },
+  "rows": [
+    {
+      "iata": "DHH",
+      "airport": "Barkol Dahe Airport",
+      "sheetTerm": "Main Terminal",
+      "lounge": "Business VIP Lounge",
+      "verdict": "AIRPORT_MISSING",
+      "apiTerminals": [],
+      "sheetTermInApi": false,
+      "loungesOnSheetTerm": [],
+      "foundOnOtherTerminal": null
+    },
+    {
+      "iata": "KTM",
+      "airport": "Tribhuvan International Airport",
+      "sheetTerm": "Terminal 1",
+      "lounge": "Executive Lounge",
+      "verdict": "AIRPORT_MISSING",
+      "apiTerminals": [],
+      "sheetTermInApi": false,
+      "loungesOnSheetTerm": [],
+      "foundOnOtherTerminal": null
+    },
+    {
+      "iata": "LHR",
+      "airport": "Heathrow Airport",
+      "airportId": "5540",
+      "sheetTerm": "Terminal 3",
+      "matchedApiTerm": "Terminal 3",
+      "lounge": "My Lounge",
+      "verdict": "TERMINAL_HAS_LOUNGES_BUT_THIS_NAME_MISSING",
+      "apiTerminals": [
+        "Terminal 5",
+        "Terminal 3",
+        "Terminal 2",
+        "Terminal 4"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "No1 Heathrow – Terminal 3, International Departures (Post-Security)",
+        "Clubrooms – Terminal 3, International Departures (Post-Security)"
+      ],
+      "foundOnOtherTerminal": null,
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 5",
+          "count": 1,
+          "titles": [
+            "Plaza Premium Lounge – Terminal 5, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 3",
+          "count": 2,
+          "titles": [
+            "No1 Heathrow – Terminal 3, International Departures (Post-Security)",
+            "Clubrooms – Terminal 3, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 2",
+          "count": 2,
+          "titles": [
+            "Plaza Premium Lounge – Terminal 2, International Departures (Post-Security)",
+            "No1 Lounge – Terminal 2, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 4",
+          "count": 3,
+          "titles": [
+            "Plaza Premium Lounge – Terminal 4, International Departures (Post-Security)",
+            "Blush Lounge by Plaza Premium Group – Terminal 4, International Departures (Post-Security)",
+            "Blush Lounge by Plaza Premium Group – Terminal 4, Domestic Departures (Post-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "VNS",
+      "airport": "Lal Bahadur Shastri Airport",
+      "airportId": "11981",
+      "sheetTerm": "Terminal 1",
+      "matchedApiTerm": null,
+      "lounge": "TAKE OFF BAR & LOUNGE",
+      "verdict": "TERMINAL_NOT_IN_AIRPORT_CATALOG",
+      "apiTerminals": [
+        "Main Terminal"
+      ],
+      "sheetTermInApi": false,
+      "loungesOnSheetTerm": [],
+      "foundOnOtherTerminal": null,
+      "otherTerminalLounges": [
+        {
+          "terminal": "Main Terminal",
+          "count": 1,
+          "titles": [
+            "Take Off Bar (Main Terminal - Domestic - Departure)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "IXB",
+      "airport": "Bagdogra Airport",
+      "airportId": "4088",
+      "sheetTerm": "Terminal 1",
+      "matchedApiTerm": null,
+      "lounge": "TAKE OF BAR & LOUNGE",
+      "verdict": "TERMINAL_NOT_IN_AIRPORT_CATALOG",
+      "apiTerminals": [
+        "Main Terminal"
+      ],
+      "sheetTermInApi": false,
+      "loungesOnSheetTerm": [],
+      "foundOnOtherTerminal": null,
+      "otherTerminalLounges": [
+        {
+          "terminal": "Main Terminal",
+          "count": 1,
+          "titles": [
+            "Take Off Bar And Lounge (Main Terminal - Domestic - Departure)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "IXJ",
+      "airport": "Satwari Airport",
+      "airportId": "4099",
+      "sheetTerm": "Terminal 1",
+      "matchedApiTerm": "Terminal 1",
+      "lounge": "Paahun Lounge",
+      "verdict": "LOUNGE_PRESENT_ON_SHEET_TERMINAL",
+      "apiTerminals": [
+        "Terminal 1"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "Paahun Lounge – Terminal 1, Domestic Departures (Post-Security)"
+      ],
+      "foundOnOtherTerminal": null,
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 1",
+          "count": 1,
+          "titles": [
+            "Paahun Lounge – Terminal 1, Domestic Departures (Post-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "SXR",
+      "airport": "Sheikh ul Alam Airport",
+      "airportId": "10335",
+      "sheetTerm": "Terminal 1",
+      "matchedApiTerm": "Terminal 1",
+      "lounge": "Paahun Lounge",
+      "verdict": "LOUNGE_PRESENT_ON_SHEET_TERMINAL",
+      "apiTerminals": [
+        "Terminal 1"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "Paahun The Executive Lounge (Terminal 1 - Domestic - Departure)",
+        "Paahun Lounge – Terminal 1, Domestic Departures (Post-Security)"
+      ],
+      "foundOnOtherTerminal": null,
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 1",
+          "count": 2,
+          "titles": [
+            "Paahun The Executive Lounge (Terminal 1 - Domestic - Departure)",
+            "Paahun Lounge – Terminal 1, Domestic Departures (Post-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "IXD",
+      "airport": "Prayagraj Airport",
+      "airportId": "4091",
+      "sheetTerm": "Terminal 1",
+      "matchedApiTerm": "Terminal 1",
+      "lounge": "Food Hanger",
+      "verdict": "TERMINAL_HAS_LOUNGES_BUT_THIS_NAME_MISSING",
+      "apiTerminals": [
+        "Terminal 1"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "Zesto Lounge (Terminal 1 - Domestic - Departure)"
+      ],
+      "foundOnOtherTerminal": null,
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 1",
+          "count": 1,
+          "titles": [
+            "Zesto Lounge (Terminal 1 - Domestic - Departure)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "IXC",
+      "airport": "Chandigarh Airport",
+      "airportId": "4093",
+      "sheetTerm": "Terminal 1",
+      "matchedApiTerm": "Terminal 1",
+      "lounge": "Primus Lounge",
+      "verdict": "LOUNGE_PRESENT_ON_SHEET_TERMINAL",
+      "apiTerminals": [
+        "Terminal 1",
+        "Main Terminal",
+        "Domestic Terminal"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "Primus Lounge (Terminal 1 - Domestic - Departure)",
+        "Primus Lounge – International Departures, International Departures (Post-Security)"
+      ],
+      "foundOnOtherTerminal": "Main Terminal",
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 1",
+          "count": 2,
+          "titles": [
+            "Primus Lounge (Terminal 1 - Domestic - Departure)",
+            "Primus Lounge – International Departures, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Main Terminal",
+          "count": 2,
+          "titles": [
+            "Primus Lounge (Main Terminal - Domestic - Departure)",
+            "Primus Lounge (Main Terminal - International - Departure)"
+          ]
+        },
+        {
+          "terminal": "Domestic Terminal",
+          "count": 1,
+          "titles": [
+            "Primus Lounge – Domestic Terminal, Domestic Departures (Post-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "GAU",
+      "airport": "Gopinath Bordoloi International Airport",
+      "sheetTerm": "Terminal 1",
+      "lounge": "THE Lounge FF",
+      "verdict": "AIRPORT_MISSING",
+      "apiTerminals": [],
+      "sheetTermInApi": false,
+      "loungesOnSheetTerm": [],
+      "foundOnOtherTerminal": null
+    },
+    {
+      "iata": "AMD",
+      "airport": "Sardar VallabhBhai Patel Airport",
+      "airportId": "6",
+      "sheetTerm": "Terminal 2",
+      "matchedApiTerm": "Terminal 2",
+      "lounge": "The Lounge",
+      "verdict": "TERMINAL_HAS_LOUNGES_BUT_THIS_NAME_MISSING",
+      "apiTerminals": [
+        "Terminal 1",
+        "Terminal 2"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "Adani Silver – Terminal 2, Domestic Departures (Post-Security)"
+      ],
+      "foundOnOtherTerminal": null,
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 1",
+          "count": 1,
+          "titles": [
+            "Adani Lounge – Terminal 1, Domestic Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 2",
+          "count": 1,
+          "titles": [
+            "Adani Silver – Terminal 2, Domestic Departures (Post-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "NAG",
+      "airport": "Dr.Ambedkar International Airport",
+      "airportId": "6915",
+      "sheetTerm": "Domestic Terminal",
+      "matchedApiTerm": "Domestic Terminal",
+      "lounge": "Mandarin Lounge",
+      "verdict": "LOUNGE_PRESENT_ON_SHEET_TERMINAL",
+      "apiTerminals": [
+        "Terminal 1",
+        "Main Terminal",
+        "Domestic Terminal"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "Mandarin Lounge – Domestic Terminal, Domestic Departures (Pre-Security)"
+      ],
+      "foundOnOtherTerminal": "Terminal 1",
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 1",
+          "count": 2,
+          "titles": [
+            "Mandarin Lounge (Terminal 1 - Domestic - Departure)",
+            "Airr Lounge – Terminal 1, Domestic Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Main Terminal",
+          "count": 1,
+          "titles": [
+            "The Airr Lounge And Bar (Main Terminal - Domestic - Departure)"
+          ]
+        },
+        {
+          "terminal": "Domestic Terminal",
+          "count": 1,
+          "titles": [
+            "Mandarin Lounge – Domestic Terminal, Domestic Departures (Pre-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "BOM",
+      "airport": "Chhatrapati Shivaji Maharaj Airport",
+      "airportId": "12",
+      "sheetTerm": "Terminal 1C",
+      "matchedApiTerm": "Terminal 1",
+      "lounge": "Travel Club",
+      "verdict": "LOUNGE_ON_OTHER_TERMINAL",
+      "apiTerminals": [
+        "Terminal 1",
+        "Terminal 2"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "Meghavi Air SpaLounge – Terminal 1, International Departures (Post-Security)",
+        "Good times Bar – Terminal 1, Domestic Departures (Post-Security)",
+        "Adani Lounge – Terminal 1, Domestic Departures (Post-Security)"
+      ],
+      "foundOnOtherTerminal": "Terminal 2",
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 1",
+          "count": 3,
+          "titles": [
+            "Meghavi Air SpaLounge – Terminal 1, International Departures (Post-Security)",
+            "Good times Bar – Terminal 1, Domestic Departures (Post-Security)",
+            "Adani Lounge – Terminal 1, Domestic Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 2",
+          "count": 9,
+          "titles": [
+            "Aviserv Lounge (West) (Terminal 2 - Internationl - Arrival)",
+            "Aviserv Lounge (East) (Terminal 2 - Internationl - Arrival)",
+            "Meghavi Air SpaLounge – Terminal 2, Domestic Departures (Post-Security)",
+            "Meghavi Air SpaLounge – Terminal 2, Domestic Departures (Post-Security)",
+            "Adani East Lounge – Terminal 2, International Departures (Post-Security)",
+            "Aviserv Lounge (East Wing) – Terminal 2, International Arrival (Pre-Security)",
+            "Travel Club Lounge – Terminal 2, Domestic Departures (Post-Security)",
+            "Adani Lounge – Terminal 2, Domestic Departures (Post-Security)",
+            "Aviserv Lounge (West Wing) – Terminal 2, International Arrival (Pre-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "TNA",
+      "airport": "Yaoqiang International Airport",
+      "airportId": "10840",
+      "sheetTerm": "Main Terminal",
+      "matchedApiTerm": "Main Terminal",
+      "lounge": "First Class Lounge No. 10",
+      "verdict": "TERMINAL_HAS_LOUNGES_BUT_THIS_NAME_MISSING",
+      "apiTerminals": [
+        "Main Terminal"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "VIP area C – Main Terminal, Domestic Departures (Pre-Security)",
+        "Guest Reception Counter – Main Terminal, Domestic Departures (Pre-Security)"
+      ],
+      "foundOnOtherTerminal": null,
+      "otherTerminalLounges": [
+        {
+          "terminal": "Main Terminal",
+          "count": 2,
+          "titles": [
+            "VIP area C – Main Terminal, Domestic Departures (Pre-Security)",
+            "Guest Reception Counter – Main Terminal, Domestic Departures (Pre-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "TNA",
+      "airport": "Yaoqiang International Airport",
+      "airportId": "10840",
+      "sheetTerm": "Main Terminal",
+      "matchedApiTerm": "Main Terminal",
+      "lounge": "First Class Lounge No. 1",
+      "verdict": "TERMINAL_HAS_LOUNGES_BUT_THIS_NAME_MISSING",
+      "apiTerminals": [
+        "Main Terminal"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "VIP area C – Main Terminal, Domestic Departures (Pre-Security)",
+        "Guest Reception Counter – Main Terminal, Domestic Departures (Pre-Security)"
+      ],
+      "foundOnOtherTerminal": null,
+      "otherTerminalLounges": [
+        {
+          "terminal": "Main Terminal",
+          "count": 2,
+          "titles": [
+            "VIP area C – Main Terminal, Domestic Departures (Pre-Security)",
+            "Guest Reception Counter – Main Terminal, Domestic Departures (Pre-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "MAD",
+      "airport": "Adolfo Suarez-Barajas Airport",
+      "airportId": "6022",
+      "sheetTerm": "Terminal 4S",
+      "matchedApiTerm": "Terminal 4",
+      "lounge": "GettSleep Madrid",
+      "verdict": "LOUNGE_ON_OTHER_TERMINAL",
+      "apiTerminals": [
+        "Terminal 1",
+        "Terminal 3",
+        "Terminal 2",
+        "Terminal 4",
+        "Terminal 4S"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "Sala VIP Plaza Mayor – Terminal 4, International Departures (Post-Security)",
+        "Sala VIP Retiro – Terminal 4, International Departures (Post-Security)",
+        "Sala VIP Retiro – Terminal 4, Domestic Departures (Post-Security)"
+      ],
+      "foundOnOtherTerminal": "Terminal 4S",
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 1",
+          "count": 1,
+          "titles": [
+            "Sala VIP Cibeles – Terminal 1, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 3",
+          "count": 1,
+          "titles": [
+            "Sala VIP Puerta del Sol – Terminal 3, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 2",
+          "count": 1,
+          "titles": [
+            "Sala VIP Puerta de Alcala – Terminal 2, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 4",
+          "count": 3,
+          "titles": [
+            "Sala VIP Plaza Mayor – Terminal 4, International Departures (Post-Security)",
+            "Sala VIP Retiro – Terminal 4, International Departures (Post-Security)",
+            "Sala VIP Retiro – Terminal 4, Domestic Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 4S",
+          "count": 3,
+          "titles": [
+            "Sala VIP Neptuno – Terminal 4S, International Departures (Post-Security)",
+            "GettSleep Madrid – Terminal 4S, Domestic Departures (Post-Security)",
+            "GettSleep Madrid – Terminal 4S, International Departures (Post-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "MAD",
+      "airport": "Adolfo Suarez-Barajas Airport",
+      "airportId": "6022",
+      "sheetTerm": "Terminal 4S",
+      "matchedApiTerm": "Terminal 4",
+      "lounge": "GettSleep Madrid",
+      "verdict": "LOUNGE_ON_OTHER_TERMINAL",
+      "apiTerminals": [
+        "Terminal 1",
+        "Terminal 3",
+        "Terminal 2",
+        "Terminal 4",
+        "Terminal 4S"
+      ],
+      "sheetTermInApi": true,
+      "loungesOnSheetTerm": [
+        "Sala VIP Plaza Mayor – Terminal 4, International Departures (Post-Security)",
+        "Sala VIP Retiro – Terminal 4, International Departures (Post-Security)",
+        "Sala VIP Retiro – Terminal 4, Domestic Departures (Post-Security)"
+      ],
+      "foundOnOtherTerminal": "Terminal 4S",
+      "otherTerminalLounges": [
+        {
+          "terminal": "Terminal 1",
+          "count": 1,
+          "titles": [
+            "Sala VIP Cibeles – Terminal 1, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 3",
+          "count": 1,
+          "titles": [
+            "Sala VIP Puerta del Sol – Terminal 3, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 2",
+          "count": 1,
+          "titles": [
+            "Sala VIP Puerta de Alcala – Terminal 2, International Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 4",
+          "count": 3,
+          "titles": [
+            "Sala VIP Plaza Mayor – Terminal 4, International Departures (Post-Security)",
+            "Sala VIP Retiro – Terminal 4, International Departures (Post-Security)",
+            "Sala VIP Retiro – Terminal 4, Domestic Departures (Post-Security)"
+          ]
+        },
+        {
+          "terminal": "Terminal 4S",
+          "count": 3,
+          "titles": [
+            "Sala VIP Neptuno – Terminal 4S, International Departures (Post-Security)",
+            "GettSleep Madrid – Terminal 4S, Domestic Departures (Post-Security)",
+            "GettSleep Madrid – Terminal 4S, International Departures (Post-Security)"
+          ]
+        }
+      ]
+    },
+    {
+      "iata": "TLV",
+      "airport": "Ben Gurion International Airport",
+      "sheetTerm": "Terminal 3",
+      "lounge": "Jetex C Lounge",
+      "verdict": "AIRPORT_MISSING",
+      "apiTerminals": [],
+      "sheetTermInApi": false,
+      "loungesOnSheetTerm": [],
+      "foundOnOtherTerminal": null
+    },
+    {
+      "iata": "NQY",
+      "airport": "Cornwall Airport",
+      "sheetTerm": "Main Terminal",
+      "lounge": "Executive Lounge",
+      "verdict": "AIRPORT_MISSING",
+      "apiTerminals": [],
+      "sheetTermInApi": false,
+      "loungesOnSheetTerm": [],
+      "foundOnOtherTerminal": null
+    }
+  ]
+}

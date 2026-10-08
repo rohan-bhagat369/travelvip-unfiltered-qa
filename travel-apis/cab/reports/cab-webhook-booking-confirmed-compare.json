@@ -1,0 +1,126 @@
+{
+  "br": "BR1788765729128745",
+  "providerBookingId": "TVIPWE070926125209LO34",
+  "summary": {
+    "PASS": 21,
+    "BUG": 0,
+    "NOTE": 2
+  },
+  "rows": [
+    {
+      "rule": "Envelope keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "event=booking.confirmed",
+      "status": "PASS",
+      "note": "booking.confirmed"
+    },
+    {
+      "rule": "type=cab",
+      "status": "PASS",
+      "note": "cab"
+    },
+    {
+      "rule": "version=1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "data.status=Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "data keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "providerBookingId TVIPWE…",
+      "status": "PASS",
+      "note": "TVIPWE070926125209LO34"
+    },
+    {
+      "rule": "details keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "pickup keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "drop keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "vehicle keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "operator keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "salesSummary keys vs PDF",
+      "status": "NOTE",
+      "note": "missing: basePrice"
+    },
+    {
+      "rule": "transaction[0] keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "contact keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "passenger keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "profile keys",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "otp 4-digit",
+      "status": "PASS",
+      "note": "2497"
+    },
+    {
+      "rule": "pickupDatetime +00:00 form",
+      "status": "PASS",
+      "note": "2026-09-16T18:35:58+00:00"
+    },
+    {
+      "rule": "amounts major units (not paise)",
+      "status": "PASS",
+      "note": "453.16"
+    },
+    {
+      "rule": "no cancellation on confirmed",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "profile.gender null",
+      "status": "NOTE",
+      "note": "PDF sample uses male/female; live null"
+    },
+    {
+      "rule": "assignment/trip absent",
+      "status": "PASS",
+      "note": "PDF: assignment/trip never on booking events"
+    }
+  ]
+}

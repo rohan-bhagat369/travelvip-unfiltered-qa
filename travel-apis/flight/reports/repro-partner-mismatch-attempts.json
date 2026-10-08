@@ -1,0 +1,212 @@
+{
+  "authAttempts": [
+    {
+      "partner_id": "demo",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "test",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "staging",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "travelvip",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "scandid",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "qa",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "partner2",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "vgm2",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "smt",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "default-smt",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "tvip",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "b2b",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "hotel",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "vgm",
+      "ok": false,
+      "http": 401,
+      "err": "Invalid credentials"
+    },
+    {
+      "partner_id": "VGM",
+      "ok": true,
+      "err": null
+    }
+  ],
+  "otherPartner": null,
+  "mismatchTries": [
+    {
+      "approach": "bad_partner_key",
+      "badKey": "invalid-partner-key",
+      "http": 401,
+      "code": "INVALID_ACCESS_TOKEN",
+      "message": "Invalid access token",
+      "body": {
+        "error": {
+          "code": "INVALID_ACCESS_TOKEN",
+          "message": "Invalid access token",
+          "details": null,
+          "timestamp": "2026-08-06T14:39:56Z",
+          "request_id": "req-1786027195891"
+        },
+        "_meta": {
+          "correlation_id": "ce677ba5-f59d-4987-9638-73d5d12c0528"
+        }
+      }
+    },
+    {
+      "approach": "bad_partner_key",
+      "badKey": "pk_dummy_123",
+      "http": 401,
+      "code": "INVALID_ACCESS_TOKEN",
+      "message": "Invalid access token",
+      "body": {
+        "error": {
+          "code": "INVALID_ACCESS_TOKEN",
+          "message": "Invalid access token",
+          "details": null,
+          "timestamp": "2026-08-06T14:39:56Z",
+          "request_id": "req-1786027196009"
+        },
+        "_meta": {
+          "correlation_id": "ce677ba5-f59d-4987-9638-73d5d12c0528"
+        }
+      }
+    },
+    {
+      "approach": "bad_partner_key",
+      "badKey": "",
+      "http": 422,
+      "code": "RESCHEDULING_STAY_COMPLETED",
+      "message": "The stay for booking 'BR1785243775806830' has already started and cannot be rescheduled.",
+      "body": {
+        "error": {
+          "code": "RESCHEDULING_STAY_COMPLETED",
+          "message": "The stay for booking 'BR1785243775806830' has already started and cannot be rescheduled.",
+          "details": "Booking 'BR1785243775806830' (Taj Dubai) was booked from 2026-07-29. Only upcoming stays can be rescheduled.",
+          "timestamp": "2026-08-06T14:39:57Z",
+          "request_id": "req-1786027196130"
+        },
+        "_meta": {
+          "correlation_id": "ce677ba5-f59d-4987-9638-73d5d12c0528"
+        }
+      }
+    },
+    {
+      "approach": "bad_partner_key",
+      "badKey": "Bearer gmr_at_1vMDkdelhJerCyvPzvpojj6vau",
+      "http": 401,
+      "code": "INVALID_ACCESS_TOKEN",
+      "message": "Invalid access token",
+      "body": {
+        "error": {
+          "code": "INVALID_ACCESS_TOKEN",
+          "message": "Invalid access token",
+          "details": null,
+          "timestamp": "2026-08-06T14:39:57Z",
+          "request_id": "req-1786027196301"
+        },
+        "_meta": {
+          "correlation_id": "ce677ba5-f59d-4987-9638-73d5d12c0528"
+        }
+      }
+    },
+    {
+      "approach": "cancel_bad_partner_key",
+      "badKey": "invalid-partner-key",
+      "http": 401,
+      "code": "INVALID_ACCESS_TOKEN",
+      "message": "Invalid access token",
+      "body": {
+        "error": {
+          "code": "INVALID_ACCESS_TOKEN",
+          "message": "Invalid access token",
+          "details": null,
+          "timestamp": "2026-08-06T14:39:57Z",
+          "request_id": "req-1786027196503"
+        },
+        "_meta": {
+          "correlation_id": "ce677ba5-f59d-4987-9638-73d5d12c0528"
+        }
+      }
+    },
+    {
+      "approach": "cancel_bad_partner_key",
+      "badKey": "pk_dummy_456",
+      "http": 401,
+      "code": "INVALID_ACCESS_TOKEN",
+      "message": "Invalid access token",
+      "body": {
+        "error": {
+          "code": "INVALID_ACCESS_TOKEN",
+          "message": "Invalid access token",
+          "details": null,
+          "timestamp": "2026-08-06T14:39:57Z",
+          "request_id": "req-1786027196617"
+        },
+        "_meta": {
+          "correlation_id": "ce677ba5-f59d-4987-9638-73d5d12c0528"
+        }
+      }
+    }
+  ],
+  "stayCompletedHit": true,
+  "stayBr": "BR1785243775806830"
+}

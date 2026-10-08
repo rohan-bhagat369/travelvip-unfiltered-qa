@@ -1,0 +1,2274 @@
+{
+  "ranAt": "2026-09-11T15:21:46.118Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "docNote": "Error contract FB-2l: Only one passenger is allowed for a cab booking.",
+  "summary": {
+    "PASS": 36,
+    "BUG": 0,
+    "NOTE": 4,
+    "NOT TESTED": 0
+  },
+  "limitFinding": [
+    {
+      "id": "AIRPORT_DEPARTURE.P2",
+      "cabType": "AIRPORT_DEPARTURE",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.P3",
+      "cabType": "AIRPORT_DEPARTURE",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "AIRPORT_DEPARTURE.P2MIX",
+      "cabType": "AIRPORT_DEPARTURE",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.P2",
+      "cabType": "AIRPORT_ARRIVAL",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.P3",
+      "cabType": "AIRPORT_ARRIVAL",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "AIRPORT_ARRIVAL.P2MIX",
+      "cabType": "AIRPORT_ARRIVAL",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "OUTSTATION.P2",
+      "cabType": "OUTSTATION",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "OUTSTATION.P3",
+      "cabType": "OUTSTATION",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "OUTSTATION.P2MIX",
+      "cabType": "OUTSTATION",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "RENTAL.P2",
+      "cabType": "RENTAL",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "RENTAL.P3",
+      "cabType": "RENTAL",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    },
+    {
+      "id": "RENTAL.P2MIX",
+      "cabType": "RENTAL",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "accepted": false
+    }
+  ],
+  "bugs": [],
+  "byType": {
+    "AIRPORT_DEPARTURE": {
+      "pricedOk": true,
+      "cases": [
+        {
+          "label": "1 ADT lead",
+          "passengerCount": 1,
+          "http": 200,
+          "code": null,
+          "message": null,
+          "status": "PASS",
+          "br": "BR1789139874991329",
+          "accepted": true,
+          "data": {
+            "status": "Pending",
+            "statusCode": 200,
+            "bookingRefId": "BR1789139874991329",
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "ACCEPT 1 pax",
+          "actual": "BR=BR1789139874991329 status=Pending",
+          "id": "AIRPORT_DEPARTURE.P1",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "1 adult lead passenger → accept"
+        },
+        {
+          "label": "0 passengers",
+          "passengerCount": 0,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:06Z",
+              "request_id": "req-1789139887375"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "AIRPORT_DEPARTURE.P0",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "0 passengers → reject"
+        },
+        {
+          "label": "omit passengers",
+          "passengerCount": null,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:09Z",
+              "request_id": "req-1789139890060"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "status": "PASS",
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "AIRPORT_DEPARTURE.POMIT",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "omit passengers → reject"
+        },
+        {
+          "label": "2 ADT",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:11Z",
+              "request_id": "req-1789139892487"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "AIRPORT_DEPARTURE.P2",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "2 adults → reject (limit 1)"
+        },
+        {
+          "label": "3 ADT",
+          "passengerCount": 3,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:14Z",
+              "request_id": "req-1789139894971"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "AIRPORT_DEPARTURE.P3",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "3 adults → reject (limit 1)"
+        },
+        {
+          "label": "1ADT+1CHD",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:16Z",
+              "request_id": "req-1789139897560"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "AIRPORT_DEPARTURE.P2MIX",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "1 ADT + 1 CHD → reject (limit 1)"
+        },
+        {
+          "label": "2 leads",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:19Z",
+              "request_id": "req-1789139900006"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "AIRPORT_DEPARTURE.P2LEAD",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "2 passengers both isLead → reject"
+        },
+        {
+          "label": "1 ADT not lead",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+          "status": "NOTE",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:21Z",
+              "request_id": "req-1789139902394"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "id": "AIRPORT_DEPARTURE.P1NOLEAD",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "1 ADT with isLead=false",
+          "expect": "Document behaviour (reject or accept)",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots."
+        },
+        {
+          "label": "bad paxType",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:23Z",
+              "request_id": "req-1789139904848"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "id": "AIRPORT_DEPARTURE.PBADTYPE",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "invalid paxType DOG → reject"
+        },
+        {
+          "label": "no firstName",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:26Z",
+              "request_id": "req-1789139907286"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "AIRPORT_DEPARTURE.PNOFN",
+          "cabType": "AIRPORT_DEPARTURE",
+          "rule": "missing profile.firstName → reject"
+        }
+      ]
+    },
+    "AIRPORT_ARRIVAL": {
+      "pricedOk": true,
+      "cases": [
+        {
+          "label": "1 ADT lead",
+          "passengerCount": 1,
+          "http": 200,
+          "code": null,
+          "message": null,
+          "status": "PASS",
+          "br": "BR1789139910872037",
+          "accepted": true,
+          "data": {
+            "status": "Pending",
+            "statusCode": 200,
+            "bookingRefId": "BR1789139910872037",
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "ACCEPT 1 pax",
+          "actual": "BR=BR1789139910872037 status=Pending",
+          "id": "AIRPORT_ARRIVAL.P1",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "1 adult lead passenger → accept"
+        },
+        {
+          "label": "0 passengers",
+          "passengerCount": 0,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:42Z",
+              "request_id": "req-1789139923474"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "AIRPORT_ARRIVAL.P0",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "0 passengers → reject"
+        },
+        {
+          "label": "omit passengers",
+          "passengerCount": null,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:44Z",
+              "request_id": "req-1789139925778"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "status": "PASS",
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "AIRPORT_ARRIVAL.POMIT",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "omit passengers → reject"
+        },
+        {
+          "label": "2 ADT",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:47Z",
+              "request_id": "req-1789139927916"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "AIRPORT_ARRIVAL.P2",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "2 adults → reject (limit 1)"
+        },
+        {
+          "label": "3 ADT",
+          "passengerCount": 3,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:49Z",
+              "request_id": "req-1789139930043"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "AIRPORT_ARRIVAL.P3",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "3 adults → reject (limit 1)"
+        },
+        {
+          "label": "1ADT+1CHD",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:51Z",
+              "request_id": "req-1789139932119"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "AIRPORT_ARRIVAL.P2MIX",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "1 ADT + 1 CHD → reject (limit 1)"
+        },
+        {
+          "label": "2 leads",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:53Z",
+              "request_id": "req-1789139934321"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "AIRPORT_ARRIVAL.P2LEAD",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "2 passengers both isLead → reject"
+        },
+        {
+          "label": "1 ADT not lead",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+          "status": "NOTE",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:55Z",
+              "request_id": "req-1789139936512"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "id": "AIRPORT_ARRIVAL.P1NOLEAD",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "1 ADT with isLead=false",
+          "expect": "Document behaviour (reject or accept)",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots."
+        },
+        {
+          "label": "bad paxType",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:57Z",
+              "request_id": "req-1789139938610"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "id": "AIRPORT_ARRIVAL.PBADTYPE",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "invalid paxType DOG → reject"
+        },
+        {
+          "label": "no firstName",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:18:59Z",
+              "request_id": "req-1789139940759"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "AIRPORT_ARRIVAL.PNOFN",
+          "cabType": "AIRPORT_ARRIVAL",
+          "rule": "missing profile.firstName → reject"
+        }
+      ]
+    },
+    "OUTSTATION": {
+      "pricedOk": true,
+      "cases": [
+        {
+          "label": "1 ADT lead",
+          "passengerCount": 1,
+          "http": 200,
+          "code": null,
+          "message": null,
+          "status": "PASS",
+          "br": "BR1789139944545610",
+          "accepted": true,
+          "data": {
+            "status": "Pending",
+            "statusCode": 200,
+            "bookingRefId": "BR1789139944545610",
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "ACCEPT 1 pax",
+          "actual": "BR=BR1789139944545610 status=Pending",
+          "id": "OUTSTATION.P1",
+          "cabType": "OUTSTATION",
+          "rule": "1 adult lead passenger → accept"
+        },
+        {
+          "label": "0 passengers",
+          "passengerCount": 0,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:19:16Z",
+              "request_id": "req-1789139957777"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "OUTSTATION.P0",
+          "cabType": "OUTSTATION",
+          "rule": "0 passengers → reject"
+        },
+        {
+          "label": "omit passengers",
+          "passengerCount": null,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:19:19Z",
+              "request_id": "req-1789139960388"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "status": "PASS",
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "OUTSTATION.POMIT",
+          "cabType": "OUTSTATION",
+          "rule": "omit passengers → reject"
+        },
+        {
+          "label": "2 ADT",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:19:21Z",
+              "request_id": "req-1789139962732"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "OUTSTATION.P2",
+          "cabType": "OUTSTATION",
+          "rule": "2 adults → reject (limit 1)"
+        },
+        {
+          "label": "3 ADT",
+          "passengerCount": 3,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:19:24Z",
+              "request_id": "req-1789139965124"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "OUTSTATION.P3",
+          "cabType": "OUTSTATION",
+          "rule": "3 adults → reject (limit 1)"
+        },
+        {
+          "label": "1ADT+1CHD",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:19:26Z",
+              "request_id": "req-1789139967417"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "OUTSTATION.P2MIX",
+          "cabType": "OUTSTATION",
+          "rule": "1 ADT + 1 CHD → reject (limit 1)"
+        },
+        {
+          "label": "2 leads",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:19:28Z",
+              "request_id": "req-1789139969797"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "OUTSTATION.P2LEAD",
+          "cabType": "OUTSTATION",
+          "rule": "2 passengers both isLead → reject"
+        },
+        {
+          "label": "1 ADT not lead",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+          "status": "NOTE",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+              "details": null,
+              "timestamp": "2026-09-11T15:19:31Z",
+              "request_id": "req-1789139972153"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "id": "OUTSTATION.P1NOLEAD",
+          "cabType": "OUTSTATION",
+          "rule": "1 ADT with isLead=false",
+          "expect": "Document behaviour (reject or accept)",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots."
+        },
+        {
+          "label": "bad paxType",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+              "details": null,
+              "timestamp": "2026-09-11T15:19:33Z",
+              "request_id": "req-1789139974581"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "id": "OUTSTATION.PBADTYPE",
+          "cabType": "OUTSTATION",
+          "rule": "invalid paxType DOG → reject"
+        },
+        {
+          "label": "no firstName",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:19:36Z",
+              "request_id": "req-1789139977059"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "OUTSTATION.PNOFN",
+          "cabType": "OUTSTATION",
+          "rule": "missing profile.firstName → reject"
+        }
+      ]
+    },
+    "RENTAL": {
+      "pricedOk": true,
+      "cases": [
+        {
+          "label": "1 ADT lead",
+          "passengerCount": 1,
+          "http": 200,
+          "code": null,
+          "message": null,
+          "status": "PASS",
+          "br": "BR1789139997961887",
+          "accepted": true,
+          "data": {
+            "status": "Pending",
+            "statusCode": 200,
+            "bookingRefId": "BR1789139997961887",
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "ACCEPT 1 pax",
+          "actual": "BR=BR1789139997961887 status=Pending",
+          "id": "RENTAL.P1",
+          "cabType": "RENTAL",
+          "rule": "1 adult lead passenger → accept"
+        },
+        {
+          "label": "0 passengers",
+          "passengerCount": 0,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:20:18Z",
+              "request_id": "req-1789140019162"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "RENTAL.P0",
+          "cabType": "RENTAL",
+          "rule": "0 passengers → reject"
+        },
+        {
+          "label": "omit passengers",
+          "passengerCount": null,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:20:29Z",
+              "request_id": "req-1789140030249"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "status": "PASS",
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "RENTAL.POMIT",
+          "cabType": "RENTAL",
+          "rule": "omit passengers → reject"
+        },
+        {
+          "label": "2 ADT",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:20:40Z",
+              "request_id": "req-1789140041112"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "RENTAL.P2",
+          "cabType": "RENTAL",
+          "rule": "2 adults → reject (limit 1)"
+        },
+        {
+          "label": "3 ADT",
+          "passengerCount": 3,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:20:50Z",
+              "request_id": "req-1789140051881"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "RENTAL.P3",
+          "cabType": "RENTAL",
+          "rule": "3 adults → reject (limit 1)"
+        },
+        {
+          "label": "1ADT+1CHD",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:21:01Z",
+              "request_id": "req-1789140062591"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "RENTAL.P2MIX",
+          "cabType": "RENTAL",
+          "rule": "1 ADT + 1 CHD → reject (limit 1)"
+        },
+        {
+          "label": "2 leads",
+          "passengerCount": 2,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Only one passenger is allowed for a cab booking.",
+              "details": null,
+              "timestamp": "2026-09-11T15:21:12Z",
+              "request_id": "req-1789140073353"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+          "id": "RENTAL.P2LEAD",
+          "cabType": "RENTAL",
+          "rule": "2 passengers both isLead → reject"
+        },
+        {
+          "label": "1 ADT not lead",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+          "status": "NOTE",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+              "details": null,
+              "timestamp": "2026-09-11T15:21:23Z",
+              "request_id": "req-1789140084221"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "id": "RENTAL.P1NOLEAD",
+          "cabType": "RENTAL",
+          "rule": "1 ADT with isLead=false",
+          "expect": "Document behaviour (reject or accept)",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots."
+        },
+        {
+          "label": "bad paxType",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+              "details": null,
+              "timestamp": "2026-09-11T15:21:34Z",
+              "request_id": "req-1789140095137"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "id": "RENTAL.PBADTYPE",
+          "cabType": "RENTAL",
+          "rule": "invalid paxType DOG → reject"
+        },
+        {
+          "label": "no firstName",
+          "passengerCount": 1,
+          "http": 400,
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "status": "PASS",
+          "br": null,
+          "accepted": false,
+          "data": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Passenger first name is required.",
+              "details": null,
+              "timestamp": "2026-09-11T15:21:45Z",
+              "request_id": "req-1789140106039"
+            },
+            "_meta": {
+              "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+            }
+          },
+          "expect": "REJECT VALIDATION_ERROR",
+          "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+          "id": "RENTAL.PNOFN",
+          "cabType": "RENTAL",
+          "rule": "missing profile.firstName → reject"
+        }
+      ]
+    }
+  },
+  "rows": [
+    {
+      "label": "1 ADT lead",
+      "passengerCount": 1,
+      "http": 200,
+      "code": null,
+      "message": null,
+      "status": "PASS",
+      "br": "BR1789139874991329",
+      "accepted": true,
+      "data": {
+        "status": "Pending",
+        "statusCode": 200,
+        "bookingRefId": "BR1789139874991329",
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "ACCEPT 1 pax",
+      "actual": "BR=BR1789139874991329 status=Pending",
+      "id": "AIRPORT_DEPARTURE.P1",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "1 adult lead passenger → accept"
+    },
+    {
+      "label": "0 passengers",
+      "passengerCount": 0,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:06Z",
+          "request_id": "req-1789139887375"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "AIRPORT_DEPARTURE.P0",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "0 passengers → reject"
+    },
+    {
+      "label": "omit passengers",
+      "passengerCount": null,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:09Z",
+          "request_id": "req-1789139890060"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "status": "PASS",
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "AIRPORT_DEPARTURE.POMIT",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "omit passengers → reject"
+    },
+    {
+      "label": "2 ADT",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:11Z",
+          "request_id": "req-1789139892487"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "AIRPORT_DEPARTURE.P2",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "2 adults → reject (limit 1)"
+    },
+    {
+      "label": "3 ADT",
+      "passengerCount": 3,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:14Z",
+          "request_id": "req-1789139894971"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "AIRPORT_DEPARTURE.P3",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "3 adults → reject (limit 1)"
+    },
+    {
+      "label": "1ADT+1CHD",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:16Z",
+          "request_id": "req-1789139897560"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "AIRPORT_DEPARTURE.P2MIX",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "1 ADT + 1 CHD → reject (limit 1)"
+    },
+    {
+      "label": "2 leads",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:19Z",
+          "request_id": "req-1789139900006"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "AIRPORT_DEPARTURE.P2LEAD",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "2 passengers both isLead → reject"
+    },
+    {
+      "label": "1 ADT not lead",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+      "status": "NOTE",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:21Z",
+          "request_id": "req-1789139902394"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "id": "AIRPORT_DEPARTURE.P1NOLEAD",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "1 ADT with isLead=false",
+      "expect": "Document behaviour (reject or accept)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots."
+    },
+    {
+      "label": "bad paxType",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:23Z",
+          "request_id": "req-1789139904848"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+      "id": "AIRPORT_DEPARTURE.PBADTYPE",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "invalid paxType DOG → reject"
+    },
+    {
+      "label": "no firstName",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:26Z",
+          "request_id": "req-1789139907286"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "AIRPORT_DEPARTURE.PNOFN",
+      "cabType": "AIRPORT_DEPARTURE",
+      "rule": "missing profile.firstName → reject"
+    },
+    {
+      "label": "1 ADT lead",
+      "passengerCount": 1,
+      "http": 200,
+      "code": null,
+      "message": null,
+      "status": "PASS",
+      "br": "BR1789139910872037",
+      "accepted": true,
+      "data": {
+        "status": "Pending",
+        "statusCode": 200,
+        "bookingRefId": "BR1789139910872037",
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "ACCEPT 1 pax",
+      "actual": "BR=BR1789139910872037 status=Pending",
+      "id": "AIRPORT_ARRIVAL.P1",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "1 adult lead passenger → accept"
+    },
+    {
+      "label": "0 passengers",
+      "passengerCount": 0,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:42Z",
+          "request_id": "req-1789139923474"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "AIRPORT_ARRIVAL.P0",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "0 passengers → reject"
+    },
+    {
+      "label": "omit passengers",
+      "passengerCount": null,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:44Z",
+          "request_id": "req-1789139925778"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "status": "PASS",
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "AIRPORT_ARRIVAL.POMIT",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "omit passengers → reject"
+    },
+    {
+      "label": "2 ADT",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:47Z",
+          "request_id": "req-1789139927916"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "AIRPORT_ARRIVAL.P2",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "2 adults → reject (limit 1)"
+    },
+    {
+      "label": "3 ADT",
+      "passengerCount": 3,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:49Z",
+          "request_id": "req-1789139930043"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "AIRPORT_ARRIVAL.P3",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "3 adults → reject (limit 1)"
+    },
+    {
+      "label": "1ADT+1CHD",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:51Z",
+          "request_id": "req-1789139932119"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "AIRPORT_ARRIVAL.P2MIX",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "1 ADT + 1 CHD → reject (limit 1)"
+    },
+    {
+      "label": "2 leads",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:53Z",
+          "request_id": "req-1789139934321"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "AIRPORT_ARRIVAL.P2LEAD",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "2 passengers both isLead → reject"
+    },
+    {
+      "label": "1 ADT not lead",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+      "status": "NOTE",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:55Z",
+          "request_id": "req-1789139936512"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "id": "AIRPORT_ARRIVAL.P1NOLEAD",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "1 ADT with isLead=false",
+      "expect": "Document behaviour (reject or accept)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots."
+    },
+    {
+      "label": "bad paxType",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:57Z",
+          "request_id": "req-1789139938610"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+      "id": "AIRPORT_ARRIVAL.PBADTYPE",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "invalid paxType DOG → reject"
+    },
+    {
+      "label": "no firstName",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:18:59Z",
+          "request_id": "req-1789139940759"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "AIRPORT_ARRIVAL.PNOFN",
+      "cabType": "AIRPORT_ARRIVAL",
+      "rule": "missing profile.firstName → reject"
+    },
+    {
+      "label": "1 ADT lead",
+      "passengerCount": 1,
+      "http": 200,
+      "code": null,
+      "message": null,
+      "status": "PASS",
+      "br": "BR1789139944545610",
+      "accepted": true,
+      "data": {
+        "status": "Pending",
+        "statusCode": 200,
+        "bookingRefId": "BR1789139944545610",
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "ACCEPT 1 pax",
+      "actual": "BR=BR1789139944545610 status=Pending",
+      "id": "OUTSTATION.P1",
+      "cabType": "OUTSTATION",
+      "rule": "1 adult lead passenger → accept"
+    },
+    {
+      "label": "0 passengers",
+      "passengerCount": 0,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:19:16Z",
+          "request_id": "req-1789139957777"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "OUTSTATION.P0",
+      "cabType": "OUTSTATION",
+      "rule": "0 passengers → reject"
+    },
+    {
+      "label": "omit passengers",
+      "passengerCount": null,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:19:19Z",
+          "request_id": "req-1789139960388"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "status": "PASS",
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "OUTSTATION.POMIT",
+      "cabType": "OUTSTATION",
+      "rule": "omit passengers → reject"
+    },
+    {
+      "label": "2 ADT",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:19:21Z",
+          "request_id": "req-1789139962732"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "OUTSTATION.P2",
+      "cabType": "OUTSTATION",
+      "rule": "2 adults → reject (limit 1)"
+    },
+    {
+      "label": "3 ADT",
+      "passengerCount": 3,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:19:24Z",
+          "request_id": "req-1789139965124"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "OUTSTATION.P3",
+      "cabType": "OUTSTATION",
+      "rule": "3 adults → reject (limit 1)"
+    },
+    {
+      "label": "1ADT+1CHD",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:19:26Z",
+          "request_id": "req-1789139967417"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "OUTSTATION.P2MIX",
+      "cabType": "OUTSTATION",
+      "rule": "1 ADT + 1 CHD → reject (limit 1)"
+    },
+    {
+      "label": "2 leads",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:19:28Z",
+          "request_id": "req-1789139969797"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "OUTSTATION.P2LEAD",
+      "cabType": "OUTSTATION",
+      "rule": "2 passengers both isLead → reject"
+    },
+    {
+      "label": "1 ADT not lead",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+      "status": "NOTE",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+          "details": null,
+          "timestamp": "2026-09-11T15:19:31Z",
+          "request_id": "req-1789139972153"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "id": "OUTSTATION.P1NOLEAD",
+      "cabType": "OUTSTATION",
+      "rule": "1 ADT with isLead=false",
+      "expect": "Document behaviour (reject or accept)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots."
+    },
+    {
+      "label": "bad paxType",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "details": null,
+          "timestamp": "2026-09-11T15:19:33Z",
+          "request_id": "req-1789139974581"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+      "id": "OUTSTATION.PBADTYPE",
+      "cabType": "OUTSTATION",
+      "rule": "invalid paxType DOG → reject"
+    },
+    {
+      "label": "no firstName",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:19:36Z",
+          "request_id": "req-1789139977059"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "OUTSTATION.PNOFN",
+      "cabType": "OUTSTATION",
+      "rule": "missing profile.firstName → reject"
+    },
+    {
+      "label": "1 ADT lead",
+      "passengerCount": 1,
+      "http": 200,
+      "code": null,
+      "message": null,
+      "status": "PASS",
+      "br": "BR1789139997961887",
+      "accepted": true,
+      "data": {
+        "status": "Pending",
+        "statusCode": 200,
+        "bookingRefId": "BR1789139997961887",
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "ACCEPT 1 pax",
+      "actual": "BR=BR1789139997961887 status=Pending",
+      "id": "RENTAL.P1",
+      "cabType": "RENTAL",
+      "rule": "1 adult lead passenger → accept"
+    },
+    {
+      "label": "0 passengers",
+      "passengerCount": 0,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:20:18Z",
+          "request_id": "req-1789140019162"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "RENTAL.P0",
+      "cabType": "RENTAL",
+      "rule": "0 passengers → reject"
+    },
+    {
+      "label": "omit passengers",
+      "passengerCount": null,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:20:29Z",
+          "request_id": "req-1789140030249"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "status": "PASS",
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "RENTAL.POMIT",
+      "cabType": "RENTAL",
+      "rule": "omit passengers → reject"
+    },
+    {
+      "label": "2 ADT",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:20:40Z",
+          "request_id": "req-1789140041112"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "RENTAL.P2",
+      "cabType": "RENTAL",
+      "rule": "2 adults → reject (limit 1)"
+    },
+    {
+      "label": "3 ADT",
+      "passengerCount": 3,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:20:50Z",
+          "request_id": "req-1789140051881"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "RENTAL.P3",
+      "cabType": "RENTAL",
+      "rule": "3 adults → reject (limit 1)"
+    },
+    {
+      "label": "1ADT+1CHD",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:21:01Z",
+          "request_id": "req-1789140062591"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "RENTAL.P2MIX",
+      "cabType": "RENTAL",
+      "rule": "1 ADT + 1 CHD → reject (limit 1)"
+    },
+    {
+      "label": "2 leads",
+      "passengerCount": 2,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Only one passenger is allowed for a cab booking.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Only one passenger is allowed for a cab booking.",
+          "details": null,
+          "timestamp": "2026-09-11T15:21:12Z",
+          "request_id": "req-1789140073353"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Only one passenger is allowed for a cab booking.",
+      "id": "RENTAL.P2LEAD",
+      "cabType": "RENTAL",
+      "rule": "2 passengers both isLead → reject"
+    },
+    {
+      "label": "1 ADT not lead",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+      "status": "NOTE",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.",
+          "details": null,
+          "timestamp": "2026-09-11T15:21:23Z",
+          "request_id": "req-1789140084221"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "id": "RENTAL.P1NOLEAD",
+      "cabType": "RENTAL",
+      "rule": "1 ADT with isLead=false",
+      "expect": "Document behaviour (reject or accept)",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name \"Pax1\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots."
+    },
+    {
+      "label": "bad paxType",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+          "details": null,
+          "timestamp": "2026-09-11T15:21:34Z",
+          "request_id": "req-1789140095137"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Invalid passenger paxType \"DOG\". Allowed values: ADT, CHD, INF.",
+      "id": "RENTAL.PBADTYPE",
+      "cabType": "RENTAL",
+      "rule": "invalid paxType DOG → reject"
+    },
+    {
+      "label": "no firstName",
+      "passengerCount": 1,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Passenger first name is required.",
+      "status": "PASS",
+      "br": null,
+      "accepted": false,
+      "data": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Passenger first name is required.",
+          "details": null,
+          "timestamp": "2026-09-11T15:21:45Z",
+          "request_id": "req-1789140106039"
+        },
+        "_meta": {
+          "correlation_id": "097e780a-dc50-463c-beb5-f0ee688ae3b6"
+        }
+      },
+      "expect": "REJECT VALIDATION_ERROR",
+      "actual": "HTTP 400 code=VALIDATION_ERROR msg=Passenger first name is required.",
+      "id": "RENTAL.PNOFN",
+      "cabType": "RENTAL",
+      "rule": "missing profile.firstName → reject"
+    }
+  ]
+}

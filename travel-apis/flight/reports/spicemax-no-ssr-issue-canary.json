@@ -1,0 +1,45 @@
+{
+  "ranAt": "2026-08-18T09:03:06.986Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "spice": {
+    "label": "SpiceMax",
+    "searchId": "srch_026ea1e7254a47ec893150d95f70c3b3",
+    "total": 7852
+  },
+  "pricingMandatory": {
+    "meal": true,
+    "seat": true,
+    "baggage": false,
+    "types": [
+      "MEAL",
+      "SEAT"
+    ]
+  },
+  "payloadPassengerSsr": [
+    {
+      "paxId": "PAX1",
+      "ssr": {
+        "baggage": [],
+        "meals": [],
+        "seats": []
+      }
+    }
+  ],
+  "issueHttp": 400,
+  "issueOk": false,
+  "issueData": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Validation failed",
+      "details": [
+        "'data.passengers[0]' (Rohan Bhagat) must have a meal selected for DEL-BOM (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger",
+        "'data.passengers[0]' (Rohan Bhagat) must have a seat selected for DEL-BOM (leg 1, ONWARD); this flight makes seat selection mandatory for every passenger"
+      ],
+      "timestamp": "2026-08-18T09:03:06Z",
+      "request_id": "req-1787043786752"
+    },
+    "_meta": {
+      "correlation_id": "247c6a5e-cbe4-4b77-8874-ddae0269d7e0"
+    }
+  }
+}

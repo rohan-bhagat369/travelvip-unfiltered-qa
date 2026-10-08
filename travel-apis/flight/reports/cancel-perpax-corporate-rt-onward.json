@@ -1,0 +1,236 @@
+{
+  "ranAt": "2026-08-12T21:00:56.194Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "scenario": "S4 CORPORATE RT cancel onward only",
+  "fixture": {
+    "br": "BR1786568422897124",
+    "status": "Confirmed",
+    "fareType": "CORPORATE",
+    "journeyType": "ROUND_TRIP",
+    "route": "DEL-BOM",
+    "totalAmount": 15968,
+    "onward": {
+      "pnr": "G122SA",
+      "onlineCancellation": true,
+      "airline": "6E"
+    },
+    "return": {
+      "pnr": "FR71YC",
+      "onlineCancellation": true,
+      "airline": "6E"
+    }
+  },
+  "request": {
+    "action": "PENALTY/CANCEL",
+    "pnr": "G122SA",
+    "cancellationPaxList": null
+  },
+  "penalty": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786568422897124",
+      "pnr": "G122SA",
+      "cancellationRequest": {
+        "status": "Penalty Fetched",
+        "estimatedCancellationCharge": 2698,
+        "estimatedRefund": 5254,
+        "totalAmount": 7952,
+        "totalPenalty": 2698,
+        "perPax": {
+          "paxCount": 2,
+          "chargedPax": 2,
+          "amount": 3976,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 999,
+          "cancellationFee": 350,
+          "refund": 2627,
+          "penaltyBasis": "PROVIDER"
+        },
+        "createdAt": "2026-08-12T21:00:38Z"
+      }
+    },
+    "status": "Penalty Fetched",
+    "totalAmount": 7952,
+    "charge": 2698,
+    "refund": 5254,
+    "perPax": {
+      "paxCount": 2,
+      "chargedPax": 2,
+      "amount": 3976,
+      "convenienceFee": 0,
+      "ssr": 0,
+      "flexiCancelFee": 0,
+      "penalty": 999,
+      "cancellationFee": 350,
+      "refund": 2627,
+      "penaltyBasis": "PROVIDER"
+    },
+    "paxScope": null,
+    "message": null,
+    "error": null
+  },
+  "cancel": {
+    "http": 200,
+    "raw": {
+      "bookingReference": "BR1786568422897124",
+      "pnr": "G122SA",
+      "cancellationRequest": {
+        "status": "Cancelled",
+        "estimatedCancellationCharge": 2698,
+        "estimatedRefund": 5254,
+        "totalAmount": 7952,
+        "totalPenalty": 2698,
+        "perPax": {
+          "paxCount": 2,
+          "chargedPax": 2,
+          "amount": 3976,
+          "convenienceFee": 0,
+          "ssr": 0,
+          "flexiCancelFee": 0,
+          "penalty": 999,
+          "cancellationFee": 350,
+          "refund": 2627,
+          "penaltyBasis": "PROVIDER"
+        },
+        "createdAt": "2026-08-12T21:00:40Z"
+      },
+      "refundSummary": {
+        "amount": 5254,
+        "cancellationCharge": 2698,
+        "totalPenalty": 2698,
+        "cancellationChargeBreakup": {
+          "airlineCancellationFee": 1998,
+          "convenienceFee": 0,
+          "serviceFee": 700,
+          "flexicancelFee": 0
+        }
+      },
+      "transaction": {
+        "id": "600",
+        "amount": 5254,
+        "currency": "INR",
+        "paymentMethod": "wallet",
+        "type": "refund",
+        "status": "success",
+        "createdAt": "2026-08-12T21:00:53Z",
+        "completedAt": "2026-08-12T21:00:53Z"
+      }
+    },
+    "status": "Cancelled",
+    "totalAmount": 7952,
+    "charge": 2698,
+    "refund": 5254,
+    "perPax": {
+      "paxCount": 2,
+      "chargedPax": 2,
+      "amount": 3976,
+      "convenienceFee": 0,
+      "ssr": 0,
+      "flexiCancelFee": 0,
+      "penalty": 999,
+      "cancellationFee": 350,
+      "refund": 2627,
+      "penaltyBasis": "PROVIDER"
+    },
+    "paxScope": null,
+    "message": null,
+    "error": null
+  },
+  "after": {
+    "bookingStatus": "Partially cancelled",
+    "onward": {
+      "pnr": "G122SA",
+      "onlineCancellation": true
+    },
+    "return": {
+      "pnr": "FR71YC",
+      "onlineCancellation": true
+    }
+  },
+  "table": [
+    {
+      "rule": "S4 PENALTY onward: amounts present",
+      "expected": "totalAmount, charge, refund numeric",
+      "actual": "total=7952 charge=2698 refund=5254 msg=",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 PENALTY onward: refund = total − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=5254 total=7952 charge=2698",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 PENALTY onward: perPax present basis!=NONE",
+      "expected": "perPax chargedPax=2 (or paxCount), penaltyBasis not NONE",
+      "actual": "{\"paxCount\":2,\"chargedPax\":2,\"amount\":3976,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":999,\"cancellationFee\":350,\"refund\":2627,\"penaltyBasis\":\"PROVIDER\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 PENALTY onward: status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled",
+      "actual": "Penalty Fetched",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 PENALTY onward: not PARTIAL_PAX (whole onward PNR)",
+      "expected": "paxScope absent or not PARTIAL_PAX",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 CANCEL onward: amounts present",
+      "expected": "totalAmount, charge, refund numeric",
+      "actual": "total=7952 charge=2698 refund=5254 msg=",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 CANCEL onward: refund = total − charge",
+      "expected": "estimatedRefund === totalAmount - estimatedCancellationCharge",
+      "actual": "refund=5254 total=7952 charge=2698",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 CANCEL onward: perPax present basis!=NONE",
+      "expected": "perPax chargedPax=2 (or paxCount), penaltyBasis not NONE",
+      "actual": "{\"paxCount\":2,\"chargedPax\":2,\"amount\":3976,\"convenienceFee\":0,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":999,\"cancellationFee\":350,\"refund\":2627,\"penaltyBasis\":\"PROVIDER\"}",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 CANCEL onward: status",
+      "expected": "Penalty Fetched / Cancellation Requested / Cancelled",
+      "actual": "Cancelled",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 CANCEL onward: not PARTIAL_PAX (whole onward PNR)",
+      "expected": "paxScope absent or not PARTIAL_PAX",
+      "actual": "absent",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 cancel targeted onward PNR only",
+      "expected": "request pnr=G122SA",
+      "actual": "response pnr=G122SA",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 return PNR still present",
+      "expected": "return pnr FR71YC still on booking",
+      "actual": "return=FR71YC status=n/a",
+      "status": "PASS"
+    },
+    {
+      "rule": "S4 booking not fully wiped",
+      "expected": "BR still exists; not both legs gone",
+      "actual": "bookingStatus=Partially cancelled legs=2",
+      "status": "PASS"
+    }
+  ],
+  "score": {
+    "PASS": 13,
+    "BUG": 0
+  }
+}

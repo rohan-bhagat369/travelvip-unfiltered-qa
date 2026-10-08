@@ -1,0 +1,369 @@
+{
+  "ranAt": "2026-08-03T13:18:48.152Z",
+  "env": "https://api-staging.travelvip.ai",
+  "docs": {
+    "flightIssueTicket": {
+      "url": "https://api-docs.travelvip.ai/#tag/Flights/operation/issueFlightTicket",
+      "path": "POST /v1/flights/booking/issue-ticket",
+      "documentedHttp": {
+        "200": "Flight booking initiated successfully",
+        "400": "Invalid request parameters",
+        "401": "Authentication failed or token expired",
+        "403": "Partner-user mismatch or insufficient wallet balance",
+        "409": "Duplicate booking (idempotency key already used)",
+        "422": "Fare expired or unavailable",
+        "429": "Rate limit exceeded"
+      }
+    },
+    "hotelFinalize": {
+      "url": "https://api-docs.travelvip.ai/#tag/Hotels/operation/finalizeHotelBooking",
+      "path": "POST /v1/hotels/finalize-booking",
+      "documentedHttp": {
+        "200": "Hotel booking finalized successfully",
+        "400": "Invalid request parameters",
+        "401": "Authentication failed or token expired",
+        "403": "Booking finalization failed or insufficient funds",
+        "429": "Rate limit exceeded"
+      }
+    }
+  },
+  "knownBusinessErrorCodesFromPriorRuns": [
+    {
+      "code": "WALLET_INSUFFICIENT_BALANCE",
+      "message": "Insufficient wallet balance to complete this booking.",
+      "fields": [
+        "available",
+        "required"
+      ],
+      "note": "Often returned with HTTP 200 and body status 400 (or as status/code fields). Seen on finalize/book wallet-debit flows.",
+      "example": {
+        "status": 400,
+        "code": "WALLET_INSUFFICIENT_BALANCE",
+        "message": "Insufficient wallet balance to complete this booking.",
+        "available": 133221,
+        "required": 147150
+      }
+    }
+  ],
+  "flightLiveCases": [
+    {
+      "caseId": "FLIGHT_EMPTY_SEARCH_IDS",
+      "docHttp": 400,
+      "docMeaning": "Invalid request parameters",
+      "result": {
+        "http": 200,
+        "ok": true,
+        "bodyStatus": null,
+        "code": "VALIDATION_ERROR",
+        "message": "Validation failed",
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Validation failed",
+          "details": [
+            "'searchIds' must be a non-empty array"
+          ],
+          "timestamp": "2026-08-03T13:18:15Z",
+          "request_id": "req-1785763095545"
+        },
+        "rawKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage"
+        ],
+        "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'searchIds' must be a non-empty array\"],\"timestamp\":\"2026-08-03T13:18:15Z\",\"request_id\":\"req-1785763095545\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    },
+    {
+      "caseId": "FLIGHT_INVALID_PRICE_ID",
+      "docHttp": "400/422",
+      "docMeaning": "Invalid request / fare unavailable",
+      "result": {
+        "http": 200,
+        "ok": true,
+        "bodyStatus": "pending",
+        "code": null,
+        "message": "Booking is processing",
+        "available": null,
+        "required": null,
+        "bookingReference": "BR1785763095517024",
+        "error": null,
+        "rawKeys": [
+          "bookingReference",
+          "status",
+          "message",
+          "duplicate",
+          "duplicateMessage"
+        ],
+        "snippet": "{\"bookingReference\":\"BR1785763095517024\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    },
+    {
+      "caseId": "FLIGHT_INVALID_BOOKING_CONTEXT",
+      "docHttp": 400,
+      "docMeaning": "Invalid request parameters",
+      "result": {
+        "http": 200,
+        "ok": true,
+        "bodyStatus": null,
+        "code": "VALIDATION_ERROR",
+        "message": "Validation failed",
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Validation failed",
+          "details": [
+            "'bookingReference' is invalid"
+          ],
+          "timestamp": "2026-08-03T13:18:17Z",
+          "request_id": "req-1785763097715"
+        },
+        "rawKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage"
+        ],
+        "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is invalid\"],\"timestamp\":\"2026-08-03T13:18:17Z\",\"request_id\":\"req-1785763097715\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    },
+    {
+      "caseId": "FLIGHT_JOURNEY_TYPE_MISMATCH",
+      "docHttp": 400,
+      "docMeaning": "Invalid request parameters",
+      "result": {
+        "http": 200,
+        "ok": true,
+        "bodyStatus": null,
+        "code": "PRICING_FETCH_FAILED",
+        "message": "Failed to fetch flight pricing details",
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": {
+          "code": "PRICING_FETCH_FAILED",
+          "message": "Failed to fetch flight pricing details",
+          "details": null,
+          "timestamp": "2026-08-03T13:18:17Z",
+          "request_id": "req-1785763097807"
+        },
+        "rawKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage"
+        ],
+        "snippet": "{\"error\":{\"code\":\"PRICING_FETCH_FAILED\",\"message\":\"Failed to fetch flight pricing details\",\"details\":null,\"timestamp\":\"2026-08-03T13:18:17Z\",\"request_id\":\"req-1785763097807\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    },
+    {
+      "caseId": "FLIGHT_NO_AUTH",
+      "docHttp": 401,
+      "docMeaning": "Authentication failed or token expired",
+      "result": {
+        "http": 403,
+        "ok": false,
+        "bodyStatus": 403,
+        "code": null,
+        "message": null,
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": null,
+        "rawKeys": [
+          "status",
+          "info"
+        ],
+        "snippet": "{\"status\":403,\"info\":\"Key OR PID invalid\"}"
+      }
+    },
+    {
+      "caseId": "FLIGHT_MISSING_PARTNER_KEY",
+      "docHttp": 403,
+      "docMeaning": "Partner-user mismatch or insufficient wallet balance",
+      "result": {
+        "http": 400,
+        "ok": false,
+        "bodyStatus": null,
+        "code": "MISSING_HEADER",
+        "message": "Missing X-Partner-Key header",
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": {
+          "code": "MISSING_HEADER",
+          "message": "Missing X-Partner-Key header",
+          "details": "Request must include an X-Partner-Key header",
+          "timestamp": "2026-08-03T13:18:44Z",
+          "request_id": "req-1785763123971"
+        },
+        "rawKeys": [
+          "error"
+        ],
+        "snippet": "{\"error\":{\"code\":\"MISSING_HEADER\",\"message\":\"Missing X-Partner-Key header\",\"details\":\"Request must include an X-Partner-Key header\",\"timestamp\":\"2026-08-03T13:18:44Z\",\"request_id\":\"req-1785763123971\"},\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    },
+    {
+      "caseId": "FLIGHT_INVALID_PARTNER_KEY",
+      "docHttp": 403,
+      "docMeaning": "Partner-user mismatch or insufficient wallet balance",
+      "result": {
+        "http": 401,
+        "ok": false,
+        "bodyStatus": null,
+        "code": "INVALID_ACCESS_TOKEN",
+        "message": "Invalid access token",
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": {
+          "code": "INVALID_ACCESS_TOKEN",
+          "message": "Invalid access token",
+          "details": null,
+          "timestamp": "2026-08-03T13:18:44Z",
+          "request_id": "req-1785763124264"
+        },
+        "rawKeys": [
+          "error"
+        ],
+        "snippet": "{\"error\":{\"code\":\"INVALID_ACCESS_TOKEN\",\"message\":\"Invalid access token\",\"details\":null,\"timestamp\":\"2026-08-03T13:18:44Z\",\"request_id\":\"req-1785763124264\"},\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    }
+  ],
+  "hotelLiveCases": [
+    {
+      "caseId": "HOTEL_INVALID_BOOKING_CODE",
+      "docHttp": 400,
+      "docMeaning": "Invalid request parameters",
+      "result": {
+        "http": 200,
+        "ok": true,
+        "bodyStatus": "Pending",
+        "code": null,
+        "message": null,
+        "available": null,
+        "required": null,
+        "bookingReference": "BR1785763127914705",
+        "error": null,
+        "rawKeys": [
+          "status",
+          "statusCode",
+          "bookingRefId"
+        ],
+        "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1785763127914705\",\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    },
+    {
+      "caseId": "HOTEL_MISSING_BOOKING_CONTEXT",
+      "docHttp": 400,
+      "docMeaning": "Invalid request parameters",
+      "result": {
+        "http": 200,
+        "ok": true,
+        "bodyStatus": 400,
+        "code": null,
+        "message": "bookingContext is required",
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": null,
+        "rawKeys": [
+          "status",
+          "message"
+        ],
+        "snippet": "{\"status\":400,\"message\":\"bookingContext is required\",\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    },
+    {
+      "caseId": "HOTEL_MISSING_ROOMS",
+      "docHttp": 400,
+      "docMeaning": "Invalid request parameters",
+      "result": {
+        "http": 200,
+        "ok": true,
+        "bodyStatus": 400,
+        "code": null,
+        "message": "rooms is required",
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": null,
+        "rawKeys": [
+          "status",
+          "message"
+        ],
+        "snippet": "{\"status\":400,\"message\":\"rooms is required\",\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    },
+    {
+      "caseId": "HOTEL_MISSING_PARTNER_KEY",
+      "docHttp": 403,
+      "docMeaning": "Booking finalization failed or insufficient funds",
+      "result": {
+        "http": 400,
+        "ok": false,
+        "bodyStatus": null,
+        "code": "MISSING_HEADER",
+        "message": "Missing X-Partner-Key header",
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": {
+          "code": "MISSING_HEADER",
+          "message": "Missing X-Partner-Key header",
+          "details": "Request must include an X-Partner-Key header",
+          "timestamp": "2026-08-03T13:18:47Z",
+          "request_id": "req-1785763127950"
+        },
+        "rawKeys": [
+          "error"
+        ],
+        "snippet": "{\"error\":{\"code\":\"MISSING_HEADER\",\"message\":\"Missing X-Partner-Key header\",\"details\":\"Request must include an X-Partner-Key header\",\"timestamp\":\"2026-08-03T13:18:47Z\",\"request_id\":\"req-1785763127950\"},\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    },
+    {
+      "caseId": "HOTEL_INVALID_PARTNER_KEY",
+      "docHttp": 403,
+      "docMeaning": "Booking finalization failed or insufficient funds",
+      "result": {
+        "http": 401,
+        "ok": false,
+        "bodyStatus": null,
+        "code": "INVALID_ACCESS_TOKEN",
+        "message": "Invalid access token",
+        "available": null,
+        "required": null,
+        "bookingReference": null,
+        "error": {
+          "code": "INVALID_ACCESS_TOKEN",
+          "message": "Invalid access token",
+          "details": null,
+          "timestamp": "2026-08-03T13:18:47Z",
+          "request_id": "req-1785763128046"
+        },
+        "rawKeys": [
+          "error"
+        ],
+        "snippet": "{\"error\":{\"code\":\"INVALID_ACCESS_TOKEN\",\"message\":\"Invalid access token\",\"details\":null,\"timestamp\":\"2026-08-03T13:18:47Z\",\"request_id\":\"req-1785763128046\"},\"_meta\":{\"correlation_id\":\"a67c4b7d-84ea-403c-a2ae-539813f25d9c\"}}"
+      }
+    }
+  ],
+  "context": {
+    "flight": {
+      "searchId": "srch_fff3ab66ab2d437a8b951d75e83e2d63",
+      "priceId": "price_1cc6766233d042608f64502a8f972b20",
+      "airline": "6E",
+      "totalAmount": 1300
+    },
+    "hotel": {
+      "hotelId": "2943014",
+      "hotelName": "Hotel Basera",
+      "checkin": "2026-08-31",
+      "checkout": "2026-09-02",
+      "prebookRequestId": "6b63e98d-a9a8-422f-8793-bf2991f7853a",
+      "hotelNameFromSearch": "Hotel Basera"
+    }
+  }
+}

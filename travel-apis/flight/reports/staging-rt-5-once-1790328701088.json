@@ -1,0 +1,103 @@
+{
+  "at": "2026-09-25T09:35:11.671Z",
+  "base": "https://api-staging.travelvip.ai",
+  "noLoop": true,
+  "noInprogressRetry": true,
+  "summary": {
+    "PASS": 0,
+    "BUG": 4,
+    "NOT TESTED": 1
+  },
+  "rows": [
+    {
+      "id": "RT-1ADT",
+      "route": "DEL-BOM-DEL",
+      "pax": "1A/0C/0I",
+      "days": 48,
+      "prefer": [
+        "AI",
+        "SG",
+        "IX"
+      ],
+      "pair": "AI AI 1785 + AI AI 2422",
+      "priceId": "price_92a8e98cf7464735827c0185a8558fb9",
+      "totalAmount": 15853,
+      "issueHttp": 200,
+      "br": "BR1790328722893169",
+      "status": "Pending",
+      "verdict": "BUG",
+      "error": "status Pending"
+    },
+    {
+      "id": "RT-2ADT",
+      "route": "DEL-BOM-DEL",
+      "pax": "2A/0C/0I",
+      "days": 50,
+      "prefer": [
+        "AI",
+        "SG",
+        "IX"
+      ],
+      "verdict": "NOT TESTED",
+      "error": "no RT pairs"
+    },
+    {
+      "id": "RT-1A1C",
+      "route": "BOM-BLR-BOM",
+      "pax": "1A/1C/0I",
+      "days": 52,
+      "prefer": [
+        "AI",
+        "SG",
+        "IX"
+      ],
+      "pair": "AI AI 2857 + AI AI 610",
+      "priceId": "price_f8f6fc450ff3468b8519766a50acca56",
+      "totalAmount": 32389,
+      "issueHttp": 200,
+      "br": "BR1790328829795060",
+      "status": "Pending",
+      "verdict": "BUG",
+      "error": "status Pending"
+    },
+    {
+      "id": "RT-2A1C",
+      "route": "DEL-HYD-DEL",
+      "pax": "2A/1C/0I",
+      "days": 54,
+      "prefer": [
+        "AI",
+        "SG",
+        "IX"
+      ],
+      "pair": "AI AI 2577 + AI AI 1806",
+      "priceId": "price_a7a7155429ac4df084a5545efcf39996",
+      "totalAmount": 62546,
+      "issueHttp": 403,
+      "br": null,
+      "verdict": "BUG",
+      "error": "issue-ticket no BR",
+      "issueSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 62546, Available: INR 39740.62\",\"timestamp\":\"2026-09-25T09:34:44Z\",\"request_id\":\"req-1790328884246\"},\"_meta\":{\"correlation_id\":\"e136c9fd-38b2-4acb-95bb-e80829cd670a\"}}"
+    },
+    {
+      "id": "RT-1ADT-INTL",
+      "route": "DEL-DXB-DEL",
+      "pax": "1A/0C/0I",
+      "days": 48,
+      "prefer": [
+        "EK",
+        "QR",
+        "AI",
+        "IX"
+      ],
+      "pair": "EK EK 517 + EK EK 514",
+      "priceId": "price_ed3820d9f71a42f68a6cc5ca2ab62086",
+      "totalAmount": 57000,
+      "issueHttp": 403,
+      "br": null,
+      "verdict": "BUG",
+      "error": "issue-ticket no BR",
+      "issueSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 57000, Available: INR 39740.62\",\"timestamp\":\"2026-09-25T09:35:11Z\",\"request_id\":\"req-1790328911436\"},\"_meta\":{\"correlation_id\":\"e136c9fd-38b2-4acb-95bb-e80829cd670a\"}}"
+    }
+  ]
+}

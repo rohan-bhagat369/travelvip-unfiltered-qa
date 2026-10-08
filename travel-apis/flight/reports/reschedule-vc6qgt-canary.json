@@ -1,0 +1,24 @@
+{
+  "ranAt": "2026-08-12T07:31:03.278Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "oldBr": "BR1786519576464787",
+  "oldPnr": "VC6QGT",
+  "oldStatus": "Cancelled",
+  "passenger": "Kavita Menon vnde",
+  "route": "BOM-DEL",
+  "days": 23,
+  "total": 3073,
+  "newBr": "BR1786519853596978",
+  "newPnr": "P9UPFZ",
+  "newStatus": "Confirmed",
+  "ok": true,
+  "issueBody": {
+    "bookingReference": "BR1786519853596978",
+    "status": "pending",
+    "message": "Booking is processing",
+    "_meta": {
+      "correlation_id": "c4ec9b00-b817-46b9-a168-794480764b5a"
+    }
+  },
+  "dbSql": "USE travelx;\nSET @old := 'BR1786519576464787';\nSET @new := 'BR1786519853596978';\nSELECT booking_reference, id, confirmed_at, cancelled_at FROM booking WHERE booking_reference IN (@old, @new);\nSELECT b.booking_reference, fj.id, fj.direction, fj.airline_pnr, fj.rescheduled_from_journey_id\nFROM flight_journey fj JOIN booking_item bi ON bi.id = fj.booking_item_id JOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference IN (@old, @new) ORDER BY b.booking_reference, fj.sequence;\nSELECT cr.id, cr.pnr, cr.cancellation_type, cr.mode, cr.status, cr.refund_status\nFROM cancellation_request cr JOIN booking_item bi ON bi.id = cr.booking_item_id JOIN booking b ON b.id = bi.booking_id\nWHERE b.booking_reference = @old ORDER BY cr.id DESC;"
+}

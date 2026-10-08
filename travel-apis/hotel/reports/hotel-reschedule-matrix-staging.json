@@ -1,0 +1,147 @@
+{
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "original": {
+    "br": "BR1786022190189362",
+    "status": "Confirmed",
+    "afterCancel": "Cancelled"
+  },
+  "reschedule": {
+    "newBr": "BR1786022222790229"
+  },
+  "totals": {
+    "total": 14,
+    "passed": 10,
+    "failed": 4
+  },
+  "cases": [
+    {
+      "id": "H0",
+      "title": "Book original hotel",
+      "passed": true,
+      "br": "BR1786022190189362",
+      "status": "Confirmed",
+      "checkin": "2026-08-20",
+      "at": "2026-08-06T13:16:47.075Z"
+    },
+    {
+      "id": "R1",
+      "title": "finalize empty reschedulingReferenceId → VALIDATION_ERROR",
+      "passed": false,
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":400,\"message\":\"'reschedulingReferenceId' must be a non-empty string when provided\",\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca0114637\"}}",
+      "at": "2026-08-06T13:16:49.123Z"
+    },
+    {
+      "id": "R2",
+      "title": "finalize reschedulingReferenceId >100 chars → VALIDATION_ERROR",
+      "passed": false,
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":400,\"message\":\"'reschedulingReferenceId' must not exceed 100 characters\",\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca0114637\"}}",
+      "at": "2026-08-06T13:16:49.209Z"
+    },
+    {
+      "id": "R3",
+      "title": "unknown BR → RESCHEDULING_BOOKING_NOT_FOUND",
+      "passed": true,
+      "http": 404,
+      "code": "RESCHEDULING_BOOKING_NOT_FOUND",
+      "snippet": "{\"error\":{\"code\":\"RESCHEDULING_BOOKING_NOT_FOUND\",\"message\":\"Original booking for rescheduling not found\",\"details\":\"No booking exists for reschedulingReferenceId 'BR0000000000000000'\",\"timestamp\":\"2026-08-06T13:16:51Z\",\"request_id\":\"req-1786022211065\"},\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca0114637\"}}",
+      "at": "2026-08-06T13:16:51.206Z"
+    },
+    {
+      "id": "R4",
+      "title": "reschedule while still Confirmed → NOT_ALLOWED / VALIDATION",
+      "passed": true,
+      "http": 422,
+      "code": "RESCHEDULING_NOT_ALLOWED",
+      "snippet": "{\"error\":{\"code\":\"RESCHEDULING_NOT_ALLOWED\",\"message\":\"Original booking is not eligible for rescheduling\",\"details\":\"Booking 'BR1786022190189362' has no cancellation confirmed by the hotel; only a booking the hotel has confirmed as CONFIRMED cancelled can be rescheduled\",\"timestamp\":\"2026-08-06T13:16:54Z\",\"request_id\":\"req-1786022213286\"},\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca011",
+      "note": "Docs conflict: flow says 400 VALIDATION_ERROR; error table says 422 RESCHEDULING_NOT_ALLOWED",
+      "at": "2026-08-06T13:16:53.419Z"
+    },
+    {
+      "id": "R5",
+      "title": "flight BR as reschedulingReferenceId → RESCHEDULING_BOOKING_NOT_HOTEL",
+      "passed": true,
+      "http": 422,
+      "code": "RESCHEDULING_BOOKING_NOT_HOTEL",
+      "snippet": "{\"error\":{\"code\":\"RESCHEDULING_BOOKING_NOT_HOTEL\",\"message\":\"Booking 'BR1786017237353711' is not a hotel booking and cannot be rescheduled here\",\"details\":\"reschedulingReferenceId must name a hotel booking; a booking of another service type cannot be replaced by a hotel stay\",\"timestamp\":\"2026-08-06T13:16:56Z\",\"request_id\":\"req-1786022215268\"},\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73",
+      "flightBr": "BR1786017237353711",
+      "at": "2026-08-06T13:16:55.375Z"
+    },
+    {
+      "id": "C1",
+      "title": "cancel unknown BR → BOOKING_NOT_FOUND",
+      "passed": false,
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca0114637\"}}",
+      "at": "2026-08-06T13:16:55.434Z"
+    },
+    {
+      "id": "C2",
+      "title": "cancel confirmed hotel (GET)",
+      "passed": true,
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786022190189362\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":181.92,\"createdAt\":\"2026-08-06T13:16:56Z\"}},\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca0114637\"}}",
+      "at": "2026-08-06T13:16:59.161Z"
+    },
+    {
+      "id": "C3",
+      "title": "cancel again via POST (observe already cancelled / method)",
+      "passed": true,
+      "observational": true,
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":400,\"message\":\"Booking can only be cancelled when status is Confirmed\",\"currentStatus\":\"Cancelled\",\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca0114637\"}}",
+      "at": "2026-08-06T13:16:59.365Z"
+    },
+    {
+      "id": "C4",
+      "title": "status after cancel",
+      "passed": true,
+      "status": "Cancelled",
+      "snippet": "{\"bookingReferenceId\":\"BR1786022190189362\",\"status\":\"Cancelled\",\"confirmationNumber\":\"432722792\",\"checkin\":\"2026-08-20\",\"checkout\":\"2026-08-22\",\"checkinTime\":\"3:00 PM\",\"checkoutTime\":\"12:00 PM\",\"hotelDetails\":{\"name\":\"Taj Dubai\",\"address\":\"Burj Khalifa Street, Business BayPO Box 8489Dubai, Dubai, 84",
+      "at": "2026-08-06T13:16:59.477Z"
+    },
+    {
+      "id": "C5",
+      "title": "cancel already cancelled → BOOKING_ALREADY_CANCELLED",
+      "passed": false,
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1786022190189362\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":181.92,\"createdAt\":\"2026-08-06T13:16:56Z\"}},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca0114637\"}}",
+      "at": "2026-08-06T13:16:59.630Z"
+    },
+    {
+      "id": "R6",
+      "title": "finalize reschedule happy path",
+      "passed": true,
+      "http": 200,
+      "code": null,
+      "newBr": "BR1786022222790229",
+      "originalBr": "BR1786022190189362",
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1786022222790229\",\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca0114637\"}}",
+      "at": "2026-08-06T13:17:01.812Z"
+    },
+    {
+      "id": "R7",
+      "title": "rescheduled hotel reaches Confirmed",
+      "passed": true,
+      "newBr": "BR1786022222790229",
+      "status": "Confirmed",
+      "at": "2026-08-06T13:17:19.327Z"
+    },
+    {
+      "id": "R8",
+      "title": "reuse reschedulingReferenceId → ALREADY_USED",
+      "passed": true,
+      "http": 409,
+      "code": "RESCHEDULING_REFERENCE_ALREADY_USED",
+      "snippet": "{\"error\":{\"code\":\"RESCHEDULING_REFERENCE_ALREADY_USED\",\"message\":\"Original booking has already been rescheduled\",\"details\":\"Booking 'BR1786022190189362' was already rescheduled as 'BR1786022222790229'\",\"timestamp\":\"2026-08-06T13:17:21Z\",\"request_id\":\"req-1786022240949\"},\"_meta\":{\"correlation_id\":\"4043b858-9d4a-466c-bcc0-e73ca0114637\"}}",
+      "at": "2026-08-06T13:17:21.142Z"
+    }
+  ]
+}

@@ -1,0 +1,968 @@
+{
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "finalizePath": "/api/v2/hotels/finalize-booking",
+  "generatedAt": "2026-08-10T06:41:24.724Z",
+  "counts": {
+    "PASS": 64,
+    "BUG": 18,
+    "NOT TESTED": 3
+  },
+  "bugs": [
+    {
+      "section": "A. Search",
+      "rule": "missing entityId rejected",
+      "note": "Wrong/missing detail. msg=Please select a destination to search. | Validation failed",
+      "response": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Please select a destination to search.\"],\"timestamp\":\"2026-08-10T06:39:50Z\",\"request_id\":\"req-1786343990614\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "C. Prebook",
+      "rule": "both missing",
+      "response": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Request body is required\"],\"timestamp\":\"2026-08-10T06:39:52Z\",\"request_id\":\"req-1786343991977\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkin DD-MM-YYYY rejected",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkin slashes rejected",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkin unpadded rejected",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "impossible 2026-02-30 rejected",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkout before/equal checkin rejected",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkin in the past rejected",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "type adult lowercase accepted (case-insensitive)",
+      "note": "unexpected",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "title Miss adult + gender Female OK",
+      "note": "unexpected",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "plain 91 countryCode accepted as +91",
+      "note": "unexpected",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "mobile with hyphens accepted",
+      "note": "unexpected",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "mobile repeating country code accepted",
+      "note": "unexpected",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "invalid panCardNumber format rejected",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "panCardNumber without panCardName rejected",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "gstDetails omitted OK",
+      "note": "unexpected",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "empty gstDetails object OK",
+      "note": "unexpected",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "full valid gstDetails accepted (not VALIDATION_ERROR)",
+      "note": "unexpected",
+      "response": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    }
+  ],
+  "rows": [
+    {
+      "section": "A. Search",
+      "rule": "Baseline valid search",
+      "how": "Valid YYYY-MM-DD + 1 adult",
+      "expected": "HTTP 2xx",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "note": "",
+      "responseSnippet": "{\"page\":0,\"size\":20,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"2869073\",\"name\":\"Taj Dubai\",\"address\":\"Burj Khalifa Street, Business BayPO Box 8489Dubai, Dubai, 8489, United"
+    },
+    {
+      "section": "A. Search",
+      "rule": "checkin DD-MM-YYYY rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-10T06:39:46Z\",\"request_id\":\"req-1786343986625\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "checkin slashes YYYY/MM/DD rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-10T06:39:47Z\",\"request_id\":\"req-1786343986734\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "checkin unpadded YYYY-M-D rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-10T06:39:47Z\",\"request_id\":\"req-1786343987062\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "checkin impossible 2026-02-30 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-10T06:39:47Z\",\"request_id\":\"req-1786343987166\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "checkout DD-MM-YYYY rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-out date is not a valid date. Use the format YYYY-MM-DD.\"] msg=Check-out date is not a valid date. Use the format YYYY-MM-DD. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-out date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-10T06:39:47Z\",\"request_id\":\"req-1786343987275\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "checkout before checkin rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-out date must be after the check-in date.\"] msg=Check-out date must be after the check-in date. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-out date must be after the check-in date.\"],\"timestamp\":\"2026-08-10T06:39:47Z\",\"request_id\":\"req-1786343987853\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "checkin in the past rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-in date cannot be in the past.\"] msg=Check-in date cannot be in the past. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date cannot be in the past.\"],\"timestamp\":\"2026-08-10T06:39:48Z\",\"request_id\":\"req-1786343988025\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "checkout >1 year from today rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-out date cannot be more than one year from today.\"] msg=Check-out date cannot be more than one year from today. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-out date cannot be more than one year from today.\"],\"timestamp\":\"2026-08-10T06:39:48Z\",\"request_id\":\"req-1786343988234\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "adults as string \"1\" rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Room 1 adults must be a whole number.\"] msg=Room 1 adults must be a whole number. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Room 1 adults must be a whole number.\"],\"timestamp\":\"2026-08-10T06:39:48Z\",\"request_id\":\"req-1786343988324\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "adults decimal 1.5 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Room 1 adults must be a whole number.\"] msg=Room 1 adults must be a whole number. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Room 1 adults must be a whole number.\"],\"timestamp\":\"2026-08-10T06:39:48Z\",\"request_id\":\"req-1786343988504\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "adults 0 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Room 1 must have between 1 and 6 adults.\"] msg=Room 1 must have between 1 and 6 adults. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Room 1 must have between 1 and 6 adults.\"],\"timestamp\":\"2026-08-10T06:39:48Z\",\"request_id\":\"req-1786343988607\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "adults 7 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Room 1 must have between 1 and 6 adults.\"] msg=Room 1 must have between 1 and 6 adults. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Room 1 must have between 1 and 6 adults.\"],\"timestamp\":\"2026-08-10T06:39:48Z\",\"request_id\":\"req-1786343988925\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "children decimal rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Room 1 children must be a whole number.\"] msg=Room 1 children must be a whole number. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Room 1 children must be a whole number.\"],\"timestamp\":\"2026-08-10T06:39:49Z\",\"request_id\":\"req-1786343989058\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "children 5 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Room 1 can have at most 4 children.\"] msg=Room 1 can have at most 4 children. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Room 1 can have at most 4 children.\"],\"timestamp\":\"2026-08-10T06:39:49Z\",\"request_id\":\"req-1786343989244\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "children>0 without childrenAges rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Please provide an age for each child in room 1 (1 age(s) expected).\"] msg=Please provide an age for each child in room 1 (1 age(s) expected). | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Please provide an age for each child in room 1 (1 age(s) expected).\"],\"timestamp\":\"2026-08-10T06:39:49Z\",\"request_id\":\"req-1786343989436\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "childrenAges length mismatch rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Please provide an age for each child in room 1 (2 age(s) expected).\"] msg=Please provide an age for each child in room 1 (2 age(s) expected). | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Please provide an age for each child in room 1 (2 age(s) expected).\"],\"timestamp\":\"2026-08-10T06:39:49Z\",\"request_id\":\"req-1786343989598\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "childrenAges entry 18 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Child age in room 1 must be between 0 and 17.\"] msg=Child age in room 1 must be between 0 and 17. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Child age in room 1 must be between 0 and 17.\"],\"timestamp\":\"2026-08-10T06:39:49Z\",\"request_id\":\"req-1786343989699\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "childrenAges as string rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Room 1 childrenAges must be an array of whole numbers.\"] msg=Room 1 childrenAges must be an array of whole numbers. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Room 1 childrenAges must be an array of whole numbers.\"],\"timestamp\":\"2026-08-10T06:39:49Z\",\"request_id\":\"req-1786343989830\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "valid children + childrenAges accepted",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 200 code=null",
+      "status": "PASS",
+      "note": "OK",
+      "responseSnippet": "{\"page\":0,\"size\":20,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"2869073\",\"name\":\"Taj Dubai\",\"address\":\"Burj Khalifa Street, Business BayPO Box 8489Dubai, Dubai, 8489, United Arab Emirates\",\"distance\":null,\"image\":\"https://cdn.worldota.net/t/1024x768/extranet/b5/d3/b5d3d333"
+    },
+    {
+      "section": "A. Search",
+      "rule": "missing entityId rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Please select a destination to search.\"] msg=Please select a destination to search. | Validation failed",
+      "status": "BUG",
+      "note": "Wrong/missing detail. msg=Please select a destination to search. | Validation failed",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Please select a destination to search.\"],\"timestamp\":\"2026-08-10T06:39:50Z\",\"request_id\":\"req-1786343990614\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "missing type rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Destination type is required.\"] msg=Destination type is required. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Destination type is required.\"],\"timestamp\":\"2026-08-10T06:39:50Z\",\"request_id\":\"req-1786343990715\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": "nationality not 2-letter rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Nationality must be a valid 2-letter country code (for example IN, US or AE).\"] msg=Nationality must be a valid 2-letter country code (for example IN, US or AE). | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Nationality must be a valid 2-letter country code (for example IN, US or AE).\"],\"timestamp\":\"2026-08-10T06:39:50Z\",\"request_id\":\"req-1786343990809\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "A. Search",
+      "rule": ">6 rooms rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"A maximum of 6 rooms is allowed per booking.\"] msg=A maximum of 6 rooms is allowed per booking. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"A maximum of 6 rooms is allowed per booking.\"],\"timestamp\":\"2026-08-10T06:39:50Z\",\"request_id\":\"req-1786343990904\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "B. Details",
+      "rule": "checkin DD-MM-YYYY rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-10T06:39:51Z\",\"request_id\":\"req-1786343991026\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "B. Details",
+      "rule": "checkin slashes rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-10T06:39:51Z\",\"request_id\":\"req-1786343991123\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "B. Details",
+      "rule": "checkin unpadded rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-10T06:39:51Z\",\"request_id\":\"req-1786343991231\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "B. Details",
+      "rule": "impossible date 2026-02-30 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"] msg=Check-in date is not a valid date. Use the format YYYY-MM-DD. | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-08-10T06:39:51Z\",\"request_id\":\"req-1786343991335\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "B. Details",
+      "rule": "past checkin accepted (lookup)",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 200 code=null",
+      "status": "PASS",
+      "note": "OK",
+      "responseSnippet": "{\"checkin\":\"Check-in date must be today or a future date\",\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "B. Details",
+      "rule": "checkout before checkin still accepted (no compare)",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 200 code=null",
+      "status": "PASS",
+      "note": "OK",
+      "responseSnippet": "{\"checkout\":\"Check-out date must be after check-in date\",\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "C. Prebook",
+      "rule": "blank bookingCode rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'bookingCode' is required\"] msg='bookingCode' is required | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingCode' is required\"],\"timestamp\":\"2026-08-10T06:39:51Z\",\"request_id\":\"req-1786343991750\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "C. Prebook",
+      "rule": "blank requestId rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'requestId' is required\"] msg='requestId' is required | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'requestId' is required\"],\"timestamp\":\"2026-08-10T06:39:51Z\",\"request_id\":\"req-1786343991872\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "C. Prebook",
+      "rule": "Both bookingCode + requestId missing reported together",
+      "how": "POST prebook {}",
+      "expected": "HTTP 400 VALIDATION_ERROR with both fields in details",
+      "actual": "HTTP 400 code=VALIDATION_ERROR details=[\"Request body is required\"]",
+      "status": "BUG",
+      "note": "Expected both field messages in details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Request body is required\"],\"timestamp\":\"2026-08-10T06:39:52Z\",\"request_id\":\"req-1786343991977\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "Setup",
+      "rule": "Obtain valid prebook context for finalize tests",
+      "how": "search → details → prebook",
+      "expected": "bookingContext present",
+      "actual": "OK code=2869073!TB!RHK!TB!rh-test_hotel_do_not_book!TB!h-436df828-7c53-572a-a32a-9bf0ad992790",
+      "status": "PASS",
+      "note": "",
+      "responseSnippet": "ready"
+    },
+    {
+      "section": "Finalize baseline",
+      "rule": "Valid payload is not VALIDATION_ERROR",
+      "how": "POST finalize with valid guests/contact/dates",
+      "expected": "Not VALIDATION_ERROR (may be 2xx or business error)",
+      "actual": "HTTP 500 code=null",
+      "status": "PASS",
+      "note": "OK",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkin DD-MM-YYYY rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 500 code=null bodyStatus=500 details=[] msg=",
+      "status": "BUG",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkin slashes rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 500 code=null bodyStatus=500 details=[] msg=",
+      "status": "BUG",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkin unpadded rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 500 code=null bodyStatus=500 details=[] msg=",
+      "status": "BUG",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "impossible 2026-02-30 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 500 code=null bodyStatus=500 details=[] msg=",
+      "status": "BUG",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkout before/equal checkin rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 500 code=null bodyStatus=500 details=[] msg=",
+      "status": "BUG",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "checkin in the past rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 500 code=null bodyStatus=500 details=[] msg=",
+      "status": "BUG",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "1. Stay dates",
+      "rule": "Same-day check-in accepted (date rule)",
+      "how": "checkin=2026-08-10",
+      "expected": "Not rejected solely for being today",
+      "actual": "HTTP 500 code=null details=[]",
+      "status": "PASS",
+      "note": "Date rule OK (may fail other business codes)",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "type Infant rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[1].type' must be one of: Adult, Child\"] msg='rooms[0].guests[1].type' must be one of: Adult, Child | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[1].type' must be one of: Adult, Child\"],\"timestamp\":\"2026-08-10T06:40:26Z\",\"request_id\":\"req-1786344026327\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "title MR (wrong case) rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].title' must be one of: Mr, Mrs, Miss, Ms for guest type 'Adult'\"] msg='rooms[0].guests[0].title' must be one of: Mr, Mrs, Miss, Ms for guest type 'Adult' | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].title' must be one of: Mr, Mrs, Miss, Ms for guest type 'Adult'\"],\"timestamp\":\"2026-08-10T06:40:26Z\",\"request_id\":\"req-1786344026673\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "title mr lowercase rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].title' must be one of: Mr, Mrs, Miss, Ms for guest type 'Adult'\"] msg='rooms[0].guests[0].title' must be one of: Mr, Mrs, Miss, Ms for guest type 'Adult' | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].title' must be one of: Mr, Mrs, Miss, Ms for guest type 'Adult'\"],\"timestamp\":\"2026-08-10T06:40:26Z\",\"request_id\":\"req-1786344026768\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "Adult title Mstr rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].title' must be one of: Mr, Mrs, Miss, Ms for guest type 'Adult'\"] msg='rooms[0].guests[0].title' must be one of: Mr, Mrs, Miss, Ms for guest type 'Adult' | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].title' must be one of: Mr, Mrs, Miss, Ms for guest type 'Adult'\"],\"timestamp\":\"2026-08-10T06:40:26Z\",\"request_id\":\"req-1786344026877\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "Child title Mr rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[1].title' must be one of: Mstr, Miss for guest type 'Child'\"] msg='rooms[0].guests[1].title' must be one of: Mstr, Miss for guest type 'Child' | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[1].title' must be one of: Mstr, Miss for guest type 'Child'\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344026970\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "title Mr + gender Female mismatch",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].title' Mr supports Male gender only\"] msg='rooms[0].guests[0].title' Mr supports Male gender only | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].title' Mr supports Male gender only\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344027079\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "firstName with digit rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].firstName' must contain only letters and spaces\"] msg='rooms[0].guests[0].firstName' must contain only letters and spaces | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].firstName' must contain only letters and spaces\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344027184\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "lastName with hyphen rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].lastName' must contain only letters and spaces\"] msg='rooms[0].guests[0].lastName' must contain only letters and spaces | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].lastName' must contain only letters and spaces\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344027290\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "lastName with apostrophe rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].lastName' must contain only letters and spaces\"] msg='rooms[0].guests[0].lastName' must contain only letters and spaces | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].lastName' must contain only letters and spaces\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344027387\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "firstName too short (<2) rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].firstName' must be at least 2 characters\"] msg='rooms[0].guests[0].firstName' must be at least 2 characters | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].firstName' must be at least 2 characters\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344027493\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "Child missing age rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[1].age' is required for a Child\"] msg='rooms[0].guests[1].age' is required for a Child | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[1].age' is required for a Child\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344027602\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "Child age 18 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[1].age' must be between 0 and 17 for a Child\"] msg='rooms[0].guests[1].age' must be between 0 and 17 for a Child | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[1].age' must be between 0 and 17 for a Child\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344027713\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "dob in the future rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].dob' must be a valid date not in the future (YYYY-MM-DD)\"] msg='rooms[0].guests[0].dob' must be a valid date not in the future (YYYY-MM-DD) | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].dob' must be a valid date not in the future (YYYY-MM-DD)\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344027814\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "dob wrong format DD-MM-YYYY rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].dob' must be a valid date not in the future (YYYY-MM-DD)\"] msg='rooms[0].guests[0].dob' must be a valid date not in the future (YYYY-MM-DD) | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].dob' must be a valid date not in the future (YYYY-MM-DD)\"],\"timestamp\":\"2026-08-10T06:40:27Z\",\"request_id\":\"req-1786344027948\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "no lead guest rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest\"] msg='rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest\"],\"timestamp\":\"2026-08-10T06:40:28Z\",\"request_id\":\"req-1786344028061\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "two lead guests rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[].guests[].isLead' must be set on exactly one guest; 2 were marked\"] msg='rooms[].guests[].isLead' must be set on exactly one guest; 2 were marked | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[].guests[].isLead' must be set on exactly one guest; 2 were marked\"],\"timestamp\":\"2026-08-10T06:40:28Z\",\"request_id\":\"req-1786344028171\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "Adult DOB under 18 on checkin rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[0].dob' makes this guest 10 on the check-in date (2026-09-14); an Adult must be 18 years or older\"] msg='rooms[0].guests[0].dob' makes this guest 10 on the check-in date (2026-09-14); an Adult must be 18 years or older | Val",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].dob' makes this guest 10 on the check-in date (2026-09-14); an Adult must be 18 years or older\"],\"timestamp\":\"2026-08-10T06:40:28Z\",\"request_id\":\"req-1786344028265\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "Child DOB 18+ on checkin rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'rooms[0].guests[1].dob' makes this guest 20 on the check-in date (2026-09-14); a Child must be 17 years or younger\",\"'rooms[0].guests[1].dob' makes this gues msg='rooms[0].guests[1].dob' makes this guest 20 on the check-in date (2026-09-14); a Child must be 17 years or younger | 'r",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[1].dob' makes this guest 20 on the check-in date (2026-09-14); a Child must be 17 years or younger\",\"'rooms[0].guests[1].dob' makes this guest 20 on the check-out date (2026-09-16); a Child must still be 17 or younger on the last night\",\"'rooms[0].guests[1].age' is 8 but 'dob' makes this guest 20 on the check-in date (2026-09-14)\"],\"timestamp\":\"2026-08-10T06:40:28Z\",\"request_id\":\"req-1786344028376\"},\"_"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "type adult lowercase accepted (case-insensitive)",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 500 code=null",
+      "status": "BUG",
+      "note": "OK",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "title Miss adult + gender Female OK",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 500 code=null",
+      "status": "BUG",
+      "note": "OK",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "missing email rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'contact.email' is required\"] msg='contact.email' is required | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.email' is required\"],\"timestamp\":\"2026-08-10T06:40:36Z\",\"request_id\":\"req-1786344036215\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "invalid email rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'contact.email' is not a valid email address\"] msg='contact.email' is not a valid email address | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.email' is not a valid email address\"],\"timestamp\":\"2026-08-10T06:40:36Z\",\"request_id\":\"req-1786344036380\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "missing countryCode rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'contact.countryCode' is required\"] msg='contact.countryCode' is required | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.countryCode' is required\"],\"timestamp\":\"2026-08-10T06:40:36Z\",\"request_id\":\"req-1786344036477\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "missing mobile rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'contact.mobile' is required\"] msg='contact.mobile' is required | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.mobile' is required\"],\"timestamp\":\"2026-08-10T06:40:36Z\",\"request_id\":\"req-1786344036619\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "+91 mobile not starting 6-9 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'contact.mobile' must be a 10-digit Indian mobile number starting with 6-9\"] msg='contact.mobile' must be a 10-digit Indian mobile number starting with 6-9 | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.mobile' must be a 10-digit Indian mobile number starting with 6-9\"],\"timestamp\":\"2026-08-10T06:40:36Z\",\"request_id\":\"req-1786344036737\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "+91 mobile length != 10 rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'contact.mobile' must be a 10-digit Indian mobile number starting with 6-9\"] msg='contact.mobile' must be a 10-digit Indian mobile number starting with 6-9 | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.mobile' must be a 10-digit Indian mobile number starting with 6-9\"],\"timestamp\":\"2026-08-10T06:40:36Z\",\"request_id\":\"req-1786344036864\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "plain 91 countryCode accepted as +91",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 500 code=null",
+      "status": "BUG",
+      "note": "OK",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "mobile with hyphens accepted",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 500 code=null",
+      "status": "BUG",
+      "note": "OK",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "mobile repeating country code accepted",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 500 code=null",
+      "status": "BUG",
+      "note": "OK",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "invalid panCardNumber format rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 500 code=null bodyStatus=500 details=[] msg=",
+      "status": "BUG",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "panCardNumber without panCardName rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 500 code=null bodyStatus=500 details=[] msg=",
+      "status": "BUG",
+      "note": "Expected HTTP 400 VALIDATION_ERROR; got HTTP 500 code=null",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "gstDetails omitted OK",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 500 code=null",
+      "status": "BUG",
+      "note": "OK",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "empty gstDetails object OK",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 500 code=null",
+      "status": "BUG",
+      "note": "OK",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "partial GST block rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'gstDetails.gstCompanyName' is required when gstDetails is provided\",\"'gstDetails.gstAddress' is required when gstDetails is provided\",\"'gstDetails.gstEmailID msg='gstDetails.gstCompanyName' is required when gstDetails is provided | 'gstDetails.gstAddress' is required when gstDetail",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstCompanyName' is required when gstDetails is provided\",\"'gstDetails.gstAddress' is required when gstDetails is provided\",\"'gstDetails.gstEmailID' is required when gstDetails is provided\",\"'gstDetails.gstMobileNumber' is required when gstDetails is provided\"],\"timestamp\":\"2026-08-10T06:41:12Z\",\"request_id\":\"req-1786344071990\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "invalid GSTIN rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'gstDetails.gstNumber' is not a valid 15-character GSTIN\"] msg='gstDetails.gstNumber' is not a valid 15-character GSTIN | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstNumber' is not a valid 15-character GSTIN\"],\"timestamp\":\"2026-08-10T06:41:12Z\",\"request_id\":\"req-1786344072315\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "gstEmailId (wrong casing) treated as missing",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'gstDetails.gstEmailID' is required when gstDetails is provided\"] msg='gstDetails.gstEmailID' is required when gstDetails is provided | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstEmailID' is required when gstDetails is provided\"],\"timestamp\":\"2026-08-10T06:41:12Z\",\"request_id\":\"req-1786344072424\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "invalid gstMobileNumber rejected",
+      "how": "clone baseline → mutate → call",
+      "expected": "HTTP 400 + VALIDATION_ERROR + details[]",
+      "actual": "HTTP 400 code=VALIDATION_ERROR bodyStatus=- details=[\"'gstDetails.gstMobileNumber' must be a 10-digit Indian mobile number starting with 6-9\"] msg='gstDetails.gstMobileNumber' must be a 10-digit Indian mobile number starting with 6-9 | Validation failed",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR + details[]",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'gstDetails.gstMobileNumber' must be a 10-digit Indian mobile number starting with 6-9\"],\"timestamp\":\"2026-08-10T06:41:12Z\",\"request_id\":\"req-1786344072531\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "4. GST",
+      "rule": "full valid gstDetails accepted (not VALIDATION_ERROR)",
+      "how": "clone baseline → mutate → call",
+      "expected": "Accepted (not VALIDATION_ERROR)",
+      "actual": "HTTP 500 code=null",
+      "status": "BUG",
+      "note": "OK",
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+    },
+    {
+      "section": "Error envelope",
+      "rule": "error has code/message/details[]/timestamp/request_id",
+      "how": "Invalid email finalize",
+      "expected": "Full shared error envelope",
+      "actual": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.email' is not a valid email address\"],\"timestamp\":\"2026-08-10T06:41:24Z\",\"request_id\":\"req-1786344084322\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fc",
+      "status": "PASS",
+      "note": "",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'contact.email' is not a valid email address\"],\"timestamp\":\"2026-08-10T06:41:24Z\",\"request_id\":\"req-1786344084322\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "Error envelope",
+      "rule": "Multiple validation problems listed together",
+      "how": "Bad date + short name + bad email",
+      "expected": "details[] length >= 2",
+      "actual": "HTTP 400 detailsCount=2 details=[\"'rooms[0].guests[0].firstName' must be at least 2 characters\",\"'contact.email' is not a valid email address\"] msg=Validation failed",
+      "status": "PASS",
+      "note": "",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].firstName' must be at least 2 characters\",\"'contact.email' is not a valid email address\"],\"timestamp\":\"2026-08-10T06:41:24Z\",\"request_id\":\"req-1786344084621\"},\"_meta\":{\"correlation_id\":\"67497652-c97c-4a20-b1c0-b34fcd6f7e7e\"}}"
+    },
+    {
+      "section": "3. Contact",
+      "rule": "PAN mandatory rate requires panCardNumber",
+      "how": "Needs PAN-mandatory prebook rate",
+      "expected": "VALIDATION_ERROR when missing on PAN rate",
+      "actual": "NOT TESTED — no guaranteed PAN-mandatory rate in baseline",
+      "status": "NOT TESTED",
+      "note": "Requires rate flagged pan-mandatory"
+    },
+    {
+      "section": "4. GST",
+      "rule": "GST-required rate makes gstDetails mandatory",
+      "how": "Needs GST-required prebook rate",
+      "expected": "VALIDATION_ERROR 'gstDetails' is required…",
+      "actual": "NOT TESTED — no guaranteed GST-required rate in baseline",
+      "status": "NOT TESTED",
+      "note": "Requires rate flagged GST-required"
+    },
+    {
+      "section": "2. Guests",
+      "rule": "Child turns 18 during stay (checkout age rule)",
+      "how": "DOB such that age 17 on checkin, 18 on checkout",
+      "expected": "VALIDATION_ERROR",
+      "actual": "NOT TESTED — edge DOB timing not automated this run",
+      "status": "NOT TESTED",
+      "note": "Needs precise DOB vs stay window"
+    }
+  ]
+}
