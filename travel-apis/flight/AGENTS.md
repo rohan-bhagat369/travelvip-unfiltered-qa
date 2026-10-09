@@ -11,6 +11,7 @@
 ## Oct 2026 — airports tripType (ENG-297)
 - `GET /v1/flights/airports?tripType=domestic|international` — domestic = India-only; international/omit = unfiltered; do not send legacy `domestic=`
 - Staging 2026-10-01: **33 PASS / 0 BUG** + leak scan **29 PASS**
+- **Prod 2026-10-08** (`https://api.travelvip.ai`, catalog only, no book): cases **11 PASS / 22 BUG**; break scan **1 PASS / 28 BUG**. `tripType=domestic` does not India-filter; invalid tripType accepted HTTP 200. Reports: `travel-apis/flight/reports/flight-airports-triptype-*-prod.json`
 - Probe: `travel-apis/flight/scripts/probe-flight-airports-triptype.js`
 
 ## Oct 2026 — TBO staging books (QA-24)
