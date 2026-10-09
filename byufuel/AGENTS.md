@@ -2,7 +2,7 @@
 
 **Read this first** before running any Byufuel flow. Keep in sync with `byufuel/reports/byufuel-drive/BYUFUEL-QA-E2E-HANDOFF.md`.
 
-**Synced:** **2026-10-08** · Paths: `byufuel/scripts` · `byufuel/reports` · Cursor rule: `.cursor/rules/byufuel-qa-agent.mdc`
+**Synced:** **2026-10-09** · Paths: `byufuel/scripts` · `byufuel/reports` · Cursor rule: `.cursor/rules/byufuel-qa-agent.mdc`
 
 - Product: Used Cooking Oil (UCO) pickup → warehouse check-in → supplier payment (Centvis)
 - Tracker hub: https://tracker.travelvip.ai/tasks/ENG-289 · rollup **QA-19**
@@ -48,14 +48,22 @@ WH Worker: always **web** (APK hangs for Web-registered workers).
 | **TSM** | Rohan Bhagat | `rohan.tsm.byufuel@yopmail.com` | `R7m#Byuf` | App `com.byufuel.uat` · reports to AreaLead · password rotated 2026-10-06 (app forced change) |
 | **WH Worker** | QA WHWorker · 9876501004 | `qa.whworker.byufuel@yopmail.com` | `w6!CcGzV` | **Web only** · WareOne · Supervisor |
 
-### Area / City lead (view only)
+### Area / City lead
 
 | Role | Person | Login | Phone | Password |
 |------|--------|-------|-------|----------|
 | **Area Lead** | Rohan AreaLead | `rohan.area.byufuel@yopmail.com` | +91 9282809283 | Not stored — Admin → Reset Password if needed |
-| **City Lead** | Rohan CityLead | `rohan.city.byufuel@yopmail.com` | +91 9282809282 | Not stored — Reset via Admin |
+| **City Lead** | Rohan CityLead | `rohan.city.byufuel@yopmail.com` | +91 9282809282 | Not stored — Reset via Admin · App `com.byufuel.uat` |
 
 Hierarchy: TSM → AreaLead → CityLead → Admin.
+
+**City Lead scope (product clarification 2026-10-09 — supersedes older “view-only” notes):**  
+City Lead can do the **same field actions as TSM** when suppliers are in scope (assigned / linked to that City Lead — typically via shared PIN / OA linkage, same pattern as TSM zipcodes). That includes:
+- Raise **pickup** and **drop** (Sell Oil) requests
+- **Create visits** and **track / view visits**
+- Generally same actions as TSM (prospect / visit / request flows) once a supplier is assigned to them  
+
+If no supplier is assigned to the City Lead → supplier list empty → cannot raise request or create visit for that supplier.
 
 ### Extra / alternate
 
@@ -86,10 +94,32 @@ If login fails: Admin → user → **Reset Password**, then update this file.
 | Supplier | APK | Sell Oil / pickup request |
 | Driver | APK | Accept → Start → Scan QR → qty → Documentation/challan → Arrive WH |
 | WH Worker | Web | **Check in Oil** (not Collect Oil) |
-| TSM | APK only | Prospect, visit, signup supplier, Sell Oil in assigned PINs |
-| Area Lead / City Lead | APK view-only | Watch TSMs/requests — do **not** create pickup (product rule) |
+| TSM | APK only | Prospect, visit, signup supplier, Sell Oil (pickup/drop) in assigned PINs |
+| **City Lead** | APK `com.byufuel.uat` | **Same actions as TSM** when supplier is assigned to them: pickup + drop requests, create/track visits |
+| Area Lead | APK `com.byufuel.uat` | Hierarchy above TSM — confirm case-by-case; do not assume view-only without checking assignment |
 
 Hierarchy: TSM → Area Lead → City Lead → Admin.
+
+---
+
+## Visits (create + track) — TSM / City Lead
+
+**Prerequisite:** Supplier (or prospect) must be in the user’s scope (PIN / assignment). No assigned supplier → empty search → cannot create visit.
+
+### Create a visit (app `com.byufuel.uat`)
+
+1. Login as **TSM** or **City Lead**
+2. **Create Visit** / **Record a Visit** / **Add Visit**
+3. Visit type: **Supplier** or **Prospect**
+4. Search + select (establishment / name / PIN)
+5. Remarks (+ follow-up date if shown)
+6. **Save Visit** — toast “Visit created successfully”  
+   (May warn if not near location; can continue)
+
+### Track visits
+
+- App **Visits** / **Recent Visits** / **View Visit** — list by date range / search / zipcode
+- Admin **Suppliers** table also shows visit columns: Visited By, Visit Completed Date, Latest Visit Remark, Follow Up Date
 
 ---
 
