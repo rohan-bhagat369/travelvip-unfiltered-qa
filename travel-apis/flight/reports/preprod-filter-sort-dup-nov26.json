@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-29T12:41:16.577Z",
+  "route": "DEL-BOM",
+  "date": "2026-11-26",
+  "cases": {
+    "B1_scheduleDups": "PASS",
+    "B7_searchIdDups": "PASS",
+    "B6_priceAsc": "PASS",
+    "sort_duration_asc": "PASS",
+    "sort_departure_asc": "PASS",
+    "ui_cheapest_visible": "PASS",
+    "airlineFilter_preferences": "PASS",
+    "airlineFilter_appliedFilters": "NOT TESTED",
+    "stops_maxStops0": "BUG",
+    "stops_maxStops1": "PASS",
+    "B5_airlineFacetUniq": "NOT TESTED"
+  },
+  "duplicates": {
+    "scheduleDups": 0,
+    "searchIdDups": 0,
+    "dualVendorCards": 163,
+    "sameFareTypeNameBothVendors": 6
+  },
+  "sort": {
+    "fareAsc": { "options": 241, "violations": 0, "first": [6494.2, 6578, 6578, 6898, 7337.38] },
+    "durationAsc": { "checked": 25, "violations": 0 },
+    "departureAsc": { "checked": 60, "violations": 0 }
+  },
+  "filters": {
+    "preferences.airlines": {
+      "AI": "PASS 100/100",
+      "6E": "PASS 77/77",
+      "IX": "PASS 20/20"
+    },
+    "maxStops0": {
+      "status": "BUG",
+      "detail": "preferences.maxStops=0 still returns connecting flights",
+      "leaks": 94,
+      "sample": ["6E 704 stops=1", "6E 2402 stops=1", "6E 2303 stops=1"]
+    },
+    "maxStops1": "PASS"
+  }
+}

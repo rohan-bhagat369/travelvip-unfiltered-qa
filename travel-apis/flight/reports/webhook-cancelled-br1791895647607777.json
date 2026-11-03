@@ -1,0 +1,146 @@
+{
+  "at": "2026-10-13T12:58:55.637Z",
+  "br": "BR1791895647607777",
+  "counts": {
+    "PASS": 24
+  },
+  "rows": [
+    {
+      "rule": "event = booking.cancelled",
+      "status": "PASS",
+      "note": "booking.cancelled"
+    },
+    {
+      "rule": "type = flight",
+      "status": "PASS",
+      "note": "flight"
+    },
+    {
+      "rule": "version = 1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "data.status = Cancelled",
+      "status": "PASS",
+      "note": "Cancelled"
+    },
+    {
+      "rule": "API status Cancelled",
+      "status": "PASS",
+      "note": "Cancelled"
+    },
+    {
+      "rule": "BR match",
+      "status": "PASS",
+      "note": "BR1791895647607777"
+    },
+    {
+      "rule": "cancellationRequest.status Successful",
+      "status": "PASS",
+      "note": "Cancellation Successful"
+    },
+    {
+      "rule": "mode OFFLINE",
+      "status": "PASS",
+      "note": "OFFLINE"
+    },
+    {
+      "rule": "scope FULL PAX1 leg 1575",
+      "status": "PASS",
+      "note": "{\"type\":\"FULL\",\"legIds\":[1575],\"paxIds\":[\"PAX1\"]}"
+    },
+    {
+      "rule": "pnr FVRVRV",
+      "status": "PASS",
+      "note": "FVRVRV"
+    },
+    {
+      "rule": "pax leg Cancelled",
+      "status": "PASS",
+      "note": "Cancelled"
+    },
+    {
+      "rule": "debit 1650 success",
+      "status": "PASS",
+      "note": "{\"id\":\"5210\",\"amount\":1650,\"type\":\"debit\",\"status\":\"success\"}"
+    },
+    {
+      "rule": "credit refund 1200 success",
+      "status": "PASS",
+      "note": "{\"id\":\"5211\",\"amount\":1200,\"type\":\"credit\",\"status\":\"success\"}"
+    },
+    {
+      "rule": "net wallet = charge retained",
+      "status": "PASS",
+      "note": "450 retained vs charge 450"
+    },
+    {
+      "rule": "estimate charge+refund = paid",
+      "status": "PASS",
+      "note": "450+1200"
+    },
+    {
+      "rule": "saleSummary.refund.amount = credit",
+      "status": "PASS",
+      "note": "1200"
+    },
+    {
+      "rule": "saleSummary.refund.cancellationCharge = estimate",
+      "status": "PASS",
+      "note": "450"
+    },
+    {
+      "rule": "refund destination APP_WALLET",
+      "status": "PASS",
+      "note": "APP_WALLET"
+    },
+    {
+      "rule": "refund links cancellationRequestId 838",
+      "status": "PASS",
+      "note": "838"
+    },
+    {
+      "rule": "ssrAmount 0",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "API pax Cancelled",
+      "status": "PASS",
+      "note": "Cancelled"
+    },
+    {
+      "rule": "API cancel request present",
+      "status": "PASS",
+      "note": "{\"status\":\"Cancelled\",\"charge\":450,\"refund\":1200}"
+    },
+    {
+      "rule": "API total still 1650",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "no Riya",
+      "status": "PASS",
+      "note": "ok"
+    }
+  ],
+  "notes": [
+    "cancellationChargeBreakup all 0 but charge=450 — soft GAP",
+    "Lifecycle OK: confirmed → cancellation_requested → cancelled + credit 1200",
+    "Net retained 450; credited 1200 to APP_WALLET"
+  ],
+  "api": {
+    "status": "Cancelled",
+    "paxLeg": "Cancelled",
+    "cancellationRequest": {
+      "status": "Cancelled",
+      "pnr": "FVRVRV",
+      "estimatedCancellationCharge": 450,
+      "estimatedRefund": 1200,
+      "createdAt": "2026-10-13T12:53:05Z"
+    },
+    "total": 1650
+  }
+}

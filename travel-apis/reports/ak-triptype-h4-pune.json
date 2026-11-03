@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-14T13:43:18.727Z",
+  "baseUrl": "https://ak-api.travelvip.ai",
+  "entity": "328605:IN",
+  "checkin": "2026-10-21",
+  "checkout": "2026-10-22",
+  "rows": [
+    {
+      "id": "H4",
+      "status": "PASS",
+      "rule": "search Pune domestic → hotels + tripType domestic",
+      "note": "n=10 checkin=2026-10-21 topTt=domestic",
+      "http": 200,
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":287,\"totalPages\":29,\"availableResults\":287,\"last\":false,\"results\":[{\"id\":\"39644515\",\"name\":\"Sheraton Grand Pune Bund Garden Hotel\",\"address\":\"Raja Bahadur Mill Road\",\"distance\":null,\"image\":\"https://cdn.worldota.net/t/1024x768/content/a0/c5/a0c5159905313",
+      "n": 10,
+      "entity": "328605:IN"
+    },
+    {
+      "id": "H7",
+      "status": "PASS",
+      "rule": "search no tripType → hotels with tripType",
+      "note": "n=10 withTripType=10",
+      "http": 200,
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":287,\"totalPages\":29,\"availableResults\":287,\"last\":false,\"results\":[{\"id\":\"39644515\",\"name\":\"Sheraton Grand Pune Bund Garden Hotel\",\"address\":\"Raja Bahadur Mill Road\",\"distance\":null,\"image\":\"https://cdn.worldota.net/t/1024x768/content/a0/c5/a0c5159905313"
+    },
+    {
+      "id": "H5",
+      "status": "PASS",
+      "rule": "Pune + international → [] + message",
+      "note": "No hotels: this destination is in India and tripType is international.",
+      "http": 200,
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels: this destination is in India and tripType is international.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"filters\":null,\"sorts\":null"
+    }
+  ]
+}

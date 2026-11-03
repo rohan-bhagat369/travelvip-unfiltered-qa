@@ -1,0 +1,618 @@
+{
+  "ranAt": "2026-10-27T12:38:58.282Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "tierId": 19597201,
+  "correlationId": "79241785-7f48-4efd-9393-b5e141cdc173",
+  "note": "Search with fareType only (no airline filter); pick available sheet airlines from response; check details+fareRules+pricing; no book",
+  "sheet": {
+    "6E": {
+      "name": "IndiGo",
+      "fareType": "CORPORATE",
+      "before24": 499,
+      "within24": 799
+    },
+    "AI": {
+      "name": "Air India",
+      "fareType": "SME",
+      "before24": 1047,
+      "within24": 1999
+    },
+    "IX": {
+      "name": "Air India Express",
+      "fareType": "CORPORATE",
+      "before24": 600,
+      "within24": 1000
+    },
+    "QP": {
+      "name": "Akasa Air",
+      "fareType": "CORPORATE",
+      "before24": 299,
+      "within24": 299
+    },
+    "SG": {
+      "name": "SpiceJet",
+      "fareType": "CORPORATE",
+      "before24": 599,
+      "within24": 599
+    }
+  },
+  "fees": {
+    "DOMESTIC": {
+      "online": 50,
+      "offline": 300
+    },
+    "INTERNATIONAL": {
+      "online": 100,
+      "offline": 600
+    }
+  },
+  "searches": 6,
+  "hopCalls": 9,
+  "rows": [
+    {
+      "scenario": "OW-DOM-CORP",
+      "tripType": "DOMESTIC",
+      "searchFareType": "CORPORATE",
+      "airline": "QP",
+      "name": "Akasa Air",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "CORPORATE",
+      "fareTypeMatch": "PASS",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            }
+          ],
+          "topKeys": [
+            "journeyType",
+            "tripType",
+            "timingReference",
+            "selection",
+            "pricing",
+            "currencyConversion",
+            "passengerOptions",
+            "itinerary"
+          ],
+          "hasReschedulePoliciesKey": true
+        },
+        {
+          "endpoint": "fareRules",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            }
+          ],
+          "topKeys": [
+            "journeyType",
+            "tripType",
+            "timingReference",
+            "selection",
+            "fareRules",
+            "cancellationPolicies",
+            "reschedulePolicies"
+          ],
+          "hasReschedulePoliciesKey": true
+        },
+        {
+          "endpoint": "pricing",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            }
+          ],
+          "topKeys": [
+            "priceId",
+            "timingReference",
+            "journeyType",
+            "tripType",
+            "fareType",
+            "passportType",
+            "addGstInfo",
+            "selection",
+            "expiresAt",
+            "pricing",
+            "currencyConversion",
+            "gstBreakup",
+            "cancellationFee",
+            "itinerary",
+            "passengerOptions",
+            "descriptions",
+            "notices",
+            "priceChange",
+            "capabilities",
+            "bookingContext",
+            "vpricingReference",
+            "refreshToken"
+          ],
+          "hasReschedulePoliciesKey": true
+        }
+      ],
+      "searchIds": [
+        "srch_c25fa5925ded47f7999c4c29ba55262a"
+      ]
+    },
+    {
+      "scenario": "OW-DOM-CORP",
+      "searchFareType": "CORPORATE",
+      "airline": "6E",
+      "name": "IndiGo",
+      "expectedFareType": "CORPORATE",
+      "status": "NOT TESTED",
+      "detail": "not in fareType=CORPORATE search (saw QP)"
+    },
+    {
+      "scenario": "OW-DOM-CORP",
+      "searchFareType": "CORPORATE",
+      "airline": "IX",
+      "name": "Air India Express",
+      "expectedFareType": "CORPORATE",
+      "status": "NOT TESTED",
+      "detail": "not in fareType=CORPORATE search (saw QP)"
+    },
+    {
+      "scenario": "OW-DOM-CORP",
+      "searchFareType": "CORPORATE",
+      "airline": "SG",
+      "name": "SpiceJet",
+      "expectedFareType": "CORPORATE",
+      "status": "NOT TESTED",
+      "detail": "not in fareType=CORPORATE search (saw QP)"
+    },
+    {
+      "scenario": "OW-DOM-SME",
+      "tripType": "DOMESTIC",
+      "searchFareType": "SME",
+      "airline": "AI",
+      "name": "Air India",
+      "expectedFareType": "SME",
+      "fareCategory": "SME",
+      "fareTypeMatch": "PASS",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 1047,
+                "within": 1999,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            }
+          ],
+          "topKeys": [
+            "journeyType",
+            "tripType",
+            "timingReference",
+            "selection",
+            "pricing",
+            "currencyConversion",
+            "passengerOptions",
+            "itinerary"
+          ],
+          "hasReschedulePoliciesKey": true
+        },
+        {
+          "endpoint": "fareRules",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 1047,
+                "within": 1999,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            }
+          ],
+          "topKeys": [
+            "journeyType",
+            "tripType",
+            "timingReference",
+            "selection",
+            "fareRules",
+            "cancellationPolicies",
+            "reschedulePolicies"
+          ],
+          "hasReschedulePoliciesKey": true
+        },
+        {
+          "endpoint": "pricing",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 1047,
+                "within": 1999,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            }
+          ],
+          "topKeys": [
+            "priceId",
+            "timingReference",
+            "journeyType",
+            "tripType",
+            "fareType",
+            "passportType",
+            "addGstInfo",
+            "selection",
+            "expiresAt",
+            "pricing",
+            "currencyConversion",
+            "gstBreakup",
+            "cancellationFee",
+            "itinerary",
+            "passengerOptions",
+            "descriptions",
+            "notices",
+            "priceChange",
+            "capabilities",
+            "bookingContext",
+            "vpricingReference",
+            "refreshToken"
+          ],
+          "hasReschedulePoliciesKey": true
+        }
+      ],
+      "searchIds": [
+        "srch_97b80fe63d1c4d9d8c9b047692663885"
+      ]
+    },
+    {
+      "scenario": "OW-INT-CORP",
+      "fareType": "CORPORATE",
+      "status": "NOT TESTED",
+      "how": "fare-filtered search (no airline filter)",
+      "detail": "http=400 NO_FLIGHTS_FOUND"
+    },
+    {
+      "scenario": "OW-INT-SME",
+      "fareType": "SME",
+      "status": "NOT TESTED",
+      "detail": "target airlines absent; saw 6E,IX"
+    },
+    {
+      "scenario": "RT-DOM-CORP",
+      "tripType": "DOMESTIC",
+      "searchFareType": "CORPORATE",
+      "airline": "QP",
+      "name": "Akasa Air",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "CORPORATE",
+      "fareTypeMatch": "PASS",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 2,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            },
+            {
+              "direction": "RETURN",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            }
+          ],
+          "topKeys": [
+            "journeyType",
+            "tripType",
+            "timingReference",
+            "selection",
+            "pricing",
+            "currencyConversion",
+            "passengerOptions",
+            "itinerary"
+          ],
+          "hasReschedulePoliciesKey": true
+        },
+        {
+          "endpoint": "fareRules",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 2,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            },
+            {
+              "direction": "RETURN",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            }
+          ],
+          "topKeys": [
+            "journeyType",
+            "tripType",
+            "timingReference",
+            "selection",
+            "fareRules",
+            "cancellationPolicies",
+            "reschedulePolicies"
+          ],
+          "hasReschedulePoliciesKey": true
+        },
+        {
+          "endpoint": "pricing",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 2,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            },
+            {
+              "direction": "RETURN",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCutoffH": 4,
+                "offlineCutoffH": 12
+              }
+            }
+          ],
+          "topKeys": [
+            "priceId",
+            "timingReference",
+            "journeyType",
+            "tripType",
+            "fareType",
+            "passportType",
+            "addGstInfo",
+            "selection",
+            "expiresAt",
+            "pricing",
+            "currencyConversion",
+            "gstBreakup",
+            "cancellationFee",
+            "itinerary",
+            "passengerOptions",
+            "descriptions",
+            "notices",
+            "priceChange",
+            "capabilities",
+            "bookingContext",
+            "vpricingReference",
+            "refreshToken"
+          ],
+          "hasReschedulePoliciesKey": true
+        }
+      ],
+      "searchIds": [
+        "srch_e54f488885804e7f98291354284f935e",
+        "srch_096be8f705ff4d269a72f8f95e78693a"
+      ]
+    },
+    {
+      "scenario": "RT-DOM-CORP",
+      "searchFareType": "CORPORATE",
+      "airline": "6E",
+      "name": "IndiGo",
+      "expectedFareType": "CORPORATE",
+      "status": "NOT TESTED",
+      "detail": "not in fareType=CORPORATE search (saw QP)"
+    },
+    {
+      "scenario": "RT-DOM-CORP",
+      "searchFareType": "CORPORATE",
+      "airline": "IX",
+      "name": "Air India Express",
+      "expectedFareType": "CORPORATE",
+      "status": "NOT TESTED",
+      "detail": "not in fareType=CORPORATE search (saw QP)"
+    },
+    {
+      "scenario": "RT-DOM-CORP",
+      "searchFareType": "CORPORATE",
+      "airline": "SG",
+      "name": "SpiceJet",
+      "expectedFareType": "CORPORATE",
+      "status": "NOT TESTED",
+      "detail": "not in fareType=CORPORATE search (saw QP)"
+    },
+    {
+      "scenario": "RT-INT-CORP",
+      "fareType": "CORPORATE",
+      "status": "NOT TESTED",
+      "how": "fare-filtered search (no airline filter)",
+      "detail": "http=400 NO_FLIGHTS_FOUND"
+    }
+  ],
+  "inventorySeen": {
+    "OW-DOM-CORP": {
+      "fareType": "CORPORATE",
+      "airlines": [
+        "QP"
+      ],
+      "fareSamples": [
+        "QP:CORPORATE"
+      ]
+    },
+    "OW-DOM-SME": {
+      "fareType": "SME",
+      "airlines": [
+        "6E",
+        "QP",
+        "IX",
+        "AI"
+      ],
+      "fareSamples": [
+        "6E:SME",
+        "QP:SME",
+        "IX:SME",
+        "AI:SME"
+      ]
+    },
+    "OW-INT-CORP": {
+      "fareType": "CORPORATE",
+      "airlines": [],
+      "fareSamples": []
+    },
+    "OW-INT-SME": {
+      "fareType": "SME",
+      "airlines": [
+        "6E",
+        "IX"
+      ],
+      "fareSamples": [
+        "6E:SME",
+        "IX:SME"
+      ]
+    },
+    "RT-DOM-CORP-RETURN": [
+      "QP"
+    ],
+    "RT-DOM-CORP": {
+      "fareType": "CORPORATE",
+      "airlines": [
+        "QP"
+      ],
+      "fareSamples": [
+        "QP:CORPORATE"
+      ]
+    },
+    "RT-INT-CORP": {
+      "fareType": "CORPORATE",
+      "airlines": [],
+      "fareSamples": []
+    }
+  },
+  "summary": {
+    "PASS": 3,
+    "BUG": 0,
+    "NOTE": 0,
+    "NOT_TESTED": 9,
+    "searches": 6,
+    "hopCalls": 9
+  }
+}

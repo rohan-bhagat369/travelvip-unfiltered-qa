@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "event": "booking.cancelled",
+  "timestamp": "2026-10-13T14:31:49Z",
+  "type": "flight",
+  "data": {
+    "status": "Cancelled",
+    "reason": null,
+    "bookingReference": "BR1791300463267996",
+    "cancellationRequest": {
+      "id": 840,
+      "status": "Cancellation Successful",
+      "mode": "OFFLINE",
+      "scope": {
+        "type": "PASSENGER_LEG",
+        "legIds": [1549],
+        "paxIds": ["PAX1"]
+      },
+      "estimatedCancellationCharge": 2128.59,
+      "estimatedRefund": 119.63,
+      "ssrAmount": 2125.71,
+      "createdAt": "2026-10-13T14:27:39Z",
+      "pnr": "J93QYH"
+    },
+    "transaction": [
+      {
+        "id": "5168",
+        "amount": 4496.44,
+        "currency": "USD",
+        "paymentMethod": "wallet",
+        "createdAt": "2026-10-06T15:27:45Z",
+        "completedAt": "2026-10-06T15:27:45Z",
+        "type": "debit",
+        "status": "success"
+      }
+    ],
+    "contactDetails": {
+      "email": "mpaxssr.2a.1791300463798.8@travelvip.ai",
+      "countryCode": "+91",
+      "mobile": "9876543210"
+    },
+    "bookingDetails": {
+      "serviceDetails": {
+        "journeyType": "ROUND_TRIP",
+        "pnrCount": 1,
+        "pnrGroups": [{ "pnr": "J93QYH", "legIds": [1549, 1550] }],
+        "itinerary": []
+      },
+      "saleSummary": {
+        "baseFare": 103.73,
+        "convenienceFee": 3.66,
+        "taxes": 79.32,
+        "baggageAmount": 116.63,
+        "mealAmount": 17.5,
+        "seatAmount": 4175.6,
+        "grossAmount": 4496.44,
+        "discountAmount": 0.0,
+        "totalAmount": 4496.44,
+        "currency": "USD",
+        "appliedOffer": null,
+        "refund": {
+          "cancellationRequestId": 840,
+          "amount": 0.0,
+          "destinationType": null,
+          "cancellationCharge": 2575.71,
+          "cancellationChargeBreakup": {
+            "airlineCancellationFee": 0.0,
+            "convenienceFee": 350.0,
+            "serviceFee": 100.0,
+            "flexicancelFee": 0.0
+          },
+          "scope": {
+            "type": "PASSENGER_LEG",
+            "legIds": [1549],
+            "paxIds": ["PAX1"]
+          }
+        }
+      },
+      "cancellation": { "isCancellable": false, "cancellationPolicy": null },
+      "passengers": [
+        {
+          "paxId": "PAX1",
+          "paxType": "ADULT",
+          "profile": {
+            "title": "Mr",
+            "firstName": "Vihaan",
+            "lastName": "Kapoornsrc",
+            "dob": "1988-05-12"
+          },
+          "passport": {
+            "number": null,
+            "expiry": null,
+            "issuedDate": null,
+            "issuedCountryCode": null
+          },
+          "legs": [
+            {
+              "legId": 1549,
+              "pnr": "J93QYH",
+              "eticket": "",
+              "status": "Cancelled"
+            }
+          ],
+          "addons": {
+            "baggage": [],
+            "meal": [],
+            "seat": []
+          }
+        }
+      ]
+    }
+  },
+  "_note": "Full itinerary+addons preserved in companion raw file; this stub used only if raw write fails"
+}

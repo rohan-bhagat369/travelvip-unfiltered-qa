@@ -1,0 +1,397 @@
+{
+  "started": "2026-10-28T11:58:56.700Z",
+  "ended": "2026-10-28T11:59:15.698Z",
+  "baseUrl": "https://api.travelvip.ai",
+  "tierId": 19597201,
+  "prefix": "qa-otel-prod-full-1793188736699",
+  "notes": {
+    "noLiveBook": true,
+    "tc6": "Rejected book-shaped only",
+    "flightSearchOk": true,
+    "signozChecked": "2026-10-28",
+    "signozSummary": "Flight+hotel listing logs YES (corr+traceparent). TC-5/TC-6/neg early 4xx: no body logs for corr. Stack/PII not verifiable."
+  },
+  "cases": [
+    {
+      "id": "TC-1",
+      "rule": "Positives: hotel AC/search, airports, airlines, citySearch, flight search",
+      "status": "PASS",
+      "how": "API 200 + SigNoz flight/hotel listing logs with corr+traceparent"
+    },
+    {
+      "id": "TC-2",
+      "rule": "Client timings captured for SigNoz duration compare (≤1s overhead)",
+      "status": "PASS",
+      "how": "hotel-search client p50 1052ms; Riya took 538-573ms on same corr; root span not isolated"
+    },
+    {
+      "id": "TC-5",
+      "rule": "4xx invalid payloads logged",
+      "status": "BUG",
+      "how": "API 400 VALIDATION_ERROR but no SigNoz logs for tc5 corr IDs"
+    },
+    {
+      "id": "TC-6",
+      "rule": "Rejected book-shaped payloads (no Confirmed); PII/stack in SigNoz",
+      "status": "PASS_API_NOT_TESTED_SIGNOZ",
+      "how": "API 400 no book; no SigNoz logs for tc6 corr — stack/PII unverified"
+    },
+    {
+      "id": "NEG",
+      "rule": "Auth/validation negatives return errors (not 500 ideally)",
+      "status": "PASS_API",
+      "how": "403/400 as expected; corr-tagged logs not found in SigNoz"
+    }
+  ],
+  "timingCompare": {
+    "airports": {
+      "n": 3,
+      "min": 78,
+      "max": 87,
+      "avg": 81,
+      "p50": 79
+    },
+    "hotel-ac": {
+      "n": 3,
+      "min": 90,
+      "max": 99,
+      "avg": 95,
+      "p50": 95
+    },
+    "hotel-search": {
+      "n": 3,
+      "min": 1043,
+      "max": 1178,
+      "avg": 1091,
+      "p50": 1052
+    }
+  },
+  "corrIds": [
+    "qa-otel-prod-full-1793188736699-auth-token",
+    "qa-otel-prod-full-1793188736699-auth-session",
+    "qa-otel-prod-full-1793188736699-tc1-hotel-ac",
+    "qa-otel-prod-full-1793188736699-tc1-hotel-search",
+    "qa-otel-prod-full-1793188736699-tc1-airports",
+    "qa-otel-prod-full-1793188736699-tc1-airlines",
+    "qa-otel-prod-full-1793188736699-tc1-citysearch",
+    "qa-otel-prod-full-1793188736699-tc1-flight-search",
+    "qa-otel-prod-full-1793188736699-neg-omit-bearer",
+    "qa-otel-prod-full-1793188736699-neg-garbage-bearer",
+    "qa-otel-prod-full-1793188736699-neg-hotel-dates",
+    "qa-otel-prod-full-1793188736699-neg-hotel-html",
+    "qa-otel-prod-full-1793188736699-neg-flight-same-od",
+    "qa-otel-prod-full-1793188736699-neg-flight-html",
+    "qa-otel-prod-full-1793188736699-tc5-4xx",
+    "qa-otel-prod-full-1793188736699-tc5-comma",
+    "qa-otel-prod-full-1793188736699-tc6-pii-flight",
+    "qa-otel-prod-full-1793188736699-tc6-pii-hotel",
+    "qa-otel-prod-full-1793188736699-tc2-airports-0",
+    "qa-otel-prod-full-1793188736699-tc2-airports-1",
+    "qa-otel-prod-full-1793188736699-tc2-airports-2",
+    "qa-otel-prod-full-1793188736699-tc2-hotel-ac-0",
+    "qa-otel-prod-full-1793188736699-tc2-hotel-ac-1",
+    "qa-otel-prod-full-1793188736699-tc2-hotel-ac-2",
+    "qa-otel-prod-full-1793188736699-tc2-hotel-search-0",
+    "qa-otel-prod-full-1793188736699-tc2-hotel-search-1",
+    "qa-otel-prod-full-1793188736699-tc2-hotel-search-2"
+  ],
+  "calls": [
+    {
+      "label": "auth-token",
+      "corr": "qa-otel-prod-full-1793188736699-auth-token",
+      "method": "POST",
+      "path": "/auth/partner/token",
+      "http": 200,
+      "ok": true,
+      "clientMs": 556,
+      "errorCode": null,
+      "bodyPreview": "{\"access_token\":\"gmr_at_jsfdSxXJGNTbWGaP_XDwCiDr69aow4Z46F04hWq3lJ4\",\"refresh_token\":\"gmr_rt_8pkJGA4h3y3DedGd3yQm490Jngbhb1Nuvfble_Nhfl4\",\"expires_in\":1800}"
+    },
+    {
+      "label": "auth-session",
+      "corr": "qa-otel-prod-full-1793188736699-auth-session",
+      "method": "POST",
+      "path": "/v1/auth/session",
+      "http": 200,
+      "ok": true,
+      "clientMs": 136,
+      "errorCode": null,
+      "bodyPreview": "{\"auth_token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2YTVlMjZkMDhlY2QxNy4yMjcwNTc5MCIsInRva2VuRGF0ZSI6IjIwMjYtMTAtMjggMTE6NTg6NTciLCJrZXkiOiJvam55MXN3dGlnZDRhcyIsInBpZCI6InZnbSIsInRpZXJJZCI6MTk1OTcyMDEsInN1YnNjcmlwdGlvbklkIjoiOTUzNDkzNTQzNmFkYTE3OCIsInR5cGUiOiJndWVz"
+    },
+    {
+      "label": "tc1-hotel-ac",
+      "corr": "qa-otel-prod-full-1793188736699-tc1-hotel-ac",
+      "method": "GET",
+      "path": "/v1/hotels/autocomplete",
+      "http": 200,
+      "ok": true,
+      "clientMs": 196,
+      "errorCode": null,
+      "bodyPreview": "{\"content\":[],\"pageable\":{\"pageNumber\":1,\"pageSize\":5,\"offset\":5},\"totalElements\":5,\"totalPages\":1,\"first\":false,\"last\":true,\"empty\":true,\"_meta\":{\"correlation_id\":\"qa-otel-prod-full-1793188736699-tc1-hotel-ac\"}}"
+    },
+    {
+      "label": "tc1-hotel-search",
+      "corr": "qa-otel-prod-full-1793188736699-tc1-hotel-search",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "http": 200,
+      "ok": true,
+      "clientMs": 12754,
+      "errorCode": null,
+      "bodyPreview": "{\"page\":0,\"size\":5,\"offset\":0,\"totalResults\":1040,\"totalPages\":208,\"availableResults\":1040,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/42"
+    },
+    {
+      "label": "tc1-airports",
+      "corr": "qa-otel-prod-full-1793188736699-tc1-airports",
+      "method": "GET",
+      "path": "/v1/flights/airports",
+      "http": 200,
+      "ok": true,
+      "clientMs": 180,
+      "errorCode": null,
+      "bodyPreview": "{\"status\":0,\"result\":[{\"airportCode\":\"BOM\",\"airportName\":\"Chhatrapati Shivaji Maharaj International Airport\",\"city\":\"Mumbai\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"19.0886993408\",\"longitude\":\"72.8678970337\",\"address\":null,\"tag\":null},{\"airportC"
+    },
+    {
+      "label": "tc1-airlines",
+      "corr": "qa-otel-prod-full-1793188736699-tc1-airlines",
+      "method": "GET",
+      "path": "/v1/flights/airlines",
+      "http": 200,
+      "ok": true,
+      "clientMs": 151,
+      "errorCode": null,
+      "bodyPreview": "{\"status\":0,\"results\":[{\"airlineCode\":\"AI\",\"airlineName\":\"Air India\"},{\"airlineCode\":\"KJ\",\"airlineName\":\"Air Incheon\"},{\"airlineCode\":\"3H\",\"airlineName\":\"Air Inuit\"},{\"airlineCode\":\"AC\",\"airlineName\":\"Air Canada\"},{\"airlineCode\":\"AF\",\"airlineName\":\"Air France\"},{\"airlineCode\":\"AH"
+    },
+    {
+      "label": "tc1-citysearch",
+      "corr": "qa-otel-prod-full-1793188736699-tc1-citysearch",
+      "method": "GET",
+      "path": "/v1/flights/citySearch",
+      "http": 200,
+      "ok": true,
+      "clientMs": 98,
+      "errorCode": null,
+      "bodyPreview": "{\"status\":0,\"results\":[{\"city\":\"Pune\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY\",\"latitude\":\"18.51957000\",\"longitude\":\"73.85535000\"},{\"city\":\"Hadapsar Pune\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY\",\"latitude\":\"18.49666667\",\"longitude\":\"73.94166667\"},{\"city"
+    },
+    {
+      "label": "tc1-flight-search",
+      "corr": "qa-otel-prod-full-1793188736699-tc1-flight-search",
+      "method": "POST",
+      "path": "/v1/flights/search",
+      "http": 200,
+      "ok": true,
+      "clientMs": 170,
+      "errorCode": null,
+      "bodyPreview": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"efdFR+1vLtHq27UNjwaugxoKNNwXWfi/uMj9A01g34H+akUmHPVBlnCH"
+    },
+    {
+      "label": "neg-omit-bearer",
+      "corr": "qa-otel-prod-full-1793188736699-neg-omit-bearer",
+      "method": "GET",
+      "path": "/v1/flights/airports",
+      "http": 403,
+      "ok": false,
+      "clientMs": 109,
+      "errorCode": "INVALID_PARTNER_KEY",
+      "bodyPreview": "{\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied pid\",\"timestamp\":\"2026-10-28T11:59:10Z\",\"request_id\":\"req-1793188750946\"},\"_meta\":{\"correlation_id\":\"qa-otel-prod-full-17"
+    },
+    {
+      "label": "neg-garbage-bearer",
+      "corr": "qa-otel-prod-full-1793188736699-neg-garbage-bearer",
+      "method": "GET",
+      "path": "/v1/flights/airports",
+      "http": 403,
+      "ok": false,
+      "clientMs": 238,
+      "errorCode": "INVALID_PARTNER_KEY",
+      "bodyPreview": "{\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied pid\",\"timestamp\":\"2026-10-28T11:59:10Z\",\"request_id\":\"req-1793188751055\"},\"_meta\":{\"correlation_id\":\"qa-otel-prod-full-17"
+    },
+    {
+      "label": "neg-hotel-dates",
+      "corr": "qa-otel-prod-full-1793188736699-neg-hotel-dates",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "http": 400,
+      "ok": false,
+      "clientMs": 56,
+      "errorCode": "VALIDATION_ERROR",
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-out date must be after the check-in date.\"],\"timestamp\":\"2026-10-28T11:59:11Z\",\"request_id\":\"req-1793188751293\"},\"_meta\":{\"correlation_id\":\"qa-otel-prod-full-1793188736699-neg-hotel-dates\"}}"
+    },
+    {
+      "label": "neg-hotel-html",
+      "corr": "qa-otel-prod-full-1793188736699-neg-hotel-html",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "http": 400,
+      "ok": false,
+      "clientMs": 54,
+      "errorCode": "VALIDATION_ERROR",
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Nationality must be a valid 2-letter country code (for example IN, US or AE).\"],\"timestamp\":\"2026-10-28T11:59:11Z\",\"request_id\":\"req-1793188751349\"},\"_meta\":{\"correlation_id\":\"qa-otel-prod-full-17931887"
+    },
+    {
+      "label": "neg-flight-same-od",
+      "corr": "qa-otel-prod-full-1793188736699-neg-flight-same-od",
+      "method": "POST",
+      "path": "/v1/flights/search",
+      "http": 400,
+      "ok": false,
+      "clientMs": 126,
+      "errorCode": "VALIDATION_ERROR",
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Origin and destination cannot be the same (DEL) for flight segment 1.\"],\"timestamp\":\"2026-10-28T11:59:11Z\",\"request_id\":\"req-179318875140"
+    },
+    {
+      "label": "neg-flight-html",
+      "corr": "qa-otel-prod-full-1793188736699-neg-flight-html",
+      "method": "POST",
+      "path": "/v1/flights/search",
+      "http": 400,
+      "ok": false,
+      "clientMs": 72,
+      "errorCode": "INVALID_AIRPORT",
+      "bodyPreview": "{\"error\":{\"code\":\"INVALID_AIRPORT\",\"message\":\"Invalid airport code: <SCRIPT>\",\"details\":null,\"timestamp\":\"2026-10-28T11:59:11Z\",\"request_id\":\"req-1793188751529\"},\"_meta\":{\"correlation_id\":\"qa-otel-prod-full-1793188736699-neg-flight-html\"}}"
+    },
+    {
+      "label": "tc5-4xx-invalid-dates",
+      "corr": "qa-otel-prod-full-1793188736699-tc5-4xx",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "http": 400,
+      "ok": false,
+      "clientMs": 50,
+      "errorCode": "VALIDATION_ERROR",
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Check-in date is not a valid date. Use the format YYYY-MM-DD.\",\"Check-out date is not a valid date. Use the format YYYY-MM-DD.\"],\"timestamp\":\"2026-10-28T11:59:11Z\",\"request_id\":\"req-1793188751601\"},\"_me"
+    },
+    {
+      "label": "tc5-comma-nationality",
+      "corr": "qa-otel-prod-full-1793188736699-tc5-comma",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "http": 400,
+      "ok": false,
+      "clientMs": 55,
+      "errorCode": "VALIDATION_ERROR",
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"Nationality must be a valid 2-letter country code (for example IN, US or AE).\"],\"timestamp\":\"2026-10-28T11:59:11Z\",\"request_id\":\"req-1793188751651\"},\"_meta\":{\"correlation_id\":\"qa-otel-prod-full-17931887"
+    },
+    {
+      "label": "tc6-pii-issue-ticket",
+      "corr": "qa-otel-prod-full-1793188736699-tc6-pii-flight",
+      "method": "POST",
+      "path": "/api/v2/flights/booking/issue-ticket",
+      "http": 400,
+      "ok": false,
+      "clientMs": 130,
+      "errorCode": "VALIDATION_ERROR",
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is invalid\"],\"timestamp\":\"2026-10-28T11:59:11Z\",\"request_id\":\"req-1793188751706\"},\"_meta\":{\"correlation_id\":\"qa-otel-prod-full-1793188736699-tc6-pii-flight\"}}"
+    },
+    {
+      "label": "tc6-pii-hotel-finalize",
+      "corr": "qa-otel-prod-full-1793188736699-tc6-pii-hotel",
+      "method": "POST",
+      "path": "/v1/hotels/finalize-booking",
+      "http": 400,
+      "ok": false,
+      "clientMs": 60,
+      "errorCode": "VALIDATION_ERROR",
+      "bodyPreview": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingContext' is required\",\"'rooms' is required\"],\"timestamp\":\"2026-10-28T11:59:11Z\",\"request_id\":\"req-1793188751836\"},\"_meta\":{\"correlation_id\":\"qa-otel-prod-full-1793188736699-tc6-pii-hotel\"}}"
+    },
+    {
+      "label": "tc2-airports-0",
+      "corr": "qa-otel-prod-full-1793188736699-tc2-airports-0",
+      "method": "GET",
+      "path": "/v1/flights/airports",
+      "http": 200,
+      "ok": true,
+      "clientMs": 78,
+      "errorCode": null,
+      "bodyPreview": "{\"status\":0,\"result\":[{\"airportCode\":\"BOM\",\"airportName\":\"Chhatrapati Shivaji Maharaj International Airport\",\"city\":\"Mumbai\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"19.0886993408\",\"longitude\":\"72.8678970337\",\"address\":null,\"tag\":null},{\"airportC"
+    },
+    {
+      "label": "tc2-airports-1",
+      "corr": "qa-otel-prod-full-1793188736699-tc2-airports-1",
+      "method": "GET",
+      "path": "/v1/flights/airports",
+      "http": 200,
+      "ok": true,
+      "clientMs": 87,
+      "errorCode": null,
+      "bodyPreview": "{\"status\":0,\"result\":[{\"airportCode\":\"BOM\",\"airportName\":\"Chhatrapati Shivaji Maharaj International Airport\",\"city\":\"Mumbai\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"19.0886993408\",\"longitude\":\"72.8678970337\",\"address\":null,\"tag\":null},{\"airportC"
+    },
+    {
+      "label": "tc2-airports-2",
+      "corr": "qa-otel-prod-full-1793188736699-tc2-airports-2",
+      "method": "GET",
+      "path": "/v1/flights/airports",
+      "http": 200,
+      "ok": true,
+      "clientMs": 79,
+      "errorCode": null,
+      "bodyPreview": "{\"status\":0,\"result\":[{\"airportCode\":\"BOM\",\"airportName\":\"Chhatrapati Shivaji Maharaj International Airport\",\"city\":\"Mumbai\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"19.0886993408\",\"longitude\":\"72.8678970337\",\"address\":null,\"tag\":null},{\"airportC"
+    },
+    {
+      "label": "tc2-hotel-ac-0",
+      "corr": "qa-otel-prod-full-1793188736699-tc2-hotel-ac-0",
+      "method": "GET",
+      "path": "/v1/hotels/autocomplete",
+      "http": 200,
+      "ok": true,
+      "clientMs": 99,
+      "errorCode": null,
+      "bodyPreview": "{\"content\":[{\"type\":\"HOTEL\",\"title\":\"Punerjenihomes\",\"city\":\"Alleppey\",\"state\":\"Kerala\",\"country\":\"India\",\"address\":\"Alleppey, Kerala, India\",\"entityId\":\"41319641:IN\",\"latitude\":\"9.451969\",\"longitude\":\"76.39867\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"HOTEL\",\"title\":\"O Ho"
+    },
+    {
+      "label": "tc2-hotel-ac-1",
+      "corr": "qa-otel-prod-full-1793188736699-tc2-hotel-ac-1",
+      "method": "GET",
+      "path": "/v1/hotels/autocomplete",
+      "http": 200,
+      "ok": true,
+      "clientMs": 90,
+      "errorCode": null,
+      "bodyPreview": "{\"content\":[{\"type\":\"HOTEL\",\"title\":\"Punerjenihomes\",\"city\":\"Alleppey\",\"state\":\"Kerala\",\"country\":\"India\",\"address\":\"Alleppey, Kerala, India\",\"entityId\":\"41319641:IN\",\"latitude\":\"9.451969\",\"longitude\":\"76.39867\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"HOTEL\",\"title\":\"O Ho"
+    },
+    {
+      "label": "tc2-hotel-ac-2",
+      "corr": "qa-otel-prod-full-1793188736699-tc2-hotel-ac-2",
+      "method": "GET",
+      "path": "/v1/hotels/autocomplete",
+      "http": 200,
+      "ok": true,
+      "clientMs": 95,
+      "errorCode": null,
+      "bodyPreview": "{\"content\":[{\"type\":\"HOTEL\",\"title\":\"Punerjenihomes\",\"city\":\"Alleppey\",\"state\":\"Kerala\",\"country\":\"India\",\"address\":\"Alleppey, Kerala, India\",\"entityId\":\"41319641:IN\",\"latitude\":\"9.451969\",\"longitude\":\"76.39867\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"HOTEL\",\"title\":\"O Ho"
+    },
+    {
+      "label": "tc2-hotel-search-0",
+      "corr": "qa-otel-prod-full-1793188736699-tc2-hotel-search-0",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "http": 200,
+      "ok": true,
+      "clientMs": 1052,
+      "errorCode": null,
+      "bodyPreview": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":1040,\"totalPages\":104,\"availableResults\":1040,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/4"
+    },
+    {
+      "label": "tc2-hotel-search-1",
+      "corr": "qa-otel-prod-full-1793188736699-tc2-hotel-search-1",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "http": 200,
+      "ok": true,
+      "clientMs": 1043,
+      "errorCode": null,
+      "bodyPreview": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":1040,\"totalPages\":104,\"availableResults\":1040,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/4"
+    },
+    {
+      "label": "tc2-hotel-search-2",
+      "corr": "qa-otel-prod-full-1793188736699-tc2-hotel-search-2",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "http": 200,
+      "ok": true,
+      "clientMs": 1178,
+      "errorCode": null,
+      "bodyPreview": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":1040,\"totalPages\":104,\"availableResults\":1040,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/4"
+    }
+  ]
+}

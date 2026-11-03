@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-10-29T11:30:00Z",
+  "env": "zero-preprod-shop → preprod-web-api",
+  "api": "POST /api/v2/flight/search",
+  "route": "DEL→BOM",
+  "date": "2026-11-20",
+  "journey": "ONE_WAY",
+  "adults": 1,
+  "scan": {
+    "options": 195,
+    "fares": 914,
+    "pages": 10,
+    "CODES": ["422R"],
+    "402T_count": 0,
+    "dualVendorOptions": 0,
+    "nullSourceCodes": 0
+  },
+  "docCases": [
+    { "id": "A1", "status": "NOT TESTED", "note": "Needs Mag tier 15 (TBO-only); shop session only" },
+    { "id": "A2", "status": "NOT TESTED", "note": "Needs Mag tier 8 (Riya-only)" },
+    { "id": "A3", "status": "BUG", "expected": "CODES == {402T,422R}", "actual": "CODES == {422R} only across 914 fares" },
+    { "id": "A4", "status": "BUG", "expected": "option with both sourceCodes", "actual": "dualVendorOptions == 0" },
+    { "id": "A5", "status": "PASS", "actual": "null sourceCode count == 0" },
+    { "id": "B1", "status": "PASS", "note": "No duplicate scheduleKey within each page; 195 onward options" },
+    { "id": "B2", "status": "PASS", "actual": "displayPricing == min(fares) on all options" },
+    { "id": "B3", "status": "NOT TESTED", "note": "Needs parallel tier 15 + 8 counts" },
+    { "id": "B4", "status": "NOT TESTED", "note": "Needs parallel tier 15 + 8 counts" },
+    { "id": "B5", "status": "NOT TESTED", "note": "Airline facet values not in this response shape" },
+    { "id": "B6", "status": "NOT TESTED", "note": "sort=price_asc not scored this pass" },
+    { "id": "B7", "status": "NOT TESTED", "note": "paging searchId uniqueness not fully scored" },
+    { "id": "B8", "status": "PASS", "actual": "all fare totals > 0" },
+    { "id": "C*", "status": "NOT TESTED", "note": "OW only this run" },
+    { "id": "D*", "status": "NOT TESTED", "note": "single-vendor tiers / MULTI_CITY / selection not run" },
+    { "id": "E*", "status": "NOT TESTED", "note": "needs vendor fault injection" },
+    { "id": "F*", "status": "NOT TESTED", "note": "no book" }
+  ],
+  "ui": {
+    "visible": true,
+    "routeLabel": "New Delhi - Mumbai | 20 Nov | Economy | 1 Adult",
+    "airlinesSeen": ["IndiGo"],
+    "priceSampleINR": ["7136.20", "7337.38", "7551.38", "7765.38"],
+    "vendorVisibleOnUI": false
+  },
+  "blocker": "Shop /api/v2/flight/search on this login still returns only 422R. Doc A3/A4 require Mag catalog-v2 + tier 22101801 with both 402T and 422R."
+}

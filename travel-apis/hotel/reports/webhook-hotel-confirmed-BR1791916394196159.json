@@ -1,0 +1,80 @@
+{
+  "br": "BR1791916394196159",
+  "counts": {
+    "PASS": 10,
+    "GAP": 2,
+    "NOTE": 2
+  },
+  "rows": [
+    {
+      "rule": "event/type/status",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "no cancelRequest / no refund",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "debit = totalAmount",
+      "status": "PASS",
+      "note": "535.38"
+    },
+    {
+      "rule": "§5 gross=base+fee+taxes+gst",
+      "status": "PASS",
+      "note": "535.38"
+    },
+    {
+      "rule": "§5 total=gross-discount",
+      "status": "PASS",
+      "note": "535.38"
+    },
+    {
+      "rule": "rooms.length = noOfRooms",
+      "status": "PASS",
+      "note": "1 vs 1"
+    },
+    {
+      "rule": "exactly one isLead",
+      "status": "PASS",
+      "note": "[{\"n\":\"Rohan\",\"lead\":true,\"type\":\"Adult\"},{\"n\":\"Chaitanya\",\"lead\":false,\"type\":\"Child\"}]"
+    },
+    {
+      "rule": "guest types Adult/Child",
+      "status": "PASS",
+      "note": "Adult,Child"
+    },
+    {
+      "rule": "child title Mstr allowed",
+      "status": "PASS",
+      "note": "Mstr"
+    },
+    {
+      "rule": "cancel fromDate day-first",
+      "status": "PASS",
+      "note": "13-10-2026 00:00:00"
+    },
+    {
+      "rule": "extra envelope bookingId/status",
+      "status": "GAP",
+      "note": "additive"
+    },
+    {
+      "rule": "data.reason / taxBreakup not in core schema",
+      "status": "GAP",
+      "note": "reason+taxBreakup"
+    },
+    {
+      "rule": "checkIn/OutTime null",
+      "status": "NOTE",
+      "note": "null/null"
+    },
+    {
+      "rule": "some amenities.value null",
+      "status": "NOTE",
+      "note": "same as prior hotel confirm"
+    }
+  ]
+}

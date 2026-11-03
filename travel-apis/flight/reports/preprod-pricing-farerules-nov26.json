@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-10-29T13:06:00Z",
+  "searchId": "srch_c312337371134a6bab4dfd393ea86fa6",
+  "flight": "6E 5175",
+  "routeShown": "HDO → BOM (Ghaziabad Hindon)",
+  "apis": {
+    "fareRules": {
+      "path": "POST /api/v2/flight/fareRules",
+      "http": 200,
+      "status": "PASS",
+      "title": "6E",
+      "hasCancelRebookText": true,
+      "riyaLeak": false,
+      "structuredCancellationPolicies": null,
+      "structuredReschedulePolicies": null,
+      "correlation_id": "9fbab227-b805-43a1-8107-1f8f2a907671"
+    },
+    "pricing": {
+      "path": "POST /api/v2/flight/pricing",
+      "http": 200,
+      "status": "PASS",
+      "priceId": "price_a290513f4b3642b5beda8afab79a32ad",
+      "fareType": "NORMAL",
+      "baseFare": 4090.2,
+      "taxes": 2404,
+      "basePlusTax": 6494.2,
+      "convenienceFee": 960,
+      "totalAmount": 7454.2,
+      "matchesUI": true,
+      "flightMatch": true,
+      "riyaLeak": false,
+      "priceChange": null,
+      "correlation_id": "754a87ae-52d8-4bc3-bc69-ece5c5ceb65b"
+    }
+  },
+  "issues": [
+    {
+      "severity": "medium",
+      "title": "Pricing/itinerary uses HDO not DEL",
+      "detail": "Selected from DEL→BOM search but priced segment is HDO→BOM (Hindon). UI shows Ghaziabad → Mumbai."
+    },
+    {
+      "severity": "low",
+      "title": "fareRules structured policies null",
+      "detail": "cancellationPolicies and reschedulePolicies are null; only HTML text rules returned."
+    },
+    {
+      "severity": "info",
+      "title": "422R vs 402T pricing not re-compared",
+      "detail": "Fresh search returned HTTP 500; dual-vendor pricing matrix NOT TESTED this pass. Evidence is for the open review searchId only."
+    }
+  ]
+}

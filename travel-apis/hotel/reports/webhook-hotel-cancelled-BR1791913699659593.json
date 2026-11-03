@@ -1,0 +1,80 @@
+{
+  "br": "BR1791913699659593",
+  "counts": {
+    "PASS": 10,
+    "GAP": 2,
+    "NOTE": 2
+  },
+  "rows": [
+    {
+      "rule": "event booking.cancelled / type hotel / status Cancelled",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "cr.status Cancellation Successful",
+      "status": "PASS",
+      "note": "Cancellation Successful"
+    },
+    {
+      "rule": "debit + credit present",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "credit = refund.amount",
+      "status": "PASS",
+      "note": "326.69 vs 326.69"
+    },
+    {
+      "rule": "refund.amount + charge = total",
+      "status": "PASS",
+      "note": "326.69+0"
+    },
+    {
+      "rule": "breakup 3 fields sum to charge",
+      "status": "PASS",
+      "note": "{\"providerCancellationFee\":0,\"convenienceFee\":0,\"serviceFee\":0}"
+    },
+    {
+      "rule": "§5 gross/total math",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "quote charge+refund = total",
+      "status": "PASS",
+      "note": "0+326.69"
+    },
+    {
+      "rule": "free-cancel band (before 24-10) → charge 0",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "cr shape matches hotel doc example (status/estimates/createdAt)",
+      "status": "PASS",
+      "note": "no id/mode/scope required for hotel"
+    },
+    {
+      "rule": "extra envelope bookingId/status",
+      "status": "GAP",
+      "note": "additive"
+    },
+    {
+      "rule": "data.reason / taxBreakup",
+      "status": "GAP",
+      "note": "additive"
+    },
+    {
+      "rule": "checkIn/OutTime null / amenity icons null",
+      "status": "NOTE",
+      "note": "same as confirm"
+    },
+    {
+      "rule": "cancellation.isCancellable still true after Cancelled",
+      "status": "NOTE",
+      "note": "policy block still present; odd flag"
+    }
+  ]
+}

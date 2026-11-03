@@ -1,0 +1,462 @@
+{
+  "at": "2026-10-13T08:54:57.672Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "suite": "flight-pricerange-appliedFilters",
+  "note": "Request uses appliedFilters.ONWARD.priceRange; response facet is filters.ONWARD.priceRange",
+  "counts": {
+    "PASS": 8,
+    "BUG": 1
+  },
+  "rows": [
+    {
+      "route": "DEL-BOM",
+      "date": "2026-11-13",
+      "case": "appliedFilters.ONWARD.priceRange min=1300 max=38286",
+      "filter": {
+        "min": 1300,
+        "max": 38286
+      },
+      "unfiltered": {
+        "count": 20,
+        "priced": 20,
+        "min": 1300,
+        "max": 7738,
+        "sampleLow": [
+          1300,
+          2605,
+          2709
+        ],
+        "sampleHigh": [
+          5432,
+          5754,
+          7738
+        ]
+      },
+      "facet": {
+        "min": 1300,
+        "max": 32865
+      },
+      "filtered": {
+        "count": 20,
+        "priced": 20,
+        "min": 1300,
+        "max": 7738,
+        "sampleLow": [
+          1300,
+          2605,
+          2709
+        ],
+        "sampleHigh": [
+          5432,
+          5754,
+          7738
+        ]
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 appliedFilters.ONWARD.priceRange={min:1300,max:38286} opts=20 priced=20 resultPrices=[1300..7738] outside=0",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 1300,
+            "max": 38286
+          }
+        }
+      }
+    },
+    {
+      "route": "DEL-BOM",
+      "date": "2026-11-13",
+      "case": "tight priceRange min=1300 max=3875",
+      "filter": {
+        "min": 1300,
+        "max": 3875
+      },
+      "unfiltered": {
+        "count": 20,
+        "priced": 20,
+        "min": 1300,
+        "max": 7738,
+        "sampleLow": [
+          1300,
+          2605,
+          2709
+        ],
+        "sampleHigh": [
+          5432,
+          5754,
+          7738
+        ]
+      },
+      "filtered": {
+        "count": 5,
+        "priced": 5,
+        "min": 1300,
+        "max": 2727,
+        "sampleLow": [
+          1300,
+          2605,
+          2709
+        ],
+        "sampleHigh": [
+          2709,
+          2727,
+          2727
+        ]
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 within [1300,3875] opts=5/20 resultMax=2727",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 1300,
+            "max": 3875
+          }
+        }
+      }
+    },
+    {
+      "route": "DEL-BOM",
+      "date": "2026-11-13",
+      "case": "impossible priceRange max=1200",
+      "filter": {
+        "min": 0,
+        "max": 1200
+      },
+      "unfilteredMin": 1300,
+      "filtered": {
+        "count": 0,
+        "priced": 0,
+        "min": null,
+        "max": null,
+        "sampleLow": [],
+        "sampleHigh": []
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 empty as expected max=1200 < inventoryMin=1300",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 0,
+            "max": 1200
+          }
+        }
+      }
+    },
+    {
+      "route": "BOM-BLR",
+      "date": "2026-11-17",
+      "case": "appliedFilters.ONWARD.priceRange min=1300 max=38286",
+      "filter": {
+        "min": 1300,
+        "max": 38286
+      },
+      "unfiltered": {
+        "count": 20,
+        "priced": 20,
+        "min": 3376,
+        "max": 10902,
+        "sampleLow": [
+          3376,
+          3376,
+          3376
+        ],
+        "sampleHigh": [
+          8866,
+          10568,
+          10902
+        ]
+      },
+      "facet": {
+        "min": 3376,
+        "max": 28535
+      },
+      "filtered": {
+        "count": 20,
+        "priced": 20,
+        "min": 3376,
+        "max": 10902,
+        "sampleLow": [
+          3376,
+          3376,
+          3376
+        ],
+        "sampleHigh": [
+          8866,
+          10568,
+          10902
+        ]
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 appliedFilters.ONWARD.priceRange={min:1300,max:38286} opts=20 priced=20 resultPrices=[3376..10902] outside=0",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 1300,
+            "max": 38286
+          }
+        }
+      }
+    },
+    {
+      "route": "BOM-BLR",
+      "date": "2026-11-17",
+      "case": "tight priceRange min=3376 max=6386",
+      "filter": {
+        "min": 3376,
+        "max": 6386
+      },
+      "unfiltered": {
+        "count": 20,
+        "priced": 20,
+        "min": 3376,
+        "max": 10902,
+        "sampleLow": [
+          3376,
+          3376,
+          3376
+        ],
+        "sampleHigh": [
+          8866,
+          10568,
+          10902
+        ]
+      },
+      "filtered": {
+        "count": 17,
+        "priced": 17,
+        "min": 3376,
+        "max": 5155,
+        "sampleLow": [
+          3376,
+          3376,
+          3376
+        ],
+        "sampleHigh": [
+          4020,
+          4020,
+          5155
+        ]
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 within [3376,6386] opts=17/20 resultMax=5155",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 3376,
+            "max": 6386
+          }
+        }
+      }
+    },
+    {
+      "route": "BOM-BLR",
+      "date": "2026-11-17",
+      "case": "impossible priceRange max=3276",
+      "filter": {
+        "min": 0,
+        "max": 3276
+      },
+      "unfilteredMin": 3376,
+      "filtered": {
+        "count": 0,
+        "priced": 0,
+        "min": null,
+        "max": null,
+        "sampleLow": [],
+        "sampleHigh": []
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 empty as expected max=3276 < inventoryMin=3376",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 0,
+            "max": 3276
+          }
+        }
+      }
+    },
+    {
+      "route": "DEL-HYD",
+      "date": "2026-11-22",
+      "case": "appliedFilters.ONWARD.priceRange min=1300 max=38286",
+      "filter": {
+        "min": 1300,
+        "max": 38286
+      },
+      "unfiltered": {
+        "count": 2,
+        "priced": 2,
+        "min": 14182,
+        "max": 14182,
+        "sampleLow": [
+          14182,
+          14182
+        ],
+        "sampleHigh": [
+          14182,
+          14182
+        ]
+      },
+      "facet": {
+        "min": 14182,
+        "max": 14182
+      },
+      "filtered": {
+        "count": 2,
+        "priced": 2,
+        "min": 14182,
+        "max": 14182,
+        "sampleLow": [
+          14182,
+          14182
+        ],
+        "sampleHigh": [
+          14182,
+          14182
+        ]
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 appliedFilters.ONWARD.priceRange={min:1300,max:38286} opts=2 priced=2 resultPrices=[14182..14182] outside=0",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 1300,
+            "max": 38286
+          }
+        }
+      }
+    },
+    {
+      "route": "DEL-HYD",
+      "date": "2026-11-22",
+      "case": "tight priceRange min=14182 max=14182",
+      "filter": {
+        "min": 14182,
+        "max": 14182
+      },
+      "unfiltered": {
+        "count": 2,
+        "priced": 2,
+        "min": 14182,
+        "max": 14182,
+        "sampleLow": [
+          14182,
+          14182
+        ],
+        "sampleHigh": [
+          14182,
+          14182
+        ]
+      },
+      "filtered": {
+        "count": 2,
+        "priced": 2,
+        "min": 14182,
+        "max": 14182,
+        "sampleLow": [
+          14182,
+          14182
+        ],
+        "sampleHigh": [
+          14182,
+          14182
+        ]
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 within [14182,14182] opts=2/2 resultMax=14182",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 14182,
+            "max": 14182
+          }
+        }
+      }
+    },
+    {
+      "route": "DEL-HYD",
+      "date": "2026-11-22",
+      "case": "impossible priceRange max=14082",
+      "filter": {
+        "min": 0,
+        "max": 14082
+      },
+      "unfilteredMin": 14182,
+      "filtered": {
+        "count": 19,
+        "priced": 19,
+        "min": 5493,
+        "max": 14005,
+        "sampleLow": [
+          5493,
+          5493,
+          6424
+        ],
+        "sampleHigh": [
+          13298,
+          13647,
+          14005
+        ]
+      },
+      "outside": [],
+      "status": "BUG",
+      "note": "HTTP 200 expected empty but opts=19 prices=[5493..14005]",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 0,
+            "max": 14082
+          }
+        }
+      }
+    }
+  ],
+  "bugs": [
+    {
+      "route": "DEL-HYD",
+      "date": "2026-11-22",
+      "case": "impossible priceRange max=14082",
+      "filter": {
+        "min": 0,
+        "max": 14082
+      },
+      "unfilteredMin": 14182,
+      "filtered": {
+        "count": 19,
+        "priced": 19,
+        "min": 5493,
+        "max": 14005,
+        "sampleLow": [
+          5493,
+          5493,
+          6424
+        ],
+        "sampleHigh": [
+          13298,
+          13647,
+          14005
+        ]
+      },
+      "outside": [],
+      "status": "BUG",
+      "note": "HTTP 200 expected empty but opts=19 prices=[5493..14005]",
+      "payload": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 0,
+            "max": 14082
+          }
+        }
+      }
+    }
+  ]
+}

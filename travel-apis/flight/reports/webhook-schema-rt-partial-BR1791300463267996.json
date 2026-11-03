@@ -1,0 +1,252 @@
+{
+  "at": "2026-10-13T14:35:55.619Z",
+  "br": "BR1791300463267996",
+  "sourceDoc": "https://api-docs.travelvip.ai/webhook/flights-and-wallet-webhooks.pdf",
+  "webhook": {
+    "event": "booking.cancelled",
+    "status": "Cancelled",
+    "scope": {
+      "type": "PASSENGER_LEG",
+      "legIds": [
+        1549
+      ],
+      "paxIds": [
+        "PAX1"
+      ]
+    },
+    "money": {
+      "paid": 4496.44,
+      "currency": "USD",
+      "estimateCharge": 2128.59,
+      "estimateRefund": 119.63,
+      "ssrAmount": 2125.71,
+      "settledCharge": 2575.71,
+      "settledRefund": 0,
+      "breakup": {
+        "airlineCancellationFee": 0,
+        "convenienceFee": 350,
+        "serviceFee": 100,
+        "flexicancelFee": 0
+      },
+      "breakupSum": 450
+    }
+  },
+  "api": {
+    "http": 200,
+    "status": "Cancelled",
+    "legs": [
+      {
+        "paxId": "PAX1",
+        "legId": null,
+        "pnr": "J93QYH",
+        "eticket": null,
+        "status": "Cancelled"
+      }
+    ],
+    "cancellationRequest": [
+      {
+        "status": "Cancelled",
+        "pnr": "J93QYH",
+        "estimatedCancellationCharge": 2575.71,
+        "estimatedRefund": 0,
+        "createdAt": "2026-10-13T14:27:39Z"
+      }
+    ],
+    "salesSummary": {
+      "basePrice": 103.73,
+      "subTotal": 103.73,
+      "tax": 79.32,
+      "convenienceFee": 3.66,
+      "totalAmount": 4496.44,
+      "totalDiscount": 0,
+      "currency": "USD",
+      "campaignId": null,
+      "baggagePrice": 116.63,
+      "seatPrice": 4175.6,
+      "mealPrice": 17.5
+    }
+  },
+  "counts": {
+    "PASS": 12,
+    "BUG": 16,
+    "NOTE": 7
+  },
+  "rows": [
+    {
+      "rule": "envelope version/event/type",
+      "status": "PASS",
+      "note": "1/booking.cancelled/flight"
+    },
+    {
+      "rule": "DOC: PASSENGER_LEG scope → event should be booking.partially_cancelled",
+      "status": "BUG",
+      "note": "got booking.cancelled"
+    },
+    {
+      "rule": "DOC: partially_cancelled → data.status Confirmed (booking stays live)",
+      "status": "BUG",
+      "note": "got Cancelled"
+    },
+    {
+      "rule": "DOC: booking.cancelled requires scope.type FULL",
+      "status": "BUG",
+      "note": "got PASSENGER_LEG"
+    },
+    {
+      "rule": "cancellationRequest.status Cancellation Successful",
+      "status": "PASS",
+      "note": "Cancellation Successful"
+    },
+    {
+      "rule": "cancellationRequest.mode OFFLINE|ONLINE",
+      "status": "PASS",
+      "note": "OFFLINE"
+    },
+    {
+      "rule": "scope mirrors refund.scope",
+      "status": "PASS",
+      "note": "{\"type\":\"PASSENGER_LEG\",\"legIds\":[1549],\"paxIds\":[\"PAX1\"]}"
+    },
+    {
+      "rule": "journeyType ROUND_TRIP",
+      "status": "PASS",
+      "note": "ROUND_TRIP"
+    },
+    {
+      "rule": "pnrGroups covers both legs",
+      "status": "PASS",
+      "note": "[{\"pnr\":\"J93QYH\",\"legIds\":[1549,1550]}]"
+    },
+    {
+      "rule": "sharesPnrWith cross-links 1549↔1550",
+      "status": "PASS",
+      "note": "observed in full payload"
+    },
+    {
+      "rule": "saleSummary total = gross - discount",
+      "status": "PASS",
+      "note": "4496.44"
+    },
+    {
+      "rule": "currency USD on booking",
+      "status": "PASS",
+      "note": "USD"
+    },
+    {
+      "rule": "DOC: refund.amount is authoritative credited amount",
+      "status": "NOTE",
+      "note": "refund.amount=0"
+    },
+    {
+      "rule": "DOC: cancelled/partial should include credit txn when refund settles",
+      "status": "BUG",
+      "note": "txns=debit; refund.amount=0"
+    },
+    {
+      "rule": "refund.id present (schema)",
+      "status": "BUG",
+      "note": "undefined"
+    },
+    {
+      "rule": "refund.destinationType SOURCE|APP_WALLET|AIRLINE_CREDIT_SHELL",
+      "status": "BUG",
+      "note": "null"
+    },
+    {
+      "rule": "breakup fields present",
+      "status": "PASS",
+      "note": "{\"airlineCancellationFee\":0,\"convenienceFee\":350,\"serviceFee\":100,\"flexicancelFee\":0}"
+    },
+    {
+      "rule": "breakup sums to cancellationCharge",
+      "status": "BUG",
+      "note": "sum=450 charge=2575.71"
+    },
+    {
+      "rule": "breakup currency sanity (USD booking but 350/100 look INR)",
+      "status": "BUG",
+      "note": "sale currency USD; convenienceFee breakup 350"
+    },
+    {
+      "rule": "charge ≈ ssrAmount + breakup(350+100)",
+      "status": "PASS",
+      "note": "ssr 2125.71 + 450 = 2575.71; charge 2575.71"
+    },
+    {
+      "rule": "estimate charge+refund vs subset (not full total)",
+      "status": "NOTE",
+      "note": "est 2128.59+119.63=2248.22; paid 4496.44"
+    },
+    {
+      "rule": "settled charge 2575.71 ≠ estimate 2128.59",
+      "status": "NOTE",
+      "note": "doc: estimates indicative; settle on refund"
+    },
+    {
+      "rule": "saleSummary.convenienceFee 3.66 USD ≠ breakup.convenienceFee 350",
+      "status": "BUG",
+      "note": "3.66 vs 350"
+    },
+    {
+      "rule": "legs[].status schema BOOKED|CANCELLED",
+      "status": "BUG",
+      "note": "got Cancelled"
+    },
+    {
+      "rule": "partial: only in-scope leg CANCELLED; return leg should still appear BOOKED",
+      "status": "BUG",
+      "note": "PAX1 legs in payload=1 (missing return leg 1550)"
+    },
+    {
+      "rule": "RT 2ADT booking but payload passengers length",
+      "status": "BUG",
+      "note": "got 1; expected both pax when booking stays live"
+    },
+    {
+      "rule": "addon direction COMBINED not in schema ONWARD|RETURN",
+      "status": "BUG",
+      "note": "COMBINED"
+    },
+    {
+      "rule": "seat.segmentId null (schema: match segments[].segmentId)",
+      "status": "BUG",
+      "note": "null"
+    },
+    {
+      "rule": "segment airline.code/name/logo null",
+      "status": "BUG",
+      "note": "all null on TBO segments"
+    },
+    {
+      "rule": "segment durationMinutes=0 / baggage=null / vendorFlightId=null",
+      "status": "BUG",
+      "note": "degenerate segment metadata"
+    },
+    {
+      "rule": "API status after webhook",
+      "status": "PASS",
+      "note": "Cancelled"
+    },
+    {
+      "rule": "API vs webhook: if PASSENGER_LEG, booking should still be live (Confirmed)",
+      "status": "NOTE",
+      "note": "API=Cancelled webhook.event=booking.cancelled webhook.status=Cancelled"
+    },
+    {
+      "rule": "API pax/leg matrix",
+      "status": "NOTE",
+      "note": "[{\"paxId\":\"PAX1\",\"legId\":null,\"pnr\":\"J93QYH\",\"eticket\":null,\"status\":\"Cancelled\"}]"
+    },
+    {
+      "rule": "API cancellationRequest",
+      "status": "NOTE",
+      "note": "[{\"status\":\"Cancelled\",\"pnr\":\"J93QYH\",\"estimatedCancellationCharge\":2575.71,\"estimatedRefund\":0,\"createdAt\":\"2026-10-13T14:27:39Z\"}]"
+    },
+    {
+      "rule": "API salesSummary",
+      "status": "NOTE",
+      "note": "{\"basePrice\":103.73,\"subTotal\":103.73,\"tax\":79.32,\"convenienceFee\":3.66,\"totalAmount\":4496.44,\"totalDiscount\":0,\"currency\":\"USD\",\"campaignId\":null,\"baggagePrice\":116.63,\"seatPrice\":4175.6,\"mealPrice\":17.5}"
+    }
+  ],
+  "verdict": "BUG — PASSENGER_LEG cancel emitted as booking.cancelled / status Cancelled; should be booking.partially_cancelled / Confirmed per PDF. Also money/schema gaps (no credit, refund.amount=0, breakup currency, missing pax/legs)."
+}

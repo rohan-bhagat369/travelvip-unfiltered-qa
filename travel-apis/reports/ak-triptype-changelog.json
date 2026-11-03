@@ -1,0 +1,364 @@
+{
+  "at": "2026-10-14T13:40:13.851Z",
+  "baseUrl": "https://ak-api.travelvip.ai",
+  "dubaiEntity": "221688:AE",
+  "indianHotel": "39624369",
+  "mumbaiBookingCode": "PYgzR/+ijduY…",
+  "counts": {
+    "PASS": 29,
+    "BUG": 1
+  },
+  "rows": [
+    {
+      "id": "F1",
+      "caseId": "F1",
+      "rule": "tripType=domestic DEL→BOM → 200 results",
+      "status": "PASS",
+      "note": "HTTP 200 ok results/progress",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"USD\",\"destination\":\"INR\",\"rate\":95.4642},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"mw6LPkQezaF4bGuOPEMmMqSKSGkulYV6MB8q0Jm4esDqLsWJqILkQNKqUy+43lTupF4We0HyIaR/8xWGSiLenXabFdm1F3MGv/ZFeahmYwx7ZfgIDBpfqJd7uOBh+UrCT"
+    },
+    {
+      "id": "F2",
+      "caseId": "F2",
+      "rule": "tripType=international DEL→DXB RT → 200 results",
+      "status": "PASS",
+      "note": "HTTP 200 ok",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"INTERNATIONAL\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"USD\",\"destination\":\"INR\",\"rate\":95.4642},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"02oEsxCZseULC2e8+j5G+6SKSGkulYV6MB8q0Jm4esDXXAsoMGV/G4iWWmCyVGycpF4We0HyIaR/8xWGSiLenXabFdm1F3MGv/ZFeahmYwx7ZfgIDBpfqJd7u"
+    },
+    {
+      "id": "F3",
+      "caseId": "F3",
+      "rule": "tripType= (empty) → 200",
+      "status": "PASS",
+      "note": "HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"USD\",\"destination\":\"INR\",\"rate\":95.4642},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"aOUjI3VXRV4gzD+PTzT8l6SKSGkulYV6MB8q0Jm4esD3mnYbmw8eamorxEDpk0QPpF4We0HyIaR/8xWGSiLenXabFdm1F3MGv/ZFeahmYwx7ZfgIDBpfqJd7uOBh+UrCT"
+    },
+    {
+      "id": "F4",
+      "caseId": "F4",
+      "rule": "tripType not sent → 200",
+      "status": "PASS",
+      "note": "HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"USD\",\"destination\":\"INR\",\"rate\":95.4642},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"BYBAjw5GYk15h+j0hABg6KSKSGkulYV6MB8q0Jm4esAuQOvYipKglWu/eRLi+iOppF4We0HyIaR/8xWGSiLenXabFdm1F3MGv/ZFeahmYwx7ZfgIDBpfqJd7uOBh+UrCT"
+    },
+    {
+      "id": "F5",
+      "caseId": "F5",
+      "rule": "tripType=local → 400 VALIDATION_ERROR",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Invalid request payload for flight search. Please fix the listed errors and retry.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T13:40:07Z\",\"request_id\":\"req-1791985208083\"},\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "F6",
+      "caseId": "F6",
+      "rule": "tripType=local + no journeyType → both errors",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Trip type (journeyType) is required. Allowed values are ONE_WAY and ROUND_TRIP. | Invalid request payload for f",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string.",
+        "Trip type (journeyType) is required. Allowed values are ONE_WAY and ROUND_TRIP."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\",\"Trip type (journeyType) is required. Allowed values are ONE_WAY and ROUND_TRIP.\"],\"timestamp\":\"2026-10-14T13:40:07Z\",\"request_id\":\"req-1791985208119\"},\"_meta\":{\"correlation_id\":\"5135ef0f-9"
+    },
+    {
+      "id": "A1",
+      "caseId": "A1",
+      "rule": "airport=del&tripType=domestic → Indian only",
+      "status": "PASS",
+      "note": "n=4",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"airportCode\":\"DEL\",\"airportName\":\"Indira Gandhi International Airport\",\"city\":\"New Delhi\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"28.55563\",\"longitude\":\"77.09519\",\"address\":null,\"tag\":null},{\"airportCode\":\"DXN\",\"airportName\":\"Noida International Airport\",\"city\":\"Noida\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitud",
+      "n": 4
+    },
+    {
+      "id": "A2",
+      "caseId": "A2",
+      "rule": "airport=dubai&tripType=international → 200 list",
+      "status": "PASS",
+      "note": "n=9",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"airportCode\":\"DXB\",\"airportName\":\"Dubai International Airport\",\"city\":\"Dubai\",\"country\":\"United Arab Emirates\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"25.2527999878\",\"longitude\":\"55.3643989563\",\"address\":null,\"tag\":null},{\"airportCode\":\"XS4\",\"airportName\":\"Dubai International Airport\",\"city\":\"Dubai\",\"country\":\"United Arab Emirates\",\"aiportCodeCity\":null,\"pr"
+    },
+    {
+      "id": "A3",
+      "caseId": "A3",
+      "rule": "airport=del&tripType= (empty) → 200 (was 400)",
+      "status": "PASS",
+      "note": "HTTP 200 n=22",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"airportCode\":\"DEL\",\"airportName\":\"Indira Gandhi International Airport\",\"city\":\"New Delhi\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"28.55563\",\"longitude\":\"77.09519\",\"address\":null,\"tag\":null},{\"airportCode\":\"DXN\",\"airportName\":\"Noida International Airport\",\"city\":\"Noida\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitud"
+    },
+    {
+      "id": "A4",
+      "caseId": "A4",
+      "rule": "airport=del no tripType → 200 (default international)",
+      "status": "PASS",
+      "note": "n=22",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"airportCode\":\"DEL\",\"airportName\":\"Indira Gandhi International Airport\",\"city\":\"New Delhi\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"28.55563\",\"longitude\":\"77.09519\",\"address\":null,\"tag\":null},{\"airportCode\":\"DXN\",\"airportName\":\"Noida International Airport\",\"city\":\"Noida\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitud"
+    },
+    {
+      "id": "A5",
+      "caseId": "A5",
+      "rule": "tripType=xyz → 400 VALIDATION_ERROR",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Invalid query parameters for airport search. Please fix the listed errors and retry.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid query parameters for airport search. Please fix the listed errors and retry.\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T13:40:07Z\",\"request_id\":\"req-1791985208548\"},\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "A5b",
+      "caseId": "A5b",
+      "rule": "GET /api/v2/flight/airports?tripType=domestic → 200",
+      "status": "PASS",
+      "note": "n=4",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"entityId\":\"1\",\"entityType\":\"AIRPORT\",\"airportCode\":\"DEL\",\"airportName\":\"Indira Gandhi International Airport\",\"city\":\"New Delhi\",\"country\":\"India\",\"latitude\":\"28.55563\",\"longitude\":\"77.09519\",\"tag\":null},{\"entityId\":\"42002\",\"entityType\":\"AIRPORT\",\"airportCode\":\"DXN\",\"airportName\":\"Noida International Airport\",\"city\":\"Noida\",\"country\":\"India\",\"latitude\":\"28.1385\",\"longitude\":"
+    },
+    {
+      "id": "A6",
+      "caseId": "A6",
+      "rule": "No airport → 400 MISSING_AIRPORT",
+      "status": "PASS",
+      "note": "code=MISSING_AIRPORT Query parameter 'airport' is required | airport parameter is required",
+      "http": 400,
+      "code": "MISSING_AIRPORT",
+      "details": [
+        "Query parameter 'airport' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"MISSING_AIRPORT\",\"message\":\"airport parameter is required\",\"details\":\"Query parameter 'airport' is required\",\"timestamp\":\"2026-10-14T13:40:07Z\",\"request_id\":\"req-1791985208640\"},\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "H1",
+      "caseId": "H1",
+      "rule": "autocomplete mumbai domestic",
+      "status": "PASS",
+      "note": "n=4 tripType=domestic",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Mumbai\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"357389:IN\",\"latitude\":\"19.075987\",\"longitude\":\"72.87766\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"CITY\",\"title\":\"Navi Mumbai\",\"city\":null,\"state\":null,\"country\":\"India\",\"address\":null,\"entityId\":\"327868:IN\",\"latitude\":\"19.033878\",\"longitude\":\"73.02852\",\"cityCountry\":nul"
+    },
+    {
+      "id": "H2",
+      "caseId": "H2",
+      "rule": "autocomplete dubai domestic → empty",
+      "status": "PASS",
+      "note": "empty=true n=0",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"content\":[],\"pageable\":{\"pageNumber\":0,\"pageSize\":10,\"offset\":0},\"totalElements\":0,\"totalPages\":0,\"first\":true,\"last\":true,\"empty\":true,\"tripType\":\"domestic\",\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "H3",
+      "caseId": "H3",
+      "rule": "autocomplete dubai no/empty tripType → all countries tripType null",
+      "status": "PASS",
+      "note": "n=7 tripType=null emptyHttp=200",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Dubai\",\"city\":null,\"state\":\"Dubai\",\"country\":\"United Arab Emirates\",\"address\":null,\"entityId\":\"221688:AE\",\"latitude\":\"25.27063\",\"longitude\":\"55.30037\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"CITY\",\"title\":\"Dubai South\",\"city\":\"Dubai\",\"state\":\"Dubai\",\"country\":\"United Arab Emirates\",\"address\":\"Dubai, Dubai, United Arab Emirates\",\"entityId\":\"227415:AE\",\"la"
+    },
+    {
+      "id": "H4",
+      "caseId": "H4",
+      "rule": "search Mumbai domestic",
+      "status": "BUG",
+      "note": "HTTP 200 n=0 msg=No hotels found for this date range. Please try searching different dates.",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels found for this date range. Please try searching different dates.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"filters\":null,\"sorts\":[{\"name\":\"Price Low to High\",\"key\":\"price_ASC\"},{\"name\":\"Price High to Low\",\"key\":\"price_DESC\"}],\"re"
+    },
+    {
+      "id": "H5",
+      "caseId": "H5",
+      "rule": "search Mumbai + international → [] + message",
+      "status": "PASS",
+      "note": "No hotels: this destination is in India and tripType is international.",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels: this destination is in India and tripType is international.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"filters\":null,\"sorts\":null,\"requestId\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\",\"tripType\":\"international\",\"_meta\":{\"correlation"
+    },
+    {
+      "id": "H6",
+      "caseId": "H6",
+      "rule": "search Dubai + domestic → [] + message",
+      "status": "PASS",
+      "note": "No hotels: this destination is outside India and tripType is domestic.",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels: this destination is outside India and tripType is domestic.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"filters\":null,\"sorts\":null,\"requestId\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\",\"tripType\":\"domestic\",\"_meta\":{\"correlation_id\":"
+    },
+    {
+      "id": "H7",
+      "caseId": "H7",
+      "rule": "search no tripType → 200 (inventory empty; cannot assert per-hotel tripType)",
+      "status": "PASS",
+      "note": "n=0 msg=No hotels found for this date range. Please try searching different dates.",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels found for this date range. Please try searching different dates.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"filters\":null,\"sorts\":[{\"name\":\"Price Low to High\",\"key\":\"price_ASC\"},{\"name\":\"Price High to Low\",\"key\":\"price_DESC\"}],\"re"
+    },
+    {
+      "id": "H8",
+      "caseId": "H8",
+      "rule": "details Indian + domestic → tripType domestic",
+      "status": "PASS",
+      "note": "tripType=domestic",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":1,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC\",\"address\":\"C-57, Bandra Kurla Complex, Bandra East\",\"city\":\"Mumbai\",\"country\":\"India\",\"countryCode\":\"IN\",\"distance\":null,\"tripType\":\"domestic\",\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/4253900/4253887/be7ceb6b_z.jpg\",\"images\":[\"https://i.travelapi.com/lodgi"
+    },
+    {
+      "id": "H9",
+      "caseId": "H9",
+      "rule": "details Indian + international → [] + No hotels",
+      "status": "PASS",
+      "note": "No hotels: this destination is in India and tripType is international.",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"results\":[],\"sorts\":null,\"fromCache\":false,\"cacheTimeStamp\":null,\"requestId\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\",\"message\":\"No hotels: this destination is in India and tripType is international.\",\"tripType\":\"international\",\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "H10",
+      "caseId": "H10",
+      "rule": "prebook right side tripType=domestic → 200",
+      "status": "PASS",
+      "note": "code=PYgzR/+ijduYcLSX…",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":20,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"city\":\"Mumbai\",\"country\":\"India\",\"countryCode\":\"IN\",\"distance\":null,\"tripType\":\"domestic\",\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/4253900/4253887/be7ceb6b_z.jpg\",\"images\":[\"https://i.travelapi.com/lodging/500"
+    },
+    {
+      "id": "H11",
+      "caseId": "H11",
+      "rule": "prebook wrong side → catalog 404 No hotels",
+      "status": "PASS",
+      "note": "HTTP 200 code=404 No hotels: this destination is in India and tripType is international.  {\"code\":\"404\",\"message\":\"No hotels: this destination is in India and tripType is interna",
+      "http": 200,
+      "code": "404",
+      "details": [],
+      "snippet": "{\"code\":\"404\",\"message\":\"No hotels: this destination is in India and tripType is international.\",\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "H12a",
+      "caseId": "H12",
+      "rule": "autocomplete tripType=local → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T13:40:12Z\",\"request_id\":\"req-1791985213463\"},\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "H12b",
+      "caseId": "H12",
+      "rule": "search tripType=local → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T13:40:12Z\",\"request_id\":\"req-1791985213506\"},\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "H12c",
+      "caseId": "H12",
+      "rule": "details tripType=local → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T13:40:12Z\",\"request_id\":\"req-1791985213633\"},\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "H12d",
+      "caseId": "H12",
+      "rule": "prebook tripType=local → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | 'requestId' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string.",
+        "'requestId' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\",\"'requestId' is required\"],\"timestamp\":\"2026-10-14T13:40:12Z\",\"request_id\":\"req-1791985213674\"},\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "V1",
+      "caseId": "VAL",
+      "rule": "tripType=\" domestic\" (leading space) → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T13:40:12Z\",\"request_id\":\"req-1791985213717\"},\"_meta\":{\"correlation_id\":\"5135ef0f-97b2-4785-8663-f43a2709a9e5\"}}"
+    },
+    {
+      "id": "V2",
+      "caseId": "VAL",
+      "rule": "tripType=DOMESTIC case-insensitive → accept",
+      "status": "PASS",
+      "note": "HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Mumbai\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"357389:IN\",\"latitude\":\"19.075987\",\"longitude\":\"72.87766\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"CITY\",\"title\":\"Navi Mumbai\",\"city\":null,\"state\":null,\"country\":\"India\",\"address\":null,\"entityId\":\"327868:IN\",\"latitude\":\"19.033878\",\"longitude\":\"73.02852\",\"cityCountry\":nul"
+    }
+  ]
+}

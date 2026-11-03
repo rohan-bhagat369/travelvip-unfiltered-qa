@@ -1,0 +1,984 @@
+{
+  "at": "2026-10-13T13:50:36.646Z",
+  "source": "https://api-docs.travelvip.ai/webhook/flights-and-wallet-webhooks.pdf",
+  "schema": "Payload version 1 (schema build V3) — 13 Aug 2026",
+  "catalogue": [
+    {
+      "event": "booking.pending",
+      "type": "flight",
+      "status": "Pending"
+    },
+    {
+      "event": "booking.confirmed",
+      "type": "flight",
+      "status": "Confirmed"
+    },
+    {
+      "event": "booking.failed",
+      "type": "flight",
+      "status": "Failed"
+    },
+    {
+      "event": "booking.cancellation_requested",
+      "type": "flight",
+      "status": "Confirmed"
+    },
+    {
+      "event": "booking.cancelled",
+      "type": "flight",
+      "status": "Cancelled"
+    },
+    {
+      "event": "booking.partially_cancelled",
+      "type": "flight",
+      "status": "Confirmed"
+    },
+    {
+      "event": "booking.cancellation_failed",
+      "type": "flight",
+      "status": "Confirmed"
+    },
+    {
+      "event": "wallet.low_balance",
+      "type": "wallet",
+      "status": "Alert"
+    },
+    {
+      "event": "wallet.topup.success",
+      "type": "wallet",
+      "status": "Success"
+    }
+  ],
+  "counts": {
+    "PASS": 159,
+    "GAP": 2,
+    "NOTE": 1,
+    "BUG": 5,
+    "NOT TESTED": 4
+  },
+  "bugs": [
+    {
+      "rule": "CONFIRMED-old.legStatus schema BOOKED|CANCELLED",
+      "status": "BUG",
+      "note": "got Confirmed"
+    },
+    {
+      "rule": "CONFIRMED-new.legStatus schema BOOKED|CANCELLED",
+      "status": "BUG",
+      "note": "got Confirmed"
+    },
+    {
+      "rule": "CANCELLED-plain.breakup sums to cancellationCharge",
+      "status": "BUG",
+      "note": "sum=0 charge=450"
+    },
+    {
+      "rule": "CANCELLED-plain.legStatus schema BOOKED|CANCELLED",
+      "status": "BUG",
+      "note": "got Cancelled"
+    },
+    {
+      "rule": "TRIGGER reschedule: cancel-family on old before new confirmed",
+      "status": "BUG",
+      "note": "new confirmed while old still Confirmed; no cancel events on old"
+    }
+  ],
+  "gaps": [
+    {
+      "rule": "DOC typo: table says booking.confirm; examples use booking.confirmed",
+      "status": "GAP",
+      "note": "section 2 catalogue typo"
+    },
+    {
+      "rule": "DOC: confirmed schema has no reschedulingReferenceId",
+      "status": "GAP",
+      "note": "API status has field; webhook PDF omits it"
+    }
+  ],
+  "rows": [
+    {
+      "rule": "DOC: catalogue has 9 events",
+      "status": "PASS",
+      "note": "9"
+    },
+    {
+      "rule": "DOC typo: table says booking.confirm; examples use booking.confirmed",
+      "status": "GAP",
+      "note": "section 2 catalogue typo"
+    },
+    {
+      "rule": "DOC: no dedicated reschedule webhook event",
+      "status": "NOTE",
+      "note": "reschedule reuses booking.confirmed"
+    },
+    {
+      "rule": "DOC: confirmed schema has no reschedulingReferenceId",
+      "status": "GAP",
+      "note": "API status has field; webhook PDF omits it"
+    },
+    {
+      "rule": "CONFIRMED-old:version=1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "CONFIRMED-old:event string",
+      "status": "PASS",
+      "note": "booking.confirmed"
+    },
+    {
+      "rule": "CONFIRMED-old:timestamp ISO Z",
+      "status": "PASS",
+      "note": "2026-10-13T13:24:40Z"
+    },
+    {
+      "rule": "CONFIRMED-old:type flight|wallet",
+      "status": "PASS",
+      "note": "flight"
+    },
+    {
+      "rule": "CONFIRMED-old:data object",
+      "status": "PASS",
+      "note": "object"
+    },
+    {
+      "rule": "CONFIRMED-old:event in catalogue",
+      "status": "PASS",
+      "note": "booking.confirmed"
+    },
+    {
+      "rule": "CONFIRMED-old:type matches catalogue",
+      "status": "PASS",
+      "note": "flight vs flight"
+    },
+    {
+      "rule": "CONFIRMED-old:data.status matches catalogue",
+      "status": "PASS",
+      "note": "Confirmed vs Confirmed"
+    },
+    {
+      "rule": "CONFIRMED-old:bookingReference",
+      "status": "PASS",
+      "note": "BR1791897850832408"
+    },
+    {
+      "rule": "CONFIRMED-old:reason null|string",
+      "status": "PASS",
+      "note": "null"
+    },
+    {
+      "rule": "CONFIRMED-old.transaction is array",
+      "status": "PASS",
+      "note": "array"
+    },
+    {
+      "rule": "CONFIRMED-old.tx[0].id",
+      "status": "PASS",
+      "note": "5214"
+    },
+    {
+      "rule": "CONFIRMED-old.tx[0].amount",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "CONFIRMED-old.tx[0].currency",
+      "status": "PASS",
+      "note": "INR"
+    },
+    {
+      "rule": "CONFIRMED-old.tx[0].paymentMethod",
+      "status": "PASS",
+      "note": "wallet"
+    },
+    {
+      "rule": "CONFIRMED-old.tx[0].createdAt",
+      "status": "PASS",
+      "note": "2026-10-13T13:24:11Z"
+    },
+    {
+      "rule": "CONFIRMED-old.tx[0].completedAt",
+      "status": "PASS",
+      "note": "2026-10-13T13:24:11Z"
+    },
+    {
+      "rule": "CONFIRMED-old.tx[0].type",
+      "status": "PASS",
+      "note": "debit"
+    },
+    {
+      "rule": "CONFIRMED-old.tx[0].status",
+      "status": "PASS",
+      "note": "success"
+    },
+    {
+      "rule": "CONFIRMED-old:pnrCount",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "CONFIRMED-old:pnrGroups array",
+      "status": "PASS",
+      "note": "array"
+    },
+    {
+      "rule": "CONFIRMED-old.itin.legId integer",
+      "status": "PASS",
+      "note": "1577"
+    },
+    {
+      "rule": "CONFIRMED-old.itin.sequenceNumber integer",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "CONFIRMED-old.itin.direction",
+      "status": "PASS",
+      "note": "ONWARD"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.baseFare",
+      "status": "PASS",
+      "note": "1200"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.convenienceFee",
+      "status": "PASS",
+      "note": "350"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.taxes",
+      "status": "PASS",
+      "note": "100"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.baggageAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.mealAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.seatAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.grossAmount",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.discountAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.totalAmount",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.currency",
+      "status": "PASS",
+      "note": "INR"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary total=gross-discount",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "CONFIRMED-old.saleSummary.refund absent",
+      "status": "PASS",
+      "note": "absent"
+    },
+    {
+      "rule": "CONFIRMED-old:cancellation object",
+      "status": "PASS",
+      "note": "{\"isCancellable\":true,\"cancellationPolicy\":null}"
+    },
+    {
+      "rule": "CONFIRMED-old:passengers array",
+      "status": "PASS",
+      "note": "array"
+    },
+    {
+      "rule": "CONFIRMED-old:cancellationRequest absent",
+      "status": "PASS",
+      "note": "absent"
+    },
+    {
+      "rule": "CONFIRMED-old.legStatus schema BOOKED|CANCELLED",
+      "status": "BUG",
+      "note": "got Confirmed"
+    },
+    {
+      "rule": "CONFIRMED-old.legId integer",
+      "status": "PASS",
+      "note": "1577 type=number"
+    },
+    {
+      "rule": "CONFIRMED-new:version=1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "CONFIRMED-new:event string",
+      "status": "PASS",
+      "note": "booking.confirmed"
+    },
+    {
+      "rule": "CONFIRMED-new:timestamp ISO Z",
+      "status": "PASS",
+      "note": "2026-10-13T13:28:20Z"
+    },
+    {
+      "rule": "CONFIRMED-new:type flight|wallet",
+      "status": "PASS",
+      "note": "flight"
+    },
+    {
+      "rule": "CONFIRMED-new:data object",
+      "status": "PASS",
+      "note": "object"
+    },
+    {
+      "rule": "CONFIRMED-new:event in catalogue",
+      "status": "PASS",
+      "note": "booking.confirmed"
+    },
+    {
+      "rule": "CONFIRMED-new:type matches catalogue",
+      "status": "PASS",
+      "note": "flight vs flight"
+    },
+    {
+      "rule": "CONFIRMED-new:data.status matches catalogue",
+      "status": "PASS",
+      "note": "Confirmed vs Confirmed"
+    },
+    {
+      "rule": "CONFIRMED-new:bookingReference",
+      "status": "PASS",
+      "note": "BR1791898085747931"
+    },
+    {
+      "rule": "CONFIRMED-new:reason null|string",
+      "status": "PASS",
+      "note": "null"
+    },
+    {
+      "rule": "CONFIRMED-new.transaction is array",
+      "status": "PASS",
+      "note": "array"
+    },
+    {
+      "rule": "CONFIRMED-new.tx[0].id",
+      "status": "PASS",
+      "note": "5215"
+    },
+    {
+      "rule": "CONFIRMED-new.tx[0].amount",
+      "status": "PASS",
+      "note": "3077"
+    },
+    {
+      "rule": "CONFIRMED-new.tx[0].currency",
+      "status": "PASS",
+      "note": "INR"
+    },
+    {
+      "rule": "CONFIRMED-new.tx[0].paymentMethod",
+      "status": "PASS",
+      "note": "wallet"
+    },
+    {
+      "rule": "CONFIRMED-new.tx[0].createdAt",
+      "status": "PASS",
+      "note": "2026-10-13T13:28:07Z"
+    },
+    {
+      "rule": "CONFIRMED-new.tx[0].completedAt",
+      "status": "PASS",
+      "note": "2026-10-13T13:28:07Z"
+    },
+    {
+      "rule": "CONFIRMED-new.tx[0].type",
+      "status": "PASS",
+      "note": "debit"
+    },
+    {
+      "rule": "CONFIRMED-new.tx[0].status",
+      "status": "PASS",
+      "note": "success"
+    },
+    {
+      "rule": "CONFIRMED-new:pnrCount",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "CONFIRMED-new:pnrGroups array",
+      "status": "PASS",
+      "note": "array"
+    },
+    {
+      "rule": "CONFIRMED-new.itin.legId integer",
+      "status": "PASS",
+      "note": "1578"
+    },
+    {
+      "rule": "CONFIRMED-new.itin.sequenceNumber integer",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "CONFIRMED-new.itin.direction",
+      "status": "PASS",
+      "note": "ONWARD"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.baseFare",
+      "status": "PASS",
+      "note": "899"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.convenienceFee",
+      "status": "PASS",
+      "note": "350"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.taxes",
+      "status": "PASS",
+      "note": "1828"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.baggageAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.mealAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.seatAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.grossAmount",
+      "status": "PASS",
+      "note": "3077"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.discountAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.totalAmount",
+      "status": "PASS",
+      "note": "3077"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.currency",
+      "status": "PASS",
+      "note": "INR"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary total=gross-discount",
+      "status": "PASS",
+      "note": "3077"
+    },
+    {
+      "rule": "CONFIRMED-new.saleSummary.refund absent",
+      "status": "PASS",
+      "note": "absent"
+    },
+    {
+      "rule": "CONFIRMED-new:cancellation object",
+      "status": "PASS",
+      "note": "{\"isCancellable\":true,\"cancellationPolicy\":null}"
+    },
+    {
+      "rule": "CONFIRMED-new:passengers array",
+      "status": "PASS",
+      "note": "array"
+    },
+    {
+      "rule": "CONFIRMED-new:cancellationRequest absent",
+      "status": "PASS",
+      "note": "absent"
+    },
+    {
+      "rule": "CONFIRMED-new.legStatus schema BOOKED|CANCELLED",
+      "status": "BUG",
+      "note": "got Confirmed"
+    },
+    {
+      "rule": "CONFIRMED-new.legId integer",
+      "status": "PASS",
+      "note": "1578 type=number"
+    },
+    {
+      "rule": "CANCELLED-plain:version=1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "CANCELLED-plain:event string",
+      "status": "PASS",
+      "note": "booking.cancelled"
+    },
+    {
+      "rule": "CANCELLED-plain:timestamp ISO Z",
+      "status": "PASS",
+      "note": "2026-10-13T12:56:23Z"
+    },
+    {
+      "rule": "CANCELLED-plain:type flight|wallet",
+      "status": "PASS",
+      "note": "flight"
+    },
+    {
+      "rule": "CANCELLED-plain:data object",
+      "status": "PASS",
+      "note": "object"
+    },
+    {
+      "rule": "CANCELLED-plain:event in catalogue",
+      "status": "PASS",
+      "note": "booking.cancelled"
+    },
+    {
+      "rule": "CANCELLED-plain:type matches catalogue",
+      "status": "PASS",
+      "note": "flight vs flight"
+    },
+    {
+      "rule": "CANCELLED-plain:data.status matches catalogue",
+      "status": "PASS",
+      "note": "Cancelled vs Cancelled"
+    },
+    {
+      "rule": "CANCELLED-plain:bookingReference",
+      "status": "PASS",
+      "note": "BR1791895647607777"
+    },
+    {
+      "rule": "CANCELLED-plain:reason null|string",
+      "status": "PASS",
+      "note": "null"
+    },
+    {
+      "rule": "CANCELLED-plain.transaction is array",
+      "status": "PASS",
+      "note": "array"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[0].id",
+      "status": "PASS",
+      "note": "5210"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[0].amount",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[0].currency",
+      "status": "PASS",
+      "note": "INR"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[0].paymentMethod",
+      "status": "PASS",
+      "note": "wallet"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[0].createdAt",
+      "status": "PASS",
+      "note": "2026-10-13T12:47:29Z"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[0].completedAt",
+      "status": "PASS",
+      "note": "2026-10-13T12:47:29Z"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[0].type",
+      "status": "PASS",
+      "note": "debit"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[0].status",
+      "status": "PASS",
+      "note": "success"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[1].id",
+      "status": "PASS",
+      "note": "5211"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[1].amount",
+      "status": "PASS",
+      "note": "1200"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[1].currency",
+      "status": "PASS",
+      "note": "INR"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[1].paymentMethod",
+      "status": "PASS",
+      "note": "wallet"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[1].createdAt",
+      "status": "PASS",
+      "note": "2026-10-13T12:55:45Z"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[1].completedAt",
+      "status": "PASS",
+      "note": "2026-10-13T12:55:45Z"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[1].type",
+      "status": "PASS",
+      "note": "credit"
+    },
+    {
+      "rule": "CANCELLED-plain.tx[1].status",
+      "status": "PASS",
+      "note": "success"
+    },
+    {
+      "rule": "CANCELLED-plain:pnrCount",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "CANCELLED-plain:pnrGroups array",
+      "status": "PASS",
+      "note": "array"
+    },
+    {
+      "rule": "CANCELLED-plain.itin.legId integer",
+      "status": "PASS",
+      "note": "1575"
+    },
+    {
+      "rule": "CANCELLED-plain.itin.sequenceNumber integer",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "CANCELLED-plain.itin.direction",
+      "status": "PASS",
+      "note": "ONWARD"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.baseFare",
+      "status": "PASS",
+      "note": "1200"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.convenienceFee",
+      "status": "PASS",
+      "note": "350"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.taxes",
+      "status": "PASS",
+      "note": "100"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.baggageAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.mealAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.seatAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.grossAmount",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.discountAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.totalAmount",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.currency",
+      "status": "PASS",
+      "note": "INR"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary total=gross-discount",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "CANCELLED-plain.saleSummary.refund present",
+      "status": "PASS",
+      "note": "yes"
+    },
+    {
+      "rule": "CANCELLED-plain.refund.id",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "CANCELLED-plain.refund.cancellationRequestId",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "CANCELLED-plain.refund.amount",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "CANCELLED-plain.refund.destinationType",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "CANCELLED-plain.refund.cancellationCharge",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "CANCELLED-plain.refund.cancellationChargeBreakup",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "CANCELLED-plain.refund.scope",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "CANCELLED-plain.breakup.airlineCancellationFee",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CANCELLED-plain.breakup.convenienceFee",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CANCELLED-plain.breakup.serviceFee",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CANCELLED-plain.breakup.flexicancelFee",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CANCELLED-plain.breakup sums to cancellationCharge",
+      "status": "BUG",
+      "note": "sum=0 charge=450"
+    },
+    {
+      "rule": "CANCELLED-plain:cancellation object",
+      "status": "PASS",
+      "note": "{\"isCancellable\":true,\"cancellationPolicy\":null}"
+    },
+    {
+      "rule": "CANCELLED-plain:passengers array",
+      "status": "PASS",
+      "note": "array"
+    },
+    {
+      "rule": "CANCELLED-plain.cancellationRequest present",
+      "status": "PASS",
+      "note": "yes"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.id",
+      "status": "PASS",
+      "note": "838"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.status",
+      "status": "PASS",
+      "note": "\"Cancellation Successful\""
+    },
+    {
+      "rule": "CANCELLED-plain.cr.mode",
+      "status": "PASS",
+      "note": "\"OFFLINE\""
+    },
+    {
+      "rule": "CANCELLED-plain.cr.scope",
+      "status": "PASS",
+      "note": "{\"type\":\"FULL\",\"legIds\":[1575],\"paxIds\":[\"PAX1\"]}"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.estimatedCancellationCharge",
+      "status": "PASS",
+      "note": "450"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.estimatedRefund",
+      "status": "PASS",
+      "note": "1200"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.ssrAmount",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.createdAt",
+      "status": "PASS",
+      "note": "\"2026-10-13T12:53:05Z\""
+    },
+    {
+      "rule": "CANCELLED-plain.cr.pnr",
+      "status": "PASS",
+      "note": "\"FVRVRV\""
+    },
+    {
+      "rule": "CANCELLED-plain.cr.status",
+      "status": "PASS",
+      "note": "Cancellation Successful vs Cancellation Successful"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.scope.type",
+      "status": "PASS",
+      "note": "FULL"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.scope.legIds array",
+      "status": "PASS",
+      "note": "[1575]"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.scope.paxIds array",
+      "status": "PASS",
+      "note": "[\"PAX1\"]"
+    },
+    {
+      "rule": "CANCELLED-plain.cr.mode ONLINE|OFFLINE",
+      "status": "PASS",
+      "note": "OFFLINE"
+    },
+    {
+      "rule": "CANCELLED-plain.legStatus schema BOOKED|CANCELLED",
+      "status": "BUG",
+      "note": "got Cancelled"
+    },
+    {
+      "rule": "CANCELLED-plain.legId integer",
+      "status": "PASS",
+      "note": "1575 type=number"
+    },
+    {
+      "rule": "CANCELLED-plain:credit amount = refund.amount",
+      "status": "PASS",
+      "note": "1200 vs 1200"
+    },
+    {
+      "rule": "CANCELLED-plain:debit-charge = refund",
+      "status": "PASS",
+      "note": "1200 vs 1200"
+    },
+    {
+      "rule": "TRIGGER pending→confirmed",
+      "status": "PASS",
+      "note": "SSR BR1791896467778797"
+    },
+    {
+      "rule": "TRIGGER confirmed→cancellation_requested (status stays Confirmed)",
+      "status": "PASS",
+      "note": "plain + SSR cancels"
+    },
+    {
+      "rule": "TRIGGER cancellation_requested→cancelled + credit",
+      "status": "PASS",
+      "note": "plain + SSR cancels"
+    },
+    {
+      "rule": "TRIGGER booking.failed",
+      "status": "NOT TESTED",
+      "note": "no sample today"
+    },
+    {
+      "rule": "TRIGGER booking.partially_cancelled",
+      "status": "NOT TESTED",
+      "note": "no sample today"
+    },
+    {
+      "rule": "TRIGGER booking.cancellation_failed",
+      "status": "NOT TESTED",
+      "note": "no sample today"
+    },
+    {
+      "rule": "TRIGGER wallet.low_balance / topup.success",
+      "status": "NOT TESTED",
+      "note": "no sample today"
+    },
+    {
+      "rule": "TRIGGER reschedule: cancel-family on old before new confirmed",
+      "status": "BUG",
+      "note": "new confirmed while old still Confirmed; no cancel events on old"
+    }
+  ],
+  "summary": {
+    "testedEvents": [
+      "booking.confirmed",
+      "booking.cancelled",
+      "booking.pending (lifecycle)",
+      "booking.cancellation_requested (lifecycle)"
+    ],
+    "triggerPass": [
+      "pending",
+      "confirmed",
+      "cancellation_requested",
+      "cancelled"
+    ],
+    "triggerNotTested": [
+      "failed",
+      "partially_cancelled",
+      "cancellation_failed",
+      "wallet.*"
+    ],
+    "schemaBugs": [
+      "legs[].status live = Confirmed/Cancelled; schema allows only BOOKED|CANCELLED",
+      "cancellationChargeBreakup all 0 while cancellationCharge=450",
+      "reschedule pair: no cancel webhook on old before new confirmed"
+    ],
+    "schemaGaps": [
+      "PDF catalogue typo booking.confirm vs booking.confirmed",
+      "no reschedulingReferenceId in confirmed webhook schema/examples"
+    ]
+  }
+}

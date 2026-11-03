@@ -28,7 +28,7 @@ Unfiltered on purpose: raw reports live **next to each product**. If it is not u
 |-----------------|-------------|-----------|
 | Hotel | [travel-apis/hotel/AGENTS.md](travel-apis/hotel/AGENTS.md) | Merged sibling B2B `AGENTS.md` (2026-10-07) + ENG-299 tripType |
 | Flight | [travel-apis/flight/AGENTS.md](travel-apis/flight/AGENTS.md) | Merged B2B pack memory + ENG-297 + QA-24 TBO books |
-| Cab | [travel-apis/cab/AGENTS.md](travel-apis/cab/AGENTS.md) | Error-contract / multipax / DOB agent work |
+| Cab | [travel-apis/cab/AGENTS.md](travel-apis/cab/AGENTS.md) | Probes here; **hotel/flight-style pack** in sibling `D:\Travel VIP B2B API Automation` (`npm run cab:regression`) |
 | Inventory | [inventory/AGENTS.md](inventory/AGENTS.md) | Lounge / FastTrack / Attractions inventory agents |
 | Byufuel | [byufuel/AGENTS.md](byufuel/AGENTS.md) | + handoff `byufuel/reports/byufuel-drive/` · rule `byufuel-qa-agent.mdc` |
 | MCP / UI evidence | [mcp/AGENTS.md](mcp/AGENTS.md) | Alpha-web Lounge/FT/Flight vs Figma (2026-09-10) |

@@ -1,0 +1,167 @@
+{
+  "at": "2026-10-13T13:36:27.807Z",
+  "suite": "flight-reschedule-pair-check",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "old": {
+    "http": 200,
+    "status": "Confirmed",
+    "bookingReferenceId": "BR1791897850832408",
+    "reschedulingReferenceId": null,
+    "pnr": "FVRVRV",
+    "eticket": "BX13HJ00521-1",
+    "paxLegStatus": "Confirmed",
+    "route": {
+      "flight": "6E 46",
+      "from": "DEL",
+      "to": "BOM",
+      "dep": "2026-11-12T15:00"
+    },
+    "refundable": false,
+    "salesSummary": {
+      "basePrice": 1200,
+      "subTotal": 1200,
+      "tax": 100,
+      "convenienceFee": 350,
+      "totalAmount": 1650,
+      "totalDiscount": 0,
+      "currency": "INR",
+      "campaignId": null
+    },
+    "cancellationRequest": [],
+    "paxName": "Rohan Bhagatukzb"
+  },
+  "new": {
+    "http": 200,
+    "status": "Confirmed",
+    "bookingReferenceId": "BR1791898085747931",
+    "reschedulingReferenceId": "BR1791897850832408",
+    "pnr": "J371MJ",
+    "eticket": "BX13HJ00531-1",
+    "paxLegStatus": "Confirmed",
+    "route": {
+      "flight": "IX 1463",
+      "from": "DEL",
+      "to": "NMI",
+      "dep": "2026-11-20T06:00"
+    },
+    "refundable": true,
+    "salesSummary": {
+      "basePrice": 899,
+      "subTotal": 899,
+      "tax": 1828,
+      "convenienceFee": 350,
+      "totalAmount": 3077,
+      "totalDiscount": 0,
+      "currency": "INR",
+      "campaignId": null
+    },
+    "cancellationRequest": [],
+    "paxName": "Rohan Bhagattest"
+  },
+  "money": {
+    "oldPaid": 1650,
+    "newPaid": 3077,
+    "fareDiffIfOnlyDelta": 1427,
+    "observed": "both full wallet debits; no credit on old yet"
+  },
+  "webhookUserProvided": {
+    "old": {
+      "event": "booking.confirmed",
+      "br": "BR1791897850832408",
+      "total": 1650,
+      "pnr": "FVRVRV",
+      "convenienceFee": 350
+    },
+    "new": {
+      "event": "booking.confirmed",
+      "br": "BR1791898085747931",
+      "total": 3077,
+      "pnr": "J371MJ",
+      "convenienceFee": 350,
+      "reschedulingReferenceIdInPayload": false
+    }
+  },
+  "rows": [
+    {
+      "rule": "new.reschedulingReferenceId = old BR",
+      "status": "PASS",
+      "note": "BR1791897850832408"
+    },
+    {
+      "rule": "both Confirmed now",
+      "status": "PASS",
+      "note": "old=Confirmed new=Confirmed"
+    },
+    {
+      "rule": "old still Confirmed (not cancelled after reschedule)",
+      "status": "GAP",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "old cancellationRequest empty",
+      "status": "GAP",
+      "note": "[]"
+    },
+    {
+      "rule": "new fare math 899+1828+350=3077",
+      "status": "PASS",
+      "note": "3077"
+    },
+    {
+      "rule": "old fare math 1200+100+350=1650",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "webhook new: debit=totalAmount",
+      "status": "PASS",
+      "note": "3077"
+    },
+    {
+      "rule": "webhook old: debit=totalAmount",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "webhook new missing reschedulingReferenceId",
+      "status": "GAP",
+      "note": "confirmed webhook has no reschedulingReferenceId; API status has it"
+    },
+    {
+      "rule": "Mattermost: no cancel alert on old between confirms",
+      "status": "GAP",
+      "note": "only ticket+confirmed for both BRs; no cancellation_requested/cancelled"
+    },
+    {
+      "rule": "wallet: full new debit (no visible fare-diff credit yet)",
+      "status": "NOTE",
+      "note": "1650 + 3077 both debited; old not refunded"
+    },
+    {
+      "rule": "pax lastName changed old→new",
+      "status": "NOTE",
+      "note": "Rohan Bhagatukzb → Rohan Bhagattest"
+    },
+    {
+      "rule": "route changed DEL-BOM → DEL-NMI",
+      "status": "PASS",
+      "note": "6E46 → IX1463"
+    },
+    {
+      "rule": "PNR changed FVRVRV → J371MJ",
+      "status": "PASS",
+      "note": "FVRVRV → J371MJ"
+    }
+  ],
+  "counts": {
+    "PASS": 8,
+    "GAP": 4,
+    "NOTE": 2
+  },
+  "notes": [
+    "API proves reschedule link: new.bookingResponse.reschedulingReferenceId = BR1791897850832408",
+    "Old booking remains Confirmed with empty cancellationRequest — reschedule did not auto-cancel/supersede old yet",
+    "Partner confirmed webhook for new BR does not include reschedulingReferenceId (API does) — soft GAP",
+    "No Mattermost cancel lifecycle on old BR between 13:24 and 13:28"
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "ranAt": "2026-10-27T12:48:39.323Z",
+  "route": "DEL-BOM",
+  "days": 25,
+  "date": "2026-11-21",
+  "airlines": [
+    "SG",
+    "QP"
+  ],
+  "samples": [
+    "SG:CORPORATE",
+    "QP:CORPORATE"
+  ],
+  "summary": {
+    "PASS": 2,
+    "BUG": 0,
+    "NT": 2
+  },
+  "rows": [
+    {
+      "airline": "6E",
+      "name": "IndiGo",
+      "status": "NOT TESTED"
+    },
+    {
+      "airline": "IX",
+      "name": "Air India Express",
+      "status": "NOT TESTED"
+    },
+    {
+      "airline": "QP",
+      "name": "Akasa Air",
+      "fareCategory": "CORPORATE",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_cde7d544849846a9b614a4e045a4015a"
+    },
+    {
+      "airline": "SG",
+      "name": "SpiceJet",
+      "fareCategory": "CORPORATE",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 50,
+                "offlineFee": 300
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 50,
+                "offlineFee": 300
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "http": 200,
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 50,
+                "offlineFee": 300
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_c3a54730ef4745aea1942bfa60c3612c"
+    }
+  ],
+  "secondDate": {
+    "date": "2026-12-11",
+    "airlines": [
+      "QP"
+    ],
+    "rows": [
+      {
+        "airline": "6E",
+        "status": "NOT TESTED"
+      },
+      {
+        "airline": "IX",
+        "status": "NOT TESTED"
+      },
+      {
+        "airline": "QP",
+        "name": "Akasa Air",
+        "status": "PASS",
+        "endpoints": [
+          {
+            "endpoint": "details",
+            "status": "PASS",
+            "issues": [],
+            "blockCount": 1,
+            "checks": [
+              {
+                "direction": "ONWARD",
+                "status": "PASS",
+                "issues": [],
+                "observed": {
+                  "before": 299,
+                  "within": 299,
+                  "onlineFee": 50,
+                  "offlineFee": 300
+                }
+              }
+            ]
+          },
+          {
+            "endpoint": "fareRules",
+            "status": "PASS",
+            "issues": [],
+            "blockCount": 1,
+            "checks": [
+              {
+                "direction": "ONWARD",
+                "status": "PASS",
+                "issues": [],
+                "observed": {
+                  "before": 299,
+                  "within": 299,
+                  "onlineFee": 50,
+                  "offlineFee": 300
+                }
+              }
+            ]
+          },
+          {
+            "endpoint": "pricing",
+            "status": "PASS",
+            "issues": [],
+            "blockCount": 1,
+            "checks": [
+              {
+                "direction": "ONWARD",
+                "status": "PASS",
+                "issues": [],
+                "observed": {
+                  "before": 299,
+                  "within": 299,
+                  "onlineFee": 50,
+                  "offlineFee": 300
+                }
+              }
+            ]
+          }
+        ],
+        "observed": {
+          "before": 299,
+          "within": 299,
+          "onlineFee": 50,
+          "offlineFee": 300
+        }
+      },
+      {
+        "airline": "SG",
+        "status": "NOT TESTED"
+      }
+    ]
+  }
+}

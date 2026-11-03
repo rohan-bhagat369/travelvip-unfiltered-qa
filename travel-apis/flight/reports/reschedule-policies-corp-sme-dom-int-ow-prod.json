@@ -1,0 +1,698 @@
+{
+  "ranAt": "2026-10-27T13:24:42.854Z",
+  "baseUrl": "https://api.travelvip.ai",
+  "tierId": 19597201,
+  "correlationId": "16b58ed6-b93f-4def-aadf-f792141bffdb",
+  "fareType": "CORPORATE,SME",
+  "note": "PROD OW DOM DEL-BOM + OW INT BOM-DXB; details+fareRules+pricing; no book",
+  "domestic": {
+    "date": "2026-11-21",
+    "airlines": [
+      "SG",
+      "6E",
+      "QP",
+      "AI",
+      "IX"
+    ],
+    "samples": [
+      "SG:CORPORATE",
+      "6E:SME",
+      "QP:SME",
+      "QP:CORPORATE",
+      "AI:SME",
+      "IX:SME"
+    ]
+  },
+  "international": {
+    "date": "2026-11-21",
+    "airlines": [
+      "IX",
+      "6E",
+      "SG"
+    ],
+    "samples": [
+      "IX:SME",
+      "6E:SME",
+      "SG:CORPORATE"
+    ]
+  },
+  "summary": {
+    "PASS": 8,
+    "BUG": 0,
+    "NT": 2
+  },
+  "rows": [
+    {
+      "scenario": "OW-DOM",
+      "tripType": "DOMESTIC",
+      "route": "DEL-BOM",
+      "airline": "6E",
+      "name": "IndiGo",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "SME",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 499,
+                "within": 799,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 499,
+                "within": 799,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 499,
+                "within": 799,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_87db2633a5ae443eb283d86625ad91a9"
+    },
+    {
+      "scenario": "OW-DOM",
+      "tripType": "DOMESTIC",
+      "route": "DEL-BOM",
+      "airline": "AI",
+      "name": "Air India",
+      "expectedFareType": "SME",
+      "fareCategory": "SME",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 1047,
+                "within": 1999,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 1047,
+                "within": 1999,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 1047,
+                "within": 1999,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_c30a8998376c40fb92cb3a437189871b"
+    },
+    {
+      "scenario": "OW-DOM",
+      "tripType": "DOMESTIC",
+      "route": "DEL-BOM",
+      "airline": "IX",
+      "name": "Air India Express",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "SME",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 600,
+                "within": 1000,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 600,
+                "within": 1000,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 600,
+                "within": 1000,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_bf1e2c1c27c14894ac270987951c1479"
+    },
+    {
+      "scenario": "OW-DOM",
+      "tripType": "DOMESTIC",
+      "route": "DEL-BOM",
+      "airline": "QP",
+      "name": "Akasa Air",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "CORPORATE",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_9f2ad027ad28471d9a33d1b0058c7525"
+    },
+    {
+      "scenario": "OW-DOM",
+      "tripType": "DOMESTIC",
+      "route": "DEL-BOM",
+      "airline": "SG",
+      "name": "SpiceJet",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "CORPORATE",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_6e06f87b50af4b5a844dbb2a8716bf40"
+    },
+    {
+      "scenario": "OW-INT",
+      "tripType": "INTERNATIONAL",
+      "route": "BOM-DXB",
+      "airline": "6E",
+      "name": "IndiGo",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "SME",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 499,
+                "within": 799,
+                "onlineFee": 100,
+                "offlineFee": 600,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 499,
+                "within": 799,
+                "onlineFee": 100,
+                "offlineFee": 600,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 499,
+                "within": 799,
+                "onlineFee": 100,
+                "offlineFee": 600,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_835a241c2fcf4089a09b9d73faa1f9cc"
+    },
+    {
+      "scenario": "OW-INT",
+      "tripType": "INTERNATIONAL",
+      "route": "BOM-DXB",
+      "airline": "AI",
+      "name": "Air India",
+      "expectedFareType": "SME",
+      "status": "NOT TESTED",
+      "detail": "not in search"
+    },
+    {
+      "scenario": "OW-INT",
+      "tripType": "INTERNATIONAL",
+      "route": "BOM-DXB",
+      "airline": "IX",
+      "name": "Air India Express",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "SME",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 600,
+                "within": 1000,
+                "onlineFee": 100,
+                "offlineFee": 600,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 600,
+                "within": 1000,
+                "onlineFee": 100,
+                "offlineFee": 600,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [
+            "fareCategory SME (sheet CORPORATE); amounts matched sheet"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 600,
+                "within": 1000,
+                "onlineFee": 100,
+                "offlineFee": 600,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_73f9937fe47d469db57988ad3f37bcac"
+    },
+    {
+      "scenario": "OW-INT",
+      "tripType": "INTERNATIONAL",
+      "route": "BOM-DXB",
+      "airline": "QP",
+      "name": "Akasa Air",
+      "expectedFareType": "CORPORATE",
+      "status": "NOT TESTED",
+      "detail": "not in search"
+    },
+    {
+      "scenario": "OW-INT",
+      "tripType": "INTERNATIONAL",
+      "route": "BOM-DXB",
+      "airline": "SG",
+      "name": "SpiceJet",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "CORPORATE",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 100,
+                "offlineFee": 600,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 100,
+                "offlineFee": 600,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 100,
+                "offlineFee": 600,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_fddae2114ae74d48a3c008eb58344119"
+    }
+  ]
+}

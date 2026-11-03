@@ -1,0 +1,179 @@
+{
+  "at": "2026-10-15T12:58:31.109Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "route": {
+    "origin": "DEL",
+    "destination": "BOM",
+    "date": "2026-11-19"
+  },
+  "timingReferenceUsed": true,
+  "note": "Single route only; preferences.maxStops primary; appliedFilters.ONWARD.stops secondary. No book.",
+  "counts": {
+    "PASS": 7,
+    "BUG": 2
+  },
+  "rows": [
+    {
+      "id": "WARM",
+      "rule": "ONE unfiltered search DEL→BOM",
+      "status": "PASS",
+      "note": "HTTP 200 n=50 hist={\"0\":21,\"1\":29} facet={\"Non-Stop\":47,\"1 Stop\":109}",
+      "http": 200,
+      "hist": {
+        "0": 21,
+        "1": 29
+      },
+      "facet": {
+        "Non-Stop": 47,
+        "1 Stop": 109
+      }
+    },
+    {
+      "id": "PREF_-1",
+      "rule": "preferences.maxStops=-1 → stops ≤ 0",
+      "status": "BUG",
+      "note": "expected all stops ≤ 0; got max=1 hist={\"0\":21,\"1\":29}",
+      "http": 200,
+      "hist": {
+        "0": 21,
+        "1": 29
+      },
+      "facet": {
+        "Non-Stop": 47,
+        "1 Stop": 109
+      },
+      "applied": {
+        "preferences": {
+          "maxStops": -1
+        }
+      }
+    },
+    {
+      "id": "PREF_0",
+      "rule": "preferences.maxStops=0 → stops ≤ 0",
+      "status": "PASS",
+      "note": "n=47 hist={\"0\":47} min=0 max=0 (≤0)",
+      "http": 200,
+      "hist": {
+        "0": 47
+      },
+      "facet": {
+        "Non-Stop": 47,
+        "1 Stop": 109
+      },
+      "applied": {
+        "preferences": {
+          "maxStops": 0
+        }
+      }
+    },
+    {
+      "id": "PREF_1",
+      "rule": "preferences.maxStops=1 → stops ≤ 1",
+      "status": "PASS",
+      "note": "n=50 hist={\"0\":21,\"1\":29} min=0 max=1 (≤1)",
+      "http": 200,
+      "hist": {
+        "0": 21,
+        "1": 29
+      },
+      "facet": {
+        "Non-Stop": 47,
+        "1 Stop": 109
+      },
+      "applied": {
+        "preferences": {
+          "maxStops": 1
+        }
+      }
+    },
+    {
+      "id": "PREF_2",
+      "rule": "preferences.maxStops=2 → stops ≤ 2",
+      "status": "PASS",
+      "note": "n=50 hist={\"0\":21,\"1\":29} min=0 max=1 (≤2)",
+      "http": 200,
+      "hist": {
+        "0": 21,
+        "1": 29
+      },
+      "facet": {
+        "Non-Stop": 47,
+        "1 Stop": 109
+      },
+      "applied": {
+        "preferences": {
+          "maxStops": 2
+        }
+      }
+    },
+    {
+      "id": "AF_NS",
+      "rule": "appliedFilters.ONWARD.stops=[\"Non-Stop\"] → 0 only",
+      "status": "PASS",
+      "note": "n=47 hist={\"0\":47}",
+      "http": 200,
+      "hist": {
+        "0": 47
+      },
+      "applied": {
+        "ONWARD": {
+          "stops": [
+            "Non-Stop"
+          ]
+        }
+      }
+    },
+    {
+      "id": "AF_0",
+      "rule": "appliedFilters.ONWARD.stops=[0] → 0 only",
+      "status": "PASS",
+      "note": "n=47 hist={\"0\":47}",
+      "http": 200,
+      "hist": {
+        "0": 47
+      },
+      "applied": {
+        "ONWARD": {
+          "stops": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "AF_01",
+      "rule": "appliedFilters.ONWARD.stops=[0,1] → ≤1",
+      "status": "PASS",
+      "note": "n=50 hist={\"0\":21,\"1\":29}",
+      "http": 200,
+      "hist": {
+        "0": 21,
+        "1": 29
+      },
+      "applied": {
+        "ONWARD": {
+          "stops": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "AF_M1",
+      "rule": "appliedFilters.ONWARD.stops=[-1] → 0 only",
+      "status": "BUG",
+      "note": "n=0 hist={} (filter shape may be ignored/empty)",
+      "http": 200,
+      "hist": {},
+      "applied": {
+        "ONWARD": {
+          "stops": [
+            -1
+          ]
+        }
+      }
+    }
+  ]
+}

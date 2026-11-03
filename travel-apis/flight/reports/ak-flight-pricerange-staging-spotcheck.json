@@ -1,0 +1,163 @@
+{
+  "at": "2026-10-13T08:54:31.099Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "suite": "flight-priceRange-spotcheck",
+  "counts": {
+    "PASS": 5,
+    "BUG": 1,
+    "NOT TESTED": 1
+  },
+  "rows": [
+    {
+      "route": "DEL-BOM",
+      "case": "priceRange mid-band",
+      "filter": {
+        "min": 1300,
+        "max": 4197
+      },
+      "unfiltered": {
+        "count": 20,
+        "priced": 20,
+        "min": 1300,
+        "max": 7738,
+        "sample": [
+          1300,
+          2605,
+          2709
+        ]
+      },
+      "filtered": {
+        "count": 5,
+        "priced": 5,
+        "min": 1300,
+        "max": 2727,
+        "sample": [
+          1300,
+          2605,
+          2709
+        ]
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 opts=5 priced=5 range=[1300,4197] outside=0"
+    },
+    {
+      "route": "DEL-BOM",
+      "case": "priceRange max below inventory min",
+      "filter": {
+        "min": 0,
+        "max": 1250
+      },
+      "unfilteredMin": 1300,
+      "filtered": {
+        "count": 0,
+        "priced": 0,
+        "min": null,
+        "max": null,
+        "sample": []
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 opts=0 max=1250 (unfiltered min=1300) outside=0"
+    },
+    {
+      "route": "DEL-BOM",
+      "case": "priceRange min above inventory max",
+      "filter": {
+        "min": 8238,
+        "max": 13238
+      },
+      "unfilteredMax": 7738,
+      "filtered": {
+        "count": 19,
+        "priced": 19,
+        "min": 8298,
+        "max": 12971,
+        "sample": [
+          8298,
+          8298,
+          8298
+        ]
+      },
+      "outside": [],
+      "status": "BUG",
+      "note": "HTTP 200 opts=19 min=8238 (unfiltered max=7738) — expect empty; outside=0"
+    },
+    {
+      "route": "BOM-BLR",
+      "case": "priceRange mid-band",
+      "filter": {
+        "min": 5155,
+        "max": 11514
+      },
+      "unfiltered": {
+        "count": 5,
+        "priced": 5,
+        "min": 5155,
+        "max": 19287,
+        "sample": [
+          5155,
+          10568,
+          12318
+        ]
+      },
+      "filtered": {
+        "count": 2,
+        "priced": 2,
+        "min": 5155,
+        "max": 10568,
+        "sample": [
+          5155,
+          10568
+        ]
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 opts=2 priced=2 range=[5155,11514] outside=0"
+    },
+    {
+      "route": "BOM-BLR",
+      "case": "priceRange max below inventory min",
+      "filter": {
+        "min": 0,
+        "max": 5105
+      },
+      "unfilteredMin": 5155,
+      "filtered": {
+        "count": 0,
+        "priced": 0,
+        "min": null,
+        "max": null,
+        "sample": []
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 opts=0 max=5105 (unfiltered min=5155) outside=0"
+    },
+    {
+      "route": "BOM-BLR",
+      "case": "priceRange min above inventory max",
+      "filter": {
+        "min": 19787,
+        "max": 24787
+      },
+      "unfilteredMax": 19287,
+      "filtered": {
+        "count": 0,
+        "priced": 0,
+        "min": null,
+        "max": null,
+        "sample": []
+      },
+      "outside": [],
+      "status": "PASS",
+      "note": "HTTP 200 opts=0 min=19787 (unfiltered max=19287) — expect empty; outside=0"
+    },
+    {
+      "route": "DEL-DXB",
+      "case": "baseline",
+      "status": "NOT TESTED",
+      "note": "no priced options"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-13T18:29:31.206Z",
+  "br": "BR1791916065216629",
+  "doc": "flights-and-wallet-webhooks.pdf §3.2",
+  "counts": {
+    "PASS": 11,
+    "BUG": 1,
+    "GAP": 2
+  },
+  "rows": [
+    {
+      "rule": "version=1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "event booking.confirmed",
+      "status": "PASS",
+      "note": "booking.confirmed"
+    },
+    {
+      "rule": "type flight",
+      "status": "PASS",
+      "note": "flight"
+    },
+    {
+      "rule": "data.status Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "debit only = totalAmount",
+      "status": "PASS",
+      "note": "15870"
+    },
+    {
+      "rule": "fare math base+tax+fee (+ssr) = total",
+      "status": "PASS",
+      "note": "15870"
+    },
+    {
+      "rule": "pnrCount matches pnrGroups",
+      "status": "PASS",
+      "note": "2 groups"
+    },
+    {
+      "rule": "itinerary PNRs populated",
+      "status": "PASS",
+      "note": "MD4WYG,DI1D9R"
+    },
+    {
+      "rule": "etickets populated on all legs",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "legId integer",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "no cancellationRequest / no refund on confirmed",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "DOC legs[].status BOOKED|CANCELLED only",
+      "status": "BUG",
+      "note": "got Confirmed on all legs"
+    },
+    {
+      "rule": "top-level bookingId/status/orderId not in PDF envelope",
+      "status": "GAP",
+      "note": "additive"
+    },
+    {
+      "rule": "catalogue typo booking.confirm vs booking.confirmed",
+      "status": "GAP",
+      "note": "PDF §2 table; live uses confirmed (correct)"
+    }
+  ]
+}

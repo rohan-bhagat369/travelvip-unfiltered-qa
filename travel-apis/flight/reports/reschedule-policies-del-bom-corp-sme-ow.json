@@ -1,0 +1,395 @@
+{
+  "ranAt": "2026-10-27T12:49:56.218Z",
+  "route": "DEL-BOM",
+  "journey": "ONE_WAY",
+  "fareType": "CORPORATE,SME",
+  "date": "2026-11-21",
+  "airlines": [
+    "SG",
+    "6E",
+    "QP",
+    "AI",
+    "IX"
+  ],
+  "samples": [
+    "SG:CORPORATE",
+    "6E:SME",
+    "QP:SME",
+    "QP:CORPORATE",
+    "AI:SME",
+    "IX:SME"
+  ],
+  "summary": {
+    "PASS": 3,
+    "BUG": 0,
+    "NOTE": 2,
+    "NT": 0
+  },
+  "rows": [
+    {
+      "airline": "6E",
+      "name": "IndiGo",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "SME",
+      "status": "NOTE",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "NOTE",
+          "issues": [
+            "policies present; amounts not scored"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "observed": {
+                "before": 499,
+                "within": 799,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "NOTE",
+          "issues": [
+            "policies present; amounts not scored"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "observed": {
+                "before": 499,
+                "within": 799,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "NOTE",
+          "issues": [
+            "policies present; amounts not scored"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "observed": {
+                "before": 499,
+                "within": 799,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_7031274127ef449faf394906d4e70f92"
+    },
+    {
+      "airline": "AI",
+      "name": "Air India",
+      "expectedFareType": "SME",
+      "fareCategory": "SME",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 1047,
+                "within": 1999,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 1047,
+                "within": 1999,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 1047,
+                "within": 1999,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_295d29daa2cd4bb7839b6c239d9ebad9"
+    },
+    {
+      "airline": "IX",
+      "name": "Air India Express",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "SME",
+      "status": "NOTE",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "NOTE",
+          "issues": [
+            "policies present; amounts not scored"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "observed": {
+                "before": 600,
+                "within": 1000,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "NOTE",
+          "issues": [
+            "policies present; amounts not scored"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "observed": {
+                "before": 600,
+                "within": 1000,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "NOTE",
+          "issues": [
+            "policies present; amounts not scored"
+          ],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "observed": {
+                "before": 600,
+                "within": 1000,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_ca0ad968300940dcb66d4844c4b0177f"
+    },
+    {
+      "airline": "QP",
+      "name": "Akasa Air",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "CORPORATE",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 299,
+                "within": 299,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_cde7d544849846a9b614a4e045a4015a"
+    },
+    {
+      "airline": "SG",
+      "name": "SpiceJet",
+      "expectedFareType": "CORPORATE",
+      "fareCategory": "CORPORATE",
+      "status": "PASS",
+      "endpoints": [
+        {
+          "endpoint": "details",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "fareRules",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "pricing",
+          "status": "PASS",
+          "issues": [],
+          "blockCount": 1,
+          "checks": [
+            {
+              "direction": "ONWARD",
+              "status": "PASS",
+              "issues": [],
+              "observed": {
+                "before": 599,
+                "within": 599,
+                "onlineFee": 50,
+                "offlineFee": 300,
+                "onlineCut": 4,
+                "offlineCut": 12
+              }
+            }
+          ]
+        }
+      ],
+      "searchId": "srch_c3a54730ef4745aea1942bfa60c3612c"
+    }
+  ]
+}

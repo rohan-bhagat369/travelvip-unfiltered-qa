@@ -1,0 +1,208 @@
+{
+  "at": "2026-10-13T08:56:33.384Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "clientIssue": "DEL-HYD 2026-10-15 priceRange max 5000",
+  "rows": [
+    {
+      "id": "CLIENT",
+      "label": "Client curl (flat appliedFilters.priceRange + CORPORATE)",
+      "http": 400,
+      "error": "NO_FLIGHTS_FOUND",
+      "appliedFilters": {
+        "priceRange": {
+          "min": 0,
+          "max": 5000
+        }
+      },
+      "fareType": "CORPORATE",
+      "optionCount": 0,
+      "priceMin": null,
+      "priceMax": null,
+      "sample": [],
+      "outsideMax5000": [],
+      "facetPriceRange": null,
+      "status": "BUG"
+    },
+    {
+      "id": "FIX-ONWARD",
+      "label": "Same but appliedFilters.ONWARD.priceRange",
+      "http": 400,
+      "error": "NO_FLIGHTS_FOUND",
+      "appliedFilters": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 0,
+            "max": 5000
+          }
+        }
+      },
+      "fareType": "CORPORATE",
+      "optionCount": 0,
+      "priceMin": null,
+      "priceMax": null,
+      "sample": [],
+      "outsideMax5000": [],
+      "facetPriceRange": null,
+      "status": "BUG"
+    },
+    {
+      "id": "NORMAL-FLAT",
+      "label": "Client flat priceRange + NORMAL",
+      "http": 200,
+      "error": null,
+      "appliedFilters": {
+        "priceRange": {
+          "min": 0,
+          "max": 5000
+        }
+      },
+      "fareType": "NORMAL",
+      "optionCount": 20,
+      "priceMin": 6212,
+      "priceMax": 11852,
+      "sample": [
+        6212,
+        6424,
+        6424,
+        6634,
+        6634
+      ],
+      "outsideMax5000": [
+        {
+          "id": "srch_5981727beba9413581e5f023ddef101f",
+          "price": 6212
+        },
+        {
+          "id": "srch_c3ca964e6660482c83bb3f83537b0762",
+          "price": 6424
+        },
+        {
+          "id": "srch_f9f8e1a01287465187be8cba551837eb",
+          "price": 6424
+        },
+        {
+          "id": "srch_077fb6a5fff2464dac310fd2d6a96831",
+          "price": 6634
+        },
+        {
+          "id": "srch_aff5541a80374de18d97041cf47e890e",
+          "price": 6634
+        },
+        {
+          "id": "srch_28cf8c9859fc4a4887d658f7dce2e227",
+          "price": 6634
+        },
+        {
+          "id": "srch_abd5ea2497c14e1c8187dfd014d94ba4",
+          "price": 6634
+        },
+        {
+          "id": "srch_efe42e9e3c6a494686bc8ed763ba98f9",
+          "price": 6634
+        }
+      ],
+      "facetPriceRange": {
+        "min": 6212,
+        "max": 25387
+      },
+      "status": "BUG"
+    },
+    {
+      "id": "NORMAL-ONWARD",
+      "label": "ONWARD.priceRange + NORMAL",
+      "http": 200,
+      "error": null,
+      "appliedFilters": {
+        "ONWARD": {
+          "priceRange": {
+            "min": 0,
+            "max": 5000
+          }
+        }
+      },
+      "fareType": "NORMAL",
+      "optionCount": 0,
+      "priceMin": null,
+      "priceMax": null,
+      "sample": [],
+      "outsideMax5000": [],
+      "facetPriceRange": {
+        "min": 6212,
+        "max": 25387
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "UNFILTERED-CORP",
+      "label": "No price filter CORPORATE",
+      "http": 400,
+      "error": "NO_FLIGHTS_FOUND",
+      "appliedFilters": {},
+      "fareType": "CORPORATE",
+      "optionCount": 0,
+      "priceMin": null,
+      "priceMax": null,
+      "sample": [],
+      "outsideMax5000": [],
+      "facetPriceRange": null,
+      "status": "INFO"
+    },
+    {
+      "id": "UNFILTERED-NORMAL",
+      "label": "No price filter NORMAL",
+      "http": 200,
+      "error": null,
+      "appliedFilters": {},
+      "fareType": "NORMAL",
+      "optionCount": 20,
+      "priceMin": 6212,
+      "priceMax": 11852,
+      "sample": [
+        6212,
+        6424,
+        6424,
+        6634,
+        6634
+      ],
+      "outsideMax5000": [
+        {
+          "id": "srch_5981727beba9413581e5f023ddef101f",
+          "price": 6212
+        },
+        {
+          "id": "srch_c3ca964e6660482c83bb3f83537b0762",
+          "price": 6424
+        },
+        {
+          "id": "srch_f9f8e1a01287465187be8cba551837eb",
+          "price": 6424
+        },
+        {
+          "id": "srch_077fb6a5fff2464dac310fd2d6a96831",
+          "price": 6634
+        },
+        {
+          "id": "srch_aff5541a80374de18d97041cf47e890e",
+          "price": 6634
+        },
+        {
+          "id": "srch_28cf8c9859fc4a4887d658f7dce2e227",
+          "price": 6634
+        },
+        {
+          "id": "srch_abd5ea2497c14e1c8187dfd014d94ba4",
+          "price": 6634
+        },
+        {
+          "id": "srch_efe42e9e3c6a494686bc8ed763ba98f9",
+          "price": 6634
+        }
+      ],
+      "facetPriceRange": {
+        "min": 6212,
+        "max": 25387
+      },
+      "status": "INFO"
+    }
+  ]
+}

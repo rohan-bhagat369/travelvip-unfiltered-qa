@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-10-29T12:37:48.232Z",
+  "env": "zero-preprod-shop → preprod-web-api /api/v2/flight/search",
+  "route": "DEL-BOM",
+  "owDate": "2026-11-26",
+  "rtReturn": "2026-12-24",
+  "summary": {
+    "PASS": ["A3","A4","A5","B1","B2","B6","B7","B8","C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11"],
+    "BUG": [],
+    "NOT_TESTED": ["A1","A2","B3","B4","B5","C12","C13","D1","D2","D3","D4","D5","E*","F*"],
+    "notes": ["D5 inconclusive: selection OW returned 401 mid-suite, later base search 500"]
+  },
+  "stability": {
+    "intermittentHttp500": true,
+    "note": "Search sometimes returns HTTP 500 under repeated calls from same session"
+  },
+  "ow": {
+    "options": 241,
+    "fares": 1528,
+    "codeMap": { "422R": 907, "402T": 621 },
+    "dualVendorOptions": 163,
+    "scheduleDups": 0,
+    "searchIdDups": 0,
+    "displayBad": 0,
+    "priceBad": 0
+  },
+  "rt": {
+    "totalResults": { "ONWARD": 114, "RETURN": 106 },
+    "codeMap": { "422R": 323, "402T": 78 },
+    "selection": "C6-C11 PASS on 7 fares across 3 cards (422R + 402T)"
+  },
+  "issues": [
+    {
+      "severity": "medium",
+      "title": "Non-DEL/BOM metro airport codes in schedule (HDO, DXN, NMI)",
+      "detail": "19 options on OW page-scan show dep/arr as HDO/DXN/NMI instead of DEL/BOM. UI shows these codes. Likely IndiGo metro airports — confirm intended vs BUG for shop display.",
+      "samples": ["6E 5175 HDO→BOM", "6E 5068 DXN→BOM", "6E 5289 DEL→NMI"]
+    },
+    {
+      "severity": "low-observe",
+      "title": "TBO RT combinedPricing.totalAmount equals onward fare total",
+      "detail": "After selecting 402T Saver/Return Special, comboAmt == onwardTotal (e.g. 14230.08). Still satisfies C10/C11 (not 2×, >= onward). Verify return leg is priced inside fare vs missing return amount.",
+      "docStatus": "PASS per C10/C11"
+    },
+    {
+      "severity": "info",
+      "title": "D5 initial run HTTP 401",
+      "detail": "OW+selection late in suite returned 401 — likely token churn; recheck separately."
+    }
+  ]
+}

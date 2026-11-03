@@ -1,0 +1,368 @@
+{
+  "at": "2026-10-14T15:13:43.523Z",
+  "baseUrl": "https://api-preprod.travelvip.ai",
+  "dubaiEntity": "221688:AE",
+  "indianHotel": "39624369",
+  "mumbaiBookingCode": "6SrSkbTDrDva…",
+  "counts": {
+    "PASS": 27,
+    "BUG": 3
+  },
+  "rows": [
+    {
+      "id": "F1",
+      "caseId": "F1",
+      "rule": "tripType=domestic DEL→BOM → 200 results",
+      "status": "PASS",
+      "note": "HTTP 200 ok results/progress",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":2213,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"RRdd57AezdFimJaW+t2jwbCkO0gSenrqYl1SIFx1DcMBZd4jOEeCqU/kFdDnhn8OJ5wBntdUFW6YWgYwiN8MKNl8fn/Yc/hNMr6Ddgd1nBZkeNqRWNu5hkVN2CSAfMrTNIQosCuWz0JOdWi2w4BmF2qdtTO7IJkgrCfbJ7qICoPx"
+    },
+    {
+      "id": "F2",
+      "caseId": "F2",
+      "rule": "tripType=international DEL→DXB RT → 200 results",
+      "status": "PASS",
+      "note": "HTTP 200 ok",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"INTERNATIONAL\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":2862,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"WMtET0HjCAgRnXTtpxdEzDXGhETiTD7bx9ZbQKnMad81elRBsbXoSEW4Pr+0u+qCJ5wBntdUFW6YWgYwiN8MKNl8fn/Yc/hNMr6Ddgd1nBZkeNqRWNu5hkVN2CSAfMrTNIQosCuWz0JOdWi2w4BmF2qdtTO7IJkgrCfb"
+    },
+    {
+      "id": "F3",
+      "caseId": "F3",
+      "rule": "tripType= (empty) → 200",
+      "status": "PASS",
+      "note": "HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":4600,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"QykMCBbCO3RotxKt6kS/sEAUBnnGKXOLeVikN0MCRLGEvq7tahL1uWlEDy2ZuhkSwzP0yT3zY6Ymr7vjglNJebM2pnzYMMreqs9gHYfFpQVqJgd9tE+sCB2m+P3P/8z5Agi2nm+vjmxlkSMl5p3Pi0CLeR3rPQocglQL70/bUng2"
+    },
+    {
+      "id": "F4",
+      "caseId": "F4",
+      "rule": "tripType not sent → 200",
+      "status": "PASS",
+      "note": "HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":4536,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"AChot/2ikIGci3n5rqTj60jt8tx9nHTYZRSNmH9SjPtm69ksz5XjgkWu/BSONOocwzP0yT3zY6Ymr7vjglNJebM2pnzYMMreqs9gHYfFpQVqJgd9tE+sCB2m+P3P/8z5Agi2nm+vjmxlkSMl5p3Pi0CLeR3rPQocglQL70/bUng2"
+    },
+    {
+      "id": "F5",
+      "caseId": "F5",
+      "rule": "tripType=local → 400 VALIDATION_ERROR",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Invalid request payload for flight search. Please fix the listed errors and retry.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T15:12:48Z\",\"request_id\":\"req-1791990768780\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "F6",
+      "caseId": "F6",
+      "rule": "tripType=local + no journeyType → both errors",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Trip type (journeyType) is required. Allowed values are ONE_WAY and ROUND_TRIP. | Invalid request payload for f",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string.",
+        "Trip type (journeyType) is required. Allowed values are ONE_WAY and ROUND_TRIP."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\",\"Trip type (journeyType) is required. Allowed values are ONE_WAY and ROUND_TRIP.\"],\"timestamp\":\"2026-10-14T15:12:48Z\",\"request_id\":\"req-1791990768846\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d"
+    },
+    {
+      "id": "A1",
+      "caseId": "A1",
+      "rule": "airport=del&tripType=domestic → Indian only",
+      "status": "PASS",
+      "note": "n=6",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"airportCode\":\"DEL\",\"airportName\":\"Indira Gandhi International Airport\",\"city\":\"New Delhi\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"28.55563\",\"longitude\":\"77.09519\",\"address\":null,\"tag\":null},{\"airportCode\":\"HDO\",\"airportName\":\"Ghaziabad Hindon Airport\",\"city\":\"Ghaziabad\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitu",
+      "n": 6
+    },
+    {
+      "id": "A2",
+      "caseId": "A2",
+      "rule": "airport=dubai&tripType=international → 200 list",
+      "status": "PASS",
+      "note": "n=15",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"airportCode\":\"DXB\",\"airportName\":\"Dubai International Airport\",\"city\":\"Dubai\",\"country\":\"United Arab Emirates\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"25.2527999878\",\"longitude\":\"55.3643989563\",\"address\":null,\"tag\":null},{\"airportCode\":\"SHJ\",\"airportName\":\"Sharjah International Airport\",\"city\":\"Sharjah\",\"country\":\"United Arab Emirates\",\"aiportCodeCity\":null"
+    },
+    {
+      "id": "A3",
+      "caseId": "A3",
+      "rule": "airport=del&tripType= (empty) → 200 (was 400)",
+      "status": "PASS",
+      "note": "HTTP 200 n=21",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"airportCode\":\"DEL\",\"airportName\":\"Indira Gandhi International Airport\",\"city\":\"New Delhi\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"28.55563\",\"longitude\":\"77.09519\",\"address\":null,\"tag\":null},{\"airportCode\":\"HDO\",\"airportName\":\"Ghaziabad Hindon Airport\",\"city\":\"Ghaziabad\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitu"
+    },
+    {
+      "id": "A4",
+      "caseId": "A4",
+      "rule": "airport=del no tripType → 200 (default international)",
+      "status": "PASS",
+      "note": "n=21",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"airportCode\":\"DEL\",\"airportName\":\"Indira Gandhi International Airport\",\"city\":\"New Delhi\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"28.55563\",\"longitude\":\"77.09519\",\"address\":null,\"tag\":null},{\"airportCode\":\"HDO\",\"airportName\":\"Ghaziabad Hindon Airport\",\"city\":\"Ghaziabad\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitu"
+    },
+    {
+      "id": "A5",
+      "caseId": "A5",
+      "rule": "tripType=xyz → 400 VALIDATION_ERROR",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Invalid query parameters for airport search. Please fix the listed errors and retry.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid query parameters for airport search. Please fix the listed errors and retry.\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T15:12:49Z\",\"request_id\":\"req-1791990769761\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "A5b",
+      "caseId": "A5b",
+      "rule": "GET /api/v2/flight/airports?tripType=domestic → 200",
+      "status": "PASS",
+      "note": "n=6",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":0,\"result\":[{\"entityId\":\"1\",\"entityType\":\"AIRPORT\",\"airportCode\":\"DEL\",\"airportName\":\"Indira Gandhi International Airport\",\"city\":\"New Delhi\",\"country\":\"India\",\"latitude\":\"28.55563\",\"longitude\":\"77.09519\",\"tag\":null},{\"entityId\":\"41799\",\"entityType\":\"AIRPORT\",\"airportCode\":\"HDO\",\"airportName\":\"Ghaziabad Hindon Airport\",\"city\":\"Ghaziabad\",\"country\":\"India\",\"latitude\":\"28.707701\",\"longitud"
+    },
+    {
+      "id": "A6",
+      "caseId": "A6",
+      "rule": "No airport → 400 MISSING_AIRPORT",
+      "status": "PASS",
+      "note": "code=MISSING_AIRPORT Query parameter 'airport' is required | airport parameter is required",
+      "http": 400,
+      "code": "MISSING_AIRPORT",
+      "details": [
+        "Query parameter 'airport' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"MISSING_AIRPORT\",\"message\":\"airport parameter is required\",\"details\":\"Query parameter 'airport' is required\",\"timestamp\":\"2026-10-14T15:12:49Z\",\"request_id\":\"req-1791990769886\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "H1",
+      "caseId": "H1",
+      "rule": "autocomplete mumbai domestic",
+      "status": "PASS",
+      "note": "n=4 tripType=domestic",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Mumbai\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"357389:IN\",\"latitude\":\"19.075987\",\"longitude\":\"72.87766\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"CITY\",\"title\":\"Navi Mumbai\",\"city\":null,\"state\":null,\"country\":\"India\",\"address\":null,\"entityId\":\"327868:IN\",\"latitude\":\"19.033878\",\"longitude\":\"73.02852\",\"cityCountry\":nul"
+    },
+    {
+      "id": "H2",
+      "caseId": "H2",
+      "rule": "autocomplete dubai domestic → empty",
+      "status": "PASS",
+      "note": "empty=true n=0",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"content\":[],\"pageable\":{\"pageNumber\":0,\"pageSize\":10,\"offset\":0},\"totalElements\":0,\"totalPages\":0,\"first\":true,\"last\":true,\"empty\":true,\"tripType\":\"domestic\",\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "H3",
+      "caseId": "H3",
+      "rule": "autocomplete dubai no/empty tripType → all countries tripType null",
+      "status": "PASS",
+      "note": "n=7 tripType=null emptyHttp=200",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Dubai\",\"city\":null,\"state\":\"Dubai\",\"country\":\"United Arab Emirates\",\"address\":null,\"entityId\":\"221688:AE\",\"latitude\":\"25.27063\",\"longitude\":\"55.30037\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"CITY\",\"title\":\"Dubai South\",\"city\":\"Dubai\",\"state\":\"Dubai\",\"country\":\"United Arab Emirates\",\"address\":\"Dubai, Dubai, United Arab Emirates\",\"entityId\":\"227415:AE\",\"la"
+    },
+    {
+      "id": "H4",
+      "caseId": "H4",
+      "rule": "search Mumbai domestic → hotels + tripType domestic",
+      "status": "PASS",
+      "note": "n=10",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":562,\"totalPages\":57,\"availableResults\":562,\"last\":false,\"results\":[{\"id\":\"39644515\",\"name\":\"Sheraton Grand Pune Bund Garden Hotel\",\"address\":\"Raja Bahadur Mill Road\",\"distance\":null,\"image\":\"https://pix8.agoda.net/hotelImages/7907/0/f38bf2131aa8dae9f070309ca5455963.jpg?ca=7&ce=1&s=312x\",\"starRating\":5,\"available\":true,\"refundableNotes\":[\"Free cancellat"
+    },
+    {
+      "id": "H5",
+      "caseId": "H5",
+      "rule": "search Mumbai + international → [] + message",
+      "status": "PASS",
+      "note": "No hotels: this destination is in India and tripType is international.",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels: this destination is in India and tripType is international.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"filters\":null,\"sorts\":null,\"requestId\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\",\"tripType\":\"international\",\"_meta\":{\"correlation"
+    },
+    {
+      "id": "H6",
+      "caseId": "H6",
+      "rule": "search Dubai + domestic → [] + message",
+      "status": "PASS",
+      "note": "No hotels: this destination is outside India and tripType is domestic.",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels: this destination is outside India and tripType is domestic.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"filters\":null,\"sorts\":null,\"requestId\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\",\"tripType\":\"domestic\",\"_meta\":{\"correlation_id\":"
+    },
+    {
+      "id": "H7",
+      "caseId": "H7",
+      "rule": "search no tripType → hotels each may have tripType",
+      "status": "PASS",
+      "note": "n=10 withTripType=10",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":562,\"totalPages\":57,\"availableResults\":562,\"last\":false,\"results\":[{\"id\":\"39644515\",\"name\":\"Sheraton Grand Pune Bund Garden Hotel\",\"address\":\"Raja Bahadur Mill Road\",\"distance\":null,\"image\":\"https://pix8.agoda.net/hotelImages/7907/0/f38bf2131aa8dae9f070309ca5455963.jpg?ca=7&ce=1&s=312x\",\"starRating\":5,\"available\":true,\"refundableNotes\":[\"Free cancellat"
+    },
+    {
+      "id": "H8",
+      "caseId": "H8",
+      "rule": "details Indian + domestic",
+      "status": "BUG",
+      "note": "HTTP 504",
+      "http": 504,
+      "code": null,
+      "details": [],
+      "snippet": "\"upstream request timeout\""
+    },
+    {
+      "id": "H9",
+      "caseId": "H9",
+      "rule": "details Indian + international → [] + No hotels",
+      "status": "PASS",
+      "note": "No hotels: this destination is in India and tripType is international.",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"results\":[],\"sorts\":null,\"fromCache\":false,\"cacheTimeStamp\":null,\"requestId\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\",\"message\":\"No hotels: this destination is in India and tripType is international.\",\"tripType\":\"international\",\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "H10",
+      "caseId": "H10",
+      "rule": "prebook right side",
+      "status": "BUG",
+      "note": "HTTP 400",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'requestId' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'requestId' is required\"],\"timestamp\":\"2026-10-14T15:13:41Z\",\"request_id\":\"req-1791990822630\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "H11",
+      "caseId": "H11",
+      "rule": "prebook wrong side → 404 No hotels",
+      "status": "BUG",
+      "note": "HTTP 400 code=VALIDATION_ERROR  Validation failed {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'requestId' is required\"],\"timestamp\":\"2026-10-14T15:13:42Z\",\"r",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'requestId' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'requestId' is required\"],\"timestamp\":\"2026-10-14T15:13:42Z\",\"request_id\":\"req-1791990822693\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "H12a",
+      "caseId": "H12",
+      "rule": "autocomplete tripType=local → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T15:13:42Z\",\"request_id\":\"req-1791990823113\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "H12b",
+      "caseId": "H12",
+      "rule": "search tripType=local → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T15:13:42Z\",\"request_id\":\"req-1791990823187\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "H12c",
+      "caseId": "H12",
+      "rule": "details tripType=local → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T15:13:42Z\",\"request_id\":\"req-1791990823245\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "H12d",
+      "caseId": "H12",
+      "rule": "prebook tripType=local → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | 'requestId' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string.",
+        "'requestId' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\",\"'requestId' is required\"],\"timestamp\":\"2026-10-14T15:13:42Z\",\"request_id\":\"req-1791990823304\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "V1",
+      "caseId": "VAL",
+      "rule": "tripType=\" domestic\" (leading space) → 400",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'tripType' must be 'domestic', 'international' or an empty string. | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'tripType' must be 'domestic', 'international' or an empty string."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'tripType' must be 'domestic', 'international' or an empty string.\"],\"timestamp\":\"2026-10-14T15:13:42Z\",\"request_id\":\"req-1791990823355\"},\"_meta\":{\"correlation_id\":\"ce8f0745-d019-4e8f-bacb-c9e6c54e00f7\"}}"
+    },
+    {
+      "id": "V2",
+      "caseId": "VAL",
+      "rule": "tripType=DOMESTIC case-insensitive → accept",
+      "status": "PASS",
+      "note": "HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Mumbai\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"357389:IN\",\"latitude\":\"19.075987\",\"longitude\":\"72.87766\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"CITY\",\"title\":\"Navi Mumbai\",\"city\":null,\"state\":null,\"country\":\"India\",\"address\":null,\"entityId\":\"327868:IN\",\"latitude\":\"19.033878\",\"longitude\":\"73.02852\",\"cityCountry\":nul"
+    }
+  ]
+}

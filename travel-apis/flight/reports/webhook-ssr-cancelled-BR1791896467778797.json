@@ -1,0 +1,169 @@
+{
+  "at": "2026-10-13T13:09:49.822Z",
+  "br": "BR1791896467778797",
+  "counts": {
+    "PASS": 22
+  },
+  "rows": [
+    {
+      "rule": "event booking.cancelled",
+      "status": "PASS",
+      "note": "booking.cancelled"
+    },
+    {
+      "rule": "data.status Cancelled",
+      "status": "PASS",
+      "note": "Cancelled"
+    },
+    {
+      "rule": "API status Cancelled",
+      "status": "PASS",
+      "note": "Cancelled"
+    },
+    {
+      "rule": "cancel request Successful",
+      "status": "PASS",
+      "note": "Cancellation Successful"
+    },
+    {
+      "rule": "mode OFFLINE #839",
+      "status": "PASS",
+      "note": "id=839"
+    },
+    {
+      "rule": "pnr Q7IRSN",
+      "status": "PASS",
+      "note": "Q7IRSN"
+    },
+    {
+      "rule": "debit 6887 + credit 2537",
+      "status": "PASS",
+      "note": "5212 debit / 5213 credit"
+    },
+    {
+      "rule": "charge+refund = paid",
+      "status": "PASS",
+      "note": "4350+2537"
+    },
+    {
+      "rule": "ssrAmount 3900",
+      "status": "PASS",
+      "note": "3900"
+    },
+    {
+      "rule": "saleSummary.refund.amount = credit",
+      "status": "PASS",
+      "note": "2537"
+    },
+    {
+      "rule": "saleSummary.refund.charge = estimate",
+      "status": "PASS",
+      "note": "4350"
+    },
+    {
+      "rule": "refund destination APP_WALLET",
+      "status": "PASS",
+      "note": "APP_WALLET"
+    },
+    {
+      "rule": "pax leg Cancelled",
+      "status": "PASS",
+      "note": "Cancelled"
+    },
+    {
+      "rule": "API pax Cancelled",
+      "status": "PASS",
+      "note": "Cancelled"
+    },
+    {
+      "rule": "API cancel request settled",
+      "status": "PASS",
+      "note": "{\"status\":\"Cancelled\",\"charge\":4350,\"refund\":2537}"
+    },
+    {
+      "rule": "dashboard quoted refund matches webhook credit",
+      "status": "PASS",
+      "note": "2537"
+    },
+    {
+      "rule": "dashboard quoted penalty matches webhook charge",
+      "status": "PASS",
+      "note": "4350"
+    },
+    {
+      "rule": "dashboard ancillaries withheld = ssrAmount",
+      "status": "PASS",
+      "note": "3900"
+    },
+    {
+      "rule": "DASH: UI calc (6887-3900) = 2987",
+      "status": "PASS",
+      "note": "2987"
+    },
+    {
+      "rule": "DASH: entered/settled refund 2537 ≠ UI calc 2987",
+      "status": "PASS",
+      "note": "settled 2537 vs calc 2987 (gap 450)"
+    },
+    {
+      "rule": "GAP explained as extra 450 beyond SSR",
+      "status": "PASS",
+      "note": "charge = SSR 3900 + 450; fee breakup still all 0"
+    },
+    {
+      "rule": "fee breakup all zero despite 450 extra",
+      "status": "PASS",
+      "note": "{\"airlineCancellationFee\":0,\"convenienceFee\":0,\"serviceFee\":0,\"flexicancelFee\":0}"
+    }
+  ],
+  "notes": [
+    "Webhook+wallet are internally consistent: credit 2537, charge 4350, SSR withheld 3900.",
+    "Dashboard warning is real: auto-calc shows Final refund 2987 (only SSR withheld), but Customer refund was entered manually as 2537.",
+    "Missing 450 is NOT in airline/cancellation/convenience/flexi fee fields (all empty/0) — same soft GAP as prior booking.",
+    "2537 = fare 2987 - 450; so policy keeps 450 on top of full SSR forfeiture."
+  ],
+  "money": {
+    "paid": 6887,
+    "ssr": 3900,
+    "fare": 2987,
+    "charge": 4350,
+    "settledRefund": 2537,
+    "uiCalcRefundIfOnlySSR": 2987,
+    "extraRetainedBeyondSSR": 450
+  },
+  "dashboard": {
+    "quotedRefund": 2537,
+    "quotedPenalty": 4350,
+    "ancillariesWithheld": 3900,
+    "bookingAmount": 6887,
+    "calcOnlyAncillaryDeduction": 3900,
+    "calcRefundIfOnlySSR": 2987,
+    "enteredRefund": 2537,
+    "feeFieldsEmpty": true,
+    "warning": "Entered manually. The calculation gives 2987"
+  },
+  "api": {
+    "status": "Cancelled",
+    "paxLeg": "Cancelled",
+    "cancellationRequest": {
+      "status": "Cancelled",
+      "pnr": "Q7IRSN",
+      "estimatedCancellationCharge": 4350,
+      "estimatedRefund": 2537,
+      "createdAt": "2026-10-13T13:05:31Z"
+    },
+    "salesSummary": {
+      "basePrice": 1001,
+      "subTotal": 1001,
+      "tax": 1636,
+      "convenienceFee": 350,
+      "totalAmount": 6887,
+      "totalDiscount": 0,
+      "currency": "INR",
+      "campaignId": null,
+      "baggagePrice": 2100,
+      "seatPrice": 1700,
+      "mealPrice": 100
+    }
+  }
+}

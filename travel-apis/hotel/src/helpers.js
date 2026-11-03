@@ -1,6 +1,6 @@
 import { config } from '../../../shared/config/env.js';
 import { futureDate } from '../../../shared/lib/testUtils.js';
-import { pollUntil } from '../flight/helpers.js';
+import { pollUntil } from '../../../shared/lib/testUtils.js';
 
 export const HOTEL_QUERY = { lang: 'en', currency: 'INR' };
 

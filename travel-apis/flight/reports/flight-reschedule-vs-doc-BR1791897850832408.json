@@ -1,0 +1,123 @@
+{
+  "at": "2026-10-13T13:37:45.123Z",
+  "suite": "flight-reschedule-vs-doc",
+  "doc": {
+    "model": "cancel-then-rebook",
+    "ordering": "cancel first; issue with reschedulingReferenceId+reschedulingPnr against CANCELLED booking/PNR; Confirmed target → 400 VALIDATION_ERROR",
+    "wallet": "new debit independent; old refund may lag"
+  },
+  "observed": {
+    "old": {
+      "http": 200,
+      "status": "Confirmed",
+      "bookingReferenceId": "BR1791897850832408",
+      "reschedulingReferenceId": null,
+      "airlinePnr": "FVRVRV",
+      "eticket": "BX13HJ00521-1",
+      "paxLegStatus": "Confirmed",
+      "salesSummary": {
+        "basePrice": 1200,
+        "subTotal": 1200,
+        "tax": 100,
+        "convenienceFee": 350,
+        "totalAmount": 1650,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "campaignId": null
+      },
+      "cancellationRequest": [],
+      "bookingDate": "2026-10-13T13:24:10"
+    },
+    "new": {
+      "http": 200,
+      "status": "Confirmed",
+      "bookingReferenceId": "BR1791898085747931",
+      "reschedulingReferenceId": "BR1791897850832408",
+      "airlinePnr": "J371MJ",
+      "eticket": "BX13HJ00531-1",
+      "paxLegStatus": "Confirmed",
+      "salesSummary": {
+        "basePrice": 899,
+        "subTotal": 899,
+        "tax": 1828,
+        "convenienceFee": 350,
+        "totalAmount": 3077,
+        "totalDiscount": 0,
+        "currency": "INR",
+        "campaignId": null
+      },
+      "cancellationRequest": [],
+      "bookingDate": "2026-10-13T13:28:05"
+    }
+  },
+  "money": {
+    "oldPaid": 1650,
+    "newPaid": 3077,
+    "oldRefundSeen": false
+  },
+  "rows": [
+    {
+      "rule": "DOC: Step1 cancel whole PNR before Step2",
+      "status": "BUG",
+      "note": "old status=Confirmed cancelReq=[]"
+    },
+    {
+      "rule": "DOC: Ordering — reschedule refs must NOT point at still-Confirmed → expect 400 VALIDATION_ERROR",
+      "status": "BUG",
+      "note": "new issued while old still Confirmed — should have been rejected"
+    },
+    {
+      "rule": "DOC: new has reschedulingReferenceId = cancelled BR",
+      "status": "PASS",
+      "note": "BR1791897850832408"
+    },
+    {
+      "rule": "DOC: new booking is separate BR (rebook)",
+      "status": "PASS",
+      "note": "BR1791898085747931"
+    },
+    {
+      "rule": "DOC: wallet — new booking debits independently",
+      "status": "PASS",
+      "note": "new debit 3077 observed on confirmed webhook"
+    },
+    {
+      "rule": "DOC: do not gate Step2 on refund landing",
+      "status": "PASS",
+      "note": "new confirmed without old refund — matches doc"
+    },
+    {
+      "rule": "DOC: refund may be delayed / old amount held",
+      "status": "NOT TESTABLE",
+      "note": "old never entered cancel path, so hold/credit path not exercised"
+    },
+    {
+      "rule": "GAP: confirmed webhook omits reschedulingReferenceId",
+      "status": "GAP",
+      "note": "API status has field; partner webhook payload did not"
+    },
+    {
+      "rule": "CHECK: old pax leg still Confirmed",
+      "status": "BUG",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "CHECK: both live PNRs (double inventory risk)",
+      "status": "BUG",
+      "note": "FVRVRV + J371MJ"
+    }
+  ],
+  "counts": {
+    "BUG": 4,
+    "PASS": 4,
+    "NOT TESTABLE": 1,
+    "GAP": 1
+  },
+  "verdict": "BUG — Step2 succeeded while Step1 never cancelled; violates documented ordering rule",
+  "notes": [
+    "Per doc, Step2 with reschedulingReferenceId pointing at Confirmed booking must 400 VALIDATION_ERROR.",
+    "Observed: new BR confirmed with reschedulingReferenceId=old BR while old remains Confirmed / empty cancellationRequest.",
+    "Likely either Step1 was skipped, or validation for Confirmed-source reschedule is not enforced on staging.",
+    "Also: both PNRs live → double-book inventory until old is cancelled."
+  ]
+}

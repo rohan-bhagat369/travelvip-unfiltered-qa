@@ -1,0 +1,261 @@
+{
+  "at": "2026-10-13T16:56:05.719Z",
+  "br": "BR1791910016867847",
+  "doc": "https://api-docs.travelvip.ai/webhook/flights-and-wallet-webhooks.pdf §3.4 booking.cancellation_requested",
+  "booking": {
+    "journey": "ROUND_TRIP PNQ-AMD / AMD-PNQ",
+    "pnrs": [
+      "AYKQPZ",
+      "D7WS6S"
+    ],
+    "paid": 18302,
+    "pax": 2
+  },
+  "webhooks": [
+    {
+      "id": 60,
+      "at": "2026-10-13T16:48:53Z",
+      "scope": {
+        "type": "PASSENGER_LEG",
+        "legIds": [
+          38
+        ],
+        "paxIds": [
+          "PAX1"
+        ]
+      },
+      "estimateRefund": 4575.5,
+      "charge": 0
+    },
+    {
+      "id": 61,
+      "at": "2026-10-13T16:49:53Z",
+      "scope": {
+        "type": "PASSENGER_LEG",
+        "legIds": [
+          38
+        ],
+        "paxIds": [
+          "PAX2"
+        ]
+      },
+      "estimateRefund": 4575.5,
+      "charge": 0
+    }
+  ],
+  "api": {
+    "baseUrl": "https://api-staging.travelvip.ai",
+    "http": 404,
+    "cancelReq": [],
+    "legs": []
+  },
+  "counts": {
+    "PASS": 34,
+    "GAP": 2,
+    "BUG": 2,
+    "NOTE": 2
+  },
+  "rows": [
+    {
+      "rule": "WH1-PAX1-leg38: event booking.cancellation_requested",
+      "status": "PASS",
+      "note": "booking.cancellation_requested"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: type flight",
+      "status": "PASS",
+      "note": "flight"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: version 1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: DOC data.status Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: DOC cr.status Cancellation Requested",
+      "status": "PASS",
+      "note": "Cancellation Requested"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: DOC cr.mode ONLINE|OFFLINE",
+      "status": "PASS",
+      "note": "OFFLINE"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: DOC scope.type PASSENGER_LEG|LEG|PASSENGER|FULL",
+      "status": "PASS",
+      "note": "PASSENGER_LEG"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: DOC saleSummary.refund absent",
+      "status": "PASS",
+      "note": "absent"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: DOC no credit txn yet",
+      "status": "PASS",
+      "note": "debit"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: DOC only original debit",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: debit = totalAmount",
+      "status": "PASS",
+      "note": "18302 vs 18302"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: fare math base+tax+fee = total",
+      "status": "PASS",
+      "note": "18302"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: top-level bookingId/status/orderId not in PDF envelope",
+      "status": "GAP",
+      "note": "additive fields: bookingId=BR1791910016867847, status=Cancellation Requested"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: legs[].status schema BOOKED|CANCELLED",
+      "status": "BUG",
+      "note": "{\"PAX1\":{\"38\":\"Cancellation requested\",\"39\":\"Confirmed\"},\"PAX2\":{\"38\":\"Confirmed\",\"39\":\"Confirmed\"}}"
+    },
+    {
+      "rule": "WH1-PAX1-leg38: partial scope pax+leg",
+      "status": "PASS",
+      "note": "{\"type\":\"PASSENGER_LEG\",\"legIds\":[38],\"paxIds\":[\"PAX1\"]}"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: event booking.cancellation_requested",
+      "status": "PASS",
+      "note": "booking.cancellation_requested"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: type flight",
+      "status": "PASS",
+      "note": "flight"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: version 1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: DOC data.status Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: DOC cr.status Cancellation Requested",
+      "status": "PASS",
+      "note": "Cancellation Requested"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: DOC cr.mode ONLINE|OFFLINE",
+      "status": "PASS",
+      "note": "OFFLINE"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: DOC scope.type PASSENGER_LEG|LEG|PASSENGER|FULL",
+      "status": "PASS",
+      "note": "PASSENGER_LEG"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: DOC saleSummary.refund absent",
+      "status": "PASS",
+      "note": "absent"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: DOC no credit txn yet",
+      "status": "PASS",
+      "note": "debit"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: DOC only original debit",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: debit = totalAmount",
+      "status": "PASS",
+      "note": "18302 vs 18302"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: fare math base+tax+fee = total",
+      "status": "PASS",
+      "note": "18302"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: top-level bookingId/status/orderId not in PDF envelope",
+      "status": "GAP",
+      "note": "additive fields: bookingId=BR1791910016867847, status=Cancellation Requested"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: legs[].status schema BOOKED|CANCELLED",
+      "status": "BUG",
+      "note": "{\"PAX1\":{\"38\":\"Cancellation requested\",\"39\":\"Confirmed\"},\"PAX2\":{\"38\":\"Cancellation requested\",\"39\":\"Confirmed\"}}"
+    },
+    {
+      "rule": "WH2-PAX2-leg38: partial scope pax+leg",
+      "status": "PASS",
+      "note": "{\"type\":\"PASSENGER_LEG\",\"legIds\":[38],\"paxIds\":[\"PAX2\"]}"
+    },
+    {
+      "rule": "SEQ: two requests different ids",
+      "status": "PASS",
+      "note": "60 → 61"
+    },
+    {
+      "rule": "SEQ: both target same onward PNR AYKQPZ / leg 38",
+      "status": "PASS",
+      "note": "pnr AYKQPZ"
+    },
+    {
+      "rule": "SEQ: WH1 only PAX1 cancelled-req on onward; PAX2 still Confirmed",
+      "status": "PASS",
+      "note": "{\"PAX1\":{\"38\":\"Cancellation requested\",\"39\":\"Confirmed\"},\"PAX2\":{\"38\":\"Confirmed\",\"39\":\"Confirmed\"}}"
+    },
+    {
+      "rule": "SEQ: WH2 both pax Cancellation requested on onward; return still Confirmed",
+      "status": "PASS",
+      "note": "{\"PAX1\":{\"38\":\"Cancellation requested\",\"39\":\"Confirmed\"},\"PAX2\":{\"38\":\"Cancellation requested\",\"39\":\"Confirmed\"}}"
+    },
+    {
+      "rule": "SEQ: same estimate per pax-leg 4575.5",
+      "status": "PASS",
+      "note": "4575.5"
+    },
+    {
+      "rule": "MONEY: 4575.5 * 4 legs-pax cells = 18302?",
+      "status": "PASS",
+      "note": "4575.5*4=18302"
+    },
+    {
+      "rule": "MONEY: charge 0 (free cancel quote)",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "DOC: for subset cancel final event should later be partially_cancelled not cancelled",
+      "status": "NOTE",
+      "note": "wait for settle webhooks"
+    },
+    {
+      "rule": "DOC: route on event not data.status",
+      "status": "PASS",
+      "note": "both correctly use event=cancellation_requested while data.status=Confirmed"
+    },
+    {
+      "rule": "API staging lookup",
+      "status": "NOTE",
+      "note": "http 404 status=undefined"
+    }
+  ],
+  "verdict": "cancellation_requested triggers largely MATCH doc (Confirmed + request object + no refund/credit). Schema gaps: top-level bookingId/status; legs status title-case Cancellation requested/Confirmed vs BOOKED|CANCELLED."
+}

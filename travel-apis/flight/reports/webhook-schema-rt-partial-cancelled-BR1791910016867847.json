@@ -1,0 +1,273 @@
+{
+  "at": "2026-10-13T17:02:09.595Z",
+  "br": "BR1791910016867847",
+  "doc": "PDF §3.6 booking.partially_cancelled",
+  "counts": {
+    "PASS": 19,
+    "BUG": 13,
+    "GAP": 2,
+    "NOTE": 2
+  },
+  "bugs": [
+    {
+      "rule": "WH1-PAX1: refund.id present",
+      "status": "BUG",
+      "note": "undefined"
+    },
+    {
+      "rule": "WH1-PAX1: refund.destinationType enum",
+      "status": "BUG",
+      "note": "null"
+    },
+    {
+      "rule": "WH1-PAX1: DOC refund.amount = credited amount",
+      "status": "BUG",
+      "note": "refund.amount=0 latestCredit=4475.5"
+    },
+    {
+      "rule": "WH1-PAX1: in-scope leg CANCELLED (schema)",
+      "status": "BUG",
+      "note": "PAX1/38=Cancellation requested"
+    },
+    {
+      "rule": "WH1-PAX1: leg status enum BOOKED|CANCELLED only",
+      "status": "BUG",
+      "note": "{\"PAX1\":{\"38\":\"Cancellation requested\",\"39\":\"Confirmed\"},\"PAX2\":{\"38\":\"Cancelled\",\"39\":\"Confirmed\"}}"
+    },
+    {
+      "rule": "WH2-PAX2: DOC refund.amount = credited amount",
+      "status": "BUG",
+      "note": "refund.amount=4475.5 latestCredit=4375.5"
+    },
+    {
+      "rule": "WH2-PAX2: in-scope leg CANCELLED (schema)",
+      "status": "BUG",
+      "note": "PAX2/38=Cancelled"
+    },
+    {
+      "rule": "WH2-PAX2: leg status enum BOOKED|CANCELLED only",
+      "status": "BUG",
+      "note": "{\"PAX1\":{\"38\":\"Cancelled\",\"39\":\"Confirmed\"},\"PAX2\":{\"38\":\"Cancelled\",\"39\":\"Confirmed\"}}"
+    },
+    {
+      "rule": "WH1: PAX1 in-scope should be Cancelled but still Cancellation requested",
+      "status": "BUG",
+      "note": "Cancellation requested"
+    },
+    {
+      "rule": "WH1: PAX2 should NOT be Cancelled for PAX1-scoped event",
+      "status": "BUG",
+      "note": "PAX2/38=Cancelled"
+    },
+    {
+      "rule": "WH1: credit 4475.5 vs estimate 4575.5 (retained 100) but refund.charge=0 amount=0",
+      "status": "BUG",
+      "note": "credit implies 100 retained; refund object says 0/0"
+    },
+    {
+      "rule": "WH2: refund.amount 4475.5 ≠ credit 643 4375.5",
+      "status": "BUG",
+      "note": "off by 100"
+    },
+    {
+      "rule": "WH2: 4575.5-100=4475.5 matches refund.amount but not wallet credit",
+      "status": "BUG",
+      "note": "wallet got 4375.5; doc says refund.amount is authoritative credited figure"
+    }
+  ],
+  "gaps": [
+    {
+      "rule": "WH1-PAX1: top-level status/bookingId extra vs PDF envelope",
+      "status": "GAP",
+      "note": "Partially Cancelled"
+    },
+    {
+      "rule": "WH2-PAX2: top-level status/bookingId extra vs PDF envelope",
+      "status": "GAP",
+      "note": "Partially Cancelled"
+    }
+  ],
+  "rows": [
+    {
+      "rule": "WH1-PAX1: event partially_cancelled",
+      "status": "PASS",
+      "note": "booking.partially_cancelled"
+    },
+    {
+      "rule": "WH1-PAX1: data.status Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "WH1-PAX1: cr.status Cancellation Successful",
+      "status": "PASS",
+      "note": "Cancellation Successful"
+    },
+    {
+      "rule": "WH1-PAX1: scope PASSENGER_LEG",
+      "status": "PASS",
+      "note": "{\"type\":\"PASSENGER_LEG\",\"legIds\":[38],\"paxIds\":[\"PAX1\"]}"
+    },
+    {
+      "rule": "WH1-PAX1: refund present",
+      "status": "PASS",
+      "note": "yes"
+    },
+    {
+      "rule": "WH1-PAX1: refund.scope mirrors cr.scope",
+      "status": "PASS",
+      "note": "{\"type\":\"PASSENGER_LEG\",\"legIds\":[38],\"paxIds\":[\"PAX1\"]}"
+    },
+    {
+      "rule": "WH1-PAX1: refund.id present",
+      "status": "BUG",
+      "note": "undefined"
+    },
+    {
+      "rule": "WH1-PAX1: refund.destinationType enum",
+      "status": "BUG",
+      "note": "null"
+    },
+    {
+      "rule": "WH1-PAX1: DOC refund.amount = credited amount",
+      "status": "BUG",
+      "note": "refund.amount=0 latestCredit=4475.5"
+    },
+    {
+      "rule": "WH1-PAX1: breakup sums to cancellationCharge",
+      "status": "PASS",
+      "note": "sum=0 charge=0"
+    },
+    {
+      "rule": "WH1-PAX1: in-scope leg CANCELLED (schema)",
+      "status": "BUG",
+      "note": "PAX1/38=Cancellation requested"
+    },
+    {
+      "rule": "WH1-PAX1: out-of-scope return legs still live",
+      "status": "PASS",
+      "note": "return=Confirmed/Confirmed"
+    },
+    {
+      "rule": "WH1-PAX1: leg status enum BOOKED|CANCELLED only",
+      "status": "BUG",
+      "note": "{\"PAX1\":{\"38\":\"Cancellation requested\",\"39\":\"Confirmed\"},\"PAX2\":{\"38\":\"Cancelled\",\"39\":\"Confirmed\"}}"
+    },
+    {
+      "rule": "WH1-PAX1: top-level status/bookingId extra vs PDF envelope",
+      "status": "GAP",
+      "note": "Partially Cancelled"
+    },
+    {
+      "rule": "WH2-PAX2: event partially_cancelled",
+      "status": "PASS",
+      "note": "booking.partially_cancelled"
+    },
+    {
+      "rule": "WH2-PAX2: data.status Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "WH2-PAX2: cr.status Cancellation Successful",
+      "status": "PASS",
+      "note": "Cancellation Successful"
+    },
+    {
+      "rule": "WH2-PAX2: scope PASSENGER_LEG",
+      "status": "PASS",
+      "note": "{\"type\":\"PASSENGER_LEG\",\"legIds\":[38],\"paxIds\":[\"PAX2\"]}"
+    },
+    {
+      "rule": "WH2-PAX2: refund present",
+      "status": "PASS",
+      "note": "yes"
+    },
+    {
+      "rule": "WH2-PAX2: refund.scope mirrors cr.scope",
+      "status": "PASS",
+      "note": "{\"type\":\"PASSENGER_LEG\",\"legIds\":[38],\"paxIds\":[\"PAX2\"]}"
+    },
+    {
+      "rule": "WH2-PAX2: refund.id present",
+      "status": "PASS",
+      "note": "75"
+    },
+    {
+      "rule": "WH2-PAX2: refund.destinationType enum",
+      "status": "PASS",
+      "note": "APP_WALLET"
+    },
+    {
+      "rule": "WH2-PAX2: DOC refund.amount = credited amount",
+      "status": "BUG",
+      "note": "refund.amount=4475.5 latestCredit=4375.5"
+    },
+    {
+      "rule": "WH2-PAX2: breakup sums to cancellationCharge",
+      "status": "PASS",
+      "note": "sum=100 charge=100"
+    },
+    {
+      "rule": "WH2-PAX2: in-scope leg CANCELLED (schema)",
+      "status": "BUG",
+      "note": "PAX2/38=Cancelled"
+    },
+    {
+      "rule": "WH2-PAX2: out-of-scope return legs still live",
+      "status": "PASS",
+      "note": "return=Confirmed/Confirmed"
+    },
+    {
+      "rule": "WH2-PAX2: leg status enum BOOKED|CANCELLED only",
+      "status": "BUG",
+      "note": "{\"PAX1\":{\"38\":\"Cancelled\",\"39\":\"Confirmed\"},\"PAX2\":{\"38\":\"Cancelled\",\"39\":\"Confirmed\"}}"
+    },
+    {
+      "rule": "WH2-PAX2: top-level status/bookingId extra vs PDF envelope",
+      "status": "GAP",
+      "note": "Partially Cancelled"
+    },
+    {
+      "rule": "WH1: PAX1 in-scope should be Cancelled but still Cancellation requested",
+      "status": "BUG",
+      "note": "Cancellation requested"
+    },
+    {
+      "rule": "WH1: PAX2 should NOT be Cancelled for PAX1-scoped event",
+      "status": "BUG",
+      "note": "PAX2/38=Cancelled"
+    },
+    {
+      "rule": "WH1: credit 4475.5 vs estimate 4575.5 (retained 100) but refund.charge=0 amount=0",
+      "status": "BUG",
+      "note": "credit implies 100 retained; refund object says 0/0"
+    },
+    {
+      "rule": "WH2: estimate charge became 100 (was 0 at request) — indicative OK",
+      "status": "NOTE",
+      "note": "request quote 0 → settle charge 100"
+    },
+    {
+      "rule": "WH2: refund.amount 4475.5 ≠ credit 643 4375.5",
+      "status": "BUG",
+      "note": "off by 100"
+    },
+    {
+      "rule": "WH2: 4575.5-100=4475.5 matches refund.amount but not wallet credit",
+      "status": "BUG",
+      "note": "wallet got 4375.5; doc says refund.amount is authoritative credited figure"
+    },
+    {
+      "rule": "WH2: both pax onward Cancelled, return Confirmed — correct end state for two partials",
+      "status": "PASS",
+      "note": "{\"PAX1\":{\"38\":\"Cancelled\",\"39\":\"Confirmed\"},\"PAX2\":{\"38\":\"Cancelled\",\"39\":\"Confirmed\"}}"
+    },
+    {
+      "rule": "MONEY total credits 4475.5+4375.5=8851 vs 2*4575.5=9151 retained 300",
+      "status": "NOTE",
+      "note": "retained net 300 across both settles"
+    }
+  ],
+  "verdict": "NOT exact. Right event + data.status Confirmed, but WH1 has swapped/stale pax leg states and empty refund; WH2 refund.amount≠credit txn; leg status enums wrong."
+}

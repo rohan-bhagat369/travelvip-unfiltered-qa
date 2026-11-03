@@ -1,0 +1,412 @@
+{
+  "at": "2026-10-28T09:50:34.087Z",
+  "baseUrl": "https://canary-api.travelvip.ai",
+  "partner": "vgm",
+  "date": "2026-11-18",
+  "note": "Mag paths /api/flights/search/{pid} and /api/flights/v2/search are checked first; cases fall back to /v1/flights/search when Mag returns 404.",
+  "summary": {
+    "PASS": 5,
+    "BUG": 5,
+    "NOT_TESTED": 2
+  },
+  "rows": [
+    {
+      "id": "PATH-/api/flights/search/vgm",
+      "path": "/api/flights/search/vgm",
+      "expect": "route reachable (not Page not found)",
+      "verdict": "NOT TESTED",
+      "status": 404,
+      "code": null,
+      "msg": "Page not found",
+      "snippet": "{\"status\":404,\"info\":\"Page not found\"}"
+    },
+    {
+      "id": "PATH-/api/flights/v2/search",
+      "path": "/api/flights/v2/search",
+      "expect": "route reachable (not Page not found)",
+      "verdict": "NOT TESTED",
+      "status": 404,
+      "code": null,
+      "msg": "Page not found",
+      "snippet": "{\"status\":404,\"info\":\"Page not found\"}"
+    },
+    {
+      "id": "PATH-/v1/flights/search",
+      "path": "/v1/flights/search",
+      "expect": "route reachable (not Page not found)",
+      "verdict": "PASS",
+      "status": 200,
+      "code": null,
+      "msg": "",
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":4590,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"EhaLyKNU+phcOVhfTkb3Ty70sB8VS01q/FL0A7O09TTGtt0iA37BSAI6sFd/CPXmdRqOoCE6eK7IjSE1KyS8EelY+aRL7iXClxmoheDoQP0azWbVDuqI2GRsX0Iz9uungY2aGPnVb1UyLztYtsXzWgORH6iPktQ3tbhBC0QZr6xM"
+    },
+    {
+      "id": "ZZZ-v1-or-mag",
+      "path": "/v1/flights/search",
+      "expect": "HTTP 400 + \"Unknown airport code\"",
+      "verdict": "PASS",
+      "status": 400,
+      "code": "INVALID_AIRPORT",
+      "msg": "Unknown airport code: ZZZ",
+      "genericFail": false,
+      "snippet": "{\"error\":{\"code\":\"INVALID_AIRPORT\",\"message\":\"Unknown airport code: ZZZ\",\"details\":null,\"timestamp\":\"2026-10-28T09:50:20Z\",\"request_id\":\"req-1793181021345\"},\"_meta\":{\"correlation_id\":\"c3a1f8ba-dfc9-4095-b395-6e0c013f634f\"}}",
+      "dest": "ZZZ",
+      "body": {
+        "itinerary": [
+          {
+            "origin": "PNQ",
+            "destination": "ZZZ",
+            "date": "2026-11-18"
+          }
+        ],
+        "travellers": {
+          "adults": 1,
+          "children": 0,
+          "infants": 0
+        },
+        "cabinClass": "ECONOMY",
+        "journeyType": "ONE_WAY",
+        "currency": "INR",
+        "language": "en",
+        "preferences": {
+          "airlines": [],
+          "maxStops": null,
+          "refundableOnly": false
+        },
+        "appliedFilters": {},
+        "selection": {
+          "selectedSearchIds": []
+        },
+        "fareType": "NORMAL"
+      }
+    },
+    {
+      "id": "ZZZ-v2-or-fallback",
+      "path": "/v1/flights/search",
+      "expect": "HTTP 400 + \"Unknown airport code\"",
+      "verdict": "PASS",
+      "status": 400,
+      "code": "INVALID_AIRPORT",
+      "msg": "Unknown airport code: ZZZ",
+      "genericFail": false,
+      "snippet": "{\"error\":{\"code\":\"INVALID_AIRPORT\",\"message\":\"Unknown airport code: ZZZ\",\"details\":null,\"timestamp\":\"2026-10-28T09:50:21Z\",\"request_id\":\"req-1793181021741\"},\"_meta\":{\"correlation_id\":\"c3a1f8ba-dfc9-4095-b395-6e0c013f634f\"}}",
+      "dest": "ZZZ",
+      "body": {
+        "itinerary": [
+          {
+            "origin": "PNQ",
+            "destination": "ZZZ",
+            "date": "2026-11-18"
+          }
+        ],
+        "travellers": {
+          "adults": 1,
+          "children": 0,
+          "infants": 0
+        },
+        "cabinClass": "ECONOMY",
+        "journeyType": "ONE_WAY",
+        "currency": "INR",
+        "language": "en",
+        "preferences": {
+          "airlines": [],
+          "maxStops": null,
+          "refundableOnly": false
+        },
+        "appliedFilters": {},
+        "selection": {
+          "selectedSearchIds": []
+        },
+        "fareType": "NORMAL"
+      }
+    },
+    {
+      "id": "BKV-v1-or-mag",
+      "path": "/v1/flights/search",
+      "expect": "HTTP 400 + \"Airport country is not configured\"",
+      "verdict": "BUG",
+      "status": 400,
+      "code": "NO_FLIGHTS_FOUND",
+      "msg": "No flights available for given criteria",
+      "genericFail": false,
+      "snippet": "{\"error\":{\"code\":\"NO_FLIGHTS_FOUND\",\"message\":\"No flights available for given criteria\",\"details\":null,\"timestamp\":\"2026-10-28T09:50:31Z\",\"request_id\":\"req-1793181022410\"},\"_meta\":{\"correlation_id\":\"c3a1f8ba-dfc9-4095-b395-6e0c013f634f\"}}",
+      "dest": "BKV",
+      "body": {
+        "itinerary": [
+          {
+            "origin": "PNQ",
+            "destination": "BKV",
+            "date": "2026-11-18"
+          }
+        ],
+        "travellers": {
+          "adults": 1,
+          "children": 0,
+          "infants": 0
+        },
+        "cabinClass": "ECONOMY",
+        "journeyType": "ONE_WAY",
+        "currency": "INR",
+        "language": "en",
+        "preferences": {
+          "airlines": [],
+          "maxStops": null,
+          "refundableOnly": false
+        },
+        "appliedFilters": {},
+        "selection": {
+          "selectedSearchIds": []
+        },
+        "fareType": "NORMAL"
+      }
+    },
+    {
+      "id": "BKV-v2-or-fallback",
+      "path": "/v1/flights/search",
+      "expect": "HTTP 400 + \"Airport country is not configured\"",
+      "verdict": "BUG",
+      "status": 400,
+      "code": "NO_FLIGHTS_FOUND",
+      "msg": "No flights available for given criteria",
+      "genericFail": false,
+      "snippet": "{\"error\":{\"code\":\"NO_FLIGHTS_FOUND\",\"message\":\"No flights available for given criteria\",\"details\":null,\"timestamp\":\"2026-10-28T09:50:32Z\",\"request_id\":\"req-1793181032810\"},\"_meta\":{\"correlation_id\":\"c3a1f8ba-dfc9-4095-b395-6e0c013f634f\"}}",
+      "dest": "BKV",
+      "body": {
+        "itinerary": [
+          {
+            "origin": "PNQ",
+            "destination": "BKV",
+            "date": "2026-11-18"
+          }
+        ],
+        "travellers": {
+          "adults": 1,
+          "children": 0,
+          "infants": 0
+        },
+        "cabinClass": "ECONOMY",
+        "journeyType": "ONE_WAY",
+        "currency": "INR",
+        "language": "en",
+        "preferences": {
+          "airlines": [],
+          "maxStops": null,
+          "refundableOnly": false
+        },
+        "appliedFilters": {},
+        "selection": {
+          "selectedSearchIds": []
+        },
+        "fareType": "NORMAL"
+      }
+    },
+    {
+      "id": "NULL-itinerary-v1-fallback",
+      "path": "/v1/flights/search",
+      "expect": "HTTP 400 + \"Segment cannot be null\"",
+      "verdict": "BUG",
+      "status": 400,
+      "code": "VALIDATION_ERROR",
+      "msg": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+      "genericFail": false,
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"Flight segment 1 is invalid.\"],\"timestamp\":\"2026-10-28T09:50:32Z\",\"request_id\":\"req-1793181033162\"},\"_meta\":{\"correlation_id\":\"c3a1f8ba-dfc9-4095-b395-6e0c013f634f\"}}",
+      "variant": "NULL-itinerary",
+      "body": {
+        "itinerary": [
+          null
+        ],
+        "travellers": {
+          "adults": 1,
+          "children": 0,
+          "infants": 0
+        },
+        "cabinClass": "ECONOMY",
+        "journeyType": "ONE_WAY",
+        "currency": "INR",
+        "language": "en",
+        "preferences": {
+          "airlines": [],
+          "maxStops": null,
+          "refundableOnly": false
+        },
+        "appliedFilters": {},
+        "selection": {
+          "selectedSearchIds": []
+        },
+        "fareType": "NORMAL"
+      }
+    },
+    {
+      "id": "NULL-segments-v1-fallback",
+      "path": "/v1/flights/search",
+      "expect": "HTTP 400 + \"Segment cannot be null\"",
+      "verdict": "BUG",
+      "status": 400,
+      "code": "VALIDATION_ERROR",
+      "msg": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+      "genericFail": false,
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"At least one flight segment is required.\"],\"timestamp\":\"2026-10-28T09:50:32Z\",\"request_id\":\"req-1793181033310\"},\"_meta\":{\"correlation_id\":\"c3a1f8ba-dfc9-4095-b395-6e0c013f634f\"}}",
+      "variant": "NULL-segments",
+      "body": {
+        "travellers": {
+          "adults": 1,
+          "children": 0,
+          "infants": 0
+        },
+        "cabinClass": "ECONOMY",
+        "journeyType": "ONE_WAY",
+        "currency": "INR",
+        "language": "en",
+        "preferences": {
+          "airlines": [],
+          "maxStops": null,
+          "refundableOnly": false
+        },
+        "appliedFilters": {},
+        "selection": {
+          "selectedSearchIds": []
+        },
+        "fareType": "NORMAL",
+        "segments": [
+          null
+        ]
+      }
+    },
+    {
+      "id": "NULL-Segment-v1-fallback",
+      "path": "/v1/flights/search",
+      "expect": "HTTP 400 + \"Segment cannot be null\"",
+      "verdict": "BUG",
+      "status": 400,
+      "code": "VALIDATION_ERROR",
+      "msg": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+      "genericFail": false,
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request payload for flight search. Please fix the listed errors and retry.\",\"details\":[\"At least one flight segment is required.\"],\"timestamp\":\"2026-10-28T09:50:32Z\",\"request_id\":\"req-1793181033451\"},\"_meta\":{\"correlation_id\":\"c3a1f8ba-dfc9-4095-b395-6e0c013f634f\"}}",
+      "variant": "NULL-Segment",
+      "body": {
+        "travellers": {
+          "adults": 1,
+          "children": 0,
+          "infants": 0
+        },
+        "cabinClass": "ECONOMY",
+        "journeyType": "ONE_WAY",
+        "currency": "INR",
+        "language": "en",
+        "preferences": {
+          "airlines": [],
+          "maxStops": null,
+          "refundableOnly": false
+        },
+        "appliedFilters": {},
+        "selection": {
+          "selectedSearchIds": []
+        },
+        "fareType": "NORMAL",
+        "Segment": [
+          null
+        ]
+      }
+    },
+    {
+      "id": "PNQ-DEL-v1-or-mag",
+      "path": "/v1/flights/search",
+      "expect": "HTTP 200 with flight options",
+      "verdict": "PASS",
+      "status": 200,
+      "code": null,
+      "msg": "",
+      "optionCount": 20,
+      "totalResults": {
+        "ONWARD": 41
+      },
+      "progress": {
+        "partial": false,
+        "state": "COMPLETE",
+        "pollAfterMs": 0,
+        "message": null,
+        "lanesTotal": null,
+        "lanesReady": null
+      },
+      "snippet": "{\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"totalResults\":{\"ONWARD\":41},\"optionCount\":20,\"journeyType\":\"ONE_WAY\"}",
+      "body": {
+        "itinerary": [
+          {
+            "origin": "PNQ",
+            "destination": "DEL",
+            "date": "2026-11-18"
+          }
+        ],
+        "travellers": {
+          "adults": 1,
+          "children": 0,
+          "infants": 0
+        },
+        "cabinClass": "ECONOMY",
+        "journeyType": "ONE_WAY",
+        "currency": "INR",
+        "language": "en",
+        "preferences": {
+          "airlines": [],
+          "maxStops": null,
+          "refundableOnly": false
+        },
+        "appliedFilters": {},
+        "selection": {
+          "selectedSearchIds": []
+        },
+        "fareType": "NORMAL"
+      }
+    },
+    {
+      "id": "PNQ-DEL-v2-or-fallback",
+      "path": "/v1/flights/search",
+      "expect": "HTTP 200 with flight options",
+      "verdict": "PASS",
+      "status": 200,
+      "code": null,
+      "msg": "",
+      "optionCount": 20,
+      "totalResults": {
+        "ONWARD": 41
+      },
+      "progress": {
+        "partial": false,
+        "state": "COMPLETE",
+        "pollAfterMs": 0,
+        "message": null,
+        "lanesTotal": null,
+        "lanesReady": null
+      },
+      "snippet": "{\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"totalResults\":{\"ONWARD\":41},\"optionCount\":20,\"journeyType\":\"ONE_WAY\"}",
+      "body": {
+        "itinerary": [
+          {
+            "origin": "PNQ",
+            "destination": "DEL",
+            "date": "2026-11-18"
+          }
+        ],
+        "travellers": {
+          "adults": 1,
+          "children": 0,
+          "infants": 0
+        },
+        "cabinClass": "ECONOMY",
+        "journeyType": "ONE_WAY",
+        "currency": "INR",
+        "language": "en",
+        "preferences": {
+          "airlines": [],
+          "maxStops": null,
+          "refundableOnly": false
+        },
+        "appliedFilters": {},
+        "selection": {
+          "selectedSearchIds": []
+        },
+        "fareType": "NORMAL"
+      }
+    }
+  ]
+}

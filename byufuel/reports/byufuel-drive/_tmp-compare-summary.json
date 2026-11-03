@@ -1,0 +1,650 @@
+{
+  "ourTotals": {
+    "total": 309,
+    "pass": 222,
+    "fail": 55,
+    "partial": 18,
+    "bug": 14,
+    "blank": 0,
+    "scored": 309
+  },
+  "srsReqCounts": {
+    "totalUnique": 287,
+    "byPrefix": {
+      "SUP": 41,
+      "ADM": 82,
+      "COM": 34,
+      "DRV": 33,
+      "TSM": 21,
+      "WHW": 21,
+      "BR": 11,
+      "NTF": 11,
+      "JOB": 4,
+      "INT": 5,
+      "DAT": 9,
+      "NFR": 15
+    }
+  },
+  "problemByModule": {
+    "ADM": 10,
+    "BR/ADM pay": 1,
+    "WHW": 3,
+    "DRV": 2,
+    "SUP": 11,
+    "TSM": 11,
+    "OTHER": 32,
+    "COM": 16,
+    "NTF": 1
+  },
+  "problems": [
+    {
+      "sheet": "01-Checklist",
+      "status": "FAIL",
+      "id": "5",
+      "feature": "MDM >> UCO Configuration | Global data Option is not present. | Yes",
+      "actual": "No MDM menu item. /mdm/uco-configuration is 403. Inventory UCO is a stock list at /byu/uco, 0 rows."
+    },
+    {
+      "sheet": "01-Checklist",
+      "status": "PARTIAL",
+      "id": "6",
+      "feature": "MDM>>Time Slots | Yes",
+      "actual": "MDM time slots for Hyderabad are numbers 8 to 24. Bulk schedule slots are labeled AM/PM (8 AM to 10 AM)."
+    },
+    {
+      "sheet": "01-Checklist",
+      "status": "FAIL",
+      "id": "8",
+      "feature": "MDM>>Rate Configuration | Yes",
+      "actual": "Grade B/C still missing. Supplier rate add Grade A Rs 15 HTTP 201. New schedules applied OA Rs 10 and supplier rates Rs 70 and Rs 80."
+    },
+    {
+      "sheet": "01-Checklist",
+      "status": "PARTIAL",
+      "id": "24",
+      "feature": "Warehouse Features for Verification | Notifications | Yes",
+      "actual": "PARTIAL — Incoming Deliveries lists SCH-000006651 / IT-195 / Atul / WareOne (status shown DRIVER ASSIGNED while IT is DRIVERACCEPTED). WH push/notif deep check "
+    },
+    {
+      "sheet": "01-Checklist",
+      "status": "FAIL",
+      "id": "25",
+      "feature": "Warehouse Features for Verification | Generate QR Codes | Yes",
+      "actual": "Azure recheck: Generate form is still No. of QR Codes and Choose Warehouse only. It does not attach a QR to an existing container."
+    },
+    {
+      "sheet": "01-Checklist",
+      "status": "PARTIAL",
+      "id": "28",
+      "feature": "Warehouse Features for Verification | Collect Oil from Supplier | Yes",
+      "actual": "Opens but wrong path for driver itinerary; can cause Missing/Pending Investigation"
+    },
+    {
+      "sheet": "01-Checklist",
+      "status": "FAIL",
+      "id": "52",
+      "feature": "Drivers Features for Verification | Cancel Pickup | Yes",
+      "actual": "Opened IT-195. Show menu has Raise a Ticket only. There is no Cancel Pickup action."
+    },
+    {
+      "sheet": "02-Bulk-Schedule",
+      "status": "FAIL",
+      "id": "4",
+      "feature": "TC05 | Verify the recurring existing schedues replaced upon confirmation while recurring schedules are created. | Pass | FAIL | ABCA BC (abab@gmail.com) already had BR-000000051. A second weekly creat",
+      "actual": "ABCA BC (abab@gmail.com) already had BR-000000051. A second weekly create posted with no popup of existing schedules. HTTP 201, BR-000000052 Pending."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "PARTIAL",
+      "id": "2",
+      "feature": "TC02 | Verify if the TSM/Area/City lead user is able to create a new Supplier | Pass | PARTIAL | Sign up Supplier from home opens the create-supplier form. It was not submitted. Contact number still n",
+      "actual": "Sign up Supplier from home opens the create-supplier form. It was not submitted. Contact number still needs Verify."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "PARTIAL",
+      "id": "3",
+      "feature": "TC03 | Verify if TSM/Area/City lead user is able to create a Supplier from Supplier Navigation icon screen | Pass | PARTIAL | Supplier tab + opens the same Sign Up form. The list says No supplier foun",
+      "actual": "Supplier tab + opens the same Sign Up form. The list says No supplier found."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "PARTIAL",
+      "id": "5",
+      "feature": "TC05 | Verify if TSM/Area/City lead user is able to create a Prospect from Prospect Navigation icon screen | Pass | PARTIAL | Prospect was created from the dashboard New Prospect button. The Prospect ",
+      "actual": "Prospect was created from the dashboard New Prospect button. The Prospect tab still says No prospect found after Reset."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "BUG",
+      "id": "6",
+      "feature": "TC06 | Verify if TSM/Area/City lead is able to record a visit for a Supplier or Propect | Pass | BUG | Record a Visit search for QA, Shop, and pin 411009 returns No data found. The prospect just creat",
+      "actual": "Record a Visit search for QA, Shop, and pin 411009 returns No data found. The prospect just created is not selectable."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "PARTIAL",
+      "id": "7",
+      "feature": "TC07 | Verify if TSM/Area/City lead user is able to record a visit from Visits Navigation icon screen | Pass | PARTIAL | Visits tab shows the row created by the prospect save: QA TSM Shop - 411009, Vi",
+      "actual": "Visits tab shows the row created by the prospect save: QA TSM Shop - 411009, Visited 28-Sep-2026 21:52. No separate record action on that tab."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "BUG",
+      "id": "8",
+      "feature": "TC08 | Verify if the TSM/Area/City lead user is able to record a visit from the Search bar provided in the home page | Pass | BUG | Home search accepts Shop, zzz, and QA TSM Shop. The search icon and ",
+      "actual": "Home search accepts Shop, zzz, and QA TSM Shop. The search icon and Enter stay on the dashboard. Recent Visits does not filter and no visit form opens."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "PARTIAL",
+      "id": "9",
+      "feature": "TC09 | Verify if the TSM/Area/City lead user is able to record a visit for a Supplier from the Supplier Navigation Icon Screen. | Pass | PARTIAL | Supplier tab has no supplier row and no Record a Visi",
+      "actual": "Supplier tab has no supplier row and no Record a Visit action. Signup from + reaches OTP for 9876501881 and does not create the supplier."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "PARTIAL",
+      "id": "10",
+      "feature": "TC10 | Verify if the TSM/Area/City lead user is able to record a visit for a Prospect from the Prospect Navigation Icon Screen. | Pass | PARTIAL | Prospect tab does not list QA TSM Shop, so a visit ca",
+      "actual": "Prospect tab does not list QA TSM Shop, so a visit cannot be started from that screen. The visit row exists from the prospect save."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "PARTIAL",
+      "id": "11",
+      "feature": "TC11 | Verify if TSM/Area/City lead is able to request a Pickup for a Supplier or Propect | Pass | PARTIAL | Request new Pickup opens and searches suppliers only. QA returns no rows, so a pickup was n",
+      "actual": "Request new Pickup opens and searches suppliers only. QA returns no rows, so a pickup was not submitted."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "BUG",
+      "id": "12",
+      "feature": "TC12 | Verify if the TSM/Area/City lead user is able to request a Pickup from the Search bar provided in the home page | Pass | BUG | The home search bar does not start a pickup. Same search stays on ",
+      "actual": "The home search bar does not start a pickup. Same search stays on the dashboard."
+    },
+    {
+      "sheet": "04-TSM-Mobile",
+      "status": "PARTIAL",
+      "id": "13",
+      "feature": "TC13 | Verify if the TSM/Area/City lead user is able to request a Pickup for a Supplier from the Supplier Navigation Icon Screen. | Pass | PARTIAL | Supplier tab has no supplier row and no Request Pic",
+      "actual": "Supplier tab has no supplier row and no Request Pickup action on the list."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify the page Structure | Navigate to URL\r\n- Click on Sign Up link | Verify if all sections are presented in the correct sequence. | Step 1",
+      "actual": "Retest: form order is account, then Establishment, then Submit. Location and bank sections are still not on Sign Up."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "BUG",
+      "id": "",
+      "feature": "User is on the sign-up page and an account with the same email or contact already exists. | Verify Duplicate Email and Contact Number Handling | Step 1",
+      "actual": "Existing phone 9876501001 and qa.supplier.byufuel@yopmail.com were accepted on the form. Submit leaves the BYUFUEL splash on Sign Up. No already-in-use message "
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify Password Requirements | Step 1",
+      "actual": "Rule note is shown. Change Password Update of abcdef plus a different confirm shows no error. Password was not changed."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify the Mark Your Location Section | Navigate to URL\r\n- Click on Sign Up link\r\n- User is on the Mark Your Location form section. | Verify the presence of fields in Mark Your Location Section | Step",
+      "actual": "Sign Up has no Mark Your Location section. After the account fields the form goes to Establishment Profile, then Submit."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify interactive map presence and functionality | Step 1",
+      "actual": "No interactive map on Sign Up."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "User has entered address details and positioned the pin on the map. | Verify cross-referencing of address details with map location | Step 1",
+      "actual": "No address fields and no map, so a mismatch between address and pin cannot be shown."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "No map pin to place."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 3",
+      "actual": "No location-based services section on Sign Up."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify the Bank Details Form Section | Navigate to URL\r\n- Click on Sign Up link\r\n- User is on the Bank details form section. | Verify presence of bank details form fields | Step 1",
+      "actual": "No bank details section on Sign Up. Account Number, Re-enter Account Number, IFSC, and Branch are not on the form."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify account number field accepts input",
+      "actual": "Account Number field is not on Sign Up."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify validation for re-entered account number",
+      "actual": "Re-enter Account Number field is not on Sign Up."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify IFSC Code Format Validation",
+      "actual": "IFSC field is not on Sign Up."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify Branch Field Input",
+      "actual": "Branch field is not on Sign Up."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify handling of invalid bank details submission | Step 1",
+      "actual": "Bank details cannot be submitted. That section is not on Sign Up."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "Invalid IFSC cannot be entered. The bank section is not on Sign Up."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify Successful Submission of Bank Details",
+      "actual": "Bank verification confirmation is not reachable. Sign Up has no bank form."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "BUG",
+      "id": "",
+      "feature": "Verify Submit button",
+      "actual": "Sign Up Submit leaves the BYUFUEL splash on the form. It does not reach a success screen."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "BUG",
+      "id": "Supplier Login - Mobile",
+      "feature": "Forgot Password - Mobile",
+      "actual": "Retest: Forgot Password OTP still ends on The {name} with the identifier {id} was not found. Password unchanged."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "BUG",
+      "id": "",
+      "feature": "User is on the OTP input screen.\r\n- User has received an OTP. | Verify OTP expiry functionality | Step 1",
+      "actual": "Forgot Password OTP timer starts near 02:00 and the clock disappears at 0. Submit does not say the OTP expired."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "BUG",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "Submit after the timer shows The {name} with the identifier {id} was not found. That is not an expiry error."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "User is on the password reset form. | Verify password security criteria | Step 1",
+      "actual": "Valid emailed OTP never opens the new-password form. Profile Change Password Update of abcdef shows no criteria error. Password was not changed."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "Confirm was left different and Update showed no criteria error."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 3",
+      "actual": "Update stays on Change Password. No security error."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify validation of matching passwords | Step 1",
+      "actual": "Two different passwords on Change Password produce no mismatch error."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "Confirm password was different from New Password. No error."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 3",
+      "actual": "Update did not report that the passwords do not match."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify successful password reset",
+      "actual": "Valid OTP submit shows the broken {name}/{id} message and stays on Verification Code. Password was not changed."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "Supplier Login - Mobile",
+      "feature": "Email and phone number Verification​ - Mobile",
+      "actual": "Sign Up has no Verify step and no separate email/phone verification screen."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify Email and phone number verification​ | User is on the sign-up form with a valid email or phone number. | Validate that clicking the \"Verify\" button checks if the email or phone number already e",
+      "actual": "No Verify button next to email or phone. Existing supplier email and phone do not show already in use. Submit sticks on the splash."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "User has entered a valid email or phone number that does not already exist. | Verify if screen displays the correct fields and buttons.",
+      "actual": "Signup does not open a screen with Send OTP and a pre-filled email or phone."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify that OTP is sent when the \"Send OTP\" button is clicked with valid email or phone number.",
+      "actual": "Sign Up has no Send OTP button. OTP send was only seen on Forgot Password."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "User has received the OTP. | Verify the system processes the correct OTP successfully. | Step 1",
+      "actual": "There is no signup OTP step that accepts a correct code and continues registration."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "Signup OTP cannot be submitted. The screen is not in this build."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "BUG",
+      "id": "",
+      "feature": "Verify if the system handles incorrect or expired OTP gracefully.",
+      "actual": "On Forgot Password, 000000 and a real emailed OTP both return The {name} with the identifier {id} was not found. Not an incorrect-OTP message."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "PARTIAL",
+      "id": "",
+      "feature": "User is on the verification screen. | Verify if the user can go back to re-enter email or phone number.",
+      "actual": "Verification Code has a back chevron. Re-entering a new email and sending another OTP from that back path was not completed."
+    },
+    {
+      "sheet": "TC-Sheet1",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify the functionality of the \"Log In\" link on the verification screen.",
+      "actual": "The verification screen has no Log In link. Only back, Resend OTP, and Submit."
+    },
+    {
+      "sheet": "TC-Admin- Creation of Users",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify if a email is triggered to the registered email upon saving the supplier data by admin | Verify if the registration email of supplier by admin is triiggered",
+      "actual": "Created rohan.supplier.byufuel@yopmail.com HTTP 200. Yopmail inbox stayed empty."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify the page Structure | Supplier should have installed the mobile app of Byufuel\r\n- Click on Sign Up link | Verify if all sections are presented in the correct sequence. | Step 1",
+      "actual": "Retest: location and bank are still missing from the signup sequence."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "BUG",
+      "id": "",
+      "feature": "User is on the sign-up page and an account with the same email or contact already exists. | Verify Duplicate Email and Contact Number Handling | Step 1",
+      "actual": "Existing phone and email on Sign Up Submit leave the BYUFUEL splash. No already-in-use message."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify Password Requirements | Step 1",
+      "actual": "Rule note is shown. Weak and mismatched Change Password values produce no error."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify interactive map presence and functionality | Step 1",
+      "actual": "No interactive map on Sign Up."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify the Bank Details Form Section | Supplier should have installed the mobile app of Byufuel\r\n- Click on Sign Up link\r\n- User is on the Bank details form section. | Verify presence of bank details ",
+      "actual": "Sign Up has no bank form. Edit Bank Details has holder, account, re-enter, IFSC, and Verify & Submit. No Skip and no Branch."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify IFSC Code Format Validation | Step 1",
+      "actual": "IFSC BAD123 shows no format error."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify handling of invalid bank details submission | Step 1",
+      "actual": "Verify & Submit with a mismatched account stays on the form. No could-not-be-verified message. No Branch field."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "Invalid IFSC is not rejected on its own."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify Successful Submission of Bank Details",
+      "actual": "No Razorpay verified confirmation. A valid bank change was not submitted."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "BUG",
+      "id": "",
+      "feature": "Verify Submit button | Verify Submit Button | Step 1",
+      "actual": "Sign Up Submit does not show success or open login. The splash stays on the form."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify if registration email is triggred to the specified email of the supplier | Verify if the registration email of supplier by admin is triiggered | Step 1",
+      "actual": "qa.supplier.byufuel@yopmail.com inbox has OTP emails only. No registration mail."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify if a email is triggered to the registered email upon saving the supplier data by admin | Verify if the registration email of supplier by admin is triiggered",
+      "actual": "Created rohan.supplier.byufuel@yopmail.com HTTP 200. Yopmail inbox stayed empty."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "PARTIAL",
+      "id": "",
+      "feature": "Dashboard Revenue Summary Display | User is logged into the system and has access to the dashboard. | Verify that the dashboard displays the revenue summary for the selected period. | Step 1",
+      "actual": "Reports Revenue summary shows Apr-Sep 2026, Sep 5900. Pickup details shows Sep 4. There is no last-month or last-quarter picker."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "PARTIAL",
+      "id": "",
+      "feature": "Step 3",
+      "actual": "End date was set to 02-Oct-26. Save was not tapped, so no recurring schedules were created."
+    },
+    {
+      "sheet": "TC-Supplier",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 4",
+      "actual": "With weight empty, Book your slot does nothing and shows no required-field alert. The filled form does open the popup."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "BUG",
+      "id": "Supplier Login - Mobile",
+      "feature": "Forgot Password - Mobile",
+      "actual": "Retest: OTP submit still shows the broken {name}/{id} message. New-password step is not reached. Password unchanged."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "BUG",
+      "id": "",
+      "feature": "User is on the OTP input screen.\r\n- User has received an OTP. | Verify OTP expiry functionality | Step 1",
+      "actual": "OTP timer runs about 2 minutes then disappears. Submit does not say the OTP expired."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "BUG",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "Submit shows The {name} with the identifier {id} was not found."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "PARTIAL",
+      "id": "",
+      "feature": "User has successfully verified the OTP. | Verify presence of new password fields after successful OTP verification",
+      "actual": "Forgot Password OTP never opens New Password and Confirm Password. Those fields are on Profile > Change Password."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "FAIL",
+      "id": "",
+      "feature": "User is on the password reset form. | Verify password security criteria | Step 1",
+      "actual": "abcdef in New Password, then Update, shows no security error."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "Matching confirm was not required before Update, and no criteria error appeared."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 3",
+      "actual": "Update stays on the form."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify validation of matching passwords | Step 1",
+      "actual": "Different confirm password shows no mismatch error."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 2",
+      "actual": "Confirm password differed from New Password. No error."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 3",
+      "actual": "Update did not report a mismatch."
+    },
+    {
+      "sheet": "TC-Change Password",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Verify successful password reset",
+      "actual": "Valid OTP does not finish the reset. Login password is unchanged."
+    },
+    {
+      "sheet": "TC-Rate Configuration",
+      "status": "PARTIAL",
+      "id": "",
+      "feature": "Step 3",
+      "actual": "Existing OA rate present. Grade B/C missing so alternate-grade create blocked."
+    },
+    {
+      "sheet": "TC-Rate Configuration",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 4",
+      "actual": "Azure recheck: UCO Grade dropdown is still only Grade A on the OA and Supplier rate forms."
+    },
+    {
+      "sheet": "TC-Rate Configuration",
+      "status": "PARTIAL",
+      "id": "",
+      "feature": "Step 5",
+      "actual": "Existing OA rate present. Grade B/C missing so alternate-grade create blocked."
+    },
+    {
+      "sheet": "TC-Rate Configuration",
+      "status": "FAIL",
+      "id": "",
+      "feature": "Step 4",
+      "actual": "Azure recheck: UCO Grade dropdown is still only Grade A on the OA and Supplier rate forms."
+    },
+    {
+      "sheet": "TC-Rate Configuration",
+      "status": "PARTIAL",
+      "id": "",
+      "feature": "Step 5",
+      "actual": "Existing OA rate present. Grade B/C missing so alternate-grade create blocked."
+    }
+  ]
+}

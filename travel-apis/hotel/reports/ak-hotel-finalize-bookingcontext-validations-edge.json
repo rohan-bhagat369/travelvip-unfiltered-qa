@@ -1,0 +1,178 @@
+{
+  "at": "2026-10-12T15:03:52.343Z",
+  "baseUrl": "https://ak-api.travelvip.ai",
+  "finalizePath": "/api/v2/hotels/finalize-booking",
+  "suite": "edge-gap",
+  "prebookMeta": {
+    "target": "Hilltop",
+    "rid": "5978db2a-5b70-497b-ac76-2740633eb1d7",
+    "checkin": "2026-11-09",
+    "checkout": "2026-11-11",
+    "codes": 4
+  },
+  "counts": {
+    "PASS": 7,
+    "BUG": 2
+  },
+  "rows": [
+    {
+      "id": "CTX-whitespace",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "bookingContext=\"   \" → validation error",
+      "mutation": "whitespace",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingContext' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingContext' is required\"],\"timestamp\":\"2026-10-12T15:03:48Z\",\"request_id\":\"req-1791817428610\"},\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    },
+    {
+      "id": "CTX-html",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "bookingContext=\"<script>alert(1)</script>\" → validation error",
+      "mutation": "html",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingContext' could not be decrypted; the value is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' could not be decrypted; the value is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingContext' could not be decrypted; the value is invalid\"],\"timestamp\":\"2026-10-12T15:03:49Z\",\"request_id\":\"req-1791817428686\"},\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    },
+    {
+      "id": "CTX-num-zero",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "bookingContext=0 → validation error",
+      "mutation": "num-zero",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingContext' is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingContext' is invalid\"],\"timestamp\":\"2026-10-12T15:03:49Z\",\"request_id\":\"req-1791817428898\"},\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    },
+    {
+      "id": "CTX-bool-true",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "bookingContext=true → validation error",
+      "mutation": "bool-true",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingContext' is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingContext' is invalid\"],\"timestamp\":\"2026-10-12T15:03:49Z\",\"request_id\":\"req-1791817428991\"},\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    },
+    {
+      "id": "CTX-obj",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "bookingContext={} → validation error",
+      "mutation": "obj",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingContext' is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingContext' is invalid\"],\"timestamp\":\"2026-10-12T15:03:49Z\",\"request_id\":\"req-1791817429084\"},\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    },
+    {
+      "id": "CTX-arr",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "bookingContext=[] → validation error",
+      "mutation": "arr",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingContext' is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingContext' is invalid\"],\"timestamp\":\"2026-10-12T15:03:49Z\",\"request_id\":\"req-1791817429162\"},\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    },
+    {
+      "id": "CTX-truncated",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "bookingContext=\"0svuXSujlI9r\" → validation error",
+      "mutation": "truncated",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingContext' could not be decrypted; the value is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingContext' could not be decrypted; the value is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingContext' could not be decrypted; the value is invalid\"],\"timestamp\":\"2026-10-12T15:03:49Z\",\"request_id\":\"req-1791817429237\"},\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    },
+    {
+      "id": "CTX-foreign",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "bookingContext from other prebook + mismatched bookingCode → reject",
+      "mutation": "foreign",
+      "status": "BUG",
+      "note": "Accepted invalid bookingContext",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1791817429483846\",\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    },
+    {
+      "id": "CTX-stale-reuse",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "reuse bookingContext after a prior finalize → reject (or business error, not 500)",
+      "mutation": "stale-reuse",
+      "status": "BUG",
+      "note": "Accepted invalid bookingContext",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1791817431800116\",\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    }
+  ],
+  "bugs": [
+    {
+      "id": "CTX-foreign",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "bookingContext from other prebook + mismatched bookingCode → reject",
+      "mutation": "foreign",
+      "status": "BUG",
+      "note": "Accepted invalid bookingContext",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1791817429483846\",\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    },
+    {
+      "id": "CTX-stale-reuse",
+      "kind": "negative",
+      "field": "bookingContext",
+      "rule": "reuse bookingContext after a prior finalize → reject (or business error, not 500)",
+      "mutation": "stale-reuse",
+      "status": "BUG",
+      "note": "Accepted invalid bookingContext",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1791817431800116\",\"_meta\":{\"correlation_id\":\"5978db2a-5b70-497b-ac76-2740633eb1d7\"}}"
+    }
+  ]
+}

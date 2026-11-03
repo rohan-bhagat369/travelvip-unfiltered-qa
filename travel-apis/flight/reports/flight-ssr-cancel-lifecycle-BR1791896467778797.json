@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-13T13:09:49.822Z",
+  "br": "BR1791896467778797",
+  "finalStatus": "Cancelled",
+  "pnr": "Q7IRSN",
+  "route": "BOM-DEL IX 8006",
+  "ancillaries": {
+    "bag": 2100,
+    "meal": 100,
+    "seat": 1700,
+    "total": 3900
+  },
+  "timeline": [
+    {
+      "event": "booking.pending",
+      "amount": 6887
+    },
+    {
+      "event": "booking.confirmed",
+      "pnr": "Q7IRSN",
+      "eticket": "BX13HJ00501-1"
+    },
+    {
+      "event": "booking.cancellation_requested",
+      "requestId": 839,
+      "charge": 4350,
+      "refund": 2537,
+      "ssr": 3900
+    },
+    {
+      "event": "offline settlement",
+      "enteredRefund": 2537,
+      "uiCalc": 2987,
+      "warning": "Entered manually. The calculation gives 2987"
+    },
+    {
+      "event": "booking.cancelled",
+      "credit": 2537,
+      "txn": "5213"
+    }
+  ],
+  "findings": {
+    "webhookInternalConsistency": "PASS",
+    "dashboardCalcVsSettled": "GAP — UI calc 2987 vs settled/manual 2537 (extra 450, fee breakup empty)"
+  }
+}

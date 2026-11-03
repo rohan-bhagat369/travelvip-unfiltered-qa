@@ -1,0 +1,137 @@
+{
+  "at": "2026-10-13T13:06:40.894Z",
+  "br": "BR1791896467778797",
+  "counts": {
+    "PASS": 18
+  },
+  "rows": [
+    {
+      "rule": "event cancellation_requested",
+      "status": "PASS",
+      "note": "booking.cancellation_requested"
+    },
+    {
+      "rule": "booking status stays Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "API status Confirmed or cancel-in-progress",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "request status Cancellation Requested",
+      "status": "PASS",
+      "note": "Cancellation Requested"
+    },
+    {
+      "rule": "mode OFFLINE",
+      "status": "PASS",
+      "note": "OFFLINE"
+    },
+    {
+      "rule": "scope FULL PAX1 leg 1576",
+      "status": "PASS",
+      "note": "{\"type\":\"FULL\",\"legIds\":[1576],\"paxIds\":[\"PAX1\"]}"
+    },
+    {
+      "rule": "pnr Q7IRSN",
+      "status": "PASS",
+      "note": "Q7IRSN"
+    },
+    {
+      "rule": "ssrAmount = bag+meal+seat",
+      "status": "PASS",
+      "note": "3900 == 3900"
+    },
+    {
+      "rule": "charge + refund = paid total",
+      "status": "PASS",
+      "note": "4350+2537=6887"
+    },
+    {
+      "rule": "ssr fully in charge (non-refundable ancillaries)",
+      "status": "PASS",
+      "note": "charge 4350 >= ssr 3900"
+    },
+    {
+      "rule": "non-SSR portion of charge",
+      "status": "PASS",
+      "note": "charge-ssr = 450 (expect 450 ~ fee+? or policy)"
+    },
+    {
+      "rule": "refund = fare - nonSSR charge",
+      "status": "PASS",
+      "note": "refund 2537 vs fare-450 2537"
+    },
+    {
+      "rule": "refund + ssr + nonSSR charge = total",
+      "status": "PASS",
+      "note": "2537+3900+450=6887"
+    },
+    {
+      "rule": "only original debit, no credit yet",
+      "status": "PASS",
+      "note": "txns=1"
+    },
+    {
+      "rule": "pax leg Cancellation requested",
+      "status": "PASS",
+      "note": "Cancellation requested"
+    },
+    {
+      "rule": "API pax leg cancel requested/cancelled",
+      "status": "PASS",
+      "note": "Cancellation requested"
+    },
+    {
+      "rule": "API cancel request present",
+      "status": "PASS",
+      "note": "{\"status\":\"Cancellation Requested\",\"charge\":null,\"refund\":null}"
+    },
+    {
+      "rule": "API totals still 6887 / SSR prices",
+      "status": "PASS",
+      "note": "{\"total\":6887,\"bag\":2100,\"meal\":100,\"seat\":1700}"
+    }
+  ],
+  "notes": [
+    "Money model: paid 6887 = SSR 3900 (forfeited in charge) + non-SSR charge 450 + refund 2537.",
+    "2537 = fare 2987 - 450 (same 450 pattern as previous non-SSR cancel).",
+    "ssrAmount 3900 correctly = 2100+100+1700; ancillaries not refunded at request time.",
+    "Expect booking.cancelled next with wallet credit ~2537."
+  ],
+  "money": {
+    "paid": 6887,
+    "ssr": 3900,
+    "fare": 2987,
+    "charge": 4350,
+    "refund": 2537,
+    "nonSsrCharge": 450
+  },
+  "api": {
+    "status": "Confirmed",
+    "paxLeg": "Cancellation requested",
+    "cancellationRequest": {
+      "status": "Cancellation Requested",
+      "pnr": "Q7IRSN",
+      "estimatedCancellationCharge": null,
+      "estimatedRefund": null,
+      "createdAt": "2026-10-13T13:05:31Z"
+    },
+    "salesSummary": {
+      "basePrice": 1001,
+      "subTotal": 1001,
+      "tax": 1636,
+      "convenienceFee": 350,
+      "totalAmount": 6887,
+      "totalDiscount": 0,
+      "currency": "INR",
+      "campaignId": null,
+      "baggagePrice": 2100,
+      "seatPrice": 1700,
+      "mealPrice": 100
+    }
+  }
+}

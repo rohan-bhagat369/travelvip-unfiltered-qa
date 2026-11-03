@@ -1,0 +1,45 @@
+{
+  "ranAt": "2026-10-28T11:52:08.417Z",
+  "baseUrl": "https://api.travelvip.ai",
+  "tierId": 19597201,
+  "note": "PROD OTEL/SigNoz smoke — 1 flight search + 1 hotel search, NO book. Use corr IDs in SigNoz.",
+  "prefix": "qa-otel-prod-1793188313819",
+  "signozHint": "Filter logs/traces by correlation id / X-Correlation-ID containing qa-otel-prod-1793188313819",
+  "rows": [
+    {
+      "label": "flight-search",
+      "corr": "qa-otel-prod-1793188313819-flight-search",
+      "path": "/v1/flights/search",
+      "http": 200,
+      "ok": true,
+      "clientMs": 13612,
+      "options": 20,
+      "error": null,
+      "request_id": null
+    },
+    {
+      "label": "hotel-search",
+      "corr": "qa-otel-prod-1793188340954-hotel-search",
+      "path": "/v1/hotels/search",
+      "http": 200,
+      "ok": true,
+      "clientMs": 1133,
+      "hotels": 0,
+      "error": null
+    }
+  ],
+  "hotelRetry": {
+    "corr": "qa-otel-prod-1793188340954-hotel-search",
+    "http": 200,
+    "ok": true,
+    "clientMs": 1133,
+    "error": null,
+    "message": null,
+    "details": null,
+    "hotels": 0,
+    "bodyEntityId": "357389:IN",
+    "checkin": "2026-11-18",
+    "checkout": "2026-11-20"
+  },
+  "prefixHotel": "qa-otel-prod-1793188340954"
+}

@@ -1,0 +1,2387 @@
+{
+  "sheets": {
+    "00-Summary": {
+      "total": 15,
+      "counts": {
+        "(blank)": 13,
+        "PASS": 1,
+        "NOT TESTED": 1
+      },
+      "cases": [
+        {
+          "id": "URL",
+          "feature": "https://agent-posted-unworn.ngrok-free.dev + APK com.byufuel.mobile | Tester",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "Rohan Bhagat QA"
+        },
+        {
+          "id": "PASS",
+          "feature": "FAIL | PARTIAL | BLOCKED | NOT TESTED | TOTAL",
+          "statusCentvis": "NOT TESTED",
+          "statusOurs": "PASS",
+          "actual": ""
+        },
+        {
+          "id": "262",
+          "feature": "55 | 18 | 0 | 0 | 350",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": ""
+        },
+        {
+          "id": "Sheet",
+          "feature": "PASS | FAIL | PARTIAL | BLOCKED | NOT TESTED",
+          "statusCentvis": "PARTIAL",
+          "statusOurs": "NOT TESTED",
+          "actual": "BUG"
+        },
+        {
+          "id": "01-Checklist",
+          "feature": "49 | 4 | 3 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "0"
+        },
+        {
+          "id": "02-Bulk-Schedule",
+          "feature": "5 | 1 | 0 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "0"
+        },
+        {
+          "id": "03-TSM-Web",
+          "feature": "9 | 0 | 0 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "0"
+        },
+        {
+          "id": "04-TSM-Mobile",
+          "feature": "5 | 0 | 8 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "3"
+        },
+        {
+          "id": "TC-Sheet1",
+          "feature": "43 | 29 | 1 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "7"
+        },
+        {
+          "id": "TC-Admin- Creation of Users",
+          "feature": "51 | 1 | 0 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "0"
+        },
+        {
+          "id": "TC-Supplier",
+          "feature": "57 | 11 | 2 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "2"
+        },
+        {
+          "id": "TC-Driver",
+          "feature": "9 | 0 | 0 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "0"
+        },
+        {
+          "id": "TC-WH User",
+          "feature": "9 | 0 | 0 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "0"
+        },
+        {
+          "id": "TC-Change Password",
+          "feature": "7 | 7 | 1 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "3"
+        },
+        {
+          "id": "TC-Rate Configuration",
+          "feature": "18 | 2 | 3 | 0 | 0",
+          "statusCentvis": "",
+          "statusOurs": "",
+          "actual": "0"
+        }
+      ]
+    },
+    "01-Checklist": {
+      "total": 56,
+      "counts": {
+        "PASS": 49,
+        "FAIL": 4,
+        "PARTIAL": 3
+      },
+      "cases": [
+        {
+          "id": "1",
+          "feature": "Login | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Admin login OK on ngrok"
+        },
+        {
+          "id": "2",
+          "feature": "User Management >>Roles | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Created QA Web Role 2809 with Reports checked. POST /api/uam/roles HTTP 201."
+        },
+        {
+          "id": "3",
+          "feature": "User Management >>Admin Users | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Admin create PASS (API 200)."
+        },
+        {
+          "id": "4",
+          "feature": "MDM >> Types | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "/mdm/types loads"
+        },
+        {
+          "id": "5",
+          "feature": "MDM >> UCO Configuration | Global data Option is not present. | Yes",
+          "statusCentvis": "Global data Option is not present.",
+          "statusOurs": "FAIL",
+          "actual": "No MDM menu item. /mdm/uco-configuration is 403. Inventory UCO is a stock list at /byu/uco, 0 rows."
+        },
+        {
+          "id": "6",
+          "feature": "MDM>>Time Slots | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PARTIAL",
+          "actual": "MDM time slots for Hyderabad are numbers 8 to 24. Bulk schedule slots are labeled AM/PM (8 AM to 10 AM)."
+        },
+        {
+          "id": "7",
+          "feature": "MDM>>Countries | Not present in live",
+          "statusCentvis": "Not present in live",
+          "statusOurs": "PASS",
+          "actual": "Countries page present with dial/code on ngrok"
+        },
+        {
+          "id": "8",
+          "feature": "MDM>>Rate Configuration | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "FAIL",
+          "actual": "Grade B/C still missing. Supplier rate add Grade A Rs 15 HTTP 201. New schedules applied OA Rs 10 and supplier rates Rs 70 and Rs 80."
+        },
+        {
+          "id": "9",
+          "feature": "Warehouse Management | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Warehouse create PASS (HTTP 201)."
+        },
+        {
+          "id": "10",
+          "feature": "User Management >>WH Worker | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "WH Worker create PASS (API 200)."
+        },
+        {
+          "id": "11",
+          "feature": "Inventory >>Vehicles | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "/byu/vehicles loads"
+        },
+        {
+          "id": "12",
+          "feature": "User Management >>Driver | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Driver create PASS (API 200)."
+        },
+        {
+          "id": "13",
+          "feature": "User Management >>Supplier | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced."
+        },
+        {
+          "id": "14",
+          "feature": "Inventory >>Container | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "/uam/container-management loads"
+        },
+        {
+          "id": "15",
+          "feature": "Generate QR Codes | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "/uam/container-qr-codes loads (attach-to-existing still FAIL functionally)"
+        },
+        {
+          "id": "16",
+          "feature": "Inventory >>UCO | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "/byu/uco loads"
+        },
+        {
+          "id": "17",
+          "feature": "Request Management | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Manage Requests /uco-schedules loads"
+        },
+        {
+          "id": "18",
+          "feature": "Itinerary Management | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "New Itinerary opens at /byu/uco-schedule-itineraries/new."
+        },
+        {
+          "id": "19",
+          "feature": "Supplier Payment | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "/byu/supplier-payment loads"
+        },
+        {
+          "id": "20",
+          "feature": "Supplier Penalty | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "/byu/supplier-cancellation-amounts loads"
+        },
+        {
+          "id": "21",
+          "feature": "Customer Support | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "/uam/customer-support loads"
+        },
+        {
+          "id": "22",
+          "feature": "Incoming Deliveries | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Upcoming tab is 1-10 of 395. SCH-000001679, Supp 28, 10 kg, 05-Oct-2026, 8 AM to 10 AM, status APPROVED."
+        },
+        {
+          "id": "23",
+          "feature": "Warehouse Features for Verification | Login | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Admin login works on new tunnel"
+        },
+        {
+          "id": "24",
+          "feature": "Warehouse Features for Verification | Notifications | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PARTIAL",
+          "actual": "PARTIAL — Incoming Deliveries lists SCH-000006651 / IT-195 / Atul / WareOne (status shown DRIVER ASSIGNED while IT is DRIVERACCEPTED). WH push/notif deep check "
+        },
+        {
+          "id": "25",
+          "feature": "Warehouse Features for Verification | Generate QR Codes | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "FAIL",
+          "actual": "Azure recheck: Generate form is still No. of QR Codes and Choose Warehouse only. It does not attach a QR to an existing container."
+        },
+        {
+          "id": "26",
+          "feature": "Warehouse Features for Verification | Inventory >>Container | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Containers/vehicles usable in E2E"
+        },
+        {
+          "id": "27",
+          "feature": "Warehouse Features for Verification | Checkin Oil | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "Prior E2E PASS; WH web path known. Retest on ngrok when SCH arrives"
+        },
+        {
+          "id": "28",
+          "feature": "Warehouse Features for Verification | Collect Oil from Supplier | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PARTIAL",
+          "actual": "Opens but wrong path for driver itinerary; can cause Missing/Pending Investigation"
+        },
+        {
+          "id": "29",
+          "feature": "Supplier Features for Verification | Login | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png"
+        },
+        {
+          "id": "30",
+          "feature": "Supplier Features for Verification | Sign-Up | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Logout → Sign Up form (personal + Establishment Profile GSTIN/FSSAI). Not submitted. Re-login QA Supplier H5oo#I5#. apk-sup-signup*.png"
+        },
+        {
+          "id": "31",
+          "feature": "Supplier Features for Verification | Manage Locations | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Location header shows Home 2, Andheri Kurla Road. apk-supplier-location.png"
+        },
+        {
+          "id": "32",
+          "feature": "Supplier Features for Verification | Bank Details | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Profile → Payment → Account Details + Payment history (Credited SCH-640/623/622). apk-sup-payment-bank.png / apk-sup-bank-details.png"
+        },
+        {
+          "id": "33",
+          "feature": "Supplier Features for Verification | KYC Documents | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Documents screen: KYC Documents + Restaurant License Add more. apk-supplier-kyc.png"
+        },
+        {
+          "id": "34",
+          "feature": "Supplier Features for Verification | Sell Oil | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Request new Pickup 26-Sep-26 · 8AM–11PM · Grade A · 10kg · Confirm → SCH-000006651 (₹1274.40). apk-sell-confirmed.png"
+        },
+        {
+          "id": "35",
+          "feature": "Supplier Features for Verification | Schedules & Status | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Upcoming tab opens (No schedules found). apk-supplier-upcoming.png"
+        },
+        {
+          "id": "36",
+          "feature": "Supplier Features for Verification | Pickup/Drop Management | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Pickup selected on Sell Oil; booked SCH-000006651 (Drop not used). apk-sell-ready.png / apk-sell-confirmed.png"
+        },
+        {
+          "id": "37",
+          "feature": "Supplier Features for Verification | Profile Management | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Edit Profile, Payment credited history, Documents KYC, Customer Support. apk-sup-edit/payment/documents/support.png"
+        },
+        {
+          "id": "38",
+          "feature": "Supplier Features for Verification | Customer Support | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Chat Support sheet + Profile Customer Support (Chat/Call/Raise complaint). apk-sup-chat.png / apk-sup-support.png / apk-sup-cs-profile.png"
+        },
+        {
+          "id": "39",
+          "feature": "Supplier Features for Verification | Payments | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Payment history Credited ₹3540 / ₹1180; Notifications Payment Credited SCH-640. apk-sup-payment-bank.png / apk-sup-notif.png"
+        },
+        {
+          "id": "40",
+          "feature": "Supplier Features for Verification | Notifications & Chat | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Notification/profile icon opens. apk-supplier-notif-or-profile.png"
+        },
+        {
+          "id": "41",
+          "feature": "Supplier Features for Verification | Reports | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Reports tab opens. apk-supplier-reports.png"
+        },
+        {
+          "id": "42",
+          "feature": "Drivers Features for Verification | Login | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Atul Ugale atul@yopmail.com / F5@k$iOz (admin random-password). Home Hi Atul. apk-driver-atul-login / apk-drv-topright.png"
+        },
+        {
+          "id": "43",
+          "feature": "Drivers Features for Verification | Home | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Scan, Planned/Collected/Delivered, Ongoing/Accepted/Proposed, Next Itinerary, tabs. apk-next-home.png"
+        },
+        {
+          "id": "44",
+          "feature": "Drivers Features for Verification | Container Management | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Scan Container QR JSON {\"Code\":\"B-2609-3-00005\"} → popup Capacity 40kg / Available 30kg / Grade A → OK. apk-camera-open / after-scan"
+        },
+        {
+          "id": "45",
+          "feature": "Drivers Features for Verification | Dashboard | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Home counters Planned/Collected/Delivered + Ongoing/Accepted/Proposed tiles (all 0 without assigned IT)"
+        },
+        {
+          "id": "46",
+          "feature": "Drivers Features for Verification | Next Itinerary | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS (empty) — Next Itinerary heading present; no card until Admin assigns IT. apk-next-home.png"
+        },
+        {
+          "id": "47",
+          "feature": "Drivers Features for Verification | View Itinerary | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Opened IT-000001195 detail: map, SCH-6651 stop, WareOne drop, containers, Activity Log, Raise a Ticket. apk-moto-it-detail.png"
+        },
+        {
+          "id": "48",
+          "feature": "Drivers Features for Verification | Upcoming | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Upcoming shows IT-000001195 Driver Assigned→Accepted after admin assign. Accept CTA worked. apk-moto-post-assign / apk-moto-accepted.png"
+        },
+        {
+          "id": "49",
+          "feature": "Drivers Features for Verification | Itinerary | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Accept IT-195 → DRIVERACCEPTED (API+UI). Start Itinerary NOT shown (IT date 26-Sep tomorrow; slot 8AM–11PM)."
+        },
+        {
+          "id": "50",
+          "feature": "Drivers Features for Verification | UCO Pickup | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "29-Sep-2026 on Azure UAT. New request BR-000000053 for test 21 (29-Sep, 4 PM to 6 PM, 10 kg, Grade A) became SCH-000001680 APPROVED. Itinerary IT-000000312 crea"
+        },
+        {
+          "id": "51",
+          "feature": "Drivers Features for Verification | History | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — History lists prior ITs (193 Delivered, 186 Pending Investigation, 188 Delivered). apk-moto-history.png"
+        },
+        {
+          "id": "52",
+          "feature": "Drivers Features for Verification | Cancel Pickup | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "FAIL",
+          "actual": "Opened IT-195. Show menu has Raise a Ticket only. There is no Cancel Pickup action."
+        },
+        {
+          "id": "53",
+          "feature": "Drivers Features for Verification | Customer Support | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Customer Support: Chat / Call / Raise complaint / Complaints / Call Logs. apk-drv-support.png"
+        },
+        {
+          "id": "54",
+          "feature": "Drivers Features for Verification | Notifications & Chat | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Unread: Admin Assigned the Itinerary IT-000001195 - 26-Sep-2026 - 10.00 Kg (25 Sep 07:32 PM). apk-moto-notifs.png"
+        },
+        {
+          "id": "55",
+          "feature": "Drivers Features for Verification | Profile Management | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Profile: Edit, Change Password, Documents (KYC+Vehicle), Bank, Driver Settings (MH14GA1111), Language EN↔HI, Logout. apk-drv-topright / hindi / english"
+        },
+        {
+          "id": "56",
+          "feature": "Drivers Features for Verification | Reports | Yes",
+          "statusCentvis": "Yes",
+          "statusOurs": "PASS",
+          "actual": "PASS — Reports tab + Itinerary details. apk-drv-smoke-reports.png"
+        }
+      ]
+    },
+    "02-Bulk-Schedule": {
+      "total": 6,
+      "counts": {
+        "PASS": 5,
+        "FAIL": 1
+      },
+      "cases": [
+        {
+          "id": "1",
+          "feature": "TC01 | Verify if the Bulk request meanus are being shown in main menu on assigning of BulkScheduleRequest role to the user | Pass | PASS | Create Bulk Request + View Bulk Requests menus present",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Create Bulk Request + View Bulk Requests menus present"
+        },
+        {
+          "id": "2",
+          "feature": "TC02 | Verify if the User is able to create bulk schedules with 50 suppliers at a time | Pass | PASS | Approved list is 63. Selected 50. POST /api/bulk-uco-schedule-requests HTTP 201 count 50. BR-0000",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Approved list is 63. Selected 50. POST /api/bulk-uco-schedule-requests HTTP 201 count 50. BR-000000050, 05-Oct-2026, 8 AM to 10 AM, 10 kg, Completed."
+        },
+        {
+          "id": "3",
+          "feature": "TC03 | Verify if the User is able to schedule Bulk Recurring Schedules | Pass | PASS | HTTP 201 isRecurring true, count 1. BR-000000051, Every Week, Tuesday, 06-Oct-2026 to 20-Oct-2026, 3 recurrences,",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "HTTP 201 isRecurring true, count 1. BR-000000051, Every Week, Tuesday, 06-Oct-2026 to 20-Oct-2026, 3 recurrences, 10 kg."
+        },
+        {
+          "id": "4",
+          "feature": "TC05 | Verify the recurring existing schedues replaced upon confirmation while recurring schedules are created. | Pass | FAIL | ABCA BC (abab@gmail.com) already had BR-000000051. A second weekly creat",
+          "statusCentvis": "Pass",
+          "statusOurs": "FAIL",
+          "actual": "ABCA BC (abab@gmail.com) already had BR-000000051. A second weekly create posted with no popup of existing schedules. HTTP 201, BR-000000052 Pending."
+        },
+        {
+          "id": "5",
+          "feature": "TC07 | Verify the Bulk Schedule Request Handling in View Bulk Request | Pass | PASS | View Bulk Requests page loads",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "View Bulk Requests page loads"
+        },
+        {
+          "id": "6",
+          "feature": "TC08 | Verify the Recurrence limit of Schedules. | Pass | PASS | Start 05-Oct-2026. Typed end date 01-Jan-2029 was rewritten to 25-Sep-2028. That probe was not submitted.",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Start 05-Oct-2026. Typed end date 01-Jan-2029 was rewritten to 25-Sep-2028. That probe was not submitted."
+        }
+      ]
+    },
+    "03-TSM-Web": {
+      "total": 9,
+      "counts": {
+        "PASS": 9
+      },
+      "cases": [
+        {
+          "id": "1",
+          "feature": "TC01 | Verify if the menus are being displayed when roles are assigned to the user | Pass | PASS | TSM & Leads menu is under User Management and the page loads.",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "TSM & Leads menu is under User Management and the page loads."
+        },
+        {
+          "id": "2",
+          "feature": "TC02 | Verify if TSM Zipcodes menu is displayed when user is assigned relatedd role. | Pass | PASS | TSM ZipCodes menu loads. On this build it sits under User Management.",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "TSM ZipCodes menu loads. On this build it sits under User Management."
+        },
+        {
+          "id": "3",
+          "feature": "TC03 | Verify the creation of TSM leads | Pass | PASS | City Lead Rohan CityLead created ACTIVE. Reports to Hyd Admin. rohan.city.byufuel@yopmail.com",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "City Lead Rohan CityLead created ACTIVE. Reports to Hyd Admin. rohan.city.byufuel@yopmail.com"
+        },
+        {
+          "id": "4",
+          "feature": "TC04 | Verify the creation of Area lead | Pass | PASS | Area Lead Rohan AreaLead created ACTIVE. Reports to Rohan CityLead. rohan.area.byufuel@yopmail.com",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Area Lead Rohan AreaLead created ACTIVE. Reports to Rohan CityLead. rohan.area.byufuel@yopmail.com"
+        },
+        {
+          "id": "5",
+          "feature": "TC05 | Verify the creation of TSM | Pass | PASS | TSM Rohan Bhagat created ACTIVE. Reports to Test AreaLead. rohan.tsm.byufuel@yopmail.com",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "TSM Rohan Bhagat created ACTIVE. Reports to Test AreaLead. rohan.tsm.byufuel@yopmail.com"
+        },
+        {
+          "id": "6",
+          "feature": "TC06 | Verify if user is able to activate & deactivate the TSM | Pass | PASS | Rohan Bhagat Deactivate changed status to Deactivated.",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Rohan Bhagat Deactivate changed status to Deactivated."
+        },
+        {
+          "id": "7",
+          "feature": "TC07 | Verify if the user is able to activate a TSM | Pass | PASS | Same TSM Activate set status back to Active.",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Same TSM Activate set status back to Active."
+        },
+        {
+          "id": "8",
+          "feature": "TC08 | Verify assigning of area zipcodes to TSM | Pass | PASS | Added zip 500084 on Rohan Bhagat. Row shows on his Zip Codes list and the TSM ZipCodes list.",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Added zip 500084 on Rohan Bhagat. Row shows on his Zip Codes list and the TSM ZipCodes list."
+        },
+        {
+          "id": "9",
+          "feature": "TC09 | Verify bulk upload of Zipcode for multiple TSM's | Pass | PASS | Blank pin in the downloaded sheet replaced with 500001. Upload HTTP 200. List shows Test TSM 500001. Raw download with an empty ",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Blank pin in the downloaded sheet replaced with 500001. Upload HTTP 200. List shows Test TSM 500001. Raw download with an empty PinCode still returns HTTP 500."
+        }
+      ]
+    },
+    "04-TSM-Mobile": {
+      "total": 16,
+      "counts": {
+        "PASS": 5,
+        "PARTIAL": 8,
+        "BUG": 3
+      },
+      "cases": [
+        {
+          "id": "1",
+          "feature": "TC01 | Verify if the TSM/Area/City lead user is able to login to the mobile app with the credentials provided in the mail after user creates a TSM/Area/City lead | Pass | PASS | Already signed in as R",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Already signed in as Rohan AreaLead. Dashboard shows Hi Rohan. Profile phone 9282809283, reports to Rohan CityLead, Hyderabad."
+        },
+        {
+          "id": "2",
+          "feature": "TC02 | Verify if the TSM/Area/City lead user is able to create a new Supplier | Pass | PARTIAL | Sign up Supplier from home opens the create-supplier form. It was not submitted. Contact number still n",
+          "statusCentvis": "Pass",
+          "statusOurs": "PARTIAL",
+          "actual": "Sign up Supplier from home opens the create-supplier form. It was not submitted. Contact number still needs Verify."
+        },
+        {
+          "id": "3",
+          "feature": "TC03 | Verify if TSM/Area/City lead user is able to create a Supplier from Supplier Navigation icon screen | Pass | PARTIAL | Supplier tab + opens the same Sign Up form. The list says No supplier foun",
+          "statusCentvis": "Pass",
+          "statusOurs": "PARTIAL",
+          "actual": "Supplier tab + opens the same Sign Up form. The list says No supplier found."
+        },
+        {
+          "id": "4",
+          "feature": "TC04 | Verify if the TSM/Area/City lead user is able to create a new Prospect | Pass | PASS | New Prospect saved. QA TSM Shop, QA TsmSep, qa.tsm.prospect928@yopmail.com, 9876501991, Pune 411009. Toast",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "New Prospect saved. QA TSM Shop, QA TsmSep, qa.tsm.prospect928@yopmail.com, 9876501991, Pune 411009. Toast: Prospect saved successfully."
+        },
+        {
+          "id": "5",
+          "feature": "TC05 | Verify if TSM/Area/City lead user is able to create a Prospect from Prospect Navigation icon screen | Pass | PARTIAL | Prospect was created from the dashboard New Prospect button. The Prospect ",
+          "statusCentvis": "Pass",
+          "statusOurs": "PARTIAL",
+          "actual": "Prospect was created from the dashboard New Prospect button. The Prospect tab still says No prospect found after Reset."
+        },
+        {
+          "id": "6",
+          "feature": "TC06 | Verify if TSM/Area/City lead is able to record a visit for a Supplier or Propect | Pass | BUG | Record a Visit search for QA, Shop, and pin 411009 returns No data found. The prospect just creat",
+          "statusCentvis": "Pass",
+          "statusOurs": "BUG",
+          "actual": "Record a Visit search for QA, Shop, and pin 411009 returns No data found. The prospect just created is not selectable."
+        },
+        {
+          "id": "7",
+          "feature": "TC07 | Verify if TSM/Area/City lead user is able to record a visit from Visits Navigation icon screen | Pass | PARTIAL | Visits tab shows the row created by the prospect save: QA TSM Shop - 411009, Vi",
+          "statusCentvis": "Pass",
+          "statusOurs": "PARTIAL",
+          "actual": "Visits tab shows the row created by the prospect save: QA TSM Shop - 411009, Visited 28-Sep-2026 21:52. No separate record action on that tab."
+        },
+        {
+          "id": "8",
+          "feature": "TC08 | Verify if the TSM/Area/City lead user is able to record a visit from the Search bar provided in the home page | Pass | BUG | Home search accepts Shop, zzz, and QA TSM Shop. The search icon and ",
+          "statusCentvis": "Pass",
+          "statusOurs": "BUG",
+          "actual": "Home search accepts Shop, zzz, and QA TSM Shop. The search icon and Enter stay on the dashboard. Recent Visits does not filter and no visit form opens."
+        },
+        {
+          "id": "9",
+          "feature": "TC09 | Verify if the TSM/Area/City lead user is able to record a visit for a Supplier from the Supplier Navigation Icon Screen. | Pass | PARTIAL | Supplier tab has no supplier row and no Record a Visi",
+          "statusCentvis": "Pass",
+          "statusOurs": "PARTIAL",
+          "actual": "Supplier tab has no supplier row and no Record a Visit action. Signup from + reaches OTP for 9876501881 and does not create the supplier."
+        },
+        {
+          "id": "10",
+          "feature": "TC10 | Verify if the TSM/Area/City lead user is able to record a visit for a Prospect from the Prospect Navigation Icon Screen. | Pass | PARTIAL | Prospect tab does not list QA TSM Shop, so a visit ca",
+          "statusCentvis": "Pass",
+          "statusOurs": "PARTIAL",
+          "actual": "Prospect tab does not list QA TSM Shop, so a visit cannot be started from that screen. The visit row exists from the prospect save."
+        },
+        {
+          "id": "11",
+          "feature": "TC11 | Verify if TSM/Area/City lead is able to request a Pickup for a Supplier or Propect | Pass | PARTIAL | Request new Pickup opens and searches suppliers only. QA returns no rows, so a pickup was n",
+          "statusCentvis": "Pass",
+          "statusOurs": "PARTIAL",
+          "actual": "Request new Pickup opens and searches suppliers only. QA returns no rows, so a pickup was not submitted."
+        },
+        {
+          "id": "12",
+          "feature": "TC12 | Verify if the TSM/Area/City lead user is able to request a Pickup from the Search bar provided in the home page | Pass | BUG | The home search bar does not start a pickup. Same search stays on ",
+          "statusCentvis": "Pass",
+          "statusOurs": "BUG",
+          "actual": "The home search bar does not start a pickup. Same search stays on the dashboard."
+        },
+        {
+          "id": "13",
+          "feature": "TC13 | Verify if the TSM/Area/City lead user is able to request a Pickup for a Supplier from the Supplier Navigation Icon Screen. | Pass | PARTIAL | Supplier tab has no supplier row and no Request Pic",
+          "statusCentvis": "Pass",
+          "statusOurs": "PARTIAL",
+          "actual": "Supplier tab has no supplier row and no Request Pickup action on the list."
+        },
+        {
+          "id": "14",
+          "feature": "TC14 | Verify if recent Visits are being displayed in Recent Visits section in the Home page | Pass | PASS | Before the prospect save, Recent Visits showed No Recent Visits. After save it shows QA TSM",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Before the prospect save, Recent Visits showed No Recent Visits. After save it shows QA TSM Shop | QA TsmSep | QA prospect note | 28-Sep-2026 | 21:52."
+        },
+        {
+          "id": "15",
+          "feature": "TC15 | Verify if TSM/Area/City lead is able to edit the profile | Pass | PASS | Street changed to Test Street 2, saved, confirmed, then put back to Test Street. Toast: TSM Profile Updated Successfully",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "Street changed to Test Street 2, saved, confirmed, then put back to Test Street. Toast: TSM Profile Updated Successfully."
+        },
+        {
+          "id": "16",
+          "feature": "TC16 | Verify if TSM/Area/City lead is able to change the language to hindi and english | Pass | PASS | English switched to Hindi (profile labels translated) and back to English.",
+          "statusCentvis": "Pass",
+          "statusOurs": "PASS",
+          "actual": "English switched to Hindi (profile labels translated) and back to English."
+        }
+      ]
+    },
+    "TC-Sheet1": {
+      "total": 79,
+      "counts": {
+        "PASS": 43,
+        "FAIL": 29,
+        "BUG": 6,
+        "PARTIAL": 1
+      },
+      "cases": [
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Supplier Login - Mobile",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png"
+        },
+        {
+          "id": "",
+          "feature": "Verify the Login of Supplier through App | Nagivate to URL | Verify if supplier is able to login to the site | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png"
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png"
+        },
+        {
+          "id": "",
+          "feature": "Step 4",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png"
+        },
+        {
+          "id": "",
+          "feature": "Verify if supplier is able to initiate a password recovery process | Nagivate to URL | Verify if supplier is able to initiate a password recovery process by clicking the \" Forgot password \" link | Ste",
+          "statusCentvis": "Verify if supplier is able to initiate a password recovery process by clicking the \" Forgot password \" link",
+          "statusOurs": "PASS",
+          "actual": "Forgot Password form has an email/phone field and Send OTP. The button label is Send OTP."
+        },
+        {
+          "id": "",
+          "feature": "Verify if a New User is able to Sign up to the app | Nagivate to URL | Verify if a New user is able to Sign up to the site by clicking on the \" Sign Up \" link at the bottom of the login screen | Step ",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Sign Up opens Create your account."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Supplier Sign up - Mobile",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Retest: Sign Up opens and scrolls. Account fields and Establishment Profile are on the form. Splash did not block this pass."
+        },
+        {
+          "id": "",
+          "feature": "Verify the page Structure | Navigate to URL\r\n- Click on Sign Up link | Verify if all sections are presented in the correct sequence. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Retest: form order is account, then Establishment, then Submit. Location and bank sections are still not on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "Verify Scroll Behavior | Navigate to URL\r\n- Click on Sign Up link\r\n- User is on the single-page scroll form. | Verify the user can scroll smoothly through the form without any navigation issues.",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Verify the Sign-up Information Section | Navigate to URL\r\n- Click on Sign Up link\r\n- User is on the Sign-up Information section. | Verify the fields in Sign-up Information Section | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Form shows First Name, Last Name, Contact +91, Email, Operational Area, Password, Confirm Password. Password note: 8 characters with a number, upper, lower, and"
+        },
+        {
+          "id": "",
+          "feature": "Verify Contact Number Format | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Contact 12345 shows Please enter a valid phone number."
+        },
+        {
+          "id": "",
+          "feature": "Verify Email Format Validation | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Email bademail shows Please enter a valid email address."
+        },
+        {
+          "id": "",
+          "feature": "User is on the sign-up page and an account with the same email or contact already exists. | Verify Duplicate Email and Contact Number Handling | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "Existing phone 9876501001 and qa.supplier.byufuel@yopmail.com were accepted on the form. Submit leaves the BYUFUEL splash on Sign Up. No already-in-use message "
+        },
+        {
+          "id": "",
+          "feature": "Verify Password Requirements | Step 1",
+          "statusCentvis": "Verify Password Requirements",
+          "statusOurs": "FAIL",
+          "actual": "Rule note is shown. Change Password Update of abcdef plus a different confirm shows no error. Password was not changed."
+        },
+        {
+          "id": "",
+          "feature": "Verify Password confirmation match",
+          "statusCentvis": "Verify Password confirmation match",
+          "statusOurs": "PASS",
+          "actual": "Different confirm password shows Passwords do not match."
+        },
+        {
+          "id": "",
+          "feature": "Verify \"I represent an establishment\" checkbox functionality",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Unchecking I represent an establishment hides Establishment Profile. Submit stays."
+        },
+        {
+          "id": "",
+          "feature": "Verify the Establishment Details Information Section | Verify that the Establishment Details section only appears when the \"I represent an establishment\" checkbox is checked.",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Establishment Profile is visible while the box is checked and hidden after uncheck."
+        },
+        {
+          "id": "",
+          "feature": "Verify the presence of fields in Establishment Details Section | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Establishment section shows Establishment Name, Country (India), GSTIN Number, Restaurant ID, Establishment Type, Restaurant Contact Number, Restaurant Email, a"
+        },
+        {
+          "id": "",
+          "feature": "Verify the Mark Your Location Section | Navigate to URL\r\n- Click on Sign Up link\r\n- User is on the Mark Your Location form section. | Verify the presence of fields in Mark Your Location Section | Step",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Sign Up has no Mark Your Location section. After the account fields the form goes to Establishment Profile, then Submit."
+        },
+        {
+          "id": "",
+          "feature": "Verify interactive map presence and functionality | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "No interactive map on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "User has entered address details and positioned the pin on the map. | Verify cross-referencing of address details with map location | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "No address fields and no map, so a mismatch between address and pin cannot be shown."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "No map pin to place."
+        },
+        {
+          "id": "",
+          "feature": "User has successfully submitted the establishment details form. | Verify storage of marked location in user profile | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "No location-based services section on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "Verify the Bank Details Form Section | Navigate to URL\r\n- Click on Sign Up link\r\n- User is on the Bank details form section. | Verify presence of bank details form fields | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "No bank details section on Sign Up. Account Number, Re-enter Account Number, IFSC, and Branch are not on the form."
+        },
+        {
+          "id": "",
+          "feature": "Verify account number field accepts input",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Account Number field is not on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "Verify validation for re-entered account number",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Re-enter Account Number field is not on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "Verify IFSC Code Format Validation",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "IFSC field is not on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "Verify Branch Field Input",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Branch field is not on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "Verify handling of invalid bank details submission | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Bank details cannot be submitted. That section is not on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Invalid IFSC cannot be entered. The bank section is not on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "Verify Successful Submission of Bank Details",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Bank verification confirmation is not reachable. Sign Up has no bank form."
+        },
+        {
+          "id": "",
+          "feature": "Verify Submit button",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "Sign Up Submit leaves the BYUFUEL splash on the form. It does not reach a success screen."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Forgot Password - Mobile",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "Retest: Forgot Password OTP still ends on The {name} with the identifier {id} was not found. Password unchanged."
+        },
+        {
+          "id": "",
+          "feature": "Verify Forgot Password Link | Navigate to URL\r\n- User is on login page | Verify the functionality of the \"Forgot Password\" link",
+          "statusCentvis": "Verify the functionality of the \"Forgot Password\" link",
+          "statusOurs": "PASS",
+          "actual": "Forgot Password form has an email/phone field and Send OTP. The button label is Send OTP."
+        },
+        {
+          "id": "",
+          "feature": "User is on the password reset form. | Verify presence of email or phone number input field",
+          "statusCentvis": "User is on the password reset form.",
+          "statusOurs": "PASS",
+          "actual": "Forgot Password form has an email/phone field and Send OTP. The button label is Send OTP."
+        },
+        {
+          "id": "",
+          "feature": "Verify Validation for Registered Email/Phone Number",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "nobody.notreal@yopmail.com shows User not registered. Sign up now."
+        },
+        {
+          "id": "",
+          "feature": "Verify OTP sent to email/phone number",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "qa.supplier.byufuel@yopmail.com returns HTTP 201. Verification Code screen asks for a 6-digit code. A timer is shown."
+        },
+        {
+          "id": "",
+          "feature": "User is on the OTP input screen. | Verify validation of entered OTP",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "000000 shows Invalid OTP."
+        },
+        {
+          "id": "",
+          "feature": "Verify functionality of \"Resend\" button",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Resend OTP returns HTTP 201 and restarts the timer."
+        },
+        {
+          "id": "",
+          "feature": "User is on the OTP input screen.\r\n- User has received an OTP. | Verify OTP expiry functionality | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "Forgot Password OTP timer starts near 02:00 and the clock disappears at 0. Submit does not say the OTP expired."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "Submit after the timer shows The {name} with the identifier {id} was not found. That is not an expiry error."
+        },
+        {
+          "id": "",
+          "feature": "User has successfully verified the OTP. | Verify presence of new password fields after successful OTP verification",
+          "statusCentvis": "Verify presence of new password fields after successful OTP verification",
+          "statusOurs": "PASS",
+          "actual": "PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png"
+        },
+        {
+          "id": "",
+          "feature": "User is on the password reset form. | Verify password security criteria | Step 1",
+          "statusCentvis": "User is on the password reset form.",
+          "statusOurs": "FAIL",
+          "actual": "Valid emailed OTP never opens the new-password form. Profile Change Password Update of abcdef shows no criteria error. Password was not changed."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Confirm was left different and Update showed no criteria error."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Update stays on Change Password. No security error."
+        },
+        {
+          "id": "",
+          "feature": "Verify validation of matching passwords | Step 1",
+          "statusCentvis": "Verify validation of matching passwords",
+          "statusOurs": "FAIL",
+          "actual": "Two different passwords on Change Password produce no mismatch error."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Confirm password was different from New Password. No error."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Update did not report that the passwords do not match."
+        },
+        {
+          "id": "",
+          "feature": "Verify successful password reset",
+          "statusCentvis": "Verify successful password reset",
+          "statusOurs": "FAIL",
+          "actual": "Valid OTP submit shows the broken {name}/{id} message and stays on Verification Code. Password was not changed."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Email and phone number Verification​ - Mobile",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Sign Up has no Verify step and no separate email/phone verification screen."
+        },
+        {
+          "id": "",
+          "feature": "Verify Email and phone number verification​ | User is on the sign-up form with a valid email or phone number. | Validate that clicking the \"Verify\" button checks if the email or phone number already e",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "No Verify button next to email or phone. Existing supplier email and phone do not show already in use. Submit sticks on the splash."
+        },
+        {
+          "id": "",
+          "feature": "User has entered a valid email or phone number that does not already exist. | Verify if screen displays the correct fields and buttons.",
+          "statusCentvis": "User has entered a valid email or phone number that does not already exist.",
+          "statusOurs": "FAIL",
+          "actual": "Signup does not open a screen with Send OTP and a pre-filled email or phone."
+        },
+        {
+          "id": "",
+          "feature": "Verify that OTP is sent when the \"Send OTP\" button is clicked with valid email or phone number.",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Sign Up has no Send OTP button. OTP send was only seen on Forgot Password."
+        },
+        {
+          "id": "",
+          "feature": "Verify if the system prevents OTP sending for invalid email or phone number.",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Invalid phone 12345 and email bademail are rejected on the form, so no OTP is sent for them."
+        },
+        {
+          "id": "",
+          "feature": "User has received the OTP. | Verify the system processes the correct OTP successfully. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "There is no signup OTP step that accepts a correct code and continues registration."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Signup OTP cannot be submitted. The screen is not in this build."
+        },
+        {
+          "id": "",
+          "feature": "Verify if the system handles incorrect or expired OTP gracefully.",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "On Forgot Password, 000000 and a real emailed OTP both return The {name} with the identifier {id} was not found. Not an incorrect-OTP message."
+        },
+        {
+          "id": "",
+          "feature": "User has not received the OTP or the OTP has expired. | Verify that the \"Resend OTP\" button functions correctly.",
+          "statusCentvis": "User has not received the OTP or the OTP has expired.",
+          "statusOurs": "PASS",
+          "actual": "Resend OTP restarts the timer at about 01:48 and a new OTP email arrives."
+        },
+        {
+          "id": "",
+          "feature": "User is on the verification screen. | Verify if the user can go back to re-enter email or phone number.",
+          "statusCentvis": "",
+          "statusOurs": "PARTIAL",
+          "actual": "Verification Code has a back chevron. Re-entering a new email and sending another OTP from that back path was not completed."
+        },
+        {
+          "id": "",
+          "feature": "Verify the functionality of the \"Log In\" link on the verification screen.",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "The verification screen has no Log In link. Only back, Resend OTP, and Submit."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Supplier Home Screen​ - Mobile",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "User is logged in with a profile containing a first name or preferred name and a current location. | Verify personalized greeting and location display on the home screen.",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "User is on the home screen. | Verify the location selection dropdown functionality. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Location menu lists Andheri, FC Road, and Add/Edit Location."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Selected FC Road. Home header changed to 12, FC Road. Switched back to Andheri."
+        },
+        {
+          "id": "",
+          "feature": "Verify Upcoming Pickup Overview | User has upcoming pickups scheduled. | Verify the display of upcoming pickups on the home screen.",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "User has no upcoming pickups scheduled. | Verify the message displayed when there are no upcoming pickups. | Step 1",
+          "statusCentvis": "User has no upcoming pickups scheduled.",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Verify the \"View all\" button or link | User has upcoming pickups scheduled. | Verify the \"View all\" button or link functionality for upcoming pickups.",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Verify the \"Sell Oil\" button | User is on the home screen. | Verify the \"Sell Oil\" button visibility and functionality.",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "User is on the home screen. | Verify the display and functionality of the bottom navigation bar. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Bottom bar is labeled Home, Upcoming, History, Reports. Top icons are chat, bell, and profile."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Verify the presence and functionality of notifications and user profile icons. | Step 1",
+          "statusCentvis": "Verify the presence and functionality of notifications and user profile icons.",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Dashboard Revenue Summary Display | User is logged into the system and has access to the dashboard. | Verify that the dashboard displays the revenue summary for the selected period. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Verify if essential financial metrics are displayed in the revenue summary.",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        },
+        {
+          "id": "",
+          "feature": "Verify that upcoming pickup details are displayed correctly.",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Supplier home smoke PASS on APK"
+        }
+      ]
+    },
+    "TC-Admin- Creation of Users": {
+      "total": 25,
+      "counts": {
+        "PASS": 24,
+        "FAIL": 1
+      },
+      "cases": [
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Supplier - Registration by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Section header. Supplier create under this script is already PASS on Azure."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to create a Supplier | Admin has to login into the website\r\n- And should have permissions to create a Supplier | Verify is admin is able to Click on + Add New Supplier button |",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to click on Save button with mandatory fields | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced."
+        },
+        {
+          "id": "",
+          "feature": "Verify if a email is triggered to the registered email upon saving the supplier data by admin | Verify if the registration email of supplier by admin is triiggered",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Created rohan.supplier.byufuel@yopmail.com HTTP 200. Yopmail inbox stayed empty."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Driver - Registration by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to create a Driver | Admin has to login into the website\r\n- And should have permissions to create a Driver | Verify is admin is able to Click on + Add New Driver button",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to click on Create button with mandatory fields",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view."
+        },
+        {
+          "id": "",
+          "feature": "Verify if a email is triggered to the registered email upon creating the Driver data by admin | Verify if the registration email of driver by admin is triiggered",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "WH Workers - Registration by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to create a WH worker | Admin has to login into the website\r\n- And should have permissions to create a WH Worker | Verify is admin is able to Click on + Add Worker button",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to click on Create button with mandatory fields",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view."
+        },
+        {
+          "id": "",
+          "feature": "Verify if a email is triggered to the registered email upon creating the WH worker data by admin | Verify if the registration email of wh worker by admin is triiggered",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "WH worker mail arrived: Access Granted to BYUFUEL Platform. Supplier inbox rohan.supplier.byufuel is still empty."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Admin Users - Registration by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to create a WH worker | Admin has to login into the website\r\n- And should have permissions to create a Admin | Verify is admin is able to Click on + Add Admin User button",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to click on Create button with mandatory fields",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view."
+        },
+        {
+          "id": "",
+          "feature": "Verify if the registration email of admin is triiggered",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Created Rohan AdminQA rohan.admin.byufuel@yopmail.com HTTP 200. Yopmail has 1 Welcome mail with the account password."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Warehouse - Creation by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Warehouse create PASS — POST /api/uam/warehouses HTTP 201 (lat/long + contact required)."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to create a Warehouse | Admin has to login into the website\r\n- And should have permissions to create a Warehouse | Verify is admin is able to Click on + Add New Warehouse butto",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Warehouse create PASS — POST /api/uam/warehouses HTTP 201 (lat/long + contact required)."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to click on Create button with mandatory fields",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Role - Creation by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Created QA Web Role 2809 with Reports checked. POST /api/uam/roles HTTP 201."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to create a New Role | Admin has to login into the website\r\n- And should have permissions to create a Role | Verify is admin is able to Click on New Role button",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Created QA Web Role 2809 with Reports checked. POST /api/uam/roles HTTP 201."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Itinerary - Creation by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "New Itinerary page opens (/byu/uco-schedule-itineraries/new). Driver assign not fully exercised (empty schedule data)."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to Create a Itinerary | Admin has to login into the website\r\n- And should have permissions to create a Itinerary | Verify is admin is able to Click on + New Itinerary button",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "New Itinerary page opens (/byu/uco-schedule-itineraries/new). Driver assign not fully exercised (empty schedule data)."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to Create a new Itinerary",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "New Itinerary page opens (/byu/uco-schedule-itineraries/new). Driver assign not fully exercised (empty schedule data)."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to assign a driver to the Itinerary",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view."
+        }
+      ]
+    },
+    "TC-Supplier": {
+      "total": 67,
+      "counts": {
+        "PASS": 52,
+        "FAIL": 11,
+        "BUG": 2,
+        "PARTIAL": 2
+      },
+      "cases": [
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Supplier Sign up - Mobile",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Retest: Sign Up scrolls from account fields through Establishment to Submit. Splash did not block."
+        },
+        {
+          "id": "",
+          "feature": "Verify if a New User is able to Sign up to the app | Supplier should have installed the mobile app of Byufuel | Verify if a New user is able to Sign up to the site by clicking on the \" Sign Up \" link ",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Sign Up opens Create your account."
+        },
+        {
+          "id": "",
+          "feature": "Verify the page Structure | Supplier should have installed the mobile app of Byufuel\r\n- Click on Sign Up link | Verify if all sections are presented in the correct sequence. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Retest: location and bank are still missing from the signup sequence."
+        },
+        {
+          "id": "",
+          "feature": "Verify the Sign-up Information Section | Supplier should have installed the mobile app of Byufuel\r\n- Click on Sign Up link\r\n- User is on the Sign-up Information section. | Verify the fields in Sign-up",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Form shows First Name, Last Name, Contact +91, Email, Operational Area, Password, Confirm Password. Password note: 8 characters with a number, upper, lower, and"
+        },
+        {
+          "id": "",
+          "feature": "Verify Contact Number Format | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Contact 12345 shows Please enter a valid phone number."
+        },
+        {
+          "id": "",
+          "feature": "Verify Email Format Validation | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Email bademail shows Please enter a valid email address."
+        },
+        {
+          "id": "",
+          "feature": "User is on the sign-up page and an account with the same email or contact already exists. | Verify Duplicate Email and Contact Number Handling | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "Existing phone and email on Sign Up Submit leave the BYUFUEL splash. No already-in-use message."
+        },
+        {
+          "id": "",
+          "feature": "Verify Password Requirements | Step 1",
+          "statusCentvis": "Verify Password Requirements",
+          "statusOurs": "FAIL",
+          "actual": "Rule note is shown. Weak and mismatched Change Password values produce no error."
+        },
+        {
+          "id": "",
+          "feature": "Verify Password confirmation match | Step 1",
+          "statusCentvis": "Verify Password confirmation match",
+          "statusOurs": "PASS",
+          "actual": "Signup confirm password mismatch shows Passwords do not match."
+        },
+        {
+          "id": "",
+          "feature": "Verify \"I represent an establishment\" checkbox functionality | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Uncheck hides Establishment Profile."
+        },
+        {
+          "id": "",
+          "feature": "Verify the Establishment Details Information Section | Verify that the Establishment Details section only appears when the \"I represent an establishment\" checkbox is checked. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Establishment section follows the checkbox and disappears when it is unchecked."
+        },
+        {
+          "id": "",
+          "feature": "Verify the presence of fields in Establishment Details Section | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Establishment section has Name, Country, GSTIN, Restaurant ID, Type, Restaurant contact, Restaurant email, and Submit."
+        },
+        {
+          "id": "",
+          "feature": "Verify the Mark Your Location Section | Supplier should have installed the mobile app of Byufuel\r\n- Click on Sign Up link\r\n- User is on the Mark Your Location form section. | Verify the presence of fi",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify interactive map presence and functionality | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "No interactive map on Sign Up."
+        },
+        {
+          "id": "",
+          "feature": "User has entered address details and positioned the pin on the map. | Verify cross-referencing of address details with map location | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "User has successfully submitted the establishment details form. | Verify storage of marked location in user profile | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Logged out to the Welcome screen and logged back in. Home shows Hi QA."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify the Bank Details Form Section | Supplier should have installed the mobile app of Byufuel\r\n- Click on Sign Up link\r\n- User is on the Bank details form section. | Verify presence of bank details ",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Sign Up has no bank form. Edit Bank Details has holder, account, re-enter, IFSC, and Verify & Submit. No Skip and no Branch."
+        },
+        {
+          "id": "",
+          "feature": "Verify account number field accepts input | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Account number and re-enter fields accept typed digits on Edit Bank Details. Original values were put back. Verify was not used to save."
+        },
+        {
+          "id": "",
+          "feature": "Verify validation for re-entered account number | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "A different re-enter value shows Account numbers do not match."
+        },
+        {
+          "id": "",
+          "feature": "Verify IFSC Code Format Validation | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "IFSC BAD123 shows no format error."
+        },
+        {
+          "id": "",
+          "feature": "Verify handling of invalid bank details submission | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Verify & Submit with a mismatched account stays on the form. No could-not-be-verified message. No Branch field."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Invalid IFSC is not rejected on its own."
+        },
+        {
+          "id": "",
+          "feature": "Verify Successful Submission of Bank Details",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "No Razorpay verified confirmation. A valid bank change was not submitted."
+        },
+        {
+          "id": "",
+          "feature": "Verify Submit button | Verify Submit Button | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "Sign Up Submit does not show success or open login. The splash stays on the form."
+        },
+        {
+          "id": "",
+          "feature": "Verify if registration email is triggred to the specified email of the supplier | Verify if the registration email of supplier by admin is triiggered | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "qa.supplier.byufuel@yopmail.com inbox has OTP emails only. No registration mail."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Supplier - Registration by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Section header. Admin supplier create under this script is already PASS on Azure."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to create a Supplier | Admin has to login into the website | Verify is admin is able to Click on + Add New Supplier button | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to click on Save button with mandatory fields | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced."
+        },
+        {
+          "id": "",
+          "feature": "Verify if a email is triggered to the registered email upon saving the supplier data by admin | Verify if the registration email of supplier by admin is triiggered",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Created rohan.supplier.byufuel@yopmail.com HTTP 200. Yopmail inbox stayed empty."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Supplier Login - Mobile",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify the Login of Supplier through App | Supplier should have installed the mobile app of Byufuel and Signed up to the app | Verify if supplier is able to login to the site | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Logged in as qa.supplier.byufuel@yopmail.com. Home shows Hi QA."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Logged in as qa.supplier.byufuel@yopmail.com. Home shows Hi QA."
+        },
+        {
+          "id": "",
+          "feature": "Step 4",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify the home page | User is logged in with a profile containing a first name or preferred name and a current location. | Verify personalized greeting and location display on the home screen. | Step",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "User is on the home screen. | Verify the location selection dropdown functionality. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify Upcoming Pickup Overview | User has upcoming pickups scheduled. | Verify the display of upcoming pickups on the home screen. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "User has no upcoming pickups scheduled. | Verify the message displayed when there are no upcoming pickups. | Step 1",
+          "statusCentvis": "User has no upcoming pickups scheduled.",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify the \"View all\" button or link | User has upcoming pickups scheduled. | Verify the \"View all\" button or link functionality for upcoming pickups. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify the \"Sell Oil\" button | User is on the home screen. | Verify the \"Sell Oil\" button visibility and functionality. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify the display and functionality of the bottom navigation bar. | User is on the home screen. | Verify the display and functionality of the bottom navigation bar. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Chat opens a thread. The bell opens Notifications with Unread and All. Profile shows QA Supplier."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Bottom bar is labeled Home, Upcoming, History, Reports. Top icons are chat, bell, and profile."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify the presence and functionality of notifications and user profile icons. | Step 1",
+          "statusCentvis": "Verify the presence and functionality of notifications and user profile icons.",
+          "statusOurs": "PASS",
+          "actual": "Chat opens a thread. The bell opens Notifications with Unread and All. Profile shows QA Supplier."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Profile opens QA Supplier, phone 9876501001, qa.supplier.byufuel@yopmail.com."
+        },
+        {
+          "id": "",
+          "feature": "Dashboard Revenue Summary Display | User is logged into the system and has access to the dashboard. | Verify that the dashboard displays the revenue summary for the selected period. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PARTIAL",
+          "actual": "Reports Revenue summary shows Apr-Sep 2026, Sep 5900. Pickup details shows Sep 4. There is no last-month or last-quarter picker."
+        },
+        {
+          "id": "",
+          "feature": "Verify if essential financial metrics are displayed in the revenue summary. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Reports Revenue summary shows Apr-Sep 2026, Sep 5900. Pickup details shows Sep 4. There is no last-month or last-quarter picker."
+        },
+        {
+          "id": "",
+          "feature": "Verify that upcoming pickup details are displayed correctly. | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Upcoming tab shows Filter, Reset, and No schedules found. Home also shows Upcoming Schedules and No schedules found."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Creation of Schedules",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify if a supplier is able to create a Pick up schedule | User should be registered and logged in to the app | Verify if a supplier is able to create a schedule | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Chose 30-Sep-26 and slot 9 AM to 12 PM. Other slots listed: 8 AM-11 PM, 2 PM-8 PM, 4 PM-10 PM."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Weight 10, Grade A. Bill line shows 10.00 Kg Grade A UCO."
+        },
+        {
+          "id": "",
+          "feature": "Step 4",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Bill is ₹1080.00 plus tax ₹194.40. Total and price estimate ₹1274.40."
+        },
+        {
+          "id": "",
+          "feature": "Step 5",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Book your slot opens a popup with Cancel and Confirm, location, and ₹1274.40. Cancel was tapped. No schedule was created."
+        },
+        {
+          "id": "",
+          "feature": "Step 6",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Step 7",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify if a supplier is able to create a recurring pickup Schedule | User should be registered and logged in to the app | Verify if a supplier is able to create a recurring pickup Schedule | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Make recurring opens Calendar with Every day, Every week, Every month, Clear, and Save."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PARTIAL",
+          "actual": "End date was set to 02-Oct-26. Save was not tapped, so no recurring schedules were created."
+        },
+        {
+          "id": "",
+          "feature": "Step 4",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "With weight empty, Book your slot does nothing and shows no required-field alert. The filled form does open the popup."
+        },
+        {
+          "id": "",
+          "feature": "Step 5",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "",
+          "feature": "Verify if a supplier is able to create a drop schedule",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Covered by Supplier APK smoke on device"
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Row has no steps. Supplier mobile cases above were executed."
+        }
+      ]
+    },
+    "TC-Driver": {
+      "total": 5,
+      "counts": {
+        "PASS": 5
+      },
+      "cases": [
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Driver - Registration by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to create a Driver | Admin has to login into the website | Verify is admin is able to Click on + Add New Driver button",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to click on Create button with mandatory fields",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified."
+        },
+        {
+          "id": "",
+          "feature": "Verify if a email is triggered to the registered email upon creating the Driver data by admin | Verify if the registration email of driver by admin is triiggered",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Driver - Registration by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified."
+        }
+      ]
+    },
+    "TC-WH User": {
+      "total": 5,
+      "counts": {
+        "PASS": 5
+      },
+      "cases": [
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "WH Workers - Registration by Admin",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "WH Worker full create PASS (API 200 + view redirect)."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to create a WH worker | Admin has to login into the website | Verify is admin is able to Click on + Add Worker button",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "WH Worker full create PASS (API 200 + view redirect)."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to click on Create button with mandatory fields",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "WH Worker full create PASS (API 200 + view redirect)."
+        },
+        {
+          "id": "",
+          "feature": "Verify if a email is triggered to the registered email upon creating the WH worker data by admin | Verify if the registration email of wh worker by admin is triiggered",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Inbox now has 1 mail from no-reply@byufuel.in: Access Granted to BYUFUEL Platform, 14:40. It was empty on the earlier check."
+        },
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Row has no steps. It is a section divider."
+        }
+      ]
+    },
+    "TC-Change Password": {
+      "total": 18,
+      "counts": {
+        "BUG": 3,
+        "PASS": 7,
+        "PARTIAL": 1,
+        "FAIL": 7
+      },
+      "cases": [
+        {
+          "id": "Supplier Login - Mobile",
+          "feature": "Forgot Password - Mobile",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "Retest: OTP submit still shows the broken {name}/{id} message. New-password step is not reached. Password unchanged."
+        },
+        {
+          "id": "",
+          "feature": "Verify if supplier is able to initiate a password recovery process | Supplier should have installed the mobile app of Byufuel and have a account in it. | Verify if supplier is able to initiate a passw",
+          "statusCentvis": "Verify if supplier is able to initiate a password recovery process by clicking the \" Forgot password \" link",
+          "statusOurs": "PASS",
+          "actual": "Forgot Password form has an email/phone field and Send OTP. The button label is Send OTP."
+        },
+        {
+          "id": "",
+          "feature": "Verify Forgot Password Link | Navigate to URL\r\n- User is on login page | Verify the functionality of the \"Forgot Password\" link",
+          "statusCentvis": "Verify the functionality of the \"Forgot Password\" link",
+          "statusOurs": "PASS",
+          "actual": "Forgot Password form has an email/phone field and Send OTP. The button label is Send OTP."
+        },
+        {
+          "id": "",
+          "feature": "User is on the password reset form. | Verify presence of email or phone number input field",
+          "statusCentvis": "User is on the password reset form.",
+          "statusOurs": "PASS",
+          "actual": "Forgot Password form has an email/phone field and Send OTP. The button label is Send OTP."
+        },
+        {
+          "id": "",
+          "feature": "Verify Validation for Registered Email/Phone Number",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "nobody.notreal@yopmail.com shows User not registered. Sign up now."
+        },
+        {
+          "id": "",
+          "feature": "Verify OTP sent to email/phone number",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "qa.supplier.byufuel@yopmail.com returns HTTP 201. Verification Code screen asks for a 6-digit code. A timer is shown."
+        },
+        {
+          "id": "",
+          "feature": "User is on the OTP input screen. | Verify validation of entered OTP",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "000000 shows Invalid OTP."
+        },
+        {
+          "id": "",
+          "feature": "Verify functionality of \"Resend\" button",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Resend OTP returns HTTP 201 and restarts the timer."
+        },
+        {
+          "id": "",
+          "feature": "User is on the OTP input screen.\r\n- User has received an OTP. | Verify OTP expiry functionality | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "OTP timer runs about 2 minutes then disappears. Submit does not say the OTP expired."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "BUG",
+          "actual": "Submit shows The {name} with the identifier {id} was not found."
+        },
+        {
+          "id": "",
+          "feature": "User has successfully verified the OTP. | Verify presence of new password fields after successful OTP verification",
+          "statusCentvis": "Verify presence of new password fields after successful OTP verification",
+          "statusOurs": "PARTIAL",
+          "actual": "Forgot Password OTP never opens New Password and Confirm Password. Those fields are on Profile > Change Password."
+        },
+        {
+          "id": "",
+          "feature": "User is on the password reset form. | Verify password security criteria | Step 1",
+          "statusCentvis": "User is on the password reset form.",
+          "statusOurs": "FAIL",
+          "actual": "abcdef in New Password, then Update, shows no security error."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Matching confirm was not required before Update, and no criteria error appeared."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Update stays on the form."
+        },
+        {
+          "id": "",
+          "feature": "Verify validation of matching passwords | Step 1",
+          "statusCentvis": "Verify validation of matching passwords",
+          "statusOurs": "FAIL",
+          "actual": "Different confirm password shows no mismatch error."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Confirm password differed from New Password. No error."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Update did not report a mismatch."
+        },
+        {
+          "id": "",
+          "feature": "Verify successful password reset",
+          "statusCentvis": "Verify successful password reset",
+          "statusOurs": "FAIL",
+          "actual": "Valid OTP does not finish the reset. Login password is unchanged."
+        }
+      ]
+    },
+    "TC-Rate Configuration": {
+      "total": 23,
+      "counts": {
+        "PASS": 18,
+        "PARTIAL": 3,
+        "FAIL": 2
+      },
+      "cases": [
+        {
+          "id": "",
+          "feature": "Rate Configaration of  Operational Area",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Section header. Operational area rate steps below are already executed. Ngrok is still ERR_NGROK_3200."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to Configare a rate for a Operational area | Admin has to login into the website | Verify if admin is able to click on + add new Operational Area Rate button | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "OA rate list shows Mumbai Grade A @100 + GST."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Add OA rate form opens."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin able to configure a rate to a Operational area | Step1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "OA rate fields fillable including taxApplicable."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "OA rate fields fillable including taxApplicable."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PARTIAL",
+          "actual": "Existing OA rate present. Grade B/C missing so alternate-grade create blocked."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to edit a already existing Operational area rate | Admin has to login into the website | Verify if admin is able to edit a already existing Operational area rate | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "OA rate list shows Mumbai Grade A @100 + GST."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Opened existing OA rate row and saved partial update (HTTP 200 update-partial)."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Opened existing OA rate row and saved partial update (HTTP 200 update-partial)."
+        },
+        {
+          "id": "",
+          "feature": "Step 4",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Azure recheck: UCO Grade dropdown is still only Grade A on the OA and Supplier rate forms."
+        },
+        {
+          "id": "",
+          "feature": "Step 5",
+          "statusCentvis": "",
+          "statusOurs": "PARTIAL",
+          "actual": "Existing OA rate present. Grade B/C missing so alternate-grade create blocked."
+        },
+        {
+          "id": "",
+          "feature": "Verify if the configured rate is applied to the supplier while createing a schedule | Supplier Should be of Active status with Location details\r\n- Supplier should login to the mobile app to create a s",
+          "statusCentvis": "Supplier Should be of Active status with Location details\r\n- Supplier should login to the mobile app to create a schedule\r\n- Admin should not have configured a rate to this supplier so that the Operatinal rate is applied to the supplier",
+          "statusOurs": "PASS",
+          "actual": "Schedules from the 50-supplier bulk on 05-Oct-2026. OA Grade A costperKg 10 (estimate 100 + GST 1). hydsupplier1 SCH-000001663 cost 70. hydsupplier2 SCH-0000016"
+        },
+        {
+          "id": "",
+          "feature": "Rate Configaration of  Supplier",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Section header. Supplier rate steps below are already executed. Ngrok is still ERR_NGROK_3200."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to Configure a rate for a Supplier | Admin has to login into the website | Verify if admin is able to click on + add new Supplier Rate button | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "OA rate list shows Mumbai Grade A @100 + GST."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "suphyd@yopmail.com Grade A Rs 15. POST /api/uam/supplier-rates-configurations HTTP 201. Grade list is still only Grade A."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin able to configure a rate to a Supplier | Step1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "OA rate fields fillable including taxApplicable."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "OA rate fields fillable including taxApplicable."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "suphyd@yopmail.com Grade A Rs 15. POST /api/uam/supplier-rates-configurations HTTP 201. Grade list is still only Grade A."
+        },
+        {
+          "id": "",
+          "feature": "Verify if admin is able to edit a already existing Operational area rate | Admin has to login into the website | Verify if admin is able to edit a already existing Supplier rate | Step 1",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "OA rate list shows Mumbai Grade A @100 + GST."
+        },
+        {
+          "id": "",
+          "feature": "Step 2",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Opened existing OA rate row and saved partial update (HTTP 200 update-partial)."
+        },
+        {
+          "id": "",
+          "feature": "Step 3",
+          "statusCentvis": "",
+          "statusOurs": "PASS",
+          "actual": "Opened existing OA rate row and saved partial update (HTTP 200 update-partial)."
+        },
+        {
+          "id": "",
+          "feature": "Step 4",
+          "statusCentvis": "",
+          "statusOurs": "FAIL",
+          "actual": "Azure recheck: UCO Grade dropdown is still only Grade A on the OA and Supplier rate forms."
+        },
+        {
+          "id": "",
+          "feature": "Step 5",
+          "statusCentvis": "",
+          "statusOurs": "PARTIAL",
+          "actual": "Existing OA rate present. Grade B/C missing so alternate-grade create blocked."
+        }
+      ]
+    }
+  }
+}

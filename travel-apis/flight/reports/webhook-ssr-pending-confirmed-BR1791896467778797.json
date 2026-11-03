@@ -1,0 +1,226 @@
+{
+  "at": "2026-10-13T13:02:38.092Z",
+  "br": "BR1791896467778797",
+  "suite": "flight-ssr-book-webhooks-pending-confirmed",
+  "booking": {
+    "route": "BOM-DEL",
+    "flight": "IX 8006",
+    "depart": "2026-11-14T11:30",
+    "pnr": "Q7IRSN",
+    "eticket": "BX13HJ00501-1",
+    "pax": "Rohan Bhagatttrt",
+    "total": 6887,
+    "ancillaries": {
+      "baggage": 2100,
+      "meal": 100,
+      "seat": 1700
+    },
+    "apiStatus": "Confirmed"
+  },
+  "counts": {
+    "PASS": 28
+  },
+  "rows": [
+    {
+      "section": "MONEY",
+      "rule": "base+tax+fee+bag+meal+seat = total",
+      "status": "PASS",
+      "note": "6887 == 6887"
+    },
+    {
+      "section": "MONEY",
+      "rule": "gross = total (no discount)",
+      "status": "PASS",
+      "note": "6887"
+    },
+    {
+      "section": "MONEY",
+      "rule": "ancillary line items match addon prices",
+      "status": "PASS",
+      "note": "2100+100+1700"
+    },
+    {
+      "section": "PENDING",
+      "rule": "event booking.pending",
+      "status": "PASS",
+      "note": "booking.pending"
+    },
+    {
+      "section": "PENDING",
+      "rule": "status Pending",
+      "status": "PASS",
+      "note": "Pending"
+    },
+    {
+      "section": "PENDING",
+      "rule": "pnrCount 0 / empty pnr / legs null (pre-ticket)",
+      "status": "PASS",
+      "note": "expected pre-confirm"
+    },
+    {
+      "section": "PENDING",
+      "rule": "wallet debit already success at pending",
+      "status": "PASS",
+      "note": "5212 / 6887"
+    },
+    {
+      "section": "PENDING",
+      "rule": "SSR present on pending (bag+meal+seat)",
+      "status": "PASS",
+      "note": "all 3"
+    },
+    {
+      "section": "PENDING",
+      "rule": "route BOM-DEL IX 8006 refundable",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "section": "CONFIRMED",
+      "rule": "event booking.confirmed",
+      "status": "PASS",
+      "note": "booking.confirmed"
+    },
+    {
+      "section": "CONFIRMED",
+      "rule": "status Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "section": "CONFIRMED",
+      "rule": "pnrCount 1 + PNR Q7IRSN",
+      "status": "PASS",
+      "note": "Q7IRSN"
+    },
+    {
+      "section": "CONFIRMED",
+      "rule": "eticket present",
+      "status": "PASS",
+      "note": "BX13HJ00501-1"
+    },
+    {
+      "section": "CONFIRMED",
+      "rule": "same debit txn 5212 (no double charge)",
+      "status": "PASS",
+      "note": "1 txn"
+    },
+    {
+      "section": "CONFIRMED",
+      "rule": "total unchanged from pending",
+      "status": "PASS",
+      "note": "6887"
+    },
+    {
+      "section": "CONFIRMED",
+      "rule": "SSR still present after confirm",
+      "status": "PASS",
+      "note": "3 addons"
+    },
+    {
+      "section": "CONFIRMED",
+      "rule": "pax leg Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "section": "CONFIRMED",
+      "rule": "seat 1A WINDOW + Masala Chai + cabin bag 3kg",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "section": "FLOW",
+      "rule": "pending then confirmed same BR",
+      "status": "PASS",
+      "note": "BR1791896467778797"
+    },
+    {
+      "section": "FLOW",
+      "rule": "PNR appears only on confirmed",
+      "status": "PASS",
+      "note": "0 → 1"
+    },
+    {
+      "section": "FLOW",
+      "rule": "no Riya in payloads",
+      "status": "PASS",
+      "note": "checked below"
+    },
+    {
+      "section": "API",
+      "rule": "status Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "section": "API",
+      "rule": "PNR Q7IRSN",
+      "status": "PASS",
+      "note": "Q7IRSN"
+    },
+    {
+      "section": "API",
+      "rule": "eticket BX13HJ00501-1",
+      "status": "PASS",
+      "note": "BX13HJ00501-1"
+    },
+    {
+      "section": "API",
+      "rule": "totalAmount 6887",
+      "status": "PASS",
+      "note": "6887"
+    },
+    {
+      "section": "API",
+      "rule": "flight IX 8006 BOM-DEL",
+      "status": "PASS",
+      "note": "IX 8006 BOM-DEL"
+    },
+    {
+      "section": "API",
+      "rule": "lastName Bhagatttrt",
+      "status": "PASS",
+      "note": "Bhagatttrt"
+    },
+    {
+      "section": "API",
+      "rule": "SSR/ancillary present on detail",
+      "status": "PASS",
+      "note": "bag=1 meal=1 seat=1 PaxAncillary=0"
+    }
+  ],
+  "notes": [
+    "Pending correctly has empty PNR/legs; confirmed fills PNR+eticket — good lifecycle.",
+    "Wallet charged at pending (debit success) before confirm — expected for this flow.",
+    "SSR priced into total: bag 2100 + meal 100 + seat 1700 = 3900 ancillaries.",
+    "Airline IX (Air India Express) + refundable + isCancellable — good cancel fixture."
+  ],
+  "apiSnippet": {
+    "status": "Confirmed",
+    "salesSummary": {
+      "basePrice": 1001,
+      "subTotal": 1001,
+      "tax": 1636,
+      "convenienceFee": 350,
+      "totalAmount": 6887,
+      "totalDiscount": 0,
+      "currency": "INR",
+      "campaignId": null,
+      "baggagePrice": 2100,
+      "seatPrice": 1700,
+      "mealPrice": 100
+    },
+    "pnr": "Q7IRSN",
+    "eticket": "BX13HJ00501-1",
+    "paxLegStatus": "Confirmed",
+    "ssrCounts": {
+      "bag": 1,
+      "meal": 1,
+      "seat": 1,
+      "PaxAncillary": 0
+    },
+    "flight": "IX 8006",
+    "onlineCancellation": true
+  }
+}

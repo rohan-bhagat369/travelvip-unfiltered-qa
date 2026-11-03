@@ -1,0 +1,124 @@
+{
+  "at": "2026-10-13T17:51:51.580Z",
+  "br": "BR1791913699659593",
+  "doc": "https://api-docs.travelvip.ai/webhook/hotel-webhooks.pdf",
+  "event": "booking.confirmed",
+  "counts": {
+    "PASS": 17,
+    "GAP": 3,
+    "NOTE": 2
+  },
+  "rows": [
+    {
+      "rule": "envelope version=1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "event booking.confirmed (examples; catalogue typo booking.confirm)",
+      "status": "PASS",
+      "note": "booking.confirmed"
+    },
+    {
+      "rule": "type hotel",
+      "status": "PASS",
+      "note": "hotel"
+    },
+    {
+      "rule": "data.status Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "cancellationRequest absent",
+      "status": "PASS",
+      "note": "absent"
+    },
+    {
+      "rule": "saleSummary.refund absent",
+      "status": "PASS",
+      "note": "absent"
+    },
+    {
+      "rule": "debit only success",
+      "status": "PASS",
+      "note": "\"debit\""
+    },
+    {
+      "rule": "debit amount = totalAmount",
+      "status": "PASS",
+      "note": "326.69 vs 326.69"
+    },
+    {
+      "rule": "§5 gross = base+fee+taxes+gst",
+      "status": "PASS",
+      "note": "326.69"
+    },
+    {
+      "rule": "§5 total = gross - discount",
+      "status": "PASS",
+      "note": "326.69"
+    },
+    {
+      "rule": "rooms.length = noOfRooms",
+      "status": "PASS",
+      "note": "1 vs 1"
+    },
+    {
+      "rule": "exactly one isLead",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "guest type Adult/Child",
+      "status": "PASS",
+      "note": "Adult"
+    },
+    {
+      "rule": "checkInDate YYYY-MM-DD",
+      "status": "PASS",
+      "note": "2026-10-28"
+    },
+    {
+      "rule": "cancel fromDate DD-MM-YYYY HH:mm:ss",
+      "status": "PASS",
+      "note": "13-10-2026 00:00:00"
+    },
+    {
+      "rule": "required saleSummary fields present",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "roomDetails title/name/mealType/roomType",
+      "status": "PASS",
+      "note": "No Meal"
+    },
+    {
+      "rule": "top-level bookingId/status/orderId not in PDF envelope",
+      "status": "GAP",
+      "note": "additive"
+    },
+    {
+      "rule": "data.reason present (not in confirmed example)",
+      "status": "GAP",
+      "note": "Successful"
+    },
+    {
+      "rule": "saleSummary.taxBreakup not in §4.6",
+      "status": "GAP",
+      "note": "{\"gst\":0,\"otherTaxes\":12.5}"
+    },
+    {
+      "rule": "checkInTime/checkOutTime null (doc: display strings)",
+      "status": "NOTE",
+      "note": "null/null"
+    },
+    {
+      "rule": "amenities[].value null allowed? doc says URL string",
+      "status": "NOTE",
+      "note": "some icon URLs null"
+    }
+  ],
+  "verdict": "Mostly MATCH — no hard schema BUGs; additive fields + null check-in times / amenity icons"
+}

@@ -1,0 +1,328 @@
+{
+  "at": "2026-10-13T13:00:34.853Z",
+  "suite": "flight-cancel-lifecycle-staging",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "booking": {
+    "bookingReference": "BR1791895647607777",
+    "pnr": "FVRVRV",
+    "eticket": "BX13HJ00491-1",
+    "route": "DEL-BOM",
+    "flight": "6E 46",
+    "depart": "2026-11-12T15:00",
+    "arrive": "2026-11-12T16:50",
+    "airline": "IndiGo (6E)",
+    "journeyType": "ONE_WAY",
+    "passengers": "1 ADT (Rohan Bhagatzczd / PAX1)",
+    "fareType": "NORMAL (inferred from book)",
+    "onlineCancellation": true,
+    "finalStatus": "Cancelled"
+  },
+  "money": {
+    "totalPaid": 1650,
+    "baseFare": 1200,
+    "taxes": 100,
+    "convenienceFee": 350,
+    "cancellationCharge": 450,
+    "refundToWallet": 1200,
+    "netRetained": 450,
+    "currency": "INR"
+  },
+  "timeline": [
+    {
+      "at": "2026-10-13T12:47:29Z",
+      "event": "wallet debit 1650",
+      "txnId": "5210"
+    },
+    {
+      "at": "2026-10-13T12:49:35Z",
+      "event": "booking.confirmed",
+      "result": "PASS (validated)"
+    },
+    {
+      "at": "2026-10-13T12:53:05Z",
+      "event": "cancel requested (OFFLINE FULL)",
+      "requestId": 838
+    },
+    {
+      "at": "2026-10-13T12:53:15Z",
+      "event": "booking.cancellation_requested",
+      "result": "PASS 21/21",
+      "mode": "OFFLINE",
+      "statusStays": "Confirmed"
+    },
+    {
+      "at": "2026-10-13T12:55:45Z",
+      "event": "wallet credit 1200",
+      "txnId": "5211"
+    },
+    {
+      "at": "2026-10-13T12:56:23Z",
+      "event": "booking.cancelled",
+      "result": "PASS 24/24",
+      "cancelRequestStatus": "Cancellation Successful"
+    }
+  ],
+  "webhookValidation": {
+    "confirmed": {
+      "status": "PASS",
+      "notes": [
+        "fare math 1200+100+350=1650",
+        "PNR FVRVRV",
+        "eticket BX13HJ00491-1",
+        "isCancellable true"
+      ]
+    },
+    "cancellation_requested": {
+      "status": "PASS",
+      "counts": {
+        "PASS": 21
+      },
+      "notes": [
+        "mode=OFFLINE — cancel accepted as offline request (not instant vendor cancel). Expect later booking.cancelled or cancellation_failed webhook; booking may stay Confirmed until processed.",
+        "data.reason null — OK if reason not required on request event",
+        "Refund estimate 1200 = base 1200; charge 450 ≈ tax 100 + convenienceFee 350 — consistent with fee+tax forfeited.",
+        "API cancellationRequest[0].status=\"Cancellation Requested\""
+      ]
+    },
+    "cancelled": {
+      "status": "PASS",
+      "counts": {
+        "PASS": 24
+      },
+      "notes": [
+        "cancellationChargeBreakup all 0 but charge=450 — soft GAP",
+        "Lifecycle OK: confirmed → cancellation_requested → cancelled + credit 1200",
+        "Net retained 450; credited 1200 to APP_WALLET"
+      ],
+      "softGap": "cancellationChargeBreakup all 0 while charge=450"
+    }
+  },
+  "apiSnapshotNow": {
+    "httpStatus": 200,
+    "bookingStatus": "Cancelled",
+    "detailStatus": "Cancelled",
+    "pnr": "FVRVRV",
+    "paxLegStatus": "Cancelled",
+    "eticket": "BX13HJ00491-1",
+    "cancellationRequest": [
+      {
+        "status": "Cancelled",
+        "pnr": "FVRVRV",
+        "estimatedCancellationCharge": 450,
+        "estimatedRefund": 1200,
+        "createdAt": "2026-10-13T12:53:05Z"
+      }
+    ],
+    "salesSummary": {
+      "basePrice": 1200,
+      "subTotal": 1200,
+      "tax": 100,
+      "convenienceFee": 350,
+      "totalAmount": 1650,
+      "totalDiscount": 0,
+      "currency": "INR",
+      "campaignId": null
+    },
+    "contactDetails": {
+      "email": "qa@travelvip.ai",
+      "countryCode": "+91",
+      "mobile": "9921862715"
+    },
+    "onlineCancellation": true
+  },
+  "payloads": {
+    "cancelledWebhookFull": {
+      "version": 1,
+      "event": "booking.cancelled",
+      "timestamp": "2026-10-13T12:56:23Z",
+      "type": "flight",
+      "data": {
+        "status": "Cancelled",
+        "reason": null,
+        "bookingReference": "BR1791895647607777",
+        "cancellationRequest": {
+          "id": 838,
+          "status": "Cancellation Successful",
+          "mode": "OFFLINE",
+          "scope": {
+            "type": "FULL",
+            "legIds": [
+              1575
+            ],
+            "paxIds": [
+              "PAX1"
+            ]
+          },
+          "estimatedCancellationCharge": 450,
+          "estimatedRefund": 1200,
+          "ssrAmount": 0,
+          "createdAt": "2026-10-13T12:53:05Z",
+          "pnr": "FVRVRV"
+        },
+        "transaction": [
+          {
+            "id": "5210",
+            "amount": 1650,
+            "currency": "INR",
+            "paymentMethod": "wallet",
+            "createdAt": "2026-10-13T12:47:29Z",
+            "completedAt": "2026-10-13T12:47:29Z",
+            "type": "debit",
+            "status": "success"
+          },
+          {
+            "id": "5211",
+            "amount": 1200,
+            "currency": "INR",
+            "paymentMethod": "wallet",
+            "createdAt": "2026-10-13T12:55:45Z",
+            "completedAt": "2026-10-13T12:55:45Z",
+            "type": "credit",
+            "status": "success"
+          }
+        ],
+        "contactDetails": {
+          "email": "qa@travelvip.ai",
+          "countryCode": "+91",
+          "mobile": "9921862715"
+        },
+        "bookingDetails": {
+          "serviceDetails": {
+            "journeyType": "ONE_WAY",
+            "pnrCount": 1,
+            "pnrGroups": [
+              {
+                "pnr": "FVRVRV",
+                "legIds": [
+                  1575
+                ]
+              }
+            ],
+            "itinerary": [
+              {
+                "legId": 1575,
+                "sequenceNumber": 1,
+                "direction": "ONWARD",
+                "sharesPnrWith": [],
+                "totalStops": 0,
+                "totalDurationMinutes": 110,
+                "refundable": false,
+                "refundText": "Non-refundable",
+                "isCancellable": true,
+                "cancellationPolicy": null,
+                "pnr": "FVRVRV",
+                "segments": [
+                  {
+                    "segmentId": "6E46-DEL-BOM-2026-11-12T15:00-2026-11-12T16:50",
+                    "flightNumber": "6E 46",
+                    "airline": {
+                      "code": "6E",
+                      "name": "IndiGo Airlines",
+                      "logo": "https://img.travelx.ai/cstx_images/airline/logo/6e_fv.png"
+                    },
+                    "cabinClass": "ECONOMY",
+                    "aircraft": null,
+                    "durationMinutes": 110,
+                    "stops": 0,
+                    "vendorFlightId": "6E46-DEL-BOM-2026-11-12T15:00-2026-11-12T16:50",
+                    "baggage": {
+                      "checkIn": "0 KG",
+                      "cabin": "7 Kg"
+                    },
+                    "departure": {
+                      "time": "2026-11-12T15:00",
+                      "terminal": "1",
+                      "airportCode": "DEL",
+                      "airportName": "Indira Gandhi International Airport",
+                      "city": "New Delhi",
+                      "country": "India"
+                    },
+                    "arrival": {
+                      "time": "2026-11-12T16:50",
+                      "terminal": "1",
+                      "airportCode": "BOM",
+                      "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+                      "city": "Mumbai",
+                      "country": "India"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "saleSummary": {
+            "baseFare": 1200,
+            "convenienceFee": 350,
+            "taxes": 100,
+            "baggageAmount": 0,
+            "mealAmount": 0,
+            "seatAmount": 0,
+            "grossAmount": 1650,
+            "discountAmount": 0,
+            "totalAmount": 1650,
+            "currency": "INR",
+            "appliedOffer": null,
+            "refund": {
+              "id": 1557,
+              "cancellationRequestId": 838,
+              "amount": 1200,
+              "destinationType": "APP_WALLET",
+              "cancellationCharge": 450,
+              "cancellationChargeBreakup": {
+                "airlineCancellationFee": 0,
+                "convenienceFee": 0,
+                "serviceFee": 0,
+                "flexicancelFee": 0
+              },
+              "scope": {
+                "type": "FULL",
+                "legIds": [
+                  1575
+                ],
+                "paxIds": [
+                  "PAX1"
+                ]
+              }
+            }
+          },
+          "cancellation": {
+            "isCancellable": true,
+            "cancellationPolicy": null
+          },
+          "passengers": [
+            {
+              "paxId": "PAX1",
+              "paxType": "ADULT",
+              "profile": {
+                "title": "Mr",
+                "firstName": "Rohan",
+                "lastName": "Bhagatzczd",
+                "dob": "2001-05-29"
+              },
+              "passport": {
+                "number": null,
+                "expiry": null,
+                "issuedDate": null,
+                "issuedCountryCode": null
+              },
+              "legs": [
+                {
+                  "legId": 1575,
+                  "pnr": "FVRVRV",
+                  "eticket": "BX13HJ00491-1",
+                  "status": "Cancelled"
+                }
+              ],
+              "addons": {
+                "baggage": [],
+                "meal": [],
+                "seat": []
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "next": "Ready for next booking (reschedule or new cancel case)."
+}

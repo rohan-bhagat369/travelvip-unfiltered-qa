@@ -1,0 +1,339 @@
+{
+  "at": "2026-10-26T07:47:03.427Z",
+  "baseUrl": "https://api-staging.travelvip.ai",
+  "counts": {
+    "PASS": 23,
+    "BUG": 4,
+    "NOT TESTED": 2
+  },
+  "rows": [
+    {
+      "id": "C-LT-ARR-SOON",
+      "rule": "AIRPORT ARRIVAL +5m → too soon (need 20m)",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Invalid pickupDatetime: 2026-10-26T07:50:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-10-26T08:05:49Z (now 202",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid pickupDatetime: 2026-10-26T07:50:49Z is too soon. AIRPORT ARRIVAL needs 20 minutes notice; earliest is 2026-10-26T08:05:49Z (now 2026-10-26T07:45:49Z).\",\"details\":null,\"timestamp\":\"2026-10-26T07:45:49Z\",\"request_id\":\"req-1793"
+    },
+    {
+      "id": "C-LT-ARR-OK",
+      "rule": "AIRPORT ARRIVAL +25m → accept",
+      "status": "BUG",
+      "note": "HTTP 502",
+      "http": 502,
+      "code": "SEARCH_FAILED",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"SEARCH_FAILED\",\"message\":\"Cab provider could not process this search.\",\"details\":null,\"timestamp\":\"2026-10-26T07:45:49Z\",\"request_id\":\"req-1793000749344\"},\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "C-LT-DEP-SOON",
+      "rule": "AIRPORT DEPARTURE +30m → too soon (need 2h)",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Invalid pickupDatetime: 2026-10-26T08:15:49Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-10-26T09:45:49Z (now 2026",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid pickupDatetime: 2026-10-26T08:15:49Z is too soon. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-10-26T09:45:49Z (now 2026-10-26T07:45:49Z).\",\"details\":null,\"timestamp\":\"2026-10-26T07:45:49Z\",\"request_id\":\"req-17930"
+    },
+    {
+      "id": "C-LT-DEP-OK",
+      "rule": "AIRPORT DEPARTURE +130m → accept",
+      "status": "BUG",
+      "note": "HTTP 502",
+      "http": 502,
+      "code": "SEARCH_FAILED",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"SEARCH_FAILED\",\"message\":\"Cab provider could not process this search.\",\"details\":null,\"timestamp\":\"2026-10-26T07:45:49Z\",\"request_id\":\"req-1793000749797\"},\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "C-LT-REN-SOON",
+      "rule": "RENTAL +30m → too soon",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Invalid pickupDatetime: 2026-10-26T08:15:49Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-10-26T09:45:49Z (now 2026-10-26T07:4",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid pickupDatetime: 2026-10-26T08:15:49Z is too soon. RENTAL needs 2 hours notice; earliest is 2026-10-26T09:45:49Z (now 2026-10-26T07:45:49Z).\",\"details\":null,\"timestamp\":\"2026-10-26T07:45:49Z\",\"request_id\":\"req-1793000749861\"},"
+    },
+    {
+      "id": "C-LT-REN-OK",
+      "rule": "RENTAL +130m → accept",
+      "status": "BUG",
+      "note": "HTTP 502",
+      "http": 502,
+      "code": "SEARCH_FAILED",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"SEARCH_FAILED\",\"message\":\"Cab provider could not process this search.\",\"details\":null,\"timestamp\":\"2026-10-26T07:45:49Z\",\"request_id\":\"req-1793000749894\"},\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "C-LT-OUT-SOON",
+      "rule": "OUTSTATION +30m → too soon",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Invalid pickupDatetime: 2026-10-26T08:15:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-10-26T09:45:50Z (now 2026-10-26T",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid pickupDatetime: 2026-10-26T08:15:50Z is too soon. OUTSTATION needs 2 hours notice; earliest is 2026-10-26T09:45:50Z (now 2026-10-26T07:45:50Z).\",\"details\":null,\"timestamp\":\"2026-10-26T07:45:50Z\",\"request_id\":\"req-179300075004"
+    },
+    {
+      "id": "C-LT-OUT-OK",
+      "rule": "OUTSTATION +130m → accept",
+      "status": "BUG",
+      "note": "HTTP 502",
+      "http": 502,
+      "code": "SEARCH_FAILED",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"SEARCH_FAILED\",\"message\":\"Cab provider could not process this search.\",\"details\":null,\"timestamp\":\"2026-10-26T07:45:50Z\",\"request_id\":\"req-1793000750078\"},\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "C-LT-PAST",
+      "rule": "pickup in past → reject",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Invalid pickupDatetime: 2026-10-26T07:35:50Z is in the past. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-10-26T09:45:50Z (now 2",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid pickupDatetime: 2026-10-26T07:35:50Z is in the past. AIRPORT DEPARTURE needs 2 hours notice; earliest is 2026-10-26T09:45:50Z (now 2026-10-26T07:45:50Z).\",\"details\":null,\"timestamp\":\"2026-10-26T07:45:50Z\",\"request_id\":\"req-17"
+    },
+    {
+      "id": "C-DIST-PAST",
+      "rule": "cabs/distance past pickup still accepted",
+      "status": "PASS",
+      "note": "HTTP 200",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"distanceKm\":12.38,\"durationMin\":27,\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "H-PRE",
+      "rule": "hotel prebook baseline for phone negatives",
+      "status": "PASS",
+      "note": "hotel=39644515",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"page\":0,\"size\":20,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39644515\",\"name\":\"Sheraton Grand Pune Bund Garden Hotel\",\"address\":\"Raja Bahadur Mill Road\",\"city\":\"Pune\",\"country\":\"India\",\"countryCode\":\"IN\",\"distance\":null,\"tripType\":\"domestic\",\"image\":"
+    },
+    {
+      "id": "PH-H-999",
+      "rule": "hotel finalize countryCode 999 → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'rooms[0].guests' is required",
+        "'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest",
+        "'contact.countryCode' \"999\" must include the leading \"+\", for example +91."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests' is required\",\"'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest\",\"'contact.countryCode' \\\"999\\\" must include the leading \\\"+\\\", for example +91.\"],\"timest"
+    },
+    {
+      "id": "PH-H-PLUS999",
+      "rule": "hotel finalize countryCode +999 → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'rooms[0].guests' is required",
+        "'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest",
+        "'contact.countryCode' \"+999\" is not a recognised country calling code."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests' is required\",\"'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest\",\"'contact.countryCode' \\\"+999\\\" is not a recognised country calling code.\"],\"timestamp\":\""
+    },
+    {
+      "id": "PH-H-SHORT",
+      "rule": "hotel finalize mobile too short → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'rooms[0].guests' is required",
+        "'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest",
+        "'contact.mobile' \"12345\" is not a valid mobile number."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests' is required\",\"'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest\",\"'contact.mobile' \\\"12345\\\" is not a valid mobile number.\"],\"timestamp\":\"2026-10-26T07:46"
+    },
+    {
+      "id": "PH-H-LONG",
+      "rule": "hotel finalize mobile too long → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'rooms[0].guests' is required",
+        "'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest",
+        "'contact.mobile' \"987654321012345678\" is not a valid mobile number."
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests' is required\",\"'rooms[].guests[].isLead' is required: mark exactly one guest as the lead guest\",\"'contact.mobile' \\\"987654321012345678\\\" is not a valid mobile number.\"],\"timestamp\":\"202"
+    },
+    {
+      "id": "F-PRICE",
+      "rule": "flight pricing baseline for phone negatives",
+      "status": "PASS",
+      "note": "priceId ok",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"priceId\":\"price_c98555da8829402a92d01707fe0d02d5\",\"timingReference\":\"UABo3dycjLOmJAEzzITXqJz4B4YLdej5jdunuvhTYLbJMABcUDCKEcniV+AgwFUn7POLM9kLCmthe2I4X73IBzWjwflCEuG6FnImts065LITUE670DExQBD1YKNaF5DMu/RKZA9lqmxL1O9lChTeGuRvfJm/aDWKBC7pg9pRLETU036PKF4Wt7/fPJp04vnLZJX+ovOTqCgSTyKzt"
+    },
+    {
+      "id": "PH-F-999",
+      "rule": "flight issue-ticket countryCode 999 → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.countryCode' \"999\" must include the leading \"+\", for example +91.",
+        "'data.passengers[0].paxId' is required",
+        "'data.passengers[0].type' is required",
+        "'data.passengers[0].isLead' is required",
+        "'data.passengers[0].profile' is required",
+        "'data.passengers[0].city' is required",
+        "exactly one passenger must have 'isLead' set to true"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.countryCode' \\\"999\\\" must include the leading \\\"+\\\", for example +91.\",\"'data.passengers[0].paxId' is required\",\"'data.passengers[0].type' is required\",\"'data.passengers[0].isLead' is requ"
+    },
+    {
+      "id": "PH-F-PLUS999",
+      "rule": "flight issue-ticket countryCode +999 → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.countryCode' \"+999\" is not a recognised country calling code.",
+        "'data.passengers[0].paxId' is required",
+        "'data.passengers[0].type' is required",
+        "'data.passengers[0].isLead' is required",
+        "'data.passengers[0].profile' is required",
+        "'data.passengers[0].city' is required",
+        "exactly one passenger must have 'isLead' set to true"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.countryCode' \\\"+999\\\" is not a recognised country calling code.\",\"'data.passengers[0].paxId' is required\",\"'data.passengers[0].type' is required\",\"'data.passengers[0].isLead' is required\","
+    },
+    {
+      "id": "PH-F-SHORT",
+      "rule": "flight issue-ticket mobile too short → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.contact.mobile' \"12\" is not a valid mobile number.",
+        "'data.passengers[0].paxId' is required",
+        "'data.passengers[0].type' is required",
+        "'data.passengers[0].isLead' is required",
+        "'data.passengers[0].profile' is required",
+        "'data.passengers[0].city' is required",
+        "exactly one passenger must have 'isLead' set to true"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.contact.mobile' \\\"12\\\" is not a valid mobile number.\",\"'data.passengers[0].paxId' is required\",\"'data.passengers[0].type' is required\",\"'data.passengers[0].isLead' is required\",\"'data.passengers[0"
+    },
+    {
+      "id": "C-FARE",
+      "rule": "cab fare baseline for phone/gender negatives",
+      "status": "PASS",
+      "note": "priceId ok",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"bookingReference\":\"DV1RS7CVBrQwfWTmn/SXlYANXNGdesXXyEURZ6IPUhzzSzdYriJWJ/EB8gz3XeAid4mE44h4kuPfC/NJL+x3UmkQqUhfNTBu3hvBQXWsuLI/UhCVQlX53NRnMhESDhpC+M/R7WBUYdoEpbm/3WuYOzsNvOIucglMqS4gnydMpBn5GtsFjCZz8tOT1eUiZAeIvOuwP8V1HHumaVzgw3jSpxeIdzUwEBhXOz3JpkZIZxqwaBM0LxA57esb9Xjaahx7cw9"
+    },
+    {
+      "id": "PH-C-999",
+      "rule": "cab finalize countryCode 999 → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Passenger country code \"999\" must include the leading \"+\", for example +91.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Passenger country code \\\"999\\\" must include the leading \\\"+\\\", for example +91.\",\"details\":null,\"timestamp\":\"2026-10-26T07:47:00Z\",\"request_id\":\"req-1793000820129\"},\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "PH-C-PLUS999",
+      "rule": "cab finalize countryCode +999 → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Passenger country code \"+999\" is not a recognised country calling code.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Passenger country code \\\"+999\\\" is not a recognised country calling code.\",\"details\":null,\"timestamp\":\"2026-10-26T07:47:00Z\",\"request_id\":\"req-1793000820209\"},\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "PH-C-SHORT",
+      "rule": "cab finalize mobile too short → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Passenger mobile number \"123\" is not a valid mobile number.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Passenger mobile number \\\"123\\\" is not a valid mobile number.\",\"details\":null,\"timestamp\":\"2026-10-26T07:47:00Z\",\"request_id\":\"req-1793000820847\"},\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "C-PAX-GENDER",
+      "rule": "cab finalize gender other → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Invalid passenger gender \"other\". Allowed values: male, female.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid passenger gender \\\"other\\\". Allowed values: male, female.\",\"details\":null,\"timestamp\":\"2026-10-26T07:47:02Z\",\"request_id\":\"req-1793000820957\"},\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "C-PAX-TITLE",
+      "rule": "cab finalize title Mr, → 400",
+      "status": "PASS",
+      "note": "HTTP 400 VALIDATION_ERROR Invalid passenger title \"Mr,\" for ADT. Allowed values: Mr, Mrs, Miss, Ms.",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid passenger title \\\"Mr,\\\" for ADT. Allowed values: Mr, Mrs, Miss, Ms.\",\"details\":null,\"timestamp\":\"2026-10-26T07:47:02Z\",\"request_id\":\"req-1793000822381\"},\"_meta\":{\"correlation_id\":\"337e3b88-7c07-4826-983e-03b3a2570723\"}}"
+    },
+    {
+      "id": "W-ACT-100",
+      "rule": "GET wallet/activity (partner token) page size ≤100",
+      "status": "PASS",
+      "note": "HTTP 200 n=15 keys=summary,filters,pagination,activity",
+      "http": 200,
+      "code": null,
+      "details": [],
+      "snippet": "{\"summary\":{\"currency\":\"INR\",\"cashBalance\":2055418.54,\"reserved\":0,\"creditAvailable\":148.96,\"available\":2055567.5},\"filters\":{\"type\":null,\"from\":null,\"to\":null},\"pagination\":{\"page\":1,\"perPage\":15,\"total\":5030,\"totalPages\":336},\"activity\":[{\"id\":\"eb906715-738c-4d88-aed4-8b90d6dbd"
+    },
+    {
+      "id": "W-ACT-101",
+      "rule": "GET wallet/activity limit=101 → 400",
+      "status": "PASS",
+      "note": "code=VALIDATION_ERROR Invalid request parameters",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "perpage must not exceed 100"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid request parameters\",\"details\":\"perpage must not exceed 100\",\"timestamp\":\"2026-10-26T07:47:03Z\",\"request_id\":\"req-1793000822866\",\"correlation_id\":\"f7d9eabf-6224-47f6-8631-ea4ac77290bf\"}}"
+    },
+    {
+      "id": "W-TOP",
+      "rule": "POST v1/internal/wallet/topup",
+      "status": "NOT TESTED",
+      "note": "IP allowlist 127.0.0.1 only — NOT TESTED from laptop",
+      "http": null,
+      "code": null
+    },
+    {
+      "id": "P-EMP",
+      "rule": "partner emp JWT gate",
+      "status": "NOT TESTED",
+      "note": "emp partner secret not in .env — NOT TESTED",
+      "http": null,
+      "code": null
+    }
+  ]
+}

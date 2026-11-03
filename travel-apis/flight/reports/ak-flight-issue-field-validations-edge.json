@@ -1,0 +1,665 @@
+{
+  "at": "2026-10-12T15:03:44.470Z",
+  "baseUrl": "https://ak-api.travelvip.ai",
+  "issuePath": "/api/v2/flights/booking/issue-ticket",
+  "suite": "edge-gap",
+  "searchMeta": {
+    "route": "DEL-BOM",
+    "departDate": "2026-11-12",
+    "searchId": "srch_22aca7fb530f4e7e9e4d66b33dfce130",
+    "priceId": "price_bc115a667cb94356bb837cba2149f131"
+  },
+  "counts": {
+    "PASS": 35,
+    "BUG": 4
+  },
+  "rows": [
+    {
+      "id": "BR-whitespace",
+      "kind": "negative",
+      "field": "bookingReference",
+      "rule": "bookingReference=\"   \" → validation error",
+      "mutation": "whitespace",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is required\"],\"timestamp\":\"2026-10-12T15:03:40Z\",\"request_id\":\"req-1791817420385\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BR-html",
+      "kind": "negative",
+      "field": "bookingReference",
+      "rule": "bookingReference=\"<script>alert(1)</script>\" → validation error",
+      "mutation": "html",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingReference' is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingReference' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is invalid\"],\"timestamp\":\"2026-10-12T15:03:40Z\",\"request_id\":\"req-1791817420483\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BR-num-zero",
+      "kind": "negative",
+      "field": "bookingReference",
+      "rule": "bookingReference=0 → validation error",
+      "mutation": "num-zero",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingReference' is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingReference' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is invalid\"],\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817420762\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BR-bool-true",
+      "kind": "negative",
+      "field": "bookingReference",
+      "rule": "bookingReference=true → validation error",
+      "mutation": "bool-true",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingReference' is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingReference' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is invalid\"],\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817420869\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BR-obj",
+      "kind": "negative",
+      "field": "bookingReference",
+      "rule": "bookingReference={} → validation error",
+      "mutation": "obj",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'bookingReference' is invalid | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingReference' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is invalid\"],\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817420979\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BR-arr",
+      "kind": "negative",
+      "field": "bookingReference",
+      "rule": "bookingReference=[] → validation error",
+      "mutation": "arr",
+      "status": "BUG",
+      "note": "Unexpected HTTP 200 code=VALIDATION_ERROR",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingReference' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is invalid\"],\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817420979\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-empty",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =\"\" → validation error",
+      "mutation": "full-empty",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.meals[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.meals[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.meals[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817421219\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-null",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =null → validation error",
+      "mutation": "full-null",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.meals[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.meals[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.meals[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817421320\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-zero-string",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =\"0\" → validation error",
+      "mutation": "full-zero-string",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.meals.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.meals.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817421424\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-invalid",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =\"INVALID_PRICE_REF_XYZ\" → validation error",
+      "mutation": "full-invalid",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.meals.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.meals.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817421523\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-omit",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference omitted → validation error",
+      "mutation": "full-omit",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.meals[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.meals[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.meals[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817421618\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-whitespace",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =\"   \" → validation error",
+      "mutation": "full-whitespace",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.meals[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.meals[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.meals[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817421723\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-html",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =\"<img src=x onerror=alert(1)>\" → validation error",
+      "mutation": "full-html",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.meals.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.meals.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817421818\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-num-zero",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =0 → validation error",
+      "mutation": "full-num-zero",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.meals.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.meals.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817421910\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-bool",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =true → validation error",
+      "mutation": "full-bool",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.meals.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.meals.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817422018\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-obj",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference ={} → validation error",
+      "mutation": "full-obj",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.meals.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.meals.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817422118\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-arr",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =[] → validation error",
+      "mutation": "full-arr",
+      "status": "BUG",
+      "note": "Unexpected HTTP 200 code=VALIDATION_ERROR",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.meals.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817422118\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-empty",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =\"\" → validation error",
+      "mutation": "full-empty",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.baggage[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.baggage[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.baggage[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817422326\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-null",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =null → validation error",
+      "mutation": "full-null",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.baggage[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.baggage[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.baggage[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817422436\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-zero-string",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =\"0\" → validation error",
+      "mutation": "full-zero-string",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.baggage.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.baggage.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817422549\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-invalid",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =\"INVALID_PRICE_REF_XYZ\" → validation error",
+      "mutation": "full-invalid",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.baggage.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.baggage.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817422673\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-omit",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference omitted → validation error",
+      "mutation": "full-omit",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.baggage[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.baggage[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.baggage[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817422763\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-whitespace",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =\"   \" → validation error",
+      "mutation": "full-whitespace",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.baggage[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.baggage[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.baggage[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817422858\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-html",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =\"<img src=x onerror=alert(1)>\" → validation error",
+      "mutation": "full-html",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.baggage.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.baggage.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817422944\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-num-zero",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =0 → validation error",
+      "mutation": "full-num-zero",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.baggage.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.baggage.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817423035\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-bool",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =true → validation error",
+      "mutation": "full-bool",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.baggage.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.baggage.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817423137\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-obj",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference ={} → validation error",
+      "mutation": "full-obj",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.baggage.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.baggage.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817423221\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-arr",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =[] → validation error",
+      "mutation": "full-arr",
+      "status": "BUG",
+      "note": "Unexpected HTTP 200 code=VALIDATION_ERROR",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.baggage.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817423221\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-empty",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =\"\" → validation error",
+      "mutation": "full-empty",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.seats[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.seats[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.seats[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817423389\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-null",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =null → validation error",
+      "mutation": "full-null",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.seats[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.seats[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.seats[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817423503\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-zero-string",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =\"0\" → validation error",
+      "mutation": "full-zero-string",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.seats.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.seats.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817423602\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-invalid",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =\"INVALID_PRICE_REF_XYZ\" → validation error",
+      "mutation": "full-invalid",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.seats.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.seats.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:44Z\",\"request_id\":\"req-1791817423691\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-omit",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference omitted → validation error",
+      "mutation": "full-omit",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.seats[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.seats[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.seats[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:44Z\",\"request_id\":\"req-1791817423798\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-whitespace",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =\"   \" → validation error",
+      "mutation": "full-whitespace",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR 'data.passengers[0].ssr.seats[0].priceReference' is required | Validation failed",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'data.passengers[0].ssr.seats[0].priceReference' is required"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0].ssr.seats[0].priceReference' is required\"],\"timestamp\":\"2026-10-12T15:03:44Z\",\"request_id\":\"req-1791817423884\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-html",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =\"<img src=x onerror=alert(1)>\" → validation error",
+      "mutation": "full-html",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.seats.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.seats.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:44Z\",\"request_id\":\"req-1791817423973\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-num-zero",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =0 → validation error",
+      "mutation": "full-num-zero",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.seats.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.seats.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:44Z\",\"request_id\":\"req-1791817424068\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-bool",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =true → validation error",
+      "mutation": "full-bool",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.seats.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.seats.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:44Z\",\"request_id\":\"req-1791817424173\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-obj",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference ={} → validation error",
+      "mutation": "full-obj",
+      "status": "PASS",
+      "note": "VALIDATION_ERROR The field is missing or invalid | ssr.seats.priceReference is invalid",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.seats.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:44Z\",\"request_id\":\"req-1791817424275\"},\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-arr",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =[] → validation error",
+      "mutation": "full-arr",
+      "status": "BUG",
+      "note": "Unexpected HTTP 200 code=VALIDATION_ERROR",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.seats.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:44Z\",\"request_id\":\"req-1791817424275\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    }
+  ],
+  "bugs": [
+    {
+      "id": "BR-arr",
+      "kind": "negative",
+      "field": "bookingReference",
+      "rule": "bookingReference=[] → validation error",
+      "mutation": "arr",
+      "status": "BUG",
+      "note": "Unexpected HTTP 200 code=VALIDATION_ERROR",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "'bookingReference' is invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingReference' is invalid\"],\"timestamp\":\"2026-10-12T15:03:41Z\",\"request_id\":\"req-1791817420979\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "MEAL-full-arr",
+      "kind": "negative",
+      "field": "ssr.meals.priceReference",
+      "rule": "full meals item; priceReference =[] → validation error",
+      "mutation": "full-arr",
+      "status": "BUG",
+      "note": "Unexpected HTTP 200 code=VALIDATION_ERROR",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.meals.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:42Z\",\"request_id\":\"req-1791817422118\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "BAG-full-arr",
+      "kind": "negative",
+      "field": "ssr.baggage.priceReference",
+      "rule": "full baggage item; priceReference =[] → validation error",
+      "mutation": "full-arr",
+      "status": "BUG",
+      "note": "Unexpected HTTP 200 code=VALIDATION_ERROR",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.baggage.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:43Z\",\"request_id\":\"req-1791817423221\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    },
+    {
+      "id": "SEAT-full-arr",
+      "kind": "negative",
+      "field": "ssr.seats.priceReference",
+      "rule": "full seats item; priceReference =[] → validation error",
+      "mutation": "full-arr",
+      "status": "BUG",
+      "note": "Unexpected HTTP 200 code=VALIDATION_ERROR",
+      "http": 200,
+      "code": "VALIDATION_ERROR",
+      "details": [
+        "The field is missing or invalid"
+      ],
+      "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"ssr.seats.priceReference is invalid\",\"details\":\"The field is missing or invalid\",\"timestamp\":\"2026-10-12T15:03:44Z\",\"request_id\":\"req-1791817424275\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — returning previously processed response.\",\"_meta\":{\"correlation_id\":\"a42c4b7b-70ba-48f8-8c22-ad7df383df5e\"}}"
+    }
+  ]
+}

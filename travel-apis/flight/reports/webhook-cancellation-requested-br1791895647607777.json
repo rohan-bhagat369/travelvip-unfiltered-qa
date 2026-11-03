@@ -1,0 +1,132 @@
+{
+  "at": "2026-10-13T12:54:57.619Z",
+  "br": "BR1791895647607777",
+  "webhookEvent": "booking.cancellation_requested",
+  "apiStatus": "Confirmed",
+  "apiCancellationRequest": [
+    {
+      "status": "Cancellation Requested",
+      "pnr": "FVRVRV",
+      "estimatedCancellationCharge": null,
+      "estimatedRefund": null,
+      "createdAt": "2026-10-13T12:53:05Z"
+    }
+  ],
+  "apiPaxLegStatus": "Cancellation requested",
+  "counts": {
+    "PASS": 21
+  },
+  "rows": [
+    {
+      "rule": "event = booking.cancellation_requested",
+      "status": "PASS",
+      "note": "booking.cancellation_requested"
+    },
+    {
+      "rule": "type = flight",
+      "status": "PASS",
+      "note": "flight"
+    },
+    {
+      "rule": "version = 1",
+      "status": "PASS",
+      "note": "1"
+    },
+    {
+      "rule": "data.status stays Confirmed (not Cancellation Requested)",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "API booking status Confirmed",
+      "status": "PASS",
+      "note": "Confirmed"
+    },
+    {
+      "rule": "cancellationRequest.status",
+      "status": "PASS",
+      "note": "Cancellation Requested"
+    },
+    {
+      "rule": "mode present",
+      "status": "PASS",
+      "note": "OFFLINE"
+    },
+    {
+      "rule": "scope FULL + PAX1 + leg 1575",
+      "status": "PASS",
+      "note": "{\"type\":\"FULL\",\"legIds\":[1575],\"paxIds\":[\"PAX1\"]}"
+    },
+    {
+      "rule": "pnr matches confirmed book",
+      "status": "PASS",
+      "note": "FVRVRV"
+    },
+    {
+      "rule": "charge + refund math vs paid",
+      "status": "PASS",
+      "note": "450+1200=1650 (paid 1650)"
+    },
+    {
+      "rule": "ssrAmount 0 (no ancillaries)",
+      "status": "PASS",
+      "note": "0"
+    },
+    {
+      "rule": "pax leg status Cancellation requested",
+      "status": "PASS",
+      "note": "Cancellation requested"
+    },
+    {
+      "rule": "original debit still present (no refund txn yet)",
+      "status": "PASS",
+      "note": "txns=1"
+    },
+    {
+      "rule": "no credit/refund transaction yet (requested ≠ cancelled)",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "isCancellable still true on itinerary",
+      "status": "PASS",
+      "note": "true"
+    },
+    {
+      "rule": "no Riya",
+      "status": "PASS",
+      "note": "ok"
+    },
+    {
+      "rule": "API has cancellationRequest",
+      "status": "PASS",
+      "note": "count=1"
+    },
+    {
+      "rule": "API pax leg Cancellation requested",
+      "status": "PASS",
+      "note": "Cancellation requested"
+    },
+    {
+      "rule": "API PNR still FVRVRV",
+      "status": "PASS",
+      "note": "FVRVRV"
+    },
+    {
+      "rule": "API total still 1650",
+      "status": "PASS",
+      "note": "1650"
+    },
+    {
+      "rule": "API onlineCancellation true (cancel was allowed)",
+      "status": "PASS",
+      "note": "true"
+    }
+  ],
+  "notes": [
+    "mode=OFFLINE — cancel accepted as offline request (not instant vendor cancel). Expect later booking.cancelled or cancellation_failed webhook; booking may stay Confirmed until processed.",
+    "data.reason null — OK if reason not required on request event",
+    "Refund estimate 1200 = base 1200; charge 450 ≈ tax 100 + convenienceFee 350 — consistent with fee+tax forfeited.",
+    "API cancellationRequest[0].status=\"Cancellation Requested\""
+  ]
+}
