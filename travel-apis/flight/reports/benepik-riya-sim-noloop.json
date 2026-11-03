@@ -1,0 +1,2386 @@
+{
+  "at": "2026-11-03T11:21:24.581Z",
+  "base": "https://dev-benepik-api.travelvip.ai",
+  "partner": "vgm",
+  "note": "Riya simulator on Benepik · staging creds · NO_LOOP",
+  "results": [
+    {
+      "id": "1a",
+      "how": "DEL→PNQ search+price+fareRules+seatmap (once)",
+      "status": "PASS",
+      "r": {
+        "label": "1a_OW_DEL_PNQ_search_price_rules_seat",
+        "ok": true,
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "DEL",
+                  "destination": "PNQ",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":1341,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"Ty0nOFMBMp2CQ1G7y+ySD4UiZPZS32BhIAKwqHTATKd6oSucS96bIFSb7DN1y62n1go4sjO902+AZ0Go/29L6rF2bMk9JHhxvvNhB9nlNvRpTU8Yd/pnld7xy7SZKE8MvBTUmxF5wgh4TrY3f/qBCaaUSXt8/0PauDCjynb6Te5BEh0qUczcg/lU+QoyYIlbMogXevReMrhOhRTqH9qyfKasG8t4uWSoEAZZ6+5ILzdZ2bwi0nEp2zwvr3bnjexIg/SF3/RoqqYyyrVN"
+          },
+          {
+            "api": "POST /v1/flights/fareRules",
+            "req": {
+              "searchIds": [
+                "srch_0f2e906228914f9bb598756d68bec4a8"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "ok": true,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"timingReference\":\"k++C69BhSPeqUtM2rhITzpJ74DjLaHpcGcAg6cqvGIIhmswV/fVdq15iG3L5KtOP82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63XNJEYddwv451RqOUOCQZziRJW5b/6wmRrxSoSur9VOl6jjsIJD1qxicTj3UE9FfFHrf2Jjgt3GWjrs9zugvJg2osn74LGQ2izOks+QbsPqbjJkO0JmOsNbkEGt7z/pqTh\",\"selection\":"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_0f2e906228914f9bb598756d68bec4a8"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_ad7298cf40ce4673a185d874e0b77c64",
+            "bookingContext": true,
+            "total": 1825,
+            "err": null,
+            "sample": "{\"priceId\":\"price_ad7298cf40ce4673a185d874e0b77c64\",\"timingReference\":\"Dg3amz7YjyY6U0vTmdHPNUT9fk8r1HZLA1tXEec5rRqJDMzcWAb5lf97BGL0B9owQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZLVIcjdonebRHLitZDFf0kEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY9xkrxK6cOYWptb6BVf4BUk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/szwgeCPpYhiObIyuIm9ru49eBBWPEFl6amO4HZdgC5h3HFqDnacGMCAZi+mO84Aqp1yBab6qTkYWSHSRfozk1zagDLMt/R3FajiMoyJ1YbURx"
+          },
+          {
+            "api": "POST /v1/flights/seatmap",
+            "req": {
+              "requestReference": "(bookingContext)",
+              "passengers": 1
+            },
+            "http": 400,
+            "ok": true,
+            "err": {
+              "code": "VENDOR_UNAVAILABLE",
+              "message": "Flight provider is temporarily unavailable.",
+              "details": null,
+              "timestamp": "2026-11-03T11:19:25Z",
+              "request_id": "req-1793704765332"
+            },
+            "sample": "{\"error\":{\"code\":\"VENDOR_UNAVAILABLE\",\"message\":\"Flight provider is temporarily unavailable.\",\"details\":null,\"timestamp\":\"2026-11-03T11:19:25Z\",\"request_id\":\"req-1793704765332\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          }
+        ],
+        "searchIds": [
+          "srch_0f2e906228914f9bb598756d68bec4a8"
+        ],
+        "pricing": {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_0f2e906228914f9bb598756d68bec4a8"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_ad7298cf40ce4673a185d874e0b77c64",
+          "bookingContext": true,
+          "total": 1825,
+          "err": null,
+          "sample": "{\"priceId\":\"price_ad7298cf40ce4673a185d874e0b77c64\",\"timingReference\":\"Dg3amz7YjyY6U0vTmdHPNUT9fk8r1HZLA1tXEec5rRqJDMzcWAb5lf97BGL0B9owQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZLVIcjdonebRHLitZDFf0kEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY9xkrxK6cOYWptb6BVf4BUk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/szwgeCPpYhiObIyuIm9ru49eBBWPEFl6amO4HZdgC5h3HFqDnacGMCAZi+mO84Aqp1yBab6qTkYWSHSRfozk1zagDLMt/R3FajiMoyJ1YbURx"
+        }
+      },
+      "at": "2026-11-03T11:19:25.458Z"
+    },
+    {
+      "id": "1b",
+      "how": "PNQ→DEL search+pricing instantly",
+      "status": "PASS",
+      "r": {
+        "label": "1b_OW_PNQ_DEL_search_price",
+        "ok": true,
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":1399,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"g1OseYwk2/kQ3kC8W1psn2vb7Bpbvp7gHhBmk3Ug7tXVhxe2EL/FHfBmWrNt7KrDmzzjrafz2vEuKlfbIka3vme13pzy+k4HJEQYJK6J36CI6O27BnhnSt8ewR7IbaaNRJkKWnTMy36L1N7EVG0GFj+tFaMW1DFILOy1GPb2gjFWqfKo2T2T+TDkopPtk61aw426Y8y/Kqvez0wCThkMTYgmhL8kPJdpPJRcAgHtq8QEtRrPxsXnU4Lta93C++41GONkovNHxtQHM4P0"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_a2eaf84235324040b5f10c57e6b58b96"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_b85a1e0e1fac4343b1aa386f53dad420",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_b85a1e0e1fac4343b1aa386f53dad420\",\"timingReference\":\"pjQOAujT3wWAnyNAZsB4uhlI9WJ4jXMOlJmceprCY08TTSKHwdZDHTwDTL2TqhYJQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/bAn3MA+1dN7RFAjDempQEI9eBBWPEFl6amO4HZdgC5h3HFqDnacGMCAZi+mO84Aqp1yBab6qTkYWSHSRfozk1zagDLMt/R3FajiMoyJ1YbURx"
+          }
+        ],
+        "searchIds": [
+          "srch_a2eaf84235324040b5f10c57e6b58b96"
+        ],
+        "pricing": {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_a2eaf84235324040b5f10c57e6b58b96"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_b85a1e0e1fac4343b1aa386f53dad420",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_b85a1e0e1fac4343b1aa386f53dad420\",\"timingReference\":\"pjQOAujT3wWAnyNAZsB4uhlI9WJ4jXMOlJmceprCY08TTSKHwdZDHTwDTL2TqhYJQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/bAn3MA+1dN7RFAjDempQEI9eBBWPEFl6amO4HZdgC5h3HFqDnacGMCAZi+mO84Aqp1yBab6qTkYWSHSRfozk1zagDLMt/R3FajiMoyJ1YbURx"
+        }
+      },
+      "at": "2026-11-03T11:19:26.343Z"
+    },
+    {
+      "id": "1c",
+      "how": "RT PNQ↔DEL pair prices",
+      "status": "PASS",
+      "r": {
+        "label": "1c_RT_PNQ_DEL_price",
+        "ok": true,
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                },
+                {
+                  "origin": "DEL",
+                  "destination": "PNQ",
+                  "date": "2026-12-05"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ROUND_TRIP"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":1296,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"EG4ak0U3gxsaS8mrrPvE99lQpxn1V9uB4clmbOR38bQarQFYF4+utx+nAblln14iuiXl79lrMgZNxiYSbODLAKbHH0P9MZNOImmQpFk55NYgy8VvV8YdmOpuws9+B1SONlclep7r97kkJz3dPzaJKtopmDRDjfBkqbLkQ50DK7oAzttFAet4XVTMOVVOGLFQGnVG6C+nT953BXlimgf73fAgbQSPNgztejbf5VRhLtvUqtCqiEvOvBOgLKyOb46bn0YqN0prB+R+u"
+          },
+          {
+            "api": "POST /v1/flights/search (return select)",
+            "req": {
+              "selectedSearchIds": [
+                "srch_b0fce3f32ecc43aeab6a40527eec7e95"
+              ]
+            },
+            "http": 200,
+            "returnOpts": 1,
+            "err": null
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_b0fce3f32ecc43aeab6a40527eec7e95",
+                "srch_dc1dd5118d5a40f5ab4665cd77258ed9"
+              ],
+              "journeyType": "ROUND_TRIP"
+            },
+            "http": 200,
+            "priceId": "price_608f3884abae462c9a484b5f23f59714",
+            "bookingContext": true,
+            "total": 10305,
+            "err": null,
+            "sample": "{\"priceId\":\"price_608f3884abae462c9a484b5f23f59714\",\"timingReference\":\"02oEsxCZseULC2e8+j5G+0T9fk8r1HZLA1tXEec5rRo9jF+b+R7Ar0CQaK7+1s0EQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZGLQ5V0MPdjy4YjUsE3EDYkXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY9xkrxK6cOYWptb6BVf4BUk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/wF7b+1ruHY7AtZ7IgaIY9aKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          }
+        ],
+        "searchIds": [
+          "srch_b0fce3f32ecc43aeab6a40527eec7e95",
+          "srch_dc1dd5118d5a40f5ab4665cd77258ed9"
+        ],
+        "pricing": {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_b0fce3f32ecc43aeab6a40527eec7e95",
+              "srch_dc1dd5118d5a40f5ab4665cd77258ed9"
+            ],
+            "journeyType": "ROUND_TRIP"
+          },
+          "http": 200,
+          "priceId": "price_608f3884abae462c9a484b5f23f59714",
+          "bookingContext": true,
+          "total": 10305,
+          "err": null,
+          "sample": "{\"priceId\":\"price_608f3884abae462c9a484b5f23f59714\",\"timingReference\":\"02oEsxCZseULC2e8+j5G+0T9fk8r1HZLA1tXEec5rRo9jF+b+R7Ar0CQaK7+1s0EQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZGLQ5V0MPdjy4YjUsE3EDYkXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY9xkrxK6cOYWptb6BVf4BUk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/wF7b+1ruHY7AtZ7IgaIY9aKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        }
+      },
+      "at": "2026-11-03T11:19:27.131Z"
+    },
+    {
+      "id": "1d",
+      "how": "BOM→DEL expect [SIM-NO-RECORDING]",
+      "status": "FAIL",
+      "http": 400,
+      "polls": 1,
+      "err": {
+        "code": "VENDOR_ERROR",
+        "message": "Search failed.",
+        "details": null,
+        "timestamp": "2026-11-03T11:19:27Z",
+        "request_id": "req-1793704767131"
+      },
+      "sample": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Search failed.\",\"details\":null,\"timestamp\":\"2026-11-03T11:19:27Z\",\"request_id\":\"req-1793704767131\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}",
+      "at": "2026-11-03T11:19:27.496Z"
+    },
+    {
+      "id": "2a",
+      "how": "fareType CORPORATE PNQ-DEL shows flights + prices",
+      "status": "PASS",
+      "hasCorpHint": true,
+      "r": {
+        "label": "2a_CORPORATE_PNQ_DEL_search",
+        "ok": true,
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "CORPORATE",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"YqE0ia9pJRl3O3NCCj27lPsLijqO7XmhylXmoC4NgzGJYuEBnB52ZKrrd4rMM4p8e2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsHIPCcwuiVVcIu4GtwYru2Ro9opW+46ah93rjir8hkZnDeVs7MHzghGK8JnFJaCmvqlQJXF92l6tprKkqvjrfMrxz96fUxo2k2jMT8aczRjk9V/emqS6RlnNgNl4z4Pk"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_6da8b1d8d0a544878ec80b69211d9bde",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_6da8b1d8d0a544878ec80b69211d9bde\",\"timingReference\":\"/toNytyIHCbuAq2DG3zUuSNOxXYhmjtO2jsg9OuZ41rPsB7BjDgzAfgZuxXJeXwlQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYdfm0yk/bpf8TS7dyo2t73E59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/pNqGmdWkBD8zcz8hlbu/paKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          }
+        ],
+        "searchIds": [
+          "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+        ],
+        "pricing": {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_6da8b1d8d0a544878ec80b69211d9bde",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_6da8b1d8d0a544878ec80b69211d9bde\",\"timingReference\":\"/toNytyIHCbuAq2DG3zUuSNOxXYhmjtO2jsg9OuZ41rPsB7BjDgzAfgZuxXJeXwlQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYdfm0yk/bpf8TS7dyo2t73E59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/pNqGmdWkBD8zcz8hlbu/paKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        }
+      },
+      "at": "2026-11-03T11:19:28.060Z"
+    },
+    {
+      "id": "2b",
+      "how": "Corporate book lastName=Smith → CONFIRMED (+cancel once)",
+      "status": "PASS",
+      "r": {
+        "label": "2b_CORPORATE_book_Smith",
+        "ok": true,
+        "lastName": "Smith",
+        "br": "BR1793704768784799",
+        "finalStatus": "Confirmed",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "CORPORATE",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"PJd9fIDKSGQTnblHyjqtPNGwfxN9rQoZ8f3kwIYAMyaH/bC+WB1UC5sgQN/PzWxCe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB3lUieiQoiJ7HBrQJhHUxJY2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_6da8b1d8d0a544878ec80b69211d9bde",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_6da8b1d8d0a544878ec80b69211d9bde\",\"timingReference\":\"KDSML2fnfhF+jKlrU56fHlGNzUkJ26S10FoGzV8ttwAjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63XfZdX4RJvYV5Z6wtZKdMlVAHpNz3OA3qFQwBdxnFceOU=\",\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"fareType\":\"corporate\",\"passportType\":\"NONE\",\"addGstInfo\":false,\"selection\":{\"selectedSearchIds\":[\"srch_745d70ab9ad847fdb0d9d98b12bb3a6b\"],\"selec"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "Smith",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704768784799",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704768784799\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704768784799",
+            "status": "Confirmed",
+            "polls": 1,
+            "stop": null
+          },
+          {
+            "api": "POST /api/v2/flight/cancel",
+            "req": {
+              "bookingReference": "BR1793704768784799"
+            },
+            "http": 400,
+            "err": {
+              "code": "VALIDATION_ERROR",
+              "message": "bookingId is required",
+              "details": "Field 'bookingId' is required",
+              "timestamp": "2026-11-03T11:19:33Z",
+              "request_id": "req-1793704773737"
+            },
+            "sample": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"bookingId is required\",\"details\":\"Field 'bookingId' is required\",\"timestamp\":\"2026-11-03T11:19:33Z\",\"request_id\":\"req-1793704773737\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}",
+            "pnr": "SIM-O2QJKR"
+          }
+        ]
+      },
+      "at": "2026-11-03T11:19:33.889Z"
+    },
+    {
+      "id": "3_FAIL",
+      "how": "lastName=FAIL (sold out → Failed)",
+      "status": "PASS",
+      "r": {
+        "label": "3_FAIL",
+        "ok": true,
+        "lastName": "FAIL",
+        "br": "BR1793704774823928",
+        "finalStatus": "Failed",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"BoGNqY+u5nZFcf/6vi3utNGwfxN9rQoZ8f3kwIYAMyYHoiOLQM1fAgwVn+VVVHkTe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHa3BjOpNppCH966mHgC0yI9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB4mk1BmhRs77PPmXmxHwr6w2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_22d5314ef4be452fa470768a68290081",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_22d5314ef4be452fa470768a68290081\",\"timingReference\":\"0+bzZQ/0CxEtVt5BPJDzmxlI9WJ4jXMOlJmceprCY08cx1QCKzDi9Fv996VS3JivQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/XJyWJd7qq/PAeI6yTkPfNaKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "FAIL",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704774823928",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704774823928\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704774823928",
+            "status": "Failed",
+            "polls": 3,
+            "stop": null
+          }
+        ]
+      },
+      "observed": "Failed",
+      "at": "2026-11-03T11:19:41.925Z"
+    },
+    {
+      "id": "3_CHANGE",
+      "how": "lastName=CHANGE (fare changed → Failed)",
+      "status": "PASS",
+      "r": {
+        "label": "3_CHANGE",
+        "ok": true,
+        "lastName": "CHANGE",
+        "br": "BR1793704782855440",
+        "finalStatus": "Failed",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"JeCsrYFe0xNBsNs02/cWWdGwfxN9rQoZ8f3kwIYAMyaJYuEBnB52ZKrrd4rMM4p8e2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHa3BjOpNppCH966mHgC0yI9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB7zoSf1Osw4j7Yfvq9Pa1nQ2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_97f2cc02801f4317a408b187280e9990",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_97f2cc02801f4317a408b187280e9990\",\"timingReference\":\"EyepRwsy2cMeBzL+SZtjHxkCYaMxjPHRoYol6ImNYA1Wb52FwhsfNzPCFcvFG58jQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYwVbYib8/zzBaxPHRTGQUbk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE//u/y3wLOfEr9DDawxci22aKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "CHANGE",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704782855440",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704782855440\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704782855440",
+            "status": "Failed",
+            "polls": 1,
+            "stop": null
+          }
+        ]
+      },
+      "observed": "Failed",
+      "at": "2026-11-03T11:19:44.182Z"
+    },
+    {
+      "id": "3_PENDING",
+      "how": "lastName=PENDING (in progress then confirmed (short poll))",
+      "status": "PASS",
+      "r": {
+        "label": "3_PENDING",
+        "ok": true,
+        "lastName": "PENDING",
+        "br": "BR1793704784688651",
+        "finalStatus": "Inprogress",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"D7RjAOuCqXZHhWChp1t/bNGwfxN9rQoZ8f3kwIYAMyZRs8ZGNIPkOwlWXvlU0UwKe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB9caj5aVf2fafZQiHo10+ic2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_00c3c834db584e83a0dbfb2575dbcba9",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_00c3c834db584e83a0dbfb2575dbcba9\",\"timingReference\":\"LOW5sItwMe7sEnbucQxQ5ngEjAj3v8IN3zjSjrMdl24Fe9IKpLAintM0uyJjQlxaQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY1brPX81JKVfENRUlpedM6k59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/o6R5M5whaqFtIb32PvHF6qKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "PENDING",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704784688651",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704784688651\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704784688651",
+            "status": "Inprogress",
+            "polls": 3,
+            "stop": "NO_LOOP_INPROGRESS"
+          }
+        ]
+      },
+      "observed": "Inprogress",
+      "at": "2026-11-03T11:19:52.372Z"
+    },
+    {
+      "id": "3_EXPIRED",
+      "how": "lastName=EXPIRED (fail once / retry succeeds — NO retry; score first result)",
+      "status": "PASS",
+      "r": {
+        "label": "3_EXPIRED",
+        "ok": true,
+        "lastName": "EXPIRED",
+        "br": "BR1793704792213649",
+        "finalStatus": "Confirmed",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"JeCsrYFe0xNBsNs02/cWWdGwfxN9rQoZ8f3kwIYAMyaJYuEBnB52ZKrrd4rMM4p8e2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHa3BjOpNppCH966mHgC0yI9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB7zoSf1Osw4j7Yfvq9Pa1nQ2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_a7be40acb0394db9b09866ca7d52948b",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_a7be40acb0394db9b09866ca7d52948b\",\"timingReference\":\"eD3lRR7z0NSi2EEQ1GhuSBlI9WJ4jXMOlJmceprCY08bHh/rmLbfxdmUV7CgG+3uQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/hfCpy0w/mxSBKSLcbl9pFaKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "EXPIRED",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704792213649",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704792213649\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704792213649",
+            "status": "Confirmed",
+            "polls": 1,
+            "stop": null
+          }
+        ]
+      },
+      "observed": "Confirmed",
+      "at": "2026-11-03T11:19:57.455Z"
+    },
+    {
+      "id": "3_SLOW",
+      "how": "lastName=SLOW (confirmed after ~15s)",
+      "status": "PASS",
+      "r": {
+        "label": "3_SLOW",
+        "ok": true,
+        "lastName": "SLOW",
+        "br": "BR1793704798948109",
+        "finalStatus": "Confirmed",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"zZUm2hD0o8GrQIxyvYHlVNGwfxN9rQoZ8f3kwIYAMyZATVSLje5yfQfScTI7dohEe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHa3BjOpNppCH966mHgC0yI9gPpwTRaS9xOekXoYDBCsHIPCcwuiVVcIu4GtwYru2Ro9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB7zoSf1Osw4j7Yfvq9Pa1nQ2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_07e1779dccfc489fa6da8ce8e7e266f3",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_07e1779dccfc489fa6da8ce8e7e266f3\",\"timingReference\":\"JKrqdyC6DuSo0OS7mcQJORlI9WJ4jXMOlJmceprCY0/mJNUWhGWR/oe0DREPwg6NQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/tCH5J/FU2/v8rUTXOliuM6Kx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "SLOW",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704798948109",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704798948109\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704798948109",
+            "status": "Confirmed",
+            "polls": 8,
+            "stop": null
+          }
+        ]
+      },
+      "observed": "Confirmed",
+      "at": "2026-11-03T11:20:15.304Z"
+    },
+    {
+      "id": "3_TIMEOUT",
+      "how": "lastName=TIMEOUT (FAILED no booking)",
+      "status": "FAIL",
+      "r": {
+        "label": "3_TIMEOUT",
+        "ok": true,
+        "lastName": "TIMEOUT",
+        "br": "BR1793704815989789",
+        "finalStatus": "Pending",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"haaeQmjvBXCcAcQbahRwTNGwfxN9rQoZ8f3kwIYAMya7Rqp2SX3cwXwoHrfEQdcye2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARFt8Ua7rMKDrU6yso26K81m9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB3lUieiQoiJ7HBrQJhHUxJY2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_288f0419420441aaadfb35fcf3895823",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_288f0419420441aaadfb35fcf3895823\",\"timingReference\":\"qT3IIEYrVHVBXfwrsiz85J5IKJQqa5ohYD52EkqOaHl51GONWrIs6SxZluqr/vOhQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY0bwMIYYI5Guzup3fLRWeK059Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/XJyWJd7qq/PAeI6yTkPfNZOiTlEpuCoL70yxRhitsbmr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "TIMEOUT",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704815989789",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704815989789\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704815989789",
+            "status": "Pending",
+            "polls": 6,
+            "stop": null
+          }
+        ]
+      },
+      "observed": "Pending",
+      "at": "2026-11-03T11:20:30.526Z"
+    },
+    {
+      "id": "3_SERVERERROR",
+      "how": "lastName=SERVERERROR (FAILED no booking)",
+      "status": "FAIL",
+      "r": {
+        "label": "3_SERVERERROR",
+        "ok": true,
+        "lastName": "SERVERERROR",
+        "br": "BR1793704831395917",
+        "finalStatus": "Pending",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"PJd9fIDKSGQTnblHyjqtPNGwfxN9rQoZ8f3kwIYAMyaH/bC+WB1UC5sgQN/PzWxCe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARFt8Ua7rMKDrU6yso26K81m9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB/VliR/O8TWZ1vCnbEs+OVE2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_98fe5dc7e1c34b02a2e2510c689019c2",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_98fe5dc7e1c34b02a2e2510c689019c2\",\"timingReference\":\"LOW5sItwMe7sEnbucQxQ5hkCYaMxjPHRoYol6ImNYA0fkz9ZXvskGrzBXgWJPDWCQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZLVIcjdonebRHLitZDFf0kEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYwVbYib8/zzBaxPHRTGQUbk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/tCH5J/FU2/v8rUTXOliuM6Kx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "SERVERERROR",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704831395917",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704831395917\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704831395917",
+            "status": "Pending",
+            "polls": 6,
+            "stop": null
+          }
+        ]
+      },
+      "observed": "Pending",
+      "at": "2026-11-03T11:20:50.031Z"
+    },
+    {
+      "id": "3_EMPTY",
+      "how": "lastName=EMPTY (FAILED no booking)",
+      "status": "FAIL",
+      "r": {
+        "label": "3_EMPTY",
+        "ok": true,
+        "lastName": "EMPTY",
+        "br": "BR1793704850588099",
+        "finalStatus": "Pending",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"ByMRQKMpWvN4HtixR1gzb7wx7x4KZQ5i5MRKbQflqwP0VgCABcN6Sv+VUffm6hrje2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHshab9JwJrh+ZIb9sDgcCk9gPpwTRaS9xOekXoYDBCsM76jadreFSmH3FWBE/Z4Ito9opW+46ah93rjir8hkZnfE7Bf1CNzygaWsqKs/aZky3EKkVLSIsKGiA4UGKHMEk2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_98fe5dc7e1c34b02a2e2510c689019c2",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_98fe5dc7e1c34b02a2e2510c689019c2\",\"timingReference\":\"SmTY6XDWUMZ5tMs5D6+no1GNzUkJ26S10FoGzV8ttwAjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63XfZdX4RJvYV5Z6wtZKdMlVAHpNz3OA3qFQwBdxnFceOU=\",\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"fareType\":\"NORMAL\",\"passportType\":\"NONE\",\"addGstInfo\":false,\"selection\":{\"selectedSearchIds\":[\"srch_81114180ef274cdcb68e98068aac254d\"],\"selected"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "EMPTY",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704850588099",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704850588099\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704850588099",
+            "status": "Pending",
+            "polls": 6,
+            "stop": null
+          }
+        ]
+      },
+      "observed": "Pending",
+      "at": "2026-11-03T11:21:05.493Z"
+    },
+    {
+      "id": "3_HALFFAIL",
+      "how": "RT lastName=HALFFAIL return fails",
+      "status": "FAIL",
+      "r": {
+        "label": "3_HALFFAIL_RT",
+        "ok": false,
+        "reason": "no BR",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                },
+                {
+                  "origin": "DEL",
+                  "destination": "PNQ",
+                  "date": "2026-12-05"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ROUND_TRIP"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"PJd9fIDKSGQTnblHyjqtPNGwfxN9rQoZ8f3kwIYAMyaH/bC+WB1UC5sgQN/PzWxCe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARGh4fPYSrIXFvtdxObrJUVQ9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB9caj5aVf2fafZQiHo10+ic2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0e"
+          },
+          {
+            "api": "POST /v1/flights/search (return select)",
+            "req": {
+              "selectedSearchIds": [
+                "srch_88a27c82b1bf406da6d003ea7d9191e2"
+              ]
+            },
+            "http": 200,
+            "returnOpts": 1,
+            "err": null
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_88a27c82b1bf406da6d003ea7d9191e2",
+                "srch_eebb46cbaff14e83bb03afde7ed83f7b"
+              ],
+              "journeyType": "ROUND_TRIP"
+            },
+            "http": 200,
+            "priceId": "price_ca69b4612db34dbfa67837c398c16dfc",
+            "bookingContext": true,
+            "total": 10305,
+            "err": null,
+            "sample": "{\"priceId\":\"price_ca69b4612db34dbfa67837c398c16dfc\",\"timingReference\":\"H1umy677IMCgaMASKDcfAZ5IKJQqa5ohYD52EkqOaHnDS8rLKslhoUqYvhB55gr6QBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY0bwMIYYI5Guzup3fLRWeK059Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/HGhvvhAk6MklIwq6ySalD6Kx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "HALFFAIL",
+              "journeyType": "ROUND_TRIP",
+              "searchIds": [
+                "srch_88a27c82b1bf406da6d003ea7d9191e2",
+                "srch_eebb46cbaff14e83bb03afde7ed83f7b"
+              ]
+            },
+            "http": 400,
+            "br": null,
+            "err": {
+              "code": "VALIDATION_ERROR",
+              "message": "Validation failed",
+              "details": [
+                "'data.passengers[0]' (Rohan HALFFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+              ],
+              "timestamp": "2026-11-03T11:21:06Z",
+              "request_id": "req-1793704866139"
+            },
+            "sample": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan HALFFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-03T11:21:06Z\",\"request_id\":\"req-1793704866139\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          }
+        ],
+        "lastName": "HALFFAIL"
+      },
+      "observed": "",
+      "at": "2026-11-03T11:21:06.291Z"
+    },
+    {
+      "id": "3_PARTIALCANCEL",
+      "how": "RT lastName=PARTIALCANCEL then cancel",
+      "status": "FAIL",
+      "r": {
+        "label": "3_PARTIALCANCEL_RT",
+        "ok": false,
+        "reason": "no BR",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                },
+                {
+                  "origin": "DEL",
+                  "destination": "PNQ",
+                  "date": "2026-12-05"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ROUND_TRIP"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"okJyYDWyG9pv6JHrnmWFuNGwfxN9rQoZ8f3kwIYAMyaH/bC+WB1UC5sgQN/PzWxCe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB3lUieiQoiJ7HBrQJhHUxJY2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0e"
+          },
+          {
+            "api": "POST /v1/flights/search (return select)",
+            "req": {
+              "selectedSearchIds": [
+                "srch_88a27c82b1bf406da6d003ea7d9191e2"
+              ]
+            },
+            "http": 200,
+            "returnOpts": 1,
+            "err": null
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_88a27c82b1bf406da6d003ea7d9191e2",
+                "srch_eebb46cbaff14e83bb03afde7ed83f7b"
+              ],
+              "journeyType": "ROUND_TRIP"
+            },
+            "http": 200,
+            "priceId": "price_ca69b4612db34dbfa67837c398c16dfc",
+            "bookingContext": true,
+            "total": 10305,
+            "err": null,
+            "sample": "{\"priceId\":\"price_ca69b4612db34dbfa67837c398c16dfc\",\"timingReference\":\"G05KkI81IrE6k6Yt9/8d5Nnbilsl6eKXSR3R4VleDuYjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63Xv9pJWRXgC13rMqwZ8badZAHpNz3OA3qFQwBdxnFceOU=\",\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"DOMESTIC\",\"fareType\":\"NORMAL\",\"passportType\":\"NONE\",\"addGstInfo\":false,\"selection\":{\"selectedSearchIds\":[\"srch_88a27c82b1bf406da6d003ea7d9191e2\",\"srch_e"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "PARTIALCANCEL",
+              "journeyType": "ROUND_TRIP",
+              "searchIds": [
+                "srch_88a27c82b1bf406da6d003ea7d9191e2",
+                "srch_eebb46cbaff14e83bb03afde7ed83f7b"
+              ]
+            },
+            "http": 400,
+            "br": null,
+            "err": {
+              "code": "VALIDATION_ERROR",
+              "message": "Validation failed",
+              "details": [
+                "'data.passengers[0]' (Rohan PARTIALCANCEL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+              ],
+              "timestamp": "2026-11-03T11:21:07Z",
+              "request_id": "req-1793704867476"
+            },
+            "sample": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan PARTIALCANCEL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-03T11:21:07Z\",\"request_id\":\"req-1793704867476\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          }
+        ],
+        "lastName": "PARTIALCANCEL"
+      },
+      "at": "2026-11-03T11:21:07.611Z"
+    },
+    {
+      "id": "3_CANCELFAIL",
+      "how": "lastName=CANCELFAIL confirm then cancel fails",
+      "status": "PASS",
+      "r": {
+        "label": "3_CANCELFAIL",
+        "ok": true,
+        "lastName": "CANCELFAIL",
+        "br": "BR1793704867802968",
+        "finalStatus": "Confirmed",
+        "steps": [
+          {
+            "api": "POST /v1/flights/search",
+            "req": {
+              "itinerary": [
+                {
+                  "origin": "PNQ",
+                  "destination": "DEL",
+                  "date": "2026-11-28"
+                }
+              ],
+              "fareType": "NORMAL",
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "polls": 1,
+            "optCount": 1,
+            "err": null,
+            "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"IN9LuAbpzSM2lgI6PIxeMdGwfxN9rQoZ8f3kwIYAMyY9y+1auorPKelJR+bO/vCwe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB7zoSf1Osw4j7Yfvq9Pa1nQ2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+          },
+          {
+            "api": "POST /v1/flights/pricing",
+            "req": {
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ],
+              "journeyType": "ONE_WAY"
+            },
+            "http": 200,
+            "priceId": "price_98fe5dc7e1c34b02a2e2510c689019c2",
+            "bookingContext": true,
+            "total": 5184,
+            "err": null,
+            "sample": "{\"priceId\":\"price_98fe5dc7e1c34b02a2e2510c689019c2\",\"timingReference\":\"WYVH9b5mPqvRy9LcsxXmANnbilsl6eKXSR3R4VleDuYjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63Xv9pJWRXgC13rMqwZ8badZAHpNz3OA3qFQwBdxnFceOU=\",\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"fareType\":\"NORMAL\",\"passportType\":\"NONE\",\"addGstInfo\":false,\"selection\":{\"selectedSearchIds\":[\"srch_81114180ef274cdcb68e98068aac254d\"],\"selected"
+          },
+          {
+            "api": "POST /api/v2/flights/booking/issue-ticket",
+            "req": {
+              "lastName": "CANCELFAIL",
+              "journeyType": "ONE_WAY",
+              "searchIds": [
+                "srch_81114180ef274cdcb68e98068aac254d"
+              ]
+            },
+            "http": 200,
+            "br": "BR1793704867802968",
+            "issueStatus": "pending",
+            "err": null,
+            "sample": "{\"bookingReference\":\"BR1793704867802968\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+          },
+          {
+            "api": "GET booking status",
+            "br": "BR1793704867802968",
+            "status": "Confirmed",
+            "polls": 6,
+            "stop": null
+          },
+          {
+            "api": "POST /api/v2/flight/cancel",
+            "req": {
+              "bookingReference": "BR1793704867802968"
+            },
+            "http": 400,
+            "err": {
+              "code": "VALIDATION_ERROR",
+              "message": "bookingId is required",
+              "details": "Field 'bookingId' is required",
+              "timestamp": "2026-11-03T11:21:24Z",
+              "request_id": "req-1793704884481"
+            },
+            "sample": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"bookingId is required\",\"details\":\"Field 'bookingId' is required\",\"timestamp\":\"2026-11-03T11:21:24Z\",\"request_id\":\"req-1793704884481\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}",
+            "pnr": "SIM-ORH676"
+          }
+        ]
+      },
+      "at": "2026-11-03T11:21:24.581Z"
+    }
+  ],
+  "cases": [
+    {
+      "label": "1a_OW_DEL_PNQ_search_price_rules_seat",
+      "ok": true,
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "DEL",
+                "destination": "PNQ",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":1341,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"Ty0nOFMBMp2CQ1G7y+ySD4UiZPZS32BhIAKwqHTATKd6oSucS96bIFSb7DN1y62n1go4sjO902+AZ0Go/29L6rF2bMk9JHhxvvNhB9nlNvRpTU8Yd/pnld7xy7SZKE8MvBTUmxF5wgh4TrY3f/qBCaaUSXt8/0PauDCjynb6Te5BEh0qUczcg/lU+QoyYIlbMogXevReMrhOhRTqH9qyfKasG8t4uWSoEAZZ6+5ILzdZ2bwi0nEp2zwvr3bnjexIg/SF3/RoqqYyyrVN"
+        },
+        {
+          "api": "POST /v1/flights/fareRules",
+          "req": {
+            "searchIds": [
+              "srch_0f2e906228914f9bb598756d68bec4a8"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "ok": true,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"timingReference\":\"k++C69BhSPeqUtM2rhITzpJ74DjLaHpcGcAg6cqvGIIhmswV/fVdq15iG3L5KtOP82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63XNJEYddwv451RqOUOCQZziRJW5b/6wmRrxSoSur9VOl6jjsIJD1qxicTj3UE9FfFHrf2Jjgt3GWjrs9zugvJg2osn74LGQ2izOks+QbsPqbjJkO0JmOsNbkEGt7z/pqTh\",\"selection\":"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_0f2e906228914f9bb598756d68bec4a8"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_ad7298cf40ce4673a185d874e0b77c64",
+          "bookingContext": true,
+          "total": 1825,
+          "err": null,
+          "sample": "{\"priceId\":\"price_ad7298cf40ce4673a185d874e0b77c64\",\"timingReference\":\"Dg3amz7YjyY6U0vTmdHPNUT9fk8r1HZLA1tXEec5rRqJDMzcWAb5lf97BGL0B9owQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZLVIcjdonebRHLitZDFf0kEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY9xkrxK6cOYWptb6BVf4BUk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/szwgeCPpYhiObIyuIm9ru49eBBWPEFl6amO4HZdgC5h3HFqDnacGMCAZi+mO84Aqp1yBab6qTkYWSHSRfozk1zagDLMt/R3FajiMoyJ1YbURx"
+        },
+        {
+          "api": "POST /v1/flights/seatmap",
+          "req": {
+            "requestReference": "(bookingContext)",
+            "passengers": 1
+          },
+          "http": 400,
+          "ok": true,
+          "err": {
+            "code": "VENDOR_UNAVAILABLE",
+            "message": "Flight provider is temporarily unavailable.",
+            "details": null,
+            "timestamp": "2026-11-03T11:19:25Z",
+            "request_id": "req-1793704765332"
+          },
+          "sample": "{\"error\":{\"code\":\"VENDOR_UNAVAILABLE\",\"message\":\"Flight provider is temporarily unavailable.\",\"details\":null,\"timestamp\":\"2026-11-03T11:19:25Z\",\"request_id\":\"req-1793704765332\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        }
+      ],
+      "searchIds": [
+        "srch_0f2e906228914f9bb598756d68bec4a8"
+      ],
+      "pricing": {
+        "api": "POST /v1/flights/pricing",
+        "req": {
+          "searchIds": [
+            "srch_0f2e906228914f9bb598756d68bec4a8"
+          ],
+          "journeyType": "ONE_WAY"
+        },
+        "http": 200,
+        "priceId": "price_ad7298cf40ce4673a185d874e0b77c64",
+        "bookingContext": true,
+        "total": 1825,
+        "err": null,
+        "sample": "{\"priceId\":\"price_ad7298cf40ce4673a185d874e0b77c64\",\"timingReference\":\"Dg3amz7YjyY6U0vTmdHPNUT9fk8r1HZLA1tXEec5rRqJDMzcWAb5lf97BGL0B9owQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZLVIcjdonebRHLitZDFf0kEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY9xkrxK6cOYWptb6BVf4BUk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/szwgeCPpYhiObIyuIm9ru49eBBWPEFl6amO4HZdgC5h3HFqDnacGMCAZi+mO84Aqp1yBab6qTkYWSHSRfozk1zagDLMt/R3FajiMoyJ1YbURx"
+      }
+    },
+    {
+      "label": "1b_OW_PNQ_DEL_search_price",
+      "ok": true,
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":1399,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"g1OseYwk2/kQ3kC8W1psn2vb7Bpbvp7gHhBmk3Ug7tXVhxe2EL/FHfBmWrNt7KrDmzzjrafz2vEuKlfbIka3vme13pzy+k4HJEQYJK6J36CI6O27BnhnSt8ewR7IbaaNRJkKWnTMy36L1N7EVG0GFj+tFaMW1DFILOy1GPb2gjFWqfKo2T2T+TDkopPtk61aw426Y8y/Kqvez0wCThkMTYgmhL8kPJdpPJRcAgHtq8QEtRrPxsXnU4Lta93C++41GONkovNHxtQHM4P0"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_a2eaf84235324040b5f10c57e6b58b96"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_b85a1e0e1fac4343b1aa386f53dad420",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_b85a1e0e1fac4343b1aa386f53dad420\",\"timingReference\":\"pjQOAujT3wWAnyNAZsB4uhlI9WJ4jXMOlJmceprCY08TTSKHwdZDHTwDTL2TqhYJQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/bAn3MA+1dN7RFAjDempQEI9eBBWPEFl6amO4HZdgC5h3HFqDnacGMCAZi+mO84Aqp1yBab6qTkYWSHSRfozk1zagDLMt/R3FajiMoyJ1YbURx"
+        }
+      ],
+      "searchIds": [
+        "srch_a2eaf84235324040b5f10c57e6b58b96"
+      ],
+      "pricing": {
+        "api": "POST /v1/flights/pricing",
+        "req": {
+          "searchIds": [
+            "srch_a2eaf84235324040b5f10c57e6b58b96"
+          ],
+          "journeyType": "ONE_WAY"
+        },
+        "http": 200,
+        "priceId": "price_b85a1e0e1fac4343b1aa386f53dad420",
+        "bookingContext": true,
+        "total": 5184,
+        "err": null,
+        "sample": "{\"priceId\":\"price_b85a1e0e1fac4343b1aa386f53dad420\",\"timingReference\":\"pjQOAujT3wWAnyNAZsB4uhlI9WJ4jXMOlJmceprCY08TTSKHwdZDHTwDTL2TqhYJQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/bAn3MA+1dN7RFAjDempQEI9eBBWPEFl6amO4HZdgC5h3HFqDnacGMCAZi+mO84Aqp1yBab6qTkYWSHSRfozk1zagDLMt/R3FajiMoyJ1YbURx"
+      }
+    },
+    {
+      "label": "1c_RT_PNQ_DEL_price",
+      "ok": true,
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              },
+              {
+                "origin": "DEL",
+                "destination": "PNQ",
+                "date": "2026-12-05"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ROUND_TRIP"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":1296,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"EG4ak0U3gxsaS8mrrPvE99lQpxn1V9uB4clmbOR38bQarQFYF4+utx+nAblln14iuiXl79lrMgZNxiYSbODLAKbHH0P9MZNOImmQpFk55NYgy8VvV8YdmOpuws9+B1SONlclep7r97kkJz3dPzaJKtopmDRDjfBkqbLkQ50DK7oAzttFAet4XVTMOVVOGLFQGnVG6C+nT953BXlimgf73fAgbQSPNgztejbf5VRhLtvUqtCqiEvOvBOgLKyOb46bn0YqN0prB+R+u"
+        },
+        {
+          "api": "POST /v1/flights/search (return select)",
+          "req": {
+            "selectedSearchIds": [
+              "srch_b0fce3f32ecc43aeab6a40527eec7e95"
+            ]
+          },
+          "http": 200,
+          "returnOpts": 1,
+          "err": null
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_b0fce3f32ecc43aeab6a40527eec7e95",
+              "srch_dc1dd5118d5a40f5ab4665cd77258ed9"
+            ],
+            "journeyType": "ROUND_TRIP"
+          },
+          "http": 200,
+          "priceId": "price_608f3884abae462c9a484b5f23f59714",
+          "bookingContext": true,
+          "total": 10305,
+          "err": null,
+          "sample": "{\"priceId\":\"price_608f3884abae462c9a484b5f23f59714\",\"timingReference\":\"02oEsxCZseULC2e8+j5G+0T9fk8r1HZLA1tXEec5rRo9jF+b+R7Ar0CQaK7+1s0EQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZGLQ5V0MPdjy4YjUsE3EDYkXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY9xkrxK6cOYWptb6BVf4BUk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/wF7b+1ruHY7AtZ7IgaIY9aKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        }
+      ],
+      "searchIds": [
+        "srch_b0fce3f32ecc43aeab6a40527eec7e95",
+        "srch_dc1dd5118d5a40f5ab4665cd77258ed9"
+      ],
+      "pricing": {
+        "api": "POST /v1/flights/pricing",
+        "req": {
+          "searchIds": [
+            "srch_b0fce3f32ecc43aeab6a40527eec7e95",
+            "srch_dc1dd5118d5a40f5ab4665cd77258ed9"
+          ],
+          "journeyType": "ROUND_TRIP"
+        },
+        "http": 200,
+        "priceId": "price_608f3884abae462c9a484b5f23f59714",
+        "bookingContext": true,
+        "total": 10305,
+        "err": null,
+        "sample": "{\"priceId\":\"price_608f3884abae462c9a484b5f23f59714\",\"timingReference\":\"02oEsxCZseULC2e8+j5G+0T9fk8r1HZLA1tXEec5rRo9jF+b+R7Ar0CQaK7+1s0EQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZGLQ5V0MPdjy4YjUsE3EDYkXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY9xkrxK6cOYWptb6BVf4BUk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/wF7b+1ruHY7AtZ7IgaIY9aKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+      }
+    },
+    {
+      "label": "2a_CORPORATE_PNQ_DEL_search",
+      "ok": true,
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "CORPORATE",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"YqE0ia9pJRl3O3NCCj27lPsLijqO7XmhylXmoC4NgzGJYuEBnB52ZKrrd4rMM4p8e2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsHIPCcwuiVVcIu4GtwYru2Ro9opW+46ah93rjir8hkZnDeVs7MHzghGK8JnFJaCmvqlQJXF92l6tprKkqvjrfMrxz96fUxo2k2jMT8aczRjk9V/emqS6RlnNgNl4z4Pk"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_6da8b1d8d0a544878ec80b69211d9bde",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_6da8b1d8d0a544878ec80b69211d9bde\",\"timingReference\":\"/toNytyIHCbuAq2DG3zUuSNOxXYhmjtO2jsg9OuZ41rPsB7BjDgzAfgZuxXJeXwlQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYdfm0yk/bpf8TS7dyo2t73E59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/pNqGmdWkBD8zcz8hlbu/paKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        }
+      ],
+      "searchIds": [
+        "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+      ],
+      "pricing": {
+        "api": "POST /v1/flights/pricing",
+        "req": {
+          "searchIds": [
+            "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+          ],
+          "journeyType": "ONE_WAY"
+        },
+        "http": 200,
+        "priceId": "price_6da8b1d8d0a544878ec80b69211d9bde",
+        "bookingContext": true,
+        "total": 5184,
+        "err": null,
+        "sample": "{\"priceId\":\"price_6da8b1d8d0a544878ec80b69211d9bde\",\"timingReference\":\"/toNytyIHCbuAq2DG3zUuSNOxXYhmjtO2jsg9OuZ41rPsB7BjDgzAfgZuxXJeXwlQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYdfm0yk/bpf8TS7dyo2t73E59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/pNqGmdWkBD8zcz8hlbu/paKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+      }
+    },
+    {
+      "label": "2b_CORPORATE_book_Smith",
+      "ok": true,
+      "lastName": "Smith",
+      "br": "BR1793704768784799",
+      "finalStatus": "Confirmed",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "CORPORATE",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"PJd9fIDKSGQTnblHyjqtPNGwfxN9rQoZ8f3kwIYAMyaH/bC+WB1UC5sgQN/PzWxCe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB3lUieiQoiJ7HBrQJhHUxJY2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_6da8b1d8d0a544878ec80b69211d9bde",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_6da8b1d8d0a544878ec80b69211d9bde\",\"timingReference\":\"KDSML2fnfhF+jKlrU56fHlGNzUkJ26S10FoGzV8ttwAjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63XfZdX4RJvYV5Z6wtZKdMlVAHpNz3OA3qFQwBdxnFceOU=\",\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"fareType\":\"corporate\",\"passportType\":\"NONE\",\"addGstInfo\":false,\"selection\":{\"selectedSearchIds\":[\"srch_745d70ab9ad847fdb0d9d98b12bb3a6b\"],\"selec"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "Smith",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_745d70ab9ad847fdb0d9d98b12bb3a6b"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704768784799",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704768784799\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704768784799",
+          "status": "Confirmed",
+          "polls": 1,
+          "stop": null
+        },
+        {
+          "api": "POST /api/v2/flight/cancel",
+          "req": {
+            "bookingReference": "BR1793704768784799"
+          },
+          "http": 400,
+          "err": {
+            "code": "VALIDATION_ERROR",
+            "message": "bookingId is required",
+            "details": "Field 'bookingId' is required",
+            "timestamp": "2026-11-03T11:19:33Z",
+            "request_id": "req-1793704773737"
+          },
+          "sample": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"bookingId is required\",\"details\":\"Field 'bookingId' is required\",\"timestamp\":\"2026-11-03T11:19:33Z\",\"request_id\":\"req-1793704773737\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}",
+          "pnr": "SIM-O2QJKR"
+        }
+      ]
+    },
+    {
+      "label": "3_FAIL",
+      "ok": true,
+      "lastName": "FAIL",
+      "br": "BR1793704774823928",
+      "finalStatus": "Failed",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"BoGNqY+u5nZFcf/6vi3utNGwfxN9rQoZ8f3kwIYAMyYHoiOLQM1fAgwVn+VVVHkTe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHa3BjOpNppCH966mHgC0yI9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB4mk1BmhRs77PPmXmxHwr6w2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_22d5314ef4be452fa470768a68290081",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_22d5314ef4be452fa470768a68290081\",\"timingReference\":\"0+bzZQ/0CxEtVt5BPJDzmxlI9WJ4jXMOlJmceprCY08cx1QCKzDi9Fv996VS3JivQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/XJyWJd7qq/PAeI6yTkPfNaKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "FAIL",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704774823928",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704774823928\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704774823928",
+          "status": "Failed",
+          "polls": 3,
+          "stop": null
+        }
+      ]
+    },
+    {
+      "label": "3_CHANGE",
+      "ok": true,
+      "lastName": "CHANGE",
+      "br": "BR1793704782855440",
+      "finalStatus": "Failed",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"JeCsrYFe0xNBsNs02/cWWdGwfxN9rQoZ8f3kwIYAMyaJYuEBnB52ZKrrd4rMM4p8e2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHa3BjOpNppCH966mHgC0yI9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB7zoSf1Osw4j7Yfvq9Pa1nQ2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_97f2cc02801f4317a408b187280e9990",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_97f2cc02801f4317a408b187280e9990\",\"timingReference\":\"EyepRwsy2cMeBzL+SZtjHxkCYaMxjPHRoYol6ImNYA1Wb52FwhsfNzPCFcvFG58jQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYwVbYib8/zzBaxPHRTGQUbk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE//u/y3wLOfEr9DDawxci22aKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "CHANGE",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704782855440",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704782855440\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704782855440",
+          "status": "Failed",
+          "polls": 1,
+          "stop": null
+        }
+      ]
+    },
+    {
+      "label": "3_PENDING",
+      "ok": true,
+      "lastName": "PENDING",
+      "br": "BR1793704784688651",
+      "finalStatus": "Inprogress",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"D7RjAOuCqXZHhWChp1t/bNGwfxN9rQoZ8f3kwIYAMyZRs8ZGNIPkOwlWXvlU0UwKe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB9caj5aVf2fafZQiHo10+ic2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_00c3c834db584e83a0dbfb2575dbcba9",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_00c3c834db584e83a0dbfb2575dbcba9\",\"timingReference\":\"LOW5sItwMe7sEnbucQxQ5ngEjAj3v8IN3zjSjrMdl24Fe9IKpLAintM0uyJjQlxaQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY1brPX81JKVfENRUlpedM6k59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/o6R5M5whaqFtIb32PvHF6qKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "PENDING",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704784688651",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704784688651\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704784688651",
+          "status": "Inprogress",
+          "polls": 3,
+          "stop": "NO_LOOP_INPROGRESS"
+        }
+      ]
+    },
+    {
+      "label": "3_EXPIRED",
+      "ok": true,
+      "lastName": "EXPIRED",
+      "br": "BR1793704792213649",
+      "finalStatus": "Confirmed",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"JeCsrYFe0xNBsNs02/cWWdGwfxN9rQoZ8f3kwIYAMyaJYuEBnB52ZKrrd4rMM4p8e2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHa3BjOpNppCH966mHgC0yI9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB7zoSf1Osw4j7Yfvq9Pa1nQ2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_a7be40acb0394db9b09866ca7d52948b",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_a7be40acb0394db9b09866ca7d52948b\",\"timingReference\":\"eD3lRR7z0NSi2EEQ1GhuSBlI9WJ4jXMOlJmceprCY08bHh/rmLbfxdmUV7CgG+3uQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/hfCpy0w/mxSBKSLcbl9pFaKx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "EXPIRED",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704792213649",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704792213649\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704792213649",
+          "status": "Confirmed",
+          "polls": 1,
+          "stop": null
+        }
+      ]
+    },
+    {
+      "label": "3_SLOW",
+      "ok": true,
+      "lastName": "SLOW",
+      "br": "BR1793704798948109",
+      "finalStatus": "Confirmed",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"zZUm2hD0o8GrQIxyvYHlVNGwfxN9rQoZ8f3kwIYAMyZATVSLje5yfQfScTI7dohEe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHa3BjOpNppCH966mHgC0yI9gPpwTRaS9xOekXoYDBCsHIPCcwuiVVcIu4GtwYru2Ro9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB7zoSf1Osw4j7Yfvq9Pa1nQ2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_07e1779dccfc489fa6da8ce8e7e266f3",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_07e1779dccfc489fa6da8ce8e7e266f3\",\"timingReference\":\"JKrqdyC6DuSo0OS7mcQJORlI9WJ4jXMOlJmceprCY0/mJNUWhGWR/oe0DREPwg6NQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYR9+pRPlomO8yOdbxdp5uoU59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/tCH5J/FU2/v8rUTXOliuM6Kx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "SLOW",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704798948109",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704798948109\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704798948109",
+          "status": "Confirmed",
+          "polls": 8,
+          "stop": null
+        }
+      ]
+    },
+    {
+      "label": "3_TIMEOUT",
+      "ok": true,
+      "lastName": "TIMEOUT",
+      "br": "BR1793704815989789",
+      "finalStatus": "Pending",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"haaeQmjvBXCcAcQbahRwTNGwfxN9rQoZ8f3kwIYAMya7Rqp2SX3cwXwoHrfEQdcye2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARFt8Ua7rMKDrU6yso26K81m9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB3lUieiQoiJ7HBrQJhHUxJY2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_288f0419420441aaadfb35fcf3895823",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_288f0419420441aaadfb35fcf3895823\",\"timingReference\":\"qT3IIEYrVHVBXfwrsiz85J5IKJQqa5ohYD52EkqOaHl51GONWrIs6SxZluqr/vOhQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY0bwMIYYI5Guzup3fLRWeK059Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/XJyWJd7qq/PAeI6yTkPfNZOiTlEpuCoL70yxRhitsbmr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "TIMEOUT",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704815989789",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704815989789\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704815989789",
+          "status": "Pending",
+          "polls": 6,
+          "stop": null
+        }
+      ]
+    },
+    {
+      "label": "3_SERVERERROR",
+      "ok": true,
+      "lastName": "SERVERERROR",
+      "br": "BR1793704831395917",
+      "finalStatus": "Pending",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"PJd9fIDKSGQTnblHyjqtPNGwfxN9rQoZ8f3kwIYAMyaH/bC+WB1UC5sgQN/PzWxCe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARFt8Ua7rMKDrU6yso26K81m9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB/VliR/O8TWZ1vCnbEs+OVE2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_98fe5dc7e1c34b02a2e2510c689019c2",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_98fe5dc7e1c34b02a2e2510c689019c2\",\"timingReference\":\"LOW5sItwMe7sEnbucQxQ5hkCYaMxjPHRoYol6ImNYA0fkz9ZXvskGrzBXgWJPDWCQBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZLVIcjdonebRHLitZDFf0kEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckYwVbYib8/zzBaxPHRTGQUbk59Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/tCH5J/FU2/v8rUTXOliuM6Kx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "SERVERERROR",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704831395917",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704831395917\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704831395917",
+          "status": "Pending",
+          "polls": 6,
+          "stop": null
+        }
+      ]
+    },
+    {
+      "label": "3_EMPTY",
+      "ok": true,
+      "lastName": "EMPTY",
+      "br": "BR1793704850588099",
+      "finalStatus": "Pending",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"ByMRQKMpWvN4HtixR1gzb7wx7x4KZQ5i5MRKbQflqwP0VgCABcN6Sv+VUffm6hrje2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHshab9JwJrh+ZIb9sDgcCk9gPpwTRaS9xOekXoYDBCsM76jadreFSmH3FWBE/Z4Ito9opW+46ah93rjir8hkZnfE7Bf1CNzygaWsqKs/aZky3EKkVLSIsKGiA4UGKHMEk2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_98fe5dc7e1c34b02a2e2510c689019c2",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_98fe5dc7e1c34b02a2e2510c689019c2\",\"timingReference\":\"SmTY6XDWUMZ5tMs5D6+no1GNzUkJ26S10FoGzV8ttwAjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63XfZdX4RJvYV5Z6wtZKdMlVAHpNz3OA3qFQwBdxnFceOU=\",\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"fareType\":\"NORMAL\",\"passportType\":\"NONE\",\"addGstInfo\":false,\"selection\":{\"selectedSearchIds\":[\"srch_81114180ef274cdcb68e98068aac254d\"],\"selected"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "EMPTY",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704850588099",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704850588099\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704850588099",
+          "status": "Pending",
+          "polls": 6,
+          "stop": null
+        }
+      ]
+    },
+    {
+      "label": "3_HALFFAIL_RT",
+      "ok": false,
+      "reason": "no BR",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              },
+              {
+                "origin": "DEL",
+                "destination": "PNQ",
+                "date": "2026-12-05"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ROUND_TRIP"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"PJd9fIDKSGQTnblHyjqtPNGwfxN9rQoZ8f3kwIYAMyaH/bC+WB1UC5sgQN/PzWxCe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARGh4fPYSrIXFvtdxObrJUVQ9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB9caj5aVf2fafZQiHo10+ic2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0e"
+        },
+        {
+          "api": "POST /v1/flights/search (return select)",
+          "req": {
+            "selectedSearchIds": [
+              "srch_88a27c82b1bf406da6d003ea7d9191e2"
+            ]
+          },
+          "http": 200,
+          "returnOpts": 1,
+          "err": null
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_88a27c82b1bf406da6d003ea7d9191e2",
+              "srch_eebb46cbaff14e83bb03afde7ed83f7b"
+            ],
+            "journeyType": "ROUND_TRIP"
+          },
+          "http": 200,
+          "priceId": "price_ca69b4612db34dbfa67837c398c16dfc",
+          "bookingContext": true,
+          "total": 10305,
+          "err": null,
+          "sample": "{\"priceId\":\"price_ca69b4612db34dbfa67837c398c16dfc\",\"timingReference\":\"H1umy677IMCgaMASKDcfAZ5IKJQqa5ohYD52EkqOaHnDS8rLKslhoUqYvhB55gr6QBeFa+JvRgIJoCFefwmSuPatbjiZTQNPKMkYqNHAiYmmj6M/z4ncdZzub9OKhuPZ2fPtEkk+DVSQ/sjDKVopbEXGjnai1iErCJGWAM3natBXXw3QK+k9FSXoQhUfr08xu0kJJNLFBF999Heh6tqCprbVcnUtj9HJijwbKFxUPJkE//2hzyv6Ad4esygKhckY0bwMIYYI5Guzup3fLRWeK059Bpdv78VaO0dQf/geFzOauJVu0K+4tb7r6fYzKrE/HGhvvhAk6MklIwq6ySalD6Kx2ePvA2iVaPf5ziKeTtCr3q9gyEvGer4OGu+p5jJxNtGFuqt6NuCvPMIjaMHc91oi5HCuI/9srQqLwmEGrtU2A"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "HALFFAIL",
+            "journeyType": "ROUND_TRIP",
+            "searchIds": [
+              "srch_88a27c82b1bf406da6d003ea7d9191e2",
+              "srch_eebb46cbaff14e83bb03afde7ed83f7b"
+            ]
+          },
+          "http": 400,
+          "br": null,
+          "err": {
+            "code": "VALIDATION_ERROR",
+            "message": "Validation failed",
+            "details": [
+              "'data.passengers[0]' (Rohan HALFFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+            ],
+            "timestamp": "2026-11-03T11:21:06Z",
+            "request_id": "req-1793704866139"
+          },
+          "sample": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan HALFFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-03T11:21:06Z\",\"request_id\":\"req-1793704866139\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        }
+      ],
+      "lastName": "HALFFAIL"
+    },
+    {
+      "label": "3_PARTIALCANCEL_RT",
+      "ok": false,
+      "reason": "no BR",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              },
+              {
+                "origin": "DEL",
+                "destination": "PNQ",
+                "date": "2026-12-05"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ROUND_TRIP"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"okJyYDWyG9pv6JHrnmWFuNGwfxN9rQoZ8f3kwIYAMyaH/bC+WB1UC5sgQN/PzWxCe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB3lUieiQoiJ7HBrQJhHUxJY2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0e"
+        },
+        {
+          "api": "POST /v1/flights/search (return select)",
+          "req": {
+            "selectedSearchIds": [
+              "srch_88a27c82b1bf406da6d003ea7d9191e2"
+            ]
+          },
+          "http": 200,
+          "returnOpts": 1,
+          "err": null
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_88a27c82b1bf406da6d003ea7d9191e2",
+              "srch_eebb46cbaff14e83bb03afde7ed83f7b"
+            ],
+            "journeyType": "ROUND_TRIP"
+          },
+          "http": 200,
+          "priceId": "price_ca69b4612db34dbfa67837c398c16dfc",
+          "bookingContext": true,
+          "total": 10305,
+          "err": null,
+          "sample": "{\"priceId\":\"price_ca69b4612db34dbfa67837c398c16dfc\",\"timingReference\":\"G05KkI81IrE6k6Yt9/8d5Nnbilsl6eKXSR3R4VleDuYjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63Xv9pJWRXgC13rMqwZ8badZAHpNz3OA3qFQwBdxnFceOU=\",\"journeyType\":\"ROUND_TRIP\",\"tripType\":\"DOMESTIC\",\"fareType\":\"NORMAL\",\"passportType\":\"NONE\",\"addGstInfo\":false,\"selection\":{\"selectedSearchIds\":[\"srch_88a27c82b1bf406da6d003ea7d9191e2\",\"srch_e"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "PARTIALCANCEL",
+            "journeyType": "ROUND_TRIP",
+            "searchIds": [
+              "srch_88a27c82b1bf406da6d003ea7d9191e2",
+              "srch_eebb46cbaff14e83bb03afde7ed83f7b"
+            ]
+          },
+          "http": 400,
+          "br": null,
+          "err": {
+            "code": "VALIDATION_ERROR",
+            "message": "Validation failed",
+            "details": [
+              "'data.passengers[0]' (Rohan PARTIALCANCEL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+            ],
+            "timestamp": "2026-11-03T11:21:07Z",
+            "request_id": "req-1793704867476"
+          },
+          "sample": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan PARTIALCANCEL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-03T11:21:07Z\",\"request_id\":\"req-1793704867476\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        }
+      ],
+      "lastName": "PARTIALCANCEL"
+    },
+    {
+      "label": "3_CANCELFAIL",
+      "ok": true,
+      "lastName": "CANCELFAIL",
+      "br": "BR1793704867802968",
+      "finalStatus": "Confirmed",
+      "steps": [
+        {
+          "api": "POST /v1/flights/search",
+          "req": {
+            "itinerary": [
+              {
+                "origin": "PNQ",
+                "destination": "DEL",
+                "date": "2026-11-28"
+              }
+            ],
+            "fareType": "NORMAL",
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "polls": 1,
+          "optCount": 1,
+          "err": null,
+          "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"IN9LuAbpzSM2lgI6PIxeMdGwfxN9rQoZ8f3kwIYAMyY9y+1auorPKelJR+bO/vCwe2Ti+xkklXgFnZqlBwyWlRKq/2dFnqcQT1SjnloWARHzWNw/e9o1LcP+2UD7dN9p9gPpwTRaS9xOekXoYDBCsDPg1bMq/GQG6aAjcNrUo9ho9opW+46ah93rjir8hkZnpcltVyTF/t726pgJZoNqB7zoSf1Osw4j7Yfvq9Pa1nQ2oAyzLf0dxWo4jKMidWG1kUR4JT3eg+RbVZf0eNdn"
+        },
+        {
+          "api": "POST /v1/flights/pricing",
+          "req": {
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ],
+            "journeyType": "ONE_WAY"
+          },
+          "http": 200,
+          "priceId": "price_98fe5dc7e1c34b02a2e2510c689019c2",
+          "bookingContext": true,
+          "total": 5184,
+          "err": null,
+          "sample": "{\"priceId\":\"price_98fe5dc7e1c34b02a2e2510c689019c2\",\"timingReference\":\"WYVH9b5mPqvRy9LcsxXmANnbilsl6eKXSR3R4VleDuYjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63Xv9pJWRXgC13rMqwZ8badZAHpNz3OA3qFQwBdxnFceOU=\",\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"fareType\":\"NORMAL\",\"passportType\":\"NONE\",\"addGstInfo\":false,\"selection\":{\"selectedSearchIds\":[\"srch_81114180ef274cdcb68e98068aac254d\"],\"selected"
+        },
+        {
+          "api": "POST /api/v2/flights/booking/issue-ticket",
+          "req": {
+            "lastName": "CANCELFAIL",
+            "journeyType": "ONE_WAY",
+            "searchIds": [
+              "srch_81114180ef274cdcb68e98068aac254d"
+            ]
+          },
+          "http": 200,
+          "br": "BR1793704867802968",
+          "issueStatus": "pending",
+          "err": null,
+          "sample": "{\"bookingReference\":\"BR1793704867802968\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}"
+        },
+        {
+          "api": "GET booking status",
+          "br": "BR1793704867802968",
+          "status": "Confirmed",
+          "polls": 6,
+          "stop": null
+        },
+        {
+          "api": "POST /api/v2/flight/cancel",
+          "req": {
+            "bookingReference": "BR1793704867802968"
+          },
+          "http": 400,
+          "err": {
+            "code": "VALIDATION_ERROR",
+            "message": "bookingId is required",
+            "details": "Field 'bookingId' is required",
+            "timestamp": "2026-11-03T11:21:24Z",
+            "request_id": "req-1793704884481"
+          },
+          "sample": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"bookingId is required\",\"details\":\"Field 'bookingId' is required\",\"timestamp\":\"2026-11-03T11:21:24Z\",\"request_id\":\"req-1793704884481\"},\"_meta\":{\"correlation_id\":\"1b43a032-42bf-4221-9473-026689b803c2\"}}",
+          "pnr": "SIM-ORH676"
+        }
+      ]
+    }
+  ]
+}

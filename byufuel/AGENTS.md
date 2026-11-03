@@ -42,18 +42,19 @@ WH Worker: always **web** (APK hangs for Web-registered workers).
 | Role | Person | Login (email) | Password | Open |
 |------|--------|---------------|----------|------|
 | **Admin** | Amaan Khan | `amaan@crediblesg.com` | `Byufuel@2552` | Web |
-| **Driver** | Hyd Driver1 · +91 2164797413 | `hyddriver1@yopmail.com` | `qTEFvE6#` | App `com.byufuel.uat` · vehicle Toyota Tx100 / Tx468 |
+| **Driver** | Hyd Driver1 · +91 2164797413 | `hyddriver1@yopmail.com` | `BEwPIe#5` (reset Grow 2026-11-03; was `qTEFvE6#`) | App `com.byufuel.uat.driver` · vehicle Toyota Tx100 / Tx468 |
 | **Driver** | Mayur More · +91 9282809291 | `mayur.more.byufuel@yopmail.com` | `M7ur#More` | App `com.byufuel.uat` · status **Registered** (KYC not uploaded, so not Active) · OA Hyderabad · Kukatpally Warehouse · licence `TS092026009291` valid 31/12/2030 · Tata Ace Mini Truck `TS09MA9291` · storage 800 kg, 420×170×185 cm · created 2026-10-06. Owner name/address/phone were submitted; API GET still returns those owner fields empty. Do not use `mayur.driver.byufuel@yopmail.com` (broken user, GET 500). |
-| **Supplier** | Rohan SupplierQA · +91 9282809284 | `rohan.supplier.byufuel@yopmail.com` | `uBe9j#$A` | App `com.byufuel.mobile` · **ACTIVE** Hyderabad. Establishment: Rohan QA Kitchen, Restaurant, GSTIN `27AABCT1429B1Z1`, FSSAI `11223344556677`. Address: 12 Rohan QA Kitchen, Kondapur, Hyderabad 500084. Bank: HDFC `HDFC0000001` / `50100123456789` holder Rohan SupplierQA. KYC file + restaurant license file still not uploaded. |
+| **Supplier** | Rohan SupplierQA · +91 9282809284 | `rohan.supplier.byufuel@yopmail.com` | `d7QS#Lcw` (reset Grow 2026-11-03; was `uBe9j#$A`) | App `com.byufuel.uat.supplier` · **ACTIVE** Hyderabad. Establishment: Rohan QA Kitchen, Restaurant, GSTIN `27AABCT1429B1Z1`, FSSAI `11223344556677`. Address: 12 Rohan QA Kitchen, Kondapur, Hyderabad 500084. Bank: HDFC `HDFC0000001` / `50100123456789` holder Rohan SupplierQA. KYC file + restaurant license file still not uploaded. |
 | **TSM** | Rohan Bhagat | `rohan.tsm.byufuel@yopmail.com` | `R7m#Byuf` | App `com.byufuel.uat` · reports to AreaLead · password rotated 2026-10-06 (app forced change) |
-| **WH Worker** | QA WHWorker · 9876501004 | `qa.whworker.byufuel@yopmail.com` | `w6!CcGzV` | **Web only** · WareOne · Supervisor |
+| **WH Worker** | QA WHWorker · 9876501004 | `qa.whworker.byufuel@yopmail.com` | `w6!CcGzV` | **Web only** · WareOne · Supervisor · **Azure**. On Grow search: **not found** (use Rohan WHQA below). |
+| **WH Worker (Grow)** | Rohan WHQA · +91 9282809287 | `rohan.wh.byufuel@yopmail.com` | `AuI8N#u0` (reset Grow 2026-11-03) | **Web only** · Kukatpally Warehouse · Supervisor · present on TravelVIP Grow |
 
 ### Area / City lead
 
 | Role | Person | Login | Phone | Password |
 |------|--------|-------|-------|----------|
-| **Area Lead** | Rohan AreaLead | `rohan.area.byufuel@yopmail.com` | +91 9282809283 | Not stored — Admin → Reset Password if needed |
-| **City Lead** | Rohan CityLead | `rohan.city.byufuel@yopmail.com` | +91 9282809282 | Not stored — Reset via Admin · App `com.byufuel.uat` |
+| **Area Lead** | Rohan AreaLead | `rohan.area.byufuel@yopmail.com` | +91 9282809283 | `LZ0F!JXe` (reset on Grow 2026-11-03) |
+| **City Lead** | Rohan CityLead | `rohan.city.byufuel@yopmail.com` | +91 9282809282 | `m6J4r1@Q` (reset on Grow 2026-11-03) · App `com.byufuel.uat` / `com.byufuel.uat.tsm` |
 
 Hierarchy: TSM → AreaLead → CityLead → Admin.
 

@@ -1,0 +1,264 @@
+{
+  "at": "2026-11-03T11:40:50.792Z",
+  "base": "https://dev-benepik-api.travelvip.ai",
+  "partner": "vgm",
+  "note": "Detailed Riya sim follow-up · no client retry loops",
+  "results": [
+    {
+      "id": "S1",
+      "how": "Search PNQ→DEL OW",
+      "status": "PASS",
+      "note": "1 flights · 174ms · date 2026-11-28 · polls 1",
+      "sample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"DOMESTIC\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":n",
+      "at": "2026-11-03T11:37:42.874Z"
+    },
+    {
+      "id": "S2",
+      "how": "Same search different date",
+      "status": "PASS",
+      "note": "dates 2026-11-28 vs 2026-12-05; flightsA=SGSG 106 flightsB=SGSG 106 overlap=SGSG 106",
+      "at": "2026-11-03T11:37:43.231Z"
+    },
+    {
+      "id": "S3a",
+      "how": "Search DEL→PNQ",
+      "status": "PASS",
+      "note": "1 flights",
+      "err": null,
+      "at": "2026-11-03T11:37:43.430Z"
+    },
+    {
+      "id": "S3b",
+      "how": "Search PNQ→DXB",
+      "status": "PASS",
+      "note": "7 flights",
+      "err": null,
+      "at": "2026-11-03T11:37:43.824Z"
+    },
+    {
+      "id": "S3c",
+      "how": "Search DXB→LHR",
+      "status": "PASS",
+      "note": "1 flights",
+      "err": null,
+      "at": "2026-11-03T11:37:44.309Z"
+    },
+    {
+      "id": "S4",
+      "how": "Search PNQ→DEL BUSINESS",
+      "status": "PASS",
+      "note": "1 flights · cabin BUSINESS",
+      "err": null,
+      "at": "2026-11-03T11:37:44.498Z"
+    },
+    {
+      "id": "S5",
+      "how": "Price any flight",
+      "status": "PASS",
+      "note": "priceId=price_3b8add56d0324a3e9b135ce66d093560 total=5184",
+      "err": null,
+      "at": "2026-11-03T11:37:44.960Z"
+    },
+    {
+      "id": "S6",
+      "how": "Fare rules on a few flights",
+      "status": "PASS",
+      "note": "srch_81114180ef274cdcb68e98068aac254d:ok",
+      "at": "2026-11-03T11:37:45.252Z"
+    },
+    {
+      "id": "S7",
+      "how": "Seat map on a flight",
+      "status": "PASS",
+      "note": "http 400",
+      "at": "2026-11-03T11:37:45.678Z"
+    },
+    {
+      "id": "S8",
+      "how": "RT PNQ↔DEL price pair",
+      "status": "PASS",
+      "note": "total=10305",
+      "at": "2026-11-03T11:37:46.263Z"
+    },
+    {
+      "id": "S9",
+      "how": "Search BOM→DEL expect SIM-NO-RECORDING",
+      "status": "FAIL",
+      "note": "{\"code\":\"VENDOR_ERROR\",\"message\":\"Search failed.\",\"details\":null,\"timestamp\":\"2026-11-03T11:37:46Z\",\"request_id\":\"req-1793705866263\"}",
+      "at": "2026-11-03T11:37:46.597Z"
+    },
+    {
+      "id": "C1",
+      "how": "Fare type CORPORATE",
+      "status": "PASS",
+      "note": "flights=1 fareCategory=n/a priced=false",
+      "at": "2026-11-03T11:37:46.884Z"
+    },
+    {
+      "id": "C2",
+      "how": "Fare type SME",
+      "status": "PASS",
+      "note": "flights=1 fareCategory=n/a priced=false",
+      "at": "2026-11-03T11:37:47.187Z"
+    },
+    {
+      "id": "C3",
+      "how": "Normal + corporate fares",
+      "status": "PASS",
+      "note": "normal=1 corp=1 combinedTry=1 cats=n/a",
+      "at": "2026-11-03T11:37:47.675Z"
+    },
+    {
+      "id": "C4",
+      "how": "Corporate book Smith → CONFIRMED SIM-PNR",
+      "status": "PASS",
+      "br": "BR1793705868700788",
+      "note": "Confirmed pnrs=SIM-N0KVX9",
+      "at": "2026-11-03T11:37:53.111Z"
+    },
+    {
+      "id": "B1",
+      "how": "Smith OW CONFIRMED + SIM PNR/ticket",
+      "status": "PASS",
+      "br": "BR1793705873507412",
+      "note": "Confirmed pnr=SIM-T1XQAB eticket=SIM4203415084",
+      "at": "2026-11-03T11:37:56.793Z"
+    },
+    {
+      "id": "B2",
+      "how": "Smith RT CONFIRMED SIM PNR each leg",
+      "status": "PASS",
+      "br": "BR1793705878399589",
+      "note": "fallback DXB-LHR Confirmed pnrs=SIM-R00GG2,SIM-R00GG2 (PNQ-DEL meal block)",
+      "at": "2026-11-03T11:38:03.294Z"
+    },
+    {
+      "id": "B3",
+      "how": "FAIL → sold out Failed no PNR",
+      "status": "PASS",
+      "br": "BR1793705883361399",
+      "note": "Failed pnrs=none",
+      "at": "2026-11-03T11:38:08.928Z"
+    },
+    {
+      "id": "B4",
+      "how": "SOLDOUT → in progress / sold-out error",
+      "status": "PASS",
+      "br": "BR1793705889835068",
+      "note": "Failed sold-out mentioned",
+      "at": "2026-11-03T11:38:20.531Z"
+    },
+    {
+      "id": "B5",
+      "how": "CHANGE → Failed fare changed",
+      "status": "PASS",
+      "br": "BR1793705900868667",
+      "note": "Failed ",
+      "at": "2026-11-03T11:38:26.502Z"
+    },
+    {
+      "id": "B6",
+      "how": "EXPIRED → self-retry → CONFIRMED",
+      "status": "PASS",
+      "br": "BR1793705906958470",
+      "note": "Confirmed",
+      "at": "2026-11-03T11:38:29.741Z"
+    },
+    {
+      "id": "B7",
+      "how": "SEATFAIL (with seat) → CONFIRMED after retry",
+      "status": "PASS",
+      "br": "BR1793705910632099",
+      "note": "Confirmed",
+      "at": "2026-11-03T11:38:33.811Z"
+    },
+    {
+      "id": "B8",
+      "how": "TOKEN → self-retry → CONFIRMED",
+      "status": "PASS",
+      "br": "BR1793705914214166",
+      "note": "Confirmed",
+      "at": "2026-11-03T11:38:36.186Z"
+    },
+    {
+      "id": "B9",
+      "how": "HALFFAIL RT onward OK / return FAIL",
+      "status": "PASS",
+      "br": "BR1793705917469198",
+      "note": "DXB-LHR (fallback) status=Failed legs=[{\"direction\":\"ONWARD\",\"pnr\":null,\"paxStatus\":null},{\"direction\":\"RETURN\",\"pnr\":null,\"paxStatus\":null}]",
+      "at": "2026-11-03T11:38:43.364Z"
+    },
+    {
+      "id": "B10",
+      "how": "TIMEOUT ~1min → Failed no PNR",
+      "status": "PASS",
+      "br": "BR1793705923986068",
+      "note": "Failed polls=13 pnrs=none",
+      "at": "2026-11-03T11:39:48.937Z"
+    },
+    {
+      "id": "B11",
+      "how": "SERVERERROR → Failed no booking",
+      "status": "PASS",
+      "br": "BR1793705989159536",
+      "note": "Failed pnrs=none",
+      "at": "2026-11-03T11:39:51.248Z"
+    },
+    {
+      "id": "B12",
+      "how": "EMPTY → Failed empty response",
+      "status": "PASS",
+      "br": "BR1793705991835990",
+      "note": "Failed no PNR",
+      "at": "2026-11-03T11:39:53.861Z"
+    },
+    {
+      "id": "B13",
+      "how": "SLOW ~15s → CONFIRMED",
+      "status": "PASS",
+      "br": "BR1793705994747270",
+      "note": "Confirmed elapsed~17s",
+      "at": "2026-11-03T11:40:11.071Z"
+    },
+    {
+      "id": "X1",
+      "how": "Smith OW cancellation charges",
+      "status": "PASS",
+      "br": "BR1793706011134890",
+      "note": "penalty http 200/200 {\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1793706011134890\",\"pnr\":\"SIM-TYFGM5\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"esti",
+      "at": "2026-11-03T11:40:15.846Z"
+    },
+    {
+      "id": "X2",
+      "how": "Cancel Smith OW → Cancelled",
+      "status": "PASS",
+      "br": "BR1793706011134890",
+      "note": "cancelHttp=200 status=Cancelled",
+      "at": "2026-11-03T11:40:23.179Z"
+    },
+    {
+      "id": "X3",
+      "how": "Smith RT cancel both legs",
+      "status": "PASS",
+      "br": "BR1793706024369518",
+      "note": "DXB-LHR status=Confirmed cancelledLegs=1/2 http=200",
+      "at": "2026-11-03T11:40:35.077Z"
+    },
+    {
+      "id": "X4",
+      "how": "CANCELFAIL confirm then cancel fails",
+      "status": "PASS",
+      "br": "BR1793706035317303",
+      "note": "status=Confirmed cancelHttp=200 {\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1793706035317303\",\"pnr\":\"SIM-1D042X\",\"cancellationRe",
+      "at": "2026-11-03T11:40:40.424Z"
+    },
+    {
+      "id": "X5",
+      "how": "PARTIALCANCEL RT → partial 1/2",
+      "status": "PASS",
+      "br": "BR1793706041693624",
+      "note": "DXB-LHR cancelHttp=200 legs=[{\"legId\":\"QR1023_QR15-DXB-LHR-2026-11-28T13:10-2026-11-28T19:50\",\"pnr\":\"SIM-QEW1J3\",\"eticket\":\"SIM7994227000\",\"status\":\"Cancellation requested\"},{\"legId\":\"QR8_QR1002-LHR-DXB-2026-12-05T14:55-2026-12-06T03:50\",\"pnr\":\"SIM partialText=false",
+      "at": "2026-11-03T11:40:50.792Z"
+    }
+  ]
+}
