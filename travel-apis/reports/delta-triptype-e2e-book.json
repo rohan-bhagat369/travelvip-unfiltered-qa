@@ -1,0 +1,149 @@
+{
+  "at": "2026-11-04T07:08:26.601Z",
+  "baseUrl": "https://delta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "counts": {
+    "PASS": 6,
+    "BUG": 5
+  },
+  "bookings": [
+    {
+      "id": "H1",
+      "br": "BR1793776014890609",
+      "st": "Pending",
+      "searchTt": "domestic",
+      "detailsTt": "domestic",
+      "prebookTt": "domestic",
+      "finalizeTt": null,
+      "detailTt": null,
+      "cancelHttp": null,
+      "entityId": "328605:IN",
+      "checkin": "2026-11-18",
+      "checkout": "2026-11-19",
+      "product": "hotel"
+    }
+  ],
+  "observations": [
+    {
+      "severity": "BUG",
+      "where": "B3-fareRules",
+      "note": "Found UPPERCASE DOMESTIC/INTERNATIONAL in response body",
+      "sample": [
+        "INTERNATIONAL"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "N1",
+      "rule": "DEL→DXB + domestic → TRIP_TYPE_MISMATCH lowercase",
+      "status": "PASS",
+      "note": " | tripType domestic requires every airport to be in India; outside India: DXB.",
+      "http": 400,
+      "code": "TRIP_TYPE_MISMATCH",
+      "snippet": "{\"error\":{\"code\":\"TRIP_TYPE_MISMATCH\",\"message\":\"tripType domestic requires every airport to be in India; outside India: DXB.\",\"details\":null,\"timestamp\":\"2026-11-04T07:04:37Z\",\"request_id\":\"req-1793775877243\"},\"_meta\":{\"correlation_id\":\"d0140f1d-b2d7-42ce-8d2e-417a911fe683\"}}"
+    },
+    {
+      "id": "N2",
+      "rule": "tripType=foo → INVALID_TRIP_TYPE lowercase",
+      "status": "PASS",
+      "note": "Unsupported tripType: foo. Supported: domestic, international or empty. | Invalid tripType. Supported values are domestic, international or empty.",
+      "http": 400,
+      "code": "INVALID_TRIP_TYPE",
+      "snippet": "{\"error\":{\"code\":\"INVALID_TRIP_TYPE\",\"message\":\"Invalid tripType. Supported values are domestic, international or empty.\",\"details\":[\"Unsupported tripType: foo. Supported: domestic, international or empty.\"],\"timestamp\":\"2026-11-04T07:04:37Z\",\"request_id\":\"req-1793775877391\"},\"_meta\":{\"correlation_id\":\"d0140f1d-b2d7-42ce-8d2e-417a911fe683\"}}"
+    },
+    {
+      "id": "E1",
+      "rule": "input Domestic → response domestic",
+      "status": "PASS",
+      "note": "tt=domestic",
+      "http": 200,
+      "code": null,
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":3623,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"RjTE+i/LGQxwdiOTNThYSeKvG8Pr9RsbT/d9KFUwihUY71GTyaFRZ+9Uo94d3H+DcWg8SScgNNWw2JOBj0V3777lamnMSBNdQ5i2Oz8Tmf4EjLS7tzEP182YogrA/s6VPtzjaoFZpg/ziSfl3smd3nwvV5L9djDrLfSxx5/m8tCHAYBzrozecpZmYFLulcXQYIBYj3ov8y+NMSZsU2+ai6FjpkuQR7/eXBTxuNGKT4jxz96fUxo2k2jMT8aczRjk9V/emqS6RlnNgNl4"
+    },
+    {
+      "id": "E2",
+      "rule": "input DOMESTIC → response domestic",
+      "status": "PASS",
+      "note": "tt=domestic",
+      "http": 200,
+      "code": null,
+      "snippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"currency\":\"INR\",\"currencyConversion\":null,\"progress\":{\"partial\":true,\"state\":\"INPROGRESS\",\"pollAfterMs\":3622,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"LHw7oIfyCcztAOB69Abq0/s46EEoKDOp+OVS+yflc0no0ipLS65qFxdY6x6NAdyZmzzjrafz2vEuKlfbIka3vme13pzy+k4HJEQYJK6J36CI6O27BnhnSt8ewR7IbaaNRJkKWnTMy36L1N7EVG0GFj+tFaMW1DFILOy1GPb2gjGh4gV+l4RYZSNyVvLKgkONw426Y8y/Kqvez0wCThkMTbWQtjwq66QaG2y2o7Rs8eYEtRrPxsXnU4Lta93C++41GONkovNHxtQHM4P0"
+    },
+    {
+      "id": "B1",
+      "rule": "E2E OW domestic DEL→BOM book",
+      "status": "BUG",
+      "note": "pricing HTTP 400 tt=null",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "snippet": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Pricing failed.\",\"details\":null,\"timestamp\":\"2026-11-04T07:05:51Z\",\"request_id\":\"req-1793775903062\"},\"_meta\":{\"correlation_id\":\"d0140f1d-b2d7-42ce-8d2e-417a911fe683\"}}"
+    },
+    {
+      "id": "B2",
+      "rule": "E2E RT domestic DEL↔BOM book",
+      "status": "BUG",
+      "note": "fareRules HTTP 400 tt=null",
+      "http": 200,
+      "code": null,
+      "snippet": "{\"priceId\":\"price_15b45805389845e0979e1b94e6659760\",\"timingReference\":\"UAUK0hXWV6o/k/0lU+3ayd36lk7zBlGK/F9a87kScIG5di5DH/JerI+0eWJ7kSRQQuIJLrlFC6qsdrCtPcDVx0tdldB/ptv5ksoLjXGOEOMz9i36tcDqs6l/2a1EO30wfHOrqbJAdDRgFS+igiGozbHY/cRiFR+DIzRloKAkJvYorpfsF7YgIDz/lWRVW2+Y0wOylQoNnUG0jR1d3qO1zxCSZhb/oJabITnmyEENJtIKmFr0tdvH3VVhDJQutlFdeAqCx9f5kGh+xPU46sr8foLuUmyiHcGv4DQxgNHvvaSh8qNgp7TgJrHK2aTQZqPIagkGrtwRLcn+J8QUs8T9dV4fLhoSVoRSARFX9dhb4WEUNJX2gCHHHeeo6NdHlKdk4xHOH+ItNNbcK0GP1Wj+NAOcIewb5Re+HqcpIsfRCnUu5"
+    },
+    {
+      "id": "B3",
+      "rule": "E2E OW international DEL→DXB book",
+      "status": "BUG",
+      "note": "pricing HTTP 400 tt=null",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "snippet": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Pricing failed.\",\"details\":null,\"timestamp\":\"2026-11-04T07:06:22Z\",\"request_id\":\"req-1793775978711\"},\"_meta\":{\"correlation_id\":\"d0140f1d-b2d7-42ce-8d2e-417a911fe683\"}}"
+    },
+    {
+      "id": "B4",
+      "rule": "E2E RT international DEL↔DXB book",
+      "status": "BUG",
+      "note": "fareRules HTTP 400 tt=null",
+      "http": 200,
+      "code": null,
+      "snippet": "{\"priceId\":\"price_72eb7104572848cabbd690eb4a66730d\",\"timingReference\":\"fGWhPfkX9R3DwfJd9r5UBCNG++jw4TeNZptlwlzelgcYFOnyyO7HsrgyAJcPVesV7POLM9kLCmthe2I4X73IBzWjwflCEuG6FnImts065LITUE670DExQBD1YKNaF5DMn1NzB8bJoldV/tC5XgUBxbHY/cRiFR+DIzRloKAkJvYorpfsF7YgIDz/lWRVW2+Y0wOylQoNnUG0jR1d3qO1zxCSZhb/oJabITnmyEENJtIKmFr0tdvH3VVhDJQutlFd/endg8rcTAcXz928eracuoP0hd/0aKqmMsq1Taqn467LUPfgbOTcf69Wr3tNY+bd6T9diJ9jNo8Up4EtrXnuPV1zl/G0neCEBmtJQoM3/2pM5RCPS3LVdWGGfHb7mLf+umXqR81TrfEtEPL1wKJ85cfYAFD6p5Kx6OWKo+r/1tKqV"
+    },
+    {
+      "id": "H0",
+      "rule": "Hotel autocomplete DOMESTIC → domestic",
+      "status": "PASS",
+      "note": "tt=domestic n=4",
+      "http": 200,
+      "code": null,
+      "snippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Mumbai\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"357389:IN\",\"latitude\":\"19.075987\",\"longitude\":\"72.87766\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"CITY\",\"title\":\"Mumbai Suburban\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"340853:IN\",\"latitude\":\"19.061657\",\"longitude\":\"72.84981\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"HOTEL\",\"title\":\"Mumbai BNB\",\"city\":\"Mumbai\",\"state\":\"Mah"
+    },
+    {
+      "id": "H1",
+      "rule": "Hotel E2E domestic finalize+cancel",
+      "status": "BUG",
+      "note": "not Confirmed — BR=BR1793776014890609 status=Pending tts=domestic,domestic,domestic cancelHTTP=null",
+      "http": null,
+      "code": null,
+      "snippet": "undefined",
+      "br": "BR1793776014890609",
+      "st": "Pending",
+      "searchTt": "domestic",
+      "detailsTt": "domestic",
+      "prebookTt": "domestic",
+      "finalizeTt": null,
+      "detailTt": null,
+      "cancelHttp": null,
+      "entityId": "328605:IN",
+      "checkin": "2026-11-18",
+      "checkout": "2026-11-19"
+    },
+    {
+      "id": "A1",
+      "rule": "Airports domestic filter still works",
+      "status": "PASS",
+      "note": "n=4",
+      "http": 200,
+      "code": null,
+      "snippet": "{\"status\":0,\"result\":[{\"airportCode\":\"DEL\",\"airportName\":\"Indira Gandhi International Airport\",\"city\":\"New Delhi\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"28.55563\",\"longitude\":\"77.09519\",\"address\":null,\"tag\":null},{\"airportCode\":\"DXN\",\"airportName\":\"Noida International Airport\",\"city\":\"Noida\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"28.1385\",\"longitude\":\"77.4997\",\"address\":null,\"tag\":null},{\"airportCode\":\"HRH\",\"airportName\":\"Al"
+    }
+  ]
+}

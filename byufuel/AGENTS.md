@@ -46,8 +46,10 @@ WH Worker: always **web** (APK hangs for Web-registered workers).
 | **Driver** | Mayur More · +91 9282809291 | `mayur.more.byufuel@yopmail.com` | `M7ur#More` | App `com.byufuel.uat` · status **Registered** (KYC not uploaded, so not Active) · OA Hyderabad · Kukatpally Warehouse · licence `TS092026009291` valid 31/12/2030 · Tata Ace Mini Truck `TS09MA9291` · storage 800 kg, 420×170×185 cm · created 2026-10-06. Owner name/address/phone were submitted; API GET still returns those owner fields empty. Do not use `mayur.driver.byufuel@yopmail.com` (broken user, GET 500). |
 | **Supplier** | Rohan SupplierQA · +91 9282809284 | `rohan.supplier.byufuel@yopmail.com` | `d7QS#Lcw` (reset Grow 2026-11-03; was `uBe9j#$A`) | App `com.byufuel.uat.supplier` · **ACTIVE** Hyderabad. Establishment: Rohan QA Kitchen, Restaurant, GSTIN `27AABCT1429B1Z1`, FSSAI `11223344556677`. Address: 12 Rohan QA Kitchen, Kondapur, Hyderabad 500084. Bank: HDFC `HDFC0000001` / `50100123456789` holder Rohan SupplierQA. KYC file + restaurant license file still not uploaded. |
 | **TSM** | Rohan Bhagat | `rohan.tsm.byufuel@yopmail.com` | `R7m#Byuf` | App `com.byufuel.uat` · reports to AreaLead · password rotated 2026-10-06 (app forced change) |
-| **WH Worker** | QA WHWorker · 9876501004 | `qa.whworker.byufuel@yopmail.com` | `w6!CcGzV` | **Web only** · WareOne · Supervisor · **Azure**. On Grow search: **not found** (use Rohan WHQA below). |
-| **WH Worker (Grow)** | Rohan WHQA · +91 9282809287 | `rohan.wh.byufuel@yopmail.com` | `AuI8N#u0` (reset Grow 2026-11-03) | **Web only** · Kukatpally Warehouse · Supervisor · present on TravelVIP Grow |
+| **WH Worker** | QA WHWorker · 9876501004 | `qa.whworker.byufuel@yopmail.com` | `w6!CcGzV` | **Missing on Azure** (2026-11-04 search NO DATA). Prefer Mayur More below. |
+| **WH Worker (Azure)** | Mayur More · +91 7507058005 | `mayurmwh1@byufuel.in` | `CAj#8!WS` (reset Azure 2026-11-04) | **Web only** · Kalika Enterprises · Supervisor · ACTIVE |
+| **WH Worker (Grow)** | Mayur More · +91 7507058005 | `mayurmwh1@byufuel.in` | `fjvg4F#W` (reset Grow 2026-11-04) | **Web only** · Kalika Enterprises · Supervisor · ACTIVE on Grow |
+| **WH Worker (Grow)** | Rohan WHQA · +91 9282809287 | `rohan.wh.byufuel@yopmail.com` | `AuI8N#u0` (reset Grow 2026-11-03) | **Web only** · Kukatpally · ACTIVE on Grow; **DEACTIVATED on Azure** (login → Email Id not registered) |
 
 ### Area / City lead
 

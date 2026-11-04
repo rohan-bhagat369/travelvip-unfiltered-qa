@@ -1,7 +1,9 @@
-﻿# ANS V2 Email Evidence Manifest
+# ANS V2 Email Evidence Manifest
 
-- Generated: 2026-10-30
-- Source sheets: `sheet-partner-bfl-email-testing.csv`, `sheet-partner-smt-email-testing.csv`
+- Generated: 2026-10-30 · updated 2026-11-03 (TravelVerse Lounge)
+- Source sheets: `sheet-partner-bfl-email-testing.csv`, `sheet-partner-smt-email-testing.csv`, `sheet-partner-tvs-email-testing.csv`, `sheet-partner-thomas-cook-email-testing.csv`
+- Google Sheet tabs: Partner BFL / SMT / JSP / TravelVerse / Thomas Cook / Entertainer email testing — https://docs.google.com/spreadsheets/d/1kU96tGaT8zPUS24PjsUWOO37E2SLpB4cBVjdVupq3XY/edit
+- Local workbook: `ANS-V2-partner-email-testing.xlsx`
 - Inboxes used: `rohan@travelvip.ai` (User) · `rohan@scandid.in` (Admin + CS)
 - Login: both accounts already signed in — no LOGIN_BLOCKED
 - Skipped: BR1793354009832308 Fast Track (Not Done — emails NOT RCVD); 1793356264366542 Cancelled (N/A)
@@ -10,7 +12,7 @@
 
 | Status | Count |
 |--------|------:|
-| CAPTURED | 85 |
+| CAPTURED | 88 |
 | MISSING | 1 |
 | LOGIN_BLOCKED | 0 |
 | EXPECT_ABSENT | 3 |
@@ -19,6 +21,9 @@
 
 | Partner | Booking | Action | Channel | File path | Subject | Status |
 |---------|---------|--------|---------|-----------|---------|--------|
+| TVS | BR1793690922489315 | confirmed | user | `notif-evidence/BR1793690922489315/email/user-confirmed.png` | [DEV] TravelVerse \| Your Lounge Booking Confirmed \| BR1793690922489315 | CAPTURED |
+| TVS | BR1793690922489315 | confirmed | admin | `notif-evidence/BR1793690922489315/email/admin-confirmed.png` | [DEV] TravelVerse \| Your Lounge Booking Confirmed \| BR1793690922489315 | CAPTURED |
+| TVS | BR1793690922489315 | confirmed | cs | `notif-evidence/BR1793690922489315/email/cs-confirmed.png` | [DEV] CSV2 TravelVerse \| Your Lounge Booking \| BR1793690922489315 | CAPTURED |
 | BFL | 1793180663401623 | confirmed | admin | `notif-evidence/1793180663401623/email/admin-confirmed.png` | [DEV] Bajaj Finserve | Your Hotel Booking Confirmed | 1793180663401623 | CAPTURED |
 | BFL | 1793180663401623 | confirmed | cs | `notif-evidence/1793180663401623/email/cs-confirmed.png` | [DEV] CSV2 Bajaj Finserve | Your Hotel Booking | 1793180663401623 | CAPTURED |
 | BFL | 1793180663401623 | confirmed | user | `notif-evidence/1793180663401623/email/user-confirmed.png` | [DEV] Bajaj Finserve | Your Hotel Booking Confirmed | 1793180663401623 | CAPTURED |

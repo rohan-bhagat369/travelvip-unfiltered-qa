@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-04T07:12:44.039Z",
+  "baseUrl": "https://delta-api.travelvip.ai",
+  "note": "no-loop: one attempt per scenario; stop on Failed/Inprogress",
+  "counts": {
+    "BUG": 5
+  },
+  "observations": [],
+  "rows": [
+    {
+      "id": "B1",
+      "rule": "OW domestic DEL→BOM",
+      "status": "BUG",
+      "note": "fareRules HTTP 400 tt=null code=VENDOR_ERROR {\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Fare rules failed.\",\"details\":null,\"timestamp\":\"2026-11-04T07:08:28Z\",\"request_id\":\"req-1793776107653\"},\"_meta\":{\"correlation_id\":\"3f7cda",
+      "http": 400,
+      "snippet": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Fare rules failed.\",\"details\":null,\"timestamp\":\"2026-11-04T07:08:28Z\",\"request_id\":\"req-1793776107653\"},\"_meta\":{\"correlation_id\":\"3f7cdacb-23a5-41e9-8d84-a53a3f15b71e\"}}"
+    },
+    {
+      "id": "B2",
+      "rule": "RT domestic BOM↔BLR",
+      "status": "BUG",
+      "note": "NO_LOOP_STOP BR=BR1793776147427801 status=Pending tts=domestic,domestic,domestic,domestic seatmap=200 cancel=null",
+      "br": "BR1793776147427801"
+    },
+    {
+      "id": "B3",
+      "rule": "OW international DEL→DXB",
+      "status": "BUG",
+      "note": "issue failed VALIDATION_ERROR {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan Bhagat) must have a meal selected for DEL-DXB (leg 1, ONWARD); this flight makes meal selectio",
+      "http": 400
+    },
+    {
+      "id": "B4",
+      "rule": "RT international DEL↔DXB",
+      "status": "BUG",
+      "note": "NO_LOOP_STOP BR=BR1793776250315833 status=Pending tts=international,international,international,international seatmap=200 cancel=null",
+      "br": "BR1793776250315833"
+    },
+    {
+      "id": "H1",
+      "rule": "Hotel domestic E2E",
+      "status": "BUG",
+      "note": "NO_LOOP_STOP BR=BR1793776291471432 status=Pending tts=domestic,domestic,domestic cancel=null",
+      "br": "BR1793776291471432"
+    }
+  ]
+}

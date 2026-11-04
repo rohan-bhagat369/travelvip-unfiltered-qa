@@ -33,8 +33,14 @@ Action tokens: `request-submitted` · `confirmed` · `cancellation-requested` ·
 
 | Partner | Sheet file | Date |
 |---------|------------|------|
-| BFL | `sheet-partner-bfl-email-testing.csv` | 28 Oct |
-| SMT | `sheet-partner-smt-email-testing.csv` | 29–30 Oct |
+| BFL | `sheet-partner-bfl-email-testing.csv` | 28 Oct · Google tab **Partner BFL email testing** |
+| SMT | `sheet-partner-smt-email-testing.csv` | 29–30 Oct · Google tab **Partner SMT email testing** |
+| TravelVerse (`tvs`) | `sheet-partner-tvs-email-testing.csv` | 3–4 Nov · host `lambda-tvs.travelvip.ai` · Google tab **Partner TravelVerse email testing** |
+| Thomas Cook | `sheet-partner-thomas-cook-email-testing.csv` | 3–4 Nov · host `lambda-shop.travelvip.ai` · Google tab **Partner Thomas Cook testing** |
+| Entertainer | `sheet-partner-entertainer-email-testing.csv` | 4 Nov · host `lambda-ent.travelvip.ai` · Google tab **Partner Entertainer email testing** · email-only |
+| JSP | `sheet-partner-jsp-email-testing.csv` | 4 Nov · host `lambda-shop.travelvip.ai` · Google tab **JSP Email Testing** · **same booking refs / results as SMT** |
+
+**Google Sheet:** [ANS V2 Email Testing](https://docs.google.com/spreadsheets/d/1kU96tGaT8zPUS24PjsUWOO37E2SLpB4cBVjdVupq3XY/edit) — one tab per partner (same columns as CSVs). Local multi-tab: `ANS-V2-partner-email-testing.xlsx`.
 
 Skip: Not Done / N/A / channel No when **EXPECT** (document EXPECT_ABSENT in INDEX).
 

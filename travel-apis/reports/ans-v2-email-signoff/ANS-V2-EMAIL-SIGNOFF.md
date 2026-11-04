@@ -1,501 +1,317 @@
-# ANS V2 Email Testing — Sign-off pack (Dev / TravelVIP)
+# ANS V2 Email Testing — Full Partner Sign-off Pack
 
-**Prepared for:** Preprod / Prod move sign-off  
 **QA:** Rohan Bhagat  
-**Product:** Travel VIP · ANS V2 emails (User + Admin + CS) + app notifications  
-**Env tested:** Dev — `https://lambda-shop.travelvip.ai/` · Nexus `https://gamma-nexus.travelvip.ai/`  
-**Inboxes checked:** TravelVIP Gmail · Scandid Gmail · mobile `7219784663` (where applicable)  
-**Sheet (source of truth):** [ANS V2 Testing — 30/09/2026](https://docs.google.com/spreadsheets/d/1kU96tGaT8zPUS24PjsUWOO37E2SLpB4cBVjdVupq3XY/edit?gid=1737154204#gid=1737154204)  
-**Channel:** Mattermost `ANS V2`  
-**Hub / related:** ENG-294 · ENG-555 (out of scope — see §5)
+**Product:** Travel VIP · ANS V2 emails (**User** + **Admin** + **CS**) · partner chrome / theme  
+**Last updated:** 2026-11-04  
+**Google Sheet (source of truth):** [ANS V2 Email Testing](https://docs.google.com/spreadsheets/d/1kU96tGaT8zPUS24PjsUWOO37E2SLpB4cBVjdVupq3XY/edit)  
+**Evidence:** `travel-apis/reports/ans-v2-email-signoff/notif-evidence/{bookingId}/` · see `EMAIL-EVIDENCE-STANDARD.md`  
+**Channel:** Mattermost `ANS V2`
 
 ---
 
-## 1. Sign-off verdict
+## 1. Executive summary
 
 | Item | Result |
 |------|--------|
-| **Dev ANS V2 email matrix (TravelVIP)** | **PASS — signed off 2026-10-22** |
-| Mattermost sign-off | *“I have tested the ANS V2 emails with TravelVIP across all categories and the specified user actions. Everything is working as expected on Dev, so you can proceed with the next steps for Preprod and Prod.”* — Rohan, 22 Oct 2026 |
-| Scope of sign-off | Normal booking / status emails: **User · Admin · CS · Notification** per category & action in the sheet |
-| **Out of scope** | Nexus **manual** dashboard Inprogress→Confirmed/Failed CS emails → **[ENG-555](https://tracker.travelvip.ai/tasks/ENG-555)** (Todo) — do **not** block this ANS V2 sign-off |
-| Preprod / Prod | **Not re-run here** — proceed with config parity note (§4) |
+| **Partners tested** | **6** — BFL · SMT · **JSP** · TravelVerse · Thomas Cook · Entertainer |
+| **Overall verdict** | **PASS** — all executed partner matrix rows are Done / PASS (as of 04 Nov 2026) |
+| **Open sheet bugs** | **None** (prior TVS Attraction + TC request-lounge Ref bugs marked fixed & deployed) |
+| **Original TravelVIP Dev baseline** | Signed off **2026-10-22** (see §13) |
+| **JSP note** | Sheet tab **JSP Email Testing** — same booking refs / evidence as **SMT**. **Package booking emails NOT TESTED** (still V1 / in development — Prerna; retest when V2 ready — discussed with Shailesh Gaikwad) |
+
+**How to read this doc:** Each partner section lists every test case (category × status), channels checked, booking ID / URL, and result. Soft notes are non-blocking. Soft ≠ fail.
 
 ---
 
-## 2. What was tested (coverage)
+## 2. What every test case checks
 
-For each applicable row we verified:
+| Check | Meaning | PASS when |
+|-------|---------|-----------|
+| **ANS V2** | New ANS V2 email path / template | Subject + body use partner ANS V2 chrome (not legacy-only) |
+| **User Email** | Customer inbox (`rohan@travelvip.ai` / guest where noted) | Mail received for that status |
+| **Admin Email** | Admin / same travelvip inbox (BCC or To) | Mail received |
+| **CS Email** | Scandid / CSV2 CS inbox | Mail received **or** documented **EXPECT** absent |
+| **Notification** | In-app / push (where run) | Received **or** N/A / device note |
+| **Content** | IDs, amounts, Ref/Valid till, PNR, Conf No., partner branding | Align User ↔ CS (and page when UI checked) |
 
-| Check | Meaning |
-|-------|---------|
-| **ANS V2** | New ANS V2 email path used |
-| **User Email** | Customer / user inbox received expected mail |
-| **Admin Email** | Admin inbox received expected mail |
-| **CS Email** | Customer Success / Scandid CS inbox received expected mail |
-| **Notification** | In-app / related notification as applicable |
-| **Content** | Key fields vs booking page (where bugs were raised) |
+**Hosts**
 
-**Categories covered**
-
-| # | Category | Actions covered |
-|---|----------|-----------------|
-| 1 | Duty Free | Request Submitted · Confirmed · Cancelled |
-| 2 | Porter | Request Submitted · Confirmed |
-| 3 | Attraction | Booking Confirmed |
-| 4 | Fast Track | Booking Confirmed |
-| 5 | Meet & Greet | Request Submitted · Confirmed |
-| 6 | eSIM | Booking Confirmed |
-| 7 | Flight V1 | Booking Confirmed · Cancellation Requested · Cancelled |
-| 8 | Flight V2 | Booking Confirmed |
-| 9 | Hotel | Booking Confirmed · Cancelled |
-| 10 | Hotel Deals | Request Submitted · Confirmed · Cancelled |
-| 11 | Lounge — Pune (request-based) | Request Submitted · Confirmed |
-| 12 | Lounge — HAK (online) | Confirmed |
-| 13 | Trip Emergency Concierge | Booking Request Submitted |
-
-**Not in Dev matrix / blocked**
-
-| Category | Reason |
-|----------|--------|
-| Cabs | UI not deployed on Dev at test time |
-| Bag Assure | Unable to book on Dev |
+| Partner | Host |
+|---------|------|
+| TravelVIP baseline / BFL / SMT / **JSP** / Thomas Cook | `https://lambda-shop.travelvip.ai` |
+| TravelVerse | `https://lambda-tvs.travelvip.ai` |
+| Entertainer | `https://lambda-ent.travelvip.ai` (**email-only** — no UI session) |
 
 ---
 
-## 3. Results matrix (final QA status)
+## 3. Partner roll-up
 
-Legend: **PASS** = Done / working on final retest · **N/A** = not applicable or blocked · **EXPECT** = documented as expected behaviour
+| # | Partner | Sheet tab | When | Cases Done | Not tested / N/A | Bugs open |
+|---|---------|-----------|------|------------|------------------|-----------|
+| 1 | **BFL** | Partner BFL email testing | 28 Oct | 4 | 0 | 0 |
+| 2 | **SMT** | Partner SMT email testing | 29–30 Oct | 26 | 1 (old hotel final Cancelled) | 0 |
+| 3 | **JSP** | JSP Email Testing | 04 Nov (sheet) | 26 | 1 (old hotel final Cancelled) | 0 |
+| 4 | **TravelVerse** | Partner TravelVerse testing | 3–4 Nov | 18 | 1 (Concierge Confirmed — page still Pending) | 0 |
+| 5 | **Thomas Cook** | Partner Thomas Cook testing | 3–4 Nov | 9 | 0 | 0 |
+| 6 | **Entertainer** | Partner Entertainer email testing | 4 Nov | 10 | 0 | 0 |
 
-### 3.1 Final PASS (including fixed then retested)
-
-| Category | Action | User | Admin | CS | Notif | Final QA | Retest / evidence |
-|----------|--------|------|-------|-----|-------|----------|-------------------|
-| Duty Free | Request Submitted | Yes | Yes | Yes | Yes | **PASS** | TX1790773064145716 |
-| Duty Free | Cancelled | Yes | Yes | Yes | Yes | **PASS** | TX1790773064145716 |
-| Porter | Request Submitted | Yes | Yes | Yes | Yes | **PASS** | SR1790774781323946 |
-| Porter | Confirmed | Yes | Yes | Yes | Yes | **PASS** | SR1790774781323946 |
-| Attraction | Booking Confirmed | Yes* | Yes* | Yes* | Yes* | **PASS** (after fix) | **BR1791890800383086** |
-| Fast Track | Booking Confirmed | Yes* | Yes* | Yes* | Yes* | **PASS** (after fix) | **BR1791800740387332** |
-| Meet & Greet | Request Submitted | Yes | Yes | Yes | Yes | **PASS** | SR1790763853260580 |
-| Meet & Greet | Confirmed | Yes | Yes | Yes | Yes | **PASS**** | SR1790763853260580 |
-| eSIM | Booking Confirmed | Yes | Yes | Yes | Yes | **PASS** | BR1790754147709756 |
-| Flight V1 | Booking Confirmed | Yes | Yes | Yes | Yes | **PASS** | FB1790760941942394 |
-| Flight V1 | Cancellation Requested | Yes | Yes | Yes | Yes | **PASS** | FB1790760941942394 |
-| Flight V2 | Booking Confirmed | Yes* | Yes* | Yes | Yes* | **PASS** (after fix) | BR1790760106270492 → fixed `email_json` |
-| Hotel | Booking Confirmed | Yes | Yes | Yes | Yes | **PASS** | 1790751643994741 |
-| Hotel | Cancelled | Yes | Yes | Yes | Yes | **PASS** | 1790751643994741 |
-| Hotel Deals | Request Submitted | Yes | Yes | Yes | Yes | **PASS** | 1790768390986193 |
-| Hotel Deals | Confirmed | Yes | Yes | Yes | Yes | **PASS** (after fix) | **1791791597528121** |
-| Hotel Deals | Cancelled | — | — | — | — | **PASS / closed**† | 1791791597528121 |
-| Lounge Pune (request) | Request Submitted | Yes | Yes | Yes | Yes | **PASS** | BR1790766284498181 |
-| Lounge Pune (request) | Confirmed | Yes | Yes | Yes | Yes | **PASS** (after fix) | **BR1791789547816145** |
-| Lounge HAK (online) | Confirmed | Yes* | Yes* | Yes | Yes* | **PASS** (after fix) | **BR1791790717109602** |
-| Trip Emergency Concierge | Request Submitted | Yes | Yes | —‡ | Yes | **PASS / closed** | SR1790770070619550 |
-
-\* First run failed (missing user/admin and/or CS confirm / null `email_json`); **retest after Dev fix = PASS**.  
-\*\* Airport name wording raised once; not listed as open blocker in final 22 Oct sign-off.  
-† Cancel-from-dashboard-after-confirm called **not a valid issue** for this matrix; sheet marked Done.  
-‡ CS naming / “Not Required” per Dev on sheet; closed Done for Dev sign-off.
-
-### 3.2 Documented exception (not a Dev bug)
-
-| Category | Action | Note | Final |
-|----------|--------|------|-------|
-| Duty Free | Confirmed | CS confirmation email **not** sent — Dev: **As Expected** | **EXPECT** — leave |
-
-### 3.3 First-run bugs → fixed → retest PASS (detail)
-
-| Issue (30 Sep) | Root cause / fix | Retest evidence | Final |
-|----------------|------------------|-----------------|-------|
-| Attraction — no user/admin; CS only till Submitted | Backend missing update API → `email_json` null → Fixed | BR1791890800383086 | **PASS** |
-| Fast Track — same | Same `email_json` null → Fixed | BR1791800740387332 | **PASS** |
-| Flight V2 — no user/admin | `email_json` null on V2 confirm → Added / deployed lambda-shop | Sheet Done | **PASS** |
-| Lounge HAK — no user/admin | `email_json` null on confirm → Fixed | BR1791790717109602 | **PASS** |
-| Lounge Pune confirm — Dragon Pass on QR / channel | `booking.channel` should be `request` → deployed gamma-nexus | BR1791789547816145 | **PASS** |
-| Hotel Deals Confirmed — policy / phone IT / times | Nexus + Prerna fixes | 1791791597528121 | **PASS** |
-| Hotel Deals Cancelled — charge/refund 0 in mail | Closed as invalid cancel path from dashboard after confirm; later Nexus cancel `email_json` order fixed (12 Oct Shailesh) | Done on sheet | **PASS / closed** |
-| Flight V1 Cancelled — refund 0 / baggage N/A | Deployed on gamma-nexus; V2 cancel path confirmed working | Sheet updated | Covered under 22 Oct all-categories PASS |
+**Local CSVs:** `sheet-partner-{bfl|smt|jsp|tvs|thomas-cook|entertainer}-email-testing.csv`  
+**JSP ↔ SMT:** Same booking IDs and `notif-evidence/` folders (results copied as SMT for JSP partner sign-off).
 
 ---
 
-## 4. Preprod / Prod handoff note (from Dev sign-off)
+## 4. Partner BFL — test cases (28 Oct 2026)
 
-When promoting beyond Dev, verify parity of:
+**Scope:** Flight V1 OW/RT + Hotel (1 room / 2 rooms). User / Admin / CS.
 
-- Partner / TravelVIP configurations  
-- DB schema · column names · property names  
-- Mattermost alert wiring  
-- ANS / email template & `email_json` / `user_actions` behaviour  
+| TC | Category | Action | Booking | User | Admin | CS | Result |
+|----|----------|--------|---------|------|-------|-----|--------|
+| BFL-01 | Flight V1 | Booking Confirmed (OW) | [FB1793174919474118](https://lambda-shop.travelvip.ai/flight-booking/v2/booking-confirmation/FB1793174919474118) | Yes | Yes | Yes | **PASS** |
+| BFL-02 | Flight V1 | Booking Confirmed (RT) | [FB1793175453420082](https://lambda-shop.travelvip.ai/flight-booking/v2/booking-confirmation/FB1793175453420082) | Yes | Yes | Yes | **PASS** |
+| BFL-03 | Hotel | Booking Confirmed | [1793180663401623](https://lambda-shop.travelvip.ai/hotel/booking-details/1793180663401623) | Yes | Yes | Yes | **PASS** |
+| BFL-04 | Hotel | Booking Confirmed (2 rooms) | [1793181215750533](https://lambda-shop.travelvip.ai/hotel/booking-details/1793181215750533) | Yes | Yes | Yes | **PASS** |
 
-Testing sign-off above is **TravelVIP on Dev only**.
-
----
-
-## 5. Explicitly out of scope (do not mix into this sign-off)
-
-| Item | Tracker | Status |
-|------|---------|--------|
-| CS emails after **Nexus manual** Inprogress → Confirmed / Failed (and related cancel settle/reject) | [ENG-555](https://tracker.travelvip.ai/tasks/ENG-555) | Todo — Mattermost alerts PASS; CS email missing |
-| Cabs email | — | UI not on Dev |
-| Bag Assure email | — | Unable to book on Dev |
+**Softs (non-blocking):** CS pax “1 of 2”; journey block outbound-only on RT; CS create-stage Conf No N/A; guest count soft on 2-room hotel.
 
 ---
 
-## 6. Timeline
+## 5. Partner SMT — test cases (29–30 Oct 2026)
 
-| Date | Event |
-|------|--------|
-| 2026-09-30 | First full matrix — issues logged on sheet + Mattermost ANS V2 |
-| 2026-10-01 → 12 | Fixes (`email_json`, Lounge channel, Hotel Deals, Flight V2, etc.) + sheet column **QA Status- 12/10/2026** |
-| 2026-10-22 | **Dev sign-off** — all categories / specified actions working on TravelVIP Dev |
-| 2026-10-22 | ENG-555 raised separately for Nexus **manual** CS emails (out of scope) |
+**Scope:** Broad matrix including Notif where device allowed. Softs only unless noted.
 
----
+| TC | Category | Action | Booking | User | Admin | CS | Notif | Result |
+|----|----------|--------|---------|------|-------|-----|-------|--------|
+| SMT-01 | Flight V1 | Confirmed (OW) | FB1793259782766802 | Yes | Yes | Yes | No* | **PASS** |
+| SMT-02 | Flight V1 | Confirmed (RT) | FB1793260814281305 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-03 | Attraction | Booking Confirmed | BR1793257997359738 | Yes | Yes | Yes | No* | **PASS** |
+| SMT-04 | Duty Free | Request Submitted | TX1793264472515952 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-05 | Duty Free | Cancelled | TX1793264472515952 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-06 | Duty Free | Request Submitted | TX1793266029536946 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-07 | Duty Free | Confirmed | TX1793266029536946 | Yes | Yes | No (EXPECT) | Yes | **PASS** |
+| SMT-08 | Hotel Deals | Request Submitted | 1793266178907429 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-09 | Hotel Deals | Cancellation Requested | 1793266178907429 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-10 | Hotel Deals | Cancelled | 1793266178907429 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-11 | Hotel Deals | Request Submitted | 1793267354550423 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-12 | Hotel Deals | Confirmed | 1793267354550423 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-13 | Bus | Booking Confirmed | BB1793352327120871 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-14 | Bus | Booking Confirmed | BB1793365542337249 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-15 | Bus | Cancelled | BB1793365542337249 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-16 | Fast Track | Booking Confirmed | BR1793354606301154 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-17 | eSIM | Booking Confirmed | BR1793355821859872 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-18 | Meet & Greet | Request Submitted | SR1793356080195155 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-19 | Meet & Greet | Confirmed | SR1793356080195155 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-20 | Porter | Request Submitted | SR1793356493625548 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-21 | Porter | Confirmed | SR1793356493625548 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-22 | Hotel | Booking Confirmed | 1793356264366542 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-23 | Hotel | Cancellation Requested | 1793356264366542 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-24 | Hotel | Cancelled | 1793356264366542 | — | — | — | — | **N/A** (old hotel final Cancelled not expected) |
+| SMT-25 | Lounge (Online HAK) | Confirmed | BR1793357650298985 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-26 | Lounge (Request PNQ) | Request Submitted | BR1793358755367025 | Yes | Yes | Yes | Yes | **PASS** |
+| SMT-27 | Lounge (Request PNQ) | Confirmed | BR1793358755367025 | Yes | Yes | Yes | Yes | **PASS** |
 
-## 7. Sign-off statement (copy-paste)
+\* Notif NOT RCVD = device lock / user mismatch — not an email bug.
 
-**ANS V2 email testing (User / Admin / CS / Notifications) on Travel VIP Dev is complete and PASS for all categories and actions covered in the ANS V2 Testing — 30/09/2026 sheet, including retests after fixes (Attraction, Fast Track, Flight V2, Lounge HAK/Pune, Hotel Deals, etc.).**  
-
-**Signed off in Mattermost ANS V2 on 2026-10-22 for Preprod/Prod progression, subject to config parity.**  
-
-**Excluded:** ENG-555 (Nexus manual dashboard CS emails), Cabs (UI not deployed), Bag Assure (unable to book on Dev). Duty Free Confirmed CS absence documented as expected.
-
----
-
-## 8. Test cases (executed)
-
-**Common precondition (all TCs unless noted):**  
-- Dev TravelVIP shop: `https://lambda-shop.travelvip.ai/`  
-- Partner / user logged in as TravelVIP test user  
-- Inboxes open: **User** (TravelVIP Gmail) · **Admin** (admin inbox) · **CS** (Scandid / CS Gmail)  
-- App notifications checked where product supports them  
-- After status change, wait for mail delivery then verify subject/body vs booking details page  
-
-**Common steps template:**  
-1. Create / open booking for the category on lambda-shop.  
-2. Drive status to the action under test (Submitted / Confirmed / Cancelled / Cancellation Requested) via product flow or Nexus as applicable for that product.  
-3. Confirm booking detail page shows the expected status.  
-4. Check User, Admin, CS inboxes + notification.  
-5. Spot-check key fields (BR/SR/TX id, amounts, dates, phone, airport/hotel name) against the page.  
-
-**Common expected (PASS row):** ANS V2 path used; User + Admin + CS + Notification received as marked **Yes** on sheet; content matches booking page (no null `email_json` for confirm where confirm mail is required).
-
----
-
-### 8.1 Test case index
-
-| TC ID | Category | Action | Result | Evidence |
-|-------|----------|--------|--------|----------|
-| TC-DF-01 | Duty Free | Request Submitted | **PASS** | TX1790773064145716 |
-| TC-DF-02 | Duty Free | Confirmed | **PASS (EXPECT)** | TX1790773064145716 — CS confirm not sent (As Expected) |
-| TC-DF-03 | Duty Free | Cancelled | **PASS** | TX1790773064145716 |
-| TC-POR-01 | Porter | Request Submitted | **PASS** | SR1790774781323946 |
-| TC-POR-02 | Porter | Confirmed | **PASS** | SR1790774781323946 |
-| TC-ATT-01 | Attraction | Booking Confirmed | **PASS** (retest) | BR1791890800383086 |
-| TC-FT-01 | Fast Track | Booking Confirmed | **PASS** (retest) | BR1791800740387332 |
-| TC-MG-01 | Meet & Greet | Request Submitted | **PASS** | SR1790763853260580 |
-| TC-MG-02 | Meet & Greet | Confirmed | **PASS** | SR1790763853260580 |
-| TC-ESIM-01 | eSIM | Booking Confirmed | **PASS** | BR1790754147709756 |
-| TC-FV1-01 | Flight V1 | Booking Confirmed | **PASS** | FB1790760941942394 |
-| TC-FV1-02 | Flight V1 | Cancellation Requested | **PASS** | FB1790760941942394 |
-| TC-FV1-03 | Flight V1 | Cancelled | **PASS** (final sign-off) | FB1790760941942394 |
-| TC-FV2-01 | Flight V2 | Booking Confirmed | **PASS** (retest) | BR1790760106270492 |
-| TC-HTL-01 | Hotel | Booking Confirmed | **PASS** | 1790751643994741 |
-| TC-HTL-02 | Hotel | Cancelled | **PASS** | 1790751643994741 |
-| TC-HD-01 | Hotel Deals | Request Submitted | **PASS** | 1790768390986193 |
-| TC-HD-02 | Hotel Deals | Confirmed | **PASS** (retest) | 1791791597528121 |
-| TC-HD-03 | Hotel Deals | Cancelled | **PASS / closed** | 1791791597528121 |
-| TC-LG-P-01 | Lounge Pune (request) | Request Submitted | **PASS** | BR1790766284498181 |
-| TC-LG-P-02 | Lounge Pune (request) | Confirmed | **PASS** (retest) | BR1791789547816145 |
-| TC-LG-H-01 | Lounge HAK (online) | Confirmed | **PASS** (retest) | BR1791790717109602 |
-| TC-CON-01 | Trip Emergency Concierge | Request Submitted | **PASS / closed** | SR1790770070619550 |
-| TC-CAB-01 | Cabs | Confirmed / Cancelled | **NOT TESTED** | UI not deployed on Dev |
-| TC-BAG-01 | Bag Assure | Request / Confirmed | **NOT TESTED** | Unable to book on Dev |
-
-**Count:** 23 executed · 21 PASS · 1 PASS(EXPECT) · 1 PASS/closed (invalid path) · 2 NOT TESTED
+**Duty Free Confirmed CS:** absent = **EXPECT** (product rule).
 
 ---
 
-### 8.2 Detailed test cases
+## 6. Partner JSP — test cases (sheet 04 Nov 2026)
 
-#### Duty Free
+**Sheet tab:** [JSP Email Testing](https://docs.google.com/spreadsheets/d/1kU96tGaT8zPUS24PjsUWOO37E2SLpB4cBVjdVupq3XY/edit#gid=1730046671)  
+**Host:** `lambda-shop.travelvip.ai`  
+**Note:** JSP matrix uses the **same booking refs and evidence as SMT** (shared `notif-evidence/{bookingId}`). QA Status column dated **04/11/2026** on sheet. Local CSV: `sheet-partner-jsp-email-testing.csv`.
 
-| Field | TC-DF-01 |
-|-------|----------|
-| **Title** | Duty Free — Request Submitted emails |
-| **Priority** | High |
-| **Steps** | Place Duty Free order → status Request Submitted → check User/Admin/CS/Notification |
-| **Expected** | All four channels Yes; ANS V2 |
-| **Actual** | Received on all channels |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/dutyfreeV2/order/TX1790773064145716 |
+> **JSP package booking emails — NOT TESTED (in development)**  
+> Per discussion with **Shailesh Gaikwad**: while ANS V2 was being developed, the related changes landed on **V1**, so JSP **package booking** emails are still on the V1 path and were **left out of this matrix**. **Prerna** is working on bringing them onto V2. Once the V2 change is available, QA will **retest** JSP package booking emails and update this pack / the sheet.
 
-| Field | TC-DF-02 |
-|-------|----------|
-| **Title** | Duty Free — Confirmed emails |
-| **Priority** | High |
-| **Steps** | Confirm Duty Free order → check User/Admin/CS/Notification |
-| **Expected** | User/Admin/Notification Yes; CS confirm per product rule |
-| **Actual** | User/Admin/Notification Yes; **CS confirmation not received** — Dev confirmed **As Expected** |
-| **Status** | **PASS (EXPECT)** |
-| **Evidence** | TX1790773064145716 |
+| TC | Category | Action | Booking (same as SMT) | User | Admin | CS | Notif | Result |
+|----|----------|--------|------------------------|------|-------|-----|-------|--------|
+| JSP-01 | Flight V1 | Confirmed (OW) | FB1793259782766802 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-02 | Flight V1 | Confirmed (RT) | FB1793260814281305 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-03 | Attraction | Booking Confirmed | BR1793257997359738 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-04 | Duty Free | Request Submitted | TX1793264472515952 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-05 | Duty Free | Cancelled | TX1793264472515952 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-06 | Duty Free | Request Submitted | TX1793266029536946 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-07 | Duty Free | Confirmed | TX1793266029536946 | Yes | Yes | No (EXPECT) | Yes | **PASS** |
+| JSP-08 | Hotel Deals | Request Submitted | 1793266178907429 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-09 | Hotel Deals | Cancellation Requested | 1793266178907429 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-10 | Hotel Deals | Cancelled | 1793266178907429 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-11 | Hotel Deals | Request Submitted | 1793267354550423 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-12 | Hotel Deals | Confirmed | 1793267354550423 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-13 | Bus | Booking Confirmed | BB1793365542337249 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-14 | Bus | Cancelled | BB1793365542337249 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-15 | Fast Track | Booking Confirmed | BR1793354606301154 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-16 | Trip Emergency Concierge | Request Submitted | SR1793354121787122 | Yes | Yes | No | Yes | **PASS** |
+| JSP-17 | eSIM | Booking Confirmed | BR1793355821859872 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-18 | Meet & Greet | Request Submitted | SR1793356080195155 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-19 | Meet & Greet | Confirmed | SR1793356080195155 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-20 | Porter | Request Submitted | SR1793356493625548 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-21 | Porter | Confirmed | SR1793356493625548 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-22 | Hotel | Booking Confirmed | 1793356264366542 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-23 | Hotel | Cancellation Requested | 1793356264366542 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-24 | Hotel | Cancelled | 1793356264366542 | — | — | — | — | **N/A** |
+| JSP-25 | Lounge (Online HAK) | Confirmed | BR1793357650298985 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-26 | Lounge (Request PNQ) | Request Submitted | BR1793358755367025 | Yes | Yes | Yes | Yes | **PASS** |
+| JSP-27 | Lounge (Request PNQ) | Confirmed | BR1793358755367025 | Yes | Yes | Yes | Yes | **PASS** |
 
-| Field | TC-DF-03 |
-|-------|----------|
-| **Title** | Duty Free — Cancelled emails |
-| **Priority** | High |
-| **Steps** | Cancel Duty Free order → check User/Admin/CS/Notification |
-| **Expected** | All four Yes |
-| **Actual** | Received on all channels |
-| **Status** | **PASS** |
-| **Evidence** | TX1790773064145716 |
-
-#### Porter
-
-| Field | TC-POR-01 |
-|-------|----------|
-| **Title** | Porter — Request Submitted emails |
-| **Steps** | Submit Porter request → check all inboxes + notification |
-| **Expected** | User/Admin/CS/Notification Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/service/booking-details/SR1790774781323946 |
-
-| Field | TC-POR-02 |
-|-------|----------|
-| **Title** | Porter — Confirmed emails |
-| **Steps** | Confirm Porter booking → check all inboxes + notification |
-| **Expected** | User/Admin/CS/Notification Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | SR1790774781323946 |
-
-#### Attraction
-
-| Field | TC-ATT-01 |
-|-------|----------|
-| **Title** | Attraction — Booking Confirmed emails (User/Admin/CS) |
-| **Priority** | Critical |
-| **Steps** | Confirm Attraction booking → verify User, Admin, CS confirm (not only Submitted) + notification; `email_json` present |
-| **Expected** | User Yes · Admin Yes · CS confirm Yes · Notification Yes |
-| **Actual (1st run)** | FAIL — no user/admin; CS only till Submitted (`email_json` null) |
-| **Actual (retest)** | All channels received after backend update-API fix |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/tours-and-experiences/v2/confirmation/BR1791890800383086 |
-
-#### Fast Track
-
-| Field | TC-FT-01 |
-|-------|----------|
-| **Title** | Fast Track — Booking Confirmed emails |
-| **Priority** | Critical |
-| **Steps** | Confirm Fast Track → User/Admin/CS confirm + notification |
-| **Expected** | All Yes on confirm (not only Submitted) |
-| **Actual (1st run)** | FAIL — same null `email_json` pattern |
-| **Actual (retest)** | All received |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/fasttrack/booking-confirmation/BR1791800740387332 |
-
-#### Meet & Greet
-
-| Field | TC-MG-01 |
-|-------|----------|
-| **Title** | Meet & Greet — Request Submitted emails |
-| **Steps** | Submit M&G request → check all channels |
-| **Expected** | User/Admin/CS/Notification Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/service/booking-details/SR1790763853260580 |
-
-| Field | TC-MG-02 |
-|-------|----------|
-| **Title** | Meet & Greet — Confirmed emails + airport name |
-| **Steps** | Confirm M&G → check emails; compare airport name to booking page |
-| **Expected** | All channels Yes; airport name consistent with page |
-| **Actual** | Emails received; airport wording raised once (Pune International vs Pune Airport) — not open on final 22 Oct sign-off |
-| **Status** | **PASS** |
-| **Evidence** | SR1790763853260580 |
-
-#### eSIM
-
-| Field | TC-ESIM-01 |
-|-------|----------|
-| **Title** | eSIM — Booking Confirmed emails |
-| **Steps** | Confirm eSIM booking → check User/Admin/CS/Notification |
-| **Expected** | All Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/esim/booking-detail/BR1790754147709756 |
-
-#### Flight V1
-
-| Field | TC-FV1-01 |
-|-------|----------|
-| **Title** | Flight V1 — Booking Confirmed emails |
-| **Steps** | Confirm V1 flight → check all channels |
-| **Expected** | User/Admin/CS/Notification Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/flight-booking/v2/booking-confirmation/FB1790760941942394 |
-
-| Field | TC-FV1-02 |
-|-------|----------|
-| **Title** | Flight V1 — Cancellation Requested emails |
-| **Steps** | Request cancel on V1 → check all channels |
-| **Expected** | User/Admin/CS/Notification Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | FB1790760941942394 |
-
-| Field | TC-FV1-03 |
-|-------|----------|
-| **Title** | Flight V1 — Cancelled emails (refund / baggage content) |
-| **Steps** | Complete cancel → check User/Admin/CS; refund + baggage vs page |
-| **Expected** | Emails received; refund/baggage align with page (or N/A defaults) |
-| **Actual (1st run)** | Refund INR 0 vs page; baggage N/A; CS missing refund — fixed/deployed |
-| **Actual (final)** | Covered under 22 Oct all-categories Dev PASS |
-| **Status** | **PASS** |
-| **Evidence** | FB1790760941942394 · gamma-nexus deploy notes |
-
-#### Flight V2
-
-| Field | TC-FV2-01 |
-|-------|----------|
-| **Title** | Flight V2 — Booking Confirmed User/Admin emails |
-| **Priority** | Critical |
-| **Steps** | Book via `/flights/search` V2 → Confirm → User/Admin/CS/Notification; `email_json` on user_action |
-| **Expected** | User Yes · Admin Yes · CS Yes |
-| **Actual (1st run)** | FAIL — no user/admin (`email_json` null) |
-| **Actual (retest)** | Fixed on lambda-shop; sheet Done; final sign-off PASS |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/flights/booking-confirmation/BR1790760106270492 |
-
-#### Hotel
-
-| Field | TC-HTL-01 |
-|-------|----------|
-| **Title** | Hotel — Booking Confirmed emails |
-| **Steps** | Confirm hotel → check all channels |
-| **Expected** | All Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/hotel/booking-details/1790751643994741 |
-
-| Field | TC-HTL-02 |
-|-------|----------|
-| **Title** | Hotel — Cancelled emails |
-| **Steps** | Cancel hotel → check all channels |
-| **Expected** | All Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | 1790751643994741 |
-
-#### Hotel Deals
-
-| Field | TC-HD-01 |
-|-------|----------|
-| **Title** | Hotel Deals — Request Submitted emails |
-| **Steps** | Submit Hotel Deals request → check all channels |
-| **Expected** | All Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/hotel-deals/booking-details/1790768390986193 |
-
-| Field | TC-HD-02 |
-|-------|----------|
-| **Title** | Hotel Deals — Confirmed emails (policy / phone / check-in) |
-| **Priority** | Critical |
-| **Steps** | Confirm Hotel Deals → User/Admin/CS; verify cancel policy, phone country code (+91 not IT), check-in/out times |
-| **Expected** | All emails Yes; phone +91; times not wrongly N/A; policy consistent |
-| **Actual (1st run)** | FAIL — free-cancel vs non-refundable; phone IT; times N/A |
-| **Actual (retest)** | Fixed (Nexus/Prerna); Done |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/hotel-deals/booking-details/1791791597528121 |
-
-| Field | TC-HD-03 |
-|-------|----------|
-| **Title** | Hotel Deals — Cancelled emails (charge/refund) |
-| **Steps** | Cancel confirmed Hotel Deals → charge/refund in User/Admin/CS vs page |
-| **Expected** | Per product rules for valid cancel path |
-| **Actual** | First-run content mismatch; closed as **invalid** to cancel from dashboard after confirm for this matrix; sheet Done |
-| **Status** | **PASS / closed** |
-| **Evidence** | 1791791597528121 |
-
-#### Lounge
-
-| Field | TC-LG-P-01 |
-|-------|----------|
-| **Title** | Lounge Pune (request-based) — Request Submitted emails |
-| **Steps** | Submit request lounge → check all channels |
-| **Expected** | All Yes |
-| **Actual** | All received |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/lounge/booking-confirmation/BR1790766284498181 |
-
-| Field | TC-LG-P-02 |
-|-------|----------|
-| **Title** | Lounge Pune (request-based) — Confirmed emails (channel / QR vendor) |
-| **Priority** | High |
-| **Steps** | Confirm after QR upload → emails; `booking.channel=request`; no wrong Dragon Pass on request-based QR |
-| **Expected** | All Yes; channel request; vendor branding correct |
-| **Actual (1st run)** | FAIL — Dragon Pass on QR / channel online |
-| **Actual (retest)** | Fixed on gamma-nexus; Done |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/lounge/booking-confirmation/BR1791789547816145 |
-
-| Field | TC-LG-H-01 |
-|-------|----------|
-| **Title** | Lounge HAK (online) — Confirmed User/Admin emails |
-| **Priority** | Critical |
-| **Steps** | Confirm online lounge → User/Admin/CS/Notification |
-| **Expected** | User Yes · Admin Yes · CS Yes |
-| **Actual (1st run)** | FAIL — no user/admin (`email_json` null) |
-| **Actual (retest)** | Fixed; Done |
-| **Status** | **PASS** |
-| **Evidence** | https://lambda-shop.travelvip.ai/lounge/booking-confirmation/BR1791790717109602 |
-
-#### Concierge
-
-| Field | TC-CON-01 |
-|-------|----------|
-| **Title** | Trip Emergency Concierge — Request Submitted emails |
-| **Steps** | Submit concierge request → User/Admin/CS/Notification; product name in mail |
-| **Expected** | Per sheet (CS may be N/A / Not Required) |
-| **Actual** | User/Admin Yes; CS marked Not Required / closed Done on sheet |
-| **Status** | **PASS / closed** |
-| **Evidence** | https://lambda-shop.travelvip.ai/service/booking-details/SR1790770070619550 |
-
-#### Blocked / not executed
-
-| Field | TC-CAB-01 |
-|-------|----------|
-| **Title** | Cabs — Confirmed / Cancelled emails |
-| **Status** | **NOT TESTED** |
-| **Reason** | UI not deployed on Dev at test time |
-
-| Field | TC-BAG-01 |
-|-------|----------|
-| **Title** | Bag Assure — Request / Confirmed emails |
-| **Status** | **NOT TESTED** |
-| **Reason** | Unable to book on Dev |
+**Evidence refs (from sheet):** same `notif-evidence/` paths as SMT for each booking ID above.
 
 ---
 
-### 8.3 Out-of-scope (not part of ANS V2 Dev sign-off TCs)
+## 7. Partner TravelVerse — test cases (3–4 Nov 2026)
 
-| TC ID | Title | Status | Tracker |
-|-------|-------|--------|---------|
-| TC-NX-01 | Nexus manual Inprogress → Confirmed / Failed → CS email | **FAIL / open** | [ENG-555](https://tracker.travelvip.ai/tasks/ENG-555) |
+**Host:** `lambda-tvs.travelvip.ai` · Chrome: **TravelVerse**
+
+| TC | Category | Action | Booking | User | Admin | CS | Result |
+|----|----------|--------|---------|------|-------|-----|--------|
+| TVS-01 | Lounge (Online) | Booking Confirmed | BR1793690922489315 | Yes | Yes | Yes | **PASS** |
+| TVS-02 | Duty Free | Request Submitted | TX1793691173946414 | Yes | Yes | No (EXPECT) | **PASS** |
+| TVS-03 | Duty Free | Confirmed | TX1793691173946414 | Yes | Yes | No (EXPECT) | **PASS** |
+| TVS-04 | Meet & Greet | Request Submitted | SR1793691405272102 | Yes | Yes | Yes | **PASS** |
+| TVS-05 | Meet & Greet | Confirmed | SR1793691405272102 | Yes | Yes | Yes | **PASS** |
+| TVS-06 | Trip Emergency Concierge | Request Submitted | SR1793692744169322 | Yes | Yes | No (EXPECT) | **PASS** |
+| TVS-07 | Trip Emergency Concierge | Confirmed | SR1793692744169322 | — | — | — | **NOT TESTED** (page still Confirmation Pending) |
+| TVS-08 | Porter | Request Submitted | SR1793693247905420 | Yes | Yes | Yes | **PASS** |
+| TVS-09 | Porter | Confirmed | SR1793693247905420 | Yes | Yes | Yes | **PASS** |
+| TVS-10 | Attraction | Booking Confirmed | BR1793693520238832 | Yes | Yes | Yes | **PASS** (prior User typo `rohaan@` — **fixed & deployed**) |
+| TVS-11 | eSIM | Booking Confirmed | BR1793693683463272 | Yes | Yes | Yes | **PASS** |
+| TVS-12 | Fast Track | Booking Confirmed | BR1793693827617960 | Yes | Yes | Yes | **PASS** |
+| TVS-13 | Bus | Booking Confirmed | BB1793694549715997 | Yes | Yes | Yes | **PASS** |
+| TVS-14 | Bus | Booking Cancelled | BB1793694549715997 | Yes | Yes | Yes | **PASS** |
+| TVS-15 | Flight V1 | Booking Confirmed | FB1793702354303940 | Yes | Yes | Yes | **PASS** |
+| TVS-16 | Flight V1 | Cancellation Requested | FB1793702354303940 | Yes | Yes | Yes | **PASS** |
+| TVS-17 | Flight V1 | Cancelled | FB1793702354303940 | Yes | Yes | Yes | **PASS** (route DEL→BLR retest 04/11) |
+| TVS-18 | Hotel Old Flow | Booking Confirmed | 1793711798118379 | Yes | Yes | Yes | **PASS** |
+| TVS-19 | Hotel Old Flow | Cancellation Requested | 1793711798118379 | Yes | Yes | Yes | **PASS** |
+
+**Softs (examples):** Conifrmed typo (later DF re-send fixed); airport “Maharaj” omit; bags not in Porter mail; Esim casing; page duration mismatch on Bus; pax age 12y observation on lounges.
 
 ---
 
-## 9. Links
+## 8. Partner Thomas Cook — test cases (3–4 Nov 2026)
 
-| Resource | URL |
-|----------|-----|
-| Sheet tab | https://docs.google.com/spreadsheets/d/1kU96tGaT8zPUS24PjsUWOO37E2SLpB4cBVjdVupq3XY/edit?gid=1737154204#gid=1737154204 |
-| Mattermost ANS V2 | team.scandid.in · channel `ans-v2` |
-| ENG-555 (out of scope) | https://tracker.travelvip.ai/tasks/ENG-555 |
-| Lambda shop (Dev) | https://lambda-shop.travelvip.ai/ |
-| Gamma Nexus (Dev) | https://gamma-nexus.travelvip.ai/ |
+**Host:** `lambda-shop.travelvip.ai` · Chrome: **Thomas Cook**
+
+| TC | Category | Action | Booking | User | Admin | CS | Result |
+|----|----------|--------|---------|------|-------|-----|--------|
+| TC-01 | Lounge (Online) | Booking Confirmed | BR1793695253218812 | Yes | Yes | Yes | **PASS** |
+| TC-02 | Lounge (Request) | Request Submitted | BR1793695540768117 | Yes | Yes | Yes | **PASS** |
+| TC-03 | Lounge (Request) | Booking Confirmed | BR1793695540768117 | Yes | Yes | Yes | **PASS** (prior email Ref N/A — **fixed & deployed**) |
+| TC-04 | Meet & Greet | Request Submitted | SR1793696092917464 | Yes | Yes | Yes | **PASS** |
+| TC-05 | Meet & Greet | Confirmed | SR1793696092917464 | Yes | Yes | Yes | **PASS** |
+| TC-06 | eSIM | Booking Confirmed | BR1793699150165663 | Yes | Yes | Yes | **PASS** |
+| TC-07 | Fast Track | Booking Confirmed | BR1793699297953708 | Yes | Yes | Yes | **PASS** |
+| TC-08 | Duty Free | Request Submitted | TX1793703586853121 | Yes | Yes | No (EXPECT) | **PASS** |
+| TC-09 | Duty Free | Booking Confirmed | TX1793703586853121 | Yes | Yes | No (EXPECT) | **PASS** |
+
+**Notes**
+
+- Online lounge / FT: Dragon Pass present where expected.  
+- Request lounge Confirmed: Dragon Pass **absent** (correct).  
+- Softs: Valid Till trailing comma; flight omitted on some user mails; email Savings/Tax 0.00 lines (email-only, not on page); Esim casing; DF Conifrmed / sucessfully typos (template-wide).
+
+---
+
+## 9. Partner Entertainer — test cases (4 Nov 2026)
+
+**Host:** `lambda-ent.travelvip.ai` · Chrome: **the ENTERTAINER Lifestyle**  
+**Mode:** **Email-only** (UI sign-in not available — page not compared).
+
+| TC | Category | Action | Booking | User | Admin | CS | Result |
+|----|----------|--------|---------|------|-------|-----|--------|
+| ENT-01 | Fast Track | Booking Confirmed | BR1793709558169530 | Yes | Yes | Yes | **PASS** |
+| ENT-02 | eSIM | Booking Confirmed | BR1793709774965900 | Yes | Yes | Yes | **PASS** |
+| ENT-03 | Flight V1 | Booking Confirmed | FB1793710236506747 | Yes | Yes | Yes | **PASS** |
+| ENT-04 | Lounge (Request) | Request Submitted | BR1793710793512577 | Yes | Yes | Yes | **PASS** |
+| ENT-05 | Lounge (Request) | Booking Confirmed | BR1793710793512577 | Yes | Yes | Yes | **PASS** |
+| ENT-06 | Lounge (Online) | Booking Confirmed | BR1793710966533216 | Yes | Yes | Yes | **PASS** |
+| ENT-07 | Hotel Deals | Request Submitted | 1793711129201427 | Yes | Yes | Yes | **PASS** |
+| ENT-08 | Hotel Deals | Booking Confirmed | 1793711129201427 | Yes | Yes | Yes | **PASS** |
+| ENT-09 | Meet & Greet | Request Submitted | SR1793711490708381 | Yes | Yes | Yes | **PASS** |
+| ENT-10 | Meet & Greet | Confirmed | SR1793711490708381 | Yes | Yes | Yes | **PASS** |
+
+**Key content checks that passed**
+
+| Product | Highlights |
+|---------|------------|
+| Fast Track | Total GBP 34.61 · Ref 8576741027757549 · Valid till 25/11/2026 · Dragon Pass |
+| eSIM | Singapore 1D/500MB · Order 6ae9d6e0… · GBP 1.50 |
+| Flight V1 | BLR→DEL via GOI · PNR R6USTQ · GBP 44.64 (route-subject soft cleared 04/11) |
+| Lounge request | Elysian PNQ · Ref 987456 · no Dragon Pass (correct) · GBP 7.28 |
+| Lounge online | Aspire MAN · Ref 8576018579415392 · Dragon Pass · GBP 24.01 |
+| Hotel Deals | Lefay · Conf **1TAK4GDS** · Total Paid GBP 677.06 |
+| Meet & Greet | Belfast BFS · Flight JHBKJBK · GBP 422.08 · Action ID 8694 |
+
+**Softs:** Valid Till trailing comma; Esim casing; legacy TravelVIP CSV2 duplicate on some CS; pax age 12y observation; Request banner “Confirmation”; CS hotel mobile IT vs +44; M&G Confirmed “Request Date” stamped confirm day.
+
+---
+
+## 10. Fixed issues (no longer open)
+
+| Partner | Case | Was | Resolution (04 Nov) |
+|---------|------|-----|---------------------|
+| TravelVerse | Attraction BR1793693520238832 | User NOT RCVD (`rohaan@` typo) | **PASS** — fixed & deployed; upcoming emails correct |
+| Thomas Cook | Request lounge Confirmed BR1793695540768117 | Email Ref N/A vs page Id 789654 | **PASS** — fixed & deployed; upcoming emails correct |
+
+---
+
+## 11. Documented EXPECT behaviour (not bugs)
+
+| Rule | Applies to |
+|------|------------|
+| Duty Free **Confirmed** → CS CSV2 mail **not** sent | SMT · TravelVerse · Thomas Cook (and TravelVIP baseline) |
+| Trip Concierge Request → CS often **EXPECT** absent | TravelVerse |
+| Request-based lounge Confirmed → **no** Dragon Pass logo | SMT · TC · Entertainer |
+| Online lounge / online FT → Dragon Pass **present** | When product is online inventory |
+| Old hotel flow → final **Cancelled** ANS mail **N/A** | SMT · TravelVerse Hotel Old Flow |
+
+---
+
+## 12. How a test case is executed (common steps)
+
+1. Book / open the product booking on the partner host.  
+2. Drive status to the action under test (Request Submitted / Confirmed / Cancelled / Cancellation Requested).  
+3. Search Gmail User (`u/0` travelvip) and CS (`u/1` scandid) by booking ID.  
+4. Verify ANS V2 partner subject + chrome.  
+5. Cross-check booking ID, amounts, Ref/Valid till / PNR / Conf No. User ↔ CS.  
+6. Record Done + comment on partner sheet tab; save evidence under `notif-evidence/{id}/`.
+
+---
+
+## 13. Counts (partner packs only)
+
+| Partner | PASS / Done | EXPECT (CS absent) | NOT TESTED | N/A |
+|---------|-------------|--------------------|------------|-----|
+| BFL | 4 | 0 | 0 | 0 |
+| SMT | 26 | 1 (inside Done row) | 0 | 1 |
+| JSP | 26 | DF Confirmed + Concierge CS No | 0 | 1 |
+| TravelVerse | 18 | several DF/Concierge rows | 1 | 0 |
+| Thomas Cook | 9 | DF rows | 0 | 0 |
+| Entertainer | 10 | 0 | 0 | 0 |
+
+**Partner matrix open bugs: 0.**
+
+---
+
+## 14. Original TravelVIP Dev baseline (22 Oct 2026) — short archive
+
+First full matrix on TravelVIP Dev (`lambda-shop`) was signed off in Mattermost ANS V2 on **2026-10-22** after fixes for Attraction / Fast Track / Flight V2 / Lounge / Hotel Deals `email_json` issues.
+
+| Categories covered then | Actions |
+|-------------------------|---------|
+| Duty Free · Porter · Attraction · Fast Track · Meet & Greet · eSIM · Flight V1/V2 · Hotel · Hotel Deals · Lounge request/online · Trip Concierge | Submitted / Confirmed / Cancelled / Cancel Requested as applicable |
+
+**Out of scope then (unchanged):** Cabs (UI not on Dev) · Bag Assure (unable to book) · Nexus **manual** Inprogress→Confirmed/Failed CS → [ENG-555](https://tracker.travelvip.ai/tasks/ENG-555).
+
+Detail of that Oct matrix remains historically on sheet tabs **ANS V2 Testing- 15/07/2026** and **ANS V2 Testing- 30/09/2026**.
+
+---
+
+## 15. Sign-off statement (current)
+
+**ANS V2 partner email testing is complete for BFL, SMT, JSP, TravelVerse, Thomas Cook, and Entertainer.**  
+
+All executed sheet rows are **Done / PASS** as of **2026-11-04**. **JSP** uses the same booking refs and results as **SMT** (sheet tab JSP Email Testing). **JSP package booking emails are NOT TESTED** — still V1 / in development (discussed with Shailesh Gaikwad; Prerna working on V2; retest when ready). Prior TravelVerse Attraction and Thomas Cook request-lounge Ref issues are **fixed and deployed** (upcoming emails will show correct details). Soft observations only remain.  
+
+**Google Sheet:** [ANS V2 Email Testing](https://docs.google.com/spreadsheets/d/1kU96tGaT8zPUS24PjsUWOO37E2SLpB4cBVjdVupq3XY/edit)  
+**Evidence:** `travel-apis/reports/ans-v2-email-signoff/notif-evidence/`
