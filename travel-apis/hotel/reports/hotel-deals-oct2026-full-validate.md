@@ -1,6 +1,6 @@
 # Hotel deals Oct 2026 — full validation report
 
-Ran: 2026-10-13T06:32:51.055Z
+Ran: 2026-10-14T08:21:12.706Z
 Token: OK
 
 ## Summary
@@ -12,20 +12,18 @@ Token: OK
 | FAIL | 0 |
 | citiesChecked | 11 |
 | citiesNotTested | 1 |
-| extraHotelsInCityApi | 1 |
-| extraCitiesInCarousels | 1 |
+| extraHotelsInCityApi | 0 |
+| extraCitiesInCarousels | 0 |
 | tokenOk | true |
 | aborted | false |
 
 ## Extra hotels (in CITY API, not on sheet)
 
-| Searched city | MetaId | Title | API city |
-|---|---|---|---|
-| Udaipur | 1039757 | Nanda Hill Resort, Udaipur | Udaipur |
+_None_
 
 ## Extra cities (carousels discount, not on sheet)
 
-- JAISALMER (`132203`)
+_None_
 
 ## Row results
 
