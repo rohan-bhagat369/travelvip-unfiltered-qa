@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-18T12:17:03.381Z",
+  "base": "https://ak-api.travelvip.ai",
+  "request": {
+    "scenarios": [
+      "1pax OW DEL-PNQ 2026-12-20",
+      "2pax OW DEL-PNQ 2026-12-20",
+      "2pax RT DEL-PNQ 27-29 Dec"
+    ],
+    "surname": "Confirmed",
+    "products": [
+      "delay care",
+      "bag assure",
+      "concierge"
+    ]
+  },
+  "verdict": "NOT TESTED",
+  "reason": "No B2B catalog/offer/attach API for Delay Care / Bag Assure / Concierge on ak-api. SSR only returns meal/baggage. issue-ticket accepts unknown valueAdds/tripProtection fields but ignores them (Confirmed at base fare ₹5983, detail has no protection lines).",
+  "probes": {
+    "ssr": "POST /v1/flights/ssr → meal + baggage only",
+    "valueAddsPaths": "mostly 404; GET /v1/flights/booking/value-adds needs existing BR and returns booking detail, not offers",
+    "issueTicketGuess": "valueAdds/tripProtection/ancillarySelection ignored",
+    "apiDocs": "api-docs.travelvip.ai has no DelayCare/BagAssure/Concierge flight endpoints"
+  },
+  "discoveryBooksCancelled": [
+    {
+      "br": "BR1795004129332158",
+      "http": 200,
+      "msg": "Success",
+      "status": "Cancelled"
+    },
+    {
+      "br": "BR1795004161494100",
+      "http": 200,
+      "msg": "Success",
+      "status": "Cancelled"
+    }
+  ],
+  "baselineWithoutProtection": [
+    {
+      "scenario": "1pax_1leg",
+      "br": "BR1794999805178468",
+      "amount": 5983,
+      "status": "Confirmed"
+    },
+    {
+      "scenario": "2pax_1leg",
+      "br": "BR1794999814604621",
+      "amount": 11616,
+      "status": "Confirmed"
+    },
+    {
+      "scenario": "2pax_return",
+      "br": "BR1794999687989592",
+      "amount": 31134,
+      "status": "Confirmed"
+    }
+  ],
+  "needFromEng": "B2B contract: offer endpoint + issue-ticket (or post-book) attach fields for delayCare, bagAssure, concierge (product codes, per-pax/per-leg, pricing)"
+}

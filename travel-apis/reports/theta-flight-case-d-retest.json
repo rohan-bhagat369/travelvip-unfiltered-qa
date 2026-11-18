@@ -1,0 +1,154 @@
+{
+  "at": "2026-11-18T10:27:35.920Z",
+  "base": "https://theta-api.travelvip.ai",
+  "case": "D",
+  "header": "provider_no_response",
+  "expectation": "Issue stays PENDING (supplier no-response); wallet charged; no refund until webhook FAILED/CONFIRMED",
+  "attempts": [
+    {
+      "n": 1,
+      "sim": "provider_no_response",
+      "route": "DEL-PNQ",
+      "date": "2026-12-27",
+      "amount": 5983,
+      "http": 200,
+      "code": null,
+      "br": "BR1794997592658813",
+      "immediateStatus": "pending",
+      "polls": [
+        {
+          "i": 1,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:26:33.955Z"
+        },
+        {
+          "i": 2,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:26:35.620Z"
+        },
+        {
+          "i": 3,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:26:38.777Z"
+        },
+        {
+          "i": 4,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:26:41.942Z"
+        },
+        {
+          "i": 5,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:26:45.776Z"
+        },
+        {
+          "i": 6,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:26:48.929Z"
+        }
+      ],
+      "wallet": {
+        "before": {
+          "available": 566540.95,
+          "reserved": 5983,
+          "cash": 566391.99
+        },
+        "after": {
+          "available": 560557.95,
+          "reserved": 5983,
+          "cash": 560408.99
+        },
+        "delta": -5983
+      },
+      "refund": null,
+      "responseSnippet": "{\"bookingReference\":\"BR1794997592658813\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"7d51f61d-7c4a-49e3-8004-9018323ea2de\"}}",
+      "verdict": "BUG",
+      "note": "expected PENDING under provider_no_response; got Confirmed br=BR1794997592658813",
+      "cleanupCancel": {
+        "http": 200,
+        "msg": "Success",
+        "status": "Cancelled",
+        "refund": 4619.7
+      }
+    },
+    {
+      "n": 2,
+      "sim": "provider_no_response",
+      "route": "DEL-PNQ",
+      "date": "2026-12-27",
+      "amount": 5983,
+      "http": 200,
+      "code": null,
+      "br": "BR1794997620566923",
+      "immediateStatus": "pending",
+      "polls": [
+        {
+          "i": 1,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:27:03.340Z"
+        },
+        {
+          "i": 2,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:27:04.980Z"
+        },
+        {
+          "i": 3,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:27:08.141Z"
+        },
+        {
+          "i": 4,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:27:11.310Z"
+        },
+        {
+          "i": 5,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:27:14.484Z"
+        },
+        {
+          "i": 6,
+          "http": 200,
+          "status": "Confirmed",
+          "at": "2026-11-18T10:27:17.638Z"
+        }
+      ],
+      "wallet": {
+        "before": {
+          "available": 565177.65,
+          "reserved": 5983,
+          "cash": 565028.69
+        },
+        "after": {
+          "available": 559194.65,
+          "reserved": 5983,
+          "cash": 559045.69
+        },
+        "delta": -5983
+      },
+      "refund": null,
+      "responseSnippet": "{\"bookingReference\":\"BR1794997620566923\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"7d51f61d-7c4a-49e3-8004-9018323ea2de\"}}",
+      "verdict": "BUG",
+      "note": "expected PENDING under provider_no_response; got Confirmed br=BR1794997620566923",
+      "cleanupCancel": {
+        "http": 200,
+        "msg": "Success",
+        "status": "Cancelled",
+        "refund": 4619.7
+      }
+    }
+  ],
+  "overall": "BUG"
+}

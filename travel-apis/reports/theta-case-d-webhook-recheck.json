@@ -1,0 +1,181 @@
+{
+  "at": "2026-11-18T09:45:54.031Z",
+  "base": "https://theta-api.travelvip.ai",
+  "sim": "provider_no_response",
+  "wallet": {
+    "before": null,
+    "after": null
+  },
+  "hotelAttempts": [
+    {
+      "attempt": 1,
+      "checkin": "2026-12-09",
+      "amount": 11153.32,
+      "http": 200,
+      "status": "Pending",
+      "statusCode": 200,
+      "br": null,
+      "code": null,
+      "refund": null,
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":null,\"_meta\":{\"correlation_id\":\"6ad59eb0-cd40-4624-9121-06775670077d\"}}"
+    },
+    {
+      "attempt": 2,
+      "checkin": "2026-12-10",
+      "amount": 11153.32,
+      "http": 200,
+      "status": "Pending",
+      "statusCode": 200,
+      "br": null,
+      "code": null,
+      "refund": null,
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":null,\"_meta\":{\"correlation_id\":\"6ad59eb0-cd40-4624-9121-06775670077d\"}}"
+    },
+    {
+      "attempt": 3,
+      "checkin": "2026-12-11",
+      "amount": 11153.32,
+      "http": 200,
+      "status": "Pending",
+      "statusCode": 200,
+      "br": null,
+      "code": null,
+      "refund": null,
+      "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":null,\"_meta\":{\"correlation_id\":\"6ad59eb0-cd40-4624-9121-06775670077d\"}}"
+    }
+  ],
+  "cab": {
+    "amount": 640.5,
+    "http": 400,
+    "status": null,
+    "statusCode": null,
+    "br": null,
+    "code": "VALIDATION_ERROR",
+    "refund": null,
+    "snippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Passenger last name \\\"QaDxrn7g\\\" is not valid. It may contain only letters, spaces, hyphens, apostrophes and dots.\",\"details\":null,\"timestamp\":\"2026-11-18T09:45:51Z\",\"request_id\":\"req-1794995151676\"},\"_meta\":{\"correlation_id\":\"6ad59eb0-cd40-4624-9121-06775670077d\"}}"
+  },
+  "webhook": {
+    "hasWebhookCreds": false,
+    "attempts": [
+      {
+        "name": "no-auth empty body",
+        "http": 401,
+        "data": "{\"error\":{\"code\":\"INVALID_WEBHOOK_CREDENTIALS\",\"message\":\"Invalid webhook credentials\",\"details\":\"Webhook Basic Auth credentials are missing or incorrect\",\"timestamp\":\"2026-11-18T09:45:52Z\",\"request_id\":null},\"_meta\":{\"correlation_id\":\"d33b69a8-a669-4144-875a-d438bee75489\"}}"
+      },
+      {
+        "name": "bad-auth CONFIRMED payload",
+        "http": 401,
+        "data": "{\"error\":{\"code\":\"INVALID_WEBHOOK_CREDENTIALS\",\"message\":\"Invalid webhook credentials\",\"details\":\"Webhook Basic Auth credentials are missing or incorrect\",\"timestamp\":\"2026-11-18T09:45:52Z\",\"request_id\":null},\"_meta\":{\"correlation_id\":\"2837ebeb-08cf-4ed6-b81a-4923dff08577\"}}"
+      },
+      {
+        "name": "hotel path /v1/hotels/partner-webhook",
+        "http": 500,
+        "data": "\"\""
+      },
+      {
+        "name": "hotel path /v1/hotels/webhook",
+        "http": 500,
+        "data": "\"\""
+      },
+      {
+        "name": "hotel path /api/v1/hotels/partner-webhook",
+        "http": 500,
+        "data": "\"\""
+      }
+    ],
+    "note": "CONFIRMED/FAILED/refund-fail webhook finish needs supplier webhook or CAB_WEBHOOK_* + known payload schema"
+  },
+  "score": {
+    "hotel_D_finalize": {
+      "verdict": "BUG",
+      "note": "3/3 HTTP 200 status=Pending bookingRefId=null — cannot track/webhook"
+    },
+    "cab_D_finalize": {
+      "verdict": "PASS",
+      "note": "BR1794995178921937 PENDING (retry after letter-only lastName)"
+    },
+    "cab_D_status_api": {
+      "verdict": "BUG",
+      "note": "HTTP 500 null body on fresh + prior Case D BRs"
+    },
+    "cab_D_cancel_api": {
+      "verdict": "BUG",
+      "note": "HTTP 500 null body GET+POST cancel"
+    },
+    "webhook_finish_CONFIRMED": {
+      "verdict": "NOT TESTED",
+      "note": "blocked by hotel null BR + cab status 500 + no webhook creds"
+    },
+    "webhook_finish_FAILED_refund": {
+      "verdict": "NOT TESTED",
+      "note": "blocked — same"
+    },
+    "webhook_finish_FAILED_refund_fail": {
+      "verdict": "NOT TESTED",
+      "note": "blocked — same"
+    }
+  },
+  "recheck2": {
+    "at": "2026-11-18T09:46:45.568Z",
+    "hotel": {
+      "note": "3/3 confirmed BUG — HTTP 200 Pending bookingRefId:null (same corr 6ad59eb0…)",
+      "attempts": [
+        {
+          "attempt": 1,
+          "http": 200,
+          "status": "Pending",
+          "br": null,
+          "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":null,\"_meta\":{\"correlation_id\":\"6ad59eb0-cd40-4624-9121-06775670077d\"}}"
+        },
+        {
+          "attempt": 2,
+          "http": 200,
+          "status": "Pending",
+          "br": null,
+          "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":null,\"_meta\":{\"correlation_id\":\"6ad59eb0-cd40-4624-9121-06775670077d\"}}"
+        },
+        {
+          "attempt": 3,
+          "http": 200,
+          "status": "Pending",
+          "br": null,
+          "snippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":null,\"_meta\":{\"correlation_id\":\"6ad59eb0-cd40-4624-9121-06775670077d\"}}"
+        }
+      ]
+    },
+    "cab": {
+      "firstAttemptThisSession": {
+        "note": "VALIDATION_ERROR — lastName QaDxrn7g had digits from toString(36); not a product bug"
+      },
+      "finalizeRetry": {
+        "http": 200,
+        "status": "PENDING",
+        "br": "BR1794995178921937",
+        "verdict": "PASS"
+      },
+      "statusCancelProbe": {
+        "brs": [
+          "BR1794987430226336",
+          "BR1794995178921937"
+        ],
+        "paths": [
+          "GET /v1/airportServices/cabs/{br}/status",
+          "GET /v1/airportServices/cabs/bookings/{br}/status",
+          "GET /v1/airportServices/cabs/bookings/{br}/cancel",
+          "POST /v1/airportServices/cabs/bookings/{br}/cancel",
+          "GET /v1/airportServices/cabs/{br}",
+          "GET /v1/airportServices/cabs/bookings/{br}"
+        ],
+        "result": "ALL HTTP 500 null body",
+        "verdict": "BUG"
+      }
+    },
+    "webhookFinish": {
+      "CONFIRMED": "NOT TESTED — blocked: hotel null BR; cab status 500; no CAB_WEBHOOK_USER/PASS",
+      "FAILED_refund": "NOT TESTED — same blockers",
+      "FAILED_refund_fail": "NOT TESTED — same blockers; would need webhook FAILED + wallet_refund_fail sim on webhook path",
+      "cabPartnerWebhookAuthGate": "PASS shape — no-auth/bad-auth → 401 INVALID_WEBHOOK_CREDENTIALS",
+      "hotelPartnerWebhookPaths": "no usable public path (500 empty)"
+    }
+  }
+}

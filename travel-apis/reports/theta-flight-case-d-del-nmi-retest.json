@@ -1,0 +1,99 @@
+{
+  "at": "2026-11-18T10:34:26.057Z",
+  "case": "D",
+  "requested": {
+    "route": "DEL → NMI",
+    "date": "2026-12-17",
+    "dep": "06:00"
+  },
+  "airport": {
+    "code": "NMI",
+    "name": "Navi Mumbai International Airport",
+    "city": "Navi Mumbai"
+  },
+  "searches": [
+    {
+      "route": "DEL-NMI",
+      "date": "2026-12-17",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "state": null,
+      "opts": 0,
+      "req": "req-1794998062698"
+    },
+    {
+      "route": "DEL-NMI",
+      "date": "2026-12-18",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "state": null,
+      "opts": 0,
+      "req": "req-1794998063046"
+    },
+    {
+      "route": "DEL-NMI",
+      "date": "2026-12-20",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "state": null,
+      "opts": 0,
+      "req": "req-1794998063546"
+    },
+    {
+      "route": "DEL-NMI",
+      "date": "2026-12-27",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "state": null,
+      "opts": 0,
+      "req": "req-1794998063887"
+    },
+    {
+      "route": "DEL-NMI",
+      "date": "2027-01-10",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "state": null,
+      "opts": 0,
+      "req": "req-1794998064233"
+    },
+    {
+      "route": "BOM-NMI",
+      "date": "2026-12-17",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "state": null,
+      "opts": 0,
+      "req": "req-1794998064618"
+    },
+    {
+      "route": "NMI-DEL",
+      "date": "2026-12-17",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "state": null,
+      "opts": 0,
+      "req": "req-1794998064977"
+    },
+    {
+      "route": "PNQ-NMI",
+      "date": "2026-12-17",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "state": null,
+      "opts": 0,
+      "req": "req-1794998065326"
+    },
+    {
+      "route": "DEL-BOM",
+      "date": "2026-12-17",
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "state": null,
+      "opts": 0,
+      "req": "req-1794998065706"
+    }
+  ],
+  "verdict": "NOT TESTED",
+  "note": "DEL-NMI search returns VENDOR_ERROR on theta (and staging control). Cannot reach provider_no_response / PENDING check. DEL-PNQ Case D still BUG (Confirmed)."
+}

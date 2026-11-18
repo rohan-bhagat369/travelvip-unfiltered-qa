@@ -1,0 +1,95 @@
+{
+  "at": "2026-11-18T11:38:37.725Z",
+  "base": "https://theta-api.travelvip.ai",
+  "note": "Case D re-run after webhook config — check webhook_events for new BRs",
+  "results": [
+    {
+      "product": "flight",
+      "case": "D",
+      "header": "provider_no_response",
+      "route": "DEL-PNQ",
+      "date": "2026-12-27",
+      "amount": 5983,
+      "http": 200,
+      "br": "BR1795001879395163",
+      "immediateStatus": "pending",
+      "status": "Confirmed",
+      "polls": [
+        {
+          "i": 1,
+          "status": "Confirmed",
+          "at": "2026-11-18T11:38:05.780Z"
+        },
+        {
+          "i": 2,
+          "status": "Confirmed",
+          "at": "2026-11-18T11:38:08.408Z"
+        },
+        {
+          "i": 3,
+          "status": "Confirmed",
+          "at": "2026-11-18T11:38:11.051Z"
+        },
+        {
+          "i": 4,
+          "status": "Confirmed",
+          "at": "2026-11-18T11:38:13.677Z"
+        },
+        {
+          "i": 5,
+          "status": "Confirmed",
+          "at": "2026-11-18T11:38:16.309Z"
+        },
+        {
+          "i": 6,
+          "status": "Confirmed",
+          "at": "2026-11-18T11:38:18.928Z"
+        }
+      ],
+      "wallet": {
+        "before": {
+          "available": 355533.29,
+          "reserved": 0
+        },
+        "after": {
+          "available": 349550.29,
+          "reserved": 0
+        },
+        "delta": -5983
+      },
+      "refund": null,
+      "snippet": "{\"bookingReference\":\"BR1795001879395163\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"de0d7ebe-a1e2-43e6-9042-7bd89f0cb8b6\"}}",
+      "verdict": "BUG",
+      "webhookCheckSql": "SELECT id, partner, name, type, booking_id, booking_status, status, sent_at_ts, data FROM webhook_events WHERE partner='vgm' AND booking_id='BR1795001879395163' ORDER BY id;"
+    },
+    {
+      "product": "cab",
+      "case": "D",
+      "header": "provider_no_response",
+      "amount": 640.5,
+      "http": 200,
+      "br": "BR1795001914685133",
+      "status": "PENDING",
+      "statusProbe": {
+        "http": 500,
+        "snippet": "null"
+      },
+      "wallet": {
+        "before": {
+          "available": 349550.29,
+          "reserved": 0
+        },
+        "after": {
+          "available": 348909.79,
+          "reserved": 0
+        },
+        "delta": -640.5
+      },
+      "refund": null,
+      "snippet": "{\"status\":\"PENDING\",\"statusCode\":200,\"bookingRefId\":\"BR1795001914685133\",\"_meta\":{\"correlation_id\":\"de0d7ebe-a1e2-43e6-9042-7bd89f0cb8b6\"}}",
+      "verdict": "PASS",
+      "webhookCheckSql": "SELECT id, partner, name, type, booking_id, booking_status, status, sent_at_ts, data FROM webhook_events WHERE partner='vgm' AND booking_id='BR1795001914685133' ORDER BY id;"
+    }
+  ],
+  "webhookQueryAll": "SELECT id, partner, name, type, booking_id, booking_status, status, sent_at_ts, LEFT(data,200) AS data_preview\nFROM webhook_events\nWHERE partner='vgm' AND booking_id IN ('BR1795001879395163','BR1795001914685133')\nORDER BY id;"
+}

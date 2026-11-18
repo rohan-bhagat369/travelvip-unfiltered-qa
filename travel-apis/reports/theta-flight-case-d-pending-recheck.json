@@ -1,0 +1,84 @@
+{
+  "at": "2026-11-18T11:08:09.863Z",
+  "base": "https://theta-api.travelvip.ai",
+  "changelogCase": "D",
+  "expectation": "X-Simulate-Failure: provider_no_response → booking stays PENDING; wallet charged; no refund until webhook CONFIRMED/FAILED",
+  "priorEvidence": {
+    "delPnq": [
+      "BR1794997443858388",
+      "BR1794997592658813",
+      "BR1794997620566923"
+    ],
+    "note": "Earlier theta retests: issue pending → status Confirmed (BUG)"
+  },
+  "attempts": [
+    {
+      "date": "2026-12-27",
+      "sim": "provider_no_response",
+      "route": "DEL-PNQ",
+      "amount": 5983,
+      "http": 200,
+      "br": "BR1795000063318051",
+      "immediateStatus": "pending",
+      "polls": [
+        {
+          "i": 1,
+          "status": "Pending",
+          "at": "2026-11-18T11:07:44.397Z"
+        },
+        {
+          "i": 2,
+          "status": "Pending",
+          "at": "2026-11-18T11:07:46.050Z"
+        },
+        {
+          "i": 3,
+          "status": "Pending",
+          "at": "2026-11-18T11:07:49.232Z"
+        },
+        {
+          "i": 4,
+          "status": "Pending",
+          "at": "2026-11-18T11:07:52.406Z"
+        },
+        {
+          "i": 5,
+          "status": "Pending",
+          "at": "2026-11-18T11:07:55.578Z"
+        },
+        {
+          "i": 6,
+          "status": "Pending",
+          "at": "2026-11-18T11:07:58.743Z"
+        },
+        {
+          "i": 7,
+          "status": "Pending",
+          "at": "2026-11-18T11:08:01.915Z"
+        },
+        {
+          "i": 8,
+          "status": "Pending",
+          "at": "2026-11-18T11:08:05.077Z"
+        }
+      ],
+      "wallet": {
+        "before": {
+          "available": 480172.61,
+          "reserved": 0
+        },
+        "after": {
+          "available": 474189.61,
+          "reserved": 0
+        },
+        "delta": -5983
+      },
+      "refund": null,
+      "verdict": "PASS",
+      "note": "stayed PENDING br=BR1795000063318051; charged; no refund (changelog Case D)",
+      "cleanup": null,
+      "responseSnippet": "{\"bookingReference\":\"BR1795000063318051\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"db1ec023-0b64-4d6e-a390-42a4de09aa6a\"}}"
+    }
+  ],
+  "overall": "PASS"
+}
