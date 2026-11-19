@@ -1,0 +1,148 @@
+{
+  "ranAt": "2026-11-19T11:01:53.407Z",
+  "baseUrl": "https://theta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "products": [
+    "flight"
+  ],
+  "cases": [
+    "H",
+    "D"
+  ],
+  "walletStart": {
+    "currency": "INR",
+    "cashBalance": 624387.56,
+    "reserved": 0,
+    "creditAvailable": 148.96,
+    "available": 624536.52
+  },
+  "happyBrStore": {},
+  "summary": {
+    "PASS": 2,
+    "BUG": 0,
+    "NOT_TESTED": 2
+  },
+  "rows": [
+    {
+      "product": "flight",
+      "caseId": "H",
+      "header": "wallet_debit_record_fail",
+      "br": "BR1795086058563137",
+      "amount": 4757,
+      "http": 200,
+      "code": null,
+      "status": "Pending",
+      "refund": null,
+      "responseSnippet": "{\"bookingReference\":\"BR1795086058563137\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"313d3ab0-280d-4714-859d-f417f8629105\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "Booking continues normally",
+          "status": "PASS",
+          "actual": "http=200 code=null br=BR1795086058563137 status=Pending"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Wallet charged",
+          "status": "PASS",
+          "actual": "before=624536.52 after=619779.52 delta=-4757"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": -4757,
+      "balBefore": 624536.52,
+      "balAfter": 619779.52
+    },
+    {
+      "product": "flight",
+      "caseId": "D",
+      "header": "provider_no_response",
+      "br": "BR1795086092715867",
+      "amount": 4757,
+      "http": 200,
+      "code": null,
+      "status": "Pending",
+      "refund": null,
+      "responseSnippet": "{\"bookingReference\":\"BR1795086092715867\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"313d3ab0-280d-4714-859d-f417f8629105\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "Stays PENDING (not FAILED)",
+          "status": "PASS",
+          "actual": "status=Pending"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Charged (no refund)",
+          "status": "PASS",
+          "actual": "before=619779.52 after=615022.52 delta=-4757"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": -4757,
+      "balBefore": 619779.52,
+      "balAfter": 615022.52
+    },
+    {
+      "product": "all",
+      "caseId": "B",
+      "verdict": "NOT TESTED",
+      "note": "needs low-balance partner; not forced in this run",
+      "checks": [
+        {
+          "rule": "INSUFFICIENT_BALANCE",
+          "status": "NOT TESTED",
+          "actual": "no low-balance partner"
+        }
+      ]
+    },
+    {
+      "product": "all",
+      "caseId": "K",
+      "verdict": "NOT TESTED",
+      "note": "Blocked: vgm B2B is wallet-only; Card/Stripe is web path — need shop/Stripe or non-wallet partner",
+      "checks": [
+        {
+          "rule": "card regression",
+          "status": "NOT TESTED",
+          "actual": "no Stripe/web partner or card finalize path in this runner"
+        }
+      ]
+    }
+  ]
+}

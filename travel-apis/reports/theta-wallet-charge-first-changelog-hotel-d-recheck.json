@@ -1,0 +1,100 @@
+{
+  "ranAt": "2026-11-19T10:07:35.267Z",
+  "baseUrl": "https://theta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "products": [
+    "hotel"
+  ],
+  "cases": [
+    "D"
+  ],
+  "walletStart": {
+    "currency": "INR",
+    "cashBalance": 38524.31,
+    "reserved": 0,
+    "creditAvailable": 148.96,
+    "available": 38673.27
+  },
+  "happyBrStore": {},
+  "summary": {
+    "PASS": 0,
+    "BUG": 1,
+    "NOT_TESTED": 2
+  },
+  "rows": [
+    {
+      "product": "hotel",
+      "caseId": "D",
+      "header": "provider_no_response",
+      "br": "BR1795082850562848",
+      "amount": 11153.32,
+      "http": 200,
+      "code": null,
+      "status": "Failed",
+      "refund": null,
+      "responseSnippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795082850562848\",\"_meta\":{\"correlation_id\":\"e90d1885-0717-42cc-852d-6b3db27813e5\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Stays PENDING (not FAILED)",
+          "status": "BUG",
+          "actual": "status=Failed"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Charged (no refund)",
+          "status": "PASS",
+          "actual": "before=38673.27 after=27519.95 delta=-11153.319999999996"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": -11153.319999999996,
+      "balBefore": 38673.27,
+      "balAfter": 27519.95
+    },
+    {
+      "product": "all",
+      "caseId": "B",
+      "verdict": "NOT TESTED",
+      "note": "needs low-balance partner; not forced in this run",
+      "checks": [
+        {
+          "rule": "INSUFFICIENT_BALANCE",
+          "status": "NOT TESTED",
+          "actual": "no low-balance partner"
+        }
+      ]
+    },
+    {
+      "product": "all",
+      "caseId": "K",
+      "verdict": "NOT TESTED",
+      "note": "Blocked: vgm B2B is wallet-only; Card/Stripe is web path — need shop/Stripe or non-wallet partner",
+      "checks": [
+        {
+          "rule": "card regression",
+          "status": "NOT TESTED",
+          "actual": "no Stripe/web partner or card finalize path in this runner"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,452 @@
+{
+  "ranAt": "2026-11-19T10:12:05.034Z",
+  "baseUrl": "https://theta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "products": [
+    "flight"
+  ],
+  "cases": [
+    "E",
+    "F",
+    "C",
+    "H",
+    "A",
+    "D",
+    "G",
+    "I",
+    "J"
+  ],
+  "walletStart": {
+    "currency": "INR",
+    "cashBalance": 5064.35,
+    "reserved": 11153.32,
+    "creditAvailable": 148.96,
+    "available": 5213.31
+  },
+  "happyBrStore": {},
+  "summary": {
+    "PASS": 0,
+    "BUG": 8,
+    "NOT_TESTED": 3
+  },
+  "rows": [
+    {
+      "product": "flight",
+      "caseId": "E",
+      "header": "wallet_commit_fail",
+      "br": null,
+      "amount": 12414,
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 12414, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:11:22Z\",\"request_id\":\"req-1795083082686\"},\"_meta\":{\"correlation_id\":\"76109b13-6e4f-40f4-9210-aea23ab3ace7\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "WALLET_COMMIT_FAILED HTTP 502",
+          "status": "BUG",
+          "actual": "http=403 code=INSUFFICIENT_BALANCE msg=Insufficient wallet balance for this booking"
+        },
+        {
+          "rule": "Balance unchanged after hold release (±2)",
+          "status": "PASS",
+          "actual": "before=5213.31 after=5213.31 delta=0"
+        },
+        {
+          "rule": "Response is wallet commit failure (supplier not charged path)",
+          "status": "BUG",
+          "actual": "br=null"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 5213.31,
+      "balAfter": 5213.31
+    },
+    {
+      "product": "flight",
+      "caseId": "F",
+      "header": "wallet_commit_fail,wallet_release_fail",
+      "br": null,
+      "amount": 12414,
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 12414, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:11:28Z\",\"request_id\":\"req-1795083088027\"},\"_meta\":{\"correlation_id\":\"76109b13-6e4f-40f4-9210-aea23ab3ace7\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "WALLET_COMMIT_FAILED HTTP 502",
+          "status": "BUG",
+          "actual": "http=403 code=INSUFFICIENT_BALANCE msg=Insufficient wallet balance for this booking"
+        },
+        {
+          "rule": "Hold retained (available may drop until expiry)",
+          "status": "PASS",
+          "actual": "before=5213.31 after=5213.31 delta=0"
+        },
+        {
+          "rule": "Response is wallet commit failure (supplier not charged path)",
+          "status": "BUG",
+          "actual": "br=null"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 5213.31,
+      "balAfter": 5213.31
+    },
+    {
+      "product": "flight",
+      "caseId": "C",
+      "header": "provider_reject",
+      "br": null,
+      "amount": 12414,
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 12414, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:11:33Z\",\"request_id\":\"req-1795083093189\"},\"_meta\":{\"correlation_id\":\"76109b13-6e4f-40f4-9210-aea23ab3ace7\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "TICKET_ISSUANCE_FAILED / 502",
+          "status": "BUG",
+          "actual": "http=403 code=INSUFFICIENT_BALANCE"
+        },
+        {
+          "rule": "refund.status SUCCESS + walletTransactionId",
+          "status": "BUG",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Balance restored (±2)",
+          "status": "PASS",
+          "actual": "before=5213.31 after=5213.31 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 5213.31,
+      "balAfter": 5213.31
+    },
+    {
+      "product": "flight",
+      "caseId": "H",
+      "header": "wallet_debit_record_fail",
+      "br": null,
+      "amount": 12414,
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 12414, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:11:38Z\",\"request_id\":\"req-1795083098616\"},\"_meta\":{\"correlation_id\":\"76109b13-6e4f-40f4-9210-aea23ab3ace7\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Booking continues normally",
+          "status": "BUG",
+          "actual": "http=403 code=INSUFFICIENT_BALANCE br=null status=undefined"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Wallet charged",
+          "status": "BUG",
+          "actual": "before=5213.31 after=5213.31 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 5213.31,
+      "balAfter": 5213.31
+    },
+    {
+      "product": "flight",
+      "caseId": "A",
+      "header": null,
+      "br": null,
+      "amount": 12414,
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 12414, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:11:44Z\",\"request_id\":\"req-1795083103809\"},\"_meta\":{\"correlation_id\":\"76109b13-6e4f-40f4-9210-aea23ab3ace7\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Booking accepted / not wallet-fail",
+          "status": "BUG",
+          "actual": "http=403 code=INSUFFICIENT_BALANCE status=undefined br=null"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Wallet charged (balance dropped or equal if free)",
+          "status": "PASS",
+          "actual": "before=5213.31 after=5213.31 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 5213.31,
+      "balAfter": 5213.31
+    },
+    {
+      "product": "flight",
+      "caseId": "D",
+      "header": "provider_no_response",
+      "br": null,
+      "amount": 12414,
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 12414, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:11:49Z\",\"request_id\":\"req-1795083108856\"},\"_meta\":{\"correlation_id\":\"76109b13-6e4f-40f4-9210-aea23ab3ace7\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Stays PENDING (not FAILED)",
+          "status": "BUG",
+          "actual": "status=undefined"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Charged (no refund)",
+          "status": "BUG",
+          "actual": "before=5213.31 after=5213.31 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 5213.31,
+      "balAfter": 5213.31
+    },
+    {
+      "product": "flight",
+      "caseId": "G",
+      "header": "provider_reject,wallet_refund_fail",
+      "br": null,
+      "amount": 12414,
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 12414, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:11:54Z\",\"request_id\":\"req-1795083114089\"},\"_meta\":{\"correlation_id\":\"76109b13-6e4f-40f4-9210-aea23ab3ace7\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Failure response present",
+          "status": "PASS",
+          "actual": "http=403 code=INSUFFICIENT_BALANCE status=undefined"
+        },
+        {
+          "rule": "refund.status FAILED",
+          "status": "BUG",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "walletTransactionId empty",
+          "status": "PASS",
+          "actual": "walletTransactionId=undefined"
+        },
+        {
+          "rule": "Still charged (not refunded)",
+          "status": "BUG",
+          "actual": "before=5213.31 after=5213.31 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 5213.31,
+      "balAfter": 5213.31
+    },
+    {
+      "product": "flight",
+      "caseId": "I",
+      "header": "provider_reject,wallet_debit_record_fail",
+      "br": null,
+      "amount": 12414,
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 12414, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:11:59Z\",\"request_id\":\"req-1795083119278\"},\"_meta\":{\"correlation_id\":\"76109b13-6e4f-40f4-9210-aea23ab3ace7\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Failure response present",
+          "status": "PASS",
+          "actual": "http=403 code=INSUFFICIENT_BALANCE status=undefined"
+        },
+        {
+          "rule": "refund.status FAILED",
+          "status": "BUG",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "walletTransactionId empty",
+          "status": "PASS",
+          "actual": "walletTransactionId=undefined"
+        },
+        {
+          "rule": "Still charged (not refunded)",
+          "status": "BUG",
+          "actual": "before=5213.31 after=5213.31 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 5213.31,
+      "balAfter": 5213.31
+    },
+    {
+      "product": "flight",
+      "caseId": "J",
+      "verdict": "NOT TESTED",
+      "note": "no Case A BR to cancel",
+      "checks": [
+        {
+          "rule": "cancel fixture",
+          "status": "NOT TESTED",
+          "actual": "Case A did not yield a BR"
+        }
+      ]
+    },
+    {
+      "product": "all",
+      "caseId": "B",
+      "verdict": "NOT TESTED",
+      "note": "needs low-balance partner; not forced in this run",
+      "checks": [
+        {
+          "rule": "INSUFFICIENT_BALANCE",
+          "status": "NOT TESTED",
+          "actual": "no low-balance partner"
+        }
+      ]
+    },
+    {
+      "product": "all",
+      "caseId": "K",
+      "verdict": "NOT TESTED",
+      "note": "Blocked: vgm B2B is wallet-only; Card/Stripe is web path — need shop/Stripe or non-wallet partner",
+      "checks": [
+        {
+          "rule": "card regression",
+          "status": "NOT TESTED",
+          "actual": "no Stripe/web partner or card finalize path in this runner"
+        }
+      ]
+    }
+  ]
+}
