@@ -307,7 +307,8 @@ async function prepareHotel(hotel, tag) {
   const prebook = await hotel.prebook({ bookingCode: room.bookingCode, requestId });
   const bookingContext = extractBookingContext(prebook.data);
   if (!bookingContext) throw new Error(`prebook failed: ${brief(prebook.data)}`);
-  const lastName = uniqLast(tag);
+  // PAN-safe lead (unique last names fail supplier PAN check → Failed after charge)
+  const lastName = process.env.HOTEL_LAST_NAME || 'Bhagat';
   const guests = [{
     title: 'Mr',
     firstName: 'Rohan',
