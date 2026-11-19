@@ -148,8 +148,17 @@ function scoreCase(product, caseId, ctx) {
       checks.push({ rule: 'Balance restored', status: 'NOT TESTED', actual: 'wallet feed unavailable' });
     }
   } else if (caseId === 'D') {
-    add('Stays PENDING (not FAILED)', /PENDING/i.test(String(statusText || bookRes?.data?.status || ''))
-      && !/FAIL/i.test(String(statusText || '')), `status=${statusText||bookRes?.data?.status}`);
+    // Use one resolved status for both PENDING and FAILED checks (avoid
+    // statusText-only FAIL test missing bookRes.data.status fallback).
+    const dStatus = String(
+      statusText
+      || bookRes?.data?.status
+      || bookRes?.data?.bookingStatus
+      || bookRes?.data?.ticketStatus
+      || '',
+    );
+    add('Stays PENDING (not FAILED)', /PENDING/i.test(dStatus) && !/FAIL/i.test(dStatus),
+      `status=${dStatus || '(empty)'}`);
     add('No refund section', !refund, `refund=${brief(refund, 80)}`);
     if (balBefore != null && balAfter != null) {
       add('Charged (no refund)', delta < -0.01, `before=${balBefore} after=${balAfter} delta=${delta}`);
@@ -451,7 +460,8 @@ async function runCase(product, caseId, services, accessToken, happyBrStore) {
   let prep;
   try {
     if (caseId === 'J') {
-      const br = happyBrStore[product];
+      // Only cancel the BR recorded for this product's Case A.
+      const br = happyBrStore?.[product] || null;
       if (!br) {
         return {
           product, caseId, verdict: 'NOT TESTED',
@@ -523,7 +533,10 @@ async function runCase(product, caseId, services, accessToken, happyBrStore) {
   console.log('  refund', brief(refund, 180));
   console.log('  wallet after', balAfter);
 
-  if (caseId === 'A' && br) happyBrStore[product] = br;
+  // Case J cancel must use this product's Case A BR only (never cross-product).
+  if (caseId === 'A' && br) {
+    happyBrStore[product] = br;
+  }
 
   // soft status poll for A/D/H
   let polled = statusText;
@@ -588,14 +601,16 @@ async function main() {
   console.log('wallet feed', wa0.status, brief(wa0.summary, 200));
 
   const rows = [];
-  const happyBrStore = {};
-
+  const happyBrByProduct = Object.create(null);
   // Prefer order that protects balance: E F C H A D G I J
   const order = ['E', 'F', 'C', 'H', 'A', 'D', 'G', 'I', 'J'].filter((c) => CASES.includes(c));
   // Also allow any extra cases listed
   for (const c of CASES) if (!order.includes(c)) order.push(c);
 
+  // Per-product BR store: Case A BR for product X must not be visible to product Y's Case J.
+  // (Loop is sequential today; isolation still guards against shared-map mixups.)
   for (const product of PRODUCTS) {
+    const happyBrStore = Object.create(null);
     for (const caseId of order) {
       if (!CASE_HEADER.hasOwnProperty(caseId) && caseId !== 'J') {
         rows.push({ product, caseId, verdict: 'NOT TESTED', note: 'unknown case' });
@@ -611,6 +626,7 @@ async function main() {
       }
       await sleep(1500);
     }
+    if (happyBrStore[product]) happyBrByProduct[product] = happyBrStore[product];
   }
 
   // B / K placeholders
@@ -641,7 +657,7 @@ async function main() {
     products: PRODUCTS,
     cases: order,
     walletStart: wa0.summary,
-    happyBrStore,
+    happyBrStore: happyBrByProduct,
     summary,
     rows,
   };
