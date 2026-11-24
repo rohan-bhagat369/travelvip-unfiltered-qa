@@ -1,0 +1,53 @@
+{
+  "at": "2026-11-19T10:10:35.666Z",
+  "base": "https://theta-api.travelvip.ai",
+  "case": "Hotel D",
+  "header": "provider_no_response",
+  "nullBrBug": "MIXED",
+  "pendingHold": "BUG/FLAKY",
+  "attempts": [
+    {
+      "n": 1,
+      "checkin": "2026-12-17",
+      "http": 403,
+      "br": null,
+      "polls": [],
+      "before": 5213.31,
+      "after": 5213.31,
+      "delta": 0,
+      "refund": null,
+      "verdict": "BUG",
+      "note": "no BR http=403",
+      "snippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 11153.32, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:10:17Z\",\"request_id\":\"req-1795083017495\"},\"_meta\":{\"correlation_id\":\"5721e77f-e365-4d9b-b26e-345bf302e2e3\"}}"
+    },
+    {
+      "n": 2,
+      "checkin": "2026-12-20",
+      "http": 403,
+      "br": null,
+      "polls": [],
+      "before": 5213.31,
+      "after": 5213.31,
+      "delta": 0,
+      "refund": null,
+      "verdict": "BUG",
+      "note": "no BR http=403",
+      "snippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 11153.32, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:10:25Z\",\"request_id\":\"req-1795083025516\"},\"_meta\":{\"correlation_id\":\"5721e77f-e365-4d9b-b26e-345bf302e2e3\"}}"
+    },
+    {
+      "n": 3,
+      "checkin": "2026-12-23",
+      "http": 403,
+      "br": null,
+      "polls": [],
+      "before": 5213.31,
+      "after": 5213.31,
+      "delta": 0,
+      "refund": null,
+      "verdict": "BUG",
+      "note": "no BR http=403",
+      "snippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 11153.32, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:10:33Z\",\"request_id\":\"req-1795083032974\"},\"_meta\":{\"correlation_id\":\"5721e77f-e365-4d9b-b26e-345bf302e2e3\"}}"
+    }
+  ],
+  "overall": "BUG"
+}

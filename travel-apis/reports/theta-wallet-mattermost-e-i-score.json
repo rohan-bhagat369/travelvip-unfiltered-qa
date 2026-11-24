@@ -1,0 +1,21 @@
+{
+  "scoredAt": "2026-11-18T07:45:00.000Z",
+  "channel": "critical-partner-alerts-dev",
+  "baseUrl": "https://theta-api.travelvip.ai",
+  "partner": "vgm",
+  "summary": { "PASS": 12, "BUG": 0, "NOT_TESTED": 0, "note": "Hotel+Cab E/F/C/H/G/I only; Flight excluded" },
+  "rows": [
+    { "product": "hotel", "caseId": "E", "br": "BR1794987275429952", "verdict": "PASS", "alerts": ["Wallet Commit Failed"], "checks": "warning; Hold Released Yes; Provider Called No; Service Hotel; Source Booking (finalize)" },
+    { "product": "hotel", "caseId": "F", "br": "BR1794987280342725", "verdict": "PASS", "alerts": ["Wallet Commit and Release Failed"], "checks": "critical only; no Commit Failed twin; Provider Called No" },
+    { "product": "hotel", "caseId": "C", "br": "BR1794987285553305", "verdict": "PASS", "alerts": [], "checks": "no alert on successful refund" },
+    { "product": "hotel", "caseId": "H", "br": "BR1794987290959353", "verdict": "PASS", "alerts": ["Wallet Payment Record Missing"], "checks": "warning; Wallet Charged Yes" },
+    { "product": "hotel", "caseId": "G", "br": "BR1794987522262492", "verdict": "PASS", "alerts": ["Wallet Refund Failed"], "checks": "critical" },
+    { "product": "hotel", "caseId": "I", "br": "BR1794987546766716", "verdict": "PASS", "alerts": ["Wallet Payment Record Missing", "Wallet Refund Skipped"], "checks": "warning + critical pair" },
+    { "product": "cab", "caseId": "E", "br": "BR1794987329360718", "verdict": "PASS", "alerts": ["Wallet Commit Failed"], "checks": "warning; Hold Released Yes; Provider Called No; Service Cab" },
+    { "product": "cab", "caseId": "F", "br": "BR1794987344402250", "verdict": "PASS", "alerts": ["Wallet Commit and Release Failed"], "checks": "critical only; no Commit Failed twin" },
+    { "product": "cab", "caseId": "C", "br": "BR1794987359899598", "verdict": "PASS", "alerts": [], "checks": "no alert on successful refund" },
+    { "product": "cab", "caseId": "H", "br": "BR1794987375501526", "verdict": "PASS", "alerts": ["Wallet Payment Record Missing"], "checks": "warning; Wallet Charged Yes" },
+    { "product": "cab", "caseId": "G", "br": "BR1794987458712474", "verdict": "PASS", "alerts": ["Wallet Refund Failed"], "checks": "critical" },
+    { "product": "cab", "caseId": "I", "br": "BR1794987473835079", "verdict": "PASS", "alerts": ["Wallet Payment Record Missing", "Wallet Refund Skipped"], "checks": "warning + critical pair" }
+  ]
+}

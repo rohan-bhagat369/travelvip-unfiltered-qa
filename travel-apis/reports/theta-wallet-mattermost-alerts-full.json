@@ -1,0 +1,67 @@
+[
+  {
+    "at": "2026-11-18T07:39:07.035Z",
+    "create_at": 1794987547035,
+    "message": "🚨 **Wallet Refund Skipped** — `wallet.refund_skipped`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Hotel` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987546766716` |\n| Amount | `11153.32 INR` |\n| Hold Id | `4056c501-321f-4903-8e60-9e04f526ff4c` |\n| Provider Status | `FAILED` |\n| Provider Message | `SIMULATED supplier failure (wallet_failure_simulation)` |\n| Skip Reason | `No wallet payment record for this booking` |\n| Meaning | `Partner was charged 11153.32 INR and the booking failed, but no refund was attempted because our wallet payment record for this booking is missing. The partner has lost this amount until it is credited back manually.` |\n| Partner Response | `refund.status = FAILED` |\n| Triggered At | `2026-11-18 13:09:06 IST` |\n| Severity | `critical` |"
+  },
+  {
+    "at": "2026-11-18T07:39:06.914Z",
+    "create_at": 1794987546914,
+    "message": "⚠️ **Wallet Payment Record Missing** — `wallet.debit_record_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Hotel` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987546766716` |\n| Amount | `11153.32 INR` |\n| Hold Id | `4056c501-321f-4903-8e60-9e04f526ff4c` |\n| Wallet Charged | `Yes` |\n| Error | `SIMULATED: the wallet payment record could not be saved` |\n| Meaning | `Partner was charged 11153.32 INR correctly and the booking continues, but our wallet payment record failed to save. If this booking later fails or is cancelled, its refund will be skipped until the record is added.` |\n| Triggered At | `2026-11-18 13:09:06 IST` |\n| Severity | `warning` |"
+  },
+  {
+    "at": "2026-11-18T07:38:42.204Z",
+    "create_at": 1794987522204,
+    "message": "🚨 **Wallet Refund Failed** — `wallet.refund_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Hotel` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987522262492` |\n| Amount | `11153.32 INR` |\n| Hold Id | `fbed486e-9e92-4834-b779-536b8beef3d7` |\n| Provider Status | `FAILED` |\n| Provider Message | `SIMULATED supplier failure (wallet_failure_simulation)` |\n| Refund Error | `The wallet rejected the refund credit` |\n| Partner Response | `refund.status = FAILED` |\n| Triggered At | `2026-11-18 13:08:42 IST` |\n| Severity | `critical` |"
+  },
+  {
+    "at": "2026-11-18T07:37:53.359Z",
+    "create_at": 1794987473359,
+    "message": "🚨 **Wallet Refund Skipped** — `wallet.refund_skipped`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Cab` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987473835079` |\n| Amount | `640.50 INR` |\n| Hold Id | `cbe4505d-4ede-4d9e-b199-852f52857039` |\n| Provider Status | `FAILED` |\n| Provider Message | `SIMULATED supplier failure (wallet_failure_simulation)` |\n| Skip Reason | `No wallet payment record for this booking` |\n| Meaning | `Partner was charged 640.50 INR and the booking failed, but no refund was attempted because our wallet payment record for this booking is missing. The partner has lost this amount until it is credited back manually.` |\n| Partner Response | `refund.status = FAILED` |\n| Triggered At | `2026-11-18 13:07:53 IST` |\n| Severity | `critical` |"
+  },
+  {
+    "at": "2026-11-18T07:37:53.256Z",
+    "create_at": 1794987473256,
+    "message": "⚠️ **Wallet Payment Record Missing** — `wallet.debit_record_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Cab` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987473835079` |\n| Amount | `640.50 INR` |\n| Hold Id | `cbe4505d-4ede-4d9e-b199-852f52857039` |\n| Wallet Charged | `Yes` |\n| Error | `SIMULATED: the wallet payment record could not be saved` |\n| Meaning | `Partner was charged 640.50 INR correctly and the booking continues, but our wallet payment record failed to save. If this booking later fails or is cancelled, its refund will be skipped until the record is added.` |\n| Triggered At | `2026-11-18 13:07:53 IST` |\n| Severity | `warning` |"
+  },
+  {
+    "at": "2026-11-18T07:37:38.374Z",
+    "create_at": 1794987458374,
+    "message": "🚨 **Wallet Refund Failed** — `wallet.refund_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Cab` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987458712474` |\n| Amount | `640.50 INR` |\n| Hold Id | `6e4d568c-028f-4399-9fde-d13becaf8971` |\n| Provider Status | `FAILED` |\n| Provider Message | `SIMULATED supplier failure (wallet_failure_simulation)` |\n| Refund Error | `The wallet rejected the refund credit` |\n| Partner Response | `refund.status = FAILED` |\n| Triggered At | `2026-11-18 13:07:38 IST` |\n| Severity | `critical` |"
+  },
+  {
+    "at": "2026-11-18T07:36:15.255Z",
+    "create_at": 1794987375255,
+    "message": "⚠️ **Wallet Payment Record Missing** — `wallet.debit_record_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Cab` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987375501526` |\n| Amount | `640.50 INR` |\n| Hold Id | `8ab2550a-899a-4a0c-a991-520a2c5753e2` |\n| Wallet Charged | `Yes` |\n| Error | `SIMULATED: the wallet payment record could not be saved` |\n| Meaning | `Partner was charged 640.50 INR correctly and the booking continues, but our wallet payment record failed to save. If this booking later fails or is cancelled, its refund will be skipped until the record is added.` |\n| Triggered At | `2026-11-18 13:06:15 IST` |\n| Severity | `warning` |"
+  },
+  {
+    "at": "2026-11-18T07:35:44.460Z",
+    "create_at": 1794987344460,
+    "message": "🚨 **Wallet Commit and Release Failed** — `wallet.commit_release_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Cab` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987344402250` |\n| Amount | `640.50 INR` |\n| Hold Id | `945d57db-0472-4a78-86bd-51f69904da38` |\n| Commit Error | `SIMULATED: the wallet rejected the commit` |\n| Release Error | `SIMULATED: the wallet rejected the release` |\n| Provider Called | `No — booking aborted` |\n| Triggered At | `2026-11-18 13:05:44 IST` |\n| Severity | `critical` |"
+  },
+  {
+    "at": "2026-11-18T07:35:29.386Z",
+    "create_at": 1794987329386,
+    "message": "⚠️ **Wallet Commit Failed** — `wallet.commit_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Cab` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987329360718` |\n| Amount | `640.50 INR` |\n| Hold Id | `d3fcf4d6-e8d7-49e3-9c5f-5d23834ef1c9` |\n| Commit Error | `SIMULATED: the wallet rejected the commit` |\n| Hold Released | `Yes` |\n| Provider Called | `No — booking aborted` |\n| Triggered At | `2026-11-18 13:05:29 IST` |\n| Severity | `warning` |"
+  },
+  {
+    "at": "2026-11-18T07:34:50.840Z",
+    "create_at": 1794987290840,
+    "message": "⚠️ **Wallet Payment Record Missing** — `wallet.debit_record_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Hotel` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987290959353` |\n| Amount | `11153.32 INR` |\n| Hold Id | `524a4708-7b39-441d-b85d-50de2142cac1` |\n| Wallet Charged | `Yes` |\n| Error | `SIMULATED: the wallet payment record could not be saved` |\n| Meaning | `Partner was charged 11153.32 INR correctly and the booking continues, but our wallet payment record failed to save. If this booking later fails or is cancelled, its refund will be skipped until the record is added.` |\n| Triggered At | `2026-11-18 13:04:50 IST` |\n| Severity | `warning` |"
+  },
+  {
+    "at": "2026-11-18T07:34:40.734Z",
+    "create_at": 1794987280734,
+    "message": "🚨 **Wallet Commit and Release Failed** — `wallet.commit_release_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Hotel` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987280342725` |\n| Amount | `11153.32 INR` |\n| Hold Id | `519292bc-f826-43fe-89c0-d2fac4a84c1d` |\n| Commit Error | `SIMULATED: the wallet rejected the commit` |\n| Release Error | `SIMULATED: the wallet rejected the release` |\n| Provider Called | `No — booking aborted` |\n| Triggered At | `2026-11-18 13:04:40 IST` |\n| Severity | `critical` |"
+  },
+  {
+    "at": "2026-11-18T07:34:35.550Z",
+    "create_at": 1794987275550,
+    "message": "⚠️ **Wallet Commit Failed** — `wallet.commit_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Hotel` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987275429952` |\n| Amount | `11153.32 INR` |\n| Hold Id | `fe5babde-3e45-48b7-9172-d098c8d9d447` |\n| Commit Error | `SIMULATED: the wallet rejected the commit` |\n| Hold Released | `Yes` |\n| Provider Called | `No — booking aborted` |\n| Triggered At | `2026-11-18 13:04:35 IST` |\n| Severity | `warning` |"
+  },
+  {
+    "at": "2026-11-18T07:34:25.051Z",
+    "create_at": 1794987265051,
+    "message": "⚠️ **Wallet Commit Failed** — `wallet.commit_failed`\n> **DEV**   |   Partner: `Vouchagram Partner (vgm)`\n\n| Field | Value |\n|---|---|\n| Service | `Hotel` |\n| Source | `Booking (finalize)` |\n| Booking Reference | `BR1794987264197187` |\n| Amount | `11153.32 INR` |\n| Hold Id | `c1dd07e7-58be-4c4e-bd40-8c714bedf232` |\n| Commit Error | `SIMULATED: the wallet rejected the commit` |\n| Hold Released | `Yes` |\n| Provider Called | `No — booking aborted` |\n| Triggered At | `2026-11-18 13:04:24 IST` |\n| Severity | `warning` |"
+  }
+]

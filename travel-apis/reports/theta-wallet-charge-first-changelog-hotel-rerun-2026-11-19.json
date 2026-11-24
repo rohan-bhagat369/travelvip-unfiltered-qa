@@ -1,0 +1,488 @@
+{
+  "ranAt": "2026-11-19T10:09:03.420Z",
+  "baseUrl": "https://theta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "products": [
+    "hotel"
+  ],
+  "cases": [
+    "E",
+    "F",
+    "C",
+    "H",
+    "A",
+    "D",
+    "G",
+    "I",
+    "J"
+  ],
+  "walletStart": {
+    "currency": "INR",
+    "cashBalance": 38524.31,
+    "reserved": 0,
+    "creditAvailable": 148.96,
+    "available": 38673.27
+  },
+  "happyBrStore": {
+    "hotel": "BR1795082906334896"
+  },
+  "summary": {
+    "PASS": 5,
+    "BUG": 4,
+    "NOT_TESTED": 2
+  },
+  "rows": [
+    {
+      "product": "hotel",
+      "caseId": "E",
+      "header": "wallet_commit_fail",
+      "br": null,
+      "amount": 11153.32,
+      "http": 502,
+      "code": "WALLET_COMMIT_FAILED",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"WALLET_COMMIT_FAILED\",\"message\":\"Failed to charge the wallet. Please try again.\",\"details\":\"The wallet commit failed; nothing was sent to the provider\",\"timestamp\":\"2026-11-19T10:08:00Z\",\"request_id\":\"req-1795082879589\",\"bookingReference\":\"BR1795082879986356\"},\"_meta\":{\"correlation_id\":\"d48ba671-9a7d-4d05-8514-ef60e270d476\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "WALLET_COMMIT_FAILED HTTP 502",
+          "status": "PASS",
+          "actual": "http=502 code=WALLET_COMMIT_FAILED msg=Failed to charge the wallet. Please try again."
+        },
+        {
+          "rule": "Balance unchanged after hold release (±2)",
+          "status": "PASS",
+          "actual": "before=38673.27 after=38673.27 delta=0"
+        },
+        {
+          "rule": "Response is wallet commit failure (supplier not charged path)",
+          "status": "PASS",
+          "actual": "br=null"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 38673.27,
+      "balAfter": 38673.27
+    },
+    {
+      "product": "hotel",
+      "caseId": "F",
+      "header": "wallet_commit_fail,wallet_release_fail",
+      "br": null,
+      "amount": 11153.32,
+      "http": 502,
+      "code": "WALLET_COMMIT_FAILED",
+      "refund": null,
+      "responseSnippet": "{\"error\":{\"code\":\"WALLET_COMMIT_FAILED\",\"message\":\"Failed to charge the wallet. Please try again.\",\"details\":\"The wallet commit failed; nothing was sent to the provider\",\"timestamp\":\"2026-11-19T10:08:09Z\",\"request_id\":\"req-1795082888817\",\"bookingReference\":\"BR1795082889920346\"},\"_meta\":{\"correlation_id\":\"d48ba671-9a7d-4d05-8514-ef60e270d476\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "WALLET_COMMIT_FAILED HTTP 502",
+          "status": "PASS",
+          "actual": "http=502 code=WALLET_COMMIT_FAILED msg=Failed to charge the wallet. Please try again."
+        },
+        {
+          "rule": "Hold retained (available may drop until expiry)",
+          "status": "PASS",
+          "actual": "before=38673.27 after=27519.95 delta=-11153.319999999996"
+        },
+        {
+          "rule": "Response is wallet commit failure (supplier not charged path)",
+          "status": "PASS",
+          "actual": "br=null"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": -11153.319999999996,
+      "balBefore": 38673.27,
+      "balAfter": 27519.95
+    },
+    {
+      "product": "hotel",
+      "caseId": "C",
+      "header": "provider_reject",
+      "br": null,
+      "amount": 11153.32,
+      "http": 500,
+      "code": null,
+      "status": 500,
+      "refund": null,
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Hotel FAILED / 400",
+          "status": "BUG",
+          "actual": "http=500 status=500 statusCode=undefined"
+        },
+        {
+          "rule": "refund.status SUCCESS + walletTransactionId",
+          "status": "BUG",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Balance restored (±2)",
+          "status": "PASS",
+          "actual": "before=27519.95 after=27519.95 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 27519.95,
+      "balAfter": 27519.95
+    },
+    {
+      "product": "hotel",
+      "caseId": "H",
+      "header": "wallet_debit_record_fail",
+      "br": null,
+      "amount": 11153.32,
+      "http": 500,
+      "code": null,
+      "status": 500,
+      "refund": null,
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Booking continues normally",
+          "status": "BUG",
+          "actual": "http=500 code=null br=null status=500"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Wallet charged",
+          "status": "BUG",
+          "actual": "before=27519.95 after=27519.95 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 27519.95,
+      "balAfter": 27519.95
+    },
+    {
+      "product": "hotel",
+      "caseId": "A",
+      "header": null,
+      "br": "BR1795082906334896",
+      "amount": 11153.32,
+      "http": 200,
+      "code": null,
+      "status": "Confirmed",
+      "refund": null,
+      "responseSnippet": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795082906334896\",\"_meta\":{\"correlation_id\":\"d48ba671-9a7d-4d05-8514-ef60e270d476\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "Booking accepted / not wallet-fail",
+          "status": "PASS",
+          "actual": "http=200 code=null status=Confirmed br=BR1795082906334896"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Wallet charged (balance dropped or equal if free)",
+          "status": "PASS",
+          "actual": "before=27519.95 after=16366.63 delta=-11153.320000000002"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": -11153.320000000002,
+      "balBefore": 27519.95,
+      "balAfter": 16366.63
+    },
+    {
+      "product": "hotel",
+      "caseId": "D",
+      "header": "provider_no_response",
+      "br": null,
+      "amount": 11153.32,
+      "http": 500,
+      "code": null,
+      "status": 500,
+      "refund": null,
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Stays PENDING (not FAILED)",
+          "status": "BUG",
+          "actual": "status=500"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Charged (no refund)",
+          "status": "BUG",
+          "actual": "before=16366.63 after=16366.63 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 16366.63,
+      "balAfter": 16366.63
+    },
+    {
+      "product": "hotel",
+      "caseId": "G",
+      "header": "provider_reject,wallet_refund_fail",
+      "br": null,
+      "amount": 11153.32,
+      "http": 500,
+      "code": null,
+      "status": 500,
+      "refund": null,
+      "responseSnippet": "{\"status\":500,\"info\":\"Internal Server Error\"}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "BUG",
+      "checks": [
+        {
+          "rule": "Failure response present",
+          "status": "PASS",
+          "actual": "http=500 code=null status=500"
+        },
+        {
+          "rule": "refund.status FAILED",
+          "status": "BUG",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "walletTransactionId empty",
+          "status": "PASS",
+          "actual": "walletTransactionId=undefined"
+        },
+        {
+          "rule": "Still charged (not refunded)",
+          "status": "BUG",
+          "actual": "before=16366.63 after=16366.63 delta=0"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 0,
+      "balBefore": 16366.63,
+      "balAfter": 16366.63
+    },
+    {
+      "product": "hotel",
+      "caseId": "I",
+      "header": "provider_reject,wallet_debit_record_fail",
+      "br": "BR1795082930303131",
+      "amount": 11153.32,
+      "http": 200,
+      "code": null,
+      "status": "FAILED",
+      "refund": {
+        "status": "FAILED",
+        "amount": 11153.32,
+        "currency": "INR",
+        "referenceId": "BR1795082930303131",
+        "walletTransactionId": null
+      },
+      "responseSnippet": "{\"status\":\"FAILED\",\"statusCode\":400,\"message\":\"Hotel booking failed\",\"bookingReference\":\"BR1795082930303131\",\"refund\":{\"status\":\"FAILED\",\"amount\":11153.32,\"currency\":\"INR\",\"referenceId\":\"BR1795082930303131\",\"walletTransactionId\":null},\"_meta\":{\"correlation_id\":\"d48ba671-9a7d-4d05-8514-ef60e270d476\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "Failure response present",
+          "status": "PASS",
+          "actual": "http=200 code=null status=FAILED"
+        },
+        {
+          "rule": "refund.status FAILED",
+          "status": "PASS",
+          "actual": "refund={\"status\":\"FAILED\",\"amount\":11153.32,\"currency\":\"INR\",\"referenceId\":\"BR1795082930303131\",\"walletTransactionId\":null}"
+        },
+        {
+          "rule": "walletTransactionId empty",
+          "status": "PASS",
+          "actual": "walletTransactionId=null"
+        },
+        {
+          "rule": "Still charged (not refunded)",
+          "status": "PASS",
+          "actual": "before=16366.63 after=5213.31 delta=-11153.32"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": -11153.32,
+      "balBefore": 16366.63,
+      "balAfter": 5213.31
+    },
+    {
+      "product": "hotel",
+      "caseId": "J",
+      "header": null,
+      "br": "BR1795082906334896",
+      "http": 200,
+      "code": null,
+      "responseSnippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1795082906334896\",\"cancellationRequest\":{\"cancellationRequestId\":\"417\",\"status\":\"Cancelled\",\"refundStatus\":\"COMPLETED\",\"cancellationCharge\":0,\"refund\":11153.32,\"createdAt\":\"2026-11-19T10:08:55Z\",\"settledAt\":\"2026-11-19T10:08:58Z\"}},\"_meta\":{\"correlation_id\":\"d48ba671-9a7d-4d05-8514-ef60e270d476\"}}",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "Cancel HTTP not 500",
+          "status": "PASS",
+          "actual": "http=200 code=null"
+        },
+        {
+          "rule": "Wallet credited or unchanged (penalty)",
+          "status": "PASS",
+          "actual": "before=5213.31 after=16366.63 delta=11153.32"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 11153.32,
+      "balBefore": 5213.31,
+      "balAfter": 16366.63
+    },
+    {
+      "product": "all",
+      "caseId": "B",
+      "verdict": "NOT TESTED",
+      "note": "needs low-balance partner; not forced in this run",
+      "checks": [
+        {
+          "rule": "INSUFFICIENT_BALANCE",
+          "status": "NOT TESTED",
+          "actual": "no low-balance partner"
+        }
+      ]
+    },
+    {
+      "product": "all",
+      "caseId": "K",
+      "verdict": "NOT TESTED",
+      "note": "Blocked: vgm B2B is wallet-only; Card/Stripe is web path — need shop/Stripe or non-wallet partner",
+      "checks": [
+        {
+          "rule": "card regression",
+          "status": "NOT TESTED",
+          "actual": "no Stripe/web partner or card finalize path in this runner"
+        }
+      ]
+    }
+  ]
+}

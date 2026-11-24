@@ -1,0 +1,196 @@
+{
+  "ranAt": "2026-11-19T11:00:18.104Z",
+  "baseUrl": "https://theta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "products": [
+    "flight"
+  ],
+  "cases": [
+    "A",
+    "I",
+    "J"
+  ],
+  "walletStart": {
+    "currency": "INR",
+    "cashBalance": 633069.56,
+    "reserved": 0,
+    "creditAvailable": 148.96,
+    "available": 633218.52
+  },
+  "happyBrStore": {
+    "flight": "BR1795085917199887"
+  },
+  "summary": {
+    "PASS": 3,
+    "BUG": 0,
+    "NOT_TESTED": 2
+  },
+  "rows": [
+    {
+      "product": "flight",
+      "caseId": "A",
+      "header": null,
+      "br": "BR1795085917199887",
+      "amount": 4757,
+      "http": 200,
+      "code": null,
+      "status": "Pending",
+      "refund": null,
+      "responseSnippet": "{\"bookingReference\":\"BR1795085917199887\",\"status\":\"pending\",\"message\":\"Booking is processing\",\"_meta\":{\"correlation_id\":\"e40def56-d554-468c-a7bf-1e63ba26ad00\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "Booking accepted / not wallet-fail",
+          "status": "PASS",
+          "actual": "http=200 code=null status=Pending br=BR1795085917199887"
+        },
+        {
+          "rule": "No refund section",
+          "status": "PASS",
+          "actual": "refund=null"
+        },
+        {
+          "rule": "Wallet charged (balance dropped or equal if free)",
+          "status": "PASS",
+          "actual": "before=633218.52 after=628461.52 delta=-4757"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": -4757,
+      "balBefore": 633218.52,
+      "balAfter": 628461.52
+    },
+    {
+      "product": "flight",
+      "caseId": "I",
+      "header": "provider_reject,wallet_debit_record_fail",
+      "br": null,
+      "amount": 4757,
+      "http": 502,
+      "code": "TICKET_ISSUANCE_FAILED",
+      "refund": {
+        "status": "FAILED",
+        "amount": 4757,
+        "currency": "INR",
+        "referenceId": "BR1795085979614259",
+        "walletTransactionId": null
+      },
+      "responseSnippet": "{\"error\":{\"code\":\"TICKET_ISSUANCE_FAILED\",\"message\":\"Ticket issuance failed\",\"details\":null,\"timestamp\":\"2026-11-19T10:59:40Z\",\"request_id\":\"req-1795085979519\",\"bookingReference\":\"BR1795085979614259\",\"providerResponse\":{\"bookingReferenceId\":\"BR1795085979614259\",\"data\":{\"bookingStatus\":\"FAILED\",\"message\":\"SIMULATED supplier failure (wallet_failure_simulation)\"}},\"refund\":{\"status\":\"FAILED\",\"amount\":4757,\"currency\":\"INR\",\"referenceId\":\"BR1795085979614259\",\"walletTransactionId\":null}},\"_meta\":{\"correlation_id\":\"e40def56-d554-468c-a7bf-1e63ba26ad00\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "Failure response present",
+          "status": "PASS",
+          "actual": "http=502 code=TICKET_ISSUANCE_FAILED status=undefined"
+        },
+        {
+          "rule": "refund.status FAILED",
+          "status": "PASS",
+          "actual": "refund={\"status\":\"FAILED\",\"amount\":4757,\"currency\":\"INR\",\"referenceId\":\"BR1795085979614259\",\"walletTransactionId\":null}"
+        },
+        {
+          "rule": "walletTransactionId empty",
+          "status": "PASS",
+          "actual": "walletTransactionId=null"
+        },
+        {
+          "rule": "Still charged (not refunded)",
+          "status": "PASS",
+          "actual": "before=628461.52 after=623704.52 delta=-4757"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": -4757,
+      "balBefore": 628461.52,
+      "balAfter": 623704.52
+    },
+    {
+      "product": "flight",
+      "caseId": "J",
+      "header": null,
+      "br": "BR1795085917199887",
+      "http": 200,
+      "code": null,
+      "responseSnippet": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1795085917199887\",\"pnr\":\"FYDPPW\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"estimatedCancellationCharge\":3575,\"estimatedRefund\":832,\"totalAmount\":4407,\"totalPenalty\":3225,\"convenienceFee\":350,\"totalSsr\":0,\"flexiCancelFee\":0,\"cancellationFee\":100,\"perPax\":[{\"paxId\":\"PAX1\",\"baseAmount\":4057,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":3125,\"cancellationFee\":100,\"totalPenalty\":3225,\"refund\":832}],\"createdAt\":\"2026-11-19T10:59:44Z\"},\"refundSummary\":{\"amount\":832,\"cancellationCharge\":3575,\"totalPenalty\":3225,\"cancellationChargeBreakup\":{\"airlineCancellationFee\":3125,\"convenienceFee\":350,\"serviceFee\":100,\"flexicancelFee\":0}},\"transaction\":{\"id\":\"795\",\"status\":\"completed\",\"amount\":832,\"currency\":\"INR\",\"paymentMethod\":\"wallet\"}},\"_meta\"",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "Cancel HTTP not 500",
+          "status": "PASS",
+          "actual": "http=200 code=null"
+        },
+        {
+          "rule": "Wallet credited or unchanged (penalty)",
+          "status": "PASS",
+          "actual": "before=623704.52 after=624536.52 delta=832"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": 832,
+      "balBefore": 623704.52,
+      "balAfter": 624536.52
+    },
+    {
+      "product": "all",
+      "caseId": "B",
+      "verdict": "NOT TESTED",
+      "note": "needs low-balance partner; not forced in this run",
+      "checks": [
+        {
+          "rule": "INSUFFICIENT_BALANCE",
+          "status": "NOT TESTED",
+          "actual": "no low-balance partner"
+        }
+      ]
+    },
+    {
+      "product": "all",
+      "caseId": "K",
+      "verdict": "NOT TESTED",
+      "note": "Blocked: vgm B2B is wallet-only; Card/Stripe is web path — need shop/Stripe or non-wallet partner",
+      "checks": [
+        {
+          "rule": "card regression",
+          "status": "NOT TESTED",
+          "actual": "no Stripe/web partner or card finalize path in this runner"
+        }
+      ]
+    }
+  ]
+}

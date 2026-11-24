@@ -1,0 +1,129 @@
+{
+  "ranAt": "2026-11-19T12:48:20.405Z",
+  "base": "https://ak-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "route": "PNQ-DEL RT",
+  "fareType": "NORMAL",
+  "summary": {
+    "PASS": 0,
+    "BUG": 0,
+    "NOT_TESTED": 6
+  },
+  "rows": [
+    {
+      "id": "1",
+      "label": "Confirm / Confirm",
+      "lastName": "Tester",
+      "expect": "CONFIRMED with onward+return PNRs, both legs CONFIRMED",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "br": null,
+      "verdict": "NOT TESTED",
+      "note": "blocked by issue validation (not surname sim)",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan Tester) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-19T12:48:01Z\",\"request_id\":\"req-1795092481314\"},\"_meta\":{\"correlation_id\":\"bd67edd0-3a15-4826-a07d-ef9fce4cabd9\"}}",
+      "checks": [
+        {
+          "rule": "issue response",
+          "status": "NOT TESTED",
+          "actual": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan Tester) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selectio"
+        }
+      ]
+    },
+    {
+      "id": "2a",
+      "label": "Fail / Fail",
+      "lastName": "FAIL",
+      "expect": "FAILED, no PNRs",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "br": null,
+      "verdict": "NOT TESTED",
+      "note": "blocked by issue validation (not surname sim)",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan FAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-19T12:48:05Z\",\"request_id\":\"req-1795092485127\"},\"_meta\":{\"correlation_id\":\"bd67edd0-3a15-4826-a07d-ef9fce4cabd9\"}}",
+      "checks": [
+        {
+          "rule": "issue response",
+          "status": "NOT TESTED",
+          "actual": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan FAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection "
+        }
+      ]
+    },
+    {
+      "id": "2b",
+      "label": "Fail / Fail (pending then fail)",
+      "lastName": "PENDINGFAIL",
+      "expect": "pending then FAILED, no PNRs",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "br": null,
+      "verdict": "NOT TESTED",
+      "note": "blocked by issue validation (not surname sim)",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan PENDINGFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-19T12:48:08Z\",\"request_id\":\"req-1795092488384\"},\"_meta\":{\"correlation_id\":\"bd67edd0-3a15-4826-a07d-ef9fce4cabd9\"}}",
+      "checks": [
+        {
+          "rule": "issue response",
+          "status": "NOT TESTED",
+          "actual": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan PENDINGFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal sel"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "label": "Confirm / In-progress",
+      "lastName": "HALFPENDING",
+      "expect": "IN_PROGRESS with onward PNR; return settles later",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "br": null,
+      "verdict": "NOT TESTED",
+      "note": "blocked by issue validation (not surname sim)",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan HALFPENDING) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-19T12:48:11Z\",\"request_id\":\"req-1795092491610\"},\"_meta\":{\"correlation_id\":\"bd67edd0-3a15-4826-a07d-ef9fce4cabd9\"}}",
+      "checks": [
+        {
+          "rule": "issue response",
+          "status": "NOT TESTED",
+          "actual": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan HALFPENDING) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal sel"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "label": "Confirm / Fail",
+      "lastName": "HALFFAIL",
+      "expect": "partial IN_PROGRESS with onward PNR (not full FAILED)",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "br": null,
+      "verdict": "NOT TESTED",
+      "note": "blocked by issue validation (not surname sim)",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan HALFFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-19T12:48:15Z\",\"request_id\":\"req-1795092494813\"},\"_meta\":{\"correlation_id\":\"bd67edd0-3a15-4826-a07d-ef9fce4cabd9\"}}",
+      "checks": [
+        {
+          "rule": "issue response",
+          "status": "NOT TESTED",
+          "actual": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan HALFFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal select"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "label": "Fail / In-progress",
+      "lastName": "PENDINGHALFFAIL",
+      "expect": "IN_PROGRESS; onward settles later",
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "br": null,
+      "verdict": "NOT TESTED",
+      "note": "blocked by issue validation (not surname sim)",
+      "responseSnippet": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan PENDINGHALFFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger\"],\"timestamp\":\"2026-11-19T12:48:18Z\",\"request_id\":\"req-1795092498166\"},\"_meta\":{\"correlation_id\":\"bd67edd0-3a15-4826-a07d-ef9fce4cabd9\"}}",
+      "checks": [
+        {
+          "rule": "issue response",
+          "status": "NOT TESTED",
+          "actual": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'data.passengers[0]' (Rohan PENDINGHALFFAIL) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal"
+        }
+      ]
+    }
+  ]
+}

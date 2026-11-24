@@ -1,0 +1,52 @@
+{
+  "at": "2026-11-19T10:14:08.209Z",
+  "base": "https://theta-api.travelvip.ai",
+  "wallet": {
+    "currency": "INR",
+    "cashBalance": 5064.35,
+    "reserved": 11153.32,
+    "creditAvailable": 148.96,
+    "available": 5213.31
+  },
+  "results": [
+    {
+      "product": "hotel",
+      "caseId": "B",
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "amount": 11153.32,
+      "availableBefore": 5213.31,
+      "availableAfter": 5213.31,
+      "reserved": 11153.32,
+      "br": null,
+      "verdict": "PASS",
+      "note": "INSUFFICIENT_BALANCE on low wallet; no charge",
+      "snippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 11153.32, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:14:05Z\",\"request_id\":\"req-1795083245500\"},\"_meta\":{\"correlation_id\":\"8e51ed88-b997-46d8-b0f3-13a98e2dcfd7\"}}"
+    },
+    {
+      "product": "flight",
+      "caseId": "B",
+      "http": 403,
+      "code": "INSUFFICIENT_BALANCE",
+      "amount": 12414,
+      "availableBefore": 5213.31,
+      "availableAfter": 5213.31,
+      "br": null,
+      "verdict": "PASS",
+      "note": "INSUFFICIENT_BALANCE on low wallet; no charge",
+      "snippet": "{\"error\":{\"code\":\"INSUFFICIENT_BALANCE\",\"message\":\"Insufficient wallet balance for this booking\",\"details\":\"Required: INR 12414, Available: INR 5213.31\",\"timestamp\":\"2026-11-19T10:14:07Z\",\"request_id\":\"req-1795083247496\"},\"_meta\":{\"correlation_id\":\"8e51ed88-b997-46d8-b0f3-13a98e2dcfd7\"}}"
+    },
+    {
+      "product": "all",
+      "caseId": "K",
+      "verdict": "NOT TESTED",
+      "note": "Card/Stripe (web) — blocked: only vgm wallet B2B; no shop/Stripe/non-wallet partner",
+      "subchecks": {
+        "K1_web_books_unchanged": "NOT TESTED",
+        "K2_card_paid_flight_no_answer_failure": "NOT TESTED",
+        "K3_non_wallet_partners": "NOT TESTED",
+        "K4_no_alert_on_success_book_refund": "NOT TESTED"
+      }
+    }
+  ]
+}

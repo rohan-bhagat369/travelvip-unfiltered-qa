@@ -1,0 +1,111 @@
+{
+  "ranAt": "2026-11-19T11:31:35.844Z",
+  "baseUrl": "https://theta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "products": [
+    "hotel"
+  ],
+  "cases": [
+    "G"
+  ],
+  "walletStart": {
+    "currency": "INR",
+    "cashBalance": 548306.66,
+    "reserved": 640.5,
+    "creditAvailable": 148.96,
+    "available": 548455.62
+  },
+  "happyBrStore": {},
+  "summary": {
+    "PASS": 1,
+    "BUG": 0,
+    "NOT_TESTED": 2
+  },
+  "rows": [
+    {
+      "product": "hotel",
+      "caseId": "G",
+      "header": "provider_reject,wallet_refund_fail",
+      "br": "BR1795087891927038",
+      "amount": 11153.32,
+      "http": 200,
+      "code": null,
+      "status": "FAILED",
+      "refund": {
+        "status": "FAILED",
+        "amount": 11153.32,
+        "currency": "INR",
+        "referenceId": "BR1795087891927038",
+        "walletTransactionId": null
+      },
+      "responseSnippet": "{\"status\":\"FAILED\",\"statusCode\":400,\"message\":\"Hotel booking failed\",\"bookingReference\":\"BR1795087891927038\",\"refund\":{\"status\":\"FAILED\",\"amount\":11153.32,\"currency\":\"INR\",\"referenceId\":\"BR1795087891927038\",\"walletTransactionId\":null},\"_meta\":{\"correlation_id\":\"0b1f6015-cec3-46e0-a7a0-f984078a552b\"}}",
+      "walletFeedHttp": {
+        "before": 200,
+        "after": 200
+      },
+      "verdict": "PASS",
+      "checks": [
+        {
+          "rule": "Failure response present",
+          "status": "PASS",
+          "actual": "http=200 code=null status=FAILED"
+        },
+        {
+          "rule": "refund.status FAILED",
+          "status": "PASS",
+          "actual": "refund={\"status\":\"FAILED\",\"amount\":11153.32,\"currency\":\"INR\",\"referenceId\":\"BR1795087891927038\",\"walletTransactionId\":null}"
+        },
+        {
+          "rule": "walletTransactionId empty",
+          "status": "PASS",
+          "actual": "walletTransactionId=null"
+        },
+        {
+          "rule": "Still charged (not refunded)",
+          "status": "PASS",
+          "actual": "before=548455.62 after=537302.3 delta=-11153.319999999949"
+        },
+        {
+          "rule": "DB tables",
+          "status": "NOT TESTED",
+          "actual": "no DB access from this runner"
+        },
+        {
+          "rule": "Mattermost alerts",
+          "status": "NOT TESTED",
+          "actual": "check critical-partner-alerts-dev manually"
+        }
+      ],
+      "delta": -11153.319999999949,
+      "balBefore": 548455.62,
+      "balAfter": 537302.3
+    },
+    {
+      "product": "all",
+      "caseId": "B",
+      "verdict": "NOT TESTED",
+      "note": "needs low-balance partner; not forced in this run",
+      "checks": [
+        {
+          "rule": "INSUFFICIENT_BALANCE",
+          "status": "NOT TESTED",
+          "actual": "no low-balance partner"
+        }
+      ]
+    },
+    {
+      "product": "all",
+      "caseId": "K",
+      "verdict": "NOT TESTED",
+      "note": "Blocked: vgm B2B is wallet-only; Card/Stripe is web path — need shop/Stripe or non-wallet partner",
+      "checks": [
+        {
+          "rule": "card regression",
+          "status": "NOT TESTED",
+          "actual": "no Stripe/web partner or card finalize path in this runner"
+        }
+      ]
+    }
+  ]
+}
