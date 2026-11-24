@@ -1,0 +1,109 @@
+{
+  "br": "BR1795175947533723",
+  "pnr": "SIM-W18GLD",
+  "base": "https://ak-api.travelvip.ai",
+  "detailStatus": "Confirmed",
+  "penaltyHttp": 200,
+  "cancelHttp": 200,
+  "afterStatus": "Cancelled",
+  "hasOpsOutcome": false,
+  "dataKeys": [
+    "bookingReference",
+    "pnr",
+    "cancellationRequest",
+    "refundSummary",
+    "transaction"
+  ],
+  "crKeys": [
+    "status",
+    "estimatedCancellationCharge",
+    "estimatedRefund",
+    "totalAmount",
+    "totalPenalty",
+    "convenienceFee",
+    "totalSsr",
+    "flexiCancelFee",
+    "cancellationFee",
+    "perPax",
+    "createdAt"
+  ],
+  "totalAmount": 5983,
+  "estimatedRefund": 4969.7,
+  "estimatedCancellationCharge": 1013.3,
+  "refundMath": 4969.7,
+  "estimatedRefundNum": 4969.7,
+  "perPaxSum": 4969.7,
+  "convenienceFee": 350,
+  "cancellationFee": 100,
+  "sample": {
+    "penalty": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1795175947533723",
+        "pnr": "SIM-W18GLD",
+        "cancellationRequest": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 1013.3,
+          "estimatedRefund": 4969.7
+        }
+      },
+      "_meta": {
+        "correlation_id": "e2f8ec2f-b440-4af1-9453-6267d8b92a89"
+      }
+    },
+    "cancel": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1795175947533723",
+        "pnr": "SIM-W18GLD",
+        "cancellationRequest": {
+          "status": "Cancelled",
+          "estimatedCancellationCharge": 1013.3,
+          "estimatedRefund": 4969.7,
+          "totalAmount": 5983,
+          "totalPenalty": 663.3,
+          "convenienceFee": 350,
+          "totalSsr": 0,
+          "flexiCancelFee": 0,
+          "cancellationFee": 100,
+          "perPax": [
+            {
+              "paxId": "PAX1",
+              "baseAmount": 5633,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 563.3,
+              "cancellationFee": 100,
+              "totalPenalty": 663.3,
+              "refund": 4969.7
+            }
+          ],
+          "createdAt": "2026-11-20T12:11:00Z"
+        },
+        "refundSummary": {
+          "amount": 4969.7,
+          "cancellationCharge": 1013.3,
+          "totalPenalty": 663.3,
+          "cancellationChargeBreakup": {
+            "airlineCancellationFee": 563.3,
+            "convenienceFee": 350,
+            "serviceFee": 100,
+            "flexicancelFee": 0
+          }
+        },
+        "transaction": {
+          "id": "172",
+          "status": "completed",
+          "amount": 4969.7,
+          "currency": "INR",
+          "paymentMethod": "wallet"
+        }
+      },
+      "_meta": {
+        "correlation_id": "e2f8ec2f-b440-4af1-9453-6267d8b92a89"
+      }
+    }
+  }
+}

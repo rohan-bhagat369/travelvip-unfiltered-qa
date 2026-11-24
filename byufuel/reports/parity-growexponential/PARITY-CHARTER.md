@@ -18,7 +18,7 @@
 
 | | Azure UAT (baseline) | TravelVIP Grow (candidate) |
 |--|--|--|
-| Web | `https://u-byufuel.azurewebsites.net` | `https://uat-byufuel.growexponential.app/` |
+| Web | `https://u-byufuel.azurewebsites.net` | `https://uat-byufuel.crediblesg.com/` (was `uat-byufuel.growexponential.app`) |
 | Build seen | `1.0.0 (20261014.1)` | `1.0.0 (20260922.1)` |
 | Admin | `amaan@crediblesg.com` | `parity.admin@byufuel.localhost` |
 

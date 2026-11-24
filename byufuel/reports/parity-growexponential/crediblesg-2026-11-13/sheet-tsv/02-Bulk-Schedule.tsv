@@ -1,0 +1,10 @@
+URL		https://uat-byufuel.crediblesg.com + APKs com.byufuel.mobile.uat*		Tester	Rohan Bhagat QA		
+							
+							
+#	TC ID	Test Case / Scenario	Centvis Pass/Works	Credible ESG Status	Credible ESG Actual	uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+1	TC01	Verify if the Bulk request meanus are being shown in main menu on assigning of BulkScheduleRequest role to the user	Pass	PASS	Create Bulk Request + View Bulk Requests menus present		
+2	TC02	Verify if the User is able to create bulk schedules with 50 suppliers at a time	Pass	PASS	Approved list is 63. Selected 50. POST /api/bulk-uco-schedule-requests HTTP 201 count 50. BR-000000050, 05-Oct-2026, 8 AM to 10 AM, 10 kg, Completed.		
+3	TC03	Verify if the User is able to schedule Bulk Recurring Schedules	Pass	PASS	HTTP 201 isRecurring true, count 1. BR-000000051, Every Week, Tuesday, 06-Oct-2026 to 20-Oct-2026, 3 recurrences, 10 kg.		
+4	TC05	Verify the recurring existing schedues replaced upon confirmation while recurring schedules are created.	Pass	FAIL	ABCA BC (abab@gmail.com) already had BR-000000051. A second weekly create posted with no popup of existing schedules. HTTP 201, BR-000000052 Pending.		
+5	TC07	Verify the Bulk Schedule Request Handling in View Bulk Request	Pass	PASS	View Bulk Requests page loads		
+6	TC08	Verify the Recurrence limit of Schedules.	Pass	PASS	Start 05-Oct-2026. Typed end date 01-Jan-2029 was rewritten to 25-Sep-2028. That probe was not submitted.		

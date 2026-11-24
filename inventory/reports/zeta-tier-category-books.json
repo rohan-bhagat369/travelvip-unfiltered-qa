@@ -1,0 +1,51 @@
+{
+  "at": "2026-11-20T09:55:48.933Z",
+  "base": "https://zeta-api.travelx.ai",
+  "partnerId": "vgm",
+  "tierId": "10546901",
+  "sessionClaims": {
+    "tierId": 10546901,
+    "subscriptionId": "9319558726ab5299"
+  },
+  "books": [
+    {
+      "category": "Lounge",
+      "ok": true,
+      "br": "BR1795168550499161",
+      "status": "Pending",
+      "http": 200,
+      "name": "Janhavi Hirexxtn",
+      "where": "BOM Terminal 2",
+      "correlation": "27428ec5-28e2-4faa-9f28-422d399cfbc6",
+      "sample": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795168550499161\",\"_meta\":{\"correlation_id\":\"27428ec5-28e2-4faa-9f28-422d399cfbc6\"}}"
+    },
+    {
+      "category": "Fast Track",
+      "ok": true,
+      "br": "BR1795168452622412",
+      "status": "Pending",
+      "skipped": true,
+      "name": "Sharayu Megharexxb9",
+      "note": "reusing prior successful BR"
+    },
+    {
+      "category": "eSIM",
+      "ok": true,
+      "br": "BR1795168551412137",
+      "status": "Pending",
+      "http": 200,
+      "name": "Saurabhi Chawdaxxtn",
+      "where": "Travel eSIM for Singapore",
+      "correlation": "27428ec5-28e2-4faa-9f28-422d399cfbc6",
+      "sample": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795168551412137\",\"_meta\":{\"correlation_id\":\"27428ec5-28e2-4faa-9f28-422d399cfbc6\"}}"
+    },
+    {
+      "category": "Attractions",
+      "ok": false,
+      "error": "ZETA_ATTRACTIONS_CATEGORY_MISSING",
+      "detail": "Category not found in DB: ATTRACTIONS",
+      "http": 200,
+      "sample": "{\"type\":\"https://www.jhipster.tech/problem/problem-with-message\",\"title\":\"Internal Server Error\",\"status\":500,\"detail\":\"Category not found in DB: ATTRACTIONS\",\"path\":\"/api/v1/attractions\",\"message\":\"error.http.500\"}"
+    }
+  ]
+}

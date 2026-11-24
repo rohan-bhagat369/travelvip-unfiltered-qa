@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-13T07:58:57.041Z",
+  "base": "https://delta-api.travelvip.ai",
+  "scenarios": {
+    "FAIL": {
+      "status": "PASS",
+      "br": "BR1794556749304734",
+      "finalStatus": "Failed",
+      "paymentIntentId": "pi_3UbFO6EWyGwVPuvk1sit4eud"
+    },
+    "CONFIRM": {
+      "status": "BUG",
+      "br": "BR1794556759441491",
+      "finalStatus": "Failed",
+      "paymentIntentId": "pi_3UbFOGEWyGwVPuvk0aJQbhyb"
+    },
+    "DOUBLE": {
+      "status": "PASS",
+      "br": "BR1794556759441491",
+      "finalStatus": null,
+      "paymentIntentId": "pi_3UbFOGEWyGwVPuvk0aJQbhyb"
+    },
+    "CANCEL": {
+      "status": "BUG",
+      "br": "BR1794556759441491",
+      "finalStatus": "Failed",
+      "paymentIntentId": null
+    }
+  },
+  "dbFiles": [
+    "db-BR1794556749304734-FAIL.sql",
+    "db-BR1794556759441491-CANCEL.sql",
+    "db-BR1794556759441491-CONFIRM.sql",
+    "db-BR1794556759441491-DOUBLE.sql",
+    "db-check-smt-card.sql"
+  ]
+}

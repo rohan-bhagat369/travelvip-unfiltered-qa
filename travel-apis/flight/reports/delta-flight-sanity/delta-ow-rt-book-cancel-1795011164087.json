@@ -1,0 +1,279 @@
+{
+  "ranAt": "2026-11-18T14:12:32.414Z",
+  "baseUrl": "https://delta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "cases": {
+    "ow": {
+      "book": {
+        "ok": true,
+        "journeyType": "ONE_WAY",
+        "route": "PNQ→DEL",
+        "onwardDays": 28,
+        "searchId": "srch_7f147ae67ace4d0c855b2f7328e54e1f",
+        "priceId": "price_5a11b22ee94f4716ad50de2958fb2ee4",
+        "pricedTotal": 5184,
+        "br": "BR1795011153969177",
+        "status": "Confirmed",
+        "classified": "Confirmed",
+        "polls": 1,
+        "timedOut": false,
+        "pnrs": [
+          "SIM-9SNLQB"
+        ],
+        "passengers": [
+          "Rohan Bhagatqgcg"
+        ],
+        "detailBrief": "{\"status\":\"Confirmed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1795011153969177\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-11-18T14:12:33\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"SG106-PNQ-DEL-2026-12-16T23:55-2026-12-17T02:15\",\"legNumber\":1,\"totalStops\":0,\"totalDurationMinutes\":140,\"refundable\":true,\"refundText\":\"Refundable\",\"segments\":[{\"segmentId\":\"SEG_1\",\"segmentNumber\":1,\"segmentReference\":\"SG106-PNQ-DEL-20"
+      },
+      "attempts": [
+        {
+          "ok": true,
+          "journeyType": "ONE_WAY",
+          "route": "PNQ→DEL",
+          "onwardDays": 28,
+          "searchId": "srch_7f147ae67ace4d0c855b2f7328e54e1f",
+          "priceId": "price_5a11b22ee94f4716ad50de2958fb2ee4",
+          "pricedTotal": 5184,
+          "br": "BR1795011153969177",
+          "status": "Confirmed",
+          "classified": "Confirmed",
+          "polls": 1,
+          "timedOut": false,
+          "pnrs": [
+            "SIM-9SNLQB"
+          ],
+          "passengers": [
+            "Rohan Bhagatqgcg"
+          ],
+          "detailBrief": "{\"status\":\"Confirmed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1795011153969177\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-11-18T14:12:33\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"SG106-PNQ-DEL-2026-12-16T23:55-2026-12-17T02:15\",\"legNumber\":1,\"totalStops\":0,\"totalDurationMinutes\":140,\"refundable\":true,\"refundText\":\"Refundable\",\"segments\":[{\"segmentId\":\"SEG_1\",\"segmentNumber\":1,\"segmentReference\":\"SG106-PNQ-DEL-20"
+        }
+      ],
+      "aborted": false,
+      "cancel": {
+        "steps": [
+          {
+            "pnr": "SIM-9SNLQB",
+            "penalty": {
+              "request": {
+                "bookingId": "BR1795011153969177",
+                "action": "PENALTY",
+                "pnr": "SIM-9SNLQB",
+                "cancelledBy": "USER"
+              },
+              "http": 200,
+              "ok": true,
+              "body": {
+                "status": 0,
+                "statusMessage": "Success",
+                "data": {
+                  "bookingReference": "BR1795011153969177",
+                  "pnr": "SIM-9SNLQB",
+                  "cancellationRequest": {
+                    "status": "Penalty Fetched",
+                    "estimatedCancellationCharge": 933.4,
+                    "estimatedRefund": 3900.6
+                  }
+                },
+                "_meta": {
+                  "correlation_id": "be995d66-1a9c-4540-8b37-89b015eda4b2"
+                }
+              }
+            },
+            "cancel": {
+              "request": {
+                "bookingId": "BR1795011153969177",
+                "action": "CANCEL",
+                "pnr": "SIM-9SNLQB",
+                "cancelledBy": "USER"
+              },
+              "http": 200,
+              "ok": true,
+              "body": {
+                "status": 0,
+                "statusMessage": "Success",
+                "data": {
+                  "bookingReference": "BR1795011153969177",
+                  "pnr": "SIM-9SNLQB",
+                  "cancellationRequest": {
+                    "status": "Cancelled",
+                    "estimatedCancellationCharge": 933.4,
+                    "estimatedRefund": 3900.6,
+                    "totalAmount": 4834,
+                    "totalPenalty": 583.4,
+                    "convenienceFee": 350,
+                    "totalSsr": 0,
+                    "flexiCancelFee": 0,
+                    "cancellationFee": 100,
+                    "perPax": [
+                      {
+                        "paxId": "PAX1",
+                        "baseAmount": 4484,
+                        "ssr": 0,
+                        "flexiCancelFee": 0,
+                        "penalty": 483.4,
+                        "cancellationFee": 100,
+                        "totalPenalty": 583.4,
+                        "refund": 3900.6
+                      }
+                    ],
+                    "createdAt": "2026-11-18T14:12:38Z"
+                  },
+                  "refundSummary": {
+                    "amount": 3900.6,
+                    "cancellationCharge": 933.4,
+                    "totalPenalty": 583.4,
+                    "cancellationChargeBreakup": {
+                      "airlineCancellationFee": 483.4,
+                      "convenienceFee": 350,
+                      "serviceFee": 100,
+                      "flexicancelFee": 0
+                    }
+                  },
+                  "transaction": {
+                    "id": "777",
+                    "status": "completed",
+                    "amount": 3900.6,
+                    "currency": "INR",
+                    "paymentMethod": "wallet"
+                  }
+                },
+                "_meta": {
+                  "correlation_id": "be995d66-1a9c-4540-8b37-89b015eda4b2"
+                }
+              }
+            },
+            "statusAfterThisCancel": "Cancelled",
+            "cancelRequestStatus": null
+          }
+        ],
+        "statusAfterCancel": "Cancelled",
+        "cancellationRequest": null
+      }
+    },
+    "rt": {
+      "book": {
+        "ok": false,
+        "error": "RT issue no BR",
+        "issue": {
+          "error": {
+            "code": "VALIDATION_ERROR",
+            "message": "Validation failed",
+            "details": [
+              "'data.passengers[0]' (Kian Grewalqwfq) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+            ],
+            "timestamp": "2026-11-18T14:12:44Z",
+            "request_id": "req-1795011163924"
+          },
+          "_meta": {
+            "correlation_id": "be995d66-1a9c-4540-8b37-89b015eda4b2"
+          }
+        }
+      },
+      "attempts": [
+        {
+          "ok": false,
+          "error": "RT issue no BR",
+          "issue": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Validation failed",
+              "details": [
+                "'data.passengers[0]' (Arjun Malhotraquvz) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+              ],
+              "timestamp": "2026-11-18T14:12:43Z",
+              "request_id": "req-1795011162958"
+            },
+            "_meta": {
+              "correlation_id": "be995d66-1a9c-4540-8b37-89b015eda4b2"
+            }
+          }
+        },
+        {
+          "ok": false,
+          "error": "RT issue no BR",
+          "issue": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Validation failed",
+              "details": [
+                "'data.passengers[0]' (Kian Grewalqwfq) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+              ],
+              "timestamp": "2026-11-18T14:12:44Z",
+              "request_id": "req-1795011163924"
+            },
+            "_meta": {
+              "correlation_id": "be995d66-1a9c-4540-8b37-89b015eda4b2"
+            }
+          }
+        }
+      ],
+      "aborted": false,
+      "cancel": null
+    }
+  },
+  "rows": [
+    {
+      "rule": "AUTH",
+      "how": "partner token + session on delta-api with staging vgm creds",
+      "status": "PASS",
+      "baseUrl": "https://delta-api.travelvip.ai"
+    },
+    {
+      "rule": "OW.BOOK",
+      "how": "search→price→issue-ticket→poll Confirmed (Inprogress → 1 retry)",
+      "status": "PASS",
+      "bookingStatus": "Confirmed",
+      "br": "BR1795011153969177",
+      "classified": "Confirmed",
+      "pnrs": [
+        "SIM-9SNLQB"
+      ],
+      "pricedTotal": 5184,
+      "attempts": [
+        {
+          "br": "BR1795011153969177",
+          "status": "Confirmed",
+          "classified": "Confirmed"
+        }
+      ]
+    },
+    {
+      "rule": "OW.CANCEL",
+      "how": "v2 PENALTY + CANCEL; status Cancelled or Cancellation Requested",
+      "status": "PASS",
+      "bookingStatus": "PASS",
+      "br": "BR1795011153969177",
+      "pnrs": [
+        "SIM-9SNLQB"
+      ],
+      "note": "final=Cancelled",
+      "statusAfterCancel": "Cancelled",
+      "cancellationRequest": null
+    },
+    {
+      "rule": "RT.BOOK",
+      "how": "search→price→issue-ticket→poll Confirmed (Inprogress → 1 retry)",
+      "status": "BUG",
+      "attempts": [
+        {
+          "error": "RT issue no BR"
+        },
+        {
+          "error": "RT issue no BR"
+        }
+      ]
+    },
+    {
+      "rule": "RT.CANCEL",
+      "how": "v2 PENALTY + CANCEL",
+      "status": "NOT TESTED",
+      "note": "book RT issue no BR"
+    }
+  ],
+  "summary": {
+    "PASS": 3,
+    "BUG": 1,
+    "NOT TESTED": 1
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "checkedAt": "2026-11-23T09:58:41.472Z",
+  "searchMinute": "2026-11-23T09:58",
+  "env": "https://preprod-api.travelvip.ai",
+  "dates": {
+    "onward": "2026-12-14",
+    "return": "2026-12-21"
+  },
+  "note": "Focused TBO-back retest through details/pricing; no book",
+  "summary": {
+    "PASS": 15,
+    "BUG": 3,
+    "NOT_TESTED": 0
+  },
+  "rows": [
+    {
+      "id": "A1",
+      "how": "TBO-only 22157551 CODES=={402T}",
+      "status": "BUG",
+      "codes": [
+        "422R",
+        "402T"
+      ],
+      "opts": 50
+    },
+    {
+      "id": "A2",
+      "how": "Riya tier 8 CODES=={422R}",
+      "status": "BUG",
+      "codes": [
+        "422R",
+        "402T"
+      ],
+      "opts": 50
+    },
+    {
+      "id": "A3",
+      "how": "Merged CODES both vendors",
+      "status": "PASS",
+      "codes": [
+        "422R",
+        "402T"
+      ],
+      "opts": 50
+    },
+    {
+      "id": "A4",
+      "how": "∃ dual-vendor option",
+      "status": "PASS",
+      "dual": true,
+      "searchId": "srch_6e8c6e6126ef4968a82968304f4556fe"
+    },
+    {
+      "id": "B9",
+      "how": "Merged card segments FN/times/cabin",
+      "status": "PASS",
+      "segs": 2
+    },
+    {
+      "id": "B10",
+      "how": "Merged card keeps both vendor fares",
+      "status": "PASS",
+      "per": {
+        "422R": 4,
+        "402T": 4
+      }
+    },
+    {
+      "id": "B3",
+      "how": "N(merged) >= max(N(TBO),N(Riya))",
+      "status": "PASS",
+      "nMerged": 50,
+      "nTbo": 50,
+      "nRiya": 50
+    },
+    {
+      "id": "B4",
+      "how": "N(merged) <= N(TBO)+N(Riya)",
+      "status": "PASS",
+      "nMerged": 50,
+      "nTbo": 50,
+      "nRiya": 50
+    },
+    {
+      "id": "DET1",
+      "how": "Details API 422R",
+      "status": "PASS",
+      "http": 200,
+      "searchId": "srch_627d7ab39fa34733b2bdd901d93b5268"
+    },
+    {
+      "id": "DET2",
+      "how": "Pricing API 422R",
+      "status": "PASS",
+      "http": 200,
+      "searchAmt": 19850,
+      "priceAmt": 19850,
+      "convenienceFee": 0
+    },
+    {
+      "id": "DET3",
+      "how": "Details API 402T",
+      "status": "PASS",
+      "http": 200,
+      "searchId": "srch_e0a8de09dbed4185be431339f9e62419"
+    },
+    {
+      "id": "DET4",
+      "how": "Pricing API 402T",
+      "status": "BUG",
+      "http": 400,
+      "searchAmt": 20280,
+      "priceAmt": null,
+      "convenienceFee": 0
+    },
+    {
+      "id": "C1",
+      "how": "RT ONWARD+RETURN",
+      "status": "PASS",
+      "nOn": 50,
+      "nRet": 50
+    },
+    {
+      "id": "C3",
+      "how": "RT CODES both vendors",
+      "status": "PASS",
+      "codes": [
+        "402T",
+        "422R"
+      ]
+    },
+    {
+      "id": "C15a",
+      "how": "Select TBO onward → return follows 402T",
+      "status": "PASS",
+      "nAfter": 7,
+      "returnCodes": [
+        "402T"
+      ]
+    },
+    {
+      "id": "C15b",
+      "how": "Select Riya onward → return follows 422R",
+      "status": "PASS",
+      "nAfter": 4,
+      "returnCodes": [
+        "422R"
+      ]
+    },
+    {
+      "id": "C15",
+      "how": "TBO vs Riya onward selection",
+      "status": "PASS"
+    },
+    {
+      "id": "C13",
+      "how": "DEL-BOM RT both vendors + both dirs",
+      "status": "PASS",
+      "nOn": 50,
+      "nRet": 50,
+      "codes": [
+        "422R",
+        "402T"
+      ]
+    }
+  ],
+  "dumps": {
+    "ow-tbo": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\ow-tbo.json",
+    "ow-riya8": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\ow-riya8.json",
+    "ow-merged": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\ow-merged.json",
+    "details-422R": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\details-422R.json",
+    "pricing-422R": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\pricing-422R.json",
+    "details-402T": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\details-402T.json",
+    "pricing-402T": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\pricing-402T.json",
+    "rt-merged": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\rt-merged.json",
+    "rt-sel-tbo": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\rt-sel-tbo.json",
+    "rt-sel-riya": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\rt-sel-riya.json",
+    "rt-bom": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps-retest\\rt-bom.json"
+  }
+}

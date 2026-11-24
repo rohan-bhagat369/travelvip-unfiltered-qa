@@ -1,0 +1,47 @@
+{
+  "env": "https://uat-byufuel.crediblesg.com",
+  "when": "2026-11-18T10:58:00.000Z",
+  "counts": {
+    "PASS": 3,
+    "FAIL": 3
+  },
+  "results": [
+    {
+      "id": 1,
+      "tc": "TC01",
+      "status": "PASS",
+      "actual": "Create Bulk Request + View Bulk Requests menus present on Admin dashboard/sidebar; Create Bulk Schedule Request on /byu/suppliers"
+    },
+    {
+      "id": 2,
+      "tc": "TC02",
+      "status": "FAIL",
+      "actual": "Selected 50 of 75 approved suppliers · created BR-000000062 and BR-000000063 count=50 · 19-Nov-2026 · 8 AM to 10 AM · 10 kg · status ERROR (not Completed). View Bulk lists both ERROR rows."
+    },
+    {
+      "id": 3,
+      "tc": "TC03",
+      "status": "PASS",
+      "actual": "BR-000000064 count=1 recurring YES Weekely · 4 recurrences · 19-Nov-2026 to 10-Dec-2026 · 8 AM to 10 AM · 10 kg · Hyderabad · COMPLETED (kedar@supplier.com)"
+    },
+    {
+      "id": 4,
+      "tc": "TC05",
+      "status": "FAIL",
+      "actual": "After BR-000000064 recurring COMPLETED for kedar, no existing-schedule confirmation popup observed on create path (same Centvis FAIL pattern: silent second create / no replace confirm). Re-create attempt this pass did not add BR-065."
+    },
+    {
+      "id": 5,
+      "tc": "TC07",
+      "status": "PASS",
+      "actual": "View Bulk Requests | BYUFUEL loads · columns BULK REQUEST CODE/COUNT/STATUS · lists BR-064/063/062"
+    },
+    {
+      "id": 6,
+      "tc": "TC08",
+      "status": "FAIL",
+      "actual": "Recurring End Date accepted typed 01-Jan-2029 without auto-rewrite; year picker allows 2029–2039. Centvis expected clamp/rewrite (e.g. to ~2y window). Not submitted with far date."
+    }
+  ],
+  "note": "02-Bulk-Schedule Grow UAT 2026-11-18. 50-supplier bulk posts but finishes ERROR."
+}

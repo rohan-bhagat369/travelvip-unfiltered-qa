@@ -1,0 +1,718 @@
+{
+  "at": "2026-11-24T07:55:41.398Z",
+  "base": "https://gamma-api.travelvip.ai",
+  "partner": "vgm",
+  "cases": [
+    {
+      "caseId": "U2",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506944413961",
+      "code": null,
+      "finalStatus": "Cancelled",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5824\",\"bookingReference\":\"BR1795506944413961\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "U3",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506945730597",
+      "code": null,
+      "finalStatus": "Failed",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5825\",\"bookingReference\":\"BR1795506945730597\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "U4",
+      "product": "lounge",
+      "status": "PASS",
+      "http1": 200,
+      "http2": 200,
+      "br": "BR1795506946778998",
+      "finalStatus": "Confirmed",
+      "note": "{\"first\":{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5826\",\"bookingReference\":\"BR1795506946778998\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}},\"second\":{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5826\",\"bookin"
+    },
+    {
+      "caseId": "U5",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506947363288",
+      "finalStatus": "Cancelled",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5827\",\"bookingReference\":\"BR1795506947363288\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "U8",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506948236905",
+      "code": null,
+      "note": "lounge partner check not required | {\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5828\",\"bookingReference\":\"BR1795506948236905\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "C5",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506949140574",
+      "code": null,
+      "note": "{\"status\":200,\"bookingReferenceId\":\"BR1795506949140574\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "C3",
+      "product": "lounge",
+      "status": "PASS",
+      "br": "BR1795506953332784",
+      "piId": "pi_3UfEZxEWyGwVPuvk0GorvU8S",
+      "stripe": "succeeded",
+      "finalStatus": "Pending",
+      "note": "webhook completed without booking call"
+    },
+    {
+      "caseId": "C10",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 404,
+      "code": "PAYMENT_TRANSACTION_NOT_FOUND",
+      "note": "{\"error\":{\"code\":\"PAYMENT_TRANSACTION_NOT_FOUND\",\"message\":\"Payment transaction not found\",\"details\":null,\"timestamp\":\"2026-11-24T07:56:07Z\",\"request_id\":\"rem-c10-lounge-101a4916-0ad8-4c70-b546-0755d4eadd9c\"},\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "C11",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 404,
+      "code": "PAYMENT_TRANSACTION_NOT_FOUND",
+      "note": "{\"error\":{\"code\":\"PAYMENT_TRANSACTION_NOT_FOUND\",\"message\":\"Payment transaction not found\",\"details\":null,\"timestamp\":\"2026-11-24T07:56:08Z\",\"request_id\":\"rem-c11-lounge-ce58ece2-afc3-45c5-a1f0-0460009a6b88\"},\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "I2",
+      "product": "lounge",
+      "status": "CHECK",
+      "br1": null,
+      "br2": "BR1795506968544298",
+      "http1": 200,
+      "http2": 200,
+      "note": "possible double book"
+    },
+    {
+      "caseId": "I3",
+      "product": "lounge",
+      "status": "PASS",
+      "br1": "BR1795506969874995",
+      "br2": "BR1795506969550069",
+      "http1": 200,
+      "http2": 200,
+      "note": "not treated as identical replay"
+    },
+    {
+      "caseId": "I4",
+      "product": "lounge",
+      "status": "CHECK",
+      "http1": 200,
+      "http2": 200,
+      "code1": null,
+      "code2": null,
+      "br2": "BR1795506970477937",
+      "note": "{\"first\":{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795506970678431\",\"bookingReference\":\"BR1795506970678431\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":3054.85,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":1,\"baseFare\":3054.85,\"taxes\":0,"
+    },
+    {
+      "caseId": "V3",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 400,
+      "code": "INVALID_BOOKING_CONTEXT",
+      "note": "{\"error\":{\"code\":\"INVALID_BOOKING_CONTEXT\",\"message\":\"Invalid bookingContext\",\"details\":\"The bookingContext could not be decrypted\",\"timestamp\":\"2026-11-24T07:56:10Z\",\"request_id\":\"rem-v3-lounge-4fd22930-bad8-41da-8b3f-f058c9b845fb\"},\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-"
+    },
+    {
+      "caseId": "V4",
+      "product": "lounge",
+      "status": "BUG",
+      "http": 200,
+      "code": null,
+      "br": "BR1795506970810048",
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795506970810048\",\"bookingReference\":\"BR1795506970810048\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":3054.85,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":1,\"baseFare\":3054.85,\"taxes\":0,\"convenie"
+    },
+    {
+      "caseId": "V5",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "eSIM-only"
+    },
+    {
+      "caseId": "W8",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "no offerId on inventory"
+    },
+    {
+      "caseId": "C4",
+      "product": "lounge",
+      "status": "CHECK",
+      "http": 200,
+      "br": "BR1795506971987580",
+      "code": null,
+      "stripe": "succeeded",
+      "note": "sim may be ignored | {\"status\":200,\"bookingReferenceId\":\"BR1795506971987580\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "A1",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "needs controlled supplier CONFIRMED reply"
+    },
+    {
+      "caseId": "A2",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "needs controlled supplier PENDING reply"
+    },
+    {
+      "caseId": "A4",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "needs controlled Lounge/eSIM CONFIRMED status=0"
+    },
+    {
+      "caseId": "C6",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "needs concurrent webhook + booking race"
+    },
+    {
+      "caseId": "C12",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "needs 100% discount offer"
+    },
+    {
+      "caseId": "C13",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "needs uncaptured card auth + supplier reject"
+    },
+    {
+      "caseId": "W3",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "needs low-balance partner"
+    },
+    {
+      "caseId": "W7",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "needs wallet disabled for partner"
+    },
+    {
+      "caseId": "V8",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "needs offer service down"
+    },
+    {
+      "caseId": "U2",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506975749899",
+      "code": null,
+      "finalStatus": "Cancelled",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5838\",\"bookingReference\":\"BR1795506975749899\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "U3",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506977999259",
+      "code": null,
+      "finalStatus": "Failed",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5839\",\"bookingReference\":\"BR1795506977999259\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "U4",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http1": 200,
+      "http2": 200,
+      "br": "BR1795506978405280",
+      "finalStatus": "Confirmed",
+      "note": "{\"first\":{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5840\",\"bookingReference\":\"BR1795506978405280\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}},\"second\":{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5840\",\"bookin"
+    },
+    {
+      "caseId": "U5",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506980618609",
+      "finalStatus": "Cancelled",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5841\",\"bookingReference\":\"BR1795506980618609\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "U8",
+      "product": "fasttrack",
+      "status": "CHECK",
+      "http": 200,
+      "br": "BR1795506982510950",
+      "code": null,
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5842\",\"bookingReference\":\"BR1795506982510950\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "C5",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506983733986",
+      "code": null,
+      "note": "{\"status\":200,\"bookingReferenceId\":\"BR1795506983733986\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "C3",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1795506987289531",
+      "piId": "pi_3UfEaWEWyGwVPuvk0gaOTyET",
+      "stripe": "succeeded",
+      "finalStatus": "Pending",
+      "note": "webhook completed without booking call"
+    },
+    {
+      "caseId": "C10",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 404,
+      "code": "PAYMENT_TRANSACTION_NOT_FOUND",
+      "note": "{\"error\":{\"code\":\"PAYMENT_TRANSACTION_NOT_FOUND\",\"message\":\"Payment transaction not found\",\"details\":null,\"timestamp\":\"2026-11-24T07:56:44Z\",\"request_id\":\"rem-c10-fasttrack-8ce12b3d-55af-48f2-abb6-8a25423ae836\"},\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "C11",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 404,
+      "code": "PAYMENT_TRANSACTION_NOT_FOUND",
+      "note": "{\"error\":{\"code\":\"PAYMENT_TRANSACTION_NOT_FOUND\",\"message\":\"Payment transaction not found\",\"details\":null,\"timestamp\":\"2026-11-24T07:56:45Z\",\"request_id\":\"rem-c11-fasttrack-0dee558b-f7e3-4f27-8277-863a6591dc7e\"},\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "I2",
+      "product": "fasttrack",
+      "status": "CHECK",
+      "br1": null,
+      "br2": "BR1795507006894553",
+      "http1": 200,
+      "http2": 200,
+      "note": "possible double book"
+    },
+    {
+      "caseId": "I3",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br1": "BR1795507007148742",
+      "br2": null,
+      "http1": 200,
+      "http2": 400,
+      "note": "not treated as identical replay"
+    },
+    {
+      "caseId": "I4",
+      "product": "fasttrack",
+      "status": "CHECK",
+      "http1": 200,
+      "http2": 200,
+      "code1": null,
+      "code2": null,
+      "br2": "BR1795507009500703",
+      "note": "{\"first\":{\"status\":\"Pending\",\"statusCode\":200,\"bookingReference\":\"BR1795507009558043\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":5250.53,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":1,\"baseFare\":5250.53,\"taxes\":0,\"convenienceFee\":0,\"discount\":0,\"tot"
+    },
+    {
+      "caseId": "V3",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 400,
+      "code": "INVALID_BOOKING_CONTEXT",
+      "note": "{\"error\":{\"code\":\"INVALID_BOOKING_CONTEXT\",\"message\":\"Invalid bookingContext\",\"details\":\"The bookingContext could not be decrypted\",\"timestamp\":\"2026-11-24T07:56:50Z\",\"request_id\":\"rem-v3-fasttrack-3e24af1c-c8c2-4c27-b630-8974c9823801\"},\"_meta\":{\"correlation_id\":\"64e1effb-3297-47"
+    },
+    {
+      "caseId": "V4",
+      "product": "fasttrack",
+      "status": "BUG",
+      "http": 200,
+      "code": null,
+      "br": "BR1795507011701555",
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingReference\":\"BR1795507011701555\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":5250.53,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":1,\"baseFare\":5250.53,\"taxes\":0,\"convenienceFee\":0,\"discount\":0,\"totalAmount\""
+    },
+    {
+      "caseId": "V5",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "eSIM-only"
+    },
+    {
+      "caseId": "W8",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "no offerId on inventory"
+    },
+    {
+      "caseId": "C4",
+      "product": "fasttrack",
+      "status": "CHECK",
+      "http": 200,
+      "br": "BR1795507012167110",
+      "code": null,
+      "stripe": "succeeded",
+      "note": "sim may be ignored | {\"status\":200,\"bookingReferenceId\":\"BR1795507012167110\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "A1",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "needs controlled supplier CONFIRMED reply"
+    },
+    {
+      "caseId": "A2",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "needs controlled supplier PENDING reply"
+    },
+    {
+      "caseId": "A4",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "needs controlled Lounge/eSIM CONFIRMED status=0"
+    },
+    {
+      "caseId": "C6",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "needs concurrent webhook + booking race"
+    },
+    {
+      "caseId": "C12",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "needs 100% discount offer"
+    },
+    {
+      "caseId": "C13",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "needs uncaptured card auth + supplier reject"
+    },
+    {
+      "caseId": "W3",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "needs low-balance partner"
+    },
+    {
+      "caseId": "W7",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "needs wallet disabled for partner"
+    },
+    {
+      "caseId": "V8",
+      "product": "fasttrack",
+      "status": "NOT TESTED",
+      "note": "needs offer service down"
+    },
+    {
+      "caseId": "U2",
+      "product": "esim",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507015795621",
+      "code": null,
+      "finalStatus": "Cancelled",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5851\",\"bookingReference\":\"BR1795507015795621\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "U3",
+      "product": "esim",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507016748911",
+      "code": null,
+      "finalStatus": "Failed",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5852\",\"bookingReference\":\"BR1795507016748911\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "U4",
+      "product": "esim",
+      "status": "PASS",
+      "http1": 200,
+      "http2": 200,
+      "br": "BR1795507018854457",
+      "finalStatus": "Confirmed",
+      "note": "{\"first\":{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5853\",\"bookingReference\":\"BR1795507018854457\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}},\"second\":{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5853\",\"bookin"
+    },
+    {
+      "caseId": "U5",
+      "product": "esim",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507019948103",
+      "finalStatus": "Cancelled",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5854\",\"bookingReference\":\"BR1795507019948103\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "U8",
+      "product": "esim",
+      "status": "CHECK",
+      "http": 200,
+      "br": "BR1795507020524297",
+      "code": null,
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5855\",\"bookingReference\":\"BR1795507020524297\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "C5",
+      "product": "esim",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507021725943",
+      "code": null,
+      "note": "{\"status\":200,\"bookingReferenceId\":\"BR1795507021725943\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "C3",
+      "product": "esim",
+      "status": "PASS",
+      "br": "BR1795507025562110",
+      "piId": "pi_3UfEb8EWyGwVPuvk1V04XYRC",
+      "stripe": "succeeded",
+      "finalStatus": "Pending",
+      "note": "webhook completed without booking call"
+    },
+    {
+      "caseId": "C10",
+      "product": "esim",
+      "status": "PASS",
+      "http": 404,
+      "code": "PAYMENT_TRANSACTION_NOT_FOUND",
+      "note": "{\"error\":{\"code\":\"PAYMENT_TRANSACTION_NOT_FOUND\",\"message\":\"Payment transaction not found\",\"details\":null,\"timestamp\":\"2026-11-24T07:57:20Z\",\"request_id\":\"rem-c10-esim-e4d90fae-2b57-4e2f-a0ff-bd6264fab180\"},\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "C11",
+      "product": "esim",
+      "status": "PASS",
+      "http": 404,
+      "code": "PAYMENT_TRANSACTION_NOT_FOUND",
+      "note": "{\"error\":{\"code\":\"PAYMENT_TRANSACTION_NOT_FOUND\",\"message\":\"Payment transaction not found\",\"details\":null,\"timestamp\":\"2026-11-24T07:57:20Z\",\"request_id\":\"rem-c11-esim-651bfd50-a60c-4e0a-822e-27553ecf73e8\"},\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "I2",
+      "product": "esim",
+      "status": "CHECK",
+      "br1": null,
+      "br2": "BR1795507041814134",
+      "http1": 200,
+      "http2": 200,
+      "note": "possible double book"
+    },
+    {
+      "caseId": "I3",
+      "product": "esim",
+      "status": "PASS",
+      "br1": "BR1795507041664360",
+      "br2": null,
+      "http1": 200,
+      "http2": 400,
+      "note": "not treated as identical replay"
+    },
+    {
+      "caseId": "I4",
+      "product": "esim",
+      "status": "CHECK",
+      "http1": 200,
+      "http2": 200,
+      "code1": null,
+      "code2": null,
+      "br2": "BR1795507042960514",
+      "note": "{\"first\":{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795507042546818\",\"bookingReference\":\"BR1795507042546818\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":47.05,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":1,\"baseFare\":47.05,\"taxes\":0,\"con"
+    },
+    {
+      "caseId": "V3",
+      "product": "esim",
+      "status": "PASS",
+      "http": 400,
+      "code": "INVALID_BOOKING_CONTEXT",
+      "note": "{\"error\":{\"code\":\"INVALID_BOOKING_CONTEXT\",\"message\":\"Invalid bookingContext\",\"details\":\"The bookingContext could not be decrypted\",\"timestamp\":\"2026-11-24T07:57:23Z\",\"request_id\":\"rem-v3-esim-18a1b5d2-2114-4364-b03e-294a98b51a69\"},\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-89"
+    },
+    {
+      "caseId": "V4",
+      "product": "esim",
+      "status": "BUG",
+      "http": 200,
+      "code": null,
+      "br": "BR1795507043624947",
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795507043624947\",\"bookingReference\":\"BR1795507043624947\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":47.05,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":1,\"baseFare\":47.05,\"taxes\":0,\"convenienceF"
+    },
+    {
+      "caseId": "V5",
+      "product": "esim",
+      "status": "CHECK",
+      "http": 200,
+      "code": null,
+      "br": "BR1795507043949844",
+      "note": "variant may be embedded in bookingContext"
+    },
+    {
+      "caseId": "W8",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "no offerId on inventory"
+    },
+    {
+      "caseId": "C4",
+      "product": "esim",
+      "status": "CHECK",
+      "http": 200,
+      "br": "BR1795507044497717",
+      "code": null,
+      "stripe": "succeeded",
+      "note": "sim may be ignored | {\"status\":200,\"bookingReferenceId\":\"BR1795507044497717\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    },
+    {
+      "caseId": "A1",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "needs controlled supplier CONFIRMED reply"
+    },
+    {
+      "caseId": "A2",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "needs controlled supplier PENDING reply"
+    },
+    {
+      "caseId": "A4",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "needs controlled Lounge/eSIM CONFIRMED status=0"
+    },
+    {
+      "caseId": "C6",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "needs concurrent webhook + booking race"
+    },
+    {
+      "caseId": "C12",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "needs 100% discount offer"
+    },
+    {
+      "caseId": "C13",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "needs uncaptured card auth + supplier reject"
+    },
+    {
+      "caseId": "W3",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "needs low-balance partner"
+    },
+    {
+      "caseId": "W7",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "needs wallet disabled for partner"
+    },
+    {
+      "caseId": "V8",
+      "product": "esim",
+      "status": "NOT TESTED",
+      "note": "needs offer service down"
+    },
+    {
+      "caseId": "L8",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "note": "legacy key matched (ojny1swt…)"
+    },
+    {
+      "caseId": "L5",
+      "product": "old",
+      "status": "PASS",
+      "http": 200,
+      "note": "[{\"bookingId\":\"BR1795507044497717\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"serviceType\":\"esim\",\"createdAt\":\"2026-11-24 07:57:24\",\"image\":\"https://img.travelx.ai/v2/catalog/esim/country/a4b3553f-43a8-481d-84b8-9d7462ea7c5e.png.png\",\"title\":\"Singapore 1 GB / 1 day\",\"start"
+    },
+    {
+      "caseId": "L6",
+      "product": "old",
+      "status": "PASS",
+      "http": 200,
+      "note": "{\"status\":400,\"message\":\"serviceType is required\"}"
+    },
+    {
+      "caseId": "L1",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": null,
+      "code": null,
+      "note": "{\"status\":400,\"message\":\"Lounge option not found in catalog\"}"
+    },
+    {
+      "caseId": "L2",
+      "product": "old",
+      "status": "NOT TESTED",
+      "note": "no old L1 BR"
+    },
+    {
+      "caseId": "L4",
+      "product": "old",
+      "status": "NOT TESTED",
+      "note": "no old L1 BR"
+    },
+    {
+      "caseId": "L7",
+      "product": "lounge",
+      "status": "NOT TESTED",
+      "note": "no old L1 BR"
+    },
+    {
+      "caseId": "L3",
+      "product": "old",
+      "status": "NOT TESTED",
+      "note": "needs payment webhook delivery to old booking"
+    },
+    {
+      "caseId": "U1",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507049469105",
+      "finalStatus": "Confirmed",
+      "note": "{\"status\":200,\"message\":\"Booking updated successfully\",\"bookingId\":\"5865\",\"bookingReference\":\"BR1795507049469105\",\"_meta\":{\"correlation_id\":\"64e1effb-3297-4749-8965-a0ee3389750f\"}}"
+    }
+  ],
+  "brs": {
+    "lounge_U2": "BR1795506944413961",
+    "lounge_U3": "BR1795506945730597",
+    "lounge_U4": "BR1795506946778998",
+    "lounge_U5": "BR1795506947363288",
+    "lounge_U8": "BR1795506948236905",
+    "lounge_C5": "BR1795506949140574",
+    "lounge_C3": "BR1795506953332784",
+    "fasttrack_U2": "BR1795506975749899",
+    "fasttrack_U3": "BR1795506977999259",
+    "fasttrack_U4": "BR1795506978405280",
+    "fasttrack_U5": "BR1795506980618609",
+    "fasttrack_U8": "BR1795506982510950",
+    "fasttrack_C5": "BR1795506983733986",
+    "fasttrack_C3": "BR1795506987289531",
+    "esim_U2": "BR1795507015795621",
+    "esim_U3": "BR1795507016748911",
+    "esim_U4": "BR1795507018854457",
+    "esim_U5": "BR1795507019948103",
+    "esim_U8": "BR1795507020524297",
+    "esim_C5": "BR1795507021725943",
+    "esim_C3": "BR1795507025562110"
+  },
+  "notes": []
+}

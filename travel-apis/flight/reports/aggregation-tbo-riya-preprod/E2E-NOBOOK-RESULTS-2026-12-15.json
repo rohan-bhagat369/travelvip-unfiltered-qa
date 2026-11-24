@@ -1,0 +1,2853 @@
+{
+  "evaluatedAt": "2026-11-24T09:30:28.482Z",
+  "capturedAt": "2026-11-24T09:27:46.080Z",
+  "env": "https://preprod-api.travelvip.ai",
+  "tier": 22101801,
+  "dates": {
+    "onward": "2026-12-15",
+    "return": "2026-12-22"
+  },
+  "l2b": {
+    "looks": 4,
+    "searchHttp": 17,
+    "details": 12,
+    "fareRules": 12,
+    "pricing": 16,
+    "ssr": 9,
+    "seatmap": 8,
+    "booking": 0
+  },
+  "correlationId": "161773b2-221e-49b1-b1ec-752f18369466",
+  "summary": {
+    "PASS": 314,
+    "BUG": 18,
+    "CHECK": 10,
+    "NOT TESTED": 11
+  },
+  "rows": [
+    {
+      "journey": "all",
+      "sec": "L2B",
+      "id": "H1",
+      "how": "One look per journey (4 searches), same dates",
+      "status": "PASS",
+      "note": "2026-12-15 / 2026-12-22"
+    },
+    {
+      "journey": "all",
+      "sec": "L2B",
+      "id": "H2",
+      "how": "No booking / ticketing / cancel endpoint called",
+      "status": "PASS",
+      "note": "search HTTP 17 · details 12 · fareRules 12 · pricing 16 · ssr 9 · seatmap 8"
+    },
+    {
+      "journey": "all",
+      "sec": "L2B",
+      "id": "H3",
+      "how": "Extra pages served from the same cached search",
+      "status": "PASS",
+      "note": "8 page calls"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "S0",
+      "how": "Search HTTP 200, progress COMPLETE",
+      "status": "PASS",
+      "note": "polls=2 · onward 208"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "A3",
+      "how": "Merged tier returns both vendors",
+      "status": "PASS",
+      "note": "got {402T,422R}"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "A4",
+      "how": "∃ card with both vendor fares",
+      "status": "PASS",
+      "note": "153 of 208 onward cards"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "A5",
+      "how": "No fare without sourceCode",
+      "status": "PASS",
+      "note": "nulls=0"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "B1",
+      "how": "No duplicate flight cards (ONWARD)",
+      "status": "PASS",
+      "note": "208 cards, 5 pages"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "B2",
+      "how": "Card price = cheapest fare on the card",
+      "status": "PASS",
+      "note": "208 cards"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "B6",
+      "how": "Sorted cheapest-first",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "B7",
+      "how": "Pages concat = totalResults, no repeat",
+      "status": "PASS",
+      "note": "208 vs 208"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "B8",
+      "how": "Every fare total > 0",
+      "status": "PASS",
+      "note": "bad=0"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "PX1",
+      "how": "Fare breakdown adds up (base+taxes+fees = total)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "PX2",
+      "how": "All fares in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "C4",
+      "how": "fareType present on every fare",
+      "status": "PASS",
+      "note": "missing=0"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "SEG",
+      "how": "Every segment has airports, times, flight number",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "B5",
+      "how": "Airline filter names case-unique",
+      "status": "PASS",
+      "note": "5 airlines"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "G10",
+      "how": "No \"Riya\" text in search response",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Search",
+      "id": "AP1",
+      "how": "Results use the searched airports only (DEL/BOM)",
+      "status": "CHECK",
+      "note": "20 cards on other airports: DEL>NMI×15, HDO>BOM×2, DXN>BOM×3 — confirm nearby-airport results are intended"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "F0",
+      "how": "TBO 402T fare picked",
+      "status": "PASS",
+      "note": "from merged card · Value ₹6912.96"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "D2",
+      "how": "Details price shown in INR (requested currency=INR)",
+      "status": "BUG",
+      "note": "details USD 72.01 · search ₹6912.96 · currencyConversion null"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "D2b",
+      "how": "Details total = search price",
+      "status": "NOT TESTED",
+      "note": "blocked by D2 (not INR)"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "D3",
+      "how": "Details onward = same flight as the search card (FN, airports, times)",
+      "status": "PASS",
+      "note": "IX1235|DEL|2026-12-15T20:40|BOM|2026-12-15T23:10"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "D6",
+      "how": "Details and pricing agree on seat / meal / baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats details=false pricing=true · supportsMeals details=false pricing=true · supportsExtraBaggage details=false pricing=true"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "D4",
+      "how": "No negative amounts in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "D5",
+      "how": "No \"Riya\" in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "FR1",
+      "how": "Fare rules HTTP 200 with rule content",
+      "status": "PASS",
+      "note": "1 rule blocks · top keys journeyType,tripType,timingReference,selection,fareRules,cancellationPolicies,reschedulePolicies,_meta"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "FR2",
+      "how": "One fare-rule block per leg (1)",
+      "status": "PASS",
+      "note": "1 block(s): Fare Rules IX DEL-BOM"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "FR3",
+      "how": "Rules match the picked fare (fare type or fare basis named)",
+      "status": "PASS",
+      "note": "fareType \"Value\" · basis GNRA000"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "FR4",
+      "how": "No \"Riya\" in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "FR5",
+      "how": "No negative amounts in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "FR7",
+      "how": "Each rule block titled with its route (which leg it covers)",
+      "status": "PASS",
+      "note": "\"Fare Rules IX DEL-BOM\""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "FR6",
+      "how": "Rule text has no script content (HTML formatting is allowed)",
+      "status": "PASS",
+      "note": "HTML-formatted text"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "P2",
+      "how": "Pricing total = search price (±₹1)",
+      "status": "PASS",
+      "note": "search ₹6912.96 · pricing ₹6912.96"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": "parts ₹6912.96 · total ₹6912.96"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "P4",
+      "how": "1 ADT passenger price = total",
+      "status": "BUG",
+      "note": "pax ₹6720.96"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "P5",
+      "how": "If price differs from search, priceChange says so",
+      "status": "PASS",
+      "note": "null"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "P6",
+      "how": "Pricing currency INR, no negative amounts",
+      "status": "PASS",
+      "note": "INR "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "P7",
+      "how": "gstBreakup is array or omitted",
+      "status": "PASS",
+      "note": "object"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing / bookingContext",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "P9",
+      "how": "Pricing itinerary = picked flight(s)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SSR1",
+      "how": "SSR HTTP 200 (meal / baggage catalog up)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SSR2",
+      "how": "SSR lists meal and/or baggage options",
+      "status": "PASS",
+      "note": "meal keys 2 · baggage keys 2 · top priceId,timingReference,journeyType,tripType,expiresAt,currencyConversion,meal,baggage"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SSR4",
+      "how": "SSR prices in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200 (not 5xx)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SEAT2",
+      "how": "Seat map has seats (pricing says supportsSeats)",
+      "status": "PASS",
+      "note": "189 seats, 188 available · supportsSeats true"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SEAT3",
+      "how": "Seat prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SEAT3b",
+      "how": "Seat prices in INR",
+      "status": "PASS",
+      "note": "INR · conversion {\"source\":\"USD\",\"destination\":\"INR\",\"rate\":96}"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SEAT4",
+      "how": "One seat map per flight segment",
+      "status": "PASS",
+      "note": "1 seat maps · 1 segments (DEL-BOM)"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SEAT5",
+      "how": "No duplicate seat numbers within a segment",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "TBO 402T",
+      "id": "SEAT6",
+      "how": "seatAvailability in the common format (\"true\"/\"false\") for both providers",
+      "status": "PASS",
+      "note": "seatAvailability {false,true} · seatStatus {false,true}"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "F0",
+      "how": "Riya 422R fare picked",
+      "status": "PASS",
+      "note": "from merged card · VALUE ₹6648"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "D2",
+      "how": "Details price shown in INR (requested currency=INR)",
+      "status": "PASS",
+      "note": "details INR 6648"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "D2b",
+      "how": "Details total = search price",
+      "status": "PASS",
+      "note": "search ₹6648 · details ₹6648"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "D3",
+      "how": "Details onward = same flight as the search card (FN, airports, times)",
+      "status": "PASS",
+      "note": "IX1235|DEL|2026-12-15T20:40|BOM|2026-12-15T23:10"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "D6",
+      "how": "Details and pricing agree on seat / meal / baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats details=false pricing=true · supportsMeals details=false pricing=true · supportsExtraBaggage details=false pricing=true"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "D4",
+      "how": "No negative amounts in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "D5",
+      "how": "No \"Riya\" in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "FR1",
+      "how": "Fare rules HTTP 200 with rule content",
+      "status": "PASS",
+      "note": "1 rule blocks · top keys journeyType,tripType,timingReference,selection,fareRules,cancellationPolicies,reschedulePolicies,_meta"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "FR2",
+      "how": "One fare-rule block per leg (1)",
+      "status": "PASS",
+      "note": "1 block(s): I5E"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "FR3",
+      "how": "Rules match the picked fare (fare type or fare basis named)",
+      "status": "PASS",
+      "note": "fareType \"VALUE\" · basis GNRA000"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "FR4",
+      "how": "No \"Riya\" in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "FR5",
+      "how": "No negative amounts in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "FR7",
+      "how": "Each rule block titled with its route (which leg it covers)",
+      "status": "BUG",
+      "note": "\"I5E\""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "FR6",
+      "how": "Rule text has no script content (HTML formatting is allowed)",
+      "status": "PASS",
+      "note": "HTML-formatted text"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "P2",
+      "how": "Pricing total = search price (±₹1)",
+      "status": "PASS",
+      "note": "search ₹6648 · pricing ₹6648"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": "parts ₹6648 · total ₹6648"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "P4",
+      "how": "1 ADT passenger price = total",
+      "status": "PASS",
+      "note": "pax ₹6648"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "P5",
+      "how": "If price differs from search, priceChange says so",
+      "status": "PASS",
+      "note": "null"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "P6",
+      "how": "Pricing currency INR, no negative amounts",
+      "status": "PASS",
+      "note": "INR "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "P7",
+      "how": "gstBreakup is array or omitted",
+      "status": "PASS",
+      "note": "object"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing / bookingContext",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "P9",
+      "how": "Pricing itinerary = picked flight(s)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SSR1",
+      "how": "SSR HTTP 200 (meal / baggage catalog up)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SSR2",
+      "how": "SSR lists meal and/or baggage options",
+      "status": "PASS",
+      "note": "meal keys 2 · baggage keys 2 · top priceId,timingReference,journeyType,tripType,expiresAt,currencyConversion,meal,baggage"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SSR4",
+      "how": "SSR prices in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200 (not 5xx)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SEAT2",
+      "how": "Seat map has seats (pricing says supportsSeats)",
+      "status": "PASS",
+      "note": "189 seats, 188 available · supportsSeats true"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SEAT3",
+      "how": "Seat prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SEAT3b",
+      "how": "Seat prices in INR",
+      "status": "PASS",
+      "note": "INR · conversion {\"source\":\"INR\",\"destination\":\"INR\",\"rate\":1}"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SEAT4",
+      "how": "One seat map per flight segment",
+      "status": "PASS",
+      "note": "1 seat maps · 1 segments (DEL-BOM)"
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SEAT5",
+      "how": "No duplicate seat numbers within a segment",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-dom",
+      "sec": "Riya 422R",
+      "id": "SEAT6",
+      "how": "seatAvailability in the common format (\"true\"/\"false\") for both providers",
+      "status": "BUG",
+      "note": "seatAvailability {Closed,Open} · seatStatus {True}"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "S0",
+      "how": "Search HTTP 200, progress COMPLETE",
+      "status": "PASS",
+      "note": "polls=1 · onward 235"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "A3",
+      "how": "Merged tier returns both vendors",
+      "status": "PASS",
+      "note": "got {402T,422R}"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "A4",
+      "how": "∃ card with both vendor fares",
+      "status": "PASS",
+      "note": "135 of 235 onward cards"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "A5",
+      "how": "No fare without sourceCode",
+      "status": "PASS",
+      "note": "nulls=0"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "B1",
+      "how": "No duplicate flight cards (ONWARD)",
+      "status": "PASS",
+      "note": "235 cards, 5 pages"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "B2",
+      "how": "Card price = cheapest fare on the card",
+      "status": "PASS",
+      "note": "235 cards"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "B6",
+      "how": "Sorted cheapest-first",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "B7",
+      "how": "Pages concat = totalResults, no repeat",
+      "status": "PASS",
+      "note": "235 vs 235"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "B8",
+      "how": "Every fare total > 0",
+      "status": "PASS",
+      "note": "bad=0"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "PX1",
+      "how": "Fare breakdown adds up (base+taxes+fees = total)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "PX2",
+      "how": "All fares in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "C4",
+      "how": "fareType present on every fare",
+      "status": "PASS",
+      "note": "missing=0"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "SEG",
+      "how": "Every segment has airports, times, flight number",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "B5",
+      "how": "Airline filter names case-unique",
+      "status": "PASS",
+      "note": "17 airlines"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "G10",
+      "how": "No \"Riya\" text in search response",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Search",
+      "id": "AP1",
+      "how": "Results use the searched airports only (DEL/DXB)",
+      "status": "CHECK",
+      "note": "100 cards on other airports: DEL>RKT×6, DEL>SHJ×31, DEL>AUH×23, DEL>FJR×4, DEL>XNB×31, DXN>AUH×3, HDO>AUH×1, HDO>DXB×1 — confirm nearby-airport results are intended"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "F0",
+      "how": "TBO 402T fare picked",
+      "status": "PASS",
+      "note": "from merged card · Lite ₹20280"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "D2",
+      "how": "Details price shown in INR (requested currency=INR)",
+      "status": "BUG",
+      "note": "details USD 211.25 · search ₹20280 · currencyConversion null"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "D2b",
+      "how": "Details total = search price",
+      "status": "NOT TESTED",
+      "note": "blocked by D2 (not INR)"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "D3",
+      "how": "Details onward = same flight as the search card (FN, airports, times)",
+      "status": "PASS",
+      "note": "IX1294|DEL|2026-12-15T18:50|STV|2026-12-15T20:50>IX335|STV|2026-12-16T07:10|DXB|2026-12-16T08:55"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "D4",
+      "how": "No negative amounts in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "D5",
+      "how": "No \"Riya\" in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "FR1",
+      "how": "Fare rules HTTP 200 with rule content",
+      "status": "PASS",
+      "note": "1 rule blocks · top keys journeyType,tripType,timingReference,selection,fareRules,cancellationPolicies,reschedulePolicies,_meta"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "FR2",
+      "how": "One fare-rule block per leg (1)",
+      "status": "PASS",
+      "note": "1 block(s): Fare Rules IX DEL-DXB"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "FR3",
+      "how": "Rules match the picked fare (fare type or fare basis named)",
+      "status": "PASS",
+      "note": "fareType \"Lite\" · basis ECLAX00"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "FR4",
+      "how": "No \"Riya\" in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "FR5",
+      "how": "No negative amounts in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "FR7",
+      "how": "Each rule block titled with its route (which leg it covers)",
+      "status": "PASS",
+      "note": "\"Fare Rules IX DEL-DXB\""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "FR6",
+      "how": "Rule text has no script content (HTML formatting is allowed)",
+      "status": "PASS",
+      "note": "HTML-formatted text"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "TBO 402T",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "BUG",
+      "note": "http=400 VENDOR_ERROR Pricing failed."
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "F0",
+      "how": "Riya 422R fare picked",
+      "status": "PASS",
+      "note": "from merged card · LITE ₹19850"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "D2",
+      "how": "Details price shown in INR (requested currency=INR)",
+      "status": "PASS",
+      "note": "details INR 19850"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "D2b",
+      "how": "Details total = search price",
+      "status": "PASS",
+      "note": "search ₹19850 · details ₹19850"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "D3",
+      "how": "Details onward = same flight as the search card (FN, airports, times)",
+      "status": "PASS",
+      "note": "IX1294|DEL|2026-12-15T18:50|STV|2026-12-15T20:50>IX335|STV|2026-12-16T07:10|DXB|2026-12-16T08:55"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "D6",
+      "how": "Details and pricing agree on seat / meal / baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats details=false pricing=true · supportsMeals details=false pricing=true · supportsExtraBaggage details=false pricing=true"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "D4",
+      "how": "No negative amounts in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "D5",
+      "how": "No \"Riya\" in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "FR1",
+      "how": "Fare rules HTTP 200 with rule content",
+      "status": "PASS",
+      "note": "1 rule blocks · top keys journeyType,tripType,timingReference,selection,fareRules,cancellationPolicies,reschedulePolicies,_meta"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "FR2",
+      "how": "One fare-rule block per leg (1)",
+      "status": "PASS",
+      "note": "1 block(s): I5LT"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "FR3",
+      "how": "Rules match the picked fare (fare type or fare basis named)",
+      "status": "PASS",
+      "note": "fareType \"LITE\" · basis ECLAX00"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "FR4",
+      "how": "No \"Riya\" in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "FR5",
+      "how": "No negative amounts in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "FR7",
+      "how": "Each rule block titled with its route (which leg it covers)",
+      "status": "BUG",
+      "note": "\"I5LT\""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "FR6",
+      "how": "Rule text has no script content (HTML formatting is allowed)",
+      "status": "PASS",
+      "note": "HTML-formatted text"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "P2",
+      "how": "Pricing total = search price (±₹1)",
+      "status": "PASS",
+      "note": "search ₹19850 · pricing ₹19850"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": "parts ₹19850 · total ₹19850"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "P4",
+      "how": "1 ADT passenger price = total",
+      "status": "PASS",
+      "note": "pax ₹19850"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "P5",
+      "how": "If price differs from search, priceChange says so",
+      "status": "PASS",
+      "note": "null"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "P6",
+      "how": "Pricing currency INR, no negative amounts",
+      "status": "PASS",
+      "note": "INR "
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "P7",
+      "how": "gstBreakup is array or omitted",
+      "status": "PASS",
+      "note": "object"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing / bookingContext",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "P9",
+      "how": "Pricing itinerary = picked flight(s)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SSR1",
+      "how": "SSR HTTP 200 (meal / baggage catalog up)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SSR2",
+      "how": "SSR lists meal and/or baggage options",
+      "status": "PASS",
+      "note": "meal keys 3 · baggage keys 2 · top priceId,timingReference,journeyType,tripType,expiresAt,currencyConversion,meal,baggage"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SSR4",
+      "how": "SSR prices in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200 (not 5xx)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT2",
+      "how": "Seat map has seats (pricing says supportsSeats)",
+      "status": "PASS",
+      "note": "400 seats, 391 available · supportsSeats true"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT3",
+      "how": "Seat prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT3b",
+      "how": "Seat prices in INR",
+      "status": "PASS",
+      "note": "INR · conversion {\"source\":\"INR\",\"destination\":\"INR\",\"rate\":1}"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT4",
+      "how": "One seat map per flight segment",
+      "status": "PASS",
+      "note": "2 seat maps · 2 segments (DEL-STV, STV-DXB)"
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT5",
+      "how": "No duplicate seat numbers within a segment",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "ow-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT6",
+      "how": "seatAvailability in the common format (\"true\"/\"false\") for both providers",
+      "status": "BUG",
+      "note": "seatAvailability {Closed,Open} · seatStatus {True}"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "S0",
+      "how": "Search HTTP 200, progress COMPLETE",
+      "status": "PASS",
+      "note": "polls=1 · onward 190 · return 186"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "A3",
+      "how": "Merged tier returns both vendors",
+      "status": "PASS",
+      "note": "got {402T,422R}"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "A4",
+      "how": "∃ card with both vendor fares",
+      "status": "PASS",
+      "note": "27 of 50 onward cards"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "A5",
+      "how": "No fare without sourceCode",
+      "status": "PASS",
+      "note": "nulls=0"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "B1",
+      "how": "No duplicate flight cards (ONWARD)",
+      "status": "PASS",
+      "note": "50 cards, page 0"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "B1r",
+      "how": "No duplicate flight cards (RETURN)",
+      "status": "PASS",
+      "note": "50 cards"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "B2",
+      "how": "Card price = cheapest fare on the card",
+      "status": "PASS",
+      "note": "100 cards"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "B6",
+      "how": "Sorted cheapest-first",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "B8",
+      "how": "Every fare total > 0",
+      "status": "PASS",
+      "note": "bad=0"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "PX1",
+      "how": "Fare breakdown adds up (base+taxes+fees = total)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "PX2",
+      "how": "All fares in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "C4",
+      "how": "fareType present on every fare",
+      "status": "PASS",
+      "note": "missing=0"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "SEG",
+      "how": "Every segment has airports, times, flight number",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "B5",
+      "how": "Airline filter names case-unique",
+      "status": "PASS",
+      "note": "4 airlines"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "G10",
+      "how": "No \"Riya\" text in search response",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Search",
+      "id": "AP1",
+      "how": "Results use the searched airports only (DEL/BOM)",
+      "status": "CHECK",
+      "note": "9 cards on other airports: DEL>NMI×3, BOM>DXN×1, NMI>DEL×4, BOM>HDO×1 — confirm nearby-airport results are intended"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "F0",
+      "how": "TBO 402T fare picked",
+      "status": "PASS",
+      "note": "from merged card · Return ₹13710.72"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "C6",
+      "how": "Return list non-empty after picking onward",
+      "status": "PASS",
+      "note": "return total 6"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "C8",
+      "how": "Return fares only from the onward vendor",
+      "status": "PASS",
+      "note": "got {402T}"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "C9",
+      "how": "Return card carries combinedPricing COMBINATION",
+      "status": "PASS",
+      "note": "COMBINATION"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "C11",
+      "how": "Combined price ≥ onward fare and ≠ 2× onward",
+      "status": "PASS",
+      "note": "combined ₹13710.72 · onward ₹13710.72 · return fare ₹13710.72"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "D2",
+      "how": "Details price shown in INR (requested currency=INR)",
+      "status": "BUG",
+      "note": "details USD 142.82 · search ₹13710.72 · currencyConversion null"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "D2b",
+      "how": "Details total = search price",
+      "status": "NOT TESTED",
+      "note": "blocked by D2 (not INR)"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "D3",
+      "how": "Details onward = same flight as the search card (FN, airports, times)",
+      "status": "PASS",
+      "note": "IX1235|DEL|2026-12-15T20:40|BOM|2026-12-15T23:10"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "D4",
+      "how": "No negative amounts in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "D5",
+      "how": "No \"Riya\" in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "FR1",
+      "how": "Fare rules HTTP 200 with rule content",
+      "status": "PASS",
+      "note": "2 rule blocks · top keys journeyType,tripType,timingReference,selection,fareRules,cancellationPolicies,reschedulePolicies,_meta"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "FR2",
+      "how": "One fare-rule block per leg (2)",
+      "status": "PASS",
+      "note": "2 block(s): Fare Rules IX DEL-BOM | Fare Rules IX NMI-DEL"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "FR3",
+      "how": "Rules match the picked fare (fare type or fare basis named)",
+      "status": "PASS",
+      "note": "fareType \"Return\" · basis GNNA000"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "FR4",
+      "how": "No \"Riya\" in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "FR5",
+      "how": "No negative amounts in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "FR7",
+      "how": "Each rule block titled with its route (which leg it covers)",
+      "status": "PASS",
+      "note": "\"Fare Rules IX DEL-BOM\" \"Fare Rules IX NMI-DEL\""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "FR6",
+      "how": "Rule text has no script content (HTML formatting is allowed)",
+      "status": "PASS",
+      "note": "HTML-formatted text"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "TBO 402T",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "BUG",
+      "note": "http=400 VENDOR_ERROR Pricing failed."
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "F0",
+      "how": "Riya 422R fare picked",
+      "status": "PASS",
+      "note": "from merged card · VALUE ₹6648"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "C6",
+      "how": "Return list non-empty after picking onward",
+      "status": "PASS",
+      "note": "return total 182"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "C8",
+      "how": "Return fares only from the onward vendor",
+      "status": "PASS",
+      "note": "got {422R}"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "C9",
+      "how": "Return card carries combinedPricing COMBINATION",
+      "status": "PASS",
+      "note": "COMBINATION"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "C11",
+      "how": "Combined price ≥ onward fare and ≠ 2× onward",
+      "status": "PASS",
+      "note": "combined ₹13012 · onward ₹6648 · return fare ₹6364"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "D2",
+      "how": "Details price shown in INR (requested currency=INR)",
+      "status": "PASS",
+      "note": "details INR 13012"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "D2b",
+      "how": "Details total = search price",
+      "status": "PASS",
+      "note": "search ₹13012 · details ₹13012"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "D3",
+      "how": "Details onward = same flight as the search card (FN, airports, times)",
+      "status": "PASS",
+      "note": "IX1235|DEL|2026-12-15T20:40|BOM|2026-12-15T23:10"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "D6",
+      "how": "Details and pricing agree on seat / meal / baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats details=false pricing=true · supportsMeals details=false pricing=true · supportsExtraBaggage details=false pricing=true"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "D4",
+      "how": "No negative amounts in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "D5",
+      "how": "No \"Riya\" in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "FR1",
+      "how": "Fare rules HTTP 200 with rule content",
+      "status": "PASS",
+      "note": "1 rule blocks · top keys journeyType,tripType,timingReference,selection,fareRules,cancellationPolicies,reschedulePolicies,_meta"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "FR2",
+      "how": "One fare-rule block per leg (2)",
+      "status": "BUG",
+      "note": "1 block(s): I5E"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "FR3",
+      "how": "Rules match the picked fare (fare type or fare basis named)",
+      "status": "PASS",
+      "note": "fareType \"VALUE\" · basis GNRA000"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "FR4",
+      "how": "No \"Riya\" in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "FR5",
+      "how": "No negative amounts in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "FR7",
+      "how": "Each rule block titled with its route (which leg it covers)",
+      "status": "BUG",
+      "note": "\"I5E\""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "FR6",
+      "how": "Rule text has no script content (HTML formatting is allowed)",
+      "status": "PASS",
+      "note": "HTML-formatted text"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "P2",
+      "how": "Pricing total = search price (±₹1)",
+      "status": "PASS",
+      "note": "search ₹13012 · pricing ₹13012"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": "parts ₹13012 · total ₹13012"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "P4",
+      "how": "1 ADT passenger price = total",
+      "status": "PASS",
+      "note": "pax ₹13012"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "P5",
+      "how": "If price differs from search, priceChange says so",
+      "status": "PASS",
+      "note": "null"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "P6",
+      "how": "Pricing currency INR, no negative amounts",
+      "status": "PASS",
+      "note": "INR "
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "P7",
+      "how": "gstBreakup is array or omitted",
+      "status": "PASS",
+      "note": "object"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing / bookingContext",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "P9",
+      "how": "Pricing itinerary = picked flight(s)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "SSR1",
+      "how": "SSR HTTP 200 (meal / baggage catalog up)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "SSR2",
+      "how": "SSR lists meal and/or baggage options",
+      "status": "PASS",
+      "note": "meal keys 4 · baggage keys 3 · top priceId,timingReference,journeyType,tripType,expiresAt,currencyConversion,meal,baggage"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "SSR4",
+      "how": "SSR prices in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "rt-dom",
+      "sec": "Riya 422R",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200 (not 5xx)",
+      "status": "BUG",
+      "note": "http=400 VENDOR_UNAVAILABLE Flight provider is temporarily unavailable."
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "S0",
+      "how": "Search HTTP 200, progress COMPLETE",
+      "status": "PASS",
+      "note": "polls=1 · onward 116 · return 111"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "A3",
+      "how": "Merged tier returns both vendors",
+      "status": "PASS",
+      "note": "got {402T,422R}"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "A4",
+      "how": "∃ card with both vendor fares",
+      "status": "PASS",
+      "note": "19 of 50 onward cards"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "A5",
+      "how": "No fare without sourceCode",
+      "status": "PASS",
+      "note": "nulls=0"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "B1",
+      "how": "No duplicate flight cards (ONWARD)",
+      "status": "PASS",
+      "note": "50 cards, page 0"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "B1r",
+      "how": "No duplicate flight cards (RETURN)",
+      "status": "PASS",
+      "note": "50 cards"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "B2",
+      "how": "Card price = cheapest fare on the card",
+      "status": "PASS",
+      "note": "100 cards"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "B6",
+      "how": "Sorted cheapest-first",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "B8",
+      "how": "Every fare total > 0",
+      "status": "PASS",
+      "note": "bad=0"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "PX1",
+      "how": "Fare breakdown adds up (base+taxes+fees = total)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "PX2",
+      "how": "All fares in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "C4",
+      "how": "fareType present on every fare",
+      "status": "PASS",
+      "note": "missing=0"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "SEG",
+      "how": "Every segment has airports, times, flight number",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "B5",
+      "how": "Airline filter names case-unique",
+      "status": "PASS",
+      "note": "15 airlines"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "G10",
+      "how": "No \"Riya\" text in search response",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Search",
+      "id": "AP1",
+      "how": "Results use the searched airports only (DEL/DXB)",
+      "status": "CHECK",
+      "note": "71 cards on other airports: DEL>RKT×4, DEL>SHJ×6, DEL>AUH×7, DEL>FJR×2, DEL>XNB×19, SHJ>DEL×3, AUH>DEL×5, FJR>DEL×2, RKT>DEL×4, XNB>DEL×18, DXB>DXN×1 — confirm nearby-airport results are intended"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "F0",
+      "how": "TBO 402T fare picked",
+      "status": "PASS",
+      "note": "from merged card · Lite ₹35914.56"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "C6",
+      "how": "Return list non-empty after picking onward",
+      "status": "PASS",
+      "note": "return total 5"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "C8",
+      "how": "Return fares only from the onward vendor",
+      "status": "PASS",
+      "note": "got {402T}"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "C9",
+      "how": "Return card carries combinedPricing COMBINATION",
+      "status": "PASS",
+      "note": "COMBINATION"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "C11",
+      "how": "Combined price ≥ onward fare and ≠ 2× onward",
+      "status": "PASS",
+      "note": "combined ₹35914.56 · onward ₹35914.56 · return fare ₹35914.56"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "D2",
+      "how": "Details price shown in INR (requested currency=INR)",
+      "status": "BUG",
+      "note": "details USD 374.11 · search ₹35914.56 · currencyConversion null"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "D2b",
+      "how": "Details total = search price",
+      "status": "NOT TESTED",
+      "note": "blocked by D2 (not INR)"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "D3",
+      "how": "Details onward = same flight as the search card (FN, airports, times)",
+      "status": "PASS",
+      "note": "IX1294|DEL|2026-12-15T18:50|STV|2026-12-15T20:50>IX335|STV|2026-12-16T07:10|DXB|2026-12-16T08:55"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "D6",
+      "how": "Details and pricing agree on seat / meal / baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats details=false pricing=true · supportsMeals details=false pricing=true · supportsExtraBaggage details=false pricing=true"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "D4",
+      "how": "No negative amounts in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "D5",
+      "how": "No \"Riya\" in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "FR1",
+      "how": "Fare rules HTTP 200 with rule content",
+      "status": "PASS",
+      "note": "2 rule blocks · top keys journeyType,tripType,timingReference,selection,fareRules,cancellationPolicies,reschedulePolicies,_meta"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "FR2",
+      "how": "One fare-rule block per leg (2)",
+      "status": "PASS",
+      "note": "2 block(s): Fare Rules IX DEL-DXB | Fare Rules IX SHJ-DEL"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "FR3",
+      "how": "Rules match the picked fare (fare type or fare basis named)",
+      "status": "PASS",
+      "note": "fareType \"Lite\" · basis ECLAX00"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "FR4",
+      "how": "No \"Riya\" in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "FR5",
+      "how": "No negative amounts in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "FR7",
+      "how": "Each rule block titled with its route (which leg it covers)",
+      "status": "PASS",
+      "note": "\"Fare Rules IX DEL-DXB\" \"Fare Rules IX SHJ-DEL\""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "FR6",
+      "how": "Rule text has no script content (HTML formatting is allowed)",
+      "status": "PASS",
+      "note": "HTML-formatted text"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "P2",
+      "how": "Pricing total = search price (±₹1)",
+      "status": "PASS",
+      "note": "search ₹35914.56 · pricing ₹35914.56"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": "parts ₹35914.56 · total ₹35914.56"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "P4",
+      "how": "1 ADT passenger price = total",
+      "status": "BUG",
+      "note": "pax ₹35722.56"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "P5",
+      "how": "If price differs from search, priceChange says so",
+      "status": "PASS",
+      "note": "null"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "P6",
+      "how": "Pricing currency INR, no negative amounts",
+      "status": "PASS",
+      "note": "INR "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "P7",
+      "how": "gstBreakup is array or omitted",
+      "status": "PASS",
+      "note": "object"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing / bookingContext",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "P9",
+      "how": "Pricing itinerary = picked flight(s)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SSR1",
+      "how": "SSR HTTP 200 (meal / baggage catalog up)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SSR2",
+      "how": "SSR lists meal and/or baggage options",
+      "status": "PASS",
+      "note": "meal keys 5 · baggage keys 1 · top priceId,timingReference,journeyType,tripType,expiresAt,currencyConversion,meal,baggage"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SSR4",
+      "how": "SSR prices in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200 (not 5xx)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SEAT2",
+      "how": "Seat map has seats (pricing says supportsSeats)",
+      "status": "PASS",
+      "note": "760 seats, 720 available · supportsSeats true"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SEAT3",
+      "how": "Seat prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SEAT3b",
+      "how": "Seat prices in INR",
+      "status": "PASS",
+      "note": "INR · conversion {\"source\":\"USD\",\"destination\":\"INR\",\"rate\":96}"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SEAT4",
+      "how": "One seat map per flight segment",
+      "status": "PASS",
+      "note": "4 seat maps · 4 segments (DEL-STV, STV-DXB, SHJ-LKO, LKO-DEL)"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SEAT5",
+      "how": "No duplicate seat numbers within a segment",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "TBO 402T",
+      "id": "SEAT6",
+      "how": "seatAvailability in the common format (\"true\"/\"false\") for both providers",
+      "status": "PASS",
+      "note": "seatAvailability {false,true} · seatStatus {false,true}"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "F0",
+      "how": "Riya 422R fare picked",
+      "status": "PASS",
+      "note": "from merged card · LITE ₹45640"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "C6",
+      "how": "Return list non-empty after picking onward",
+      "status": "PASS",
+      "note": "return total 3"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "C8",
+      "how": "Return fares only from the onward vendor",
+      "status": "PASS",
+      "note": "got {422R}"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "C9",
+      "how": "Return card carries combinedPricing COMBINATION",
+      "status": "PASS",
+      "note": "COMBINATION"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "C11",
+      "how": "Combined price ≥ onward fare and ≠ 2× onward",
+      "status": "PASS",
+      "note": "combined ₹45640 · onward ₹45640 · return fare ₹45640"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "D2",
+      "how": "Details price shown in INR (requested currency=INR)",
+      "status": "PASS",
+      "note": "details INR 45640"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "D2b",
+      "how": "Details total = search price",
+      "status": "PASS",
+      "note": "search ₹45640 · details ₹45640"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "D3",
+      "how": "Details onward = same flight as the search card (FN, airports, times)",
+      "status": "PASS",
+      "note": "IX1294|DEL|2026-12-15T18:50|STV|2026-12-15T20:50>IX335|STV|2026-12-16T07:10|DXB|2026-12-16T08:55"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "D6",
+      "how": "Details and pricing agree on seat / meal / baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats details=false pricing=true · supportsMeals details=false pricing=true · supportsExtraBaggage details=false pricing=true"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "D4",
+      "how": "No negative amounts in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "D5",
+      "how": "No \"Riya\" in details",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "FR1",
+      "how": "Fare rules HTTP 200 with rule content",
+      "status": "PASS",
+      "note": "1 rule blocks · top keys journeyType,tripType,timingReference,selection,fareRules,cancellationPolicies,reschedulePolicies,_meta"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "FR2",
+      "how": "One fare-rule block per leg (2)",
+      "status": "BUG",
+      "note": "1 block(s): I5LT"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "FR3",
+      "how": "Rules match the picked fare (fare type or fare basis named)",
+      "status": "PASS",
+      "note": "fareType \"LITE\" · basis ECLAX00"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "FR4",
+      "how": "No \"Riya\" in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "FR5",
+      "how": "No negative amounts in fare rules",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "FR7",
+      "how": "Each rule block titled with its route (which leg it covers)",
+      "status": "BUG",
+      "note": "\"I5LT\""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "FR6",
+      "how": "Rule text has no script content (HTML formatting is allowed)",
+      "status": "PASS",
+      "note": "HTML-formatted text"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "P2",
+      "how": "Pricing total = search price (±₹1)",
+      "status": "PASS",
+      "note": "search ₹45640 · pricing ₹45640"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": "parts ₹45640 · total ₹45640"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "P4",
+      "how": "1 ADT passenger price = total",
+      "status": "PASS",
+      "note": "pax ₹45640"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "P5",
+      "how": "If price differs from search, priceChange says so",
+      "status": "PASS",
+      "note": "null"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "P6",
+      "how": "Pricing currency INR, no negative amounts",
+      "status": "PASS",
+      "note": "INR "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "P7",
+      "how": "gstBreakup is array or omitted",
+      "status": "PASS",
+      "note": "object"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing / bookingContext",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "P9",
+      "how": "Pricing itinerary = picked flight(s)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SSR1",
+      "how": "SSR HTTP 200 (meal / baggage catalog up)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SSR2",
+      "how": "SSR lists meal and/or baggage options",
+      "status": "PASS",
+      "note": "meal keys 5 · baggage keys 3 · top priceId,timingReference,journeyType,tripType,expiresAt,currencyConversion,meal,baggage"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SSR4",
+      "how": "SSR prices in INR",
+      "status": "PASS",
+      "note": "{INR}"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200 (not 5xx)",
+      "status": "PASS",
+      "note": "http=200  "
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT2",
+      "how": "Seat map has seats (pricing says supportsSeats)",
+      "status": "PASS",
+      "note": "736 seats, 725 available · supportsSeats true"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT3",
+      "how": "Seat prices ≥ 0, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT3b",
+      "how": "Seat prices in INR",
+      "status": "PASS",
+      "note": "INR · conversion {\"source\":\"INR\",\"destination\":\"INR\",\"rate\":1}"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT4",
+      "how": "One seat map per flight segment",
+      "status": "PASS",
+      "note": "4 seat maps · 4 segments (DEL-STV, STV-DXB, DXB-LKO, LKO-DEL)"
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT5",
+      "how": "No duplicate seat numbers within a segment",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "journey": "rt-intl",
+      "sec": "Riya 422R",
+      "id": "SEAT6",
+      "how": "seatAvailability in the common format (\"true\"/\"false\") for both providers",
+      "status": "BUG",
+      "note": "seatAvailability {Closed,Open} · seatStatus {True}"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "details-empty-ids",
+      "how": "details: empty selectedSearchIds → 4xx",
+      "status": "PASS",
+      "note": "http=400 INVALID_SELECTION · ONE_WAY requires exactly 1 selectedSearchId."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "details-unknown-id",
+      "how": "details: unknown searchId → 4xx (not 500)",
+      "status": "PASS",
+      "note": "http=404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_00000000000000000000000000000000"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "details-html-id",
+      "how": "details: HTML in searchId → 4xx (not 500)",
+      "status": "PASS",
+      "note": "http=404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: <script>alert(1)</script>"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "fareRules-empty-ids",
+      "how": "fareRules: empty selectedSearchIds → 4xx",
+      "status": "PASS",
+      "note": "http=400 VALIDATION_ERROR · Invalid request payload for fare rules. Please fix the listed errors and retry."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "fareRules-unknown-id",
+      "how": "fareRules: unknown searchId → 4xx (not 500)",
+      "status": "PASS",
+      "note": "http=404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_00000000000000000000000000000000"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "fareRules-html-id",
+      "how": "fareRules: HTML in searchId → 4xx (not 500)",
+      "status": "PASS",
+      "note": "http=404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: <script>alert(1)</script>"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "pricing-empty-ids",
+      "how": "pricing: empty selectedSearchIds → 4xx",
+      "status": "PASS",
+      "note": "http=400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "pricing-unknown-id",
+      "how": "pricing: unknown searchId → 4xx (not 500)",
+      "status": "PASS",
+      "note": "http=404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_00000000000000000000000000000000"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "pricing-html-id",
+      "how": "pricing: HTML in searchId → 4xx (not 500)",
+      "status": "PASS",
+      "note": "http=404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: <script>alert(1)</script>"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "pricing-ow-id-as-RT",
+      "how": "pricing: one-way searchId sent as ROUND_TRIP → 4xx",
+      "status": "PASS",
+      "note": "http=400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "pricing-dup-id",
+      "how": "pricing: same searchId twice → 4xx",
+      "status": "PASS",
+      "note": "http=400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "pricing-bad-journeyType",
+      "how": "pricing: journeyType \"ONEWAY\" → 4xx",
+      "status": "PASS",
+      "note": "http=400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "details-omit-journeyType",
+      "how": "details: journeyType missing → 4xx",
+      "status": "PASS",
+      "note": "http=400 INVALID_REQUEST · Request validation failed."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "pricing-RT-onward-only",
+      "how": "pricing: round trip with onward id only → 4xx",
+      "status": "PASS",
+      "note": "http=400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "pricing-RT-mixed-TBO-onward-Riya-return",
+      "how": "pricing: TBO onward + Riya return → rejected (cross-vendor RT not bookable)",
+      "status": "PASS",
+      "note": "http=400 INVALID_COMBINATION · Selected flights come from different searches and cannot be booked together. Select onward"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "fareRules-RT-mixed-vendors",
+      "how": "fareRules: TBO onward + Riya return → rejected",
+      "status": "PASS",
+      "note": "http=400 INVALID_COMBINATION · Selected flights come from different searches and cannot be booked together. Select onward"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "ssr-empty-priceId",
+      "how": "ssr: empty priceId → 4xx",
+      "status": "PASS",
+      "note": "http=400 VALIDATION_ERROR · Invalid request payload for flight SSR. Please fix the listed errors and retry."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "ssr-unknown-priceId",
+      "how": "ssr: unknown priceId → 4xx (not 500)",
+      "status": "PASS",
+      "note": "http=400 PRICE_ID_NOT_FOUND · No cached pricing context found for priceId: prc_does_not_exist_000"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "ssr-html-priceId",
+      "how": "ssr: HTML priceId → 4xx",
+      "status": "PASS",
+      "note": "http=400 PRICE_ID_NOT_FOUND · No cached pricing context found for priceId: <b>x</b>"
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "seatmap-omit-requestReference",
+      "how": "seatmap: requestReference missing → 4xx",
+      "status": "PASS",
+      "note": "http=400 VALIDATION_ERROR · Invalid request payload for flight seat map. Please fix the listed errors and retry."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "seatmap-garbage-requestReference",
+      "how": "seatmap: garbage requestReference → 4xx (not 500)",
+      "status": "PASS",
+      "note": "http=400 INVALID_BOOKING_CONTEXT · Invalid bookingContext provided."
+    },
+    {
+      "journey": "neg",
+      "sec": "Negative",
+      "id": "seatmap-empty-passengers",
+      "how": "seatmap: empty passengers[] → 4xx",
+      "status": "NOT TESTED",
+      "note": "not run"
+    },
+    {
+      "journey": "all",
+      "sec": "Not run",
+      "id": "E1",
+      "how": "One vendor down",
+      "status": "NOT TESTED",
+      "note": "needs Dev fault injection"
+    },
+    {
+      "journey": "all",
+      "sec": "Not run",
+      "id": "E2",
+      "how": "One vendor slow",
+      "status": "NOT TESTED",
+      "note": "needs Dev fault injection"
+    },
+    {
+      "journey": "all",
+      "sec": "Not run",
+      "id": "E3",
+      "how": "Both vendors down",
+      "status": "NOT TESTED",
+      "note": "needs Dev fault injection"
+    },
+    {
+      "journey": "all",
+      "sec": "Not run",
+      "id": "F1-F5",
+      "how": "Issue ticket / book / payment price",
+      "status": "NOT TESTED",
+      "note": "no booking on preprod"
+    },
+    {
+      "journey": "all",
+      "sec": "Not run",
+      "id": "D4",
+      "how": "MULTI_CITY never merged",
+      "status": "NOT TESTED",
+      "note": "/v1/flights/search accepts ONE_WAY and ROUND_TRIP only"
+    },
+    {
+      "journey": "all",
+      "sec": "Not run",
+      "id": "A1/A2",
+      "how": "Single-vendor tiers (known open bug)",
+      "status": "NOT TESTED",
+      "note": "not re-searched to keep looks at 4; open from previous round"
+    }
+  ]
+}

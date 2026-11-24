@@ -1,0 +1,260 @@
+{
+  "when": "2026-11-13T06:47:43.244Z",
+  "role": "wh-azure",
+  "base": "https://u-byufuel.azurewebsites.net",
+  "pageCount": 5,
+  "pages": [
+    {
+      "path": "/dsh/dashboard",
+      "controls": {
+        "title": "Dashboard | BYUFUEL",
+        "url": "https://u-byufuel.azurewebsites.net/dsh/dashboard",
+        "headings": [
+          "Dashboard",
+          "Generate QR Codes",
+          "Container Management",
+          "Check In Oil",
+          "Collect Oil From Supplier"
+        ],
+        "tabs": [],
+        "headers": [],
+        "buttons": [
+          "Open sidebar",
+          "MM Mayur More"
+        ],
+        "inputs": []
+      },
+      "overlays": [],
+      "detail": null
+    },
+    {
+      "path": "/uam/container-qr-codes",
+      "controls": {
+        "title": "QR Codes | BYUFUEL",
+        "url": "https://u-byufuel.azurewebsites.net/uam/container-qr-codes",
+        "headings": [
+          "QR Codes",
+          "List Of QR Codes"
+        ],
+        "tabs": [],
+        "headers": [
+          "CONTAINER CODE",
+          "WAREHOUSE",
+          "OPERATIONAL AREA",
+          "OWNER"
+        ],
+        "buttons": [
+          "Open sidebar",
+          "MM Mayur More",
+          "Generate QR Codes",
+          "First page",
+          "Previous page",
+          "Next page",
+          "Last page"
+        ],
+        "inputs": []
+      },
+      "overlays": [
+        {
+          "control": "Generate QR Codes",
+          "kind": "dialog",
+          "items": [],
+          "dialog": {
+            "title": "Generate QR Code",
+            "labels": [
+              "No. of QR Codes"
+            ],
+            "buttons": [
+              "Generate",
+              "Close"
+            ],
+            "placeholders": []
+          }
+        }
+      ],
+      "detail": null
+    },
+    {
+      "path": "/uam/container-management",
+      "controls": {
+        "title": "Containers | BYUFUEL",
+        "url": "https://u-byufuel.azurewebsites.net/uam/container-management",
+        "headings": [
+          "Containers",
+          "List of Containers"
+        ],
+        "tabs": [],
+        "headers": [
+          "CONTAINER CODE",
+          "WAREHOUSE",
+          "TYPE",
+          "GRADE TYPE",
+          "CAPACITY",
+          "WEIGHT OF OIL",
+          "REMAINING CAPACITY",
+          "OPERATIONAL AREA",
+          "STATUS",
+          "ACTIONS"
+        ],
+        "buttons": [
+          "Open sidebar",
+          "MM Mayur More",
+          "Add New Container",
+          "Transfer UCO",
+          "First page",
+          "Previous page",
+          "Next page",
+          "Last page"
+        ],
+        "inputs": []
+      },
+      "overlays": [
+        {
+          "control": "Add New Container",
+          "kind": "menu",
+          "items": [
+            "Device",
+            "Camera",
+            "Manual"
+          ],
+          "dialog": null
+        },
+        {
+          "control": "Transfer UCO",
+          "kind": "menu",
+          "items": [
+            "Device",
+            "Camera",
+            "Manual"
+          ],
+          "dialog": null
+        }
+      ],
+      "detail": {
+        "url": "https://u-byufuel.azurewebsites.net/uam/container-management/67miJD-tfj3QKgL3ggFlkw/view",
+        "buttons": [
+          "Open sidebar",
+          "MM\nMayur More",
+          "Back",
+          "Edit"
+        ],
+        "probes": {
+          "Edit": {
+            "items": [],
+            "dlg": null,
+            "form": {
+              "url": "https://u-byufuel.azurewebsites.net/uam/container-management/67miJD-tfj3QKgL3ggFlkw",
+              "title": "Containers | BYUFUEL",
+              "headings": [
+                "Containers",
+                "Edit Container",
+                "Container Information"
+              ],
+              "labels": [
+                "Container Type",
+                "Capacity",
+                "Weight of Oil",
+                "Grade",
+                "Current Possession",
+                "Container Code: --"
+              ],
+              "buttons": [
+                "Open sidebar",
+                "MM Mayur More",
+                "Back",
+                "Save"
+              ],
+              "placeholders": []
+            }
+          },
+          "Add New Container": {
+            "items": [
+              "Device",
+              "Camera",
+              "Manual"
+            ],
+            "dlg": null,
+            "form": null
+          },
+          "Transfer UCO": {
+            "items": [
+              "Device",
+              "Camera",
+              "Manual"
+            ],
+            "dlg": null,
+            "form": null
+          }
+        }
+      }
+    },
+    {
+      "path": "/byu/checkin-oil",
+      "controls": {
+        "title": "Check in Oil | BYUFUEL",
+        "url": "https://u-byufuel.azurewebsites.net/byu/checkin-oil",
+        "headings": [
+          "Check in Oil",
+          "List of Requests"
+        ],
+        "tabs": [],
+        "headers": [
+          "ITINERARY CODE",
+          "ITINERARY DATE",
+          "DRIVER",
+          "CONTAINER COUNT",
+          "COLLECTED OIL",
+          "CHECKEDIN OIL",
+          "PICKUPS",
+          "PAID AMOUNT",
+          "STATUS"
+        ],
+        "buttons": [
+          "Open sidebar",
+          "MM Mayur More",
+          "First page",
+          "Previous page",
+          "Next page",
+          "Last page"
+        ],
+        "inputs": []
+      },
+      "overlays": [],
+      "detail": null
+    },
+    {
+      "path": "/byu/collect-oil",
+      "controls": {
+        "title": "Collect Oil From Supplier | BYUFUEL",
+        "url": "https://u-byufuel.azurewebsites.net/byu/collect-oil",
+        "headings": [
+          "Collect Oil From Supplier",
+          "List of Requests"
+        ],
+        "tabs": [],
+        "headers": [
+          "SCHEDULE CODE",
+          "SCHEDULE DATE",
+          "NAME",
+          "GRADE",
+          "TIME SLOT",
+          "WEIGHT",
+          "ESTIMATED AMOUNT",
+          "CONTAINER REQUIRED",
+          "STATUS"
+        ],
+        "buttons": [
+          "Open sidebar",
+          "MM Mayur More",
+          "First page",
+          "Previous page",
+          "Next page",
+          "Last page"
+        ],
+        "inputs": []
+      },
+      "overlays": [],
+      "detail": null
+    }
+  ]
+}

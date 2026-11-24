@@ -1,0 +1,97 @@
+{
+  "at": "2026-11-24T07:58:02.902Z",
+  "base": "https://gamma-api.travelvip.ai",
+  "envBaseUrl": {
+    "vgm": "https://gamma-api.travelvip.ai",
+    "smt": "https://gamma-api.travelvip.ai"
+  },
+  "cases": [
+    {
+      "caseId": "INV",
+      "product": "lounge",
+      "status": "PASS",
+      "note": "collection-product Marhaba Lounge (F3,F4)"
+    },
+    {
+      "caseId": "W1_finalize",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506790511647",
+      "code": null,
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795506790511647\",\"bookingReference\":\"BR1795506790511647\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":3054.85,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":"
+    },
+    {
+      "caseId": "W1_status",
+      "product": "lounge",
+      "status": "PASS",
+      "br": "BR1795506790511647",
+      "finalStatus": "Pending"
+    },
+    {
+      "caseId": "C1_create",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507084160278",
+      "pi": "pi_3UfEc5EWyGwVPuvk07LDLr1G",
+      "code": null,
+      "note": "{\"bookingReference\":\"BR1795507084160278\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VM5zeCwPkBByiv\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLEx2RFZZT3p2M2NGT2xVTksxSU41b25RZEVqdXVyN2Q_00tMcOHCdy\",\"paymentIntent\":\"pi_3UfE"
+    },
+    {
+      "caseId": "Stripe",
+      "product": "lounge",
+      "status": "PASS",
+      "pi": "pi_3UfEc5EWyGwVPuvk07LDLr1G",
+      "note": "succeeded"
+    },
+    {
+      "caseId": "C2_booking",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507084160278",
+      "code": null,
+      "note": "{\"status\":200,\"bookingReferenceId\":\"BR1795507084160278\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"_meta\":{\"correlation_id\":\"ce8bd1c1-4e3c-428a-b983-5634311b1666\"}}"
+    },
+    {
+      "caseId": "C2_status",
+      "product": "lounge",
+      "status": "PASS",
+      "br": "BR1795507084160278",
+      "finalStatus": "Pending"
+    },
+    {
+      "caseId": "INV",
+      "product": "fasttrack",
+      "status": "PASS",
+      "note": "collection-env-product HaiKou MeiLan International Airport(T1)"
+    },
+    {
+      "caseId": "W1_finalize",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506792886180",
+      "code": null,
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingReference\":\"BR1795506792886180\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":5250.53,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":1,\"baseFare\":5250.53,\"taxes\":0,\"conv"
+    },
+    {
+      "caseId": "W1_status",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1795506792886180",
+      "finalStatus": "Pending"
+    },
+    {
+      "caseId": "C1_create",
+      "product": "fasttrack",
+      "status": "FAIL",
+      "http": 200,
+      "br": null,
+      "pi": null,
+      "code": "OFFER_INVALID",
+      "note": "{\"error\":{\"code\":\"OFFER_INVALID\",\"message\":\"Selected offer is no longer valid\",\"details\":\"offerId '10558702'\",\"timestamp\":\"2026-11-24T07:53:13Z\",\"request_id\":\"col-ft-c1-c07eb8c9-93ba-407a-86af-fed201da24a4\"},\"duplicate\":true,\"duplicateMessa"
+    }
+  ]
+}

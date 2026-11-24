@@ -1,0 +1,96 @@
+{
+  "ranAt": "2026-11-18T14:09:21.318Z",
+  "finding": "delta-api flight search returns VENDOR_ERROR; staging same payload returns inventory",
+  "baseUrl": "https://delta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "request": {
+    "path": "/v1/flights/search",
+    "body": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-16"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": 0,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "response": {
+    "http": 400,
+    "data": {
+      "error": {
+        "code": "VENDOR_ERROR",
+        "message": "Search failed.",
+        "details": null,
+        "timestamp": "2026-11-18T14:09:21Z",
+        "request_id": "req-1795010960923"
+      },
+      "_meta": {
+        "correlation_id": "d88a1175-f218-47e7-90c6-b965fb43ecc2"
+      }
+    }
+  },
+  "comparison": {
+    "staging": {
+      "http": 200,
+      "note": "same body → progress INPROGRESS + options"
+    },
+    "delta": {
+      "http": 400,
+      "code": "VENDOR_ERROR",
+      "message": "Search failed.",
+      "request_id": "req-1795010960923",
+      "correlation_id": "d88a1175-f218-47e7-90c6-b965fb43ecc2"
+    }
+  },
+  "rows": [
+    {
+      "rule": "FLIGHT.SEARCH.OW",
+      "how": "POST /v1/flights/search DEL-BOM with staging vgm creds on delta",
+      "status": "BUG",
+      "expected": "HTTP 200 + options/progress",
+      "actual": "HTTP 400 VENDOR_ERROR Search failed."
+    },
+    {
+      "rule": "FLIGHT.CATALOG",
+      "how": "GET airports/airlines/citySearch",
+      "status": "PASS",
+      "note": "catalogs 200"
+    },
+    {
+      "rule": "OW.BOOK",
+      "how": "blocked by search",
+      "status": "NOT TESTED"
+    },
+    {
+      "rule": "RT.BOOK",
+      "how": "blocked by search",
+      "status": "NOT TESTED"
+    },
+    {
+      "rule": "CANCEL",
+      "how": "blocked by search",
+      "status": "NOT TESTED"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "env": "https://uat-byufuel.crediblesg.com",
+  "when": "2026-11-18T11:20:00.000Z",
+  "counts": {
+    "PASS": 9,
+    "FAIL": 0
+  },
+  "results": [
+    {
+      "id": 1,
+      "tc": "TC01",
+      "status": "PASS",
+      "actual": "TSM & Leads menu under User Management · /uam/tsm-leads loads · Add TSM and Leads present"
+    },
+    {
+      "id": 2,
+      "tc": "TC02",
+      "status": "PASS",
+      "actual": "TSM ZipCodes menu under User Management · /uam/tsm-zipcodes loads · Download/Upload TSM ZipCodes present"
+    },
+    {
+      "id": 3,
+      "tc": "TC03",
+      "status": "PASS",
+      "actual": "City Lead GrowCity Lead1118 created ACTIVE · grow.city.1118@yopmail.com · OA Hyderabad · reports Hyd Admin · temp pwd issued"
+    },
+    {
+      "id": 4,
+      "tc": "TC04",
+      "status": "PASS",
+      "actual": "Area Lead GrowArea Lead1118 created ACTIVE · grow.area.1118@yopmail.com · 9876502118 · reports GrowCity Lead1118 · id 1a201deb-990f-46ff-a967-9e02d8721bf9"
+    },
+    {
+      "id": 5,
+      "tc": "TC05",
+      "status": "PASS",
+      "actual": "TSM GrowTsm User1118 created ACTIVE · grow.tsm.1118@yopmail.com · 9876503118 · reports GrowArea Lead1118 · id af0ee14a-cf39-42f8-aeab-b5a1f3fbf5cf"
+    },
+    {
+      "id": 6,
+      "tc": "TC06",
+      "status": "PASS",
+      "actual": "Deactivate GrowTsm User1118 confirmed · status DEACTIVATED"
+    },
+    {
+      "id": 7,
+      "tc": "TC07",
+      "status": "PASS",
+      "actual": "Activate GrowTsm User1118 confirmed · status ACTIVE again"
+    },
+    {
+      "id": 8,
+      "tc": "TC08",
+      "status": "PASS",
+      "actual": "Zip Codes tab · Add New ZipCode 500084 saved · TSM ZipCodes list shows GrowTsm 500084"
+    },
+    {
+      "id": 9,
+      "tc": "TC09",
+      "status": "PASS",
+      "actual": "Upload dialog OK · POST /api/tsm-zipcodes/upload HTTP 200 tsmCount=1 pincodeCount=2 · list shows GrowTsm 500001 + 500084"
+    }
+  ]
+}

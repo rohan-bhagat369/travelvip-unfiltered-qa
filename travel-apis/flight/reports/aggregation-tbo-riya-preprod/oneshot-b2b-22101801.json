@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-11-20T09:00:00Z",
+  "env": "B2B preprod",
+  "base": "https://preprod-api.travelvip.ai",
+  "partner_id": "vgm",
+  "requestedTier": "22101801",
+  "apiAttempted": "POST /v1/auth/session → POST /v1/flights/search (search not reached)",
+  "partnerToken": { "http": 200, "ok": true },
+  "tiersList": {
+    "path": "GET /v1/tiers",
+    "http": 200,
+    "tierIds": [19597201],
+    "has22101801": false
+  },
+  "session": {
+    "path": "POST /v1/auth/session",
+    "tier22101801": {
+      "http": 400,
+      "code": "PARTNER_AUTH_SESSION_ERROR",
+      "message": "Invalid tierId"
+    },
+    "tier19597201": {
+      "http": 400,
+      "code": "PARTNER_AUTH_SESSION_ERROR",
+      "message": "Invalid tierId",
+      "note": "Same Invalid tierId even though this is the only tier returned by GET /v1/tiers"
+    }
+  },
+  "search": {
+    "hit": false,
+    "reason": "No auth_token — session blocked before /v1/flights/search"
+  },
+  "supplierCheck": {
+    "402T_TBO": "NOT TESTED",
+    "422R_Riya": "NOT TESTED",
+    "bothOnResponse": "NOT TESTED"
+  },
+  "blocker": "vgm preprod B2B does not expose tier 22101801 (tiers list only 19597201). Session also rejects 19597201 with Invalid tierId, so flight search cannot run."
+}

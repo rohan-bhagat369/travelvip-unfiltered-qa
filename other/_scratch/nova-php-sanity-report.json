@@ -1,0 +1,548 @@
+{
+  "at": "2026-11-18T11:44:19.712Z",
+  "nodeBase": "https://dev-nova-api.travelvip.ai",
+  "legacyBase": "https://canary-api.travelvip.ai",
+  "partner": "vgm",
+  "authSummary": {
+    "node": {
+      "token": 200,
+      "session": 400,
+      "ok": false,
+      "tokenKeys": [
+        "access_token",
+        "refresh_token",
+        "expires_in"
+      ],
+      "sessionKeys": [
+        "status",
+        "code",
+        "message",
+        "details"
+      ],
+      "sessionMessage": "Invalid tierId",
+      "tiersStatus": 200,
+      "tierIds": [
+        10546901
+      ],
+      "productAuth": "fallback_legacy_jwt (node session 400: Invalid tierId)"
+    },
+    "legacy": {
+      "base": "https://canary-api.travelvip.ai",
+      "token": 200,
+      "session": 200,
+      "ok": true,
+      "tokenKeys": [
+        "access_token",
+        "refresh_token",
+        "expires_in"
+      ],
+      "sessionKeys": [
+        "auth_token",
+        "tier_id",
+        "expires_in"
+      ],
+      "tiersStatus": 200,
+      "tierIds": [
+        10546901
+      ]
+    }
+  },
+  "results": [
+    {
+      "id": "flight.airports",
+      "method": "GET",
+      "path": "/v1/flights/airports",
+      "legacy": {
+        "status": 200,
+        "ms": 134,
+        "ok": true,
+        "topKeys": [
+          "status",
+          "result",
+          "totalResults",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "node": {
+        "status": 200,
+        "ms": 106,
+        "ok": true,
+        "topKeys": [
+          "status",
+          "result",
+          "totalResults",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "statusMatch": true,
+      "bothOk": true,
+      "shapeDiffs": [],
+      "sample": {
+        "legacySnippet": "{\"status\":0,\"result\":[{\"airportCode\":\"BOM\",\"airportName\":\"Chhatrapati Shivaji Maharaj International Airport\",\"city\":\"Mumbai\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"19.0886993408\",\"longitude\":\"72.8678970337\",\"address\":null,\"tag\":null},{\"airportC",
+        "nodeSnippet": "{\"status\":0,\"result\":[{\"airportCode\":\"BOM\",\"airportName\":\"Chhatrapati Shivaji Maharaj International Airport\",\"city\":\"Mumbai\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"19.0886993408\",\"longitude\":\"72.8678970337\",\"address\":null,\"tag\":null},{\"airportC"
+      }
+    },
+    {
+      "id": "flight.citySearch",
+      "method": "GET",
+      "path": "/v1/flights/citySearch",
+      "legacy": {
+        "status": 200,
+        "ms": 124,
+        "ok": true,
+        "topKeys": [
+          "status",
+          "results",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "node": {
+        "status": 200,
+        "ms": 108,
+        "ok": true,
+        "topKeys": [
+          "status",
+          "results",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "statusMatch": true,
+      "bothOk": true,
+      "shapeDiffs": [],
+      "sample": {
+        "legacySnippet": "{\"status\":0,\"results\":[{\"city\":\"Pune\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY\",\"latitude\":\"18.51957000\",\"longitude\":\"73.85535000\"},{\"city\":\"Pune Division\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY\",\"latitude\":\"18.74673000\",\"longitude\":\"73.75465000\"}],\"_met",
+        "nodeSnippet": "{\"status\":0,\"results\":[{\"city\":\"Pune\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY\",\"latitude\":\"18.51957000\",\"longitude\":\"73.85535000\"},{\"city\":\"Pune Division\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY\",\"latitude\":\"18.74673000\",\"longitude\":\"73.75465000\"}],\"_met"
+      }
+    },
+    {
+      "id": "flight.search",
+      "method": "POST",
+      "path": "/v1/flights/search",
+      "legacy": {
+        "status": 400,
+        "ms": 345,
+        "ok": false,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "VENDOR_ERROR",
+        "errorMessage": "Search failed.",
+        "errorDetails": null
+      },
+      "node": {
+        "status": 200,
+        "ms": 354,
+        "ok": true,
+        "topKeys": [
+          "journeyType",
+          "tripType",
+          "currency",
+          "currencyConversion",
+          "progress",
+          "timingReference",
+          "selection",
+          "results",
+          "totalResults",
+          "filters",
+          "sorts",
+          "cacheTimeStamp",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "statusMatch": false,
+      "bothOk": false,
+      "shapeDiffs": [
+        {
+          "path": "error",
+          "issue": "missing_in_node",
+          "legacyType": "object"
+        },
+        {
+          "path": "journeyType",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        },
+        {
+          "path": "tripType",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        },
+        {
+          "path": "currency",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        },
+        {
+          "path": "currencyConversion",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "progress",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "timingReference",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        },
+        {
+          "path": "selection",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "results",
+          "issue": "extra_in_node",
+          "nodeType": "array"
+        },
+        {
+          "path": "totalResults",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "filters",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "sorts",
+          "issue": "extra_in_node",
+          "nodeType": "array"
+        },
+        {
+          "path": "cacheTimeStamp",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        }
+      ],
+      "sample": {
+        "legacySnippet": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Search failed.\",\"details\":null,\"timestamp\":\"2026-11-18T11:43:48Z\",\"request_id\":\"sanity-1795002228476-xmpljq\"},\"_meta\":{\"correlation_id\":\"sanity-1795002228476-zjjno6\"}}",
+        "nodeSnippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"INR\",\"destination\":\"INR\",\"rate\":1},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"sUElf5hs8ukjqt1"
+      }
+    },
+    {
+      "id": "hotel.autocomplete",
+      "method": "GET",
+      "path": "/v1/hotels/autocomplete",
+      "legacy": {
+        "status": 200,
+        "ms": 668,
+        "ok": true,
+        "topKeys": [
+          "content",
+          "pageable",
+          "totalElements",
+          "totalPages",
+          "first",
+          "last",
+          "empty",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "node": {
+        "status": 200,
+        "ms": 470,
+        "ok": true,
+        "topKeys": [
+          "content",
+          "pageable",
+          "totalElements",
+          "totalPages",
+          "first",
+          "last",
+          "empty",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "statusMatch": true,
+      "bothOk": true,
+      "shapeDiffs": [],
+      "sample": {
+        "legacySnippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Mumbai\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"357389:IN\",\"latitude\":\"19.075987\",\"longitude\":\"72.87766\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"CITY\",\"title\":\"Mumbai Suburban\",\"city\":null,\"state\":",
+        "nodeSnippet": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Mumbai\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"357389:IN\",\"latitude\":\"19.075987\",\"longitude\":\"72.87766\",\"cityCountry\":null,\"lastUpdated\":null},{\"type\":\"CITY\",\"title\":\"Mumbai Suburban\",\"city\":null,\"state\":"
+      }
+    },
+    {
+      "id": "hotel.search",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "legacy": {
+        "status": 200,
+        "ms": 6090,
+        "ok": true,
+        "topKeys": [
+          "page",
+          "size",
+          "offset",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "last",
+          "results",
+          "currency",
+          "fromCache",
+          "cacheTimeStamp",
+          "priceRangeFilter",
+          "filters",
+          "sorts",
+          "requestId",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "node": {
+        "status": 200,
+        "ms": 1647,
+        "ok": true,
+        "topKeys": [
+          "page",
+          "size",
+          "offset",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "last",
+          "results",
+          "currency",
+          "fromCache",
+          "cacheTimeStamp",
+          "priceRangeFilter",
+          "filters",
+          "sorts",
+          "requestId",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "statusMatch": true,
+      "bothOk": true,
+      "shapeDiffs": [],
+      "sample": {
+        "legacySnippet": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":511,\"totalPages\":26,\"availableResults\":511,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/4253",
+        "nodeSnippet": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":511,\"totalPages\":26,\"availableResults\":511,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/4253"
+      }
+    },
+    {
+      "id": "cab.locations",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/locations",
+      "legacy": {
+        "status": 200,
+        "ms": 137,
+        "ok": true,
+        "topKeys": [
+          "locations",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "node": {
+        "status": 200,
+        "ms": 96,
+        "ok": true,
+        "topKeys": [
+          "locations",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "statusMatch": true,
+      "bothOk": true,
+      "shapeDiffs": [],
+      "sample": {
+        "legacySnippet": "{\"locations\":[{\"referenceId\":\"69\",\"airportCode\":\"PNQ\",\"airportName\":\"Pune International Airport (PNQ)\",\"terminalId\":\"T1\",\"name\":\"Pune International Airport\",\"city\":\"Pune\",\"address\":\"Pune International Airport\",\"displayName\":\"T1 , Pune International Airport , Pune\",\"latitude\":18.5",
+        "nodeSnippet": "{\"locations\":[{\"referenceId\":\"69\",\"airportCode\":\"PNQ\",\"airportName\":\"Pune International Airport (PNQ)\",\"terminalId\":\"T1\",\"name\":\"Pune International Airport\",\"city\":\"Pune\",\"address\":\"Pune International Airport\",\"displayName\":\"T1 , Pune International Airport , Pune\",\"latitude\":18.5"
+      }
+    },
+    {
+      "id": "cab.search",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "legacy": {
+        "status": 200,
+        "ms": 10594,
+        "ok": true,
+        "topKeys": [
+          "currency",
+          "cabs",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "node": {
+        "status": 200,
+        "ms": 10832,
+        "ok": true,
+        "topKeys": [
+          "currency",
+          "cabs",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "statusMatch": true,
+      "bothOk": true,
+      "shapeDiffs": [],
+      "sample": {
+        "legacySnippet": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"de670bf5-8c40-4194-ad43-ea7eb3d5c3e4|c4cabb6d4c85e8df20c513658684c95613a0ab4fb22df644483bad430cf67813\",\"cabId\":\"b171af21-6625-4aae-80cd-01c045eff4a9\",\"fareId\":\"1\",\"vehicle\":{\"type\":\"HATCHBACK\",\"category\":\"ECONOMY\",\"filterTag\":\"Hatchback\",\"fi",
+        "nodeSnippet": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"63401b1e-15f7-44d0-a71f-a02509cd9334|c16f23b49a96d632ed330c49c78fe81fe40622af173165286281f5be9f247aa0\",\"cabId\":\"a195e006-9f4b-46bc-b00d-53dae91f3b1b\",\"fareId\":\"1\",\"vehicle\":{\"type\":\"HATCHBACK\",\"category\":\"ECONOMY\",\"filterTag\":\"Hatchback\",\"fi"
+      }
+    }
+  ],
+  "discrepancies": [
+    {
+      "id": "flight.search",
+      "method": "POST",
+      "path": "/v1/flights/search",
+      "legacy": {
+        "status": 400,
+        "ms": 345,
+        "ok": false,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "VENDOR_ERROR",
+        "errorMessage": "Search failed.",
+        "errorDetails": null
+      },
+      "node": {
+        "status": 200,
+        "ms": 354,
+        "ok": true,
+        "topKeys": [
+          "journeyType",
+          "tripType",
+          "currency",
+          "currencyConversion",
+          "progress",
+          "timingReference",
+          "selection",
+          "results",
+          "totalResults",
+          "filters",
+          "sorts",
+          "cacheTimeStamp",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "errorDetails": null
+      },
+      "statusMatch": false,
+      "bothOk": false,
+      "shapeDiffs": [
+        {
+          "path": "error",
+          "issue": "missing_in_node",
+          "legacyType": "object"
+        },
+        {
+          "path": "journeyType",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        },
+        {
+          "path": "tripType",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        },
+        {
+          "path": "currency",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        },
+        {
+          "path": "currencyConversion",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "progress",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "timingReference",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        },
+        {
+          "path": "selection",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "results",
+          "issue": "extra_in_node",
+          "nodeType": "array"
+        },
+        {
+          "path": "totalResults",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "filters",
+          "issue": "extra_in_node",
+          "nodeType": "object"
+        },
+        {
+          "path": "sorts",
+          "issue": "extra_in_node",
+          "nodeType": "array"
+        },
+        {
+          "path": "cacheTimeStamp",
+          "issue": "extra_in_node",
+          "nodeType": "string"
+        }
+      ],
+      "sample": {
+        "legacySnippet": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Search failed.\",\"details\":null,\"timestamp\":\"2026-11-18T11:43:48Z\",\"request_id\":\"sanity-1795002228476-xmpljq\"},\"_meta\":{\"correlation_id\":\"sanity-1795002228476-zjjno6\"}}",
+        "nodeSnippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"INR\",\"destination\":\"INR\",\"rate\":1},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"sUElf5hs8ukjqt1"
+      }
+    }
+  ]
+}

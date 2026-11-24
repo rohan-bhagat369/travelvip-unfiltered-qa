@@ -1,0 +1,159 @@
+{
+  "at": "2026-11-13T07:32:17.973Z",
+  "base": "https://delta-api.travelvip.ai",
+  "fromEnv": {
+    "file": "Web Dev smt_env.json",
+    "partner_id": "smt",
+    "partner_key": "palsgcvgscvvs",
+    "tier_id": "10997401",
+    "mobile": "9665498686"
+  },
+  "steps": [
+    {
+      "name": "GET /api/checkGuestLogin",
+      "status": 200,
+      "brief": "{\"ledgerCreation\":{\"statusCode\":200,\"response\":null},\"status\":200,\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2YWY2YmQwMmI4MmFjMy43MTQ4NDE3NSIsInRva2VuRGF0ZSI6IjIwMjYtMTEtMTMgMDc6MzI6MTkifQ.x4OfaDYBijkbYfBq8HQqiTtZWimb57ROkYifg5P33ps0V2\",\"salted_userId\":\"6af6bd02b82ac3.71484175\",\"user_info\":{\"user_id\":25966,\"name\":\"\",\"email\":\"\",\"mo"
+    },
+    {
+      "name": "bind session tierId=10997401 with guest token",
+      "status": 401,
+      "brief": "{\"status\":\"error\",\"code\":\"PARTNER_AUTH_SESSION_ERROR\",\"message\":\"Invalid access token\",\"details\":{}}"
+    },
+    {
+      "name": "search",
+      "status": 200,
+      "brief": "{\"page\":0,\"size\":10,\"offset\":0,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"last\":true,\"results\":[{\"id\":\"39627872\",\"name\":\"Hilltop Hotel Mumbai\",\"address\":\"43, Sir Pochkhanwala Road, Near Worli Sea-Link, Worli, \",\"distance\":null,\"image\":\"https://imgcld.yatra.com/ytimages/image/upload/t_hotel_mobileactualimage/v1428398392/Domestic Hotels/Ho"
+    },
+    {
+      "name": "details",
+      "status": 200,
+      "brief": "{\"page\":0,\"size\":1,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39627872\",\"name\":\"Hilltop Hotel Mumbai\",\"address\":\"43, Sir Pochkhanwala Road, Near Worli Sea-Link, Worli, \",\"city\":\"Mumbai\",\"country\":\"India\",\"countryCode\":\"IN\",\"distance\":null,\"tripType\":\"domestic\",\"image\":\"https://imgcld.yatra.com/ytimages/image/upload/t_hot"
+    },
+    {
+      "name": "prebook",
+      "status": 200,
+      "brief": "{\"page\":0,\"size\":20,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39627872\",\"name\":\"Hiltop Hotel\",\"address\":\"43. Sir Pochkhanwala Road\",\"city\":\"Mumbai\",\"country\":\"India\",\"countryCode\":\"IN\",\"distance\":null,\"tripType\":\"domestic\",\"image\":\"https://imgcld.yatra.com/ytimages/image/upload/t_hotel_mobileactualimage/v1428398392/Dome"
+    },
+    {
+      "name": "createBooking CARD",
+      "status": 200,
+      "brief": "{\"bookingReference\":\"BR1794555145766910\",\"bookingId\":\"5098\",\"serviceType\":\"hotel\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VcTw1qAf9fldff\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLGxrYWg1Nkxrb09OMW9NYko2UFJ2WlMxUmtlalJwQXQ_00ELaikEjL\",\"paymentIntent\":\"pi_3UbEyEEWyGwVPuvk0R3cko9X_secret_zyuGR8B8B9acAda08n15lTKWX\",\"sessionId\":\"6"
+    },
+    {
+      "name": "Stripe confirm",
+      "status": 200,
+      "brief": "{\"id\":\"pi_3UbEyEEWyGwVPuvk0R3cko9X\",\"object\":\"payment_intent\",\"allowed_payment_method_types\":null,\"amount\":966309,\"amount_capturable\":0,\"amount_details\":{\"tip\":{}},\"amount_received\":966309,\"application\":null,\"application_fee_amount\":null,\"automatic_payment_methods\":{\"allow_redirects\":\"always\",\"enabled\":true},\"canceled_at\":null,\"cancellation_reason\""
+    },
+    {
+      "name": "v2 hotels/booking",
+      "status": 200,
+      "brief": "{\"status\":200,\"paymentStatus\":\"succeeded\",\"bookingId\":\"5098\",\"bookingReferenceId\":\"BR1794555145766910\",\"bookingItemId\":\"5201\",\"message\":\"Payment verified successfully\",\"paymentSuccess\":true,\"bookingSuccess\":true,\"bookingStatus\":\"PENDING\",\"providerResponse\":{\"bookingRefId\":\"BR1794555145766910\",\"bookingStatus\":\"PENDING\",\"qTime\":3,\"errors\":[],\"status\""
+    },
+    {
+      "name": "final status",
+      "status": 200,
+      "brief": "{\"bookingReferenceId\":\"BR1794555145766910\",\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00011740\",\"checkin\":\"2026-12-11\",\"checkout\":\"2026-12-12\",\"checkinTime\":\"2:00 PM\",\"checkoutTime\":\"11:00 AM\",\"message\":\"Successful\",\"hotelDetails\":{\"name\":\"Hiltop Hotel\",\"address\":\"43. Sir Pochkhanwala Road\",\"contact\":null},\"roomDetails\":{\"name\":[\"Basic Studio"
+    }
+  ],
+  "jwt": {},
+  "createBooking": {
+    "status": 200,
+    "data": {
+      "bookingReference": "BR1794555145766910",
+      "bookingId": "5098",
+      "serviceType": "hotel",
+      "paymentData": {
+        "provider": "stripe",
+        "customer": "cus_VcTw1qAf9fldff",
+        "ephemeralKey": "ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLGxrYWg1Nkxrb09OMW9NYko2UFJ2WlMxUmtlalJwQXQ_00ELaikEjL",
+        "paymentIntent": "pi_3UbEyEEWyGwVPuvk0R3cko9X_secret_zyuGR8B8B9acAda08n15lTKWX",
+        "sessionId": "6b9a549bbfe5419ca5c2b2342d18ea12-1794555146",
+        "paymentId": "4641",
+        "paymentTransactionId": "4891"
+      },
+      "isFreeOrder": false,
+      "_meta": {
+        "correlation_id": "a0d463ca-1024-492b-84e4-f812dd589af1"
+      }
+    }
+  },
+  "stripe": {
+    "status": 200,
+    "stripeStatus": "succeeded",
+    "id": "pi_3UbEyEEWyGwVPuvk0R3cko9X"
+  },
+  "v2Booking": {
+    "status": 200,
+    "data": {
+      "status": 200,
+      "paymentStatus": "succeeded",
+      "bookingId": "5098",
+      "bookingReferenceId": "BR1794555145766910",
+      "bookingItemId": "5201",
+      "message": "Payment verified successfully",
+      "paymentSuccess": true,
+      "bookingSuccess": true,
+      "bookingStatus": "PENDING",
+      "providerResponse": {
+        "bookingRefId": "BR1794555145766910",
+        "bookingStatus": "PENDING",
+        "qTime": 3,
+        "errors": [],
+        "status": 0
+      },
+      "_meta": {
+        "correlation_id": "37803fde-e5f6-40f4-817a-ea3c61ec965f"
+      }
+    }
+  },
+  "finalStatus": {
+    "bookingReferenceId": "BR1794555145766910",
+    "status": "Confirmed",
+    "confirmationNumber": "SNHAPI00011740",
+    "checkin": "2026-12-11",
+    "checkout": "2026-12-12",
+    "checkinTime": "2:00 PM",
+    "checkoutTime": "11:00 AM",
+    "message": "Successful",
+    "hotelDetails": {
+      "name": "Hiltop Hotel",
+      "address": "43. Sir Pochkhanwala Road",
+      "contact": null
+    },
+    "roomDetails": {
+      "name": [
+        "Basic Studio"
+      ],
+      "title": "Basic Studio",
+      "mealType": "Breakfast Included",
+      "roomType": "Rooms"
+    },
+    "rooms": [
+      {
+        "guestNames": [
+          {
+            "title": "Mr",
+            "firstName": "Rohan",
+            "lastName": "Bhagat",
+            "type": "Adult"
+          }
+        ]
+      }
+    ],
+    "salesSummary": {
+      "baseFare": 8133.06,
+      "tax": 1530.03,
+      "convenienceFee": 0,
+      "totalAmount": 9663.09,
+      "totalDiscount": 0,
+      "currency": "INR",
+      "taxBreakup": {
+        "gst": 0,
+        "otherTaxes": 1530.03
+      }
+    },
+    "_meta": {
+      "correlation_id": "6cc4dc46-a1a3-47a7-b1ed-2dbc22f528a1"
+    }
+  }
+}

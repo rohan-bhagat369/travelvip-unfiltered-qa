@@ -1,0 +1,13 @@
+URL		https://uat-byufuel.crediblesg.com + APKs com.byufuel.mobile.uat*		Tester	Rohan Bhagat QA		
+							
+							
+#	TC ID	Test Case / Scenario	Centvis Pass/Works	Credible ESG Status	Credible ESG Actual	uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+1	TC01	Verify if the menus are being displayed when roles are assigned to the user	Pass	PASS	TSM & Leads menu is under User Management and the page loads.		
+2	TC02	Verify if TSM Zipcodes menu is displayed when user is assigned relatedd role.	Pass	PASS	TSM ZipCodes menu loads. On this build it sits under User Management.		
+3	TC03	Verify the creation of TSM leads	Pass	PASS	City Lead Rohan CityLead created ACTIVE. Reports to Hyd Admin. rohan.city.byufuel@yopmail.com		
+4	TC04	Verify the creation of Area lead	Pass	PASS	Area Lead Rohan AreaLead created ACTIVE. Reports to Rohan CityLead. rohan.area.byufuel@yopmail.com		
+5	TC05	Verify the creation of TSM	Pass	PASS	TSM Rohan Bhagat created ACTIVE. Reports to Test AreaLead. rohan.tsm.byufuel@yopmail.com		
+6	TC06	Verify if user is able to activate & deactivate the TSM	Pass	PASS	Rohan Bhagat Deactivate changed status to Deactivated.		
+7	TC07	Verify if the user is able to activate a TSM	Pass	PASS	Same TSM Activate set status back to Active.		
+8	TC08	Verify assigning of area zipcodes to TSM	Pass	PASS	Added zip 500084 on Rohan Bhagat. Row shows on his Zip Codes list and the TSM ZipCodes list.		
+9	TC09	Verify bulk upload of Zipcode for multiple TSM's	Pass	PASS	Blank pin in the downloaded sheet replaced with 500001. Upload HTTP 200. List shows Test TSM 500001. Raw download with an empty PinCode still returns HTTP 500.		

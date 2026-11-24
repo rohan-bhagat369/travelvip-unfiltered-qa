@@ -1,0 +1,295 @@
+{
+  "when": "2026-11-09T07:24:40.325Z",
+  "correlationId": "bba85ce0-77c8-4931-bc36-91c39082de79",
+  "picks": {
+    "corpOn": {
+      "searchId": "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+      "fareType": "Corporate",
+      "fareCategory": "CORPORATE",
+      "label": "SG SG 671",
+      "airline": "SG",
+      "stops": 0
+    },
+    "smeOn": {
+      "searchId": "srch_f671510e5c57480db759eb2873328ad7",
+      "fareType": "Corporate",
+      "fareCategory": "SME",
+      "label": "6E 6E 449",
+      "airline": "6E",
+      "stops": 0
+    },
+    "normalOn": {
+      "searchId": "srch_b5bdb1571f77409493e20f6a6f2ca4a6",
+      "fareType": "Coupon",
+      "fareCategory": "NORMAL",
+      "label": "SG SG 671",
+      "airline": "SG",
+      "stops": 0
+    },
+    "normal6eOn": {
+      "searchId": "srch_f05c5ae7d4c344ebbe3b8d180dfaa34c",
+      "fareType": "Normal",
+      "fareCategory": "NORMAL",
+      "label": "6E 6E 449",
+      "airline": "6E",
+      "stops": 0
+    },
+    "flexiRet": {
+      "searchId": "srch_b036188db25b44438b46f0bb6a313a87",
+      "fareType": "Flexi",
+      "fareCategory": "NORMAL",
+      "label": "6E 6E 5171",
+      "airline": "6E",
+      "stops": 0
+    }
+  },
+  "cases": [
+    {
+      "tag": "A-CORP+IndigoFlexi",
+      "request": {
+        "journeyType": "ROUND_TRIP",
+        "selection": {
+          "selectedSearchIds": [
+            "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+            "srch_b036188db25b44438b46f0bb6a313a87"
+          ]
+        }
+      },
+      "onward": {
+        "searchId": "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+        "fareType": "Corporate",
+        "fareCategory": "CORPORATE",
+        "label": "SG SG 671",
+        "airline": "SG",
+        "stops": 0
+      },
+      "return": {
+        "searchId": "srch_b036188db25b44438b46f0bb6a313a87",
+        "fareType": "Flexi",
+        "fareCategory": "NORMAL",
+        "label": "6E 6E 5171",
+        "airline": "6E",
+        "stops": 0
+      },
+      "details": {
+        "http": 200,
+        "code": null,
+        "error": null,
+        "fareType": null,
+        "mixedFareType": true
+      },
+      "pricing": {
+        "http": 400,
+        "code": "VENDOR_ERROR",
+        "priceId": null,
+        "fareType": null,
+        "mixedFareType": null,
+        "error": {
+          "code": "VENDOR_ERROR",
+          "message": "Pricing failed.",
+          "details": null,
+          "timestamp": "2026-11-09T07:24:43Z",
+          "request_id": "req-1794209083162"
+        }
+      },
+      "verdict": "OTHER VENDOR_ERROR"
+    },
+    {
+      "tag": "B-NORMAL+IndigoFlexi",
+      "request": {
+        "journeyType": "ROUND_TRIP",
+        "selection": {
+          "selectedSearchIds": [
+            "srch_f05c5ae7d4c344ebbe3b8d180dfaa34c",
+            "srch_b036188db25b44438b46f0bb6a313a87"
+          ]
+        }
+      },
+      "onward": {
+        "searchId": "srch_f05c5ae7d4c344ebbe3b8d180dfaa34c",
+        "fareType": "Normal",
+        "fareCategory": "NORMAL",
+        "label": "6E 6E 449",
+        "airline": "6E",
+        "stops": 0
+      },
+      "return": {
+        "searchId": "srch_b036188db25b44438b46f0bb6a313a87",
+        "fareType": "Flexi",
+        "fareCategory": "NORMAL",
+        "label": "6E 6E 5171",
+        "airline": "6E",
+        "stops": 0
+      },
+      "details": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "error": {
+          "code": "SEARCH_ID_NOT_FOUND",
+          "message": "No cached search context found for searchId: srch_b036188db25b44438b46f0bb6a313a87",
+          "details": null,
+          "timestamp": "2026-11-09T07:24:45Z",
+          "request_id": "req-1794209088670",
+          "search_again": 1
+        },
+        "fareType": null,
+        "mixedFareType": null
+      },
+      "pricing": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "priceId": null,
+        "fareType": null,
+        "mixedFareType": null,
+        "error": {
+          "code": "SEARCH_ID_NOT_FOUND",
+          "message": "No cached search context found for searchId: srch_b036188db25b44438b46f0bb6a313a87",
+          "details": null,
+          "timestamp": "2026-11-09T07:24:46Z",
+          "request_id": "req-1794209088812",
+          "search_again": 1
+        }
+      },
+      "verdict": "OTHER SEARCH_ID_NOT_FOUND"
+    },
+    {
+      "tag": "C-SME+IndigoFlexi",
+      "request": {
+        "journeyType": "ROUND_TRIP",
+        "selection": {
+          "selectedSearchIds": [
+            "srch_f671510e5c57480db759eb2873328ad7",
+            "srch_b036188db25b44438b46f0bb6a313a87"
+          ]
+        }
+      },
+      "onward": {
+        "searchId": "srch_f671510e5c57480db759eb2873328ad7",
+        "fareType": "Corporate",
+        "fareCategory": "SME",
+        "label": "6E 6E 449",
+        "airline": "6E",
+        "stops": 0
+      },
+      "return": {
+        "searchId": "srch_b036188db25b44438b46f0bb6a313a87",
+        "fareType": "Flexi",
+        "fareCategory": "NORMAL",
+        "label": "6E 6E 5171",
+        "airline": "6E",
+        "stops": 0
+      },
+      "details": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "error": {
+          "code": "SEARCH_ID_NOT_FOUND",
+          "message": "No cached search context found for searchId: srch_b036188db25b44438b46f0bb6a313a87",
+          "details": null,
+          "timestamp": "2026-11-09T07:24:48Z",
+          "request_id": "req-1794209091507",
+          "search_again": 1
+        },
+        "fareType": null,
+        "mixedFareType": null
+      },
+      "pricing": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "priceId": null,
+        "fareType": null,
+        "mixedFareType": null,
+        "error": {
+          "code": "SEARCH_ID_NOT_FOUND",
+          "message": "No cached search context found for searchId: srch_b036188db25b44438b46f0bb6a313a87",
+          "details": null,
+          "timestamp": "2026-11-09T07:24:48Z",
+          "request_id": "req-1794209091593",
+          "search_again": 1
+        }
+      },
+      "verdict": "OTHER SEARCH_ID_NOT_FOUND"
+    }
+  ],
+  "fareRulesVariants": [
+    {
+      "tag": "R1-camel-RT-1id",
+      "path": "/v1/flights/fareRules",
+      "request": {
+        "journeyType": "ROUND_TRIP",
+        "selection": {
+          "selectedSearchIds": [
+            "srch_cf7f08e3e22640549fa3ffffa79b48c5"
+          ]
+        }
+      },
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid request payload for fare rules. Please fix the listed errors and retry.",
+      "details": [
+        "For journeyType ROUND_TRIP, 'selection.selectedSearchIds' must contain exactly 2 search ids (received 1)."
+      ],
+      "fareType": null,
+      "entryCount": 0,
+      "titles": []
+    },
+    {
+      "tag": "R2-camel-OW-1id",
+      "path": "/v1/flights/fareRules",
+      "request": {
+        "journeyType": "ONE_WAY",
+        "selection": {
+          "selectedSearchIds": [
+            "srch_cf7f08e3e22640549fa3ffffa79b48c5"
+          ]
+        }
+      },
+      "http": 404,
+      "code": "SEARCH_ID_NOT_FOUND",
+      "message": "No cached search context found for searchId: srch_cf7f08e3e22640549fa3ffffa79b48c5",
+      "details": null,
+      "fareType": null,
+      "entryCount": 0,
+      "titles": []
+    },
+    {
+      "tag": "R3-kebab-RT-1id",
+      "path": "/v1/flights/fare-rules",
+      "request": {
+        "journeyType": "ROUND_TRIP",
+        "selection": {
+          "selectedSearchIds": [
+            "srch_cf7f08e3e22640549fa3ffffa79b48c5"
+          ]
+        }
+      },
+      "http": 404,
+      "code": null,
+      "message": null,
+      "details": null,
+      "fareType": null,
+      "entryCount": 0,
+      "titles": []
+    },
+    {
+      "tag": "R4-camel-RT-2id-control",
+      "path": "/v1/flights/fareRules",
+      "request": {
+        "journeyType": "ROUND_TRIP",
+        "selection": {
+          "selectedSearchIds": [
+            "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+            "srch_b036188db25b44438b46f0bb6a313a87"
+          ]
+        }
+      },
+      "http": 404,
+      "code": "SEARCH_ID_NOT_FOUND",
+      "message": "No cached search context found for searchId: srch_cf7f08e3e22640549fa3ffffa79b48c5",
+      "details": null,
+      "fareType": null,
+      "entryCount": 0,
+      "titles": []
+    }
+  ]
+}

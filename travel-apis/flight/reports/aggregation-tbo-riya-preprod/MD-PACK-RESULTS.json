@@ -1,0 +1,678 @@
+{
+  "checkedAt": "2026-11-23T09:45:59.463Z",
+  "searchMinute": "2026-11-23T09:44",
+  "env": "https://preprod-api.travelvip.ai",
+  "partner_id": "vgm",
+  "tierMerged": 22101801,
+  "dates": {
+    "onward": "2026-12-14",
+    "return": "2026-12-21"
+  },
+  "routes": [
+    "DEL-DXB",
+    "DEL-BOM"
+  ],
+  "api": "B2B POST /v1/flights/search → /v1/flights/details (+ pricing); no issue-ticket",
+  "sessions": {
+    "8": {
+      "http": 200,
+      "ok": true
+    },
+    "15": {
+      "http": 200,
+      "ok": true
+    },
+    "22101801": {
+      "http": 200,
+      "ok": true
+    },
+    "22157551": {
+      "http": 200,
+      "ok": true
+    }
+  },
+  "listedTiers": [
+    19597201
+  ],
+  "summary": {
+    "PASS": 65,
+    "BUG": 6,
+    "NOT_TESTED": 18
+  },
+  "rows": [
+    {
+      "id": "H1",
+      "how": "Pinned OD/dates for pack",
+      "status": "PASS",
+      "note": "DEL-DXB/BOM OW 2026-12-14 RT ret 2026-12-21"
+    },
+    {
+      "id": "H3",
+      "how": "Only DEL-DXB + DEL-BOM ODs",
+      "status": "PASS"
+    },
+    {
+      "id": "H4",
+      "how": "No issue-ticket / book in this run",
+      "status": "PASS"
+    },
+    {
+      "id": "H5",
+      "how": "Report includes search timestamp",
+      "status": "PASS",
+      "note": "2026-11-23T09:44"
+    },
+    {
+      "id": "A-N1",
+      "how": "Invalid tierId session",
+      "status": "PASS",
+      "http": 400,
+      "code": "PARTNER_AUTH_SESSION_ERROR",
+      "note": "Invalid tierId"
+    },
+    {
+      "id": "A-N2",
+      "how": "Missing tierId on session",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "id": "A-N3",
+      "how": "Wrong/invalid partner access on session",
+      "status": "PASS",
+      "http": 401,
+      "code": "PARTNER_AUTH_SESSION_ERROR"
+    },
+    {
+      "id": "A3",
+      "how": "OW merged CODES has both vendors",
+      "status": "BUG",
+      "codes": [
+        "422R"
+      ],
+      "optionCount": 50,
+      "http": 200
+    },
+    {
+      "id": "A4",
+      "how": "∃ option with both sourceCodes",
+      "status": "BUG",
+      "dual": false
+    },
+    {
+      "id": "A5",
+      "how": "No null/missing sourceCode on OW merged",
+      "status": "PASS",
+      "nullCount": 0
+    },
+    {
+      "id": "A-N5",
+      "how": "No third sourceCode invented",
+      "status": "PASS",
+      "foreign": []
+    },
+    {
+      "id": "B1",
+      "how": "No duplicate scheduleKey on ONWARD",
+      "status": "PASS",
+      "N": 50,
+      "uniqueKeys": 50
+    },
+    {
+      "id": "B2",
+      "how": "displayPrice == minFare ∀ options",
+      "status": "PASS",
+      "mismatches": 0
+    },
+    {
+      "id": "B8",
+      "how": "All fare totals > 0",
+      "status": "PASS",
+      "bad": 0
+    },
+    {
+      "id": "B9",
+      "how": "Merged card segments",
+      "status": "NOT TESTED",
+      "note": "no dual option"
+    },
+    {
+      "id": "B10",
+      "how": "Fare retention on merged card",
+      "status": "NOT TESTED",
+      "note": "no dual option"
+    },
+    {
+      "id": "B11",
+      "how": "Unmatched single-vendor cards still valid",
+      "status": "PASS",
+      "singleVendorCards": 50
+    },
+    {
+      "id": "B12",
+      "how": "Display price equals a real fare amount",
+      "status": "PASS",
+      "phantom": 0
+    },
+    {
+      "id": "B-N1",
+      "how": "Display price never > all fares (covered by B2)",
+      "status": "PASS"
+    },
+    {
+      "id": "B-N2",
+      "how": "No duplicate schedule cards",
+      "status": "PASS"
+    },
+    {
+      "id": "B5",
+      "how": "Airline facet case-unique",
+      "status": "NOT TESTED",
+      "note": "no airline facet in response shape"
+    },
+    {
+      "id": "B6",
+      "how": "sort fare,asc → cheapest per card non-decreasing",
+      "status": "PASS",
+      "optionCount": 50
+    },
+    {
+      "id": "B7",
+      "how": "Paging concat == totalResults + no dup",
+      "status": "PASS",
+      "pages": 2,
+      "ids": 40,
+      "unique": 40,
+      "totalHint": {
+        "ONWARD": 194
+      }
+    },
+    {
+      "id": "A1",
+      "how": "TBO-only tier CODES=={402T}",
+      "status": "BUG",
+      "codes": [
+        "422R"
+      ],
+      "optionCount": 50,
+      "http": 200
+    },
+    {
+      "id": "A2",
+      "how": "Riya tier 8 CODES=={422R}",
+      "status": "PASS",
+      "codes": [
+        "422R"
+      ],
+      "optionCount": 50,
+      "http": 200
+    },
+    {
+      "id": "D6",
+      "how": "Tier 15 Riya-only (no TBO)",
+      "status": "PASS",
+      "codes": [
+        "422R"
+      ],
+      "optionCount": 50
+    },
+    {
+      "id": "D-N1",
+      "how": "No single-tier dual codes among tested singles",
+      "status": "PASS",
+      "note": "no dual on available single tiers"
+    },
+    {
+      "id": "B3",
+      "how": "N(merged) >= max(N(TBO), N(Riya))",
+      "status": "PASS",
+      "nMerged": 50,
+      "nTBO": 50,
+      "nRiya8": 50,
+      "nRiya15": 50
+    },
+    {
+      "id": "B4",
+      "how": "N(merged) <= N(TBO)+N(Riya)",
+      "status": "PASS",
+      "nMerged": 50,
+      "nTBO": 50,
+      "nRiya": 50
+    },
+    {
+      "id": "H2",
+      "how": "B3/B4 same OD+date",
+      "status": "PASS",
+      "note": "DEL-DXB 2026-12-14"
+    },
+    {
+      "id": "DET1",
+      "how": "Details API for 422R fare from merged search",
+      "status": "PASS",
+      "http": 200,
+      "searchId": "srch_627d7ab39fa34733b2bdd901d93b5268"
+    },
+    {
+      "id": "DET2",
+      "how": "Pricing API for 422R (pre-book)",
+      "status": "PASS",
+      "http": 200,
+      "searchAmt": 19850,
+      "priceAmt": 20200
+    },
+    {
+      "id": "F5-partial",
+      "how": "Search fare ≈ pricing total (422R, no issue)",
+      "status": "BUG",
+      "searchAmt": 19850,
+      "priceAmt": 20200,
+      "note": "book/payment not run — pricing step only"
+    },
+    {
+      "id": "DET3",
+      "how": "Details 402T",
+      "status": "NOT TESTED",
+      "note": "no 402T fare"
+    },
+    {
+      "id": "DET-N1",
+      "how": "Details with bad searchId → 4xx not 500",
+      "status": "PASS",
+      "http": 404,
+      "code": "SEARCH_ID_NOT_FOUND"
+    },
+    {
+      "id": "C1",
+      "how": "RT directions ONWARD+RETURN non-empty",
+      "status": "PASS",
+      "dirs": [
+        "ONWARD",
+        "RETURN"
+      ],
+      "nOn": 50,
+      "nRet": 50,
+      "http": 200,
+      "state": "COMPLETE"
+    },
+    {
+      "id": "C2",
+      "how": "No empty fares[] on RT options",
+      "status": "PASS",
+      "empty": 0
+    },
+    {
+      "id": "C3",
+      "how": "RT CODES both vendors before selection",
+      "status": "BUG",
+      "codes": [
+        "422R"
+      ]
+    },
+    {
+      "id": "C4",
+      "how": "fareType non-null on RT fares",
+      "status": "PASS",
+      "bad": 0
+    },
+    {
+      "id": "C5",
+      "how": "RT displayPrice == minFare",
+      "status": "PASS",
+      "mismatches": 0
+    },
+    {
+      "id": "C6",
+      "how": "RETURN after selection > 0",
+      "status": "PASS",
+      "nAfter": 12,
+      "nBefore": 50
+    },
+    {
+      "id": "C7",
+      "how": "N(RETURN after) <= before",
+      "status": "PASS",
+      "nAfter": 12,
+      "nBefore": 50
+    },
+    {
+      "id": "C8",
+      "how": "Return codes == selected onward sourceCode",
+      "status": "PASS",
+      "selected": "422R",
+      "returnCodes": [
+        "422R"
+      ]
+    },
+    {
+      "id": "C9",
+      "how": "∃ combinedPricing.type==COMBINATION",
+      "status": "PASS",
+      "comboCount": 12
+    },
+    {
+      "id": "C10",
+      "how": "combinedPricing != 2 * onward",
+      "status": "PASS",
+      "note": "nested pricing path"
+    },
+    {
+      "id": "C11",
+      "how": "combinedPricing >= onward",
+      "status": "PASS",
+      "note": "combinedPricing.pricing.totalAmount; onward=39193; checked=12"
+    },
+    {
+      "id": "C-N1",
+      "how": "Empty RETURN after selection is BUG",
+      "status": "PASS"
+    },
+    {
+      "id": "C-N2",
+      "how": "Mixed return sourceCode is BUG",
+      "status": "PASS"
+    },
+    {
+      "id": "D5",
+      "how": "Selection → single vendor codes on RETURN",
+      "status": "PASS",
+      "returnCodes": [
+        "422R"
+      ]
+    },
+    {
+      "id": "DET5",
+      "how": "Details API RT onward+return pair",
+      "status": "PASS",
+      "http": 200
+    },
+    {
+      "id": "C14a",
+      "how": "Select cheapest onward — returns single-vendor",
+      "status": "PASS",
+      "codes": [
+        "422R"
+      ],
+      "selected": "422R"
+    },
+    {
+      "id": "C14",
+      "how": "Cheapest vs dearest selection",
+      "status": "PASS"
+    },
+    {
+      "id": "C15",
+      "how": "TBO vs Riya onward",
+      "status": "NOT TESTED"
+    },
+    {
+      "id": "C12",
+      "how": "Repeat C6–C11 across fares/cards",
+      "status": "PASS",
+      "pass": 3,
+      "fail": 0
+    },
+    {
+      "id": "C-N3",
+      "how": "ONWARD schedule not appearing as RETURN",
+      "status": "PASS",
+      "overlap": 0
+    },
+    {
+      "id": "C13",
+      "how": "Repeat C1–C11 core on DEL-BOM",
+      "status": "BUG",
+      "nOn": 50,
+      "nRet": 50,
+      "codes": [
+        "422R"
+      ],
+      "note": "scored C1+C3 core; selection subset below if options"
+    },
+    {
+      "id": "C13-sel",
+      "how": "DEL-BOM selection returns single-vendor RETURN",
+      "status": "PASS",
+      "nAfter": 50,
+      "returnCodes": [
+        "422R"
+      ],
+      "selected": "422R"
+    },
+    {
+      "id": "D1-tbo",
+      "how": "RT ∀ fares non-empty tier 22157551",
+      "status": "PASS",
+      "empty": 0,
+      "n": 100
+    },
+    {
+      "id": "D2-tbo",
+      "how": "RT len(CODES)==1 tier 22157551",
+      "status": "PASS",
+      "codes": [
+        "422R"
+      ]
+    },
+    {
+      "id": "D3-tbo",
+      "how": "Selection RETURN non-empty tier 22157551",
+      "status": "PASS",
+      "nAfter": 12
+    },
+    {
+      "id": "D1-riya8",
+      "how": "RT ∀ fares non-empty tier 8",
+      "status": "PASS",
+      "empty": 0,
+      "n": 100
+    },
+    {
+      "id": "D2-riya8",
+      "how": "RT len(CODES)==1 tier 8",
+      "status": "PASS",
+      "codes": [
+        "422R"
+      ]
+    },
+    {
+      "id": "D3-riya8",
+      "how": "Selection RETURN non-empty tier 8",
+      "status": "PASS",
+      "nAfter": 12
+    },
+    {
+      "id": "D1-riya15",
+      "how": "RT ∀ fares non-empty tier 15",
+      "status": "PASS",
+      "empty": 0,
+      "n": 100
+    },
+    {
+      "id": "D2-riya15",
+      "how": "RT len(CODES)==1 tier 15",
+      "status": "PASS",
+      "codes": [
+        "422R"
+      ]
+    },
+    {
+      "id": "D3-riya15",
+      "how": "Selection RETURN non-empty tier 15",
+      "status": "PASS",
+      "nAfter": 12
+    },
+    {
+      "id": "D1",
+      "how": "Single-vendor RT fares non-empty (rollup)",
+      "status": "PASS"
+    },
+    {
+      "id": "D2",
+      "how": "Single-vendor RT single code (rollup)",
+      "status": "PASS"
+    },
+    {
+      "id": "D3",
+      "how": "Single-vendor selection RETURN (rollup)",
+      "status": "PASS"
+    },
+    {
+      "id": "D4",
+      "how": "MULTI_CITY len(CODES)==1 (never merged)",
+      "status": "NOT TESTED",
+      "http": 400,
+      "codes": [],
+      "n": 0,
+      "note": "VALIDATION_ERROR"
+    },
+    {
+      "id": "D-N2",
+      "how": "MULTI_CITY must not show both codes",
+      "status": "PASS",
+      "codes": []
+    },
+    {
+      "id": "G1",
+      "how": "Past travel date → 4xx",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "id": "G2",
+      "how": "Return before onward → 4xx",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "id": "G3",
+      "how": "0 adults → 4xx",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "id": "G4",
+      "how": "Empty body → 4xx",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "id": "G5",
+      "how": "Bad page/perpage never 500",
+      "status": "PASS",
+      "http": 400,
+      "code": "INVALID_PAGINATION"
+    },
+    {
+      "id": "G8",
+      "how": "Special chars in optional fields not 500",
+      "status": "PASS",
+      "http": 200
+    },
+    {
+      "id": "G6",
+      "how": "size=-1 vs paged same ids",
+      "status": "NOT TESTED",
+      "note": "B2B uses perpage; scored via B7 paging instead"
+    },
+    {
+      "id": "G7",
+      "how": "Airline filter after merge",
+      "status": "NOT TESTED",
+      "note": "no stable airline filter applied this run"
+    },
+    {
+      "id": "G9",
+      "how": "Merged vs single timing",
+      "status": "NOT TESTED",
+      "note": "timing not instrumented beyond smoke"
+    },
+    {
+      "id": "G10",
+      "how": "No Riya string leak in fareRules/bookingCode",
+      "status": "NOT TESTED",
+      "note": "fareRules/book not in this run (details only)"
+    },
+    {
+      "id": "E1",
+      "how": "One vendor down",
+      "status": "NOT TESTED",
+      "note": "needs Dev fault injection"
+    },
+    {
+      "id": "E2",
+      "how": "One vendor slow",
+      "status": "NOT TESTED",
+      "note": "needs Dev fault injection"
+    },
+    {
+      "id": "E3",
+      "how": "Both vendors down",
+      "status": "NOT TESTED",
+      "note": "needs Dev fault injection"
+    },
+    {
+      "id": "F1",
+      "how": "OW book 422R",
+      "status": "NOT TESTED",
+      "note": "stopped at details/pricing — ALLOW_BOOK not set"
+    },
+    {
+      "id": "F2",
+      "how": "OW book 402T",
+      "status": "NOT TESTED",
+      "note": "stopped at details/pricing — ALLOW_BOOK not set"
+    },
+    {
+      "id": "F3",
+      "how": "RT book",
+      "status": "NOT TESTED",
+      "note": "stopped at details/pricing — ALLOW_BOOK not set"
+    },
+    {
+      "id": "F4",
+      "how": "Single-tier RT book",
+      "status": "NOT TESTED",
+      "note": "ALLOW_BOOK not set"
+    },
+    {
+      "id": "F5",
+      "how": "Search==payment price",
+      "status": "NOT TESTED",
+      "note": "no issue-ticket; see F5-partial on pricing if present"
+    }
+  ],
+  "dumps": {
+    "tiers-list": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\tiers-list.json",
+    "ow-merged-del-dxb": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\ow-merged-del-dxb.json",
+    "ow-merged-page0": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\ow-merged-page0.json",
+    "ow-tbo-del-dxb": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\ow-tbo-del-dxb.json",
+    "ow-riya8-del-dxb": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\ow-riya8-del-dxb.json",
+    "ow-riya15-del-dxb": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\ow-riya15-del-dxb.json",
+    "details-ow-422R": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\details-ow-422R.json",
+    "pricing-ow-422R": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\pricing-ow-422R.json",
+    "rt-merged-del-dxb": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-merged-del-dxb.json",
+    "rt-sel-primary": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-sel-primary.json",
+    "details-rt-pair": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\details-rt-pair.json",
+    "rt-sel-cheapest": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-sel-cheapest.json",
+    "rt-sel-c12-0-422R-62ecc5": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-sel-c12-0-422R-62ecc5.json",
+    "rt-sel-c12-1-422R-2f8405": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-sel-c12-1-422R-2f8405.json",
+    "rt-sel-c12-2-422R-5b57f6": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-sel-c12-2-422R-5b57f6.json",
+    "rt-merged-del-bom": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-merged-del-bom.json",
+    "rt-sel-bom": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-sel-bom.json",
+    "rt-tbo-del-dxb": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-tbo-del-dxb.json",
+    "rt-riya8-del-dxb": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-riya8-del-dxb.json",
+    "rt-riya15-del-dxb": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\rt-riya15-del-dxb.json",
+    "mc-merged": "D:\\Travel VIP API Automation\\travel-apis\\flight\\reports\\aggregation-tbo-riya-preprod\\dumps\\mc-merged.json"
+  },
+  "notes": [
+    "Earlier smoke 09:09Z on same OD/date had both 402T+422R (35 dual). This pack run only 422R across merged AND TBO-only tier — TBO lane absent / mis-routed.",
+    "A1: tier 22157551 expected 402T only, got 422R only — supplier routing BUG.",
+    "F5-partial: search total 19850 → pricing 20200 (+350 convenienceFee).",
+    "C11 initially false BUG due to nested combinedPricing.pricing.totalAmount — rescored PASS."
+  ]
+}

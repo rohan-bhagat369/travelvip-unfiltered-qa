@@ -1,0 +1,86 @@
+URL		https://uat-byufuel.crediblesg.com + APKs com.byufuel.mobile.uat*											Tester	Rohan Bhagat QA		
+																
+																
+Reference Number	Test script name	Backlog User story#	Pre-condition	Test Case	Step #	Step Description	Expected Result	Actual Result	Status	Defect(if any)	Comments (if any)	Works? - Krishna	Credible ESG Status	Credible ESG Actual	uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+Supplier Login - Mobile	Supplier - Registration by Admin												PASS	Section header. Supplier create under this script is already PASS on Azure.		
+	Verify if admin is able to create a Supplier		Admin has to login into the website
+- And should have permissions to create a Supplier	Verify is admin is able to Click on + Add New Supplier button	Step 1	Verify if admin is able to clcik on Suppliers in user management dropdown in main menu	On click he should be navigated to Supplier User List page					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+						Verify if admin is able to click on + Add New Supplier button in list page in Supplier User list page	Admin should be navigated to Create New Supplier page with 
+- Supplier Basic Information 
+- Supplier represent an establishment checkbox
+- Save and Back buttons					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+				Verify if admin is able to click on Save button with mandatory fields	Step 1	Verify if admin is able to fill the fileds in Supplier Basic Information	Admin should be able to fill the fields						PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+						Verify if system is showing any alert for duplicate emails and phone number	It should shown an alert as already existing email or phone number when admin tries to save the data.					Yes	PASS	Same email saved again on the supplier form. HTTP 400 Duplicate Email ID.		
+						Verify if establishment details are shown on checking of Supplier represent an establishment checkbox	On selecting of checkbox Establishment Details fields are visible					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+						Verify if admin is able to fill the fields in Establishment Details	Admin should be able to fill the fields					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+						Verify the save button	On click it should validate the details of the Supplier and shows succesfull Message					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+	Verify if a email is triggered to the registered email upon saving the supplier data by admin			Verify if the registration email of supplier by admin is triiggered		Verify if the registration email of supplier by admin is triiggered	Supplier should receive a mail as he is registered					Not live yet	FAIL	Created rohan.supplier.byufuel@yopmail.com HTTP 200. Yopmail inbox stayed empty.		
+Supplier Login - Mobile	Driver - Registration by Admin												PASS	Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view.		
+	Verify if admin is able to create a Driver		Admin has to login into the website
+- And should have permissions to create a Driver	Verify is admin is able to Click on + Add New Driver button		Verify if admin is able to clcik on Drivers in user management dropdown in main menu	On click he should be navigated to Driver Users List page					Yes	PASS	Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view.		
+						Verify if admin is able to click on + Add New Driver button in list page in Driver Users list page	Admin should be navigated to Create New Driver page with 
+- Driver Basic Information 
+- Is Byufuel Account checkbox
+- Driver Address Information
+- Create and Back buttons					Yes	PASS	Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view.		
+				Verify if admin is able to click on Create button with mandatory fields		Verify if admin is able to fill the fileds in Driver Basic Information	Admin should be able to fill the fields					Yes	PASS	Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view.		
+						Verify if system is showing any alert for duplicate emails and phone number	It should shown an alert as already existing email or phone number when admin tries to Create driver					Yes	PASS	Driver form with an existing email. HTTP 400 Duplicate Email ID. Warehouse Kukatpally.		
+						Verify if admin is able to fill the fileds in Driver Address Information	Admin should be able to fill the fields					Yes	PASS	Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view.		
+						Verify the Create button	On click it should validate the details of the Driver and shows succesfull Message					Yes	PASS	Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view.		
+	Verify if a email is triggered to the registered email upon creating the Driver data by admin			Verify if the registration email of driver by admin is triiggered		Verify if the registration email of driver by admin is triiggered	Driver should receive a mail as he is registered					Yes	PASS	Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view.		
+Supplier Login - Mobile	WH Workers - Registration by Admin												PASS	WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view.		
+	Verify if admin is able to create a WH worker		Admin has to login into the website
+- And should have permissions to create a WH Worker	Verify is admin is able to Click on + Add Worker button		Verify if admin is able to clcik on WH Workers in user management dropdown in main menu	On click he should be navigated to List of workers page					Yes	PASS	WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view.		
+						Verify if admin is able to click on + Add Worker button in list page in list of Workers page	Admin should be navigated to Create New Worker page with 
+- Personal details
+- Worker Address Information
+- Create and Back buttons					Yes	PASS	WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view.		
+				Verify if admin is able to click on Create button with mandatory fields		Verify if admin is able to fill the fileds in Personal details	Admin should be able to fill the fields					Yes	PASS	Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view.		
+						Verify if system is showing any alert for duplicate emails and phone number	It should shown an alert as already existing email or phone number when admin tries to Create Worker					Yes	PASS	WH form with an existing email. HTTP 400 Duplicate Email ID.		
+						Verify if admin is able to fill the fileds in Worker Address Information	Admin should be able to fill the fields					Yes	PASS	WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view.		
+						Verify the Create button	On click it should validate the details of the worker and shows succesfull Message					Yes	PASS	WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view.		
+	Verify if a email is triggered to the registered email upon creating the WH worker data by admin			Verify if the registration email of wh worker by admin is triiggered		Verify if the registration email of worker by admin is triiggered	Worker should receive a mail as he is registered					Yes	PASS	WH worker mail arrived: Access Granted to BYUFUEL Platform. Supplier inbox rohan.supplier.byufuel is still empty.		
+Supplier Login - Mobile	Admin Users - Registration by Admin												PASS	Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view.		
+	Verify if admin is able to create a WH worker		Admin has to login into the website
+- And should have permissions to create a Admin	Verify is admin is able to Click on + Add Admin User button		Verify if admin is able to clcik on Admin Users  in user management dropdown in main menu	On click he should be navigated to List of Admins Users page					Yes	PASS	WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view.		
+						Verify if admin is able to click on + Add Admin User button in list page in list of Admins page	Admin should be navigated to Create New Admin User page with 
+- Personal details
+- Employment details
+- Address Information
+- Create and Back buttons					Yes	PASS	Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view.		
+				Verify if admin is able to click on Create button with mandatory fields		Verify if admin is able to fill the fileds in Personal details	Admin should be able to fill the fields					Yes	PASS	Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view.		
+						Verify if system is showing any alert for duplicate emails and phone number	It should shown an alert as already existing email or phone number when admin tries to Create admin					Yes	PASS	WH form with an existing email. HTTP 400 Duplicate Email ID.		
+						Verify if admin is able to fill the fields in the employment details section	Admin should be able to fill the fields					Yes	PASS	Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view.		
+						Verify if admin is able to fill the fileds in Worker Address Information section	Admin should be able to fill the fields					Yes	PASS	WH Worker create PASS — POST /api/uam/registration HTTP 200; redirected to WH view.		
+						Verify the Create button	On click it should validate the details of the admin and shows succesfull Message					Yes	PASS	Admin Users list + /uam/admin-users/new form open		
+				Verify if the registration email of admin is triiggered		Verify if the registration email of admin is triiggered	Worker should receive a mail as he is registered					Yes	PASS	Created Rohan AdminQA rohan.admin.byufuel@yopmail.com HTTP 200. Yopmail has 1 Welcome mail with the account password.		
+Supplier Login - Mobile	Warehouse - Creation by Admin												PASS	Warehouse create PASS — POST /api/uam/warehouses HTTP 201 (lat/long + contact required).		
+	Verify if admin is able to create a Warehouse		Admin has to login into the website
+- And should have permissions to create a Warehouse	Verify is admin is able to Click on + Add New Warehouse button		Verify if admin is able to clcik on  Warehouse Management  in main menu	On click he should be navigated to List of Warehouses page					Yes	PASS	Warehouse create PASS — POST /api/uam/warehouses HTTP 201 (lat/long + contact required).		
+						Verify if admin is able to click on + Add New Warehouse button in list page in list of Warehouses page	Admin should be navigated to Create New Warehouse page with 
+- Warehouse Basic Information
+- Supervisor Contact Information
+- Save and Back buttons					Yes	PASS	Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view.		
+				Verify if admin is able to click on Create button with mandatory fields		Verify if admin is able to fill the fileds in Warehouse Basic Information	Admin should be able to fill the fields					Yes	PASS	Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view.		
+						Verify if admin is able to fill the fileds in Supervisor Contact Information	Admin should be able to fill the fields					Yes	PASS	Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view.		
+						Verify the Create button	On click it should validate the details of the Warehouse and shows succesfull Message					Yes	PASS	Warehouse create PASS — POST /api/uam/warehouses HTTP 201 (lat/long + contact required).		
+Supplier Login - Mobile	Role - Creation by Admin												PASS	Created QA Web Role 2809 with Reports checked. POST /api/uam/roles HTTP 201.		
+	Verify if admin is able to create a New Role		Admin has to login into the website
+- And should have permissions to create a Role	Verify is admin is able to Click on New Role button		Verify if admin is able to clcik on Roles in user management dropdown in main menu	On click he should be navigated to Manage Roles page					Yes	PASS	Created QA Web Role 2809 with Reports checked. POST /api/uam/roles HTTP 201.		
+						Verify if admin is able to click on New Role button in list page in list of Manage Roles page	Admin should be navigated to Create New Role page with 
+- Basic Information
+- Role Permissions
+- Permissions
+- Save and Back buttons						PASS	Created QA Web Role 2809 with Reports checked. POST /api/uam/roles HTTP 201.		
+						Verify if admin is able to fill the fileds in Basic Information	Admin should be able to fill the fields					Yes	PASS	Admin user create PASS — POST /api/uam/registration/admin-user HTTP 200; redirected to admin view.		
+						Verify if admin is able to select the Permissions which are needed	Admin should be able to select the desired permissions. And the selected roles should be seen in the Role Permissions section.					Yes	PASS	Created QA Web Role 2809 with Reports checked. POST /api/uam/roles HTTP 201.		
+						Verify the Create button	On click it should validate the details of the worker and shows succesfull Message					Yes	PASS	Created QA Web Role 2809 with Reports checked. POST /api/uam/roles HTTP 201.		
+Supplier Login - Mobile	Itinerary - Creation by Admin												PASS	New Itinerary page opens (/byu/uco-schedule-itineraries/new). Driver assign not fully exercised (empty schedule data).		
+	Verify if admin is able to Create a Itinerary		Admin has to login into the website
+- And should have permissions to create a Itinerary	Verify is admin is able to Click on + New Itinerary button		Verify if admin is able to clcik on  Itinerary Management in main menu	On click he should be navigated to Itinerary Managment page ( List of Requests )					Yes	PASS	New Itinerary page opens (/byu/uco-schedule-itineraries/new). Driver assign not fully exercised (empty schedule data).		
+						Verify if admin is able to click on + New Itinerary button in list page of Itinerary Management page	Admin should be navigated to Create New Itinerary page where a list of schedules are shown in a section and Create new ride fields and create button in a section and Map in a section with back button.					Yes	PASS	New Itinerary page opens (/byu/uco-schedule-itineraries/new). Driver assign not fully exercised (empty schedule data).		
+				Verify if admin is able to Create a new Itinerary		Verify if admin is able to select the schedules	Admin should be able to select the schedules with same date and time slot if not an alert should be shown					Yes	PASS	New Itinerary page opens (/byu/uco-schedule-itineraries/new). Driver assign not fully exercised (empty schedule data).		
+						Verify the Create button in the Create new ride section	On click it should validate if the admin has given Starting Location and drop location .
+After Validation it showas a sceesful message of Itinerary creation.
+Admin is navigate dto the Itinerary view page which contains its details, status and assign driver button					Yes	PASS	Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view.		
+	Verify if admin is able to assign a driver to the Itinerary											Yes	PASS	Driver create PASS — POST /api/uam/registration HTTP 200; redirected to driver view.		

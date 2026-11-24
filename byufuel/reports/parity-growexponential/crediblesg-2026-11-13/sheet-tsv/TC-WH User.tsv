@@ -1,0 +1,16 @@
+URL		https://uat-byufuel.crediblesg.com + APKs com.byufuel.mobile.uat*											Tester	Rohan Bhagat QA		
+																
+																
+Reference Number	Test script name	Backlog User story#	Pre-condition	Test Case	Step #	Step Description	Expected Result	Actual Result	Status	Defect(if any)	Comments (if any)	Works? - Krishna	Credible ESG Status	Credible ESG Actual	uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+Supplier Login - Mobile	WH Workers - Registration by Admin												PASS	WH Worker full create PASS (API 200 + view redirect).		
+	Verify if admin is able to create a WH worker		Admin has to login into the website	Verify is admin is able to Click on + Add Worker button		Verify if admin is able to clcik on WH Workers in user management dropdown in main menu	On click he should be navigated to List of workers page					Yes	PASS	WH Worker full create PASS (API 200 + view redirect).		
+						Verify if admin is able to click on + Add Worker button in list page in list of Workers page	Admin should be navigated to Create New Worker page with 
+- Personal details
+- Worker Address Information
+- Create and Back buttons					Yes	PASS	WH Worker full create PASS (API 200 + view redirect).		
+				Verify if admin is able to click on Create button with mandatory fields		Verify if admin is able to fill the fileds in Personal details	Admin should be able to fill the fields					Yes	PASS	WH Worker full create PASS (API 200 + view redirect).		
+						Verify if system is showing any alert for duplicate emails and phone number	It should shown an alert as already existing email or phone number when admin tries to Create worker					Yes	PASS	WH form with an existing email. HTTP 400 Duplicate Email ID.		
+						Verify if admin is able to fill the fileds in Worker Address Information	Admin should be able to fill the fields					Yes	PASS	WH Worker full create PASS (API 200 + view redirect).		
+						Verify the Create button	On click it should validate the details of the worker and shows succesfull Message					Yes	PASS	WH Worker full create PASS (API 200 + view redirect).		
+	Verify if a email is triggered to the registered email upon creating the WH worker data by admin			Verify if the registration email of wh worker by admin is triiggered		Verify if the registration email of worker by admin is triiggered	Worker should receive a mail as he is registered					Yes	PASS	Inbox now has 1 mail from no-reply@byufuel.in: Access Granted to BYUFUEL Platform, 14:40. It was empty on the earlier check.		
+Supplier Login - Mobile													PASS	Row has no steps. It is a section divider.		

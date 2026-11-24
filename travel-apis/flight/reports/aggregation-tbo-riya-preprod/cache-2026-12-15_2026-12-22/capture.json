@@ -1,0 +1,584 @@
+{
+  "capturedAt": "2026-11-24T09:05:14.498Z",
+  "env": "https://preprod-api.travelvip.ai",
+  "partner": "vgm",
+  "correlationId": "61cf4cff-e35a-43ca-bd47-06f79d877b67",
+  "dates": {
+    "onward": "2026-12-15",
+    "return": "2026-12-22"
+  },
+  "l2b": {
+    "uniqueLooks": "OW DEL-DXB x4 tiers, RT DEL-DXB x4 tiers, RT DEL-BOM merged (+ MULTI_CITY, rejected by API)",
+    "httpSearchCalls": 44,
+    "detailsCalls": 2,
+    "pricingCalls": 2,
+    "bookingCalls": 0
+  },
+  "files": {
+    "sessions": "sessions.json",
+    "ow-dxb-tbo": "ow-dxb-tbo.json",
+    "ow-dxb-riya8": "ow-dxb-riya8.json",
+    "ow-dxb-riya15": "ow-dxb-riya15.json",
+    "ow-dxb-merged-p0": "ow-dxb-merged-p0.json",
+    "ow-dxb-merged-p1": "ow-dxb-merged-p1.json",
+    "ow-dxb-merged-p2": "ow-dxb-merged-p2.json",
+    "ow-dxb-merged-p3": "ow-dxb-merged-p3.json",
+    "ow-dxb-merged-p4": "ow-dxb-merged-p4.json",
+    "details-ow-422R": "details-ow-422R.json",
+    "pricing-ow-422R": "pricing-ow-422R.json",
+    "details-ow-402T": "details-ow-402T.json",
+    "pricing-ow-402T": "pricing-ow-402T.json",
+    "rt-dxb-tbo": "rt-dxb-tbo.json",
+    "rt-dxb-tbo-sel": "rt-dxb-tbo-sel.json",
+    "rt-dxb-riya8": "rt-dxb-riya8.json",
+    "rt-dxb-riya8-sel": "rt-dxb-riya8-sel.json",
+    "rt-dxb-riya15": "rt-dxb-riya15.json",
+    "rt-dxb-riya15-sel": "rt-dxb-riya15-sel.json",
+    "rt-dxb-merged": "rt-dxb-merged.json",
+    "rt-dxb-merged-sel0": "rt-dxb-merged-sel0.json",
+    "rt-dxb-merged-sel1": "rt-dxb-merged-sel1.json",
+    "rt-dxb-merged-sel2": "rt-dxb-merged-sel2.json",
+    "rt-dxb-merged-sel3": "rt-dxb-merged-sel3.json",
+    "rt-dxb-merged-sel4": "rt-dxb-merged-sel4.json",
+    "rt-dxb-merged-sel5": "rt-dxb-merged-sel5.json",
+    "rt-dxb-merged-sel6": "rt-dxb-merged-sel6.json",
+    "rt-dxb-merged-sel7": "rt-dxb-merged-sel7.json",
+    "rt-dxb-merged-selections": "rt-dxb-merged-selections.json",
+    "rt-bom-merged": "rt-bom-merged.json",
+    "rt-bom-merged-sel-422R": "rt-bom-merged-sel-422R.json",
+    "mc-merged": "mc-merged.json",
+    "negatives": "negatives.json"
+  },
+  "ledger": [
+    {
+      "at": "2026-11-24T09:02:54.319Z",
+      "tag": "token",
+      "path": "/auth/partner/token",
+      "query": "",
+      "http": 200,
+      "ms": 694,
+      "state": null,
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:02:55.018Z",
+      "tag": "session-22157551",
+      "path": "/v1/auth/session",
+      "query": "",
+      "http": 200,
+      "ms": 2494,
+      "state": null,
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:02:57.521Z",
+      "tag": "session-8",
+      "path": "/v1/auth/session",
+      "query": "",
+      "http": 200,
+      "ms": 3264,
+      "state": null,
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:03:00.785Z",
+      "tag": "session-15",
+      "path": "/v1/auth/session",
+      "query": "",
+      "http": 200,
+      "ms": 1813,
+      "state": null,
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:03:02.600Z",
+      "tag": "session-22101801",
+      "path": "/v1/auth/session",
+      "query": "",
+      "http": 200,
+      "ms": 1457,
+      "state": null,
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:03:04.062Z",
+      "tag": "ow-dxb-tbo",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 14446,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795510999104"
+    },
+    {
+      "at": "2026-11-24T09:03:21.523Z",
+      "tag": "ow-dxb-tbo",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 562,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795510999104"
+    },
+    {
+      "at": "2026-11-24T09:03:22.109Z",
+      "tag": "ow-dxb-riya8",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 419,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795510999104"
+    },
+    {
+      "at": "2026-11-24T09:03:22.557Z",
+      "tag": "ow-dxb-riya15",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 405,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795510999104"
+    },
+    {
+      "at": "2026-11-24T09:03:23.003Z",
+      "tag": "ow-dxb-merged-p0",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 379,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795510999104"
+    },
+    {
+      "at": "2026-11-24T09:03:23.496Z",
+      "tag": "ow-dxb-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=1&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 435,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795510999104"
+    },
+    {
+      "at": "2026-11-24T09:03:24.059Z",
+      "tag": "ow-dxb-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=2&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 564,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795510999104"
+    },
+    {
+      "at": "2026-11-24T09:03:24.703Z",
+      "tag": "ow-dxb-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=3&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 370,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795510999104"
+    },
+    {
+      "at": "2026-11-24T09:03:25.104Z",
+      "tag": "ow-dxb-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=4&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 417,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795510999104"
+    },
+    {
+      "at": "2026-11-24T09:03:25.541Z",
+      "tag": "details-422R",
+      "path": "/v1/flights/details",
+      "query": "lang=en&currency=INR",
+      "http": 200,
+      "ms": 268,
+      "state": null,
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:03:25.811Z",
+      "tag": "pricing-422R",
+      "path": "/v1/flights/pricing",
+      "query": "lang=en&currency=INR",
+      "http": 200,
+      "ms": 4778,
+      "state": null,
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:03:30.595Z",
+      "tag": "details-402T",
+      "path": "/v1/flights/details",
+      "query": "lang=en&currency=INR",
+      "http": 200,
+      "ms": 304,
+      "state": null,
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:03:30.908Z",
+      "tag": "pricing-402T",
+      "path": "/v1/flights/pricing",
+      "query": "lang=en&currency=INR",
+      "http": 200,
+      "ms": 8339,
+      "state": null,
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:03:39.264Z",
+      "tag": "rt-dxb-tbo",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 25240,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511031078"
+    },
+    {
+      "at": "2026-11-24T09:04:06.009Z",
+      "tag": "rt-dxb-tbo",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 348,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:06.437Z",
+      "tag": "rt-dxb-tbo-sel",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 569,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:07.048Z",
+      "tag": "rt-dxb-riya8",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 347,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:07.431Z",
+      "tag": "rt-dxb-riya8-sel",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 397,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:07.850Z",
+      "tag": "rt-dxb-riya15",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 367,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:08.248Z",
+      "tag": "rt-dxb-riya15-sel",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 368,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:08.645Z",
+      "tag": "rt-dxb-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 305,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:08.981Z",
+      "tag": "rt-dxb-merged-sel0",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 400,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:09.423Z",
+      "tag": "rt-dxb-merged-sel1",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 710,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511038316"
+    },
+    {
+      "at": "2026-11-24T09:04:10.145Z",
+      "tag": "rt-dxb-merged-sel2",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 807,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511038316"
+    },
+    {
+      "at": "2026-11-24T09:04:10.961Z",
+      "tag": "rt-dxb-merged-sel3",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 431,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:11.424Z",
+      "tag": "rt-dxb-merged-sel4",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 350,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511046009"
+    },
+    {
+      "at": "2026-11-24T09:04:11.798Z",
+      "tag": "rt-dxb-merged-sel5",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 372,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511038316"
+    },
+    {
+      "at": "2026-11-24T09:04:12.186Z",
+      "tag": "rt-dxb-merged-sel6",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 457,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511038316"
+    },
+    {
+      "at": "2026-11-24T09:04:12.651Z",
+      "tag": "rt-dxb-merged-sel7",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 435,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511038316"
+    },
+    {
+      "at": "2026-11-24T09:04:13.093Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 17470,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511071384"
+    },
+    {
+      "at": "2026-11-24T09:04:34.347Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 353,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511071384"
+    },
+    {
+      "at": "2026-11-24T09:04:37.945Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 285,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511071384"
+    },
+    {
+      "at": "2026-11-24T09:04:41.325Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 298,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511071384"
+    },
+    {
+      "at": "2026-11-24T09:04:44.896Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 353,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511068162"
+    },
+    {
+      "at": "2026-11-24T09:04:48.335Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 480,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511068162"
+    },
+    {
+      "at": "2026-11-24T09:04:52.015Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 431,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511068162"
+    },
+    {
+      "at": "2026-11-24T09:04:55.633Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 444,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511068162"
+    },
+    {
+      "at": "2026-11-24T09:04:59.264Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 396,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511068162"
+    },
+    {
+      "at": "2026-11-24T09:05:02.743Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 412,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511068162"
+    },
+    {
+      "at": "2026-11-24T09:05:06.242Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 361,
+      "state": "INPROGRESS",
+      "cacheTimeStamp": "1795511068162"
+    },
+    {
+      "at": "2026-11-24T09:05:09.830Z",
+      "tag": "rt-bom-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 1576,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511109110"
+    },
+    {
+      "at": "2026-11-24T09:05:11.426Z",
+      "tag": "rt-bom-sel-422R",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 200,
+      "ms": 1042,
+      "state": "COMPLETE",
+      "cacheTimeStamp": "1795511109110"
+    },
+    {
+      "at": "2026-11-24T09:05:12.571Z",
+      "tag": "mc-merged",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 400,
+      "ms": 219,
+      "state": "VALIDATION_ERROR",
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:05:12.791Z",
+      "tag": "G1-past-date",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 400,
+      "ms": 693,
+      "state": "VALIDATION_ERROR",
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:05:13.484Z",
+      "tag": "G2-return-before-onward",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 400,
+      "ms": 216,
+      "state": "VALIDATION_ERROR",
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:05:13.700Z",
+      "tag": "G3-zero-adults",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 400,
+      "ms": 246,
+      "state": "VALIDATION_ERROR",
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:05:13.946Z",
+      "tag": "G4-empty-body",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+      "http": 400,
+      "ms": 209,
+      "state": "VALIDATION_ERROR",
+      "cacheTimeStamp": null
+    },
+    {
+      "at": "2026-11-24T09:05:14.155Z",
+      "tag": "G5-bad-page",
+      "path": "/v1/flights/search",
+      "query": "lang=en&currency=INR&page=-1&perpage=20",
+      "http": 400,
+      "ms": 341,
+      "state": "INVALID_PAGINATION",
+      "cacheTimeStamp": null
+    }
+  ]
+}

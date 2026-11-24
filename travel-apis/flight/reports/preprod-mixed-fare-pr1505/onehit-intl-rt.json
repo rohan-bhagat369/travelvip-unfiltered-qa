@@ -1,0 +1,124 @@
+{
+  "when": "2026-11-09T12:30:09.640Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "correlationId": "8341c27b-2bfc-4721-abd8-7e53b26c25ec",
+  "route": "DEL-DXB-DEL",
+  "dates": {
+    "onward": "2026-11-22",
+    "return": "2026-11-24"
+  },
+  "fareTypeFilter": "NORMAL, CORPORATE, SME",
+  "maxStops": 0,
+  "onwardCats": [
+    "NORMAL",
+    "SME"
+  ],
+  "returnCats": [
+    "SME"
+  ],
+  "otherCats": [],
+  "pairKind": "SAME",
+  "onward": {
+    "searchId": "srch_b1af0c6e574c42f0922a1ef88c06238d",
+    "category": "SME",
+    "fareType": "CORPORATE VALUE",
+    "fareCategory": "SME",
+    "airline": "IX",
+    "label": "IX IX 1492/IX IX 835"
+  },
+  "return": {
+    "searchId": "srch_54a3626908ff4c6fbc7045cb9c7aa3a0",
+    "category": "SME",
+    "fareType": "CORPORATE VALUE",
+    "fareCategory": "SME",
+    "airline": "IX",
+    "label": "IX IX 336/IX IX 1229"
+  },
+  "searchIds": [
+    "srch_b1af0c6e574c42f0922a1ef88c06238d",
+    "srch_54a3626908ff4c6fbc7045cb9c7aa3a0"
+  ],
+  "details": {
+    "http": 200,
+    "code": null,
+    "fareType": null,
+    "mixedFareType": false,
+    "error": null
+  },
+  "pricing": {
+    "http": 200,
+    "code": null,
+    "priceId": "price_9efe94148cd84e048ae8e7ff63f7da00",
+    "fareType": "SME",
+    "mixedFareType": false,
+    "error": null
+  },
+  "fareRules": {
+    "http": 200,
+    "code": null,
+    "fareType": "SME"
+  },
+  "ssr": {
+    "http": 200,
+    "code": null
+  },
+  "seatmap": {
+    "http": 200,
+    "code": null,
+    "requestStatus": "Completed"
+  },
+  "counts": {
+    "PASS": 7,
+    "NOT TESTED": 1
+  },
+  "rows": [
+    {
+      "id": "INTL-S0",
+      "rule": "Intl RT search with Normal, Corporate, SME yields options",
+      "status": "PASS",
+      "actual": "n=20 cats=NORMAL,SME"
+    },
+    {
+      "id": "INTL-S1",
+      "rule": "After onward pick, return options exist",
+      "status": "PASS",
+      "actual": "returnN=12 cats=SME"
+    },
+    {
+      "id": "INTL-MIX-INV",
+      "rule": "Other fare cats on intl return (inventory)",
+      "status": "NOT TESTED",
+      "actual": "other=(none)",
+      "note": "AC: intl unchanged — mix inventory may be absent"
+    },
+    {
+      "id": "INTL-SAME",
+      "rule": "Intl same-category RT prices (baseline unchanged)",
+      "status": "PASS",
+      "actual": "pricing=200/price_9efe94148cd84e048ae8e7ff63f7da00 fareType=SME"
+    },
+    {
+      "id": "INTL-SSR",
+      "rule": "SSR after intl pricing",
+      "status": "PASS",
+      "actual": "http=200 code=ok"
+    },
+    {
+      "id": "INTL-SEAT",
+      "rule": "Seatmap after intl pricing",
+      "status": "PASS",
+      "actual": "http=200 code=Completed"
+    },
+    {
+      "id": "NO-BOOK",
+      "rule": "No issue-ticket",
+      "status": "PASS"
+    },
+    {
+      "id": "L2B",
+      "rule": "Single intl OD+date pin, no date loop",
+      "status": "PASS",
+      "actual": "DEL-DXB 2026-11-22/2026-11-24"
+    }
+  ]
+}

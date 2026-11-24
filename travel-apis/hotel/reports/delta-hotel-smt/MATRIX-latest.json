@@ -1,0 +1,125 @@
+{
+  "at": "2026-11-13T07:58:57.041Z",
+  "base": "https://delta-api.travelvip.ai",
+  "partner": {
+    "pid": "smt",
+    "key": "palsgcvgscvvs",
+    "tier": "10997401"
+  },
+  "scenarios": {
+    "FAIL": {
+      "status": "PASS",
+      "formatGate": {
+        "http": 400,
+        "code": "VALIDATION_ERROR",
+        "br": null
+      },
+      "vendorPath": {
+        "http": 200,
+        "br": "BR1794556749304734",
+        "bookingId": "5099",
+        "paymentIntentId": "pi_3UbFO6EWyGwVPuvk1sit4eud",
+        "stripeStatus": "succeeded",
+        "attach": {
+          "http": 200,
+          "data": {
+            "status": 200,
+            "paymentStatus": "succeeded",
+            "bookingId": "5099",
+            "bookingReferenceId": "BR1794556749304734",
+            "bookingItemId": "5202",
+            "message": "Payment verified successfully",
+            "paymentSuccess": true,
+            "bookingSuccess": true,
+            "bookingStatus": "PENDING",
+            "providerResponse": {
+              "bookingRefId": "BR1794556749304734",
+              "bookingStatus": "PENDING",
+              "qTime": 3,
+              "errors": [],
+              "status": 0
+            },
+            "_meta": {
+              "correlation_id": "6c918e15-60f4-4705-8314-c39c16cb270b"
+            }
+          }
+        },
+        "finalStatus": "Failed",
+        "confirmationNumber": null
+      }
+    },
+    "CONFIRM": {
+      "status": "BUG",
+      "br": "BR1794556759441491",
+      "bookingId": "5100",
+      "hotel": "Hiltop Hotel",
+      "checkin": "2026-12-04",
+      "checkout": "2026-12-05",
+      "paymentIntentId": "pi_3UbFOGEWyGwVPuvk0aJQbhyb",
+      "stripeStatus": "succeeded",
+      "amountReceived": 940074,
+      "attachHttp": 200,
+      "finalStatus": "Failed",
+      "confirmationNumber": null,
+      "createBodySaved": true
+    },
+    "DOUBLE": {
+      "status": "PASS",
+      "originalBr": "BR1794556759441491",
+      "originalPi": "pi_3UbFOGEWyGwVPuvk0aJQbhyb",
+      "replayCreate": {
+        "http": 200,
+        "br": "BR1794556759441491",
+        "paymentIntentId": "pi_3UbFOGEWyGwVPuvk0aJQbhyb",
+        "sameBr": true,
+        "newPaymentIntent": false
+      },
+      "replayAttach": {
+        "http": 200,
+        "message": "Booking already processed",
+        "bookingSuccess": true,
+        "alreadyProcessed": true,
+        "brief": "{\"status\":200,\"paymentStatus\":\"succeeded\",\"paymentSuccess\":true,\"bookingSuccess\":true,\"bookingStatus\":\"failed\",\"bookingId\":\"5100\",\"bookingReferenceId\":\"BR1794556759441491\",\"bookingItemId\":\"5203\",\"message\":\"Booking already processed\",\"_meta\":{\"correlation_id\":\"c599099d-8003-440c-b"
+      },
+      "note": "PASS if same BR, no second PI charge intent, attach says already processed / no second booking"
+    },
+    "CANCEL": {
+      "status": "BUG",
+      "br": "BR1794556759441491",
+      "penalty": {
+        "http": 400,
+        "data": {
+          "error": {
+            "code": "BOOKING_NOT_CANCELLABLE",
+            "message": "Booking can only be cancelled when status is Confirmed",
+            "details": "Booking 'BR1794556759441491' is in status 'Failed'",
+            "timestamp": "2026-11-13T07:59:26Z",
+            "request_id": "req-1794556766270",
+            "currentStatus": "Failed"
+          },
+          "_meta": {
+            "correlation_id": "f1a08ddc-4ae7-4ece-82ea-42053c5ef8c6"
+          }
+        }
+      },
+      "cancel": {
+        "http": 400,
+        "data": {
+          "error": {
+            "code": "BOOKING_NOT_CANCELLABLE",
+            "message": "Booking can only be cancelled when status is Confirmed",
+            "details": "Booking 'BR1794556759441491' is in status 'Failed'",
+            "timestamp": "2026-11-13T07:59:27Z",
+            "request_id": "req-1794556766387",
+            "currentStatus": "Failed"
+          },
+          "_meta": {
+            "correlation_id": "db3f4a1f-22a0-4768-8616-5c7c7ffeb161"
+          }
+        }
+      },
+      "finalStatus": "Failed",
+      "detailBrief": "{\"status\":\"Failed\",\"confirmationNumber\":\"BR1794556759441491\",\"checkIn\":\"2026-12-04\",\"checkInTime\":\"2:00 PM\",\"checkOut\":\"2026-12-05\",\"checkOutTime\":\"11:00 AM\",\"bookingDate\":\"2026-11-13T07:59:19Z\",\"noOfRooms\":1,\"message\":\"Pan card name mismatch with lead pax first name, last name, middle name\",\"hotelD"
+    }
+  }
+}

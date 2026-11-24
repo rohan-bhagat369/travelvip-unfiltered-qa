@@ -1,0 +1,316 @@
+{
+  "at": "2026-11-18T10:42:53.141Z",
+  "base": "https://canary-api.travelvip.ai",
+  "partner": "vgm",
+  "products": {
+    "lounge": {
+      "W1": {
+        "status": "BUG",
+        "http": 502,
+        "code": "PROVIDER_BOOKING_FAILED",
+        "data": "{\"error\":{\"code\":\"PROVIDER_BOOKING_FAILED\",\"message\":\"Lounge booking failed with the provider\",\"details\":null,\"timestamp\":\"2026-11-18T10:42:55Z\",\"request_id\":\"canary-w1-lounge-d4c77a04-49a6-4d33-af59-6b7f39d56474\",\"bookingReference\":\"BR1794998574429848\"},\"_meta\":{\"correlation_id\":\"9e77de1c-e4b8-41fd-9461-407d8c8c153f\"}}"
+      }
+    },
+    "fasttrack": {
+      "W1": {
+        "status": "PASS",
+        "br": "BR1794998581462583",
+        "http": 200,
+        "finalStatus": "Confirmed",
+        "requestId": "canary-w1-fasttrack-460daa37-2b98-4942-aa77-b6e51349055b",
+        "detailsHttp": 200,
+        "historyHttp": 200
+      },
+      "inventory": {
+        "airportId": 3110,
+        "airportCode": "HAK",
+        "terminal": "Terminal 2",
+        "terminalSide": "Departure",
+        "productId": "zfdhcngpwijngwvrfan7",
+        "optionId": "8e80ee79-ac1a-4993-8e05-3373455b07ad",
+        "bookingContext": "ctvlf4UUJnZIqYRgzX+0j1RCIAPvF+G7TLzPSKyI8M1dmMwneESX2dNrQt9oUL7wCPtuI9HIr6K2f+8APGhOb0Su3I+3VSAk9wFTmWf4rmEua4FmbedcDH5UTEm6DjsSqm7w9jqAsnzJm0YET2sdCC94d3tJWSud+VBeNOc5yuJWiDe00pdJi5TrKyB7wby4"
+      }
+    },
+    "esim": {
+      "W1": {
+        "status": "PASS",
+        "br": "BR1794998590788249",
+        "http": 200,
+        "finalStatus": "Confirmed",
+        "requestId": "canary-w1-esim-2040f9ea-c257-4594-bc44-3b795ba81179",
+        "detailsHttp": 200,
+        "historyHttp": 200
+      },
+      "inventory": {
+        "entityId": "nxuemo3jjyvjqq",
+        "productId": "nxuemo3jjyvjqq",
+        "optionId": "2b78b826-0b83-4393-9021-0ade66b80699",
+        "variantId": "e4278aee-154e-4de1-8ee0-bfea5ea90c9b",
+        "bookingContext": "l2AMDDxoYVB3om33g3rnehNyBqZUq8JZtAVQF8KF+RP2HWiz/5MmjuNLRabrzcYFp5fuCryrzfTNeWezL//VKTJEV23OfKE3l+/9xHqRuUDWhoGA6cORvh5BZMXavv1+HVTsmKI0lTLzVeDtU8UwGFhNKCjJyYBoZMC8+aEF30bZfjTfiW0P39DnzTy2+tAem+M0fYwISFGXA8IpByV3Yw9yI7Zkk78LZn4lOiqw1NqLL1nOU79/QCm6l19BQz9+",
+        "amount": 47.05,
+        "title": "Travel eSIM for Singapore"
+      }
+    }
+  },
+  "oldFlow": {
+    "keyUsed": "ojny1s…",
+    "L5_history": {
+      "status": "PASS",
+      "http": 200,
+      "brief": "[{\"bookingId\":\"BR1794998605549471\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"serviceType\":\"esim\",\"createdAt\":\"2026-11-18 10:43:25\",\"image\":\"https://img.travelx.ai/v2/catalog/esim/country/a4b3553f-43a8-481d-84b8-9d7462ea7c5e.png.png\",\"title\":\"Singapore 1 GB / 1 day\",\"startDate\":null,\"endDate\""
+    },
+    "L8_offers": {
+      "status": "PASS",
+      "http": 400,
+      "brief": "{\"error\":\"serviceType is required\"}"
+    },
+    "L5_fetch_status_shape": {
+      "status": "PASS",
+      "http": 200,
+      "brief": "{\"status\":400,\"message\":\"bookingReferenceId is required\"}"
+    },
+    "note": "canary-shop.travelvip.ai returns SPA HTML for /api/*; old API probes run on canary-api with pid+key"
+  },
+  "gate": {
+    "auth": "PASS",
+    "loungeSearch": {
+      "http": 200,
+      "n": 5
+    },
+    "ftSearch": {
+      "http": 200,
+      "n": 20
+    },
+    "esimSearch": {
+      "http": 200,
+      "n": 1
+    }
+  },
+  "cases": [
+    {
+      "caseId": "P0_search",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200
+    },
+    {
+      "caseId": "P0_search",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200
+    },
+    {
+      "caseId": "P0_search",
+      "product": "esim",
+      "status": "PASS",
+      "http": 200
+    },
+    {
+      "caseId": "W1",
+      "product": "lounge",
+      "status": "BUG",
+      "http": 502,
+      "code": "PROVIDER_BOOKING_FAILED",
+      "br": "BR1794998574429848",
+      "note": "{\"error\":{\"code\":\"PROVIDER_BOOKING_FAILED\",\"message\":\"Lounge booking failed with the provider\",\"details\":null,\"timestamp\":\"2026-11-18T10:42:55Z\",\"request_id\":\"canary-w1-lounge-d4c77a04-49a6-4d33-af59-6b7f39d56474\",\"bookingReference\":\"BR1794998574429848\"},\"_meta\":{\"correlation_id\":\"9e77de1c-e4b8-41fd-9461-407d8c8c153f\"}}",
+      "requestId": "canary-w1-lounge-d4c77a04-49a6-4d33-af59-6b7f39d56474"
+    },
+    {
+      "caseId": "W4",
+      "product": "lounge",
+      "status": "BUG",
+      "http": 502,
+      "code": "PROVIDER_BOOKING_FAILED",
+      "note": "{\"error\":{\"code\":\"PROVIDER_BOOKING_FAILED\",\"message\":\"Lounge booking failed with the provider\",\"details\":null,\"timestamp\":\"2026-11-18T10:42:55Z\",\"request_id\":\"canary-w4-lounge-bcd449d6-6774-4099-85e7-"
+    },
+    {
+      "caseId": "W6",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 400,
+      "code": "CURRENCY_MISMATCH",
+      "note": "{\"error\":{\"code\":\"CURRENCY_MISMATCH\",\"message\":\"Booking currency does not match the wallet currency\",\"details\":\"The booking is priced in USD but the partner wallet is held in INR\",\"timestamp\":\"2026-11-18T10:42:56Z\",\"requ"
+    },
+    {
+      "caseId": "V1",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "caseId": "V2",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 400,
+      "code": "INVALID_BOOKING_CONTEXT"
+    },
+    {
+      "caseId": "I1",
+      "product": "lounge",
+      "status": "CHECK",
+      "http1": 502,
+      "http2": 200,
+      "requestId": "canary-i1-lounge-80d1a2ae-d69a-499a-8009-0758adef968e",
+      "note": "sameBR=undefined"
+    },
+    {
+      "caseId": "W1",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1794998581462583",
+      "http": 200,
+      "finalStatus": "Confirmed",
+      "requestId": "canary-w1-fasttrack-460daa37-2b98-4942-aa77-b6e51349055b",
+      "note": "details=200 history=200"
+    },
+    {
+      "caseId": "R1",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1794998581462583",
+      "finalStatus": "Confirmed"
+    },
+    {
+      "caseId": "R2",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1794998581462583"
+    },
+    {
+      "caseId": "R3",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1794998581462583"
+    },
+    {
+      "caseId": "W4",
+      "product": "fasttrack",
+      "status": "BUG",
+      "http": 200,
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingReference\":\"BR1794998588124652\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":5250.53,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeableP"
+    },
+    {
+      "caseId": "W6",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 400,
+      "code": "CURRENCY_MISMATCH",
+      "note": "{\"error\":{\"code\":\"CURRENCY_MISMATCH\",\"message\":\"Booking currency does not match the wallet currency\",\"details\":\"The booking is priced in USD but the partner wallet is held in INR\",\"timestamp\":\"2026-11-18T10:43:08Z\",\"requ"
+    },
+    {
+      "caseId": "V1",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "caseId": "V2",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 400,
+      "code": "INVALID_BOOKING_CONTEXT"
+    },
+    {
+      "caseId": "I1",
+      "product": "fasttrack",
+      "status": "CHECK",
+      "http1": 200,
+      "http2": 200,
+      "br1": "BR1794998589847172",
+      "requestId": "canary-i1-fasttrack-f5050455-ed45-4be5-84a6-c4c234cfb333",
+      "note": "sameBR=undefined"
+    },
+    {
+      "caseId": "W1",
+      "product": "esim",
+      "status": "PASS",
+      "br": "BR1794998590788249",
+      "http": 200,
+      "finalStatus": "Confirmed",
+      "requestId": "canary-w1-esim-2040f9ea-c257-4594-bc44-3b795ba81179",
+      "note": "details=200 history=200"
+    },
+    {
+      "caseId": "R1",
+      "product": "esim",
+      "status": "PASS",
+      "br": "BR1794998590788249",
+      "finalStatus": "Confirmed"
+    },
+    {
+      "caseId": "R2",
+      "product": "esim",
+      "status": "PASS",
+      "br": "BR1794998590788249"
+    },
+    {
+      "caseId": "R3",
+      "product": "esim",
+      "status": "PASS",
+      "br": "BR1794998590788249"
+    },
+    {
+      "caseId": "W4",
+      "product": "esim",
+      "status": "BUG",
+      "http": 200,
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1794998604239445\",\"bookingReference\":\"BR1794998604239445\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":47.05,\"taxes\":0},\"paxCounts\":{\"AD"
+    },
+    {
+      "caseId": "W6",
+      "product": "esim",
+      "status": "PASS",
+      "http": 400,
+      "code": "CURRENCY_MISMATCH",
+      "note": "{\"error\":{\"code\":\"CURRENCY_MISMATCH\",\"message\":\"Booking currency does not match the wallet currency\",\"details\":\"The booking is priced in USD but the partner wallet is held in INR\",\"timestamp\":\"2026-11-18T10:43:24Z\",\"requ"
+    },
+    {
+      "caseId": "V1",
+      "product": "esim",
+      "status": "PASS",
+      "http": 400,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "caseId": "V2",
+      "product": "esim",
+      "status": "PASS",
+      "http": 400,
+      "code": "INVALID_BOOKING_CONTEXT"
+    },
+    {
+      "caseId": "I1",
+      "product": "esim",
+      "status": "CHECK",
+      "http1": 200,
+      "http2": 200,
+      "br1": "BR1794998605549471",
+      "requestId": "canary-i1-esim-4271d03d-64ce-4d9b-a04c-6292845ddd19",
+      "note": "sameBR=undefined"
+    },
+    {
+      "caseId": "L5_history",
+      "product": "old",
+      "status": "PASS",
+      "http": 200,
+      "note": "[{\"bookingId\":\"BR1794998605549471\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"serviceType\":\"esim\",\"createdAt\":\"2026-11-18 10:43:25\",\"image\":\"https://img.travelx.ai/v2/catalo"
+    },
+    {
+      "caseId": "L8_offers",
+      "product": "old",
+      "status": "PASS",
+      "http": 400,
+      "note": "{\"error\":\"serviceType is required\"}"
+    },
+    {
+      "caseId": "L5_fetch_status_shape",
+      "product": "old",
+      "status": "PASS",
+      "http": 200,
+      "note": "{\"status\":400,\"message\":\"bookingReferenceId is required\"}"
+    }
+  ],
+  "dbSql": "SET @br := 'BR1794998581462583';\nSELECT b.booking_reference, bi.id AS booking_item_id, bi.service_type,\n       lounge.booking_flow AS lounge_flow, ft.booking_flow AS ft_flow, esim.booking_flow AS esim_flow\nFROM booking b\nJOIN booking_item bi ON bi.booking_id = b.id\nLEFT JOIN booking_item_lounge lounge ON lounge.booking_item_id = bi.id\nLEFT JOIN booking_item_fast_track ft ON ft.booking_item_id = bi.id\nLEFT JOIN booking_item_esim esim ON esim.booking_item_id = bi.id\nWHERE b.booking_reference = @br;\n\nSET @br := 'BR1794998590788249';\nSELECT b.booking_reference, bi.id AS booking_item_id, bi.service_type,\n       lounge.booking_flow AS lounge_flow, ft.booking_flow AS ft_flow, esim.booking_flow AS esim_flow\nFROM booking b\nJOIN booking_item bi ON bi.booking_id = b.id\nLEFT JOIN booking_item_lounge lounge ON lounge.booking_item_id = bi.id\nLEFT JOIN booking_item_fast_track ft ON ft.booking_item_id = bi.id\nLEFT JOIN booking_item_esim esim ON esim.booking_item_id = bi.id\nWHERE b.booking_reference = @br;"
+}

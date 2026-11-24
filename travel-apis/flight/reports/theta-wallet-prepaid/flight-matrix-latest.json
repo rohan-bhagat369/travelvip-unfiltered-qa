@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-18T09:45:00.000Z",
+  "base": "https://theta-api.travelvip.ai",
+  "product": "flight",
+  "cases": {
+    "A": {
+      "status": "PASS",
+      "br": "BR1794993507614124",
+      "finalStatus": "Confirmed",
+      "note": "wallet charged; later cancel requested"
+    },
+    "C": {
+      "status": "PASS",
+      "simulate": "provider_reject",
+      "http": 502,
+      "br": "BR1794993808871928",
+      "errorCode": "TICKET_ISSUANCE_FAILED",
+      "refund": { "status": "SUCCESS", "amount": 3930, "currency": "INR" },
+      "finalStatus": "Failed"
+    },
+    "D": {
+      "status": "PASS",
+      "simulate": "provider_no_response",
+      "http": 200,
+      "br": "BR1794993973860301",
+      "finalStatus": "Pending"
+    },
+    "E": {
+      "status": "PASS",
+      "simulate": "wallet_commit_fail",
+      "http": 502,
+      "br": "BR1794994053176129",
+      "errorCode": "WALLET_COMMIT_FAILED"
+    },
+    "F": {
+      "status": "PASS",
+      "simulate": "wallet_commit_fail,wallet_release_fail",
+      "http": 502,
+      "br": "BR1794994165210248",
+      "errorCode": "WALLET_COMMIT_FAILED"
+    },
+    "G": {
+      "status": "PASS",
+      "note": "top-up after",
+      "simulate": "provider_reject,wallet_refund_fail",
+      "http": 502,
+      "br": "BR1794994727329635",
+      "errorCode": "TICKET_ISSUANCE_FAILED",
+      "refund": { "status": "FAILED", "amount": 3423, "currency": "INR", "walletTransactionId": null },
+      "finalStatus": "Failed"
+    },
+    "H": {
+      "status": "PASS",
+      "simulate": "wallet_debit_record_fail",
+      "http": 200,
+      "br": "BR1794994760254533",
+      "finalStatus": "Confirmed"
+    },
+    "I": {
+      "status": "PASS",
+      "note": "top-up after",
+      "simulate": "provider_reject,wallet_debit_record_fail",
+      "http": 502,
+      "br": "BR1794994989445950",
+      "errorCode": "TICKET_ISSUANCE_FAILED",
+      "refund": { "status": "FAILED", "amount": 2987, "currency": "INR" },
+      "finalStatus": "Failed"
+    },
+    "J": {
+      "status": "PASS",
+      "br": "BR1794994760254533",
+      "pnr": "G5FPQI",
+      "alsoTried": "BR1794993507614124 / O7FKSN → Cancellation Requested (airline)",
+      "note": "H cancel HTTP 200, status Cancelled, estimatedRefund 2598 INR — wallet cancel path OK",
+      "cancelHttp": 200,
+      "finalStatus": "Cancelled",
+      "estimatedRefund": 2598
+    }
+  }
+}

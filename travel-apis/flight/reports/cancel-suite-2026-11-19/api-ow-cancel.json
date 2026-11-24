@@ -1,0 +1,83 @@
+{
+  "br": "BR1795087352240506",
+  "pnrs": [
+    "SIM-MMPO6B"
+  ],
+  "before": "Confirmed",
+  "penalty": {
+    "status": 200,
+    "data": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1795087352240506",
+        "pnr": "SIM-MMPO6B",
+        "cancellationRequest": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 933.4,
+          "estimatedRefund": 3900.6
+        }
+      },
+      "_meta": {
+        "correlation_id": "690b7970-d01d-4509-8d71-d7c238efde9e"
+      }
+    }
+  },
+  "cancel": {
+    "status": 200,
+    "data": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1795087352240506",
+        "pnr": "SIM-MMPO6B",
+        "cancellationRequest": {
+          "status": "Cancelled",
+          "estimatedCancellationCharge": 933.4,
+          "estimatedRefund": 3900.6,
+          "totalAmount": 4834,
+          "totalPenalty": 583.4,
+          "convenienceFee": 350,
+          "totalSsr": 0,
+          "flexiCancelFee": 0,
+          "cancellationFee": 100,
+          "perPax": [
+            {
+              "paxId": "PAX1",
+              "baseAmount": 4484,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 483.4,
+              "cancellationFee": 100,
+              "totalPenalty": 583.4,
+              "refund": 3900.6
+            }
+          ],
+          "createdAt": "2026-11-19T11:24:38Z"
+        },
+        "refundSummary": {
+          "amount": 3900.6,
+          "cancellationCharge": 933.4,
+          "totalPenalty": 583.4,
+          "cancellationChargeBreakup": {
+            "airlineCancellationFee": 483.4,
+            "convenienceFee": 350,
+            "serviceFee": 100,
+            "flexicancelFee": 0
+          }
+        },
+        "transaction": {
+          "id": "144",
+          "status": "completed",
+          "amount": 3900.6,
+          "currency": "INR",
+          "paymentMethod": "wallet"
+        }
+      },
+      "_meta": {
+        "correlation_id": "690b7970-d01d-4509-8d71-d7c238efde9e"
+      }
+    }
+  },
+  "after": "Cancelled"
+}

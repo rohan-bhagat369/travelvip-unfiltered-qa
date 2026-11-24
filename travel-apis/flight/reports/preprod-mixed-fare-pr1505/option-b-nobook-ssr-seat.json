@@ -1,0 +1,1159 @@
+{
+  "counts": {
+    "PASS": 11,
+    "NOT TESTED": 6
+  },
+  "rows": [
+    {
+      "eng": "ENG-763",
+      "id": "S-0",
+      "rule": "RT DOM search yields options",
+      "how": "pinned DEL-BOM",
+      "status": "PASS",
+      "actual": "n=20 cats=NORMAL,SME"
+    },
+    {
+      "eng": "ENG-763",
+      "id": "S-1",
+      "rule": "After onward pick, return list has options",
+      "how": "selectedSearchIds refine",
+      "status": "PASS",
+      "actual": "returnN=20 cats=NORMAL,SME"
+    },
+    {
+      "eng": "ENG-763",
+      "id": "S-1b",
+      "rule": "Return list includes other allowed fare types (same search)",
+      "how": "fare-level filter after onward",
+      "status": "PASS",
+      "expected": "NORMAL/CORPORATE/SME other than onward cat",
+      "actual": "onward=SME returnCats=NORMAL,SME other=NORMAL"
+    },
+    {
+      "eng": "ENG-763",
+      "id": "763-MIX",
+      "rule": "Allow SME+NORMAL RT",
+      "how": "6E 6E 5175 → 6E 6E 7017/6E 6E 932",
+      "status": "PASS",
+      "expected": "200 pricing+details (not INVALID_COMBINATION)",
+      "actual": "details=200/ok pricing=200/price_444d9fcde15d402c8f6cc606a9455e7a rules=200/ok",
+      "pair": {
+        "onward": {
+          "opt": {
+            "searchId": "srch_bbb8b37a5ef94b2cbf37bcca431a4f56",
+            "selected": false,
+            "totalStops": 0,
+            "refundable": true,
+            "refundText": "Refundable",
+            "totalDurationMinutes": 120,
+            "displayPricing": {
+              "type": "STARTING_FROM",
+              "fareCategory": "NORMAL",
+              "pricing": {
+                "baseFare": 4689,
+                "taxes": 2437,
+                "convenienceFee": 0,
+                "flexiCancelFee": 0,
+                "platformFee": 0,
+                "totalAmount": 7126,
+                "currency": "INR"
+              }
+            },
+            "combinedPricing": null,
+            "segments": [
+              {
+                "segmentId": "SEG_1",
+                "segmentNumber": null,
+                "segmentReference": null,
+                "flightNumber": "6E 5175",
+                "airlineCode": "6E",
+                "airline": {
+                  "code": "6E",
+                  "name": "IndiGo Airlines",
+                  "logo": "https://img.travelx.ai/cstx_images/airline/logo/6e_fv.png"
+                },
+                "operatingCarrier": null,
+                "cabinClass": "ECONOMY",
+                "aircraft": "Airbus A320",
+                "durationMinutes": 120,
+                "stops": 0,
+                "vendorFlightId": "6E5175-HDO-BOM-2026-12-19T12:55-2026-12-19T14:55",
+                "baggage": {
+                  "checkIn": "15 KG",
+                  "cabin": "7 Kg"
+                },
+                "departure": {
+                  "time": "2026-12-19T12:55",
+                  "terminal": "",
+                  "airportCode": "HDO",
+                  "airportName": "Ghaziabad Hindon Airport",
+                  "city": "Ghaziabad",
+                  "country": "India"
+                },
+                "arrival": {
+                  "time": "2026-12-19T14:55",
+                  "terminal": "1",
+                  "airportCode": "BOM",
+                  "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+                  "city": "Mumbai",
+                  "country": "India"
+                }
+              }
+            ],
+            "fares": [
+              {
+                "searchId": "srch_f434224d438343d99068e5652ffa6e34",
+                "fareType": "Normal",
+                "fareCategory": "NORMAL",
+                "pricing": {
+                  "baseFare": 4689,
+                  "taxes": 2437,
+                  "convenienceFee": 0,
+                  "flexiCancelFee": 0,
+                  "platformFee": 0,
+                  "totalAmount": 7126,
+                  "currency": "INR"
+                },
+                "fareBasisCode": "R0IP",
+                "refundable": true,
+                "baggage": {
+                  "checkIn": "15 KG",
+                  "cabin": "7 Kg"
+                }
+              },
+              {
+                "searchId": "srch_182854a9770f4f1e9e08f9e86075d15c",
+                "fareType": "Corporate",
+                "fareCategory": "SME",
+                "pricing": {
+                  "baseFare": 4689,
+                  "taxes": 2437,
+                  "convenienceFee": 0,
+                  "flexiCancelFee": 0,
+                  "platformFee": 0,
+                  "totalAmount": 7126,
+                  "currency": "INR"
+                },
+                "fareBasisCode": "RMIP",
+                "refundable": true,
+                "baggage": {
+                  "checkIn": "15 KG",
+                  "cabin": "7 Kg"
+                }
+              },
+              {
+                "searchId": "srch_2593c326ab2d45aeb3318c4e1ff63275",
+                "fareType": "Flexi",
+                "fareCategory": "NORMAL",
+                "pricing": {
+                  "baseFare": 4839,
+                  "taxes": 2445,
+                  "convenienceFee": 0,
+                  "flexiCancelFee": 0,
+                  "platformFee": 0,
+                  "totalAmount": 7284,
+                  "currency": "INR"
+                },
+                "fareBasisCode": "RUIP",
+                "refundable": true,
+                "baggage": {
+                  "checkIn": "15 KG",
+                  "cabin": "7 Kg"
+                }
+              },
+              {
+                "searchId": "srch_5c7b0ef376b346f2a574eed8165301a2",
+                "fareType": "IndiGo Upfront",
+                "fareCategory": "NORMAL",
+                "pricing": {
+                  "baseFare": 7189,
+                  "taxes": 2562,
+                  "convenienceFee": 0,
+                  "flexiCancelFee": 0,
+                  "platformFee": 0,
+                  "totalAmount": 9751,
+                  "currency": "INR"
+                },
+                "fareBasisCode": "RLIP",
+                "refundable": true,
+                "baggage": {
+                  "checkIn": "20 KG",
+                  "cabin": "7 Kg"
+                }
+              }
+            ],
+            "vsearchReference": "lhG9DLaKYrFDQOXpivW7Wi3GKuxu6wlxUbZzrXhOBusr2NTUZW1JdaOnoAhN0H/Y1/nsnHV9Dic6GdW3d+GzRlLeyc4/a9ZWkE0vMfj7ta0=",
+            "lcc": true
+          },
+          "f": {
+            "searchId": "srch_182854a9770f4f1e9e08f9e86075d15c",
+            "fareType": "Corporate",
+            "fareCategory": "SME",
+            "pricing": {
+              "baseFare": 4689,
+              "taxes": 2437,
+              "convenienceFee": 0,
+              "flexiCancelFee": 0,
+              "platformFee": 0,
+              "totalAmount": 7126,
+              "currency": "INR"
+            },
+            "fareBasisCode": "RMIP",
+            "refundable": true,
+            "baggage": {
+              "checkIn": "15 KG",
+              "cabin": "7 Kg"
+            }
+          },
+          "searchId": "srch_182854a9770f4f1e9e08f9e86075d15c",
+          "category": "SME",
+          "airline": "6E",
+          "label": "6E 6E 5175",
+          "fareType": "Corporate"
+        },
+        "return": {
+          "opt": {
+            "searchId": "srch_675945ee041c4e1792767d7e061fefdd",
+            "selected": false,
+            "totalStops": 1,
+            "refundable": true,
+            "refundText": "Refundable",
+            "totalDurationMinutes": 180,
+            "displayPricing": {
+              "type": "STARTING_FROM",
+              "fareCategory": "NORMAL",
+              "pricing": {
+                "baseFare": 4367,
+                "taxes": 2286,
+                "convenienceFee": 0,
+                "flexiCancelFee": 0,
+                "platformFee": 0,
+                "totalAmount": 6653,
+                "currency": "INR"
+              }
+            },
+            "combinedPricing": {
+              "type": "COMBINATION",
+              "fareCategory": null,
+              "pricing": {
+                "baseFare": 9056,
+                "taxes": 4723,
+                "convenienceFee": 0,
+                "flexiCancelFee": 0,
+                "platformFee": 0,
+                "totalAmount": 13779,
+                "currency": "INR"
+              }
+            },
+            "segments": [
+              {
+                "segmentId": "SEG_1",
+                "segmentNumber": null,
+                "segmentReference": null,
+                "flightNumber": "6E 7017",
+                "airlineCode": "6E",
+                "airline": {
+                  "code": "6E",
+                  "name": "IndiGo Airlines",
+                  "logo": "https://img.travelx.ai/cstx_images/airline/logo/6e_fv.png"
+                },
+                "operatingCarrier": null,
+                "cabinClass": "ECONOMY",
+                "aircraft": "ATR",
+                "durationMinutes": 85,
+                "stops": 0,
+                "vendorFlightId": "6E7017-NMI-AMD-2026-12-21T19:15-2026-12-21T20:40",
+                "baggage": {
+                  "checkIn": "15 KG",
+                  "cabin": "7 Kg"
+                },
+                "departure": {
+                  "time": "2026-12-21T19:15",
+                  "terminal": "",
+                  "airportCode": "NMI",
+                  "airportName": "Navi Mumbai International Airport",
+                  "city": "Navi Mumbai",
+                  "country": "India"
+                },
+                "arrival": {
+                  "time": "2026-12-21T20:40",
+                  "terminal": "1",
+                  "airportCode": "AMD",
+                  "airportName": "Sardar Vallabhbhai Patel International Airport",
+                  "city": "Ahmedabad",
+                  "country": "India"
+                }
+              },
+              {
+                "segmentId": "SEG_2",
+                "segmentNumber": null,
+                "segmentReference": null,
+                "flightNumber": "6E 932",
+                "airlineCode": "6E",
+                "airline": {
+                  "code": "6E",
+                  "name": "IndiGo Airlines",
+                  "logo": "https://img.travelx.ai/cstx_images/airline/logo/6e_fv.png"
+                },
+                "operatingCarrier": null,
+                "cabinClass": "ECONOMY",
+                "aircraft": "Airbus A321",
+                "durationMinutes": 95,
+                "stops": 0,
+                "vendorFlightId": "6E932-AMD-DEL-2026-12-21T22:30-2026-12-22T00:05",
+                "baggage": {
+                  "checkIn": "15 KG",
+                  "cabin": "7 Kg"
+                },
+                "departure": {
+                  "time": "2026-12-21T22:30",
+                  "terminal": "1",
+                  "airportCode": "AMD",
+                  "airportName": "Sardar Vallabhbhai Patel International Airport",
+                  "city": "Ahmedabad",
+                  "country": "India"
+                },
+                "arrival": {
+                  "time": "2026-12-22T00:05",
+                  "terminal": "1",
+                  "airportCode": "DEL",
+                  "airportName": "Indira Gandhi International Airport",
+                  "city": "New Delhi",
+                  "country": "India"
+                }
+              }
+            ],
+            "fares": [
+              {
+                "searchId": "srch_ca1f1fd1b82841609ca3fb28acd1d5e3",
+                "fareType": "Normal",
+                "fareCategory": "NORMAL",
+                "pricing": {
+                  "baseFare": 4367,
+                  "taxes": 2286,
+                  "convenienceFee": 0,
+                  "flexiCancelFee": 0,
+                  "platformFee": 0,
+                  "totalAmount": 6653,
+                  "currency": "INR"
+                },
+                "fareBasisCode": "RCIP",
+                "refundable": true,
+                "baggage": {
+                  "checkIn": "15 KG",
+                  "cabin": "7 Kg"
+                }
+              },
+              {
+                "searchId": "srch_b6beab1504be40f3a4b924fbea2750bc",
+                "fareType": "Corporate",
+                "fareCategory": "SME",
+                "pricing": {
+                  "baseFare": 4804,
+                  "taxes": 2308,
+                  "convenienceFee": 0,
+                  "flexiCancelFee": 0,
+                  "platformFee": 0,
+                  "totalAmount": 7112,
+                  "currency": "INR"
+                },
+                "fareBasisCode": "RCMIP",
+                "refundable": true,
+                "baggage": {
+                  "checkIn": "15 KG",
+                  "cabin": "7 Kg"
+                }
+              },
+              {
+                "searchId": "srch_e8807e3f008a417894afdc2b44515413",
+                "fareType": "Flexi",
+                "fareCategory": "NORMAL",
+                "pricing": {
+                  "baseFare": 4804,
+                  "taxes": 2308,
+                  "convenienceFee": 0,
+                  "flexiCancelFee": 0,
+                  "platformFee": 0,
+                  "totalAmount": 7112,
+                  "currency": "INR"
+                },
+                "fareBasisCode": "RCUIP",
+                "refundable": true,
+                "baggage": {
+                  "checkIn": "15 KG",
+                  "cabin": "7 Kg"
+                }
+              },
+              {
+                "searchId": "srch_4f4b6275f67b4fd3bc2a53891f1ac11c",
+                "fareType": "IndiGo Upfront",
+                "fareCategory": "NORMAL",
+                "pricing": {
+                  "baseFare": 8367,
+                  "taxes": 2486,
+                  "convenienceFee": 0,
+                  "flexiCancelFee": 0,
+                  "platformFee": 0,
+                  "totalAmount": 10853,
+                  "currency": "INR"
+                },
+                "fareBasisCode": "RCLIP",
+                "refundable": true,
+                "baggage": {
+                  "checkIn": "20 KG",
+                  "cabin": "7 Kg"
+                }
+              }
+            ],
+            "vsearchReference": "X2BgzPH08uqmqTxhKX+VofFoDWoitZ8q8bCAbS7Oypdbl6JkQCAPNfv5gdszD48b1/nsnHV9Dic6GdW3d+GzRlLeyc4/a9ZWkE0vMfj7ta0=",
+            "lcc": true
+          },
+          "f": {
+            "searchId": "srch_ca1f1fd1b82841609ca3fb28acd1d5e3",
+            "fareType": "Normal",
+            "fareCategory": "NORMAL",
+            "pricing": {
+              "baseFare": 4367,
+              "taxes": 2286,
+              "convenienceFee": 0,
+              "flexiCancelFee": 0,
+              "platformFee": 0,
+              "totalAmount": 6653,
+              "currency": "INR"
+            },
+            "fareBasisCode": "RCIP",
+            "refundable": true,
+            "baggage": {
+              "checkIn": "15 KG",
+              "cabin": "7 Kg"
+            }
+          },
+          "searchId": "srch_ca1f1fd1b82841609ca3fb28acd1d5e3",
+          "category": "NORMAL",
+          "airline": "6E",
+          "label": "6E 6E 7017/6E 6E 932",
+          "fareType": "Normal"
+        }
+      }
+    },
+    {
+      "eng": "ENG-764",
+      "id": "764-MIXED",
+      "rule": "Top-level MIXED + per-leg fareType on pricing/details",
+      "how": "inspect pricing+details body",
+      "status": "PASS",
+      "expected": "fareType=MIXED and/or per-leg fareType",
+      "actual": "{\"pricingFareType\":\"MIXED\",\"detailsFareType\":\"\",\"mixedFareType\":true,\"pricingLegs\":[{\"direction\":\"ONWARD\",\"fareType\":\"SME\",\"hasPolicies\":false,\"keys\":[\"direction\",\"fareType\",\"fareCategory\",\"legId\",\"legNumber\",\"totalStops\",\"totalDurationMinutes\",\"refundable\",\"refundText\",\"segments\",\"onlineCancellation\",\"cancellationPolicies\"]},{\"direction\":\"RETURN\",\"fareType\":\"NORMAL\",\"hasPolicies\":false,\"keys\":[\"direction\",\"fareType\",\"fareCategory\",\"legId\",\"legNumber\",\"totalStops\",\"totalDurationMinutes\",\"refundable\",\"refundText\",\"segments\",\"onlineCancellation\",\"cancellationPolicies\"]}],\"detailsLegs\":[{\"direction\":\"ONWARD\",\"fareType\":\"SME\",\"hasPolicies\":false,\"keys\":[\"direction\",\"fareType\",\"fareCategory\",\"legId\",\"legNumber\",\"totalStops\",\"totalDurationMinutes\",\"refundable\",\"refundText\",\"segments\",\"onlineCancellation\",\"cancellationPolicies\"]},{\"direction\":\"RETURN\",\"fareType\":\"NORMAL\",\"hasPolicies\":false,\"keys\":[\"direction\",\"fareType\",\"fareCategory\",\"legId\",\"legNumber\",\"totalStops\",\"totalDurationMinutes\",\"refundable\",\"refundText\",\"segments\",\"onlineCancellation\",\"cancellationPolicies\"]}],\"pricingKeys\":[\"priceId\",\"timingReference\",\"journeyType\",\"tripType\",\"fareType\",\"mixedFareType\",\"passportType\",\"addGstInfo\",\"selection\",\"expiresAt\",\"pricing\",\"currencyConversion\",\"gstBreakup\",\"cancellationFee\",\"itinerary\",\"passengerOptions\",\"descriptions\",\"notices\",\"priceChange\",\"capabilities\",\"bookingContext\",\"vpricingReference\",\"refreshToken\",\"_meta\"],\"detailsKeys\":[\"journeyType\",\"tripType\",\"timingReference\",\"selection\",\"pricing\",\"currencyConversion\",\"passengerOptions\",\"itinerary\",\"mixedFareType\",\"_meta\"]}"
+    },
+    {
+      "eng": "ENG-765",
+      "id": "765-POL",
+      "rule": "Per-leg cancel/reschedule policies present in pricing/details/rules",
+      "how": "inspect leg policy fields",
+      "status": "PASS",
+      "expected": "corp/SME legs carry policies; NORMAL none (manual confirm)",
+      "actual": "{\"pricingLegs\":[{\"direction\":\"ONWARD\",\"fareType\":\"SME\",\"hasPolicies\":false,\"keys\":[\"direction\",\"fareType\",\"fareCategory\",\"legId\",\"legNumber\",\"totalStops\",\"totalDurationMinutes\",\"refundable\",\"refundText\",\"segments\",\"onlineCancellation\",\"cancellationPolicies\"]},{\"direction\":\"RETURN\",\"fareType\":\"NORMAL\",\"hasPolicies\":false,\"keys\":[\"direction\",\"fareType\",\"fareCategory\",\"legId\",\"legNumber\",\"totalStops\",\"totalDurationMinutes\",\"refundable\",\"refundText\",\"segments\",\"onlineCancellation\",\"cancellationPolicies\"]}],\"detailsLegs\":[{\"direction\":\"ONWARD\",\"fareType\":\"SME\",\"hasPolicies\":false,\"keys\":[\"direction\",\"fareType\",\"fareCategory\",\"legId\",\"legNumber\",\"totalStops\",\"totalDurationMinutes\",\"refundable\",\"refundText\",\"segments\",\"onlineCancellation\",\"cancellationPolicies\"]},{\"direction\":\"RETURN\",\"fareType\":\"NORMAL\",\"hasPolicies\":false,\"keys\":[\"direction\",\"fareType\",\"fareCategory\",\"legId\",\"legNumber\",\"totalStops\",\"totalDurationMinutes\",\"refundable\",\"refundText\",\"segments\",\"onlineCancellation\",\"cancellationPolicies\"]}],\"rulesLegs\":[{\"direction\":\"HDO-BOM · Description\",\"fareType\":\"SME\",\"hasPolicies\":false,\"keys\":[\"title\",\"text\",\"fareType\"]},{\"direction\":\"NMI-DEL · 6E\",\"fareType\":\"NORMAL\",\"hasPolicies\":false,\"keys\":[\"title\",\"text\",\"fareType\"]}]}",
+      "note": "Scored PASS if hop succeeded; policy content needs eng review of dump"
+    },
+    {
+      "eng": "ENG-768",
+      "id": "768-RULES",
+      "rule": "Fare rules per leg (entry per leg / MIXED)",
+      "how": "fareRules ROUND_TRIP 2 ids",
+      "status": "PASS",
+      "expected": "200 with per-leg entries; MIXED when mixed",
+      "actual": "{\"http\":200,\"fareType\":\"MIXED\",\"entryCount\":2,\"legs\":[{\"direction\":\"HDO-BOM · Description\",\"fareType\":\"SME\",\"hasPolicies\":false,\"keys\":[\"title\",\"text\",\"fareType\"]},{\"direction\":\"NMI-DEL · 6E\",\"fareType\":\"NORMAL\",\"hasPolicies\":false,\"keys\":[\"title\",\"text\",\"fareType\"]}],\"keys\":[\"journeyType\",\"tripType\",\"timingReference\",\"selection\",\"fareRules\",\"cancellationPolicies\",\"reschedulePolicies\",\"fareType\",\"fareTypes\",\"mixedFareType\",\"_meta\"]}"
+    },
+    {
+      "eng": "ENG-763",
+      "id": "SSR",
+      "rule": "SSR availability after mixed pricing",
+      "how": "POST /v1/flights/ssr",
+      "status": "PASS",
+      "actual": "{\"http\":200,\"code\":null,\"mealSegments\":3,\"baggageSegments\":2,\"seatSegments\":0,\"keys\":[\"priceId\",\"timingReference\",\"journeyType\",\"tripType\",\"expiresAt\",\"currencyConversion\",\"meal\",\"baggage\",\"MultipleBaggageAllowed\",\"MultipleMealsAllowed\",\"_meta\"]}"
+    },
+    {
+      "eng": "ENG-763",
+      "id": "SEAT",
+      "rule": "Seatmap availability after mixed pricing",
+      "how": "POST /v1/flights/seatmap",
+      "status": "PASS",
+      "actual": "{\"http\":200,\"code\":null,\"httpOkShape\":true,\"segmentCount\":0,\"seatCount\":0,\"requestStatus\":\"Completed\",\"keys\":[\"type\",\"retryCount\",\"timingReference\",\"tripType\",\"currencyConversion\",\"data\",\"requestStatus\",\"status\",\"qtime\",\"_meta\"]}",
+      "pairAirlines": "6E+6E"
+    },
+    {
+      "eng": "ENG-763",
+      "id": "763-SAME",
+      "rule": "Same-category SME+SME still works",
+      "how": "6E 6E 5175 → 6E 6E 7017/6E 6E 932",
+      "status": "NOT TESTED",
+      "actual": "pricing=400/VENDOR_ERROR fareType="
+    },
+    {
+      "eng": "ENG-763",
+      "id": "763-BLOCK",
+      "rule": "Block Student/Defence/Senior/Flexi mix",
+      "how": "not in return inventory",
+      "status": "NOT TESTED"
+    },
+    {
+      "eng": "ENG-767",
+      "id": "767-SEAT",
+      "rule": "Seatmap when airlines differ (6E+IX)",
+      "how": "6E 6E 5175 → IX IX 1050",
+      "status": "NOT TESTED",
+      "actual": "{\"pricing\":\"404/SEARCH_ID_NOT_FOUND\",\"seatmap\":{\"skipped\":true}}"
+    },
+    {
+      "eng": "ENG-767",
+      "id": "767-SSR",
+      "rule": "SSR on mixed-airline RT",
+      "how": "ssr",
+      "status": "NOT TESTED",
+      "actual": "{\"skipped\":true}"
+    },
+    {
+      "eng": "ENG-766",
+      "id": "766-EXPIRE",
+      "rule": "Re-price expired leg from one search",
+      "how": "needs cache expiry wait",
+      "status": "NOT TESTED",
+      "actual": "skipped to protect L2B / time"
+    },
+    {
+      "eng": "ENG-763",
+      "id": "763-INTL",
+      "rule": "International RT unchanged",
+      "how": "skipped second OD (L2B)",
+      "status": "NOT TESTED",
+      "actual": "no DEL-DXB search this run"
+    },
+    {
+      "eng": "META",
+      "id": "NO-BOOK",
+      "rule": "Never called issue-ticket",
+      "how": "ALLOW_BOOK=false + script guard",
+      "status": "PASS"
+    },
+    {
+      "eng": "META",
+      "id": "L2B",
+      "rule": "Pinned single RT DOM OD+dates",
+      "how": "DEL-BOM 2026-12-19/2026-12-21",
+      "status": "PASS",
+      "actual": "searchHTTPCalls=2 (polls+refine on same pin)"
+    }
+  ],
+  "dumps": {
+    "startedAt": "2026-11-09T06:43:30.841Z",
+    "baseUrl": "https://preprod-api.travelvip.ai",
+    "route": "DEL-BOM-DEL",
+    "dates": {
+      "onward": "2026-12-19",
+      "return": "2026-12-21"
+    },
+    "allowBook": "false",
+    "searches": 2,
+    "correlationId": "bcbdc4ba-947e-4642-9dfb-c0e6e2fb7959",
+    "search": {
+      "http": 200,
+      "code": null,
+      "progress": {
+        "partial": false,
+        "state": "COMPLETE",
+        "pollAfterMs": 0,
+        "message": null,
+        "lanesTotal": 3,
+        "lanesReady": 3
+      },
+      "onwardN": 20,
+      "onwardCats": [
+        "NORMAL",
+        "SME"
+      ]
+    },
+    "refine": {
+      "onward": {
+        "opt": {
+          "searchId": "srch_bbb8b37a5ef94b2cbf37bcca431a4f56",
+          "selected": false,
+          "totalStops": 0,
+          "refundable": true,
+          "refundText": "Refundable",
+          "totalDurationMinutes": 120,
+          "displayPricing": {
+            "type": "STARTING_FROM",
+            "fareCategory": "NORMAL",
+            "pricing": {
+              "baseFare": 4689,
+              "taxes": 2437,
+              "convenienceFee": 0,
+              "flexiCancelFee": 0,
+              "platformFee": 0,
+              "totalAmount": 7126,
+              "currency": "INR"
+            }
+          },
+          "combinedPricing": null,
+          "segments": [
+            {
+              "segmentId": "SEG_1",
+              "segmentNumber": null,
+              "segmentReference": null,
+              "flightNumber": "6E 5175",
+              "airlineCode": "6E",
+              "airline": {
+                "code": "6E",
+                "name": "IndiGo Airlines",
+                "logo": "https://img.travelx.ai/cstx_images/airline/logo/6e_fv.png"
+              },
+              "operatingCarrier": null,
+              "cabinClass": "ECONOMY",
+              "aircraft": "Airbus A320",
+              "durationMinutes": 120,
+              "stops": 0,
+              "vendorFlightId": "6E5175-HDO-BOM-2026-12-19T12:55-2026-12-19T14:55",
+              "baggage": {
+                "checkIn": "15 KG",
+                "cabin": "7 Kg"
+              },
+              "departure": {
+                "time": "2026-12-19T12:55",
+                "terminal": "",
+                "airportCode": "HDO",
+                "airportName": "Ghaziabad Hindon Airport",
+                "city": "Ghaziabad",
+                "country": "India"
+              },
+              "arrival": {
+                "time": "2026-12-19T14:55",
+                "terminal": "1",
+                "airportCode": "BOM",
+                "airportName": "Chhatrapati Shivaji Maharaj International Airport",
+                "city": "Mumbai",
+                "country": "India"
+              }
+            }
+          ],
+          "fares": [
+            {
+              "searchId": "srch_f434224d438343d99068e5652ffa6e34",
+              "fareType": "Normal",
+              "fareCategory": "NORMAL",
+              "pricing": {
+                "baseFare": 4689,
+                "taxes": 2437,
+                "convenienceFee": 0,
+                "flexiCancelFee": 0,
+                "platformFee": 0,
+                "totalAmount": 7126,
+                "currency": "INR"
+              },
+              "fareBasisCode": "R0IP",
+              "refundable": true,
+              "baggage": {
+                "checkIn": "15 KG",
+                "cabin": "7 Kg"
+              }
+            },
+            {
+              "searchId": "srch_182854a9770f4f1e9e08f9e86075d15c",
+              "fareType": "Corporate",
+              "fareCategory": "SME",
+              "pricing": {
+                "baseFare": 4689,
+                "taxes": 2437,
+                "convenienceFee": 0,
+                "flexiCancelFee": 0,
+                "platformFee": 0,
+                "totalAmount": 7126,
+                "currency": "INR"
+              },
+              "fareBasisCode": "RMIP",
+              "refundable": true,
+              "baggage": {
+                "checkIn": "15 KG",
+                "cabin": "7 Kg"
+              }
+            },
+            {
+              "searchId": "srch_2593c326ab2d45aeb3318c4e1ff63275",
+              "fareType": "Flexi",
+              "fareCategory": "NORMAL",
+              "pricing": {
+                "baseFare": 4839,
+                "taxes": 2445,
+                "convenienceFee": 0,
+                "flexiCancelFee": 0,
+                "platformFee": 0,
+                "totalAmount": 7284,
+                "currency": "INR"
+              },
+              "fareBasisCode": "RUIP",
+              "refundable": true,
+              "baggage": {
+                "checkIn": "15 KG",
+                "cabin": "7 Kg"
+              }
+            },
+            {
+              "searchId": "srch_5c7b0ef376b346f2a574eed8165301a2",
+              "fareType": "IndiGo Upfront",
+              "fareCategory": "NORMAL",
+              "pricing": {
+                "baseFare": 7189,
+                "taxes": 2562,
+                "convenienceFee": 0,
+                "flexiCancelFee": 0,
+                "platformFee": 0,
+                "totalAmount": 9751,
+                "currency": "INR"
+              },
+              "fareBasisCode": "RLIP",
+              "refundable": true,
+              "baggage": {
+                "checkIn": "20 KG",
+                "cabin": "7 Kg"
+              }
+            }
+          ],
+          "vsearchReference": "lhG9DLaKYrFDQOXpivW7Wi3GKuxu6wlxUbZzrXhOBusr2NTUZW1JdaOnoAhN0H/Y1/nsnHV9Dic6GdW3d+GzRlLeyc4/a9ZWkE0vMfj7ta0=",
+          "lcc": true
+        },
+        "f": {
+          "searchId": "srch_182854a9770f4f1e9e08f9e86075d15c",
+          "fareType": "Corporate",
+          "fareCategory": "SME",
+          "pricing": {
+            "baseFare": 4689,
+            "taxes": 2437,
+            "convenienceFee": 0,
+            "flexiCancelFee": 0,
+            "platformFee": 0,
+            "totalAmount": 7126,
+            "currency": "INR"
+          },
+          "fareBasisCode": "RMIP",
+          "refundable": true,
+          "baggage": {
+            "checkIn": "15 KG",
+            "cabin": "7 Kg"
+          }
+        },
+        "searchId": "srch_182854a9770f4f1e9e08f9e86075d15c",
+        "category": "SME",
+        "airline": "6E",
+        "label": "6E 6E 5175",
+        "fareType": "Corporate"
+      },
+      "returnN": 20,
+      "returnCats": [
+        "NORMAL",
+        "SME"
+      ],
+      "progress": {
+        "partial": false,
+        "state": "COMPLETE",
+        "pollAfterMs": 0,
+        "message": null,
+        "lanesTotal": null,
+        "lanesReady": null
+      }
+    },
+    "MIXED": {
+      "tag": "MIXED",
+      "searchIds": [
+        "srch_182854a9770f4f1e9e08f9e86075d15c",
+        "srch_ca1f1fd1b82841609ca3fb28acd1d5e3"
+      ],
+      "details": {
+        "http": 200,
+        "code": null,
+        "fareType": "",
+        "mixedFareType": true,
+        "legs": [
+          {
+            "direction": "ONWARD",
+            "fareType": "SME",
+            "hasPolicies": false,
+            "keys": [
+              "direction",
+              "fareType",
+              "fareCategory",
+              "legId",
+              "legNumber",
+              "totalStops",
+              "totalDurationMinutes",
+              "refundable",
+              "refundText",
+              "segments",
+              "onlineCancellation",
+              "cancellationPolicies"
+            ]
+          },
+          {
+            "direction": "RETURN",
+            "fareType": "NORMAL",
+            "hasPolicies": false,
+            "keys": [
+              "direction",
+              "fareType",
+              "fareCategory",
+              "legId",
+              "legNumber",
+              "totalStops",
+              "totalDurationMinutes",
+              "refundable",
+              "refundText",
+              "segments",
+              "onlineCancellation",
+              "cancellationPolicies"
+            ]
+          }
+        ],
+        "keys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "pricing",
+          "currencyConversion",
+          "passengerOptions",
+          "itinerary",
+          "mixedFareType",
+          "_meta"
+        ]
+      },
+      "pricing": {
+        "http": 200,
+        "code": null,
+        "priceId": "price_444d9fcde15d402c8f6cc606a9455e7a",
+        "fareType": "MIXED",
+        "mixedFareType": true,
+        "legs": [
+          {
+            "direction": "ONWARD",
+            "fareType": "SME",
+            "hasPolicies": false,
+            "keys": [
+              "direction",
+              "fareType",
+              "fareCategory",
+              "legId",
+              "legNumber",
+              "totalStops",
+              "totalDurationMinutes",
+              "refundable",
+              "refundText",
+              "segments",
+              "onlineCancellation",
+              "cancellationPolicies"
+            ]
+          },
+          {
+            "direction": "RETURN",
+            "fareType": "NORMAL",
+            "hasPolicies": false,
+            "keys": [
+              "direction",
+              "fareType",
+              "fareCategory",
+              "legId",
+              "legNumber",
+              "totalStops",
+              "totalDurationMinutes",
+              "refundable",
+              "refundText",
+              "segments",
+              "onlineCancellation",
+              "cancellationPolicies"
+            ]
+          }
+        ],
+        "keys": [
+          "priceId",
+          "timingReference",
+          "journeyType",
+          "tripType",
+          "fareType",
+          "mixedFareType",
+          "passportType",
+          "addGstInfo",
+          "selection",
+          "expiresAt",
+          "pricing",
+          "currencyConversion",
+          "gstBreakup",
+          "cancellationFee",
+          "itinerary",
+          "passengerOptions",
+          "descriptions",
+          "notices",
+          "priceChange",
+          "capabilities",
+          "bookingContext",
+          "vpricingReference",
+          "refreshToken",
+          "_meta"
+        ]
+      },
+      "fareRules": {
+        "http": 200,
+        "code": null,
+        "fareType": "MIXED",
+        "mixedFareType": true,
+        "legs": [
+          {
+            "direction": "HDO-BOM · Description",
+            "fareType": "SME",
+            "hasPolicies": false,
+            "keys": [
+              "title",
+              "text",
+              "fareType"
+            ]
+          },
+          {
+            "direction": "NMI-DEL · 6E",
+            "fareType": "NORMAL",
+            "hasPolicies": false,
+            "keys": [
+              "title",
+              "text",
+              "fareType"
+            ]
+          }
+        ],
+        "entryCount": 2,
+        "keys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "fareRules",
+          "cancellationPolicies",
+          "reschedulePolicies",
+          "fareType",
+          "fareTypes",
+          "mixedFareType",
+          "_meta"
+        ]
+      },
+      "ssr": {
+        "http": 200,
+        "code": null,
+        "mealSegments": 3,
+        "baggageSegments": 2,
+        "seatSegments": 0,
+        "keys": [
+          "priceId",
+          "timingReference",
+          "journeyType",
+          "tripType",
+          "expiresAt",
+          "currencyConversion",
+          "meal",
+          "baggage",
+          "MultipleBaggageAllowed",
+          "MultipleMealsAllowed",
+          "_meta"
+        ]
+      },
+      "seatmap": {
+        "http": 200,
+        "code": null,
+        "httpOkShape": true,
+        "segmentCount": 0,
+        "seatCount": 0,
+        "requestStatus": "Completed",
+        "keys": [
+          "type",
+          "retryCount",
+          "timingReference",
+          "tripType",
+          "currencyConversion",
+          "data",
+          "requestStatus",
+          "status",
+          "qtime",
+          "_meta"
+        ]
+      }
+    },
+    "SAME": {
+      "tag": "SAME",
+      "searchIds": [
+        "srch_182854a9770f4f1e9e08f9e86075d15c",
+        "srch_b6beab1504be40f3a4b924fbea2750bc"
+      ],
+      "details": {
+        "http": 200,
+        "code": null,
+        "fareType": "",
+        "mixedFareType": false,
+        "legs": [
+          {
+            "direction": "ONWARD",
+            "fareType": "SME",
+            "hasPolicies": false,
+            "keys": [
+              "direction",
+              "fareType",
+              "fareCategory",
+              "legId",
+              "legNumber",
+              "totalStops",
+              "totalDurationMinutes",
+              "refundable",
+              "refundText",
+              "segments",
+              "onlineCancellation",
+              "cancellationPolicies"
+            ]
+          },
+          {
+            "direction": "RETURN",
+            "fareType": "SME",
+            "hasPolicies": false,
+            "keys": [
+              "direction",
+              "fareType",
+              "fareCategory",
+              "legId",
+              "legNumber",
+              "totalStops",
+              "totalDurationMinutes",
+              "refundable",
+              "refundText",
+              "segments",
+              "onlineCancellation",
+              "cancellationPolicies"
+            ]
+          }
+        ],
+        "keys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "pricing",
+          "currencyConversion",
+          "passengerOptions",
+          "itinerary",
+          "mixedFareType",
+          "_meta"
+        ]
+      },
+      "pricing": {
+        "http": 400,
+        "code": "VENDOR_ERROR",
+        "priceId": null,
+        "fareType": "",
+        "mixedFareType": null,
+        "legs": [],
+        "keys": [
+          "error",
+          "_meta"
+        ],
+        "error": {
+          "code": "VENDOR_ERROR",
+          "message": "Pricing failed.",
+          "details": null,
+          "timestamp": "2026-11-09T06:43:49Z",
+          "request_id": "req-1794206630155"
+        }
+      },
+      "fareRules": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "fareType": "",
+        "mixedFareType": null,
+        "legs": [],
+        "entryCount": 0,
+        "keys": [
+          "error",
+          "_meta"
+        ],
+        "error": {
+          "code": "SEARCH_ID_NOT_FOUND",
+          "message": "No cached search context found for searchId: srch_182854a9770f4f1e9e08f9e86075d15c",
+          "details": null,
+          "timestamp": "2026-11-09T06:43:50Z",
+          "request_id": "req-1794206632594",
+          "search_again": 1
+        }
+      },
+      "ssr": {
+        "skipped": true
+      },
+      "seatmap": {
+        "skipped": true
+      }
+    },
+    "DIFF_AIRLINE": {
+      "tag": "DIFF_AIRLINE",
+      "searchIds": [
+        "srch_182854a9770f4f1e9e08f9e86075d15c",
+        "srch_5035520b20bb4038b9d6292bad320874"
+      ],
+      "details": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "fareType": "",
+        "mixedFareType": null,
+        "legs": [],
+        "keys": [
+          "error",
+          "_meta"
+        ]
+      },
+      "pricing": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "priceId": null,
+        "fareType": "",
+        "mixedFareType": null,
+        "legs": [],
+        "keys": [
+          "error",
+          "_meta"
+        ],
+        "error": {
+          "code": "SEARCH_ID_NOT_FOUND",
+          "message": "No cached search context found for searchId: srch_182854a9770f4f1e9e08f9e86075d15c",
+          "details": null,
+          "timestamp": "2026-11-09T06:43:50Z",
+          "request_id": "req-1794206633003",
+          "search_again": 1
+        }
+      },
+      "fareRules": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "fareType": "",
+        "mixedFareType": null,
+        "legs": [],
+        "entryCount": 0,
+        "keys": [
+          "error",
+          "_meta"
+        ],
+        "error": {
+          "code": "SEARCH_ID_NOT_FOUND",
+          "message": "No cached search context found for searchId: srch_182854a9770f4f1e9e08f9e86075d15c",
+          "details": null,
+          "timestamp": "2026-11-09T06:43:50Z",
+          "request_id": "req-1794206633105",
+          "search_again": 1
+        }
+      },
+      "ssr": {
+        "skipped": true
+      },
+      "seatmap": {
+        "skipped": true
+      }
+    },
+    "finishedAt": "2026-11-09T06:43:53.200Z"
+  }
+}

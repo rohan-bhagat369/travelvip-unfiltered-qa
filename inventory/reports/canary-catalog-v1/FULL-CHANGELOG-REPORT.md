@@ -1,0 +1,79 @@
+# Canary catalog_v1 FULL matrix
+
+**Base:** https://gamma-api.travelvip.ai · **Partner:** vgm · 2026-11-24T07:53:13.152Z
+
+| Case | Lounge | Fast Track | eSIM | old/other |
+|---|---|---|---|---|
+| W3 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| W7 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| C3 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| C4 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| C5 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| C6 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| C10 | NOT TESTED | PASS | NOT TESTED | — |
+| C11 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| C12 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| C13 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| A1 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| A2 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| A3 | CHECK | CHECK | CHECK | — |
+| A4 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| U2 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| U3 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| U4 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| U5 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| U8 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| V3 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| V4 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| V8 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| I2 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| I3 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| I4 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| L2 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| L3 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| L4 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| L6 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| W1 | PASS | PASS | PASS | — |
+| R1 | PASS | PASS | PASS | — |
+| R2 | PASS | PASS | PASS | — |
+| R3 | PASS | PASS | PASS | — |
+| W2 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| W4 | PASS | PASS | PASS | — |
+| W5 | CHECK | CHECK | CHECK | — |
+| W6 | PASS | PASS | PASS | — |
+| W8 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| V1 | PASS | PASS | PASS | — |
+| V2 | PASS | PASS | PASS | — |
+| V6 | PASS | PASS | PASS | — |
+| V7 | PASS | PASS | NOT TESTED | — |
+| V5 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| I1 | CHECK | CHECK | CHECK | — |
+| C1 | PASS | PASS | PASS | — |
+| C2 | PASS | PASS | PASS | — |
+| C7 | PASS | PASS | PASS | — |
+| C8 | PASS | PASS | PASS | — |
+| C9 | PASS | PASS | PASS | — |
+| U6 | PASS | PASS | PASS | — |
+| U7 | PASS | PASS | PASS | — |
+| U1 | PASS | PASS | PASS | — |
+| L8 | PASS | — | PASS | fast_track_immigration:PASS |
+| L5 | — | — | — | PASS |
+| L1 | PASS | PASS | PASS | — |
+
+## BRs
+```json
+{
+  "lounge_W1": "BR1795506794185234",
+  "lounge_W2": "BR1795506812248192",
+  "lounge_C1": "BR1795506815557699",
+  "lounge_C2": "BR1795506815557699",
+  "fasttrack_W1": "BR1795506839495541",
+  "fasttrack_W2": "BR1795506859856299",
+  "fasttrack_C1": "BR1795506869472048",
+  "fasttrack_C2": "BR1795506869472048",
+  "esim_W1": "BR1795506891597424",
+  "esim_W2": "BR1795506910819133",
+  "esim_C1": "BR1795506914806511",
+  "esim_C2": "BR1795506914806511"
+}
+```

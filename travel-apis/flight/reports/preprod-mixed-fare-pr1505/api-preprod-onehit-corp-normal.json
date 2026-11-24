@@ -1,0 +1,394 @@
+{
+  "when": "2026-11-12T11:05:12.631Z",
+  "baseUrl": "https://api-preprod.travelvip.ai",
+  "correlationId": "a553ac52-69c6-4fee-9e3b-c27dc8afa9e2",
+  "request": {
+    "itinerary": [
+      {
+        "origin": "DEL",
+        "destination": "BOM",
+        "date": "2026-11-26"
+      },
+      {
+        "origin": "BOM",
+        "destination": "DEL",
+        "date": "2026-11-28"
+      }
+    ],
+    "travellers": {
+      "adults": 1,
+      "children": 0,
+      "infants": 0
+    },
+    "cabinClass": "ECONOMY",
+    "journeyType": "ROUND_TRIP",
+    "currency": "INR",
+    "language": "en",
+    "preferences": {
+      "airlines": [],
+      "maxStops": 0,
+      "refundableOnly": false
+    },
+    "appliedFilters": {},
+    "selection": {
+      "selectedSearchIds": []
+    },
+    "fareType": "NORMAL, CORPORATE, SME"
+  },
+  "search": {
+    "http": 200,
+    "state": "COMPLETE",
+    "onwardCats": [
+      "CORPORATE",
+      "NORMAL",
+      "SME"
+    ],
+    "returnCats": [
+      "CORPORATE",
+      "NORMAL",
+      "SME"
+    ]
+  },
+  "refined": null,
+  "finalCats": {
+    "onward": [
+      "CORPORATE",
+      "NORMAL",
+      "SME"
+    ],
+    "return": [
+      "CORPORATE",
+      "NORMAL",
+      "SME"
+    ],
+    "state": "COMPLETE"
+  },
+  "candidateCounts": {
+    "cn": 6,
+    "nc": 6,
+    "sn": 4,
+    "ns": 4
+  },
+  "hops": {
+    "corpNormalAttempts": [
+      {
+        "tag": "CN#1",
+        "airlines": "QP+QP",
+        "sameAirline": true,
+        "details": 200,
+        "pricing": "200/price_002f2265343e4c64885cf3587656334a"
+      }
+    ],
+    "corpNormal": {
+      "tag": "CN#1",
+      "kind": "CORPORATE+NORMAL",
+      "airlines": "QP+QP",
+      "sameAirline": true,
+      "searchIds": [
+        "srch_005e4260a8e94e22b4d33737815542c4",
+        "srch_679c7e0b647f46a68ba0bf6e5ba807c0"
+      ],
+      "onward": {
+        "searchId": "srch_005e4260a8e94e22b4d33737815542c4",
+        "category": "CORPORATE",
+        "fareType": "Corporate Fares",
+        "fareCategory": "CORPORATE",
+        "airline": "QP",
+        "label": "QP QP 1114"
+      },
+      "return": {
+        "searchId": "srch_679c7e0b647f46a68ba0bf6e5ba807c0",
+        "category": "NORMAL",
+        "fareType": "Saver",
+        "fareCategory": "NORMAL",
+        "airline": "QP",
+        "label": "QP QP 1115"
+      },
+      "details": {
+        "http": 200,
+        "code": null,
+        "fareType": null,
+        "mixedFareType": true,
+        "legs": null
+      },
+      "pricing": {
+        "http": 200,
+        "code": null,
+        "priceId": "price_002f2265343e4c64885cf3587656334a",
+        "bookingContext": "[present]",
+        "fareType": "MIXED",
+        "mixedFareType": true,
+        "legs": null
+      },
+      "fareRules": {
+        "http": 200,
+        "code": null,
+        "fareType": "MIXED",
+        "mixedFareType": true,
+        "entryCount": 2,
+        "entries": [
+          {
+            "title": "DEL-BOM · Description",
+            "direction": null,
+            "fareType": "corporate",
+            "hasCancel": false,
+            "hasReschedule": false,
+            "textLen": 12642
+          },
+          {
+            "title": "BOM-DEL · Fare Rules",
+            "direction": null,
+            "fareType": "NORMAL",
+            "hasCancel": false,
+            "hasReschedule": false,
+            "textLen": 3630
+          }
+        ]
+      },
+      "ssr": {
+        "http": 200,
+        "code": null
+      },
+      "seatmap": {
+        "http": 200,
+        "code": null,
+        "requestStatus": "Completed",
+        "segments": [
+          {
+            "direction": null,
+            "legNumber": 1,
+            "origin": "DEL",
+            "destination": "BOM",
+            "airline": null,
+            "flightNumber": null,
+            "seatCount": 186,
+            "openCount": 0
+          },
+          {
+            "direction": null,
+            "legNumber": 2,
+            "origin": "BOM",
+            "destination": "DEL",
+            "airline": null,
+            "flightNumber": null,
+            "seatCount": 197,
+            "openCount": 0
+          }
+        ],
+        "dirsWithSeats": [],
+        "bothDirs": false
+      }
+    },
+    "normalCorpAttempts": [
+      {
+        "tag": "NC#1",
+        "airlines": "QP+QP",
+        "sameAirline": true,
+        "details": 200,
+        "pricing": "200/price_9bb0900f3bd1459dadaf5ebd491aecc9"
+      }
+    ],
+    "normalCorp": {
+      "tag": "NC#1",
+      "kind": "NORMAL+CORPORATE",
+      "airlines": "QP+QP",
+      "sameAirline": true,
+      "searchIds": [
+        "srch_125a2b7d6e334691a0c3644cd39cdfe2",
+        "srch_b6f601c8439747f29a7ddccb478f46e2"
+      ],
+      "onward": {
+        "searchId": "srch_125a2b7d6e334691a0c3644cd39cdfe2",
+        "category": "NORMAL",
+        "fareType": "Saver",
+        "fareCategory": "NORMAL",
+        "airline": "QP",
+        "label": "QP QP 1114"
+      },
+      "return": {
+        "searchId": "srch_b6f601c8439747f29a7ddccb478f46e2",
+        "category": "CORPORATE",
+        "fareType": "Corporate Fares",
+        "fareCategory": "CORPORATE",
+        "airline": "QP",
+        "label": "QP QP 1115"
+      },
+      "details": {
+        "http": 200,
+        "code": null,
+        "fareType": null,
+        "mixedFareType": true,
+        "legs": null
+      },
+      "pricing": {
+        "http": 200,
+        "code": null,
+        "priceId": "price_9bb0900f3bd1459dadaf5ebd491aecc9",
+        "bookingContext": "[present]",
+        "fareType": "MIXED",
+        "mixedFareType": true,
+        "legs": null
+      },
+      "fareRules": {
+        "http": 200,
+        "code": null,
+        "fareType": "MIXED",
+        "mixedFareType": true,
+        "entryCount": 2,
+        "entries": [
+          {
+            "title": "DEL-BOM · Fare Rules",
+            "direction": null,
+            "fareType": "NORMAL",
+            "hasCancel": false,
+            "hasReschedule": false,
+            "textLen": 3630
+          },
+          {
+            "title": "BOM-DEL · Description",
+            "direction": null,
+            "fareType": "corporate",
+            "hasCancel": false,
+            "hasReschedule": false,
+            "textLen": 12642
+          }
+        ]
+      },
+      "ssr": {
+        "http": 200,
+        "code": null
+      },
+      "seatmap": {
+        "http": 200,
+        "code": null,
+        "requestStatus": "Completed",
+        "segments": [
+          {
+            "direction": null,
+            "legNumber": 1,
+            "origin": "DEL",
+            "destination": "BOM",
+            "airline": null,
+            "flightNumber": null,
+            "seatCount": 186,
+            "openCount": 0
+          },
+          {
+            "direction": null,
+            "legNumber": 2,
+            "origin": "BOM",
+            "destination": "DEL",
+            "airline": null,
+            "flightNumber": null,
+            "seatCount": 197,
+            "openCount": 0
+          }
+        ],
+        "dirsWithSeats": [],
+        "bothDirs": false
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "S0",
+      "rule": "Pinned search multi-lane inventory",
+      "status": "PASS",
+      "actual": "http=200 state=COMPLETE onward=CORPORATE,NORMAL,SME return=CORPORATE,NORMAL,SME"
+    },
+    {
+      "id": "763-REFINE",
+      "rule": "Return already had CORPORATE (no refine needed)",
+      "status": "PASS",
+      "actual": "returnCats=CORPORATE,NORMAL,SME"
+    },
+    {
+      "id": "763-CN",
+      "rule": "Allow CORPORATE+NORMAL details/pricing",
+      "status": "PASS",
+      "actual": "pricing=200/price_002f2265343e4c64885cf3587656334a airlines=QP+QP same=true tries=1"
+    },
+    {
+      "id": "764-CN",
+      "rule": "MIXED top-level CORP+NORMAL",
+      "status": "PASS",
+      "actual": "fareType=MIXED mixed=true legs=null"
+    },
+    {
+      "id": "768-CN",
+      "rule": "Fare rules per leg CORP+NORMAL",
+      "status": "PASS",
+      "actual": "http=200 entries=2 [{\"title\":\"DEL-BOM · Description\",\"direction\":null,\"fareType\":\"corporate\",\"hasCancel\":false,\"hasReschedule\":false,\"textLen\":12642},{\"title\":\"BOM-DEL · Fare Rules\",\"direction\":null,\"fareType\":\"NORMAL\",\"hasCancel\":false,\"hasReschedule\":false,\"textLen\":3630}]"
+    },
+    {
+      "id": "765-CN",
+      "rule": "Policies CORP+NORMAL order",
+      "status": "PASS",
+      "actual": "[{\"title\":\"DEL-BOM · Description\",\"direction\":null,\"fareType\":\"corporate\",\"hasCancel\":false,\"hasReschedule\":false,\"textLen\":12642},{\"title\":\"BOM-DEL · Fare Rules\",\"direction\":null,\"fareType\":\"NORMAL\",\"hasCancel\":false,\"hasReschedule\":false,\"textLen\":3630}]"
+    },
+    {
+      "id": "SEAT-CN",
+      "rule": "Seatmap CORP+NORMAL (same al)",
+      "status": "PASS",
+      "actual": "dirs=none segs=[{\"direction\":null,\"legNumber\":1,\"origin\":\"DEL\",\"destination\":\"BOM\",\"airline\":null,\"flightNumber\":null,\"seatCount\":186,\"openCount\":0},{\"direction\":null,\"legNumber\":2,\"origin\":\"BOM\",\"destination\":\"DEL\",\"airline\":null,\"flightNumber\":null,\"seatCount\":197,\"openCount\":0}]"
+    },
+    {
+      "id": "763-NC",
+      "rule": "Allow NORMAL+CORPORATE details/pricing",
+      "status": "PASS",
+      "actual": "pricing=200/price_9bb0900f3bd1459dadaf5ebd491aecc9 airlines=QP+QP same=true tries=1"
+    },
+    {
+      "id": "764-NC",
+      "rule": "MIXED top-level NORMAL+CORP",
+      "status": "PASS",
+      "actual": "fareType=MIXED mixed=true"
+    },
+    {
+      "id": "768-NC",
+      "rule": "Fare rules per leg NORMAL+CORP",
+      "status": "PASS",
+      "actual": "http=200 entries=2"
+    },
+    {
+      "id": "765-NC",
+      "rule": "Policies NORMAL+CORP order",
+      "status": "PASS",
+      "actual": "[{\"title\":\"DEL-BOM · Fare Rules\",\"direction\":null,\"fareType\":\"NORMAL\",\"hasCancel\":false,\"hasReschedule\":false,\"textLen\":3630},{\"title\":\"BOM-DEL · Description\",\"direction\":null,\"fareType\":\"corporate\",\"hasCancel\":false,\"hasReschedule\":false,\"textLen\":12642}]"
+    },
+    {
+      "id": "SEAT-NC",
+      "rule": "Seatmap NORMAL+CORP (same al)",
+      "status": "PASS",
+      "actual": "dirs=none segs=[{\"direction\":null,\"legNumber\":1,\"origin\":\"DEL\",\"destination\":\"BOM\",\"airline\":null,\"flightNumber\":null,\"seatCount\":186,\"openCount\":0},{\"direction\":null,\"legNumber\":2,\"origin\":\"BOM\",\"destination\":\"DEL\",\"airline\":null,\"flightNumber\":null,\"seatCount\":197,\"openCount\":0}]"
+    },
+    {
+      "id": "767-DIFF",
+      "rule": "Diff-airline seatmap",
+      "status": "NOT TESTED",
+      "actual": "no priced diff-airline hop with seatmap"
+    },
+    {
+      "id": "767-SAME",
+      "rule": "Same-airline seatmap QP+QP",
+      "status": "PASS",
+      "actual": "kind=CORPORATE+NORMAL dirs=none"
+    },
+    {
+      "id": "NO-BOOK",
+      "rule": "Never called issue-ticket",
+      "status": "PASS",
+      "actual": "ALLOW_BOOK=false"
+    },
+    {
+      "id": "L2B",
+      "rule": "Single OD+dates pin (26/28 Nov)",
+      "status": "PASS",
+      "actual": "no date step; refine same dates only"
+    }
+  ],
+  "counts": {
+    "PASS": 15,
+    "NOT TESTED": 1
+  }
+}

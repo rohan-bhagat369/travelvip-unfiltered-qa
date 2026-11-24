@@ -1,0 +1,104 @@
+{
+  "at": "2026-11-24T07:58:17.997Z",
+  "base": "https://gamma-api.travelvip.ai",
+  "envBaseUrl": {
+    "vgm": "https://gamma-api.travelvip.ai",
+    "smt": "https://gamma-api.travelvip.ai"
+  },
+  "cases": [
+    {
+      "caseId": "INV",
+      "product": "lounge",
+      "status": "PASS",
+      "note": "collection-product Marhaba Lounge (F3,F4)"
+    },
+    {
+      "caseId": "W1_finalize",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506790511647",
+      "code": null,
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795506790511647\",\"bookingReference\":\"BR1795506790511647\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":3054.85,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":"
+    },
+    {
+      "caseId": "W1_status",
+      "product": "lounge",
+      "status": "PASS",
+      "br": "BR1795506790511647",
+      "finalStatus": "Pending"
+    },
+    {
+      "caseId": "C1_create",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507084160278",
+      "pi": "pi_3UfEc5EWyGwVPuvk07LDLr1G",
+      "code": null,
+      "note": "{\"bookingReference\":\"BR1795507084160278\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VM5zeCwPkBByiv\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLEx2RFZZT3p2M2NGT2xVTksxSU41b25RZEVqdXVyN2Q_00tMcOHCdy\",\"paymentIntent\":\"pi_3UfE"
+    },
+    {
+      "caseId": "Stripe",
+      "product": "lounge",
+      "status": "FAIL",
+      "pi": "pi_3UfEc5EWyGwVPuvk07LDLr1G",
+      "note": "You cannot confirm this PaymentIntent because it has already succeeded after being previously confirmed."
+    },
+    {
+      "caseId": "INV",
+      "product": "fasttrack",
+      "status": "PASS",
+      "note": "collection-env-product HaiKou MeiLan International Airport(T1)"
+    },
+    {
+      "caseId": "W1_finalize",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795506792886180",
+      "code": null,
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingReference\":\"BR1795506792886180\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":5250.53,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":1,\"baseFare\":5250.53,\"taxes\":0,\"conv"
+    },
+    {
+      "caseId": "W1_status",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1795506792886180",
+      "finalStatus": "Pending"
+    },
+    {
+      "caseId": "C1_create",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507102172771",
+      "pi": "pi_3UfEcMEWyGwVPuvk0kCOigQf",
+      "code": null,
+      "note": "{\"bookingReference\":\"BR1795507102172771\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VM5zeCwPkBByiv\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLDhmZDM3VEJoY1V3c2c5djZmcEc4cFBEYThXTTMyTzQ_00VHoLWRJI\",\"paymentIntent\":\"pi_3UfE"
+    },
+    {
+      "caseId": "Stripe",
+      "product": "fasttrack",
+      "status": "PASS",
+      "pi": "pi_3UfEcMEWyGwVPuvk0kCOigQf",
+      "note": "succeeded"
+    },
+    {
+      "caseId": "C2_booking",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795507102172771",
+      "code": null,
+      "note": "{\"status\":200,\"bookingReferenceId\":\"BR1795507102172771\",\"bookingStatus\":\"pending\",\"userStatus\":\"Pending\",\"_meta\":{\"correlation_id\":\"66eac538-01af-4013-a7b6-16168c9d1f60\"}}"
+    },
+    {
+      "caseId": "C2_status",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1795507102172771",
+      "finalStatus": "Pending"
+    }
+  ]
+}

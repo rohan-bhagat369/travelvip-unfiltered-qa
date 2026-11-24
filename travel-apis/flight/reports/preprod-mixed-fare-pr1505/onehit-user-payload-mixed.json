@@ -1,0 +1,81 @@
+{
+  "when": "2026-11-09T07:00:39.405Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "correlationId": "1c89a4ec-068b-4523-bef5-002acbbad265",
+  "hit": "single search HTTP — no poll, no pricing, no book",
+  "request": {
+    "itinerary": [
+      {
+        "origin": "DEL",
+        "destination": "BOM",
+        "date": "2026-11-22"
+      },
+      {
+        "origin": "BOM",
+        "destination": "DEL",
+        "date": "2026-11-26"
+      }
+    ],
+    "travellers": {
+      "adults": 1,
+      "children": 0,
+      "infants": 0
+    },
+    "cabinClass": "ECONOMY",
+    "fareType": "NORMAL,CORPORATE,SME",
+    "journeyType": "ROUND_TRIP",
+    "currency": "INR",
+    "language": "en",
+    "preferences": {
+      "airlines": [],
+      "maxStops": 0,
+      "refundableOnly": false
+    },
+    "appliedFilters": {
+      "ONWARD": {},
+      "RETURN": {}
+    },
+    "selection": {
+      "selectedSearchIds": [
+        ""
+      ]
+    }
+  },
+  "response": {
+    "http": 400,
+    "code": "INVALID_REQUEST",
+    "error": {
+      "code": "INVALID_REQUEST",
+      "message": "Malformed JSON request body.",
+      "details": null,
+      "timestamp": "2026-11-09T07:00:36Z",
+      "request_id": "req-1794207639212"
+    },
+    "progress": null,
+    "resultDirections": []
+  },
+  "onward": {
+    "n": 0,
+    "cats": [],
+    "multiCategoryCards": 0,
+    "multiSamples": [],
+    "samples": []
+  },
+  "return": {
+    "n": 0,
+    "cats": [],
+    "multiCategoryCards": 0,
+    "multiSamples": [],
+    "samples": []
+  },
+  "verdict": {
+    "fareTypeSent": "NORMAL,CORPORATE,SME",
+    "categoriesSeen": [],
+    "hasNORMAL": false,
+    "hasCORPORATE": false,
+    "hasSME": false,
+    "mixedResults": false,
+    "status": "BUG",
+    "note": "Search accepted but inventory did not return multiple allowed fare categories on this single hit (progress may still be running — no poll per instruction)"
+  }
+}

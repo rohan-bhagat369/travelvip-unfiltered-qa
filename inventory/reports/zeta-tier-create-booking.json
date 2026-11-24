@@ -1,0 +1,63 @@
+{
+  "at": "2026-11-20T10:44:23.258Z",
+  "base": "https://zeta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": "10546901",
+  "sessionClaims": {
+    "tierId": 10546901,
+    "subscriptionId": "4630386616af6bb5"
+  },
+  "inventory": {
+    "product": "lounge",
+    "airportId": 12,
+    "airportCode": "BOM",
+    "terminal": "Terminal 2",
+    "productId": "3uurropms0xwh7ubehpo",
+    "optionId": "a8850a7e-bf81-46d6-80c2-371dcb627f41",
+    "bookingContext": "7F4XTkjA51HGofLn6DhTz9qcIKvAzxUf9DVFZZ0gyNW+gguQaIqMPYGmnoQbFrvPdIWgdlnIpXYtasOG…",
+    "price": null
+  },
+  "request": {
+    "method": "POST",
+    "path": "/v1/airportServices/lounges/finalize-booking",
+    "query": {
+      "lang": "en",
+      "currency": "INR"
+    },
+    "note": "Client body does NOT include tierId/subscriptionId — server injects from session into outbound CREATE",
+    "body": {
+      "bookingContext": "7F4XTkjA51HGofLn6DhTz9qcIKvAzxUf9DVFZZ0gyNW+gguQaIqMPYGmnoQbFrvPdIWgdlnIpXYtasOG…",
+      "travelDate": "2026-11-27",
+      "travelTime": "10:00",
+      "timezone": "Asia/Kolkata",
+      "passengers": [
+        {
+          "paxType": "ADT",
+          "isLead": true,
+          "profile": {
+            "title": "Mr",
+            "firstName": "Rohan",
+            "lastName": "Zetaqnxd",
+            "gender": "MALE",
+            "dob": "2001-05-29",
+            "nationality": "IN"
+          }
+        }
+      ],
+      "contact": {
+        "email": "zeta.tier.1795171464517@travelvip.ai",
+        "countryCode": "+91",
+        "mobile": "9876543210"
+      }
+    }
+  },
+  "response": {
+    "http": 200,
+    "ok": true,
+    "br": "BR1795171465310008",
+    "status": "Pending",
+    "code": null,
+    "paymentIntentId": null,
+    "sample": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795171465310008\",\"_meta\":{\"correlation_id\":\"2ba911c8-0cbc-4de4-9574-0c73051ab42c\"}}"
+  }
+}

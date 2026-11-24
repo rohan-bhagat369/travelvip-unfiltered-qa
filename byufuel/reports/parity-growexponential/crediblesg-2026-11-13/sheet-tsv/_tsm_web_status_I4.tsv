@@ -1,0 +1,10 @@
+﻿uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+PASS	TSM & Leads menu under User Management · /uam/tsm-leads loads · Add TSM and Leads present
+PASS	TSM ZipCodes menu under User Management · /uam/tsm-zipcodes loads · Download/Upload present
+PASS	City Lead GrowCity Lead1118 created ACTIVE · grow.city.1118@yopmail.com · OA Hyderabad · reports Hyd Admin
+PASS	Area Lead GrowArea Lead1118 created ACTIVE · grow.area.1118@yopmail.com · reports GrowCity Lead1118
+PASS	TSM GrowTsm User1118 created ACTIVE · grow.tsm.1118@yopmail.com · reports GrowArea Lead1118
+PASS	Deactivate GrowTsm User1118 confirmed · status DEACTIVATED
+PASS	Activate GrowTsm User1118 confirmed · status ACTIVE again
+PASS	Zip Codes tab · Add 500084 saved · TSM ZipCodes list shows GrowTsm 500084
+PASS	POST /api/tsm-zipcodes/upload HTTP 200 · list shows GrowTsm 500001 + 500084

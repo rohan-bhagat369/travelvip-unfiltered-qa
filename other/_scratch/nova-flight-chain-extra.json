@@ -1,0 +1,118 @@
+{
+  "at": "2026-11-18T12:09:48.563Z",
+  "searchId": "srch_bc0377aede0049508bdb50d88f2292e9",
+  "out": {
+    "details": {
+      "L": {
+        "status": 200,
+        "keys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "pricing",
+          "currencyConversion",
+          "passengerOptions",
+          "itinerary",
+          "_meta"
+        ]
+      },
+      "N": {
+        "status": 200,
+        "keys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "pricing",
+          "currencyConversion",
+          "passengerOptions",
+          "itinerary",
+          "_meta"
+        ]
+      },
+      "shape": {
+        "missing": [],
+        "extra": []
+      },
+      "Lsample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"timingReference\":\"uv+xVwRtd5krQm5DioRlQ6SKSGkulYV6MB8q0Jm4esADVODepDpvReiW7nUrzbbIGHlVjjhYUZkEY1Fnm2GGPEzNM9xVjcUSEGD4ej+ooPnfB/nYu5",
+      "Nsample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"timingReference\":\"G62Z95w4c8xrSic+k75FtLyjMIJB0o4R87vG2HDO0/4AmsKAb+Uiay4iJIDIuumZ82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2P"
+    },
+    "fareRules": {
+      "L": {
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "keys": [
+          "error",
+          "_meta"
+        ]
+      },
+      "N": {
+        "status": 200,
+        "keys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "fareRules",
+          "cancellationPolicies",
+          "reschedulePolicies",
+          "_meta"
+        ]
+      },
+      "shape": {
+        "missing": [
+          "error"
+        ],
+        "extra": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "fareRules",
+          "cancellationPolicies",
+          "reschedulePolicies"
+        ]
+      },
+      "Lsample": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Fare rules failed.\",\"details\":null,\"timestamp\":\"2026-11-18T12:09:38Z\",\"request_id\":\"r1795003778614\"},\"_meta\":{\"correlation_id\":\"c17950037",
+      "Nsample": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"timingReference\":\"BSMugZTS5dA6O9covqlNnZt+rRwi/3afioE8Z1X6rjVWWp1VRVTnX088E2MaIS3MITUTQCjKm/o6aCeDoUUhMWRwGPVd3482SoHgEEiaOm5CfIdTFl"
+    },
+    "pricing": {
+      "L": {
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "keys": [
+          "error",
+          "_meta"
+        ]
+      },
+      "N": {
+        "status": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "keys": [
+          "error",
+          "_meta"
+        ]
+      },
+      "shape": {
+        "missing": [],
+        "extra": []
+      },
+      "Lsample": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Pricing failed.\",\"details\":null,\"timestamp\":\"2026-11-18T12:09:48Z\",\"request_id\":\"r1795003787883\"},\"_meta\":{\"correlation_id\":\"c17950037878",
+      "Nsample": "{\"error\":{\"code\":\"SEARCH_ID_NOT_FOUND\",\"message\":\"No cached search context found for searchId: srch_bc0377aede0049508bdb50d88f2292e9\",\"details\":null,\"timestamp\":\"2026-11-18T12:09:4"
+    }
+  },
+  "pricingDump": {
+    "error": {
+      "code": "SEARCH_ID_NOT_FOUND",
+      "message": "No cached search context found for searchId: srch_bc0377aede0049508bdb50d88f2292e9",
+      "details": null,
+      "timestamp": "2026-11-18T12:09:48Z",
+      "request_id": "r1795003788333",
+      "search_again": 1
+    },
+    "_meta": {
+      "correlation_id": "c1795003788333"
+    }
+  }
+}

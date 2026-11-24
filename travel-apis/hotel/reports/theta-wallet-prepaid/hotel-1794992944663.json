@@ -1,0 +1,154 @@
+{
+  "at": "2026-11-18T09:08:26.671Z",
+  "base": "https://theta-api.travelvip.ai",
+  "partner": "vgm",
+  "product": "hotel",
+  "cases": {
+    "A": {
+      "status": "PASS",
+      "expect": "PENDING/Confirmed, no refund section, wallet charged",
+      "simulate": null,
+      "http": 200,
+      "br": "BR1794992918141993",
+      "refund": null,
+      "finalStatus": "Confirmed",
+      "errorCode": null,
+      "responseBrief": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1794992918141993\",\"_meta\":{\"correlation_id\":\"e14fd339-2a68-4640-917e-5ba754407059\"}}",
+      "hotel": "Hiltop Hotel",
+      "checkin": "2026-12-09",
+      "amountPaid": null
+    },
+    "C": {
+      "status": "BUG",
+      "expect": "FAILED + refund.status=SUCCESS + walletTransactionId",
+      "checks": {
+        "failed": false,
+        "refundOk": null,
+        "refund": null
+      },
+      "simulate": "provider_reject",
+      "http": 500,
+      "br": null,
+      "refund": null,
+      "finalStatus": null,
+      "errorCode": null,
+      "responseBrief": "null",
+      "hotel": "Hiltop Hotel",
+      "checkin": "2026-12-09",
+      "amountPaid": null
+    },
+    "D": {
+      "status": "CHECK",
+      "expect": "stays PENDING, charged, no refund section",
+      "checks": {
+        "pending": false,
+        "notFailed": true,
+        "noRefund": true
+      },
+      "simulate": "provider_no_response",
+      "http": 500,
+      "br": null,
+      "refund": null,
+      "finalStatus": null,
+      "errorCode": null,
+      "responseBrief": "null",
+      "hotel": "Hiltop Hotel",
+      "checkin": "2026-12-09",
+      "amountPaid": null
+    },
+    "E": {
+      "status": "BUG",
+      "expect": "HTTP 502 WALLET_COMMIT_FAILED; no supplier booking",
+      "checks": {
+        "noSupplier": true
+      },
+      "simulate": "wallet_commit_fail",
+      "http": 500,
+      "br": null,
+      "refund": null,
+      "finalStatus": null,
+      "errorCode": null,
+      "responseBrief": "null",
+      "hotel": "Hiltop Hotel",
+      "checkin": "2026-12-09",
+      "amountPaid": null
+    },
+    "F": {
+      "status": "BUG",
+      "expect": "same as E + critical commit+release alert",
+      "checks": {},
+      "simulate": "wallet_commit_fail,wallet_release_fail",
+      "http": 500,
+      "br": null,
+      "refund": null,
+      "finalStatus": null,
+      "errorCode": null,
+      "responseBrief": "null",
+      "hotel": "Hiltop Hotel",
+      "checkin": "2026-12-09",
+      "amountPaid": null
+    },
+    "G": {
+      "status": "BUG",
+      "expect": "FAILED + refund.status=FAILED + empty walletTransactionId",
+      "checks": {
+        "failed": false,
+        "refundFailed": null,
+        "refund": null
+      },
+      "note": "Wallet stays charged — top up after",
+      "simulate": "provider_reject,wallet_refund_fail",
+      "http": 500,
+      "br": null,
+      "refund": null,
+      "finalStatus": null,
+      "errorCode": null,
+      "responseBrief": "null",
+      "hotel": "Hiltop Hotel",
+      "checkin": "2026-12-09",
+      "amountPaid": null
+    },
+    "H": {
+      "status": "CHECK",
+      "expect": "booking continues; alert Wallet Payment Record Missing",
+      "simulate": "wallet_debit_record_fail",
+      "http": 500,
+      "br": null,
+      "refund": null,
+      "finalStatus": null,
+      "errorCode": null,
+      "responseBrief": "null",
+      "hotel": "Hiltop Hotel",
+      "checkin": "2026-12-09",
+      "amountPaid": null
+    },
+    "I": {
+      "status": "BUG",
+      "expect": "FAILED + refund FAILED; alerts Missing + Refund Skipped",
+      "checks": {
+        "failed": false,
+        "refundFailed": null,
+        "refund": null
+      },
+      "note": "Wallet stays charged — top up after",
+      "simulate": "provider_reject,wallet_debit_record_fail",
+      "http": 500,
+      "br": null,
+      "refund": null,
+      "finalStatus": null,
+      "errorCode": null,
+      "responseBrief": "null",
+      "hotel": "Hiltop Hotel",
+      "checkin": "2026-12-09",
+      "amountPaid": null
+    },
+    "J": {
+      "status": "PASS",
+      "br": "BR1794992918141993",
+      "expect": "wallet refund on cancel still works",
+      "penaltyBrief": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1794992918141993\",\"confirmationNumber\":\"SNHAPI00011806\",\"currency\":\"INR\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":0,\"estimatedRefund\":11153.32,",
+      "cancelBrief": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1794992918141993\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":11153.32,\"createdAt\":\"2026-11-18T09:09:00Z\"}},\"_meta\":{\"correlation_id\":\"e14fd339-2a68-4",
+      "finalStatus": "Cancelled"
+    }
+  }
+}

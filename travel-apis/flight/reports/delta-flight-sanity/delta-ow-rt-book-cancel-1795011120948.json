@@ -1,0 +1,233 @@
+{
+  "ranAt": "2026-11-18T14:10:45.925Z",
+  "baseUrl": "https://delta-api.travelvip.ai",
+  "partnerId": "vgm",
+  "tierId": 10546901,
+  "cases": {
+    "ow": {
+      "book": {
+        "ok": true,
+        "journeyType": "ONE_WAY",
+        "route": "PNQ→DEL",
+        "onwardDays": 28,
+        "searchId": "srch_7f147ae67ace4d0c855b2f7328e54e1f",
+        "priceId": "price_df8c57c0493242e59a379d1fce192ca8",
+        "pricedTotal": 5184,
+        "br": "BR1795011046247302",
+        "status": "Confirmed",
+        "classified": "Confirmed",
+        "polls": 1,
+        "timedOut": false,
+        "pnrs": [
+          "SIM-9E72SK"
+        ],
+        "passengers": [
+          "Yash Waliakesc"
+        ],
+        "detailBrief": "{\"status\":\"Confirmed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1795011046247302\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-11-18T14:10:46\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"SG106-PNQ-DEL-2026-12-16T23:55-2026-12-17T02:15\",\"legNumber\":1,\"totalStops\":0,\"totalDurationMinutes\":140,\"refundable\":true,\"refundText\":\"Refundable\",\"segments\":[{\"segmentId\":\"SEG_1\",\"segmentNumber\":1,\"segmentReference\":\"SG106-PNQ-DEL-20"
+      },
+      "attempts": [
+        {
+          "ok": true,
+          "journeyType": "ONE_WAY",
+          "route": "PNQ→DEL",
+          "onwardDays": 28,
+          "searchId": "srch_7f147ae67ace4d0c855b2f7328e54e1f",
+          "priceId": "price_df8c57c0493242e59a379d1fce192ca8",
+          "pricedTotal": 5184,
+          "br": "BR1795011046247302",
+          "status": "Confirmed",
+          "classified": "Confirmed",
+          "polls": 1,
+          "timedOut": false,
+          "pnrs": [
+            "SIM-9E72SK"
+          ],
+          "passengers": [
+            "Yash Waliakesc"
+          ],
+          "detailBrief": "{\"status\":\"Confirmed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1795011046247302\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-11-18T14:10:46\",\"isFlexiCancel\":0},\"itinerary\":[{\"direction\":\"ONWARD\",\"legId\":\"SG106-PNQ-DEL-2026-12-16T23:55-2026-12-17T02:15\",\"legNumber\":1,\"totalStops\":0,\"totalDurationMinutes\":140,\"refundable\":true,\"refundText\":\"Refundable\",\"segments\":[{\"segmentId\":\"SEG_1\",\"segmentNumber\":1,\"segmentReference\":\"SG106-PNQ-DEL-20"
+        }
+      ],
+      "aborted": false,
+      "cancel": {
+        "steps": [
+          {
+            "pnr": "SIM-9E72SK",
+            "penalty": {
+              "request": {
+                "bookingId": "BR1795011046247302",
+                "action": "PENALTY",
+                "pnr": "SIM-9E72SK",
+                "cancelledBy": "delta-sanity-qa"
+              },
+              "http": 400,
+              "ok": false,
+              "body": {
+                "error": {
+                  "code": "VALIDATION_ERROR",
+                  "message": "Invalid cancelledBy. Allowed values: USER, ADMIN, SYSTEM",
+                  "details": "Field 'cancelledBy' must be one of: USER, ADMIN, SYSTEM",
+                  "timestamp": "2026-11-18T14:10:49Z",
+                  "request_id": "req-1795011049794"
+                },
+                "_meta": {
+                  "correlation_id": "9e3376dd-aab9-4c22-a27c-aa96c49f2de5"
+                }
+              }
+            },
+            "cancel": {
+              "request": {
+                "bookingId": "BR1795011046247302",
+                "action": "CANCEL",
+                "pnr": "SIM-9E72SK",
+                "cancelledBy": "delta-sanity-qa"
+              },
+              "http": 400,
+              "ok": false,
+              "body": {
+                "error": {
+                  "code": "VALIDATION_ERROR",
+                  "message": "Invalid cancelledBy. Allowed values: USER, ADMIN, SYSTEM",
+                  "details": "Field 'cancelledBy' must be one of: USER, ADMIN, SYSTEM",
+                  "timestamp": "2026-11-18T14:10:50Z",
+                  "request_id": "req-1795011049992"
+                },
+                "_meta": {
+                  "correlation_id": "9e3376dd-aab9-4c22-a27c-aa96c49f2de5"
+                }
+              }
+            },
+            "statusAfterThisCancel": "Confirmed",
+            "cancelRequestStatus": null
+          }
+        ],
+        "statusAfterCancel": "Confirmed",
+        "cancellationRequest": null
+      }
+    },
+    "rt": {
+      "book": {
+        "ok": false,
+        "error": "RT issue no BR",
+        "issue": {
+          "error": {
+            "code": "VALIDATION_ERROR",
+            "message": "Validation failed",
+            "details": [
+              "'data.passengers[0]' (Dev Mehraokpt) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+            ],
+            "timestamp": "2026-11-18T14:12:00Z",
+            "request_id": "req-1795011120753"
+          },
+          "_meta": {
+            "correlation_id": "9e3376dd-aab9-4c22-a27c-aa96c49f2de5"
+          }
+        }
+      },
+      "attempts": [
+        {
+          "ok": false,
+          "error": "RT issue no BR",
+          "issue": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Validation failed",
+              "details": [
+                "'data.passengers[0]' (Yash Waliaoisw) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+              ],
+              "timestamp": "2026-11-18T14:11:59Z",
+              "request_id": "req-1795011119482"
+            },
+            "_meta": {
+              "correlation_id": "9e3376dd-aab9-4c22-a27c-aa96c49f2de5"
+            }
+          }
+        },
+        {
+          "ok": false,
+          "error": "RT issue no BR",
+          "issue": {
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Validation failed",
+              "details": [
+                "'data.passengers[0]' (Dev Mehraokpt) must have a meal selected for PNQ-DEL (leg 1, ONWARD); this flight makes meal selection mandatory for every passenger"
+              ],
+              "timestamp": "2026-11-18T14:12:00Z",
+              "request_id": "req-1795011120753"
+            },
+            "_meta": {
+              "correlation_id": "9e3376dd-aab9-4c22-a27c-aa96c49f2de5"
+            }
+          }
+        }
+      ],
+      "aborted": false,
+      "cancel": null
+    }
+  },
+  "rows": [
+    {
+      "rule": "AUTH",
+      "how": "partner token + session on delta-api with staging vgm creds",
+      "status": "PASS",
+      "baseUrl": "https://delta-api.travelvip.ai"
+    },
+    {
+      "rule": "OW.BOOK",
+      "how": "search→price→issue-ticket→poll Confirmed (Inprogress → 1 retry)",
+      "status": "Confirmed",
+      "br": "BR1795011046247302",
+      "classified": "Confirmed",
+      "pnrs": [
+        "SIM-9E72SK"
+      ],
+      "pricedTotal": 5184,
+      "attempts": [
+        {
+          "br": "BR1795011046247302",
+          "status": "Confirmed",
+          "classified": "Confirmed"
+        }
+      ]
+    },
+    {
+      "rule": "OW.CANCEL",
+      "how": "v2 PENALTY + CANCEL; status Cancelled or Cancellation Requested",
+      "status": "BUG",
+      "br": "BR1795011046247302",
+      "pnrs": [
+        "SIM-9E72SK"
+      ],
+      "note": "expected Cancelled or Confirmed+Cancellation Requested; got Confirmed",
+      "statusAfterCancel": "Confirmed",
+      "cancellationRequest": null
+    },
+    {
+      "rule": "RT.BOOK",
+      "how": "search→price→issue-ticket→poll Confirmed (Inprogress → 1 retry)",
+      "attempts": [
+        {
+          "error": "RT issue no BR"
+        },
+        {
+          "error": "RT issue no BR"
+        }
+      ]
+    },
+    {
+      "rule": "RT.CANCEL",
+      "how": "v2 PENALTY + CANCEL",
+      "status": "NOT TESTED",
+      "note": "book RT issue no BR"
+    }
+  ],
+  "summary": {
+    "PASS": 1,
+    "Confirmed": 1,
+    "BUG": 1,
+    "undefined": 1,
+    "NOT TESTED": 1
+  }
+}

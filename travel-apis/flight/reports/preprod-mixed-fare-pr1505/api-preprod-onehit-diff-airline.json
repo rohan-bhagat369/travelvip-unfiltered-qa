@@ -1,0 +1,101 @@
+{
+  "when": "2026-11-12T11:06:47.443Z",
+  "baseUrl": "https://api-preprod.travelvip.ai",
+  "correlationId": "19872ffd-2062-4e51-9b16-e3dc58c1cc99",
+  "request": {
+    "itinerary": [
+      {
+        "origin": "DEL",
+        "destination": "BOM",
+        "date": "2026-11-26"
+      },
+      {
+        "origin": "BOM",
+        "destination": "DEL",
+        "date": "2026-11-28"
+      }
+    ],
+    "travellers": {
+      "adults": 1,
+      "children": 0,
+      "infants": 0
+    },
+    "cabinClass": "ECONOMY",
+    "journeyType": "ROUND_TRIP",
+    "currency": "INR",
+    "language": "en",
+    "preferences": {
+      "airlines": [],
+      "maxStops": 0,
+      "refundableOnly": false
+    },
+    "appliedFilters": {},
+    "selection": {
+      "selectedSearchIds": []
+    },
+    "fareType": "NORMAL, CORPORATE, SME"
+  },
+  "candidates": [
+    "CORPORATE+NORMAL QP QP 1114->6E 6E 632/6E 6E 983",
+    "CORPORATE+NORMAL QP QP 1114->6E 6E 632/6E 6E 983",
+    "CORPORATE+NORMAL QP QP 1114->6E 6E 632/6E 6E 983",
+    "CORPORATE+NORMAL QP QP 1114->6E 6E 2049/6E 6E 6867",
+    "CORPORATE+NORMAL QP QP 1114->6E 6E 2049/6E 6E 6867"
+  ],
+  "hop": {
+    "pair": {
+      "kind": "CORPORATE+NORMAL",
+      "onward": {
+        "searchId": "srch_005e4260a8e94e22b4d33737815542c4",
+        "category": "CORPORATE",
+        "fareType": "Corporate Fares",
+        "airline": "QP",
+        "label": "QP QP 1114"
+      },
+      "return": {
+        "searchId": "srch_3768416c824a439cbf401cfaa2f32ae6",
+        "category": "NORMAL",
+        "fareType": "Normal",
+        "airline": "6E",
+        "label": "6E 6E 632/6E 6E 983"
+      },
+      "airlines": "QP+6E"
+    },
+    "details": {
+      "http": 200,
+      "mixed": true
+    },
+    "pricing": {
+      "http": 200,
+      "priceId": "price_496c2cda47cf4147897d07b3465ac4db",
+      "fareType": "MIXED",
+      "mixed": true
+    },
+    "fareRules": {
+      "http": 200,
+      "fareType": "MIXED",
+      "entries": [
+        {
+          "title": "DEL-BOM · Description",
+          "fareType": "corporate"
+        },
+        {
+          "title": "BOM-DEL · 6E",
+          "fareType": "NORMAL"
+        }
+      ]
+    },
+    "ssr": {
+      "http": 200
+    },
+    "seatmap": {
+      "http": 200,
+      "requestStatus": "Completed",
+      "segments": [],
+      "bothLegsSeats": false
+    },
+    "verdict": "BUG"
+  },
+  "verdict": "BUG",
+  "noBook": true
+}

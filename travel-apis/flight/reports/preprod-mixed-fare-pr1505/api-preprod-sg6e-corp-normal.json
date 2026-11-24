@@ -1,0 +1,79 @@
+{
+  "when": "2026-11-12T11:10:24.876Z",
+  "baseUrl": "https://api-preprod.travelvip.ai",
+  "correlationId": "dd32cbd7-874a-49ae-817e-211237c600e6",
+  "request": {
+    "itinerary": [
+      {
+        "origin": "DEL",
+        "destination": "BOM",
+        "date": "2026-11-26"
+      },
+      {
+        "origin": "BOM",
+        "destination": "DEL",
+        "date": "2026-11-28"
+      }
+    ],
+    "travellers": {
+      "adults": 1,
+      "children": 0,
+      "infants": 0
+    },
+    "cabinClass": "ECONOMY",
+    "journeyType": "ROUND_TRIP",
+    "currency": "INR",
+    "language": "en",
+    "preferences": {
+      "airlines": [
+        "SG",
+        "6E"
+      ],
+      "maxStops": 0,
+      "refundableOnly": false
+    },
+    "appliedFilters": {},
+    "selection": {
+      "selectedSearchIds": []
+    },
+    "fareType": "NORMAL, CORPORATE, SME"
+  },
+  "inventory": {
+    "onward": {
+      "SG_CORP": 0,
+      "SG_NORMAL": 0,
+      "6E_CORP": 0,
+      "6E_NORMAL": 206
+    },
+    "return": {
+      "SG_CORP": 0,
+      "SG_NORMAL": 0,
+      "6E_CORP": 0,
+      "6E_NORMAL": 189
+    }
+  },
+  "hops": [],
+  "rows": [
+    {
+      "id": "SG-CORP + 6E-NORMAL",
+      "status": "NOT TESTED",
+      "actual": "missing inventory o=0 r=189"
+    },
+    {
+      "id": "6E-CORP + SG-NORMAL",
+      "status": "NOT TESTED",
+      "actual": "missing inventory o=0 r=0"
+    },
+    {
+      "id": "SG-NORMAL + 6E-CORP",
+      "status": "NOT TESTED",
+      "actual": "missing inventory o=0 r=0"
+    },
+    {
+      "id": "6E-NORMAL + SG-CORP",
+      "status": "NOT TESTED",
+      "actual": "missing inventory o=206 r=0"
+    }
+  ],
+  "noBook": true
+}

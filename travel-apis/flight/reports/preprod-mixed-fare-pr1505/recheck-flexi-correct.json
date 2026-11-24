@@ -1,0 +1,142 @@
+{
+  "when": "2026-11-09T07:25:52.540Z",
+  "flexiReturns": [
+    {
+      "searchId": "srch_c26e329d2fa64fc99c36b7eca039f46c",
+      "fareType": "Flexi",
+      "fareCategory": "NORMAL",
+      "airline": "6E",
+      "flight": "6E 6E 5238/6E 6E 2376",
+      "stops": 1,
+      "from": "BOM",
+      "to": "DEL"
+    },
+    {
+      "searchId": "srch_37ed2c86e921453e93ce919187dd8ede",
+      "fareType": "Flexi",
+      "fareCategory": "NORMAL",
+      "airline": "6E",
+      "flight": "6E 6E 225/6E 6E 6635",
+      "stops": 1,
+      "from": "NMI",
+      "to": "DEL"
+    },
+    {
+      "searchId": "srch_220411b752c94c719dc34aa0a2ffa1f4",
+      "fareType": "Flexi",
+      "fareCategory": "NORMAL",
+      "airline": "6E",
+      "flight": "6E 6E 5179/6E 6E 707",
+      "stops": 1,
+      "from": "BOM",
+      "to": "DEL"
+    },
+    {
+      "searchId": "srch_6b3aa90ba08e495e9337055fccd05a9e",
+      "fareType": "Flexi",
+      "fareCategory": "NORMAL",
+      "airline": "6E",
+      "flight": "6E 6E 825/6E 6E 6046",
+      "stops": 1,
+      "from": "BOM",
+      "to": "DEL"
+    },
+    {
+      "searchId": "srch_4eaf6e922338415eb41d98b128d35e0a",
+      "fareType": "Flexi",
+      "fareCategory": "NORMAL",
+      "airline": "6E",
+      "flight": "6E 6E 5326/6E 6E 192",
+      "stops": 1,
+      "from": "BOM",
+      "to": "DEL"
+    }
+  ],
+  "results": [
+    {
+      "name": "6E-Normal+6E-Flexi",
+      "request": {
+        "selectedSearchIds": [
+          "srch_dc30d5dd086041c49d42a2f3785e3e4d",
+          "srch_dd0da06f6eef471a8703394903365bc7"
+        ]
+      },
+      "a": {
+        "searchId": "srch_dc30d5dd086041c49d42a2f3785e3e4d",
+        "fareType": "Normal",
+        "fareCategory": "NORMAL",
+        "airline": "6E",
+        "flight": "6E 6E 449",
+        "stops": 0,
+        "from": "DEL",
+        "to": "BOM"
+      },
+      "b": {
+        "searchId": "srch_dd0da06f6eef471a8703394903365bc7",
+        "fareType": "Flexi",
+        "fareCategory": "NORMAL",
+        "airline": "6E",
+        "flight": "6E 6E 5171",
+        "stops": 0,
+        "from": "BOM",
+        "to": "HDO"
+      },
+      "details": {
+        "http": 200
+      },
+      "pricing": {
+        "http": 400,
+        "code": "VENDOR_ERROR",
+        "msg": "Pricing failed."
+      }
+    },
+    {
+      "name": "Corp+6E-Flexi",
+      "request": {
+        "selectedSearchIds": [
+          "srch_37b6db4efdb34d9f84b9367bcb3eb4ac",
+          "srch_dd0da06f6eef471a8703394903365bc7"
+        ]
+      },
+      "a": {
+        "searchId": "srch_37b6db4efdb34d9f84b9367bcb3eb4ac",
+        "fareType": "Corp Strategic Fares",
+        "fareCategory": "CORPORATE",
+        "airline": "SG",
+        "flight": "SG SG 671",
+        "stops": 0,
+        "from": "DEL",
+        "to": "BOM"
+      },
+      "b": {
+        "searchId": "srch_dd0da06f6eef471a8703394903365bc7",
+        "fareType": "Flexi",
+        "fareCategory": "NORMAL",
+        "airline": "6E",
+        "flight": "6E 6E 5171",
+        "stops": 0,
+        "from": "BOM",
+        "to": "HDO"
+      },
+      "details": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "msg": "No cached search context found for searchId: srch_dd0da06f6eef471a8703394903365bc7"
+      },
+      "pricing": {
+        "http": 404,
+        "code": "SEARCH_ID_NOT_FOUND",
+        "msg": "No cached search context found for searchId: srch_dd0da06f6eef471a8703394903365bc7"
+      }
+    }
+  ],
+  "twoId": {
+    "http": 200,
+    "fareType": "MIXED",
+    "n": 2,
+    "titles": [
+      "DEL-BOM · Description",
+      "BOM-DEL · 9IS"
+    ]
+  }
+}

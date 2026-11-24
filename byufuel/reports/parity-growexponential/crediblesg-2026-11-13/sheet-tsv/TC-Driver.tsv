@@ -1,0 +1,17 @@
+URL		https://uat-byufuel.crediblesg.com + APKs com.byufuel.mobile.uat*											Tester	Rohan Bhagat QA		
+																
+																
+Reference Number	Test script name	Backlog User story#	Pre-condition	Test Case	Step #	Step Description	Expected Result	Actual Result	Status	Defect(if any)	Comments (if any)	Works? - Krishna	Credible ESG Status	Credible ESG Actual	uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+Supplier Login - Mobile	Driver - Registration by Admin												PASS	Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified.		
+	Verify if admin is able to create a Driver		Admin has to login into the website	Verify is admin is able to Click on + Add New Driver button		Verify if admin is able to clcik on Drivers in user management dropdown in main menu	On click he should be navigated to Driver Users List page					Yes	PASS	Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified.		
+						Verify if admin is able to click on + Add New Driver button in list page in Driver Users list page	Admin should be navigated to Create New Driver page with 
+- Driver Basic Information 
+- Is Byufuel Account checkbox
+- Driver Address Information
+- Create and Back buttons					Yes	PASS	Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified.		
+				Verify if admin is able to click on Create button with mandatory fields		Verify if admin is able to fill the fileds in Driver Basic Information	Admin should be able to fill the fields					Yes	PASS	Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified.		
+						Verify if system is showing any alert for duplicate emails and phone number	It should shown an alert as already existing email or phone number when admin tries to Create driver					Yes	PASS	Driver form with an existing email. HTTP 400 Duplicate Email ID. Warehouse Kukatpally.		
+						Verify if admin is able to fill the fileds in Driver Address Information	Admin should be able to fill the fields					Yes	PASS	Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified.		
+						Verify the Create button	On click it should validate the details of the Driver and shows succesfull Message					Yes	PASS	Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified.		
+	Verify if a email is triggered to the registered email upon creating the Driver data by admin			Verify if the registration email of driver by admin is triiggered		Verify if the registration email of driver by admin is triiggered	Driver should receive a mail as he is registered					Yes	PASS	Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified.		
+Supplier Login - Mobile	Driver - Registration by Admin												PASS	Admin Driver create already PASS earlier today (QADrv rows); Atul ACTIVE used for APK. Email trigger not re-verified.		

@@ -1,0 +1,59 @@
+{
+  "at": "2026-11-18T09:11:35.361Z",
+  "base": "https://theta-api.travelvip.ai",
+  "product": "hotel",
+  "cases": {
+    "A_happy": {
+      "status": "BUG",
+      "br": null,
+      "http": 400,
+      "refund": null
+    },
+    "provider_reject": {
+      "status": "BUG",
+      "br": null,
+      "http": 400,
+      "refund": null
+    },
+    "provider_no_response": {
+      "status": "CHECK",
+      "br": null,
+      "http": 400,
+      "refund": null
+    },
+    "wallet_commit_fail": {
+      "status": "BUG",
+      "br": null,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Validation failed",
+      "rawNull": false
+    },
+    "wallet_commit_fail,wallet_release_fail": {
+      "status": "BUG",
+      "br": null,
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "message": "Validation failed",
+      "rawNull": false
+    },
+    "provider_reject,wallet_refund_fail": {
+      "status": "BUG",
+      "br": null,
+      "http": 400,
+      "refund": null
+    },
+    "wallet_debit_record_fail": {
+      "status": "CHECK",
+      "br": null,
+      "http": 400,
+      "refund": null
+    },
+    "provider_reject,wallet_debit_record_fail": {
+      "status": "BUG",
+      "br": null,
+      "http": 400,
+      "refund": null
+    }
+  }
+}

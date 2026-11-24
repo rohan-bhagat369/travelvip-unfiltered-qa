@@ -1,0 +1,85 @@
+{
+  "when": "2026-11-12T10:57:21.066Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "correlationId": "62d62507-e9f0-49ec-b07e-8af0eb401c01",
+  "request": {
+    "itinerary": [
+      {
+        "origin": "DEL",
+        "destination": "BOM",
+        "date": "2026-11-22"
+      },
+      {
+        "origin": "BOM",
+        "destination": "DEL",
+        "date": "2026-11-24"
+      }
+    ],
+    "travellers": {
+      "adults": 1,
+      "children": 0,
+      "infants": 0
+    },
+    "cabinClass": "ECONOMY",
+    "journeyType": "ROUND_TRIP",
+    "currency": "INR",
+    "language": "en",
+    "preferences": {
+      "airlines": [],
+      "maxStops": 0,
+      "refundableOnly": false
+    },
+    "appliedFilters": {},
+    "selection": {
+      "selectedSearchIds": []
+    },
+    "fareType": "NORMAL, CORPORATE, SME"
+  },
+  "search": {
+    "http": 200,
+    "code": null,
+    "progress": {
+      "partial": true,
+      "state": "INPROGRESS",
+      "pollAfterMs": 4648,
+      "message": null,
+      "lanesTotal": 3,
+      "lanesReady": 0
+    },
+    "filterCats": {
+      "onward": {
+        "NORMAL": 84
+      },
+      "return": {
+        "NORMAL": 85
+      }
+    },
+    "onwardN": 20,
+    "returnN": 20,
+    "onwardCats": [
+      "NORMAL"
+    ],
+    "returnCats": [
+      "NORMAL"
+    ]
+  },
+  "pairKind": null,
+  "onward": null,
+  "return": null,
+  "diffAirlinePick": null,
+  "hops": {},
+  "rows": [
+    {
+      "id": "S0",
+      "rule": "One search returns options with multi fare categories",
+      "status": "PARTIAL",
+      "actual": "http=200 state=INPROGRESS onwardCats=NORMAL returnCats=NORMAL"
+    },
+    {
+      "id": "MIX",
+      "rule": "Pick mixed CORPORATE/SME/NORMAL pair from same response",
+      "status": "NOT TESTED",
+      "actual": "no pair"
+    }
+  ]
+}

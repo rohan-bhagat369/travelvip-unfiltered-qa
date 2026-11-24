@@ -47,8 +47,8 @@ WH Worker: always **web** (APK hangs for Web-registered workers).
 | **Supplier** | Rohan SupplierQA · +91 9282809284 | `rohan.supplier.byufuel@yopmail.com` | `d7QS#Lcw` (reset Grow 2026-11-03; was `uBe9j#$A`) | App `com.byufuel.uat.supplier` · **ACTIVE** Hyderabad. Establishment: Rohan QA Kitchen, Restaurant, GSTIN `27AABCT1429B1Z1`, FSSAI `11223344556677`. Address: 12 Rohan QA Kitchen, Kondapur, Hyderabad 500084. Bank: HDFC `HDFC0000001` / `50100123456789` holder Rohan SupplierQA. KYC file + restaurant license file still not uploaded. |
 | **TSM** | Rohan Bhagat | `rohan.tsm.byufuel@yopmail.com` | `R7m#Byuf` | App `com.byufuel.uat` · reports to AreaLead · password rotated 2026-10-06 (app forced change) |
 | **WH Worker** | QA WHWorker · 9876501004 | `qa.whworker.byufuel@yopmail.com` | `w6!CcGzV` | **Missing on Azure** (2026-11-04 search NO DATA). Prefer Mayur More below. |
-| **WH Worker (Azure)** | Mayur More · +91 7507058005 | `mayurmwh1@byufuel.in` | `CAj#8!WS` (reset Azure 2026-11-04) | **Web only** · Kalika Enterprises · Supervisor · ACTIVE |
-| **WH Worker (Grow)** | Mayur More · +91 7507058005 | `mayurmwh1@byufuel.in` | `fjvg4F#W` (reset Grow 2026-11-04) | **Web only** · Kalika Enterprises · Supervisor · ACTIVE on Grow |
+| **WH Worker (Azure)** | Mayur More · +91 7507058005 | `mayurmwh1@byufuel.in` | `wK1q@C78` (reset Azure 2026-11-13) | **Web only** · Kalika Enterprises · Supervisor · ACTIVE |
+| **WH Worker (Grow / crediblesg)** | Mayur More · +91 7507058005 | `mayurmwh1@byufuel.in` | `uSi7PC$8` (reset Grow `uat-byufuel.crediblesg.com` 2026-11-18; was `tRs18#Nl`) | **Web only** · Kalika Enterprises · Supervisor · ACTIVE on Grow |
 | **WH Worker (Grow)** | Rohan WHQA · +91 9282809287 | `rohan.wh.byufuel@yopmail.com` | `AuI8N#u0` (reset Grow 2026-11-03) | **Web only** · Kukatpally · ACTIVE on Grow; **DEACTIVATED on Azure** (login → Email Id not registered) |
 
 ### Area / City lead

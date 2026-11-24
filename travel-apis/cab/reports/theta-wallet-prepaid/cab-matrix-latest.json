@@ -1,0 +1,126 @@
+{
+  "at": "2026-11-18T09:14:12.232Z",
+  "base": "https://theta-api.travelvip.ai",
+  "product": "cab",
+  "cases": {
+    "A": {
+      "status": "PASS",
+      "simulate": null,
+      "http": 200,
+      "br": "BR1794993263206123",
+      "apiStatus": "PENDING",
+      "refund": null,
+      "errorCode": null,
+      "message": null,
+      "finalStatus": "PENDING",
+      "responseBrief": "{\"status\":\"PENDING\",\"statusCode\":200,\"bookingRefId\":\"BR1794993263206123\",\"_meta\":{\"correlation_id\":\"69b03247-e483-4ac2-a04e-e28d4a9698b7\"}}"
+    },
+    "C": {
+      "status": "PASS",
+      "simulate": "provider_reject",
+      "http": 200,
+      "br": "BR1794993295693634",
+      "apiStatus": "FAILED",
+      "refund": {
+        "status": "SUCCESS",
+        "amount": 640.5,
+        "currency": "INR",
+        "referenceId": "BR1794993295693634",
+        "walletTransactionId": "a111fce6-0349-49a7-aff6-aa68ae05c646"
+      },
+      "errorCode": null,
+      "message": null,
+      "finalStatus": "FAILED",
+      "responseBrief": "{\"status\":\"FAILED\",\"statusCode\":200,\"bookingRefId\":\"BR1794993295693634\",\"refund\":{\"status\":\"SUCCESS\",\"amount\":640.5,\"currency\":\"INR\",\"referenceId\":\"BR1794993295693634\",\"walletTransactionId\":\"a111fce6-0349-49a7-aff6-aa68ae05c646\"},\"_meta\":{\"correlation_id\":\"69b03247-e483-4ac2-a04e-e28d4a9698b7\"}}"
+    },
+    "D": {
+      "status": "PASS",
+      "simulate": "provider_no_response",
+      "http": 200,
+      "br": "BR1794993308779570",
+      "apiStatus": "PENDING",
+      "refund": null,
+      "errorCode": null,
+      "message": null,
+      "finalStatus": "PENDING",
+      "responseBrief": "{\"status\":\"PENDING\",\"statusCode\":200,\"bookingRefId\":\"BR1794993308779570\",\"_meta\":{\"correlation_id\":\"69b03247-e483-4ac2-a04e-e28d4a9698b7\"}}"
+    },
+    "E": {
+      "status": "PASS",
+      "simulate": "wallet_commit_fail",
+      "http": 502,
+      "br": null,
+      "refund": null,
+      "errorCode": "WALLET_COMMIT_FAILED",
+      "message": "Failed to charge the wallet. Please try again.",
+      "finalStatus": null,
+      "responseBrief": "{\"error\":{\"code\":\"WALLET_COMMIT_FAILED\",\"message\":\"Failed to charge the wallet. Please try again.\",\"details\":\"The wallet commit failed; nothing was sent to the provider\",\"timestamp\":\"2026-11-18T09:15:39Z\",\"request_id\":\"req-1794993339685\"},\"_meta\":{\"correlation_id\":\"69b03247-e483-4ac2-a04e-e28d4a9698b7\"}}"
+    },
+    "F": {
+      "status": "PASS",
+      "simulate": "wallet_commit_fail,wallet_release_fail",
+      "http": 502,
+      "br": null,
+      "refund": null,
+      "errorCode": "WALLET_COMMIT_FAILED",
+      "message": "Failed to charge the wallet. Please try again.",
+      "finalStatus": null,
+      "responseBrief": "{\"error\":{\"code\":\"WALLET_COMMIT_FAILED\",\"message\":\"Failed to charge the wallet. Please try again.\",\"details\":\"The wallet commit failed; nothing was sent to the provider\",\"timestamp\":\"2026-11-18T09:15:53Z\",\"request_id\":\"req-1794993353021\"},\"_meta\":{\"correlation_id\":\"69b03247-e483-4ac2-a04e-e28d4a9698b7\"}}"
+    },
+    "G": {
+      "status": "PASS",
+      "note": "top-up after",
+      "simulate": "provider_reject,wallet_refund_fail",
+      "http": 200,
+      "br": "BR1794993365133627",
+      "apiStatus": "FAILED",
+      "refund": {
+        "status": "FAILED",
+        "amount": 640.5,
+        "currency": "INR",
+        "referenceId": "BR1794993365133627",
+        "walletTransactionId": null
+      },
+      "errorCode": null,
+      "message": null,
+      "finalStatus": "FAILED",
+      "responseBrief": "{\"status\":\"FAILED\",\"statusCode\":200,\"bookingRefId\":\"BR1794993365133627\",\"refund\":{\"status\":\"FAILED\",\"amount\":640.5,\"currency\":\"INR\",\"referenceId\":\"BR1794993365133627\",\"walletTransactionId\":null},\"_meta\":{\"correlation_id\":\"69b03247-e483-4ac2-a04e-e28d4a9698b7\"}}"
+    },
+    "H": {
+      "status": "PASS",
+      "simulate": "wallet_debit_record_fail",
+      "http": 200,
+      "br": "BR1794993384854888",
+      "apiStatus": "PENDING",
+      "refund": null,
+      "errorCode": null,
+      "message": null,
+      "finalStatus": "PENDING",
+      "responseBrief": "{\"status\":\"PENDING\",\"statusCode\":200,\"bookingRefId\":\"BR1794993384854888\",\"_meta\":{\"correlation_id\":\"69b03247-e483-4ac2-a04e-e28d4a9698b7\"}}"
+    },
+    "I": {
+      "status": "PASS",
+      "note": "top-up after",
+      "simulate": "provider_reject,wallet_debit_record_fail",
+      "http": 200,
+      "br": "BR1794993420234526",
+      "apiStatus": "FAILED",
+      "refund": {
+        "status": "FAILED",
+        "amount": 640.5,
+        "currency": "INR",
+        "referenceId": "BR1794993420234526",
+        "walletTransactionId": null
+      },
+      "errorCode": null,
+      "message": null,
+      "finalStatus": "FAILED",
+      "responseBrief": "{\"status\":\"FAILED\",\"statusCode\":200,\"bookingRefId\":\"BR1794993420234526\",\"refund\":{\"status\":\"FAILED\",\"amount\":640.5,\"currency\":\"INR\",\"referenceId\":\"BR1794993420234526\",\"walletTransactionId\":null},\"_meta\":{\"correlation_id\":\"69b03247-e483-4ac2-a04e-e28d4a9698b7\"}}"
+    },
+    "J": {
+      "status": "CHECK",
+      "br": "BR1794993263206123",
+      "cancelBrief": "null"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "at": "2026-11-20T09:29:49.782Z",
+  "base": "https://zeta-api.travelx.ai",
+  "partnerId": "vgm",
+  "tierId": "10546901",
+  "hasSecret": true,
+  "hasSigning": true,
+  "auth": {
+    "ok": true,
+    "hasAuthToken": true,
+    "partnerKey": "gmr_at_Zum-gn1LfWqjvc-UCE6jAYHnsNGojuYYQFFle29SyE0"
+  },
+  "calls": [
+    {
+      "call": "v1/airports/search",
+      "path": "/v1/airports/search",
+      "http": 200,
+      "ok": true,
+      "err": null,
+      "sample": "{\"status\":\"success\",\"totalCount\":5,\"page\":0,\"size\":5,\"results\":[{\"airportId\":282,\"airportCode\":\"BJX\",\"airportName\":\"Aeropuerto Internacional Del Bajío\",\"city\":\"Colonia Nuevo México\",\"country\":\"Mexico\",\"countryCode\":\"MX\",\"terminals\":[\"Terminal 1\",\"Terminal 2\",\"Main Terminal\"],\"ter"
+    },
+    {
+      "call": "v1/lounges",
+      "path": "/v1/lounges",
+      "http": 200,
+      "ok": true,
+      "err": null,
+      "sample": "{\"status\":\"-1\",\"info\":\"airportId parameter is required\",\"_meta\":{\"correlation_id\":\"a13925b1-a08c-49b8-86bc-6ce1883c1726\"}}"
+    },
+    {
+      "call": "v1/fasttracks/airports/search",
+      "path": "/v1/fasttracks/airports/search",
+      "http": 200,
+      "ok": true,
+      "err": null,
+      "sample": "{\"status\":\"success\",\"totalCount\":20,\"page\":0,\"size\":20,\"results\":[{\"airportId\":282,\"airportCode\":\"BJX\",\"airportName\":\"Aeropuerto Internacional Del Bajío\",\"city\":\"Colonia Nuevo México\",\"country\":\"Mexico\",\"countryCode\":\"MX\",\"terminals\":[\"Terminal 1\",\"Terminal 2\",\"Main Terminal\"],\"t"
+    },
+    {
+      "call": "v1/fasttracks",
+      "path": "/v1/fasttracks",
+      "http": 200,
+      "ok": true,
+      "err": null,
+      "sample": "{\"status\":\"-1\",\"info\":\"airportId parameter is required\",\"_meta\":{\"correlation_id\":\"a13925b1-a08c-49b8-86bc-6ce1883c1726\"}}"
+    },
+    {
+      "call": "v1/esim/search",
+      "path": "/v1/esim/search",
+      "http": 200,
+      "ok": true,
+      "err": null,
+      "sample": "{\"results\":[{\"entityId\":\"nxuemo3jjyvjqq\",\"entityType\":\"PRODUCT\",\"title\":\"Travel eSIM for Singapore\",\"country\":\"Singapore\",\"nearby\":false,\"distanceKm\":0}],\"totalResults\":1,\"_meta\":{\"correlation_id\":\"a13925b1-a08c-49b8-86bc-6ce1883c1726\"}}"
+    },
+    {
+      "call": "v1/attractions/search",
+      "path": "/v1/attractions/search",
+      "http": 200,
+      "ok": true,
+      "err": null,
+      "sample": "{\"results\":[{\"entityId\":\"199\",\"entityType\":\"COUNTRY\",\"title\":\"Singapore\",\"country\":\"Singapore\",\"latitude\":\"1.36666666\",\"longitude\":\"103.8\",\"nearby\":false,\"distanceKm\":0},{\"entityId\":\"104057\",\"entityType\":\"CITY\",\"title\":\"Singapore\",\"city\":\"Singapore\",\"country\":\"Singapore\",\"latitud"
+    },
+    {
+      "call": "legacy airportServices/search",
+      "path": "/api/airportServices/search",
+      "http": 403,
+      "ok": false,
+      "err": "INVALID_PARTNER_KEY",
+      "sample": "{\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied pid\",\"timestamp\":\"2026-11-20T09:29:52Z\",\"request_id\":\"req-1795166991204\"}}"
+    },
+    {
+      "call": "legacy esim-services",
+      "path": "/api/airportServices/esim-services",
+      "http": 403,
+      "ok": false,
+      "err": "INVALID_PARTNER_KEY",
+      "sample": "{\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied pid\",\"timestamp\":\"2026-11-20T09:29:52Z\",\"request_id\":\"req-1795166991339\"}}"
+    },
+    {
+      "call": "legacy tours-and-attractions/search",
+      "path": "/api/airportServices/tours-and-attractions/search",
+      "http": 403,
+      "ok": false,
+      "err": "INVALID_PARTNER_KEY",
+      "sample": "{\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied pid\",\"timestamp\":\"2026-11-20T09:29:52Z\",\"request_id\":\"req-1795166991619\"}}"
+    },
+    {
+      "call": "v1/lounges?airportId",
+      "http": 200,
+      "ok": true,
+      "err": 400,
+      "sample": "{\"type\":\"https://www.jhipster.tech/problem/problem-with-message\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"400 BAD_REQUEST \\\"terminal is required\\\"\",\"path\":\"/api/v1/lounges\",\"message\":\"error.http.400\",\"_meta\":{\"correlation_id\":\"53feb764-4399-46fd-a472-b0a8080bedb6\"}}"
+    },
+    {
+      "call": "v1/fasttracks?airportId",
+      "http": 200,
+      "ok": true,
+      "err": null,
+      "sample": "{\"_meta\":{\"correlation_id\":\"53feb764-4399-46fd-a472-b0a8080bedb6\"}}"
+    },
+    {
+      "call": "legacy+pid /api/airportServices/search",
+      "http": 500,
+      "ok": false,
+      "err": null,
+      "sample": "{\"status\":500,\"info\":\"Invalid Token 1\"}"
+    },
+    {
+      "call": "legacy+pid /api/airportServices/esim-services",
+      "http": 500,
+      "ok": false,
+      "err": null,
+      "sample": "{\"status\":500,\"info\":\"Invalid Token 1\"}"
+    },
+    {
+      "call": "legacy+pid /api/airportServices/tours-and-attractions/search",
+      "http": 500,
+      "ok": false,
+      "err": null,
+      "sample": "{\"status\":500,\"info\":\"Invalid Token 1\"}"
+    }
+  ],
+  "delAirport": {
+    "airportId": 282,
+    "airportCode": "BJX"
+  },
+  "legacyAuth": {
+    "pid": "smt",
+    "hasKey": true
+  }
+}

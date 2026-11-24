@@ -1,0 +1,3363 @@
+{
+  "evaluatedAt": "2026-11-24T13:04:36.219Z",
+  "capturedAt": "2026-11-24T09:56:05.040Z",
+  "env": "https://preprod-api.travelvip.ai",
+  "dates": {
+    "onward": "2026-12-15",
+    "return": "2026-12-22"
+  },
+  "correlationId": "db5edb9e-2183-481a-a7b4-3fe09e36dae2",
+  "l2b": {
+    "scenarioLooks": 13,
+    "looks": [
+      {
+        "tag": "tier22157551-ow-intl",
+        "tier": 22157551,
+        "firstMs": 781,
+        "polls": 1
+      },
+      {
+        "tag": "tier22157551-rt-intl",
+        "tier": 22157551,
+        "firstMs": 703,
+        "polls": 1
+      },
+      {
+        "tag": "tier8-ow-intl",
+        "tier": 8,
+        "firstMs": 540,
+        "polls": 1
+      },
+      {
+        "tag": "tier8-rt-intl",
+        "tier": 8,
+        "firstMs": 493,
+        "polls": 1
+      },
+      {
+        "tag": "tier15-ow-intl",
+        "tier": 15,
+        "firstMs": 474,
+        "polls": 1
+      },
+      {
+        "tag": "tier15-rt-intl",
+        "tier": 15,
+        "firstMs": 460,
+        "polls": 1
+      },
+      {
+        "tag": "ow-dom",
+        "tier": 22101801,
+        "firstMs": 558,
+        "polls": 1
+      },
+      {
+        "tag": "ow-intl",
+        "tier": 22101801,
+        "firstMs": 1389,
+        "polls": 1
+      },
+      {
+        "tag": "rt-dom",
+        "tier": 22101801,
+        "firstMs": 556,
+        "polls": 1
+      },
+      {
+        "tag": "rt-intl",
+        "tier": 22101801,
+        "firstMs": 812,
+        "polls": 1
+      },
+      {
+        "tag": "x-multipax",
+        "tier": 22101801,
+        "firstMs": 11855,
+        "polls": 2
+      },
+      {
+        "tag": "x-business",
+        "tier": 22101801,
+        "firstMs": 7689,
+        "polls": 13
+      },
+      {
+        "tag": "x-corporate",
+        "tier": 22101801,
+        "firstMs": 10551,
+        "polls": 1
+      }
+    ],
+    "searchHttp": 127,
+    "details": 38,
+    "fareRules": 13,
+    "pricing": 24,
+    "ssr": 10,
+    "seatmap": 10,
+    "booking": 0
+  },
+  "summary": {
+    "PASS": 386,
+    "BUG": 51,
+    "CHECK": 13,
+    "NOT TESTED": 15
+  },
+  "rows": [
+    {
+      "area": "L2B & process",
+      "id": "H1",
+      "how": "Each scenario searched once (13 scenarios), fixed dates",
+      "status": "PASS",
+      "note": "13 scenario searches · 2026-12-15 / 2026-12-22"
+    },
+    {
+      "area": "L2B & process",
+      "id": "H2",
+      "how": "No booking / ticket / cancel call",
+      "status": "PASS",
+      "note": "search HTTP 127 · details 38 · fareRules 13 · pricing 24 · ssr 10 · seatmap 10"
+    },
+    {
+      "area": "L2B & process",
+      "id": "H3",
+      "how": "Pages / sorts / filters served from the cached search (no new look)",
+      "status": "PASS",
+      "note": "54 calls · 0 fresh"
+    },
+    {
+      "area": "L2B & process",
+      "id": "H4",
+      "how": "Session token carries the requested tier",
+      "status": "PASS",
+      "note": "8→8 15→15 22101801→22101801 22157551→22157551"
+    },
+    {
+      "area": "L2B & process",
+      "id": "G9",
+      "how": "First search response ≤ 20 s per scenario",
+      "status": "PASS",
+      "note": "tier22157551-ow-intl 781ms · tier22157551-rt-intl 703ms · tier8-ow-intl 540ms · tier8-rt-intl 493ms · tier15-ow-intl 474ms · tier15-rt-intl 460ms · ow-dom 558ms · ow-intl 1389ms · rt-dom 556ms · rt-intl 812ms · x-multipax 11855ms · x-business 7689ms · x-corporate 10551ms"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "A1",
+      "how": "Tier 22157551 one-way shows only 402T",
+      "status": "BUG",
+      "note": "got {402T,422R} · total 235"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "D2-22157551",
+      "how": "Tier 22157551 round trip shows one supplier",
+      "status": "BUG",
+      "note": "got {402T,422R}"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "D1-22157551",
+      "how": "Tier 22157551 round trip: no card without fares",
+      "status": "PASS",
+      "note": "empty=0"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "D3-22157551",
+      "how": "Tier 22157551 round trip: return list after choosing outbound",
+      "status": "PASS",
+      "note": "return 5"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "A-N6-22157551",
+      "how": "Tier 22157551 gets its own search result (not the merged tier's cache)",
+      "status": "BUG",
+      "note": "identical searchIds + cacheTimeStamp 1795512389751"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "A2",
+      "how": "Tier 8 one-way shows only 422R",
+      "status": "BUG",
+      "note": "got {402T,422R} · total 235"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "D2-8",
+      "how": "Tier 8 round trip shows one supplier",
+      "status": "BUG",
+      "note": "got {402T,422R}"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "D1-8",
+      "how": "Tier 8 round trip: no card without fares",
+      "status": "PASS",
+      "note": "empty=0"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "D3-8",
+      "how": "Tier 8 round trip: return list after choosing outbound",
+      "status": "PASS",
+      "note": "return 5"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "A-N6-8",
+      "how": "Tier 8 gets its own search result (not the merged tier's cache)",
+      "status": "BUG",
+      "note": "identical searchIds + cacheTimeStamp 1795512389751"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "A2b",
+      "how": "Tier 15 one-way shows only 422R",
+      "status": "BUG",
+      "note": "got {402T,422R} · total 235"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "D2-15",
+      "how": "Tier 15 round trip shows one supplier",
+      "status": "BUG",
+      "note": "got {402T,422R}"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "D1-15",
+      "how": "Tier 15 round trip: no card without fares",
+      "status": "PASS",
+      "note": "empty=0"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "D3-15",
+      "how": "Tier 15 round trip: return list after choosing outbound",
+      "status": "PASS",
+      "note": "return 5"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "A-N6-15",
+      "how": "Tier 15 gets its own search result (not the merged tier's cache)",
+      "status": "BUG",
+      "note": "identical searchIds + cacheTimeStamp 1795512389751"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "B3",
+      "how": "Merged count ≥ each single supplier",
+      "status": "NOT TESTED",
+      "note": "blocked by A1/A2 (M=235 T=235 R=235)"
+    },
+    {
+      "area": "Routing by tier",
+      "id": "B4",
+      "how": "Merged count ≤ TBO + Riya (merging actually removes duplicates)",
+      "status": "NOT TESTED",
+      "note": "blocked by A1/A2"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "S0",
+      "how": "HTTP 200 and progress COMPLETE",
+      "status": "PASS",
+      "note": "polls 1 · onward 208"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "A3",
+      "how": "Both suppliers present",
+      "status": "PASS",
+      "note": "{402T,422R}"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "A4",
+      "how": "Merged cards exist (both suppliers on one card)",
+      "status": "PASS",
+      "note": "153/208"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "A5",
+      "how": "Every fare has sourceCode 402T / 422R only",
+      "status": "PASS",
+      "note": "1594 fares"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "B1",
+      "how": "No duplicate flight cards (same flight on two cards)",
+      "status": "PASS",
+      "note": "208 cards"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "B2",
+      "how": "Card price = cheapest fare on the card",
+      "status": "PASS",
+      "note": "208 cards"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "B12",
+      "how": "Card price equals a real selectable fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "E-1stop",
+      "how": "Connecting (multi-segment) flights merge only when every leg matches",
+      "status": "PASS",
+      "note": "88 merged multi-segment cards (all segments shared by both suppliers by construction)"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "B6",
+      "how": "Cheapest first across all pages",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "B7",
+      "how": "All pages together = totalResults, no repeats",
+      "status": "PASS",
+      "note": "208 vs 208 over 5 pages"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "B8",
+      "how": "Every fare total > 0",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "PX1",
+      "how": "Fare breakdown adds up",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "PX2",
+      "how": "All fares in INR",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "C4",
+      "how": "fareType on every fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "E-dupfare",
+      "how": "No identical fare listed twice inside a card",
+      "status": "BUG",
+      "note": "59 cards e.g. srch_96e2750b171a4677abddecf0bf2707d6"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "E-tie",
+      "how": "Both suppliers same lowest price → card still shows that price",
+      "status": "NOT TESTED",
+      "note": "0 tie cards"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "M-N1",
+      "how": "Same flight number at a different time stays a separate card",
+      "status": "NOT TESTED",
+      "note": "no such pair in inventory"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "M-N2",
+      "how": "Codeshare (same times, different flight numbers) stays as separate cards",
+      "status": "PASS",
+      "note": "6 groups, e.g. QP1116 vs AI2977"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "M-N3",
+      "how": "Direct and connecting flights never merged together",
+      "status": "PASS",
+      "note": "both shapes present as separate cards"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "G10",
+      "how": "No \"Riya\" text",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "AP1",
+      "how": "Only DEL/BOM airports returned",
+      "status": "CHECK",
+      "note": "20 cards on nearby airports: DEL>NMI×15, HDO>BOM×2, DXN>BOM×3"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "SORT-stops-asc",
+      "how": "sortby=stops,asc orders cards correctly",
+      "status": "PASS",
+      "note": "http 200 · first 0,0,0,0,0,0"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "SORT-stops-asc-merge",
+      "how": "Merge still applied with sortby=stops,asc",
+      "status": "PASS",
+      "note": "total 208 vs 208"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "SORT-duration-asc",
+      "how": "sortby=duration,asc orders cards correctly",
+      "status": "PASS",
+      "note": "http 200 · first 0,0,0,0,0,0"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "SORT-duration-asc-merge",
+      "how": "Merge still applied with sortby=duration,asc",
+      "status": "PASS",
+      "note": "total 208 vs 208"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-airline",
+      "how": "Airline filter \"Air India\"",
+      "status": "PASS",
+      "note": "total 94 of 208 · wrong cards 0 · merged cards kept 35"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-airline-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 154 · list shows 94"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-stops0",
+      "how": "Stops filter Non-Stop",
+      "status": "PASS",
+      "note": "total 70 of 208 · wrong cards 0 · merged cards kept 50"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-stops0-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 135 · list shows 70"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-refundable",
+      "how": "Refundable filter",
+      "status": "PASS",
+      "note": "total 208 of 208 · wrong cards 0 · merged cards kept 48"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-refundable-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 360 · list shows 208"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-price",
+      "how": "Price range 6648–17405",
+      "status": "PASS",
+      "note": "total 155 of 208 · wrong cards 0 · merged cards kept 48"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-fareType",
+      "how": "Fare type \"Value\" (fares inside cards reduced)",
+      "status": "PASS",
+      "note": "total 24 of 208 · wrong cards 0 · merged cards kept 24"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-fareType-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "PASS",
+      "note": "panel says 24 · list shows 24"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-combo",
+      "how": "Airline \"Air India\" + Non-Stop together",
+      "status": "PASS",
+      "note": "total 26 of 208 · wrong cards 0 · merged cards kept 26"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-panel",
+      "how": "Filter-panel counts add up to the number of flights (after merge)",
+      "status": "BUG",
+      "note": "stops counts add to 361 · flights 208 · equals cards counted once per supplier (counted before merge)"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-names",
+      "how": "Airline names identical in the filter panel and on flight cards",
+      "status": "BUG",
+      "note": "panel \"Air India Express\" vs card \"AIR INDIA EXPRESS\" (1 airlines)"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-priceEmpty",
+      "how": "Price range ₹1–₹2 → empty list, not an error",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-priceInverted",
+      "how": "Price range min > max → 4xx or empty, never 500",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-unknownAirline",
+      "how": "Unknown airline → empty list, not an error",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "FIL-facets",
+      "how": "Filter facets stay full after a filter is applied",
+      "status": "PASS",
+      "note": "6 vs 5 airlines"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "B5",
+      "how": "Airline filter names case-unique",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "M-P1",
+      "how": "Merged card = same physical flight at both suppliers (details compared)",
+      "status": "PASS",
+      "note": "5/5 cards match"
+    },
+    {
+      "area": "Search ow-dom",
+      "id": "M-P2",
+      "how": "Formatting differences between suppliers are ignored (flight no. / seconds)",
+      "status": "PASS",
+      "note": "e.g. TBO \"IX 1235\" 2026-12-15T20:40:00 vs Riya \"IX 1235\" 2026-12-15T20:40"
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "D2",
+      "how": "Details currency (TBO USD is expected)",
+      "status": "PASS",
+      "note": "USD 72.01"
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "D2b",
+      "how": "Details total = search price (after currency conversion)",
+      "status": "PASS",
+      "note": "USD 72.01 × 96 = ₹6912.96 vs ₹6912.96"
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "D3",
+      "how": "Details = same flight as the card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "D4",
+      "how": "No negative amounts · no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "FR1",
+      "how": "Fare rules returned with content",
+      "status": "PASS",
+      "note": "1 block(s)"
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "FR2",
+      "how": "One rule block per leg",
+      "status": "PASS",
+      "note": "Fare Rules IX DEL-BOM"
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "FR3",
+      "how": "Rules match the chosen fare (type or basis named)",
+      "status": "PASS",
+      "note": "Value / GNRA000"
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "FR4",
+      "how": "No \"Riya\" · no script content",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "FR7",
+      "how": "Rule titles name the route",
+      "status": "PASS",
+      "note": "\"Fare Rules IX DEL-BOM\""
+    },
+    {
+      "area": "ow-dom TBO",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "BUG",
+      "note": "http 400 VENDOR_ERROR Pricing failed."
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "D2",
+      "how": "Details currency (TBO USD is expected)",
+      "status": "PASS",
+      "note": "INR 6648"
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "D2b",
+      "how": "Details total = search price (after currency conversion)",
+      "status": "PASS",
+      "note": "INR 6648 × 1 = ₹6648.00 vs ₹6648"
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "D3",
+      "how": "Details = same flight as the card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "D4",
+      "how": "No negative amounts · no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "D6",
+      "how": "Details and pricing agree on seat/meal/baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats false→true supportsMeals false→true supportsExtraBaggage false→true"
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "FR1",
+      "how": "Fare rules returned with content",
+      "status": "PASS",
+      "note": "1 block(s)"
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "FR2",
+      "how": "One rule block per leg",
+      "status": "PASS",
+      "note": "I5E"
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "FR3",
+      "how": "Rules match the chosen fare (type or basis named)",
+      "status": "PASS",
+      "note": "VALUE / GNRA000"
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "FR4",
+      "how": "No \"Riya\" · no script content",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "FR7",
+      "how": "Rule titles name the route",
+      "status": "BUG",
+      "note": "\"I5E\""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http 200  "
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "P2",
+      "how": "Pricing total = search price",
+      "status": "PASS",
+      "note": "₹6648 vs ₹6648"
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "P4",
+      "how": "Passenger prices add up to the total",
+      "status": "PASS",
+      "note": "pax ₹6648 vs total ₹6648"
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "P6",
+      "how": "INR, no negative amounts, gstBreakup array/omitted",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "SSR1",
+      "how": "SSR HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "SSR2",
+      "how": "Meal / baggage options listed",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, INR, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200",
+      "status": "PASS",
+      "note": "http 200  "
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "SEAT2",
+      "how": "Seats listed, one map per flight segment",
+      "status": "PASS",
+      "note": "189 seats · 1 maps / 1 segments"
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "SEAT3",
+      "how": "Seat prices ≥ 0, INR, no duplicates, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-dom Riya",
+      "id": "SEAT6",
+      "how": "seatAvailability in this supplier's format (Open/Closed)",
+      "status": "PASS",
+      "note": "{Closed,Open}"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "S0",
+      "how": "HTTP 200 and progress COMPLETE",
+      "status": "PASS",
+      "note": "polls 1 · onward 235"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "A3",
+      "how": "Both suppliers present",
+      "status": "PASS",
+      "note": "{402T,422R}"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "A4",
+      "how": "Merged cards exist (both suppliers on one card)",
+      "status": "PASS",
+      "note": "134/235"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "A5",
+      "how": "Every fare has sourceCode 402T / 422R only",
+      "status": "PASS",
+      "note": "1589 fares"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "B1",
+      "how": "No duplicate flight cards (same flight on two cards)",
+      "status": "PASS",
+      "note": "235 cards"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "B2",
+      "how": "Card price = cheapest fare on the card",
+      "status": "PASS",
+      "note": "235 cards"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "B12",
+      "how": "Card price equals a real selectable fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "E-1stop",
+      "how": "Connecting (multi-segment) flights merge only when every leg matches",
+      "status": "PASS",
+      "note": "120 merged multi-segment cards (all segments shared by both suppliers by construction)"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "B6",
+      "how": "Cheapest first across all pages",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "B7",
+      "how": "All pages together = totalResults, no repeats",
+      "status": "PASS",
+      "note": "235 vs 235 over 5 pages"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "B8",
+      "how": "Every fare total > 0",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "PX1",
+      "how": "Fare breakdown adds up",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "PX2",
+      "how": "All fares in INR",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "C4",
+      "how": "fareType on every fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "E-dupfare",
+      "how": "No identical fare listed twice inside a card",
+      "status": "BUG",
+      "note": "54 cards e.g. srch_e944d5df6aa94e99bc589e7761385926"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "E-tie",
+      "how": "Both suppliers same lowest price → card still shows that price",
+      "status": "NOT TESTED",
+      "note": "0 tie cards"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "M-N1",
+      "how": "Same flight number at a different time stays a separate card",
+      "status": "PASS",
+      "note": "3 flight numbers with ≥2 time variants, e.g. DEL2026-12-15T07:10-SHJ2026-12-15T09:50 / DEL2026-12-15T07:40-SHJ2026-12-15T10:20"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "M-N2",
+      "how": "Codeshare (same times, different flight numbers) stays as separate cards",
+      "status": "NOT TESTED",
+      "note": "no codeshare pair in inventory"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "M-N3",
+      "how": "Direct and connecting flights never merged together",
+      "status": "PASS",
+      "note": "both shapes present as separate cards"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "G10",
+      "how": "No \"Riya\" text",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "AP1",
+      "how": "Only DEL/DXB airports returned",
+      "status": "CHECK",
+      "note": "100 cards on nearby airports: DEL>RKT×6, DEL>SHJ×31, DEL>AUH×23, DEL>FJR×4, DEL>XNB×31, DXN>AUH×3, HDO>AUH×1, HDO>DXB×1"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "SORT-stops-asc",
+      "how": "sortby=stops,asc orders cards correctly",
+      "status": "PASS",
+      "note": "http 200 · first 0,0,0,0,0,0"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "SORT-stops-asc-merge",
+      "how": "Merge still applied with sortby=stops,asc",
+      "status": "PASS",
+      "note": "total 235 vs 235"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "SORT-duration-asc",
+      "how": "sortby=duration,asc orders cards correctly",
+      "status": "PASS",
+      "note": "http 200 · first 0,0,0,0,0,0"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "SORT-duration-asc-merge",
+      "how": "Merge still applied with sortby=duration,asc",
+      "status": "PASS",
+      "note": "total 235 vs 235"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-airline",
+      "how": "Airline filter \"IndiGo\"",
+      "status": "PASS",
+      "note": "total 38 of 235 · wrong cards 0 · merged cards kept 0"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-airline-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 91 · list shows 38"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-stops0",
+      "how": "Stops filter Non-Stop",
+      "status": "PASS",
+      "note": "total 19 of 235 · wrong cards 0 · merged cards kept 14"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-stops0-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 33 · list shows 19"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-refundable",
+      "how": "Refundable filter",
+      "status": "PASS",
+      "note": "total 168 of 235 · wrong cards 0 · merged cards kept 14"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-refundable-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 245 · list shows 168"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-price",
+      "how": "Price range 19850–127535",
+      "status": "PASS",
+      "note": "total 213 of 235 · wrong cards 0 · merged cards kept 30"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-fareType",
+      "how": "Fare type \"Lite\" (fares inside cards reduced)",
+      "status": "PASS",
+      "note": "total 20 of 235 · wrong cards 0 · merged cards kept 16"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-fareType-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 16 · list shows 20"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-combo",
+      "how": "Airline \"IndiGo\" + Non-Stop together",
+      "status": "PASS",
+      "note": "total 3 of 235 · wrong cards 0 · merged cards kept 0"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-panel",
+      "how": "Filter-panel counts add up to the number of flights (after merge)",
+      "status": "BUG",
+      "note": "stops counts add to 369 · flights 235 · equals cards counted once per supplier (counted before merge)"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-names",
+      "how": "Airline names identical in the filter panel and on flight cards",
+      "status": "BUG",
+      "note": "panel \"Air India Express\" vs card \"AIR INDIA EXPRESS\" (1 airlines)"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-priceEmpty",
+      "how": "Price range ₹1–₹2 → empty list, not an error",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-priceInverted",
+      "how": "Price range min > max → 4xx or empty, never 500",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-unknownAirline",
+      "how": "Unknown airline → empty list, not an error",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "FIL-facets",
+      "how": "Filter facets stay full after a filter is applied",
+      "status": "CHECK",
+      "note": "16 vs 17 airlines"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "B5",
+      "how": "Airline filter names case-unique",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "M-P1",
+      "how": "Merged card = same physical flight at both suppliers (details compared)",
+      "status": "PASS",
+      "note": "5/5 cards match"
+    },
+    {
+      "area": "Search ow-intl",
+      "id": "M-P2",
+      "how": "Formatting differences between suppliers are ignored (flight no. / seconds)",
+      "status": "PASS",
+      "note": "e.g. TBO \"IX 1294\" 2026-12-15T18:50:00 vs Riya \"IX 1294\" 2026-12-15T18:50"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "D2",
+      "how": "Details currency (TBO USD is expected)",
+      "status": "PASS",
+      "note": "USD 211.25"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "D2b",
+      "how": "Details total = search price (after currency conversion)",
+      "status": "PASS",
+      "note": "USD 211.25 × 96 = ₹20280.00 vs ₹20280"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "D3",
+      "how": "Details = same flight as the card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "D4",
+      "how": "No negative amounts · no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "D6",
+      "how": "Details and pricing agree on seat/meal/baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats false→true supportsMeals false→true supportsExtraBaggage false→true"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "FR1",
+      "how": "Fare rules returned with content",
+      "status": "PASS",
+      "note": "1 block(s)"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "FR2",
+      "how": "One rule block per leg",
+      "status": "PASS",
+      "note": "Fare Rules IX DEL-DXB"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "FR3",
+      "how": "Rules match the chosen fare (type or basis named)",
+      "status": "PASS",
+      "note": "Lite / ECLAX00"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "FR4",
+      "how": "No \"Riya\" · no script content",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "FR7",
+      "how": "Rule titles name the route",
+      "status": "PASS",
+      "note": "\"Fare Rules IX DEL-DXB\""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http 200  "
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "P2",
+      "how": "Pricing total = search price",
+      "status": "PASS",
+      "note": "₹20280 vs ₹20280"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "P4",
+      "how": "Passenger prices add up to the total",
+      "status": "BUG",
+      "note": "pax ₹20088 vs total ₹20280"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "P6",
+      "how": "INR, no negative amounts, gstBreakup array/omitted",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "SSR1",
+      "how": "SSR HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "SSR2",
+      "how": "Meal / baggage options listed",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, INR, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200",
+      "status": "PASS",
+      "note": "http 200  "
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "SEAT2",
+      "how": "Seats listed, one map per flight segment",
+      "status": "PASS",
+      "note": "408 seats · 2 maps / 2 segments"
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "SEAT3",
+      "how": "Seat prices ≥ 0, INR, no duplicates, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl TBO",
+      "id": "SEAT6",
+      "how": "seatAvailability in this supplier's format (true/false)",
+      "status": "PASS",
+      "note": "{false,true}"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "D2",
+      "how": "Details currency (TBO USD is expected)",
+      "status": "PASS",
+      "note": "INR 19850"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "D2b",
+      "how": "Details total = search price (after currency conversion)",
+      "status": "PASS",
+      "note": "INR 19850 × 1 = ₹19850.00 vs ₹19850"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "D3",
+      "how": "Details = same flight as the card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "D4",
+      "how": "No negative amounts · no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "D6",
+      "how": "Details and pricing agree on seat/meal/baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats false→true supportsMeals false→true supportsExtraBaggage false→true"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "FR1",
+      "how": "Fare rules returned with content",
+      "status": "PASS",
+      "note": "1 block(s)"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "FR2",
+      "how": "One rule block per leg",
+      "status": "PASS",
+      "note": "I5LT"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "FR3",
+      "how": "Rules match the chosen fare (type or basis named)",
+      "status": "PASS",
+      "note": "LITE / ECLAX00"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "FR4",
+      "how": "No \"Riya\" · no script content",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "FR7",
+      "how": "Rule titles name the route",
+      "status": "BUG",
+      "note": "\"I5LT\""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http 200  "
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "P2",
+      "how": "Pricing total = search price",
+      "status": "PASS",
+      "note": "₹19850 vs ₹19850"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "P4",
+      "how": "Passenger prices add up to the total",
+      "status": "PASS",
+      "note": "pax ₹19850 vs total ₹19850"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "P6",
+      "how": "INR, no negative amounts, gstBreakup array/omitted",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "SSR1",
+      "how": "SSR HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "SSR2",
+      "how": "Meal / baggage options listed",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, INR, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200",
+      "status": "PASS",
+      "note": "http 200  "
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "SEAT2",
+      "how": "Seats listed, one map per flight segment",
+      "status": "PASS",
+      "note": "400 seats · 2 maps / 2 segments"
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "SEAT3",
+      "how": "Seat prices ≥ 0, INR, no duplicates, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "ow-intl Riya",
+      "id": "SEAT6",
+      "how": "seatAvailability in this supplier's format (Open/Closed)",
+      "status": "PASS",
+      "note": "{Closed,Open}"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "S0",
+      "how": "HTTP 200 and progress COMPLETE",
+      "status": "PASS",
+      "note": "polls 1 · onward 190 · return 186"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "A3",
+      "how": "Both suppliers present",
+      "status": "PASS",
+      "note": "{402T,422R}"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "A3r",
+      "how": "Both suppliers present on RETURN too",
+      "status": "PASS",
+      "note": "{402T,422R}"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "A4",
+      "how": "Merged cards exist (both suppliers on one card)",
+      "status": "PASS",
+      "note": "27/50"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "A5",
+      "how": "Every fare has sourceCode 402T / 422R only",
+      "status": "PASS",
+      "note": "521 fares"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "B1",
+      "how": "No duplicate flight cards (same flight on two cards)",
+      "status": "PASS",
+      "note": "50 cards"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "B1r",
+      "how": "No duplicate flight cards on RETURN",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "B2",
+      "how": "Card price = cheapest fare on the card",
+      "status": "PASS",
+      "note": "100 cards"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "B12",
+      "how": "Card price equals a real selectable fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "E-1stop",
+      "how": "Connecting (multi-segment) flights merge only when every leg matches",
+      "status": "PASS",
+      "note": "2 merged multi-segment cards (all segments shared by both suppliers by construction)"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "B6",
+      "how": "Cheapest first across page 0",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "B7",
+      "how": "Page 1 has no repeats from page 0",
+      "status": "PASS",
+      "note": "page1 onward 50 return 50 · overlap 0"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "B8",
+      "how": "Every fare total > 0",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "PX1",
+      "how": "Fare breakdown adds up",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "PX2",
+      "how": "All fares in INR",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "C4",
+      "how": "fareType on every fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "E-dupfare",
+      "how": "No identical fare listed twice inside a card",
+      "status": "BUG",
+      "note": "12 cards e.g. srch_2b889dc73c444a418820368b54aadd18"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "E-tie",
+      "how": "Both suppliers same lowest price → card still shows that price",
+      "status": "NOT TESTED",
+      "note": "0 tie cards"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "M-N1",
+      "how": "Same flight number at a different time stays a separate card",
+      "status": "NOT TESTED",
+      "note": "no such pair in inventory"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "M-N2",
+      "how": "Codeshare (same times, different flight numbers) stays as separate cards",
+      "status": "PASS",
+      "note": "3 groups, e.g. 6E395 vs AI2999"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "M-N3",
+      "how": "Direct and connecting flights never merged together",
+      "status": "PASS",
+      "note": "both shapes present as separate cards"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "G10",
+      "how": "No \"Riya\" text",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "AP1",
+      "how": "Only DEL/BOM airports returned",
+      "status": "CHECK",
+      "note": "26 cards on nearby airports: DEL>NMI×10, BOM>DXN×2, NMI>DEL×8, BOM>HDO×1, HDO>BOM×2, DXN>BOM×3"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "SORT-stops-asc",
+      "how": "sortby=stops,asc orders cards correctly",
+      "status": "PASS",
+      "note": "http 200 · first 0,0,0,0,0,0"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "SORT-stops-asc-merge",
+      "how": "Merge still applied with sortby=stops,asc",
+      "status": "PASS",
+      "note": "total 190 vs 190"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "SORT-duration-asc",
+      "how": "sortby=duration,asc orders cards correctly",
+      "status": "PASS",
+      "note": "http 200 · first 115,120,125,125,135,135"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "SORT-duration-asc-merge",
+      "how": "Merge still applied with sortby=duration,asc",
+      "status": "PASS",
+      "note": "total 190 vs 190"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-airline",
+      "how": "Airline filter \"Air India\"",
+      "status": "PASS",
+      "note": "total 81 of 190 · wrong cards 0 · merged cards kept 13"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-airline-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 94 · list shows 81"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-stops0",
+      "how": "Stops filter Non-Stop",
+      "status": "PASS",
+      "note": "total 65 of 190 · wrong cards 0 · merged cards kept 30"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-stops0-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 96 · list shows 65"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-refundable",
+      "how": "Refundable filter",
+      "status": "PASS",
+      "note": "total 189 of 190 · wrong cards 0 · merged cards kept 28"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-refundable-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 222 · list shows 189"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-price",
+      "how": "Price range 6648–15706",
+      "status": "PASS",
+      "note": "total 139 of 190 · wrong cards 0 · merged cards kept 15"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-fareType",
+      "how": "Fare type \"Return\" (fares inside cards reduced)",
+      "status": "PASS",
+      "note": "total 5 of 190 · wrong cards 0 · merged cards kept 0"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-fareType-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "PASS",
+      "note": "panel says 5 · list shows 5"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-combo",
+      "how": "Airline \"Air India\" + Non-Stop together",
+      "status": "PASS",
+      "note": "total 26 of 190 · wrong cards 0 · merged cards kept 13"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-panel",
+      "how": "Filter-panel counts add up to the number of flights (after merge)",
+      "status": "NOT TESTED",
+      "note": "RT page 0 only"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-names",
+      "how": "Airline names identical in the filter panel and on flight cards",
+      "status": "BUG",
+      "note": "panel \"Air India Express\" vs card \"AIR INDIA EXPRESS\" (2 airlines)"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-priceEmpty",
+      "how": "Price range ₹1–₹2 → empty list, not an error",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-priceInverted",
+      "how": "Price range min > max → 4xx or empty, never 500",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-unknownAirline",
+      "how": "Unknown airline → empty list, not an error",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "FIL-facets",
+      "how": "Filter facets stay full after a filter is applied",
+      "status": "PASS",
+      "note": "4 vs 4 airlines"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "B5",
+      "how": "Airline filter names case-unique",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "C6",
+      "how": "Return list not empty after choosing outbound (every fare on the merged card)",
+      "status": "BUG",
+      "note": "2/6 selections gave 0 returns: 402T Value ₹13900.8, 402T Classic ₹14539.2"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "C7",
+      "how": "Return list shrinks or stays (never grows)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "C8",
+      "how": "Returns only from the chosen outbound supplier (mixed = fail)",
+      "status": "PASS",
+      "note": "402T→{402T} 422R→{422R} 422R→{422R} 422R→{422R}"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "C9",
+      "how": "Return cards carry COMBINATION price",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "C10",
+      "how": "Combined price ≠ 2 × outbound fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "C11",
+      "how": "Combined price ≥ outbound fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "C12",
+      "how": "C6–C11 repeated for several fares on the merged card",
+      "status": "BUG",
+      "note": "6 selections (402T Return, 422R VALUE, 422R CLASSIC, 422R FLEX, 402T Value, 402T Classic)"
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "C15",
+      "how": "TBO outbound → TBO returns · Riya outbound → Riya returns",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-dom",
+      "id": "D5",
+      "how": "Selection request: whole response single supplier (doc wording)",
+      "status": "PASS",
+      "note": "ONWARD still lists both suppliers after selection: 0/6 — confirm doc intent (RETURN-only is C8)"
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "D2",
+      "how": "Details currency (TBO USD is expected)",
+      "status": "PASS",
+      "note": "USD 142.82"
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "D2b",
+      "how": "Details total = search price (after currency conversion)",
+      "status": "PASS",
+      "note": "USD 142.82 × 96 = ₹13710.72 vs ₹13710.72"
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "D3",
+      "how": "Details = same flight as the card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "D3r",
+      "how": "Details includes the return leg",
+      "status": "PASS",
+      "note": "2 legs"
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "D4",
+      "how": "No negative amounts · no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "FR1",
+      "how": "Fare rules returned with content",
+      "status": "PASS",
+      "note": "2 block(s)"
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "FR2",
+      "how": "One rule block per leg",
+      "status": "PASS",
+      "note": "Fare Rules IX DEL-BOM | Fare Rules IX NMI-DEL"
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "FR3",
+      "how": "Rules match the chosen fare (type or basis named)",
+      "status": "PASS",
+      "note": "Return / GNNA000"
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "FR4",
+      "how": "No \"Riya\" · no script content",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "FR7",
+      "how": "Rule titles name the route",
+      "status": "PASS",
+      "note": "\"Fare Rules IX DEL-BOM\" \"Fare Rules IX NMI-DEL\""
+    },
+    {
+      "area": "rt-dom TBO",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "BUG",
+      "note": "http 400 VENDOR_ERROR Pricing failed."
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "D2",
+      "how": "Details currency (TBO USD is expected)",
+      "status": "PASS",
+      "note": "INR 13012"
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "D2b",
+      "how": "Details total = search price (after currency conversion)",
+      "status": "PASS",
+      "note": "INR 13012 × 1 = ₹13012.00 vs ₹13012"
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "D3",
+      "how": "Details = same flight as the card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "D3r",
+      "how": "Details includes the return leg",
+      "status": "PASS",
+      "note": "2 legs"
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "D4",
+      "how": "No negative amounts · no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "D6",
+      "how": "Details and pricing agree on seat/meal/baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats false→true supportsMeals false→true supportsExtraBaggage false→true"
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "FR1",
+      "how": "Fare rules returned with content",
+      "status": "PASS",
+      "note": "1 block(s)"
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "FR2",
+      "how": "One rule block per leg",
+      "status": "BUG",
+      "note": "I5E"
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "FR3",
+      "how": "Rules match the chosen fare (type or basis named)",
+      "status": "PASS",
+      "note": "VALUE / GNRA000"
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "FR4",
+      "how": "No \"Riya\" · no script content",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "FR7",
+      "how": "Rule titles name the route",
+      "status": "BUG",
+      "note": "\"I5E\""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http 200  "
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "P2",
+      "how": "Pricing total = search price",
+      "status": "PASS",
+      "note": "₹13012 vs ₹13012"
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "P4",
+      "how": "Passenger prices add up to the total",
+      "status": "PASS",
+      "note": "pax ₹13012 vs total ₹13012"
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "P6",
+      "how": "INR, no negative amounts, gstBreakup array/omitted",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "SSR1",
+      "how": "SSR HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "SSR2",
+      "how": "Meal / baggage options listed",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, INR, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-dom Riya",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200",
+      "status": "BUG",
+      "note": "http 502 UPSTREAM_API_ERROR Something went wrong. Please try again."
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "S0",
+      "how": "HTTP 200 and progress COMPLETE",
+      "status": "PASS",
+      "note": "polls 1 · onward 116 · return 111"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "A3",
+      "how": "Both suppliers present",
+      "status": "PASS",
+      "note": "{402T,422R}"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "A3r",
+      "how": "Both suppliers present on RETURN too",
+      "status": "PASS",
+      "note": "{402T,422R}"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "A4",
+      "how": "Merged cards exist (both suppliers on one card)",
+      "status": "PASS",
+      "note": "19/50"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "A5",
+      "how": "Every fare has sourceCode 402T / 422R only",
+      "status": "PASS",
+      "note": "338 fares"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "B1",
+      "how": "No duplicate flight cards (same flight on two cards)",
+      "status": "PASS",
+      "note": "50 cards"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "B1r",
+      "how": "No duplicate flight cards on RETURN",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "B2",
+      "how": "Card price = cheapest fare on the card",
+      "status": "PASS",
+      "note": "100 cards"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "B12",
+      "how": "Card price equals a real selectable fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "E-1stop",
+      "how": "Connecting (multi-segment) flights merge only when every leg matches",
+      "status": "PASS",
+      "note": "15 merged multi-segment cards (all segments shared by both suppliers by construction)"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "B6",
+      "how": "Cheapest first across page 0",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "B7",
+      "how": "Page 1 has no repeats from page 0",
+      "status": "PASS",
+      "note": "page1 onward 50 return 50 · overlap 0"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "B8",
+      "how": "Every fare total > 0",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "PX1",
+      "how": "Fare breakdown adds up",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "PX2",
+      "how": "All fares in INR",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "C4",
+      "how": "fareType on every fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "E-dupfare",
+      "how": "No identical fare listed twice inside a card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "E-tie",
+      "how": "Both suppliers same lowest price → card still shows that price",
+      "status": "NOT TESTED",
+      "note": "0 tie cards"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "M-N1",
+      "how": "Same flight number at a different time stays a separate card",
+      "status": "NOT TESTED",
+      "note": "no such pair in inventory"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "M-N2",
+      "how": "Codeshare (same times, different flight numbers) stays as separate cards",
+      "status": "NOT TESTED",
+      "note": "no codeshare pair in inventory"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "M-N3",
+      "how": "Direct and connecting flights never merged together",
+      "status": "PASS",
+      "note": "both shapes present as separate cards"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "G10",
+      "how": "No \"Riya\" text",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "AP1",
+      "how": "Only DEL/DXB airports returned",
+      "status": "CHECK",
+      "note": "80 cards on nearby airports: DEL>RKT×4, DEL>SHJ×8, DEL>AUH×8, DEL>FJR×2, DEL>XNB×19, SHJ>DEL×5, AUH>DEL×5, FJR>DEL×2, RKT>DEL×4, XNB>DEL×21, DXB>DXN×1, HDO>DXB×1"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "SORT-stops-asc",
+      "how": "sortby=stops,asc orders cards correctly",
+      "status": "PASS",
+      "note": "http 200 · first 0,0,0,0,0,0"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "SORT-stops-asc-merge",
+      "how": "Merge still applied with sortby=stops,asc",
+      "status": "PASS",
+      "note": "total 116 vs 116"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "SORT-duration-asc",
+      "how": "sortby=duration,asc orders cards correctly",
+      "status": "PASS",
+      "note": "http 200 · first 0,0,0,0,0,230"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "SORT-duration-asc-merge",
+      "how": "Merge still applied with sortby=duration,asc",
+      "status": "PASS",
+      "note": "total 116 vs 116"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-airline",
+      "how": "Airline filter \"IndiGo\"",
+      "status": "PASS",
+      "note": "total 14 of 116 · wrong cards 0 · merged cards kept 0"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-airline-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 27 · list shows 14"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-stops0",
+      "how": "Stops filter Non-Stop",
+      "status": "PASS",
+      "note": "total 15 of 116 · wrong cards 0 · merged cards kept 9"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-stops0-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 24 · list shows 15"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-refundable",
+      "how": "Refundable filter",
+      "status": "PASS",
+      "note": "total 75 of 116 · wrong cards 0 · merged cards kept 16"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-refundable-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "BUG",
+      "note": "panel says 100 · list shows 75"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-price",
+      "how": "Price range 35914.56–101469",
+      "status": "PASS",
+      "note": "total 95 of 116 · wrong cards 0 · merged cards kept 19"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-fareType",
+      "how": "Fare type \"Lite\" (fares inside cards reduced)",
+      "status": "PASS",
+      "note": "total 12 of 116 · wrong cards 0 · merged cards kept 4"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-fareType-count",
+      "how": "Filter-panel count = flights shown after filtering",
+      "status": "PASS",
+      "note": "panel says 12 · list shows 12"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-combo",
+      "how": "Airline \"IndiGo\" + Non-Stop together",
+      "status": "PASS",
+      "note": "total 2 of 116 · wrong cards 0 · merged cards kept 0"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-panel",
+      "how": "Filter-panel counts add up to the number of flights (after merge)",
+      "status": "NOT TESTED",
+      "note": "RT page 0 only"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-names",
+      "how": "Airline names identical in the filter panel and on flight cards",
+      "status": "BUG",
+      "note": "panel \"Air India\" vs card \"AIR INDIA\" (1 airlines)"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-priceEmpty",
+      "how": "Price range ₹1–₹2 → empty list, not an error",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-priceInverted",
+      "how": "Price range min > max → 4xx or empty, never 500",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-unknownAirline",
+      "how": "Unknown airline → empty list, not an error",
+      "status": "PASS",
+      "note": "http 200 · total 0 "
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "FIL-facets",
+      "how": "Filter facets stay full after a filter is applied",
+      "status": "PASS",
+      "note": "15 vs 15 airlines"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "B5",
+      "how": "Airline filter names case-unique",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "C6",
+      "how": "Return list not empty after choosing outbound (every fare on the merged card)",
+      "status": "BUG",
+      "note": "2/6 selections gave 0 returns: 402T Value ₹37912.32, 402T Classic ₹41075.52"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "C7",
+      "how": "Return list shrinks or stays (never grows)",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "C8",
+      "how": "Returns only from the chosen outbound supplier (mixed = fail)",
+      "status": "PASS",
+      "note": "402T→{402T} 422R→{422R} 422R→{422R} 422R→{422R}"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "C9",
+      "how": "Return cards carry COMBINATION price",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "C10",
+      "how": "Combined price ≠ 2 × outbound fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "C11",
+      "how": "Combined price ≥ outbound fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "C12",
+      "how": "C6–C11 repeated for several fares on the merged card",
+      "status": "BUG",
+      "note": "6 selections (402T Lite, 422R LITE, 402T Value, 402T Classic, 422R VALUE, 422R CLASSIC)"
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "C15",
+      "how": "TBO outbound → TBO returns · Riya outbound → Riya returns",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Search rt-intl",
+      "id": "D5",
+      "how": "Selection request: whole response single supplier (doc wording)",
+      "status": "PASS",
+      "note": "ONWARD still lists both suppliers after selection: 0/6 — confirm doc intent (RETURN-only is C8)"
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "D2",
+      "how": "Details currency (TBO USD is expected)",
+      "status": "PASS",
+      "note": "USD 374.11"
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "D2b",
+      "how": "Details total = search price (after currency conversion)",
+      "status": "PASS",
+      "note": "USD 374.11 × 96 = ₹35914.56 vs ₹35914.56"
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "D3",
+      "how": "Details = same flight as the card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "D3r",
+      "how": "Details includes the return leg",
+      "status": "PASS",
+      "note": "2 legs"
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "D4",
+      "how": "No negative amounts · no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "FR1",
+      "how": "Fare rules returned with content",
+      "status": "PASS",
+      "note": "2 block(s)"
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "FR2",
+      "how": "One rule block per leg",
+      "status": "PASS",
+      "note": "Fare Rules IX DEL-DXB | Fare Rules IX SHJ-DEL"
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "FR3",
+      "how": "Rules match the chosen fare (type or basis named)",
+      "status": "PASS",
+      "note": "Lite / ECLAX00"
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "FR4",
+      "how": "No \"Riya\" · no script content",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "FR7",
+      "how": "Rule titles name the route",
+      "status": "PASS",
+      "note": "\"Fare Rules IX DEL-DXB\" \"Fare Rules IX SHJ-DEL\""
+    },
+    {
+      "area": "rt-intl TBO",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "BUG",
+      "note": "http 400 VENDOR_ERROR Pricing failed."
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "D1",
+      "how": "Details HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "D2",
+      "how": "Details currency (TBO USD is expected)",
+      "status": "PASS",
+      "note": "INR 45640"
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "D2b",
+      "how": "Details total = search price (after currency conversion)",
+      "status": "PASS",
+      "note": "INR 45640 × 1 = ₹45640.00 vs ₹45640"
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "D3",
+      "how": "Details = same flight as the card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "D3r",
+      "how": "Details includes the return leg",
+      "status": "PASS",
+      "note": "2 legs"
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "D4",
+      "how": "No negative amounts · no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "D6",
+      "how": "Details and pricing agree on seat/meal/baggage support",
+      "status": "CHECK",
+      "note": "supportsSeats false→true supportsMeals false→true supportsExtraBaggage false→true"
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "FR1",
+      "how": "Fare rules returned with content",
+      "status": "PASS",
+      "note": "1 block(s)"
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "FR2",
+      "how": "One rule block per leg",
+      "status": "BUG",
+      "note": "I5LT"
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "FR3",
+      "how": "Rules match the chosen fare (type or basis named)",
+      "status": "PASS",
+      "note": "LITE / ECLAX00"
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "FR3b",
+      "how": "Rules state cancellation / change charges",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "FR4",
+      "how": "No \"Riya\" · no script content",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "FR7",
+      "how": "Rule titles name the route",
+      "status": "BUG",
+      "note": "\"I5LT\""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "P1",
+      "how": "Pricing HTTP 200 with priceId + bookingContext",
+      "status": "PASS",
+      "note": "http 200  "
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "P2",
+      "how": "Pricing total = search price",
+      "status": "PASS",
+      "note": "₹45640 vs ₹45640"
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "P3",
+      "how": "Pricing breakdown adds up",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "P4",
+      "how": "Passenger prices add up to the total",
+      "status": "PASS",
+      "note": "pax ₹45640 vs total ₹45640"
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "P6",
+      "how": "INR, no negative amounts, gstBreakup array/omitted",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "P8",
+      "how": "No \"Riya\" in pricing",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "SSR1",
+      "how": "SSR HTTP 200",
+      "status": "PASS",
+      "note": "http 200 "
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "SSR2",
+      "how": "Meal / baggage options listed",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "SSR3",
+      "how": "SSR prices ≥ 0, INR, no \"Riya\"",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "rt-intl Riya",
+      "id": "SEAT1",
+      "how": "Seat map HTTP 200",
+      "status": "BUG",
+      "note": "http 400 VENDOR_UNAVAILABLE Flight provider is temporarily unavailable."
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP1",
+      "how": "Search OK, both suppliers, merged cards",
+      "status": "PASS",
+      "note": "206 cards · 47 merged on page 0"
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP2",
+      "how": "Card price = cheapest fare",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP3",
+      "how": "Group price is higher than the 1-adult price for the same flight",
+      "status": "PASS",
+      "note": "20 flights compared"
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP-402T-P1",
+      "how": "402T pricing lists ADT, CHD, INF",
+      "status": "PASS",
+      "note": "ADT,ADT,CHD,INF"
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP-402T-P2",
+      "how": "402T per-passenger prices add up to total (2×ADT + CHD + INF)",
+      "status": "BUG",
+      "note": "sum ₹22642.56 vs total ₹26675.52"
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP-402T-P3",
+      "how": "402T pricing total = search price",
+      "status": "PASS",
+      "note": "₹26675.52 vs ₹26675.52"
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP-402T-P4",
+      "how": "402T infant cheaper than adult",
+      "status": "PASS",
+      "note": "INF ₹2066.88 · ADT ₹6858.24"
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP-422R-P1",
+      "how": "422R pricing lists ADT, CHD, INF",
+      "status": "PASS",
+      "note": "ADT,ADT,CHD,INF"
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP-422R-P2",
+      "how": "422R per-passenger prices add up to total (2×ADT + CHD + INF)",
+      "status": "PASS",
+      "note": "sum ₹21954 vs total ₹21954"
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP-422R-P3",
+      "how": "422R pricing total = search price",
+      "status": "PASS",
+      "note": "₹21954 vs ₹21954"
+    },
+    {
+      "area": "Multi-passenger 2ADT+1CHD+1INF",
+      "id": "MP-422R-P4",
+      "how": "422R infant cheaper than adult",
+      "status": "PASS",
+      "note": "INF ₹2010 · ADT ₹6648"
+    },
+    {
+      "area": "Business cabin",
+      "id": "BZ1",
+      "how": "Only Business cabin returned",
+      "status": "PASS",
+      "note": "142 cards · cabins {BUSINESS}"
+    },
+    {
+      "area": "Business cabin",
+      "id": "BZ2",
+      "how": "Merged cards in Business (both suppliers)",
+      "status": "PASS",
+      "note": "{402T,422R} · 50 merged"
+    },
+    {
+      "area": "Business cabin",
+      "id": "M-N4",
+      "how": "Same flight in Business and Economy never merged into one card",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Business cabin",
+      "id": "BZ3",
+      "how": "Card price = cheapest fare · no duplicate cards",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Corporate fare",
+      "id": "CO1",
+      "how": "Corporate search returns cards",
+      "status": "PASS",
+      "note": "179 cards · categories {CORPORATE,} · suppliers {402T,422R}"
+    },
+    {
+      "area": "Corporate fare",
+      "id": "CO2",
+      "how": "Merged cards with corporate fares",
+      "status": "CHECK",
+      "note": "0 merged"
+    },
+    {
+      "area": "Corporate fare",
+      "id": "CO3",
+      "how": "Card price = cheapest fare · no duplicate cards",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Paging boundaries (ow-dom)",
+      "id": "PG1",
+      "how": "Last page: short page, rest of the list",
+      "status": "PASS",
+      "note": "8 cards"
+    },
+    {
+      "area": "Paging boundaries (ow-dom)",
+      "id": "PG2",
+      "how": "Page 9999 → empty list, HTTP 200, not an error",
+      "status": "PASS",
+      "note": "http 200 · 0 cards "
+    },
+    {
+      "area": "Paging boundaries (ow-dom)",
+      "id": "PG3",
+      "how": "perpage=1 → exactly 1 card (cheapest)",
+      "status": "PASS",
+      "note": "http 200 · 1 cards"
+    },
+    {
+      "area": "Paging boundaries (ow-dom)",
+      "id": "PG-perpage0",
+      "how": "perpage=0 → 4xx",
+      "status": "CHECK",
+      "note": "http 200 208 cards — treated as \"return everything\" (doc uses size=-1 for all); confirm 0 should do the same"
+    },
+    {
+      "area": "Paging boundaries (ow-dom)",
+      "id": "PG-perpageNeg",
+      "how": "perpage=-1 → 4xx",
+      "status": "CHECK",
+      "note": "http 200 208 cards — treated as \"return everything\" (doc uses size=-1 for all); confirm 0 should do the same"
+    },
+    {
+      "area": "Paging boundaries (ow-dom)",
+      "id": "PG-abc",
+      "how": "page=abc → 4xx",
+      "status": "PASS",
+      "note": "http 400 INTERNAL_SERVER_ERROR"
+    },
+    {
+      "area": "Paging boundaries (ow-dom)",
+      "id": "PG4",
+      "how": "perpage=500 → capped or full list, never 500",
+      "status": "PASS",
+      "note": "http 200 · 208 cards of 208 "
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-same-od",
+      "how": "Search: origin = destination → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-bad-iata",
+      "how": "Search: unknown airport code → 4xx",
+      "status": "PASS",
+      "note": "http 400 INVALID_AIRPORT · Unknown airport code: XQZ"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-lowercase-iata",
+      "how": "Search: lowercase airport \"del\" → accepted or 4xx, never 500",
+      "status": "PASS",
+      "note": "http 200 accepted · 50 cards"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-past-date",
+      "how": "Search: past date → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-date-bad-format",
+      "how": "Search: date DD-MM-YYYY → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-date-400d",
+      "how": "Search: date > 1 year away → 4xx or empty",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-adults-0",
+      "how": "Search: 0 adults → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-adults-10",
+      "how": "Search: 10 adults (> 9) → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-adults-string",
+      "how": "Search: adults \"1\" (string) → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-infants-gt-adults",
+      "how": "Search: infants > adults → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-children-neg",
+      "how": "Search: children -1 → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-cabin-bad",
+      "how": "Search: cabin \"CABIN_X\" → 4xx",
+      "status": "PASS",
+      "note": "http 400 INVALID_REQUEST · Unsupported cabinClass: CABIN_X"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-fareType-bad",
+      "how": "Search: fareType \"GARBAGE\" → 4xx",
+      "status": "PASS",
+      "note": "http 400 INVALID_FARE_TYPE · Unsupported fareType: GARBAGE. Supported: SME, senior_citizen, NORMAL, defence, flexi_canc"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-journeyType-bad",
+      "how": "Search: journeyType \"ONEWAY\" → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-multicity",
+      "how": "Search: MULTI_CITY → 4xx (not supported on this API)",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-rt-one-leg",
+      "how": "Search: ROUND_TRIP with one leg → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-rt-return-before",
+      "how": "Search: return before outbound → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-html-dest",
+      "how": "Search: HTML in airport → 4xx",
+      "status": "PASS",
+      "note": "http 400 INVALID_AIRPORT · Invalid airport code: <B>BOM</B>"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-empty-body",
+      "how": "Search: empty body → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-omit-itinerary",
+      "how": "Search: itinerary missing → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight search. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "S-selection-unknown-id",
+      "how": "Search: selection with unknown searchId → 4xx",
+      "status": "PASS",
+      "note": "http 400 INVALID_SELECTION · selection is supported only for ROUND_TRIP journeyType."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "AUTH-no-bearer",
+      "how": "Search without session token → 401/403",
+      "status": "PASS",
+      "note": "http 403 INVALID_PARTNER_KEY · Invalid or missing partner key"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "AUTH-garbage-bearer",
+      "how": "Search with garbage session token → 401/403",
+      "status": "PASS",
+      "note": "http 403 INVALID_PARTNER_KEY · Invalid or missing partner key"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "details-empty-ids",
+      "how": "details: empty selectedSearchIds → 4xx",
+      "status": "PASS",
+      "note": "http 400 INVALID_SELECTION · ONE_WAY requires exactly 1 selectedSearchId."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "details-unknown-id",
+      "how": "details: unknown searchId → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_00000000000000000000000000000000"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "details-html-id",
+      "how": "details: HTML searchId → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: <script>alert(1)</script>"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "details-comma-id",
+      "how": "details: searchId with trailing comma → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_0b015f3035884b3098d233a3a617c07b,"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "fareRules-empty-ids",
+      "how": "fareRules: empty selectedSearchIds → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for fare rules. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "fareRules-unknown-id",
+      "how": "fareRules: unknown searchId → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_00000000000000000000000000000000"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "fareRules-html-id",
+      "how": "fareRules: HTML searchId → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: <script>alert(1)</script>"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "fareRules-comma-id",
+      "how": "fareRules: searchId with trailing comma → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_0b015f3035884b3098d233a3a617c07b,"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-empty-ids",
+      "how": "pricing: empty selectedSearchIds → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-unknown-id",
+      "how": "pricing: unknown searchId → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_00000000000000000000000000000000"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-html-id",
+      "how": "pricing: HTML searchId → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: <script>alert(1)</script>"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-comma-id",
+      "how": "pricing: searchId with trailing comma → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_0b015f3035884b3098d233a3a617c07b,"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-ow-id-as-RT",
+      "how": "pricing: one-way id sent as ROUND_TRIP → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-dup-id",
+      "how": "pricing: same id twice → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-bad-journeyType",
+      "how": "pricing: journeyType \"ONEWAY\" → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "details-omit-journeyType",
+      "how": "details: journeyType missing → 4xx",
+      "status": "PASS",
+      "note": "http 400 INVALID_REQUEST · Request validation failed."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-RT-onward-only",
+      "how": "pricing: round trip with outbound id only → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight pricing. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-RT-swapped-order",
+      "how": "pricing: round trip ids in reverse order (return first) → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_b244beaf7e8d43e3b407578b1a6a39af"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-OW-with-return-id",
+      "how": "pricing: return-leg id priced as one-way → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_b244beaf7e8d43e3b407578b1a6a39af"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-RT-two-onward-ids",
+      "how": "pricing: two outbound ids as a round trip → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_64f1601dc7c843b1af61dd4580901be7"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "SEL-search-two-onward-ids",
+      "how": "search: selection with two outbound ids → 4xx",
+      "status": "PASS",
+      "note": "http 400 INVALID_SELECTION · search supports only a single selected searchId."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "SEL-search-return-id-as-onward",
+      "how": "search: return id used as the outbound selection → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · Selected searchId not found in cache: srch_b244beaf7e8d43e3b407578b1a6a39af"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "pricing-RT-mixed-TBO-onward-Riya-return",
+      "how": "pricing: TBO outbound + Riya return → rejected",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_64f1601dc7c843b1af61dd4580901be7"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "fareRules-RT-mixed-vendors",
+      "how": "fareRules: TBO outbound + Riya return → rejected",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_64f1601dc7c843b1af61dd4580901be7"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "details-RT-mixed-vendors",
+      "how": "details: TBO outbound + Riya return → rejected",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_64f1601dc7c843b1af61dd4580901be7"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "XTIER-details-merged-id-in-TBO-session",
+      "how": "details: merged-tier id used in a TBO-only session → rejected",
+      "status": "BUG",
+      "note": "http 200 accepted · 0 cards"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "XTIER-pricing-merged-id-in-Riya8-session",
+      "how": "pricing: merged-tier id used in a Riya-only session → rejected",
+      "status": "BUG",
+      "note": "http 200 accepted · 0 cards"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "EXP-details-expired-id",
+      "how": "details: expired searchId (from 2026-11-23) → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_627d7ab39fa34733b2bdd901d93b5268"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "EXP-pricing-expired-id",
+      "how": "pricing: expired searchId → 4xx",
+      "status": "PASS",
+      "note": "http 404 SEARCH_ID_NOT_FOUND · No cached search context found for searchId: srch_627d7ab39fa34733b2bdd901d93b5268"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "EXP-ssr-expired-priceId",
+      "how": "ssr: expired priceId → 4xx",
+      "status": "PASS",
+      "note": "http 400 PRICE_ID_NOT_FOUND · No cached pricing context found for priceId: price_dc01ae311c164259a0d212b06d1253e2"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "EXP-seatmap-expired-context",
+      "how": "seatmap: expired bookingContext → 4xx",
+      "status": "PASS",
+      "note": "http 400 VENDOR_UNAVAILABLE · Flight provider is temporarily unavailable."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "ssr-empty-priceId",
+      "how": "ssr: empty priceId → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight SSR. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "ssr-unknown-priceId",
+      "how": "ssr: unknown priceId → 4xx",
+      "status": "PASS",
+      "note": "http 400 PRICE_ID_NOT_FOUND · No cached pricing context found for priceId: prc_does_not_exist_000"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "ssr-html-priceId",
+      "how": "ssr: HTML priceId → 4xx",
+      "status": "PASS",
+      "note": "http 400 PRICE_ID_NOT_FOUND · No cached pricing context found for priceId: <b>x</b>"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "ssr-omit-priceId",
+      "how": "ssr: priceId missing → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight SSR. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "seatmap-omit-requestReference",
+      "how": "seatmap: requestReference missing → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight seat map. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "seatmap-garbage-requestReference",
+      "how": "seatmap: garbage requestReference → 4xx",
+      "status": "PASS",
+      "note": "http 400 INVALID_BOOKING_CONTEXT · Invalid bookingContext provided."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "seatmap-empty-passengers",
+      "how": "seatmap: empty passengers → 4xx",
+      "status": "PASS",
+      "note": "http 400 VALIDATION_ERROR · Invalid request payload for flight seat map. Please fix the listed errors and retry."
+    },
+    {
+      "area": "Negative & edge",
+      "id": "seatmap-html-name",
+      "how": "seatmap: HTML in passenger name → 4xx",
+      "status": "BUG",
+      "note": "http 200 accepted · 0 cards"
+    },
+    {
+      "area": "Negative & edge",
+      "id": "NO-500",
+      "how": "No negative case returned HTTP 5xx",
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "area": "Not run",
+      "id": "E1-E3",
+      "how": "Supplier down / slow / both down",
+      "status": "NOT TESTED",
+      "note": "needs Dev fault injection"
+    },
+    {
+      "area": "Not run",
+      "id": "F1-F5",
+      "how": "Issue ticket, PNR, price at payment",
+      "status": "NOT TESTED",
+      "note": "no booking on preprod"
+    }
+  ]
+}

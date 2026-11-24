@@ -1,0 +1,68 @@
+{
+  "at": "2026-11-20T07:09:39.451Z",
+  "base": "https://ak-api.travelvip.ai",
+  "cases": {
+    "H3": {
+      "status": "PASS",
+      "note": "PENALTY first cancel http=200 pnr=SIM-HTA53C",
+      "money": {
+        "estimatedRefund": 7732.6,
+        "estimatedCancellationCharge": 1431.4,
+        "totalAmount": null,
+        "convenienceFee": null,
+        "cancellationFee": null,
+        "refundAmount": null
+      },
+      "sample": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1795158581348894\",\"pnr\":\"SIM-HTA53C\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":1431.4,\"estimatedRefund\":7732.6}},\"_meta\":{\"correlation_id\":\"27c3cd26-de8f-40eb-a154-cb2a865caf58\"}}"
+    },
+    "H4": {
+      "status": "PASS",
+      "note": "PENALTY after settle http=200 pnr=SIM-7Q023G · paidTotal=18832 returnRefund=8501.2 (~half fare share expected on original)",
+      "money": {
+        "estimatedRefund": 8501.2,
+        "estimatedCancellationCharge": 1516.8,
+        "totalAmount": null,
+        "convenienceFee": null,
+        "cancellationFee": null,
+        "refundAmount": null
+      },
+      "sample": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1795158581348894\",\"pnr\":\"SIM-7Q023G\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimatedCancellationCharge\":1516.8,\"estimatedRefund\":8501.2}},\"_meta\":{\"correlation_id\":\"27c3cd26-de8f-40eb-a154-cb2a865caf58\"}}",
+      "compareHint": "paidTotal=18832 returnRefund=8501.2 (~half fare share expected on original)"
+    }
+  },
+  "webhookPasteBrs": {
+    "H6_online": [
+      "BR1795102051513893",
+      "BR1795088345226462"
+    ],
+    "H7_offline_fee_change": [
+      "BR1795091441315761"
+    ],
+    "H8_cancelled_some": [
+      "BR1795156611803979",
+      "BR1795102326635514"
+    ]
+  },
+  "rt": {
+    "br": "BR1795158581348894",
+    "status": "Confirmed",
+    "pnrs": [
+      "SIM-HTA53C",
+      "SIM-7Q023G"
+    ],
+    "paidTotal": 18832,
+    "issueHttp": 200
+  },
+  "settleOnward": {
+    "http": 200,
+    "bookingStatus": "Confirmed",
+    "sample": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1795158581348894\",\"pnr\":\"SIM-HTA53C\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"estimatedCancellationCharge\":1431.4,\"estimatedRefund\":7732.6,\"totalAmount\":9164,\"totalPenalty\":1081.4,\"convenienceFee\":350,\"totalSsr\":0,\"flexiCancelFee\":0,\"cancellationFee\":200,\"perPax\":[{\"paxId\":\"PAX1\",\"baseAmount\":4407,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":440.7,\"cancellationFee\":100,\"totalPenalty\":540.7,\"refund\":3866.3},{\"paxId\":\"PAX2\",\"baseAmount\":4407,\"ssr\":0,\"flexiCancelFee\":0,\"penalty\":440.7,\"cancellationFee\":100,\"totalPenalty\":540.7,\"refund\":3866.3}],\"createdAt\":\"2026-11-20T07:09:42Z\"},\"refundSummary\":{\"amount\":7732.6,\"cancellationCharge"
+  },
+  "c8Fixture": {
+    "br": "BR1795158589612801",
+    "status": "Confirmed",
+    "pnrs": [
+      "SIM-AU8EA9"
+    ]
+  }
+}

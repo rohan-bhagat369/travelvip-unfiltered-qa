@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-13T08:00:45.773Z",
+  "CONFIRM": {
+    "status": "PASS",
+    "br": "BR1794556830640046",
+    "paymentIntentId": "pi_3UbFPPEWyGwVPuvk0tKLghHx",
+    "stripeStatus": "succeeded",
+    "amountReceived": 940074,
+    "finalStatusBeforeCancel": "Confirmed",
+    "confirmationNumber": "SNHAPI00011741",
+    "message": "Successful"
+  },
+  "DOUBLE": {
+    "status": "PASS",
+    "sameBr": true,
+    "samePi": true,
+    "attachMsg": "Booking already processed",
+    "attachStatus": "confirmed"
+  },
+  "CANCEL": {
+    "status": "PASS",
+    "penalty": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1794556830640046",
+        "confirmationNumber": "SNHAPI00011741",
+        "currency": "INR",
+        "cancellationRequest": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 0,
+          "estimatedRefund": 9400.74,
+          "createdAt": "2026-11-13T08:00:39Z"
+        }
+      },
+      "_meta": {
+        "correlation_id": "446b7295-6c0c-407f-b0bf-d677d7bbb58e"
+      }
+    },
+    "finalStatus": "Cancelled"
+  }
+}

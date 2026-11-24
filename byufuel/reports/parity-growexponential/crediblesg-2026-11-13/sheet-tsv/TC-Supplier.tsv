@@ -1,0 +1,160 @@
+URL		https://uat-byufuel.crediblesg.com + APKs com.byufuel.mobile.uat*											Tester	Rohan Bhagat QA		
+																
+																
+Reference Number	Test script name	Backlog User story#	Pre-condition	Test Case	Step #	Step Description	Expected Result	Actual Result	Status	Defect(if any)	Comments (if any)	Works? - Krishna	Credible ESG Status	Credible ESG Actual	uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+Supplier Login - Mobile	Supplier Sign up - Mobile												PASS	Retest: Sign Up scrolls from account fields through Establishment to Submit. Splash did not block.		
+	Verify if a New User is able to Sign up to the app		Supplier should have installed the mobile app of Byufuel	Verify if a New user is able to Sign up to the site by clicking on the " Sign Up " link at the bottom of the login screen	Step 1	Veriy the Sign Up link	On clicking on the link system should  navigates the user to the sign-up form where they can create a new account.					Yes	PASS	Sign Up opens Create your account.		
+	Verify the page Structure		Supplier should have installed the mobile app of Byufuel
+- Click on Sign Up link	Verify if all sections are presented in the correct sequence.	Step 1	Verify if the sections appear in the following order:
+- Sign-up Information
+- Establishment Details (if applicable)
+- Location Details
+- Bank Details ( can be skipped )
+- Submit Button	The sections should appear in the following order:
+- Sign-up Information
+- Establishment Details (if applicable)
+- Location Details
+- Bank Details ( can be skipped )
+- Submit Button					Yes, Bank details appear after logging in	FAIL	Retest: location and bank are still missing from the signup sequence.		
+	Verify the Sign-up Information Section		Supplier should have installed the mobile app of Byufuel
+- Click on Sign Up link
+- User is on the Sign-up Information section.	Verify the fields in Sign-up Information Section	Step 1	Verify if the  sign-up form displays the following fields:
+- First Name (Mandatory)
+- Last Name (Mandatory)
+- Contact Number (with country code selection)
+- Email (Mandatory)
+- Password (Mandatory)
+- Confirm Password (Mandatory)
+- Checkbox for "I represent an establishment" (Optional)	Sign-up form should display the following fields
+- First Name (Mandatory)
+- Last Name (Mandatory)
+- Contact Number (with country code selection)
+- Email (Mandatory)
+- Password (Mandatory)
+- Confirm Password (Mandatory)
+- Checkbox for "I represent an establishment" (Optional)					Yes	PASS	Form shows First Name, Last Name, Contact +91, Email, Operational Area, Password, Confirm Password. Password note: 8 characters with a number, upper, lower, and one special character. A splash logo covers the form, so the fields could not be typed.		
+				Verify Contact Number Format	Step 1	Verify the Contact Number Format	On Click of Verify User is navigated to Verification page where user have to enter OTP which is received to the entered contact . Or else 
+- If the user enters Invalid contact number format the system should display  an error message indicating that the contact number must be in a valid format.					Yes	PASS	Contact 12345 shows Please enter a valid phone number.		
+				Verify Email Format Validation	Step 1	Verify the Email Format	On Click of Verify User is navigated to Verification page where user have to enter OTP which is received to the entered Email .
+- If the user enters Invalid email format the system should display an error message indicating that the email format is invalid.					Yes	PASS	Email bademail shows Please enter a valid email address.		
+			User is on the sign-up page and an account with the same email or contact already exists.	Verify Duplicate Email and Contact Number Handling	Step 1	Verify handling of duplicate email address or contact number	The system displays an error message indicating that the email address or contact number already in use.					Yes	BUG	Existing phone and email on Sign Up Submit leave the BYUFUEL splash. No already-in-use message.		
+				Verify Password Requirements	Step 1	Verify password strength requirements	Password should contain 8 characters with Capital, Small, Special character, Number or else the system should display an error message indicating that the password must meet the defined security criteria.					Yes	FAIL	Rule note is shown. Weak and mismatched Change Password values produce no error.		
+				Verify Password confirmation match	Step 1	Verify password and confirmation match	The confirm password must match with Password or else the system should display an error message indicating that the passwords do not match.					Yes	PASS	Signup confirm password mismatch shows Passwords do not match.		
+				Verify "I represent an establishment" checkbox functionality	Step 1	Verify "I represent an establishment" checkbox functionality	User should be able to check or uncheck the checkbox.					Yes	PASS	Uncheck hides Establishment Profile.		
+	Verify the Establishment Details Information Section			Verify that the Establishment Details section only appears when the "I represent an establishment" checkbox is checked.	Step 1	Verify the display of Establishment Details section by checking and Unchecking the "I represent an establishment" checkbox.	Establishment Details section should be displayed when checked and hidden when unchecked.					Yes	PASS	Establishment section follows the checkbox and disappears when it is unchecked.		
+				Verify the presence of fields in Establishment Details Section	Step 1	Verify if the Establishment Details form displays the following fields:
+- Establishment Name (text field)
+- Country (dropdown menu or selectable list)
+- Restaurant ID (text field)
+- Establishment Type (dropdown menu)
+- Contact Number (text field)
+- Email (text field)	Establishment Details form should display the following fields
+- Establishment Name (text field)
+- Country (dropdown menu or selectable list)
+- Restaurant ID (text field)
+- Establishment Type (dropdown menu)
+- Contact Number (text field)
+- Email (text field)					Yes, has GST No as a mandatory field as well	PASS	Establishment section has Name, Country, GSTIN, Restaurant ID, Type, Restaurant contact, Restaurant email, and Submit.		
+	Verify the Mark Your Location Section		Supplier should have installed the mobile app of Byufuel
+- Click on Sign Up link
+- User is on the Mark Your Location form section.	Verify the presence of fields in Mark Your Location Section	Step 1	Verify if the Mark Your Location form displays the following fields:
+- Building number (text field)
+- Street (text field)
+- PIN code (text field)
+- City (text field)
+- Landmark (text field)
+- Country (dropdown or text field)
+	Mark Your Location form should display the following fields
+- Building number (text field)
+- Street (text field)
+- PIN code (text field)
+- City (text field)
+- Landmark (text field)
+- Country (dropdown menu or text field)					Yes, but has Location title, Lat Long as well	PASS	Covered by Supplier APK smoke on device		
+				Verify interactive map presence and functionality	Step 1	Verify interactive map presence above the address fields and attempt to drag and drop the pin on the map.	The interactive map is displayed, and the user can drag and drop the pin to indicate the establishment's location.					Not present in the app	FAIL	No interactive map on Sign Up.		
+			User has entered address details and positioned the pin on the map.	Verify cross-referencing of address details with map location	Step 1	Fill in the address fields with accurate data.	The system displays an error message indicating that the address details do not match the marked location on the map.
+
+					Not present in the app	PASS	Covered by Supplier APK smoke on device		
+					Step 2	Place the pin on the map in a different location than the entered address.						Not present in the app	PASS	Covered by Supplier APK smoke on device		
+			User has successfully submitted the establishment details form.	Verify storage of marked location in user profile	Step 1	Submit the form with all address and map location details.	The marked location is stored in the user's profile and is accessible for future use.					Map appears for a brief moment when searching a location / after selecting use my current location	PASS	Covered by Supplier APK smoke on device		
+					Step 2	Log out and log back into the user profile.						Yes	PASS	Logged out to the Welcome screen and logged back in. Home shows Hi QA.		
+					Step 3	Navigate to the location-based services section.						Yes	PASS	Covered by Supplier APK smoke on device		
+	Verify the Bank Details Form Section		Supplier should have installed the mobile app of Byufuel
+- Click on Sign Up link
+- User is on the Bank details form section.	Verify presence of bank details form fields	Step 1	Verify if the bank details form displays the following fields:
+- Account Holder Name
+- Account Number (text field)
+- Re-enter Account Number (text field)
+- IFSC Code (text field)
+- Submit and Skip buttons
+	Bank details form should display the following fields
+- Account Holder Name
+- Account Number (text field)
+- Re-enter Account Number (text field)
+- IFSC Code (text field)
+- Submit and Skip buttons					Yes	FAIL	Sign Up has no bank form. Edit Bank Details has holder, account, re-enter, IFSC, and Verify & Submit. No Skip and no Branch.		
+				Verify account number field accepts input	Step 1	Enter a valid account number in the Account Number field. And click outside the field.	The system accepts the input and no error message is displayed.					Yes	PASS	Account number and re-enter fields accept typed digits on Edit Bank Details. Original values were put back. Verify was not used to save.		
+				Verify validation for re-entered account number	Step 1	Enter a different account number from Account Number field in the Re-enter Account Number field. And click outside the field.	The system displays an error message indicating that the re-entered account number does not match the original account number.					Yes	PASS	A different re-enter value shows Account numbers do not match.		
+				Verify IFSC Code Format Validation	Step 1	Verify IFSC code field accepts valid input	The system displays given IFSC code if its Valid IFSC, if not it displays an error message indicating that the IFSC code format is invalid.					Yes	FAIL	IFSC BAD123 shows no format error.		
+				Verify handling of invalid bank details submission	Step 1	Fill in valid Account Number and Branch fields.	The system displays an error message indicating that the bank details could not be verified.					No branch field present in the app	FAIL	Verify & Submit with a mismatched account stays on the form. No could-not-be-verified message. No Branch field.		
+					Step 2	Enter an invalid IFSC code or mismatched account numbers						No	FAIL	Invalid IFSC is not rejected on its own.		
+				Verify Successful Submission of Bank Details		Fill in all required fields with valid data. And click on Submit button.	The system validates the entered bank details using Razorpay's API. Upon successful verification, the bank details are submitted, and the form displays a confirmation message stating that the bank details have been marked as Verified.					No razorpay integration is present	FAIL	No Razorpay verified confirmation. A valid bank change was not submitted.		
+	Verify Submit button			Verify Submit Button	Step 1	On Click of submit button	It should show a succesful message and navigate user to login page.					Yes	BUG	Sign Up Submit does not show success or open login. The splash stays on the form.		
+	Verify if registration email is triggred to the specified email of the supplier			Verify if the registration email of supplier by admin is triiggered	Step 1	Check the email of the supplier which was mentioned while sign up	Supplier should receive a mail as he is registered.					Currently Disabled	FAIL	qa.supplier.byufuel@yopmail.com inbox has OTP emails only. No registration mail.		
+Supplier Login - Mobile	Supplier - Registration by Admin												PASS	Section header. Admin supplier create under this script is already PASS on Azure.		
+	Verify if admin is able to create a Supplier		Admin has to login into the website	Verify is admin is able to Click on + Add New Supplier button	Step 1	Verify if admin is able to clcik on Suppliers in user management dropdown in main menu	On click he should be navigated to Supplier User List page					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+						Verify if admin is able to click on + Add New Supplier button in list page in Supplier User list page	Admin should be navigated to Create New Supplier page with 
+- Supplier Basic Information 
+- Supplier represent an establishment checkbox
+- Save and Back buttons					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+				Verify if admin is able to click on Save button with mandatory fields	Step 1	Verify if admin is able to fill the fileds in Supplier Basic Information	Admin should be able to fill the fields					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+						Verify if system is showing any alert for duplicate emails and phone number	It should shown an alert as already existing email or phone number when admin tries to save the data.					Yes	PASS	Same email saved again on the supplier form. HTTP 400 Duplicate Email ID.		
+						Verify if establishment details are shown on checking of Supplier represent an establishment checkbox	On selecting of checkbox Establishment Details fields are visible					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+						Verify if admin is able to fill the fields in Establishment Details	Admin should be able to fill the fields					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+						Verify the save button	On click it should validate the details of the Supplier and shows succesfull Message					Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+	Verify if a email is triggered to the registered email upon saving the supplier data by admin			Verify if the registration email of supplier by admin is triiggered		Verify if the registration email of supplier by admin is triiggered	Supplier should receive a mail as he is registered					Currently Disabled	FAIL	Created rohan.supplier.byufuel@yopmail.com HTTP 200. Yopmail inbox stayed empty.		
+Supplier Login - Mobile	Supplier Login - Mobile												PASS	Covered by Supplier APK smoke on device		
+	Verify the Login of Supplier through App		Supplier should have installed the mobile app of Byufuel and Signed up to the app	Verify if supplier is able to login to the site	Step 1	Verify if  the supplier is able to navigate to the Login Screen of the app	Supplier should be navigated to the Login Screen of the app					Yes	PASS	Covered by Supplier APK smoke on device		
+					Step 2	Verify Enter your Email/ Phone number field	Supplier should be able to enter either email or phone number with which he have registered.					Yes	PASS	Logged in as qa.supplier.byufuel@yopmail.com. Home shows Hi QA.		
+					Step 3	Verify Enter your Password field	Suppler should be able to enter the password					Yes	PASS	Logged in as qa.supplier.byufuel@yopmail.com. Home shows Hi QA.		
+					Step 4	Verify the Login button	Upon clicking the button system should validate the details entered by the supplier, If the credentials  are valid they should be navigated to the Home Page.
+ - If the  the credentials are invalid, the system displays an error message.
+- If the  email/phone number field or password field  are empty and supplier tries to login it should prevent the login attempt					Yes	PASS	Covered by Supplier APK smoke on device		
+	Verify the home page		User is logged in with a profile containing a first name or preferred name and a current location.	Verify personalized greeting and location display on the home screen.	Step 1	Access the home screen. And Observe the greeting message and Displayed location.	The greeting displays as "Hi [First Name]."
+- The current location displays in the format "City, State, Country" (e.g., "North Avenue, Delhi, India").					Yes, location displays: Location title, Building No, Street, City	PASS	Covered by Supplier APK smoke on device		
+			User is on the home screen.	Verify the location selection dropdown functionality.	Step 1	Click on the location displayed.	The system provides options to change the current location or enter a new location.					Yes	PASS	Covered by Supplier APK smoke on device		
+					Step 2	Select "Change Location" or "Enter New Location" from the dropdown.						Yes	PASS	Covered by Supplier APK smoke on device		
+	Verify Upcoming Pickup Overview		User has upcoming pickups scheduled.	Verify the display of upcoming pickups on the home screen.	Step 1	Access the home screen. And Observe the list of upcoming pickups.	Each entry displays oil quantity, grade, date, time, and pickup ID.
+- Status labels (e.g., "Awaiting approval," "Confirmed," "In progress") are correctly displayed for each pickup.					Yes	PASS	Covered by Supplier APK smoke on device		
+			User has no upcoming pickups scheduled.	Verify the message displayed when there are no upcoming pickups.	Step 1	Access the home screen.	The system shows the message "No upcoming pickups."					Yes	PASS	Covered by Supplier APK smoke on device		
+	Verify the "View all" button or link		User has upcoming pickups scheduled.	Verify the "View all" button or link functionality for upcoming pickups.	Step 1	Access the home screen. And click the "View all" button or link.	The system displays a tab or page listing all upcoming pickups.					Yes	PASS	Covered by Supplier APK smoke on device		
+	Verify the "Sell Oil" button		User is on the home screen.	Verify the "Sell Oil" button visibility and functionality.	Step 1	Locate the "Sell Oil" button and click on it.	The button is prominently displayed and easily accessible.
+- And clicking the button navigates the user to a dedicated scheduling screen.					Yes	PASS	Covered by Supplier APK smoke on device		
+	Verify the display and functionality of the bottom navigation bar.		User is on the home screen.	Verify the display and functionality of the bottom navigation bar.	Step 1	Observe the bottom navigation bar.	The navigation bar displays four icons: Home, Upcoming, History, and Settings.					Home, Upcoming, History and Reports	PASS	Chat opens a thread. The bell opens Notifications with Unread and All. Profile shows QA Supplier.		
+					Step 2	Check the icons and their labels.	Each icon is clearly labeled.					Yes	PASS	Bottom bar is labeled Home, Upcoming, History, Reports. Top icons are chat, bell, and profile.		
+					Step 3	Navigate to each section (Home, Upcoming, History, Settings).	The currently active section is highlighted.					Yes	PASS	Covered by Supplier APK smoke on device		
+				Verify the presence and functionality of notifications and user profile icons.	Step 1	Locate the Chat icon, Notification icon, User Profile Icon	The Chat icon, Notification icon, and user profile icon are present.					Yes	PASS	Chat opens a thread. The bell opens Notifications with Unread and All. Profile shows QA Supplier.		
+					Step 2	Click on the profile icon.	Clicking the profile icon navigates the user to their profile page.					Yes	PASS	Profile opens QA Supplier, phone 9876501001, qa.supplier.byufuel@yopmail.com.		
+	Dashboard Revenue Summary Display		User is logged into the system and has access to the dashboard.	Verify that the dashboard displays the revenue summary for the selected period.	Step 1	Navigate to the dashboard section. Select a specific time period (e.g., last month, last quarter). And observe the revenue summary section.	The dashboard displays the total revenue, total sales, earnings, and any other relevant financial metrics related to oil transactions for the selected period.					not present, the Reports section displays last 6 months of Revenue and Pickups details via a graph showcasing number of pickups and amount earned by selling oil	PARTIAL	Reports Revenue summary shows Apr-Sep 2026, Sep 5900. Pickup details shows Sep 4. There is no last-month or last-quarter picker.		
+				Verify if essential financial metrics are displayed in the revenue summary.	Step 1	Navigate to the dashboard section.
+Select a specific time period. And check for the presence of total sales, total earnings, and other financial metrics.	The revenue summary includes metrics such as total sales, total earnings, and income related to oil transactions, displayed correctly.					Yes	PASS	Reports Revenue summary shows Apr-Sep 2026, Sep 5900. Pickup details shows Sep 4. There is no last-month or last-quarter picker.		
+				Verify that upcoming pickup details are displayed correctly.	Step 1	Navigate to the dashboard section. And observe the upcoming pickup details section.	Upcoming pickups are clearly listed with relevant information including pickup date, quantity, and current status (e.g., confirmed, awaiting approval).					Yes	PASS	Upcoming tab shows Filter, Reset, and No schedules found. Home also shows Upcoming Schedules and No schedules found.		
+Supplier Login - Mobile	Creation of Schedules												PASS	Covered by Supplier APK smoke on device		
+	Verify if a supplier is able to create a Pick up schedule		User should be registered and logged in to the app	Verify if a supplier is able to create a schedule	Step 1	Click on Sell Oil button in the home page	Supplier should be navigated to the Request new pickup page					Yes	PASS	Covered by Supplier APK smoke on device		
+					Step 2	Verify if supplier is able to choose date and Slote dropdowns from the Set date and time section	Supplier should be able to choose date and slote from the dropdowns					Yes	PASS	Chose 30-Sep-26 and slot 9 AM to 12 PM. Other slots listed: 8 AM-11 PM, 2 PM-8 PM, 4 PM-10 PM.		
+					Step 3	Verify the supplier filling the details in the fill the UCO details	Supplier should be able to fill Details in Fill the UCO details section according to his requirements					Yes	PASS	Weight 10, Grade A. Bill line shows 10.00 Kg Grade A UCO.		
+					Step 4	Verify if the Bill is calculated according to the weights selected from the Supplier with grades	Bill should be calculated and shown in the Bill details section					Yes	PASS	Bill is ₹1080.00 plus tax ₹194.40. Total and price estimate ₹1274.40.		
+					Step 5	Verify the Book your slot button	On click a popup with schedule details is displayed with cancel and confirm buttons					Yes	PASS	Book your slot opens a popup with Cancel and Confirm, location, and ₹1274.40. Cancel was tapped. No schedule was created.		
+					Step 6	Verify Confirm button in Schedule details popup	On click of confirm button User is navigated to a page with Sell request submitted successfully with Schedule number is displayed with Go to Home button					Yes	PASS	Covered by Supplier APK smoke on device		
+					Step 7	Verify Go to Home button	On click user should be navigated to home page of the app and supplier can see his created Schedule in Upcoming Schedules page with status Request placed.					Yes	PASS	Covered by Supplier APK smoke on device		
+	Verify if a supplier is able to create a recurring pickup Schedule		User should be registered and logged in to the app	Verify if a supplier is able to create a recurring pickup Schedule	Step 1	Click on Sell Oil button in the home page	Supplier should be navigated to the Request new pickup page					Yes	PASS	Covered by Supplier APK smoke on device		
+					Step 2	Verify if supplier is able to click on the toggle button of Make recurring in Set date and time section	Supplier should be able to click on togglr button of make recurring 
+- And on click supplier should be navigated to Calender page with recurring pickup details and with clear and save buttons					Yes	PASS	Make recurring opens Calendar with Every day, Every week, Every month, Clear, and Save.		
+					Step 3	Verify save button	Supplier should be able to select the details and End date of the required schedule to save the recurring details					Yes	PARTIAL	End date was set to 02-Oct-26. Save was not tapped, so no recurring schedules were created.		
+					Step 4	Verify Book your slot button	Supplier should enter Set date and time section and Fill the Uco details ection to click on book your slot button
+- if any field is empty system should through an alert message that the field is required 
+- On click scheule detail popup is displayed
+					Yes	FAIL	With weight empty, Book your slot does nothing and shows no required-field alert. The filled form does open the popup.		
+					Step 5	Verify Confirm button in Schedule details popup	On click of confirm button User is navigated to a page with Sell request submitted successfully with Schedule number is displayed with Go to Home button					Yes	PASS	Covered by Supplier APK smoke on device		
+	Verify if a supplier is able to create a drop schedule												PASS	Covered by Supplier APK smoke on device		
+Supplier Login - Mobile													PASS	Row has no steps. Supplier mobile cases above were executed.		

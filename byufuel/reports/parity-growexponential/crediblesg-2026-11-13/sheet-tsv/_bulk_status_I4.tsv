@@ -1,0 +1,7 @@
+﻿uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+PASS	Create Bulk Request + View Bulk Requests menus present on Admin dashboard/sidebar; Create Bulk Schedule Request on /byu/suppliers
+FAIL	Selected 50 of 75 approved suppliers · BR-000000062 and BR-000000063 count=50 · 19-Nov-2026 · 8AM-10AM · 10kg · status ERROR (not Completed)
+PASS	BR-000000064 count=1 recurring YES Weekely · 4 recurrences · 19-Nov-2026 to 10-Dec-2026 · 8AM-10AM · 10kg · COMPLETED (kedar@supplier.com)
+FAIL	No existing-schedule replace confirmation on recurring create after prior bulk/recurring activity (BR-064 created without popup; Centvis FAIL pattern)
+PASS	View Bulk Requests loads · lists BR-064 COMPLETED + BR-063/062 ERROR
+FAIL	End Date accepted typed 01-Jan-2029 without auto-rewrite; year picker allows 2029-2039 (Centvis expected clamp). Not submitted with far date.

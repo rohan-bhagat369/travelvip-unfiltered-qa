@@ -1,0 +1,174 @@
+URL		https://uat-byufuel.crediblesg.com + APKs com.byufuel.mobile.uat*											Tester	Rohan Bhagat QA		
+																
+																
+Reference Number	Test script name	Backlog User story#	Pre-condition	Test Case	Step #	Step Description	Expected Result	Actual Result	Status	Defect(if any)	Comments (if any)	Works? - Krishna	Credible ESG Status	Credible ESG Actual	uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+Supplier Login - Mobile	Supplier Login - Mobile												PASS	PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png		
+	Verify the Login of Supplier through App		Nagivate to URL	Verify if supplier is able to login to the site	Step 1	Verify if  the supplier is able to navigate to the Login Screen of the app	Supplier should be navigated to the Login Screen of the app					Yes	PASS	PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png		
+					Step 2	Verify Enter your Email/ Phone number field	Supplier should be able to enter either email or phone number with which he have registered.					Yes	PASS	PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png		
+					Step 3	Verify Enter your Password field	Suppler should be able to enter the password					Yes	PASS	PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png		
+					Step 4	Verify the Login button	Upon clicking the button system should validate the details entered by the supplier, If the credentials  are valid they should be navigated to the Home Page.
+ - If the  the credentials are invalid, the system displays an error message.
+- If the  email/phone number field or password field  are empty and supplier tries to login it should prevent the login attempt					Yes	PASS	PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png		
+	Verify if supplier is able to initiate a password recovery process		Nagivate to URL	Verify if supplier is able to initiate a password recovery process by clicking the " Forgot password " link	Step 1	Verify the Forgot Password Link	On clicking on the link system should direct the user to the password recovery process, allowing them to enter their registered email or phone number to reset their password.					Yes	PASS	Forgot Password form has an email/phone field and Send OTP. The button label is Send OTP.		
+	Verify if a New User is able to Sign up to the app		Nagivate to URL	Verify if a New user is able to Sign up to the site by clicking on the " Sign Up " link at the bottom of the login screen	Step 1	Veriy the Sign Up link	On clicking on the link system should  navigates the user to the sign-up form where they can create a new account.					Yes	PASS	Sign Up opens Create your account.		
+Supplier Login - Mobile	Supplier Sign up - Mobile												PASS	Retest: Sign Up opens and scrolls. Account fields and Establishment Profile are on the form. Splash did not block this pass.		
+	Verify the page Structure		Navigate to URL
+- Click on Sign Up link	Verify if all sections are presented in the correct sequence.	Step 1	Verify if the sections appear in the following order:
+- Sign-up Information
+- Establishment Details (if applicable)
+- Location Details
+- Bank Details
+- Submit Button	The sections should appear in the following order:
+- Sign-up Information
+- Establishment Details (if applicable)
+- Location Details
+- Bank Details
+- Submit Button					Yes	FAIL	Retest: form order is account, then Establishment, then Submit. Location and bank sections are still not on Sign Up.		
+	Verify Scroll Behavior		Navigate to URL
+- Click on Sign Up link
+- User is on the single-page scroll form.	Verify the user can scroll smoothly through the form without any navigation issues.		Verify the user can scroll smoothly through the form without any navigation issues.	User should be able to have a smooth scrolling without any interruptions or layout issues.					Yes	PASS	Supplier home smoke PASS on APK		
+	Verify the Sign-up Information Section		Navigate to URL
+- Click on Sign Up link
+- User is on the Sign-up Information section.	Verify the fields in Sign-up Information Section	Step 1	Verify if the  sign-up form displays the following fields:
+- First Name (Mandatory)
+- Last Name (Mandatory)
+- Contact Number (with country code selection)
+- Email (Mandatory)
+- Password (Mandatory)
+- Confirm Password (Mandatory)
+- Checkbox for "I represent an establishment" (Optional)	Sign-up form should display the following fields
+- First Name (Mandatory)
+- Last Name (Mandatory)
+- Contact Number (with country code selection)
+- Email (Mandatory)
+- Password (Mandatory)
+- Confirm Password (Mandatory)
+- Checkbox for "I represent an establishment" (Optional)					Yes	PASS	Form shows First Name, Last Name, Contact +91, Email, Operational Area, Password, Confirm Password. Password note: 8 characters with a number, upper, lower, and one special character. A splash logo covers the form, so the fields could not be typed.		
+				Verify Contact Number Format	Step 1	Verify the Contact Number Format	On Click of Verify User is navigated to Verification page where user have to enter OTP which is received to the entered contact . Or else 
+- If the user enters Invalid contact number format the system should display  an error message indicating that the contact number must be in a valid format.					Yes	PASS	Contact 12345 shows Please enter a valid phone number.		
+				Verify Email Format Validation	Step 1	Verify the Email Format	On Click of Verify User is navigated to Verification page where user have to enter OTP which is received to the entered Email .
+- If the user enters Invalid email format the system should display an error message indicating that the email format is invalid.					Yes	PASS	Email bademail shows Please enter a valid email address.		
+			User is on the sign-up page and an account with the same email or contact already exists.	Verify Duplicate Email and Contact Number Handling	Step 1	Verify handling of duplicate email address or contact number	The system displays an error message indicating that the email address or contact number already in use.					Yes	BUG	Existing phone 9876501001 and qa.supplier.byufuel@yopmail.com were accepted on the form. Submit leaves the BYUFUEL splash on Sign Up. No already-in-use message after waiting.		
+				Verify Password Requirements	Step 1	Verify password strength requirements	Password should contain 8 characters with Capital, Small, Special character, Number or else the system should display an error message indicating that the password must meet the defined security criteria.					Yes	FAIL	Rule note is shown. Change Password Update of abcdef plus a different confirm shows no error. Password was not changed.		
+				Verify Password confirmation match		Verify password and confirmation match	The confirm password must match with Password or else the system should display an error message indicating that the passwords do not match.					Yes	PASS	Different confirm password shows Passwords do not match.		
+				Verify "I represent an establishment" checkbox functionality		Verify "I represent an establishment" checkbox functionality	User should be able to check or uncheck the checkbox.					Yes	PASS	Unchecking I represent an establishment hides Establishment Profile. Submit stays.		
+	Verify the Establishment Details Information Section			Verify that the Establishment Details section only appears when the "I represent an establishment" checkbox is checked.		Verify the display of Establishment Details section by checking and Unchecking the "I represent an establishment" checkbox.	Establishment Details section should be displayed when checked and hidden when unchecked.					Yes	PASS	Establishment Profile is visible while the box is checked and hidden after uncheck.		
+				Verify the presence of fields in Establishment Details Section	Step 1	Verify if the Establishment Details form displays the following fields:
+- Establishment Name (text field)
+- Country (dropdown menu or selectable list)
+- Restaurant ID (text field)
+- Establishment Type (dropdown menu)
+- Contact Number (text field)
+- Email (text field)	Establishment Details form should display the following fields
+- Establishment Name (text field)
+- Country (dropdown menu or selectable list)
+- Restaurant ID (text field)
+- Establishment Type (dropdown menu)
+- Contact Number (text field)
+- Email (text field)					Yes	PASS	Establishment section shows Establishment Name, Country (India), GSTIN Number, Restaurant ID, Establishment Type, Restaurant Contact Number, Restaurant Email, and Submit.		
+	Verify the Mark Your Location Section		Navigate to URL
+- Click on Sign Up link
+- User is on the Mark Your Location form section.	Verify the presence of fields in Mark Your Location Section	Step 1	Verify if the Mark Your Location form displays the following fields:
+- Building number (text field)
+- Street (text field)
+- PIN code (text field)
+- City (text field)
+- Landmark (text field)
+- Country (dropdown or text field)
+	Mark Your Location form should display the following fields
+- Building number (text field)
+- Street (text field)
+- PIN code (text field)
+- City (text field)
+- Landmark (text field)
+- Country (dropdown menu or text field)					Yes	FAIL	Sign Up has no Mark Your Location section. After the account fields the form goes to Establishment Profile, then Submit.		
+				Verify interactive map presence and functionality	Step 1	Verify interactive map presence above the address fields and attempt to drag and drop the pin on the map.	The interactive map is displayed, and the user can drag and drop the pin to indicate the establishment's location.					No	FAIL	No interactive map on Sign Up.		
+			User has entered address details and positioned the pin on the map.	Verify cross-referencing of address details with map location	Step 1	Fill in the address fields with accurate data.	The system displays an error message indicating that the address details do not match the marked location on the map.
+
+					No	FAIL	No address fields and no map, so a mismatch between address and pin cannot be shown.		
+					Step 2	Place the pin on the map in a different location than the entered address.						No	FAIL	No map pin to place.		
+			User has successfully submitted the establishment details form.	Verify storage of marked location in user profile	Step 1	Submit the form with all address and map location details.	The marked location is stored in the user's profile and is accessible for future use.					Partial as there is no pin on an interactive map	PASS	Supplier home smoke PASS on APK		
+					Step 2	Log out and log back into the user profile.						Yes	PASS	Supplier home smoke PASS on APK		
+					Step 3	Navigate to the location-based services section.						Yes	FAIL	No location-based services section on Sign Up.		
+	Verify the Bank Details Form Section		Navigate to URL
+- Click on Sign Up link
+- User is on the Bank details form section.	Verify presence of bank details form fields	Step 1	Verify if the bank details form displays the following fields:
+- Account Number (text field)
+- Re-enter Account Number (text field)
+- IFSC Code (text field)
+- Branch (text field)
+- Submit button
+	Bank details form should display the following fields
+- Account Number (text field)
+- Re-enter Account Number (text field)
+- IFSC Code (text field)
+- Branch (text field)
+- Submit button					Yes, branch option is not present	FAIL	No bank details section on Sign Up. Account Number, Re-enter Account Number, IFSC, and Branch are not on the form.		
+				Verify account number field accepts input		Enter a valid account number in the Account Number field. And click outside the field.	The system accepts the input and no error message is displayed.					Yes	FAIL	Account Number field is not on Sign Up.		
+				Verify validation for re-entered account number		Enter a different account number from Account Number field in the Re-enter Account Number field. And click outside the field.	The system displays an error message indicating that the re-entered account number does not match the original account number.					Yes	FAIL	Re-enter Account Number field is not on Sign Up.		
+				Verify IFSC Code Format Validation		Verify IFSC code field accepts valid input	The system displays given IFSC code if its Valid IFSC, if not it displays an error message indicating that the IFSC code format is invalid.					Yes (validates the character length)	FAIL	IFSC field is not on Sign Up.		
+				Verify Branch Field Input		Verify branch field accepts input by entering Valid branch name.	The system accepts the input and no error message is displayed.					No branch field present	FAIL	Branch field is not on Sign Up.		
+				Verify handling of invalid bank details submission	Step 1	Fill in valid Account Number and Branch fields.	The system displays an error message indicating that the bank details could not be verified.					Yes, branch option is not present	FAIL	Bank details cannot be submitted. That section is not on Sign Up.		
+					Step 2	Enter an invalid IFSC code or mismatched account numbers						Yes, branch option is not present	FAIL	Invalid IFSC cannot be entered. The bank section is not on Sign Up.		
+				Verify Successful Submission of Bank Details		Fill in all required fields with valid data. And click on Submit button.	The system validates the entered bank details using Razorpay's API. Upon successful verification, the bank details are submitted, and the form displays a confirmation message stating that the bank details have been marked as Verified.					No	FAIL	Bank verification confirmation is not reachable. Sign Up has no bank form.		
+	Verify Submit button												BUG	Sign Up Submit leaves the BYUFUEL splash on the form. It does not reach a success screen.		
+Supplier Login - Mobile	Forgot Password - Mobile												BUG	Retest: Forgot Password OTP still ends on The {name} with the identifier {id} was not found. Password unchanged.		
+	Verify Forgot Password Link		Navigate to URL
+- User is on login page	Verify the functionality of the "Forgot Password" link		Click on the "Forgot Password" link.	The system displays a form with the input field labeled “Please enter your registered Email or Phone Number.”					Yes, happens in app	PASS	Forgot Password form has an email/phone field and Send OTP. The button label is Send OTP.		
+			User is on the password reset form.	Verify presence of email or phone number input field		Observe the displayed form.	The form includes an input field for entering either an email address or a phone number.					Yes	PASS	Forgot Password form has an email/phone field and Send OTP. The button label is Send OTP.		
+				Verify Validation for Registered Email/Phone Number		Enter unregistered email address or phone number and click on the "Confirm" button.	The system displays an error message indicating that the email or phone number is not registered.					Yes	PASS	nobody.notreal@yopmail.com shows User not registered. Sign up now.		
+				Verify OTP sent to email/phone number		Enter registered email address or phone number and click on the "Confirm" button.	The system sends a verification code (OTP) to the registered email address or phone number.					Yes	PASS	qa.supplier.byufuel@yopmail.com returns HTTP 201. Verification Code screen asks for a 6-digit code. A timer is shown.		
+			User is on the OTP input screen.	Verify validation of entered OTP		Enter an incorrect OTP. And click the "Confirm" button	The system displays an error message indicating that the OTP is incorrect.					Yes	PASS	000000 shows Invalid OTP.		
+				Verify functionality of "Resend" button		Wait for the OTP timer (if applicable) or click the "Resend" button.	The system sends a new OTP to the registered email address or phone number.					Yes	PASS	Resend OTP returns HTTP 201 and restarts the timer.		
+			User is on the OTP input screen.
+- User has received an OTP.	Verify OTP expiry functionality	Step 1	Wait for the OTP to expire (e.g., after 5 minutes).	The system displays an error message indicating that the OTP has expired.					Yes, 2 mins expiry duration for the OTP	BUG	Forgot Password OTP timer starts near 02:00 and the clock disappears at 0. Submit does not say the OTP expired.		
+					Step 2	Attempt to enter the expired OTP and click "Confirm."						Yes	BUG	Submit after the timer shows The {name} with the identifier {id} was not found. That is not an expiry error.		
+			User has successfully verified the OTP.	Verify presence of new password fields after successful OTP verification		Observe the displayed password reset form.	The form includes "New Password" and "Confirm Password" fields.					Yes	PASS	PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png		
+			User is on the password reset form.	Verify password security criteria	Step 1	Enter a new password that does not meet security criteria.	The system displays an error message indicating that the new password does not meet the security criteria.					Yes	FAIL	Valid emailed OTP never opens the new-password form. Profile Change Password Update of abcdef shows no criteria error. Password was not changed.		
+					Step 2	Enter a matching confirm password.						Yes	FAIL	Confirm was left different and Update showed no criteria error.		
+					Step 3	Click the "Confirm" button.						Yes	FAIL	Update stays on Change Password. No security error.		
+				Verify validation of matching passwords	Step 1	Enter a new password in the "New Password" field.	The system displays an error message indicating that the passwords do not match.					Yes	FAIL	Two different passwords on Change Password produce no mismatch error.		
+					Step 2	Enter a different password in the "Confirm Password" field						Yes	FAIL	Confirm password was different from New Password. No error.		
+					Step 3	Click the "Confirm" button.						Yes	FAIL	Update did not report that the passwords do not match.		
+				Verify successful password reset		User has entered matching new passwords that meet the criteria. And  click the "Confirm" button.	The system successfully updates the password, redirects the user to the login screen, and displays a confirmation message indicating that the password has been updated.					Yes	FAIL	Valid OTP submit shows the broken {name}/{id} message and stays on Verification Code. Password was not changed.		
+Supplier Login - Mobile	Email and phone number Verification​ - Mobile												FAIL	Sign Up has no Verify step and no separate email/phone verification screen.		
+	Verify Email and phone number verification​		User is on the sign-up form with a valid email or phone number.	Validate that clicking the "Verify" button checks if the email or phone number already exists in the system.		Click the "Verify" button next to the email or phone number after entering the email or phone number	If the email or phone number exists, the system shows a message indicating it is already in use.
+( Or )
+ If the email or phone number does not exist, the user is directed to the verification screen.					Yes	FAIL	No Verify button next to email or phone. Existing supplier email and phone do not show already in use. Submit sticks on the splash.		
+			User has entered a valid email or phone number that does not already exist.	Verify if screen displays the correct fields and buttons.		After being redirected, check the verification screen.	The screen contains a field labelled "Enter Email Address" or "Enter Phone Number," pre-filled with the previously entered information. 
+- The screen has a "Send OTP" button.					Yes	FAIL	Signup does not open a screen with Send OTP and a pre-filled email or phone.		
+				Verify that OTP is sent when the "Send OTP" button is clicked with valid email or phone number.		Click the "Send OTP" button.	The system sends an OTP to the provided email address or phone number. And a confirmation message appears indicating that the OTP has been sent.
+					Yes	FAIL	Sign Up has no Send OTP button. OTP send was only seen on Forgot Password.		
+				Verify if the system prevents OTP sending for invalid email or phone number.		Click the "Send OTP" button.	The system displays an error message indicating the contact information is invalid.
+- The OTP is not sent.					Yes	PASS	Invalid phone 12345 and email bademail are rejected on the form, so no OTP is sent for them.		
+			User has received the OTP.	Verify the system processes the correct OTP successfully.	Step 1	Enter the correct OTP in the input field.	The system validates the OTP and proceeds to the next step in the registration process.
+- A confirmation message indicating successful verification is displayed.					Yes	FAIL	There is no signup OTP step that accepts a correct code and continues registration.		
+					Step 2	Submit the OTP.						Yes	FAIL	Signup OTP cannot be submitted. The screen is not in this build.		
+				Verify if the system handles incorrect or expired OTP gracefully.		Enter an incorrect or expired OTP in the input field.	The system displays an error message indicating that the OTP is incorrect or expired.
+An option to resend the OTP is provided.					Yes	BUG	On Forgot Password, 000000 and a real emailed OTP both return The {name} with the identifier {id} was not found. Not an incorrect-OTP message.		
+						Submit the OTP.						Yes	BUG	Submit on that OTP screen shows the same uninterpolated not-found banner.		
+			User has not received the OTP or the OTP has expired.	Verify that the "Resend OTP" button functions correctly.		Click the "Resend OTP" button.	The system sends a new OTP and invalidates the previous one.
+A confirmation message indicates that a new OTP has been sent.					Yes	PASS	Resend OTP restarts the timer at about 01:48 and a new OTP email arrives.		
+			User is on the verification screen.	Verify if the user can go back to re-enter email or phone number.		Click the back button.	The user is redirected to the previous screen to re-enter their contact details.
+A new OTP is sent upon submission of the updated information.					Yes	PARTIAL	Verification Code has a back chevron. Re-entering a new email and sending another OTP from that back path was not completed.		
+				Verify the functionality of the "Log In" link on the verification screen.		Click the "Log In" link.	The user is redirected to the login screen. And the OTP process is halted.					Yes	FAIL	The verification screen has no Log In link. Only back, Resend OTP, and Submit.		
+Supplier Login - Mobile	Supplier Home Screen​ - Mobile												PASS	Supplier home smoke PASS on APK		
+			User is logged in with a profile containing a first name or preferred name and a current location.	Verify personalized greeting and location display on the home screen.		Access the home screen. And Observe the greeting message and Displayed location.	The greeting displays as "Hi [First Name]."
+- The current location displays in the format "City, State, Country" (e.g., "North Avenue, Delhi, India").					Yes, location is: Location title, Building No, Street, City	PASS	Supplier home smoke PASS on APK		
+			User is on the home screen.	Verify the location selection dropdown functionality.	Step 1	Click on the location displayed.	The system provides options to change the current location or enter a new location.					Yes	PASS	Location menu lists Andheri, FC Road, and Add/Edit Location.		
+					Step 2	Select "Change Location" or "Enter New Location" from the dropdown.						Yes	PASS	Selected FC Road. Home header changed to 12, FC Road. Switched back to Andheri.		
+	Verify Upcoming Pickup Overview		User has upcoming pickups scheduled.	Verify the display of upcoming pickups on the home screen.		Access the home screen. And Observe the list of upcoming pickups.	Each entry displays oil quantity, grade, date, time, and pickup ID.
+- Status labels (e.g., "Awaiting approval," "Confirmed," "In progress") are correctly displayed for each pickup.					Yes	PASS	Supplier home smoke PASS on APK		
+			User has no upcoming pickups scheduled.	Verify the message displayed when there are no upcoming pickups.	Step 1	Access the home screen.	The system shows the message "No upcoming pickups."					Yes, Display message: "No schedules found"	PASS	Supplier home smoke PASS on APK		
+	Verify the "View all" button or link		User has upcoming pickups scheduled.	Verify the "View all" button or link functionality for upcoming pickups.		Access the home screen. And click the "View all" button or link.	The system displays a tab or page listing all upcoming pickups.					Yes	PASS	Supplier home smoke PASS on APK		
+	Verify the "Sell Oil" button		User is on the home screen.	Verify the "Sell Oil" button visibility and functionality.		Locate the "Sell Oil" button and click on it.	The button is prominently displayed and easily accessible.
+- And clicking the button navigates the user to a dedicated scheduling screen.					Yes	PASS	Supplier home smoke PASS on APK		
+			User is on the home screen.	Verify the display and functionality of the bottom navigation bar.	Step 1	Observe the bottom navigation bar.	The navigation bar displays four icons: Home, Upcoming, History, and Settings.					Home, Upcoming, History, Reports	PASS	Supplier home smoke PASS on APK		
+					Step 2	Check the icons and their labels.	Each icon is clearly labeled.					Yes	PASS	Bottom bar is labeled Home, Upcoming, History, Reports. Top icons are chat, bell, and profile.		
+					Step 3	Navigate to each section (Home, Upcoming, History, Settings).	The currently active section is highlighted.					Yes	PASS	Supplier home smoke PASS on APK		
+				Verify the presence and functionality of notifications and user profile icons.	Step 1	Locate the Chat icon, Notification icon, User Profile Icon	The Chat icon, Notification icon, and user profile icon are present.					Yes	PASS	Supplier home smoke PASS on APK		
+					Step 2	Click on the profile icon.	Clicking the profile icon navigates the user to their profile page.					Yes	PASS	Supplier home smoke PASS on APK		
+	Dashboard Revenue Summary Display		User is logged into the system and has access to the dashboard.	Verify that the dashboard displays the revenue summary for the selected period.	Step 1	Navigate to the dashboard section. Select a specific time period (e.g., last month, last quarter). And observe the revenue summary section.	The dashboard displays the total revenue, total sales, earnings, and any other relevant financial metrics related to oil transactions for the selected period.					not present, the Reports section displays last 6 months of Revenue and Pickups details via a graph showcasing number of pickups and amount earned by selling oil	PASS	Supplier home smoke PASS on APK		
+				Verify if essential financial metrics are displayed in the revenue summary.		Navigate to the dashboard section.
+Select a specific time period. And check for the presence of total sales, total earnings, and other financial metrics.	The revenue summary includes metrics such as total sales, total earnings, and income related to oil transactions, displayed correctly.					not present, the Reports section displays last 6 months of Revenue and Pickups details via a graph showcasing number of pickups and amount earned by selling oil	PASS	Supplier home smoke PASS on APK		
+				Verify that upcoming pickup details are displayed correctly.		Navigate to the dashboard section. And observe the upcoming pickup details section.	Upcoming pickups are clearly listed with relevant information including pickup date, quantity, and current status (e.g., confirmed, awaiting approval).					not present, the Reports section displays last 6 months of Revenue and Pickups details via a graph showcasing number of pickups and amount earned by selling oil	PASS	Supplier home smoke PASS on APK		

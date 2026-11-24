@@ -1,0 +1,621 @@
+{
+  "at": "2026-11-18T13:20:47.397Z",
+  "authNote": "fallback_legacy_jwt (node session 400: Invalid tierId)",
+  "compare": [
+    {
+      "product": "hotel",
+      "canary": {
+        "ok": true,
+        "br": "BR1795007972937588",
+        "finalStatus": "Confirmed",
+        "http": 200,
+        "error": null,
+        "keys": [
+          "status",
+          "statusCode",
+          "bookingRefId",
+          "_meta"
+        ]
+      },
+      "node": {
+        "ok": false,
+        "br": null,
+        "finalStatus": 500,
+        "http": 500,
+        "error": null,
+        "keys": [
+          "status",
+          "info"
+        ]
+      },
+      "responseKeyDiff": {
+        "missingInNode": [
+          "statusCode",
+          "bookingRefId",
+          "_meta"
+        ],
+        "extraInNode": [
+          "info"
+        ]
+      },
+      "verdict": "NODE_FAILED"
+    },
+    {
+      "product": "cab",
+      "canary": {
+        "ok": true,
+        "br": "BR1795007994308980",
+        "finalStatus": "Pending",
+        "http": 200,
+        "error": null,
+        "keys": [
+          "status",
+          "statusCode",
+          "bookingRefId",
+          "_meta"
+        ]
+      },
+      "node": {
+        "ok": true,
+        "br": "BR1795008039742961",
+        "finalStatus": "Failed",
+        "http": 200,
+        "error": null,
+        "keys": [
+          "status",
+          "statusCode",
+          "bookingRefId",
+          "_meta"
+        ]
+      },
+      "responseKeyDiff": {
+        "missingInNode": [],
+        "extraInNode": []
+      },
+      "verdict": "PASS_BOTH_BOOKED"
+    },
+    {
+      "product": "flight",
+      "canary": {
+        "ok": false,
+        "error": "NO_SEARCH"
+      },
+      "node": {
+        "ok": false,
+        "br": null,
+        "finalStatus": null,
+        "http": 502,
+        "error": "TICKET_ISSUANCE_FAILED",
+        "keys": [
+          "error",
+          "_meta"
+        ]
+      },
+      "responseKeyDiff": {
+        "missingInNode": [],
+        "extraInNode": [
+          "error",
+          "_meta"
+        ]
+      },
+      "verdict": "BOTH_FAILED"
+    }
+  ],
+  "hotelLegacy": {
+    "product": "hotel",
+    "label": "CANARY",
+    "base": "https://canary-api.travelvip.ai",
+    "ok": true,
+    "br": "BR1795007972937588",
+    "finalStatus": "Confirmed",
+    "hotelName": "Sofitel Mumbai BKC Hotel",
+    "checkin": "2026-12-13",
+    "finalizeHttp": 200,
+    "finalizeKeys": [
+      "status",
+      "statusCode",
+      "bookingRefId",
+      "_meta"
+    ],
+    "errorCode": null,
+    "requestKeys": [
+      "bookingContext",
+      "bookingCode",
+      "requestId",
+      "checkin",
+      "checkout",
+      "rooms",
+      "contact"
+    ],
+    "steps": [
+      {
+        "step": "search",
+        "entityId": "357389:IN",
+        "checkin": "2026-12-13",
+        "status": 200,
+        "ok": true,
+        "total": 554
+      },
+      {
+        "step": "finalize",
+        "status": 200,
+        "ok": true,
+        "br": "BR1795007972937588",
+        "errorCode": null,
+        "topKeys": [
+          "status",
+          "statusCode",
+          "bookingRefId",
+          "_meta"
+        ],
+        "sample": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795007972937588\",\"_meta\":{\"correlation_id\":\"book-1795007971820-9xkdp\"}}"
+      },
+      {
+        "step": "status",
+        "status": 200,
+        "bookingStatus": "Confirmed",
+        "topKeys": [
+          "bookingReferenceId",
+          "status",
+          "confirmationNumber",
+          "checkin",
+          "checkout",
+          "checkinTime",
+          "checkoutTime",
+          "message",
+          "hotelDetails",
+          "roomDetails",
+          "rooms",
+          "salesSummary",
+          "_meta"
+        ]
+      },
+      {
+        "step": "detail",
+        "status": 200,
+        "topKeys": [
+          "status",
+          "confirmationNumber",
+          "checkIn",
+          "checkInTime",
+          "checkOut",
+          "checkOutTime",
+          "bookingDate",
+          "noOfRooms",
+          "message",
+          "hotelDetails",
+          "roomDetails",
+          "rooms",
+          "salesSummary",
+          "_meta"
+        ],
+        "sample": "{\"status\":\"Confirmed\",\"confirmationNumber\":\"SNHAPI00011823\",\"checkIn\":\"2026-12-13\",\"checkInTime\":\"3:00 PM\",\"checkOut\":\"2026-12-14\",\"checkOutTime\":\"12:00 PM\",\"bookingDate\":\"2026-11-18T13:19:32Z\",\"noOfRooms\":1,\"message\":\"Successful\",\"hotelDetails\":{\"hotelName\":\"Sofitel Mumbai BKC Hotel\",\"city\":\"Mumbai"
+      }
+    ],
+    "finalizeSample": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795007972937588\",\"_meta\":{\"correlation_id\":\"book-1795007971820-9xkdp\"}}"
+  },
+  "hotelNode": {
+    "product": "hotel",
+    "label": "NODE",
+    "base": "https://dev-nova-api.travelvip.ai",
+    "ok": false,
+    "br": null,
+    "finalStatus": 500,
+    "hotelName": "Sofitel Mumbai BKC Hotel",
+    "checkin": "2026-12-13",
+    "finalizeHttp": 500,
+    "finalizeKeys": [
+      "status",
+      "info"
+    ],
+    "errorCode": null,
+    "requestKeys": [
+      "bookingContext",
+      "bookingCode",
+      "requestId",
+      "checkin",
+      "checkout",
+      "rooms",
+      "contact"
+    ],
+    "steps": [
+      {
+        "step": "search",
+        "entityId": "357389:IN",
+        "checkin": "2026-12-13",
+        "status": 200,
+        "ok": true,
+        "total": 554
+      },
+      {
+        "step": "finalize",
+        "status": 500,
+        "ok": false,
+        "br": null,
+        "errorCode": null,
+        "topKeys": [
+          "status",
+          "info"
+        ],
+        "sample": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      }
+    ],
+    "finalizeSample": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+  },
+  "cabLegacy": {
+    "product": "cab",
+    "label": "CANARY",
+    "base": "https://canary-api.travelvip.ai",
+    "ok": true,
+    "br": "BR1795007994308980",
+    "finalStatus": "Pending",
+    "finalizeHttp": 200,
+    "finalizeKeys": [
+      "status",
+      "statusCode",
+      "bookingRefId",
+      "_meta"
+    ],
+    "errorCode": null,
+    "requestKeys": [
+      "bookingReference",
+      "priceId",
+      "passengers",
+      "contact",
+      "otherDetails"
+    ],
+    "steps": [
+      {
+        "step": "search",
+        "status": 200,
+        "cabs": 9,
+        "pickupDatetime": "2026-11-28T18:35:58Z"
+      },
+      {
+        "step": "fare",
+        "status": 200,
+        "hasBookingReference": true,
+        "hasPriceId": true,
+        "topKeys": [
+          "bookingReference",
+          "priceId",
+          "vehicle",
+          "operator",
+          "trip",
+          "inclusions",
+          "exclusions",
+          "priceDetail",
+          "cancellationFee",
+          "cancellationRules",
+          "fareExpiryTime",
+          "tags",
+          "_meta"
+        ],
+        "errorCode": null
+      },
+      {
+        "step": "finalize",
+        "status": 200,
+        "ok": true,
+        "br": "BR1795007994308980",
+        "errorCode": null,
+        "topKeys": [
+          "status",
+          "statusCode",
+          "bookingRefId",
+          "_meta"
+        ],
+        "sample": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795007994308980\",\"_meta\":{\"correlation_id\":\"book-1795007994359-aw5gw\"}}"
+      },
+      {
+        "step": "status",
+        "status": 200,
+        "bookingStatus": "Pending",
+        "topKeys": [
+          "statusCode",
+          "bookingReferenceId",
+          "providerBookingId",
+          "status",
+          "contact",
+          "details",
+          "_meta"
+        ]
+      }
+    ],
+    "finalizeSample": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795007994308980\",\"_meta\":{\"correlation_id\":\"book-1795007994359-aw5gw\"}}"
+  },
+  "cabNode": {
+    "product": "cab",
+    "label": "NODE",
+    "base": "https://dev-nova-api.travelvip.ai",
+    "ok": true,
+    "br": "BR1795008039742961",
+    "finalStatus": "Failed",
+    "finalizeHttp": 200,
+    "finalizeKeys": [
+      "status",
+      "statusCode",
+      "bookingRefId",
+      "_meta"
+    ],
+    "errorCode": null,
+    "requestKeys": [
+      "bookingReference",
+      "priceId",
+      "passengers",
+      "contact",
+      "otherDetails"
+    ],
+    "steps": [
+      {
+        "step": "search",
+        "status": 200,
+        "cabs": 9,
+        "pickupDatetime": "2026-11-28T18:35:58Z"
+      },
+      {
+        "step": "fare",
+        "status": 200,
+        "hasBookingReference": true,
+        "hasPriceId": true,
+        "topKeys": [
+          "bookingReference",
+          "priceId",
+          "vehicle",
+          "operator",
+          "trip",
+          "inclusions",
+          "exclusions",
+          "priceDetail",
+          "cancellationFee",
+          "cancellationRules",
+          "fareExpiryTime",
+          "tags",
+          "_meta"
+        ],
+        "errorCode": null
+      },
+      {
+        "step": "finalize",
+        "status": 200,
+        "ok": true,
+        "br": "BR1795008039742961",
+        "errorCode": null,
+        "topKeys": [
+          "status",
+          "statusCode",
+          "bookingRefId",
+          "_meta"
+        ],
+        "sample": "{\"status\":\"Failed\",\"statusCode\":200,\"bookingRefId\":\"BR1795008039742961\",\"_meta\":{\"correlation_id\":\"book-1795008038972-ced9x\"}}"
+      },
+      {
+        "step": "status",
+        "status": 200,
+        "bookingStatus": "Failed",
+        "topKeys": [
+          "statusCode",
+          "bookingReferenceId",
+          "providerBookingId",
+          "status",
+          "contact",
+          "details",
+          "_meta"
+        ]
+      }
+    ],
+    "finalizeSample": "{\"status\":\"Failed\",\"statusCode\":200,\"bookingRefId\":\"BR1795008039742961\",\"_meta\":{\"correlation_id\":\"book-1795008038972-ced9x\"}}"
+  },
+  "flightLegacy": {
+    "product": "flight",
+    "label": "CANARY",
+    "base": "https://canary-api.travelvip.ai",
+    "ok": false,
+    "error": "NO_SEARCH",
+    "steps": [
+      {
+        "step": "search",
+        "route": "DEL-BOM",
+        "date": "2026-12-08",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "DEL-BOM",
+        "date": "2026-12-13",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "DEL-BOM",
+        "date": "2026-12-18",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "DEL-BOM",
+        "date": "2026-12-03",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "BOM-DEL",
+        "date": "2026-12-08",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "BOM-DEL",
+        "date": "2026-12-13",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "BOM-DEL",
+        "date": "2026-12-18",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "BOM-DEL",
+        "date": "2026-12-03",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "BOM-GOI",
+        "date": "2026-12-08",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "BOM-GOI",
+        "date": "2026-12-13",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "BOM-GOI",
+        "date": "2026-12-18",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      },
+      {
+        "step": "search",
+        "route": "BOM-GOI",
+        "date": "2026-12-03",
+        "status": 400,
+        "code": "VENDOR_ERROR",
+        "progress": null,
+        "searchId": false
+      }
+    ],
+    "searchHttp": 400,
+    "searchCode": "VENDOR_ERROR"
+  },
+  "flightNode": {
+    "product": "flight",
+    "label": "NODE",
+    "base": "https://dev-nova-api.travelvip.ai",
+    "ok": false,
+    "br": null,
+    "finalStatus": null,
+    "searchId": "srch_1edde15a12684fa5809af68f32edf4a8",
+    "finalizeHttp": 502,
+    "finalizeKeys": [
+      "error",
+      "_meta"
+    ],
+    "errorCode": "TICKET_ISSUANCE_FAILED",
+    "requestKeys": [
+      "type",
+      "currency",
+      "language",
+      "bookingReference",
+      "searchIds",
+      "journeyType",
+      "timezone",
+      "data"
+    ],
+    "steps": [
+      {
+        "step": "search",
+        "route": "DEL-BOM",
+        "date": "2026-12-08",
+        "status": 200,
+        "code": null,
+        "progress": "COMPLETE",
+        "searchId": true
+      },
+      {
+        "step": "details",
+        "status": 200,
+        "topKeys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "pricing",
+          "currencyConversion",
+          "passengerOptions",
+          "itinerary",
+          "_meta"
+        ]
+      },
+      {
+        "step": "pricing",
+        "status": 200,
+        "topKeys": [
+          "priceId",
+          "timingReference",
+          "journeyType",
+          "tripType",
+          "fareType",
+          "passportType",
+          "addGstInfo",
+          "selection",
+          "expiresAt",
+          "pricing",
+          "currencyConversion",
+          "gstBreakup",
+          "cancellationFee",
+          "itinerary",
+          "passengerOptions",
+          "descriptions",
+          "notices",
+          "priceChange",
+          "capabilities",
+          "bookingContext",
+          "vpricingReference",
+          "refreshToken",
+          "_meta"
+        ],
+        "sample": "{\"priceId\":\"price_185041f9f73c4e86818e640937ad8122\",\"timingReference\":\"yh66pEyKehktJ+VMvD//GlGNzUkJ26S10FoGzV8ttwAjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgghQfXu7Dig7HNqQiR0UYarjvbMkuzmvYUAD2PsCtVh7y0xZp/afaFFyps95+a63XfZdX4RJvYV5Z6wtZKdMlVAHpNz3OA3qFQwBdxnFceOU=\",\"journeyType\":\"ONE_WAY\",\"tripType\":\"domes"
+      },
+      {
+        "step": "issue-ticket",
+        "status": 502,
+        "br": null,
+        "code": "TICKET_ISSUANCE_FAILED",
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "sample": "{\"error\":{\"code\":\"TICKET_ISSUANCE_FAILED\",\"message\":\"Ticket issuance failed\",\"details\":null,\"timestamp\":\"2026-11-18T13:20:47Z\",\"request_id\":\"book-1795008045890-wlu8h\",\"bookingReference\":\"BR1795008045715639\",\"providerResponse\":null},\"_meta\":{\"correlation_id\":\"book-1795008045890-j6x07\"}}"
+      }
+    ],
+    "finalizeSample": "{\"error\":{\"code\":\"TICKET_ISSUANCE_FAILED\",\"message\":\"Ticket issuance failed\",\"details\":null,\"timestamp\":\"2026-11-18T13:20:47Z\",\"request_id\":\"book-1795008045890-wlu8h\",\"bookingReference\":\"BR1795008045715639\",\"providerResponse\":null},\"_meta\":{\"correlation_id\":\"book-1795008045890-j6x07\"}}"
+  }
+}

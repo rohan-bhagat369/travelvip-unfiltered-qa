@@ -1,0 +1,220 @@
+{
+  "at": "2026-11-23T07:41:30.126Z",
+  "base": "https://canary-api.travelvip.ai",
+  "partner": "vgm",
+  "cases": [
+    {
+      "caseId": "INV",
+      "product": "lounge",
+      "status": "PASS",
+      "note": "ctx=7F4XTkjA51HGofLn6DhTz9qcIKvAzxUf9DVFZZ0g"
+    },
+    {
+      "caseId": "W1_finalize",
+      "product": "lounge",
+      "status": "CHECK",
+      "http": 502,
+      "br": "BR1795419689841072",
+      "code": "PROVIDER_BOOKING_FAILED",
+      "note": "{\"error\":{\"code\":\"PROVIDER_BOOKING_FAILED\",\"message\":\"Lounge booking failed with the provider\",\"details\":null,\"timestamp\":\"2026-11-23T07:41:29Z\",\"request_id\":\"req-1795419691335\",\"bookingReference\":\"BR1795419689841072\"},\""
+    },
+    {
+      "caseId": "R1_status",
+      "product": "lounge",
+      "status": "PASS",
+      "br": "BR1795419689841072",
+      "finalStatus": "Failed"
+    },
+    {
+      "caseId": "R2_details",
+      "product": "lounge",
+      "status": "PASS",
+      "br": "BR1795419689841072",
+      "http": 200
+    },
+    {
+      "caseId": "finalize_ignores_offerId",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 502,
+      "br": "BR1795419690448138",
+      "code": "PROVIDER_BOOKING_FAILED",
+      "note": "Dev: offerId ignored on finalize — expected book from bookingContext"
+    },
+    {
+      "caseId": "finalize_ignores_pid",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 502,
+      "br": "BR1795419691960154",
+      "code": "PROVIDER_BOOKING_FAILED",
+      "note": "Dev: pid on finalize ignored — partner from auth/X-Partner-Key"
+    },
+    {
+      "caseId": "C1_smt_create",
+      "product": "lounge",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795419693753175",
+      "code": null,
+      "hasPay": true,
+      "note": "{\"bookingReference\":\"BR1795419693753175\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VM5zeCwPkBByiv\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLDdTVEpGMEJFaFlWZVUwVzlnaklmUHYwNUE5QnliQUo_00AN2Mut36\",\"pay"
+    },
+    {
+      "caseId": "C1_smt_requires_pid",
+      "product": "lounge",
+      "status": "BUG",
+      "http": 200,
+      "code": null,
+      "note": "{\"bookingReference\":\"BR1795419695934576\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VM5zeCwPkBByiv\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLG4yRFZENko4eXROVWhMbExTT2xYWGMyUG9DdVRKaXo_00N6kWmc6m\",\"pay"
+    },
+    {
+      "caseId": "INV",
+      "product": "fasttrack",
+      "status": "PASS",
+      "note": "ctx=ctvlf4UUJnZIqYRgzX+0j1RCIAPvF+G7TLzPSKyI"
+    },
+    {
+      "caseId": "W1_finalize",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795419696677398",
+      "code": null,
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingReference\":\"BR1795419696677398\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":5250.53,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0},\"chargeablePax\":1,\"baseFare\":525"
+    },
+    {
+      "caseId": "R1_status",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1795419696677398",
+      "finalStatus": "Pending"
+    },
+    {
+      "caseId": "R2_details",
+      "product": "fasttrack",
+      "status": "PASS",
+      "br": "BR1795419696677398",
+      "http": 200
+    },
+    {
+      "caseId": "finalize_ignores_offerId",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795419698334650",
+      "code": null,
+      "note": "Dev: offerId ignored on finalize — expected book from bookingContext"
+    },
+    {
+      "caseId": "finalize_ignores_pid",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795419699142815",
+      "code": null,
+      "note": "Dev: pid on finalize ignored — partner from auth/X-Partner-Key"
+    },
+    {
+      "caseId": "C1_smt_create",
+      "product": "fasttrack",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795419700691827",
+      "code": null,
+      "hasPay": true,
+      "note": "{\"bookingReference\":\"BR1795419700691827\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VM5zeCwPkBByiv\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLHFDems1dEhPTTlrNTg0T2N6R2tYeGRTRjVXTjdKU2I_00YXolYrlQ\",\"pay"
+    },
+    {
+      "caseId": "C1_smt_requires_pid",
+      "product": "fasttrack",
+      "status": "BUG",
+      "http": 200,
+      "code": null,
+      "note": "{\"bookingReference\":\"BR1795419702659734\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VM5zeCwPkBByiv\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLFdlVHFCU0lOS0JOanM3eDgzQUw3dklJSUFDOThENU4_000B6Bm8Fo\",\"pay"
+    },
+    {
+      "caseId": "INV",
+      "product": "esim",
+      "status": "PASS",
+      "note": "ctx=l2AMDDxoYVB3om33g3rnehNyBqZUq8JZtAVQF8KF"
+    },
+    {
+      "caseId": "W1_finalize",
+      "product": "esim",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795419703861551",
+      "code": null,
+      "note": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1795419703861551\",\"bookingReference\":\"BR1795419703861551\",\"priceSummary\":{\"currency\":\"INR\",\"perPax\":{\"baseFare\":47.05,\"taxes\":0},\"paxCounts\":{\"ADT\":1,\"CHD\":0,\"INF\":0"
+    },
+    {
+      "caseId": "R1_status",
+      "product": "esim",
+      "status": "PASS",
+      "br": "BR1795419703861551",
+      "finalStatus": "Pending"
+    },
+    {
+      "caseId": "R2_details",
+      "product": "esim",
+      "status": "PASS",
+      "br": "BR1795419703861551",
+      "http": 200
+    },
+    {
+      "caseId": "finalize_ignores_offerId",
+      "product": "esim",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795419704543553",
+      "code": null,
+      "note": "Dev: offerId ignored on finalize — expected book from bookingContext"
+    },
+    {
+      "caseId": "finalize_ignores_pid",
+      "product": "esim",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795419704359941",
+      "code": null,
+      "note": "Dev: pid on finalize ignored — partner from auth/X-Partner-Key"
+    },
+    {
+      "caseId": "C1_smt_create",
+      "product": "esim",
+      "status": "PASS",
+      "http": 200,
+      "br": "BR1795419705783517",
+      "code": null,
+      "hasPay": true,
+      "note": "{\"bookingReference\":\"BR1795419705783517\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VM5zeCwPkBByiv\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLEhrYnREQldtOGRsajhsTnU1OXQ3d3N0emNhMUJvU1Y_00iYh1sB3p\",\"pay"
+    },
+    {
+      "caseId": "C1_smt_requires_pid",
+      "product": "esim",
+      "status": "BUG",
+      "http": 200,
+      "code": null,
+      "note": "{\"bookingReference\":\"BR1795419706260178\",\"paymentData\":{\"provider\":\"stripe\",\"customer\":\"cus_VM5zeCwPkBByiv\",\"ephemeralKey\":\"ek_test_YWNjdF8xSW5YSVpFV3lHd1ZQdXZrLG5uRzJsejR4TzFYTjBYd0ZtTGR6cnEzQTF3Qk1jRVk_0035YvhJhw\",\"pay"
+    }
+  ],
+  "brs": {
+    "lounge_W1": "BR1795419689841072",
+    "lounge_offerIgnore": "BR1795419690448138",
+    "lounge_pidIgnore": "BR1795419691960154",
+    "lounge_C1": "BR1795419693753175",
+    "fasttrack_W1": "BR1795419696677398",
+    "fasttrack_offerIgnore": "BR1795419698334650",
+    "fasttrack_pidIgnore": "BR1795419699142815",
+    "fasttrack_C1": "BR1795419700691827",
+    "esim_W1": "BR1795419703861551",
+    "esim_offerIgnore": "BR1795419704543553",
+    "esim_pidIgnore": "BR1795419704359941",
+    "esim_C1": "BR1795419705783517"
+  },
+  "notes": [
+    "Dev: finalize-booking is not the SMT flow; offerId and pid on finalize are ignored.",
+    "SMT path = create-booking (+ booking after pay) with pid+key."
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "counts": {
+    "PASS": 2,
+    "BUG": 3
+  },
+  "rows": [
+    {
+      "id": "S0",
+      "rule": "Same search available",
+      "status": "PASS",
+      "actual": "http=200 state=COMPLETE"
+    },
+    {
+      "id": "763-BLOCK-FLEXI",
+      "rule": "Block CORPORATE+FLEXI (Alliance Flexible)",
+      "status": "BUG",
+      "actual": "details=200/ok pricing=200/price_8018c7a642ca488296ab659e30a0c370 note=ACCEPTED as combinable — Flexi may be treated as NORMAL"
+    },
+    {
+      "id": "768-SINGLE-ONWARD",
+      "rule": "RT fareRules with only onward searchId → that leg only",
+      "status": "BUG",
+      "actual": "http=400 entries=0 titles= fareType=undefined"
+    },
+    {
+      "id": "768-SINGLE-RETURN",
+      "rule": "RT fareRules with only return searchId → that leg only",
+      "status": "BUG",
+      "actual": "http=400 entries=0 titles= fareType=undefined"
+    },
+    {
+      "id": "NO-BOOK",
+      "rule": "No issue-ticket",
+      "status": "PASS",
+      "actual": ""
+    }
+  ],
+  "dumps": {
+    "when": "2026-11-09T07:21:50.737Z",
+    "correlationId": "e2c90efa-bc07-47c9-a986-4b422386bdd4",
+    "search": {
+      "http": 200,
+      "progress": {
+        "partial": false,
+        "state": "COMPLETE",
+        "pollAfterMs": 0,
+        "message": null,
+        "lanesTotal": null,
+        "lanesReady": null
+      },
+      "onwardN": 20,
+      "returnN": 20
+    },
+    "picks": {
+      "onwardAllowed": {
+        "searchId": "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+        "fareType": "Corporate",
+        "fareCategory": "CORPORATE",
+        "label": "SG SG 671",
+        "airline": "SG"
+      },
+      "blockedRet": {
+        "searchId": "srch_e569f331b7ad44e5ba0fc90c71b4d9db",
+        "fareType": "Alliance Flexible",
+        "fareCategory": "NORMAL",
+        "label": "9I 9I 842",
+        "airline": "9I",
+        "blockedKind": "FLEXI"
+      },
+      "normalRet": {
+        "searchId": "srch_2cd1eaf3585643bfaf64229bd531c368",
+        "fareType": "Alliance Super Saver",
+        "fareCategory": "NORMAL",
+        "label": "9I 9I 842",
+        "airline": "9I"
+      },
+      "corpOn": {
+        "searchId": "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+        "fareType": "Corporate",
+        "fareCategory": "CORPORATE",
+        "label": "SG SG 671",
+        "airline": "SG"
+      },
+      "smeOn": {
+        "searchId": "srch_f671510e5c57480db759eb2873328ad7",
+        "fareType": "Corporate",
+        "fareCategory": "SME",
+        "label": "6E 6E 449",
+        "airline": "6E"
+      }
+    },
+    "blocked": {
+      "searchIds": [
+        "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+        "srch_e569f331b7ad44e5ba0fc90c71b4d9db"
+      ],
+      "onward": {
+        "searchId": "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+        "fareType": "Corporate",
+        "fareCategory": "CORPORATE",
+        "label": "SG SG 671",
+        "airline": "SG"
+      },
+      "blocked": {
+        "searchId": "srch_e569f331b7ad44e5ba0fc90c71b4d9db",
+        "fareType": "Alliance Flexible",
+        "fareCategory": "NORMAL",
+        "label": "9I 9I 842",
+        "airline": "9I",
+        "blockedKind": "FLEXI"
+      },
+      "details": {
+        "http": 200,
+        "code": null,
+        "error": null
+      },
+      "pricing": {
+        "http": 200,
+        "code": null,
+        "priceId": "price_8018c7a642ca488296ab659e30a0c370",
+        "fareType": "MIXED",
+        "error": null
+      }
+    },
+    "singleOnward": {
+      "searchId": "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+      "pick": {
+        "searchId": "srch_cf7f08e3e22640549fa3ffffa79b48c5",
+        "fareType": "Corporate",
+        "fareCategory": "CORPORATE",
+        "label": "SG SG 671",
+        "airline": "SG"
+      },
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "entryCount": 0,
+      "titles": [],
+      "entryFareTypes": [],
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid request payload for fare rules. Please fix the listed errors and retry.",
+        "details": [
+          "For journeyType ROUND_TRIP, 'selection.selectedSearchIds' must contain exactly 2 search ids (received 1)."
+        ],
+        "timestamp": "2026-11-09T07:21:59Z",
+        "request_id": "req-1794208921830"
+      }
+    },
+    "singleReturn": {
+      "searchId": "srch_2cd1eaf3585643bfaf64229bd531c368",
+      "pick": {
+        "searchId": "srch_2cd1eaf3585643bfaf64229bd531c368",
+        "fareType": "Alliance Super Saver",
+        "fareCategory": "NORMAL",
+        "label": "9I 9I 842",
+        "airline": "9I"
+      },
+      "http": 400,
+      "code": "VALIDATION_ERROR",
+      "entryCount": 0,
+      "titles": [],
+      "entryFareTypes": [],
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "Invalid request payload for fare rules. Please fix the listed errors and retry.",
+        "details": [
+          "For journeyType ROUND_TRIP, 'selection.selectedSearchIds' must contain exactly 2 search ids (received 1)."
+        ],
+        "timestamp": "2026-11-09T07:22:01Z",
+        "request_id": "req-1794208924490"
+      }
+    }
+  }
+}

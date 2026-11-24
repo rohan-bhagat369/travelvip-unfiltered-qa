@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-19T11:39:32.064Z",
+  "base": "https://ak-api.travelvip.ai",
+  "book": {
+    "br": "BR1795088373763911",
+    "status": "Confirmed",
+    "route": "PNQ-DEL"
+  },
+  "cancel": {
+    "pnrs": [
+      "SIM-EM7EFI"
+    ],
+    "penaltyStatus": 200,
+    "cancelStatus": 200,
+    "after": "Cancelled",
+    "penalty": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1795088373763911",
+        "pnr": "SIM-EM7EFI",
+        "cancellationRequest": {
+          "status": "Penalty Fetched",
+          "estimatedCancellationCharge": 933.4,
+          "estimatedRefund": 3900.6
+        }
+      },
+      "_meta": {
+        "correlation_id": "7b0cbdff-2c16-487c-9ea1-ef8be152f5fd"
+      }
+    },
+    "cancel": {
+      "status": 0,
+      "statusMessage": "Success",
+      "data": {
+        "bookingReference": "BR1795088373763911",
+        "pnr": "SIM-EM7EFI",
+        "cancellationRequest": {
+          "status": "Cancelled",
+          "estimatedCancellationCharge": 933.4,
+          "estimatedRefund": 3900.6,
+          "totalAmount": 4834,
+          "totalPenalty": 583.4,
+          "convenienceFee": 350,
+          "totalSsr": 0,
+          "flexiCancelFee": 0,
+          "cancellationFee": 100,
+          "perPax": [
+            {
+              "paxId": "PAX1",
+              "baseAmount": 4484,
+              "ssr": 0,
+              "flexiCancelFee": 0,
+              "penalty": 483.4,
+              "cancellationFee": 100,
+              "totalPenalty": 583.4,
+              "refund": 3900.6
+            }
+          ],
+          "createdAt": "2026-11-19T11:39:35Z"
+        },
+        "refundSummary": {
+          "amount": 3900.6,
+          "cancellationCharge": 933.4,
+          "totalPenalty": 583.4,
+          "cancellationChargeBreakup": {
+            "airlineCancellationFee": 483.4,
+            "convenienceFee": 350,
+            "serviceFee": 100,
+            "flexicancelFee": 0
+          }
+        },
+        "transaction": {
+          "id": "146",
+          "status": "completed",
+          "amount": 3900.6,
+          "currency": "INR",
+          "paymentMethod": "wallet"
+        }
+      },
+      "_meta": {
+        "correlation_id": "7b0cbdff-2c16-487c-9ea1-ef8be152f5fd"
+      }
+    }
+  }
+}

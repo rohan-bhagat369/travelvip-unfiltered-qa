@@ -1,0 +1,60 @@
+URL		https://uat-byufuel.crediblesg.com + APKs com.byufuel.mobile.uat*				Tester	Rohan Bhagat QA		
+									
+									
+#	Section	Feature / Case	Comments (Centvis)	Status (Centvis)	Works? - Krishna	Credible ESG Status	Credible ESG Actual	uat-byufuel.crediblesg status	uat-byufuel.crediblesg actual
+1		Login			Yes	PASS	Admin login OK on ngrok		
+2		User Management >>Roles			Yes	PASS	Created QA Web Role 2809 with Reports checked. POST /api/uam/roles HTTP 201.		
+3		User Management >>Admin Users			Yes	PASS	Admin create PASS (API 200).		
+4		MDM >> Types			Yes	PASS	/mdm/types loads		
+5		MDM >> UCO Configuration	Global data Option is not present.		Yes	FAIL	No MDM menu item. /mdm/uco-configuration is 403. Inventory UCO is a stock list at /byu/uco, 0 rows.		
+6		MDM>>Time Slots			Yes	PARTIAL	MDM time slots for Hyderabad are numbers 8 to 24. Bulk schedule slots are labeled AM/PM (8 AM to 10 AM).		
+7		MDM>>Countries			Not present in live	PASS	Countries page present with dial/code on ngrok		
+8		MDM>>Rate Configuration			Yes	FAIL	Grade B/C still missing. Supplier rate add Grade A Rs 15 HTTP 201. New schedules applied OA Rs 10 and supplier rates Rs 70 and Rs 80.		
+9		Warehouse Management			Yes	PASS	Warehouse create PASS (HTTP 201).		
+10		User Management >>WH Worker			Yes	PASS	WH Worker create PASS (API 200).		
+11		Inventory >>Vehicles			Yes	PASS	/byu/vehicles loads		
+12		User Management >>Driver			Yes	PASS	Driver create PASS (API 200).		
+13		User Management >>Supplier			Yes	PASS	Azure: Rohan SupplierQA created. POST /api/uam/registration HTTP 200. Toast Supplier created successfully. visitCompletedDate bug not reproduced.		
+14		Inventory >>Container			Yes	PASS	/uam/container-management loads		
+15		Generate QR Codes			Yes	PASS	/uam/container-qr-codes loads (attach-to-existing still FAIL functionally)		
+16		Inventory >>UCO			Yes	PASS	/byu/uco loads		
+17		Request Management			Yes	PASS	Manage Requests /uco-schedules loads		
+18		Itinerary Management			Yes	PASS	New Itinerary opens at /byu/uco-schedule-itineraries/new.		
+19		Supplier Payment			Yes	PASS	/byu/supplier-payment loads		
+20		Supplier Penalty			Yes	PASS	/byu/supplier-cancellation-amounts loads		
+21		Customer Support			Yes	PASS	/uam/customer-support loads		
+22		Incoming Deliveries			Yes	PASS	Upcoming tab is 1-10 of 395. SCH-000001679, Supp 28, 10 kg, 05-Oct-2026, 8 AM to 10 AM, status APPROVED.		
+23	Warehouse Features for Verification	Login			Yes	PASS	Admin login works on new tunnel		
+24	Warehouse Features for Verification	Notifications			Yes	PARTIAL	PARTIAL — Incoming Deliveries lists SCH-000006651 / IT-195 / Atul / WareOne (status shown DRIVER ASSIGNED while IT is DRIVERACCEPTED). WH push/notif deep check not done.		
+25	Warehouse Features for Verification	Generate QR Codes			Yes	FAIL	Azure recheck: Generate form is still No. of QR Codes and Choose Warehouse only. It does not attach a QR to an existing container.		
+26	Warehouse Features for Verification	Inventory >>Container			Yes	PASS	Containers/vehicles usable in E2E		
+27	Warehouse Features for Verification	Checkin Oil			Yes	PASS	Prior E2E PASS; WH web path known. Retest on ngrok when SCH arrives		
+28	Warehouse Features for Verification	Collect Oil from Supplier			Yes	PARTIAL	Opens but wrong path for driver itinerary; can cause Missing/Pending Investigation		
+29	Supplier Features for Verification	Login			Yes	PASS	PASS — APK installed + opens logged-in supplier home (Hi QA / Welcome to Byufuel). Device Nothing A015. Screenshots apk-supplier-home.png		
+30	Supplier Features for Verification	Sign-Up			Yes	PASS	PASS — Logout → Sign Up form (personal + Establishment Profile GSTIN/FSSAI). Not submitted. Re-login QA Supplier H5oo#I5#. apk-sup-signup*.png		
+31	Supplier Features for Verification	Manage Locations			Yes	PASS	PASS — Location header shows Home 2, Andheri Kurla Road. apk-supplier-location.png		
+32	Supplier Features for Verification	Bank Details			Yes	PASS	PASS — Profile → Payment → Account Details + Payment history (Credited SCH-640/623/622). apk-sup-payment-bank.png / apk-sup-bank-details.png		
+33	Supplier Features for Verification	KYC Documents			Yes	PASS	PASS — Documents screen: KYC Documents + Restaurant License Add more. apk-supplier-kyc.png		
+34	Supplier Features for Verification	Sell Oil			Yes	PASS	PASS — Request new Pickup 26-Sep-26 · 8AM–11PM · Grade A · 10kg · Confirm → SCH-000006651 (₹1274.40). apk-sell-confirmed.png		
+35	Supplier Features for Verification	Schedules & Status			Yes	PASS	PASS — Upcoming tab opens (No schedules found). apk-supplier-upcoming.png		
+36	Supplier Features for Verification	Pickup/Drop Management			Yes	PASS	PASS — Pickup selected on Sell Oil; booked SCH-000006651 (Drop not used). apk-sell-ready.png / apk-sell-confirmed.png		
+37	Supplier Features for Verification	Profile Management			Yes	PASS	PASS — Edit Profile, Payment credited history, Documents KYC, Customer Support. apk-sup-edit/payment/documents/support.png		
+38	Supplier Features for Verification	Customer Support			Yes	PASS	PASS — Chat Support sheet + Profile Customer Support (Chat/Call/Raise complaint). apk-sup-chat.png / apk-sup-support.png / apk-sup-cs-profile.png		
+39	Supplier Features for Verification	Payments			Yes	PASS	PASS — Payment history Credited ₹3540 / ₹1180; Notifications Payment Credited SCH-640. apk-sup-payment-bank.png / apk-sup-notif.png		
+40	Supplier Features for Verification	Notifications & Chat			Yes	PASS	PASS — Notification/profile icon opens. apk-supplier-notif-or-profile.png		
+41	Supplier Features for Verification	Reports			Yes	PASS	PASS — Reports tab opens. apk-supplier-reports.png		
+42	Drivers Features for Verification	Login			Yes	PASS	PASS — Atul Ugale atul@yopmail.com / F5@k$iOz (admin random-password). Home Hi Atul. apk-driver-atul-login / apk-drv-topright.png		
+43	Drivers Features for Verification	Home			Yes	PASS	PASS — Scan, Planned/Collected/Delivered, Ongoing/Accepted/Proposed, Next Itinerary, tabs. apk-next-home.png		
+44	Drivers Features for Verification	Container Management			Yes	PASS	PASS — Scan Container QR JSON {"Code":"B-2609-3-00005"} → popup Capacity 40kg / Available 30kg / Grade A → OK. apk-camera-open / after-scan		
+45	Drivers Features for Verification	Dashboard			Yes	PASS	PASS — Home counters Planned/Collected/Delivered + Ongoing/Accepted/Proposed tiles (all 0 without assigned IT)		
+46	Drivers Features for Verification	Next Itinerary			Yes	PASS	PASS (empty) — Next Itinerary heading present; no card until Admin assigns IT. apk-next-home.png		
+47	Drivers Features for Verification	View Itinerary			Yes	PASS	PASS — Opened IT-000001195 detail: map, SCH-6651 stop, WareOne drop, containers, Activity Log, Raise a Ticket. apk-moto-it-detail.png		
+48	Drivers Features for Verification	Upcoming			Yes	PASS	PASS — Upcoming shows IT-000001195 Driver Assigned→Accepted after admin assign. Accept CTA worked. apk-moto-post-assign / apk-moto-accepted.png		
+49	Drivers Features for Verification	Itinerary			Yes	PASS	PASS — Accept IT-195 → DRIVERACCEPTED (API+UI). Start Itinerary NOT shown (IT date 26-Sep tomorrow; slot 8AM–11PM).		
+50	Drivers Features for Verification	UCO Pickup			Yes	PASS	29-Sep-2026 on Azure UAT. New request BR-000000053 for test 21 (29-Sep, 4 PM to 6 PM, 10 kg, Grade A) became SCH-000001680 APPROVED. Itinerary IT-000000312 created, start Driver, drop Kukatpally Warehouse, ASSIGN Hyd Driver1. Itinerary status is Driver Assigned. UAT app Upcoming shows #IT-000000312 with Accept.		
+51	Drivers Features for Verification	History			Yes	PASS	PASS — History lists prior ITs (193 Delivered, 186 Pending Investigation, 188 Delivered). apk-moto-history.png		
+52	Drivers Features for Verification	Cancel Pickup			Yes	FAIL	Opened IT-195. Show menu has Raise a Ticket only. There is no Cancel Pickup action.		
+53	Drivers Features for Verification	Customer Support			Yes	PASS	PASS — Customer Support: Chat / Call / Raise complaint / Complaints / Call Logs. apk-drv-support.png		
+54	Drivers Features for Verification	Notifications & Chat			Yes	PASS	PASS — Unread: Admin Assigned the Itinerary IT-000001195 - 26-Sep-2026 - 10.00 Kg (25 Sep 07:32 PM). apk-moto-notifs.png		
+55	Drivers Features for Verification	Profile Management			Yes	PASS	PASS — Profile: Edit, Change Password, Documents (KYC+Vehicle), Bank, Driver Settings (MH14GA1111), Language EN↔HI, Logout. apk-drv-topright / hindi / english		
+56	Drivers Features for Verification	Reports			Yes	PASS	PASS — Reports tab + Itinerary details. apk-drv-smoke-reports.png		

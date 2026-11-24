@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-18T10:52:06.322Z",
+  "authDiscrepancy": "Node POST /v1/auth/session Invalid tierId while GET /v1/tiers returns 10546901; canary session 200",
+  "flightSearch": {
+    "canary": {
+      "status": 400,
+      "code": "VENDOR_ERROR",
+      "message": "Search failed."
+    },
+    "staging": {
+      "status": 401,
+      "topKeys": [
+        "status",
+        "info",
+        "_meta"
+      ]
+    },
+    "node": {
+      "status": 200,
+      "progress": {
+        "partial": false,
+        "state": "COMPLETE",
+        "pollAfterMs": 0,
+        "message": null,
+        "lanesTotal": null,
+        "lanesReady": null
+      },
+      "totalResults": {
+        "ONWARD": 19
+      },
+      "topKeys": [
+        "journeyType",
+        "tripType",
+        "currency",
+        "currencyConversion",
+        "progress",
+        "timingReference",
+        "selection",
+        "results",
+        "totalResults",
+        "filters",
+        "sorts",
+        "cacheTimeStamp",
+        "_meta"
+      ],
+      "result0Keys": [
+        "direction",
+        "options"
+      ]
+    }
+  },
+  "hotel": {
+    "totalLegacy": 527,
+    "matched": true
+  },
+  "cabCountsNote": "see console"
+}

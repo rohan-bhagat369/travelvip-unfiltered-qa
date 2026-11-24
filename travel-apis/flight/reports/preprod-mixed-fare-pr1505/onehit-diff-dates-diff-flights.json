@@ -1,0 +1,89 @@
+{
+  "when": "2026-11-09T06:52:22.420Z",
+  "baseUrl": "https://preprod-api.travelvip.ai",
+  "correlationId": "4ce6327a-dfce-405a-8f04-ebb66e69841c",
+  "dates": {
+    "onward": "2026-12-04",
+    "return": "2026-12-06"
+  },
+  "fareTypeFilter": "Normal, Corporate, SME",
+  "skippedPriorFns": {
+    "onward": "5175",
+    "return": [
+      "7017",
+      "932"
+    ]
+  },
+  "onwardCats": [
+    "NORMAL"
+  ],
+  "returnCats": [
+    "NORMAL"
+  ],
+  "onward": {
+    "searchId": "srch_ad91c668eef743af8bfe892368dcc566",
+    "category": "NORMAL",
+    "fareType": "Normal",
+    "fareCategory": "NORMAL",
+    "airline": "6E",
+    "label": "6E 6E 353",
+    "fns": "6E353",
+    "airports": [
+      {
+        "from": "DEL",
+        "to": "BOM",
+        "fn": "6E 353"
+      }
+    ]
+  },
+  "return": {
+    "searchId": "srch_78c731717675408187f9ac5e48a97803",
+    "category": "NORMAL",
+    "fareType": "Normal",
+    "fareCategory": "NORMAL",
+    "airline": "6E",
+    "label": "6E 6E 241/6E 6E 6492",
+    "fns": "6E241|6E6492",
+    "airports": [
+      {
+        "from": "BOM",
+        "to": "JAI",
+        "fn": "6E 241"
+      },
+      {
+        "from": "JAI",
+        "to": "DEL",
+        "fn": "6E 6492"
+      }
+    ]
+  },
+  "searchIds": [
+    "srch_ad91c668eef743af8bfe892368dcc566",
+    "srch_78c731717675408187f9ac5e48a97803"
+  ],
+  "note": "Different dates + different flight searchIds vs throttled 6E 5175 / 7017+932 vendor hit",
+  "details": {
+    "http": 200,
+    "code": null,
+    "fareType": null,
+    "mixedFareType": false,
+    "error": null
+  },
+  "pricing": {
+    "http": 200,
+    "code": null,
+    "priceId": "price_71d2d258b7184afb8accab2e715dd999",
+    "fareType": "NORMAL",
+    "mixedFareType": false,
+    "error": null
+  },
+  "ssr": {
+    "http": 200,
+    "code": null
+  },
+  "seatmap": {
+    "http": 200,
+    "code": null,
+    "requestStatus": "Completed"
+  }
+}

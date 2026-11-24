@@ -1,0 +1,1606 @@
+{
+  "S-same-od": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "DEL",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-bad-iata": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "INVALID_AIRPORT",
+    "message": "Unknown airport code: XQZ",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "XQZ",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-lowercase-iata": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 200,
+    "code": null,
+    "message": null,
+    "state": "INPROGRESS",
+    "options": 50,
+    "codes": [
+      "402T",
+      "422R"
+    ],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "del",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-past-date": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-11-01"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-date-bad-format": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "15-12-2026"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-date-400d": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2027-12-31"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-adults-0": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 0,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-adults-10": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 10,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-adults-string": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": "1",
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-infants-gt-adults": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 2
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-children-neg": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": -1,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-cabin-bad": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "INVALID_REQUEST",
+    "message": "Unsupported cabinClass: CABIN_X",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "CABIN_X",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-fareType-bad": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "INVALID_FARE_TYPE",
+    "message": "Unsupported fareType: GARBAGE. Supported: SME, senior_citizen, NORMAL, defence, flexi_cancel, student, corporate",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "GARBAGE"
+    }
+  },
+  "S-journeyType-bad": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONEWAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-multicity": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        },
+        {
+          "origin": "BOM",
+          "destination": "DXB",
+          "date": "2026-12-22"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "MULTI_CITY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-rt-one-leg": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ROUND_TRIP",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-rt-return-before": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        },
+        {
+          "origin": "BOM",
+          "destination": "DEL",
+          "date": "2026-12-10"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ROUND_TRIP",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-html-dest": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "INVALID_AIRPORT",
+    "message": "Invalid airport code: <B>BOM</B>",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "<b>BOM</b>",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-empty-body": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {}
+  },
+  "S-omit-itinerary": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight search. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "S-selection-unknown-id": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "INVALID_SELECTION",
+    "message": "selection is supported only for ROUND_TRIP journeyType.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": [
+          "srch_00000000000000000000000000000000"
+        ]
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "AUTH-no-bearer": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 403,
+    "code": "INVALID_PARTNER_KEY",
+    "message": "Invalid or missing partner key",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "AUTH-garbage-bearer": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 403,
+    "code": "INVALID_PARTNER_KEY",
+    "message": "Invalid or missing partner key",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "BOM",
+          "date": "2026-12-15"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ONE_WAY",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": []
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "details-empty-ids": {
+    "path": "/v1/flights/details",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "INVALID_SELECTION",
+    "message": "ONE_WAY requires exactly 1 selectedSearchId.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": []
+      }
+    }
+  },
+  "details-unknown-id": {
+    "path": "/v1/flights/details",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_00000000000000000000000000000000",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_00000000000000000000000000000000"
+        ]
+      }
+    }
+  },
+  "details-html-id": {
+    "path": "/v1/flights/details",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: <script>alert(1)</script>",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "<script>alert(1)</script>"
+        ]
+      }
+    }
+  },
+  "details-comma-id": {
+    "path": "/v1/flights/details",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_0b015f3035884b3098d233a3a617c07b,",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_0b015f3035884b3098d233a3a617c07b,"
+        ]
+      }
+    }
+  },
+  "fareRules-empty-ids": {
+    "path": "/v1/flights/fareRules",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for fare rules. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": []
+      }
+    }
+  },
+  "fareRules-unknown-id": {
+    "path": "/v1/flights/fareRules",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_00000000000000000000000000000000",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_00000000000000000000000000000000"
+        ]
+      }
+    }
+  },
+  "fareRules-html-id": {
+    "path": "/v1/flights/fareRules",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: <script>alert(1)</script>",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "<script>alert(1)</script>"
+        ]
+      }
+    }
+  },
+  "fareRules-comma-id": {
+    "path": "/v1/flights/fareRules",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_0b015f3035884b3098d233a3a617c07b,",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_0b015f3035884b3098d233a3a617c07b,"
+        ]
+      }
+    }
+  },
+  "pricing-empty-ids": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": []
+      }
+    }
+  },
+  "pricing-unknown-id": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_00000000000000000000000000000000",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_00000000000000000000000000000000"
+        ]
+      }
+    }
+  },
+  "pricing-html-id": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: <script>alert(1)</script>",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "<script>alert(1)</script>"
+        ]
+      }
+    }
+  },
+  "pricing-comma-id": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_0b015f3035884b3098d233a3a617c07b,",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_0b015f3035884b3098d233a3a617c07b,"
+        ]
+      }
+    }
+  },
+  "pricing-ow-id-as-RT": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_0b015f3035884b3098d233a3a617c07b"
+        ]
+      }
+    }
+  },
+  "pricing-dup-id": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_0b015f3035884b3098d233a3a617c07b",
+          "srch_0b015f3035884b3098d233a3a617c07b"
+        ]
+      }
+    }
+  },
+  "pricing-bad-journeyType": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONEWAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_0b015f3035884b3098d233a3a617c07b"
+        ]
+      }
+    }
+  },
+  "details-omit-journeyType": {
+    "path": "/v1/flights/details",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "INVALID_REQUEST",
+    "message": "Request validation failed.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "selection": {
+        "selectedSearchIds": [
+          "srch_0b015f3035884b3098d233a3a617c07b"
+        ]
+      }
+    }
+  },
+  "XTIER-details-merged-id-in-TBO-session": {
+    "path": "/v1/flights/details",
+    "query": "lang=en&currency=INR",
+    "http": 200,
+    "code": null,
+    "message": null,
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_0b015f3035884b3098d233a3a617c07b"
+        ]
+      }
+    }
+  },
+  "XTIER-pricing-merged-id-in-Riya8-session": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 200,
+    "code": null,
+    "message": null,
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_0b015f3035884b3098d233a3a617c07b"
+        ]
+      }
+    }
+  },
+  "pricing-RT-onward-only": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_64f1601dc7c843b1af61dd4580901be7"
+        ]
+      }
+    }
+  },
+  "pricing-RT-swapped-order": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_b244beaf7e8d43e3b407578b1a6a39af",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_b244beaf7e8d43e3b407578b1a6a39af",
+          "srch_64f1601dc7c843b1af61dd4580901be7"
+        ]
+      }
+    }
+  },
+  "pricing-OW-with-return-id": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_b244beaf7e8d43e3b407578b1a6a39af",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_b244beaf7e8d43e3b407578b1a6a39af"
+        ]
+      }
+    }
+  },
+  "pricing-RT-two-onward-ids": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_64f1601dc7c843b1af61dd4580901be7",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_64f1601dc7c843b1af61dd4580901be7",
+          "srch_94910b0f6bd24d84a55ebfd9deb3c008"
+        ]
+      }
+    }
+  },
+  "SEL-search-two-onward-ids": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 400,
+    "code": "INVALID_SELECTION",
+    "message": "search supports only a single selected searchId.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "DXB",
+          "date": "2026-12-15"
+        },
+        {
+          "origin": "DXB",
+          "destination": "DEL",
+          "date": "2026-12-22"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ROUND_TRIP",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": [
+          "srch_64f1601dc7c843b1af61dd4580901be7",
+          "srch_94910b0f6bd24d84a55ebfd9deb3c008"
+        ]
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "SEL-search-return-id-as-onward": {
+    "path": "/v1/flights/search",
+    "query": "lang=en&currency=INR&page=0&perpage=50&sortby=fare,asc",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "Selected searchId not found in cache: srch_b244beaf7e8d43e3b407578b1a6a39af",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "itinerary": [
+        {
+          "origin": "DEL",
+          "destination": "DXB",
+          "date": "2026-12-15"
+        },
+        {
+          "origin": "DXB",
+          "destination": "DEL",
+          "date": "2026-12-22"
+        }
+      ],
+      "travellers": {
+        "adults": 1,
+        "children": 0,
+        "infants": 0
+      },
+      "cabinClass": "ECONOMY",
+      "journeyType": "ROUND_TRIP",
+      "currency": "INR",
+      "language": "en",
+      "preferences": {
+        "airlines": [],
+        "maxStops": null,
+        "refundableOnly": false
+      },
+      "appliedFilters": {},
+      "selection": {
+        "selectedSearchIds": [
+          "srch_b244beaf7e8d43e3b407578b1a6a39af"
+        ]
+      },
+      "fareType": "NORMAL"
+    }
+  },
+  "pricing-RT-mixed-TBO-onward-Riya-return": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_64f1601dc7c843b1af61dd4580901be7",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_64f1601dc7c843b1af61dd4580901be7",
+          "srch_179059ecf73144fea1a1671d64f26c74"
+        ]
+      }
+    }
+  },
+  "fareRules-RT-mixed-vendors": {
+    "path": "/v1/flights/fareRules",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_64f1601dc7c843b1af61dd4580901be7",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_64f1601dc7c843b1af61dd4580901be7",
+          "srch_179059ecf73144fea1a1671d64f26c74"
+        ]
+      }
+    }
+  },
+  "details-RT-mixed-vendors": {
+    "path": "/v1/flights/details",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_64f1601dc7c843b1af61dd4580901be7",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_64f1601dc7c843b1af61dd4580901be7",
+          "srch_179059ecf73144fea1a1671d64f26c74"
+        ]
+      }
+    }
+  },
+  "EXP-details-expired-id": {
+    "path": "/v1/flights/details",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_627d7ab39fa34733b2bdd901d93b5268",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_627d7ab39fa34733b2bdd901d93b5268"
+        ]
+      }
+    }
+  },
+  "EXP-pricing-expired-id": {
+    "path": "/v1/flights/pricing",
+    "query": "lang=en&currency=INR",
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_627d7ab39fa34733b2bdd901d93b5268",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_627d7ab39fa34733b2bdd901d93b5268"
+        ]
+      }
+    }
+  },
+  "EXP-ssr-expired-priceId": {
+    "path": "/v1/flights/ssr",
+    "query": "currency=INR&lang=en",
+    "http": 400,
+    "code": "PRICE_ID_NOT_FOUND",
+    "message": "No cached pricing context found for priceId: price_dc01ae311c164259a0d212b06d1253e2",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "priceId": "price_dc01ae311c164259a0d212b06d1253e2"
+    }
+  },
+  "EXP-seatmap-expired-context": {
+    "path": "/v1/flights/seatmap",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "VENDOR_UNAVAILABLE",
+    "message": "Flight provider is temporarily unavailable.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "currency": "INR",
+      "requestReference": "6ZRw60l04RNqT91A495M+m8lLORq7QgMGTZah/LK020iShYVruWGsFLZOHgIFJEHfEmSKpGfp/8YakxGrJdVYEZ7zXpFEiKMSBVQtxuaMEZW5bPaA2TJ7XIln4xxR03SK2t6zQGVQsJhuPVTcexGWnJK+qQJR4ESWCWCMYy2wrWqNJdz5fQcnR6bCblEMSO0m6v58m+w5th7P+yS124oN6D9AN3J2ppobmCyNt62upiV1+SUsuJB0UuzY1yF/zr9oxnA+mIe1frDphPvFN2RgNAFP+68B12a/v+riRc/jGZwM55i7LAw4FIxttM3g1C6ePAc0TrVikM5Fpa9SmQls5m7THPZF7kHKQ4Bad/2UcJqbfWMnv4Q5dZrSaM0h6Z7nrALCdHeL2k7kpIykaysikeC2NjVp14aJTdPXvKCxL2AkIUE3YfEMp93L+ah3aN1fkXbqmCDxd0PZHZ41ApB5SrpfvrLQH26+8CULf0YKcrnGWIAZ0redNQxNvP3WQa4fVb4RUtXLkCmWNRWwI6inw/Wbrx3WQwA9im6r1Rywskz0SORAui6pAH4Cun/cWItAJPBNot4lgXhLvxZ5yiWZg1MP+KNkwEK/8QdrUKgvgF57OzoZ5To/QK46h+hrbS/A9gOpB7Whw0YOXiSiJ5eB599Nl/FJaCAKRScCQo/x/uT3hroNQRi/KqqFN7Rl+fHOKu8cu9MU/dRjRnqJXAnv/DkIRAOlq7yjlW+trx07xH2SSaVLVUPCWn4JMf0xbaQwCpsy/huqlub2AlR9hEmzk5gdY2kDyB0lx8KFlc78snhwu4QfZ6+e01qFabCEpMRrqLW+o8o6xnRxr8QwO4hNoiOFmprxEmQIxVF/IdT4SJwHl4HJL28qnW/JYCNmdvEfAO6Vs3e8uj9WxAy6SGwNYqdqJQYRSlHP1yIuses7tWYzMmU2djAldo1+sk3CMYm0iLR1Dn6Y6ZmzTozLsovW6DcFuRAPqPAIfYFrEUHJ5grU5KU0oysesN7nfb7+Wr2dOy1HvpFAin5J6JrsPXERy/hcqPK48nEuBdlEa116hzvoAK101cXDOZCbR84UXgOe1dWwiKk8rJa/eC5k5EcHzq8CW74juwFKqYKNWCWv8I000b7aB5h4ca9G5AYzt6whsmga0HCA2qTcJBBCSVhzOStBg/RzUxHGmiGMiE0/MCiSuIJV/V0vS4qeHBZM3x/doXZkNKu2t03pXqHCDpky1EipDebEtdwupMce9e3xkQxLOBJBtu63KWRK2eOakPWOQO9MJ3I2KMlgvXqS1ZpSVJpVXn/wHiYHTwpx1Va+XArLHYWzCE8hk2H6mgVKjHvKWcwoy8xiSonOp1PYkJq+wYVFfScsh8Bsw09FCxRcOc=",
+      "passengers": [
+        {
+          "paxRefNumber": "1",
+          "passengerType": 1,
+          "gender": "Male",
+          "title": "Mr",
+          "firstName": "Aggqa",
+          "lastName": "Nobook"
+        }
+      ]
+    }
+  },
+  "ssr-empty-priceId": {
+    "path": "/v1/flights/ssr",
+    "query": "currency=INR&lang=en",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight SSR. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "priceId": ""
+    }
+  },
+  "ssr-unknown-priceId": {
+    "path": "/v1/flights/ssr",
+    "query": "currency=INR&lang=en",
+    "http": 400,
+    "code": "PRICE_ID_NOT_FOUND",
+    "message": "No cached pricing context found for priceId: prc_does_not_exist_000",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "priceId": "prc_does_not_exist_000"
+    }
+  },
+  "ssr-html-priceId": {
+    "path": "/v1/flights/ssr",
+    "query": "currency=INR&lang=en",
+    "http": 400,
+    "code": "PRICE_ID_NOT_FOUND",
+    "message": "No cached pricing context found for priceId: <b>x</b>",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "priceId": "<b>x</b>"
+    }
+  },
+  "ssr-omit-priceId": {
+    "path": "/v1/flights/ssr",
+    "query": "currency=INR&lang=en",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight SSR. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {}
+  },
+  "seatmap-omit-requestReference": {
+    "path": "/v1/flights/seatmap",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight seat map. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "currency": "INR",
+      "passengers": [
+        {
+          "paxRefNumber": "1",
+          "passengerType": 1,
+          "gender": "Male",
+          "title": "Mr",
+          "firstName": "Aggqa",
+          "lastName": "Nobook"
+        }
+      ]
+    }
+  },
+  "seatmap-garbage-requestReference": {
+    "path": "/v1/flights/seatmap",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "INVALID_BOOKING_CONTEXT",
+    "message": "Invalid bookingContext provided.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "currency": "INR",
+      "requestReference": "not-a-context,",
+      "passengers": [
+        {
+          "paxRefNumber": "1",
+          "passengerType": 1,
+          "gender": "Male",
+          "title": "Mr",
+          "firstName": "Aggqa",
+          "lastName": "Nobook"
+        }
+      ]
+    }
+  },
+  "seatmap-empty-passengers": {
+    "path": "/v1/flights/seatmap",
+    "query": "lang=en&currency=INR",
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight seat map. Please fix the listed errors and retry.",
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "currency": "INR",
+      "requestReference": "6ZRw60l04RNqT91A495M+m8lLORq7QgMGTZah/LK020iShYVruWGsFLZOHgIFJEHfEmSKpGfp/8YakxGrJdVYEZ7zXpFEiKMSBVQtxuaMEZW5bPaA2TJ7XIln4xxR03SK2t6zQGVQsJhuPVTcexGWnJK+qQJR4ESWCWCMYy2wrWqNJdz5fQcnR6bCblEMSO0m6v58m+w5th7P+yS124oN0+69iDHbVD1Xh3FFyPUaswyJou5hLQ7cf7SKLxywILCoxnA+mIe1frDphPvFN2RgNAFP+68B12a/v+riRc/jGbu7AoQ3vmkIMZz2xRW41tVVyGi8d8ZPUsH+bpbsZr2gkdj180+cBRkhexEGbh7j4eQO1iaD7MTi6LDa6u7YlhAvijkL446thH/72sasnTnjEeC2NjVp14aJTdPXvKCxL0o45pmci5eo3PfvqyQ1jMOMsanL0FoJx3GQwABCN/CNQC6VGDGiBWaZd5t2pnHRDqB1YN/uEiNId40TU2Z8WCveOsLc6T/NBwXwtue4bvww5xJoTR4Tf93mEupnf3PrVPC3mt4OHSWLmaAqUaIyqEksnO1I+K7vM33fVAStVp3QnSl3X7tVXkz6SkG4listhw1aIZzwDAQY6PUDfUBlljDq4YbPcUVCn6ytcRJLPr/erO5z9jg5Uv+gAQG3dkj1zcTrZ85AdM46W3mO+PAfytFGTouMfC4C54BcVbs87xk5bKLYsUn7DRR/WjYESXoRDfI8tTsnXCxuFfyCCU0kftW5eeOzB5mU6EBeBlLboRdNBoNpdCU1yVTSM2eHuf7DfSyX18J7gVL3U6cGp2Ic6Oxdi6Ectd/xPGjPWic1tUJ0k5mBNI0p+byr2mQfYO7Lk1saqKSsccYWTwVH39GWCCAGBF2nOv8dlQ6KeBN6aYmM8XRk58ISWU4kw1uoThZEMrZ4NjQoGKSvwO3YdzMjFpTVTlcxjh050btnJMui9GyPxYnHWfTYoLuzmsaecuVSQO1w4a6fxHq6CPZlglOflszvo7LIPLPU+zl7ixmPDksl1W0+E5dUGvl6a/AUgKk9jE=",
+      "passengers": []
+    }
+  },
+  "seatmap-html-name": {
+    "path": "/v1/flights/seatmap",
+    "query": "lang=en&currency=INR",
+    "http": 200,
+    "code": null,
+    "message": null,
+    "state": null,
+    "options": 0,
+    "codes": [],
+    "request": {
+      "currency": "INR",
+      "requestReference": "6ZRw60l04RNqT91A495M+m8lLORq7QgMGTZah/LK020iShYVruWGsFLZOHgIFJEHfEmSKpGfp/8YakxGrJdVYEZ7zXpFEiKMSBVQtxuaMEZW5bPaA2TJ7XIln4xxR03SK2t6zQGVQsJhuPVTcexGWnJK+qQJR4ESWCWCMYy2wrWqNJdz5fQcnR6bCblEMSO0m6v58m+w5th7P+yS124oN0+69iDHbVD1Xh3FFyPUaswyJou5hLQ7cf7SKLxywILCoxnA+mIe1frDphPvFN2RgNAFP+68B12a/v+riRc/jGbu7AoQ3vmkIMZz2xRW41tVVyGi8d8ZPUsH+bpbsZr2gkdj180+cBRkhexEGbh7j4eQO1iaD7MTi6LDa6u7YlhAvijkL446thH/72sasnTnjEeC2NjVp14aJTdPXvKCxL0o45pmci5eo3PfvqyQ1jMOMsanL0FoJx3GQwABCN/CNQC6VGDGiBWaZd5t2pnHRDqB1YN/uEiNId40TU2Z8WCveOsLc6T/NBwXwtue4bvww5xJoTR4Tf93mEupnf3PrVPC3mt4OHSWLmaAqUaIyqEksnO1I+K7vM33fVAStVp3QnSl3X7tVXkz6SkG4listhw1aIZzwDAQY6PUDfUBlljDq4YbPcUVCn6ytcRJLPr/erO5z9jg5Uv+gAQG3dkj1zcTrZ85AdM46W3mO+PAfytFGTouMfC4C54BcVbs87xk5bKLYsUn7DRR/WjYESXoRDfI8tTsnXCxuFfyCCU0kftW5eeOzB5mU6EBeBlLboRdNBoNpdCU1yVTSM2eHuf7DfSyX18J7gVL3U6cGp2Ic6Oxdi6Ectd/xPGjPWic1tUJ0k5mBNI0p+byr2mQfYO7Lk1saqKSsccYWTwVH39GWCCAGBF2nOv8dlQ6KeBN6aYmM8XRk58ISWU4kw1uoThZEMrZ4NjQoGKSvwO3YdzMjFpTVTlcxjh050btnJMui9GyPxYnHWfTYoLuzmsaecuVSQO1w4a6fxHq6CPZlglOflszvo7LIPLPU+zl7ixmPDksl1W0+E5dUGvl6a/AUgKk9jE=",
+      "passengers": [
+        {
+          "paxRefNumber": "1",
+          "passengerType": 1,
+          "gender": "Male",
+          "title": "Mr",
+          "firstName": "<script>x</script>",
+          "lastName": "Nobook"
+        }
+      ]
+    }
+  }
+}

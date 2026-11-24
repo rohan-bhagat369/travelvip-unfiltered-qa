@@ -1,0 +1,136 @@
+{
+  "at": "2026-11-18T09:12:26.262Z",
+  "base": "https://theta-api.travelvip.ai",
+  "product": "hotel",
+  "cases": {
+    "A": {
+      "status": "PASS",
+      "simulate": null,
+      "http": 200,
+      "br": "BR1794993146220335",
+      "apiStatus": "Pending",
+      "refund": null,
+      "errorCode": null,
+      "message": null,
+      "finalStatus": "Confirmed",
+      "checkin": "2026-12-09",
+      "responseBrief": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1794993146220335\",\"_meta\":{\"correlation_id\":\"b31f4c75-9ca0-457e-9384-a3c7f1c82383\"}}"
+    },
+    "C": {
+      "status": "PASS",
+      "simulate": "provider_reject",
+      "http": 200,
+      "br": "BR1794993156401391",
+      "apiStatus": "FAILED",
+      "refund": {
+        "status": "SUCCESS",
+        "amount": 11153.32,
+        "currency": "INR",
+        "referenceId": "BR1794993156401391",
+        "walletTransactionId": "e371af0d-cbc2-4dd5-a214-1a939422d057"
+      },
+      "errorCode": null,
+      "message": "Hotel booking failed",
+      "finalStatus": "Failed",
+      "checkin": "2026-12-11",
+      "responseBrief": "{\"status\":\"FAILED\",\"statusCode\":400,\"message\":\"Hotel booking failed\",\"bookingReference\":\"BR1794993156401391\",\"refund\":{\"status\":\"SUCCESS\",\"amount\":11153.32,\"currency\":\"INR\",\"referenceId\":\"BR1794993156401391\",\"walletTransactionId\":\"e371af0d-cbc2-4dd5-a214-1a939422d057\"},\"_meta\":{\"correlation_id\":\"b31f4c75-9ca0-457e-9384-a3c7f1c82383\"}}"
+    },
+    "D": {
+      "status": "CHECK",
+      "simulate": "provider_no_response",
+      "http": 200,
+      "br": null,
+      "apiStatus": "Pending",
+      "refund": null,
+      "errorCode": null,
+      "message": null,
+      "finalStatus": null,
+      "checkin": "2026-12-13",
+      "responseBrief": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":null,\"_meta\":{\"correlation_id\":\"b31f4c75-9ca0-457e-9384-a3c7f1c82383\"}}"
+    },
+    "E": {
+      "status": "PASS",
+      "simulate": "wallet_commit_fail",
+      "http": 502,
+      "br": null,
+      "refund": null,
+      "errorCode": "WALLET_COMMIT_FAILED",
+      "message": "Failed to charge the wallet. Please try again.",
+      "finalStatus": null,
+      "checkin": "2026-12-15",
+      "responseBrief": "{\"error\":{\"code\":\"WALLET_COMMIT_FAILED\",\"message\":\"Failed to charge the wallet. Please try again.\",\"details\":\"The wallet commit failed; nothing was sent to the provider\",\"timestamp\":\"2026-11-18T09:12:53Z\",\"request_id\":\"req-1794993173420\",\"bookingReference\":\"BR1794993173799348\"},\"_meta\":{\"correlation_id\":\"b31f4c75-9ca0-457e-9384-a3c7f1c82383\"}}"
+    },
+    "F": {
+      "status": "PASS",
+      "simulate": "wallet_commit_fail,wallet_release_fail",
+      "http": 502,
+      "br": null,
+      "refund": null,
+      "errorCode": "WALLET_COMMIT_FAILED",
+      "message": "Failed to charge the wallet. Please try again.",
+      "finalStatus": null,
+      "checkin": "2026-12-17",
+      "responseBrief": "{\"error\":{\"code\":\"WALLET_COMMIT_FAILED\",\"message\":\"Failed to charge the wallet. Please try again.\",\"details\":\"The wallet commit failed; nothing was sent to the provider\",\"timestamp\":\"2026-11-18T09:12:59Z\",\"request_id\":\"req-1794993179459\",\"bookingReference\":\"BR1794993179939200\"},\"_meta\":{\"correlation_id\":\"b31f4c75-9ca0-457e-9384-a3c7f1c82383\"}}"
+    },
+    "G": {
+      "status": "PASS",
+      "note": "top-up wallet after",
+      "simulate": "provider_reject,wallet_refund_fail",
+      "http": 200,
+      "br": "BR1794993186692670",
+      "apiStatus": "FAILED",
+      "refund": {
+        "status": "FAILED",
+        "amount": 11153.32,
+        "currency": "INR",
+        "referenceId": "BR1794993186692670",
+        "walletTransactionId": null
+      },
+      "errorCode": null,
+      "message": "Hotel booking failed",
+      "finalStatus": "Failed",
+      "checkin": "2026-12-19",
+      "responseBrief": "{\"status\":\"FAILED\",\"statusCode\":400,\"message\":\"Hotel booking failed\",\"bookingReference\":\"BR1794993186692670\",\"refund\":{\"status\":\"FAILED\",\"amount\":11153.32,\"currency\":\"INR\",\"referenceId\":\"BR1794993186692670\",\"walletTransactionId\":null},\"_meta\":{\"correlation_id\":\"b31f4c75-9ca0-457e-9384-a3c7f1c82383\"}}"
+    },
+    "H": {
+      "status": "PASS",
+      "simulate": "wallet_debit_record_fail",
+      "http": 200,
+      "br": "BR1794993195967360",
+      "apiStatus": "Pending",
+      "refund": null,
+      "errorCode": null,
+      "message": null,
+      "finalStatus": "Confirmed",
+      "checkin": "2026-12-21",
+      "responseBrief": "{\"status\":\"Pending\",\"statusCode\":200,\"bookingRefId\":\"BR1794993195967360\",\"_meta\":{\"correlation_id\":\"b31f4c75-9ca0-457e-9384-a3c7f1c82383\"}}"
+    },
+    "I": {
+      "status": "PASS",
+      "note": "top-up wallet after",
+      "simulate": "provider_reject,wallet_debit_record_fail",
+      "http": 200,
+      "br": "BR1794993207938679",
+      "apiStatus": "FAILED",
+      "refund": {
+        "status": "FAILED",
+        "amount": 11153.32,
+        "currency": "INR",
+        "referenceId": "BR1794993207938679",
+        "walletTransactionId": null
+      },
+      "errorCode": null,
+      "message": "Hotel booking failed",
+      "finalStatus": "Failed",
+      "checkin": "2026-12-23",
+      "responseBrief": "{\"status\":\"FAILED\",\"statusCode\":400,\"message\":\"Hotel booking failed\",\"bookingReference\":\"BR1794993207938679\",\"refund\":{\"status\":\"FAILED\",\"amount\":11153.32,\"currency\":\"INR\",\"referenceId\":\"BR1794993207938679\",\"walletTransactionId\":null},\"_meta\":{\"correlation_id\":\"b31f4c75-9ca0-457e-9384-a3c7f1c82383\"}}"
+    },
+    "J": {
+      "status": "PASS",
+      "br": "BR1794993146220335",
+      "penalty": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1794993146220335\",\"confirmationNumber\":\"SNHAPI00011807\",\"currency\":\"INR\",\"cancellationRequest\":{\"status\":\"Penalty Fetched\",\"estimate",
+      "cancel": "{\"status\":0,\"statusMessage\":\"Success\",\"data\":{\"bookingReference\":\"BR1794993146220335\",\"cancellationRequest\":{\"status\":\"Cancelled\",\"cancellationCharge\":0,\"refund\":11153.32,\"createdAt\":\"2026-11-18T09:13",
+      "finalStatus": "Cancelled"
+    }
+  }
+}

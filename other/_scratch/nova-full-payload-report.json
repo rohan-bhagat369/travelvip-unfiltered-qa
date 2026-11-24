@@ -1,0 +1,1782 @@
+{
+  "at": "2026-11-18T12:07:51.706Z",
+  "nodeBase": "https://dev-nova-api.travelvip.ai",
+  "legacyBase": "https://canary-api.travelvip.ai",
+  "partner": "vgm",
+  "auth": {
+    "node": {
+      "token": 200,
+      "session": 400,
+      "msg": "Invalid tierId",
+      "productAuth": "fallback_legacy_jwt (node session 400: Invalid tierId)"
+    },
+    "legacy": {
+      "token": 200,
+      "session": 200,
+      "ok": true
+    }
+  },
+  "counts": {
+    "total": 43,
+    "pass": 34,
+    "warn": 1,
+    "diff": 1,
+    "skipped": 7
+  },
+  "results": [
+    {
+      "id": "Flight > Airport Search",
+      "folder": "Flight",
+      "method": "GET",
+      "path": "/v1/flights/airports",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 300,
+        "topKeys": [
+          "status",
+          "result",
+          "totalResults",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 107,
+        "topKeys": [
+          "status",
+          "result",
+          "totalResults",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":0,\"result\":[{\"airportCode\":\"BOM\",\"airportName\":\"Chhatrapati Shivaji Maharaj International Airport\",\"city\":\"Mumbai\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"19.0886993408\",\"long",
+        "node": "{\"status\":0,\"result\":[{\"airportCode\":\"BOM\",\"airportName\":\"Chhatrapati Shivaji Maharaj International Airport\",\"city\":\"Mumbai\",\"country\":\"India\",\"aiportCodeCity\":null,\"preOrderEnabled\":null,\"latitude\":\"19.0886993408\",\"long"
+      }
+    },
+    {
+      "id": "Flight > Airline Search",
+      "folder": "Flight",
+      "method": "GET",
+      "path": "/v1/flights/airlines",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 155,
+        "topKeys": [
+          "status",
+          "results",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 107,
+        "topKeys": [
+          "status",
+          "results",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":0,\"results\":[{\"airlineCode\":\"AI\",\"airlineName\":\"Air India\"},{\"airlineCode\":\"KJ\",\"airlineName\":\"Air Incheon\"},{\"airlineCode\":\"3H\",\"airlineName\":\"Air Inuit\"},{\"airlineCode\":\"VD\",\"airlineName\":\"Air Libert\"},{\"airl",
+        "node": "{\"status\":0,\"results\":[{\"airlineCode\":\"AI\",\"airlineName\":\"Air India\"},{\"airlineCode\":\"KJ\",\"airlineName\":\"Air Incheon\"},{\"airlineCode\":\"3H\",\"airlineName\":\"Air Inuit\"},{\"airlineCode\":\"VD\",\"airlineName\":\"Air Libert\"},{\"airl"
+      }
+    },
+    {
+      "id": "Flight > Flight Search",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/search",
+      "requestKeys": [
+        "itinerary",
+        "travellers",
+        "cabinClass",
+        "journeyType",
+        "currency",
+        "language",
+        "preferences",
+        "appliedFilters",
+        "selection"
+      ],
+      "note": "live_dates",
+      "legacy": {
+        "status": 400,
+        "ok": false,
+        "ms": 382,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "VENDOR_ERROR",
+        "errorMessage": "Search failed."
+      },
+      "node": {
+        "status": 400,
+        "ok": false,
+        "ms": 154,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "NO_FLIGHTS_FOUND",
+        "errorMessage": "No flights available for given criteria"
+      },
+      "statusMatch": true,
+      "codeMatch": false,
+      "shapeDiffs": [],
+      "verdict": "WARN",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Search failed.\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:54Z\",\"request_id\":\"full-1795003614694-m83le\"},\"_meta\":{\"correlation_id\":\"full-1795003614694-7bdq5\"}}",
+        "node": "{\"error\":{\"code\":\"NO_FLIGHTS_FOUND\",\"message\":\"No flights available for given criteria\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:55Z\",\"request_id\":\"full-1795003615077-k7cg0\"},\"_meta\":{\"correlation_id\":\"full-179500361"
+      }
+    },
+    {
+      "id": "Flight > Flight Details",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/details",
+      "requestKeys": [
+        "journeyType",
+        "selection"
+      ],
+      "note": "collection_sample",
+      "status": "SKIPPED",
+      "skipReason": "no_flight_searchId (node search empty/failed)"
+    },
+    {
+      "id": "Flight > Flight Fare Rules",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/fareRules",
+      "requestKeys": [
+        "journeyType",
+        "selection"
+      ],
+      "note": "collection_sample",
+      "status": "SKIPPED",
+      "skipReason": "no_flight_searchId (node search empty/failed)"
+    },
+    {
+      "id": "Flight > Flight Pricing",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/pricing",
+      "requestKeys": [
+        "journeyType",
+        "selection"
+      ],
+      "note": "collection_sample",
+      "status": "SKIPPED",
+      "skipReason": "no_flight_searchId (node search empty/failed)"
+    },
+    {
+      "id": "Flight > City Search",
+      "folder": "Flight",
+      "method": "GET",
+      "path": "/v1/flights/citySearch",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 150,
+        "topKeys": [
+          "status",
+          "results",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 104,
+        "topKeys": [
+          "status",
+          "results",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":0,\"results\":[{\"city\":\"Pune\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY\",\"latitude\":\"18.51957000\",\"longitude\":\"73.85535000\"},{\"city\":\"Pune Division\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY",
+        "node": "{\"status\":0,\"results\":[{\"city\":\"Pune\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY\",\"latitude\":\"18.51957000\",\"longitude\":\"73.85535000\"},{\"city\":\"Pune Division\",\"state\":\"Maharashtra\",\"country\":\"India\",\"type\":\"CITY"
+      }
+    },
+    {
+      "id": "Flight > Flight SSR",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/ssr",
+      "requestKeys": [
+        "priceId"
+      ],
+      "note": "collection_sample",
+      "status": "SKIPPED",
+      "skipReason": "no_flight_searchId_for_ssr"
+    },
+    {
+      "id": "Flight > Flight SeatMap",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/seatmap",
+      "requestKeys": [
+        "currency",
+        "requestReference",
+        "passengers"
+      ],
+      "note": "chained_requestReference",
+      "legacy": {
+        "status": 400,
+        "ok": false,
+        "ms": 170,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "VENDOR_UNAVAILABLE",
+        "errorMessage": "Flight provider is temporarily unavailable."
+      },
+      "node": {
+        "status": 400,
+        "ok": false,
+        "ms": 1991,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "VENDOR_UNAVAILABLE",
+        "errorMessage": "Flight provider is temporarily unavailable."
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"VENDOR_UNAVAILABLE\",\"message\":\"Flight provider is temporarily unavailable.\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:55Z\",\"request_id\":\"full-1795003615487-czhhu\"},\"_meta\":{\"correlation_id\":\"full-179",
+        "node": "{\"error\":{\"code\":\"VENDOR_UNAVAILABLE\",\"message\":\"Flight provider is temporarily unavailable.\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:57Z\",\"request_id\":\"full-1795003615657-whyb0\"},\"_meta\":{\"correlation_id\":\"full-179"
+      }
+    },
+    {
+      "id": "Flight > Issue Flight Ticket",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/booking/issue-ticket",
+      "requestKeys": [
+        "type",
+        "currency",
+        "language",
+        "bookingReference",
+        "searchIds",
+        "journeyType",
+        "timezone",
+        "data"
+      ],
+      "note": "collection_sample",
+      "status": "SKIPPED",
+      "skipReason": "destructive_book_skipped (set ALLOW_BOOK=1 to run)"
+    },
+    {
+      "id": "Flight > Fetch Flight Booking Status",
+      "folder": "Flight",
+      "method": "GET",
+      "path": "/v1/flights/booking/BR1780899837641078/status",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 1030,
+        "topKeys": [
+          "status",
+          "bookingResponse",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 667,
+        "topKeys": [
+          "status",
+          "bookingResponse",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":\"Failed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1780899837641078\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-06-08T06:23:57\",\"isFlexiCancel\":0},\"it",
+        "node": "{\"status\":\"Failed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1780899837641078\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-06-08T06:23:57\",\"isFlexiCancel\":0},\"it"
+      }
+    },
+    {
+      "id": "Flight > Flight Booking Detail",
+      "folder": "Flight",
+      "method": "GET",
+      "path": "/v1/flights/booking/BR1780899837641078",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 1449,
+        "topKeys": [
+          "status",
+          "bookingResponse",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 100,
+        "topKeys": [
+          "status",
+          "bookingResponse",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":\"Failed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1780899837641078\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-06-08T06:23:57\",\"isFlexiCancel\":0},\"it",
+        "node": "{\"status\":\"Failed\",\"bookingResponse\":{\"bookingReferenceId\":\"BR1780899837641078\",\"bookingType\":\"TICKET\",\"summary\":{\"tripType\":\"O\",\"totalPassengers\":1,\"journeys\":1,\"bookingDate\":\"2026-06-08T06:23:57\",\"isFlexiCancel\":0},\"it"
+      }
+    },
+    {
+      "id": "Flight > Cancellation Penlty Check",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/booking/BR1779781570337478/cancel",
+      "requestKeys": [
+        "action",
+        "retryCount"
+      ],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 153,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 81,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:05:39Z\",\"request_id\":\"full-1795003539698-9wprj\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:05:39Z\",\"request_id\":\"full-1795003539850-cfiil\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur"
+      }
+    },
+    {
+      "id": "Flight > Flight Booking History",
+      "folder": "Flight",
+      "method": "GET",
+      "path": "/v1/flights/bookings/history",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 8906,
+        "topKeys": [
+          "status",
+          "totalCount",
+          "page",
+          "perPage",
+          "bookings",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 8068,
+        "topKeys": [
+          "status",
+          "totalCount",
+          "page",
+          "perPage",
+          "bookings",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":0,\"totalCount\":179,\"page\":1,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1795001879395163\",\"status\":\"Confirmed\",\"tripType\":\"O\",\"bookingDate\":\"2026-11-18T11:37:59\",\"travelDate\":\"2026-12-27T06:15:00\",\"itinerary\":[{\"d",
+        "node": "{\"status\":0,\"totalCount\":179,\"page\":1,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1795001879395163\",\"status\":\"Confirmed\",\"tripType\":\"O\",\"bookingDate\":\"2026-11-18T11:37:59\",\"travelDate\":\"2026-12-27T06:15:00\",\"itinerary\":[{\"d"
+      }
+    },
+    {
+      "id": "Flight > Fetch Flight Booking Status",
+      "folder": "Flight",
+      "method": "GET",
+      "path": "/v1/flights/booking/BR1781704967867885/status",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 404,
+        "ok": false,
+        "ms": 292,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 404,
+        "ok": false,
+        "ms": 79,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:18Z\",\"request_id\":\"full-1795003638102-fh6nb\"},\"_meta\":{\"correlation_id\":\"full-1795003638102-n5qed\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:18Z\",\"request_id\":\"full-1795003638394-1b7ld\"},\"_meta\":{\"correlation_id\":\"full-1795003638394-k5xj5\"}}"
+      }
+    },
+    {
+      "id": "Flight > Cancellation Penlty Check",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/booking/BR1781704967867885/cancel",
+      "requestKeys": [
+        "action",
+        "retryCount"
+      ],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 149,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 81,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:05:57Z\",\"request_id\":\"full-1795003557415-xkv4f\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:05:58Z\",\"request_id\":\"full-1795003557582-lubyw\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur"
+      }
+    },
+    {
+      "id": "Flight > Panalty Check + Cancellation",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/booking/BR1781610251217353/cancel",
+      "requestKeys": [
+        "action",
+        "retryCount"
+      ],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 150,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "VALIDATION_ERROR",
+        "errorMessage": "Invalid or missing action. Allowed values: PENALTY, CANCEL"
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 76,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "VALIDATION_ERROR",
+        "errorMessage": "Invalid or missing action. Allowed values: PENALTY, CANCEL"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid or missing action. Allowed values: PENALTY, CANCEL\",\"details\":\"Field 'action' must be one of: PENALTY, CANCEL\",\"timestamp\":\"2026-11-18T12:05:58Z\",\"request_id\":\"full-",
+        "node": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid or missing action. Allowed values: PENALTY, CANCEL\",\"details\":\"Field 'action' must be one of: PENALTY, CANCEL\",\"timestamp\":\"2026-11-18T12:05:59Z\",\"request_id\":\"full-"
+      }
+    },
+    {
+      "id": "Hotel > AutoComplete",
+      "folder": "Hotel",
+      "method": "GET",
+      "path": "/v1/hotels/autocomplete",
+      "requestKeys": [],
+      "note": "page0_mumbai",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 182,
+        "topKeys": [
+          "content",
+          "pageable",
+          "totalElements",
+          "totalPages",
+          "first",
+          "last",
+          "empty",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 114,
+        "topKeys": [
+          "content",
+          "pageable",
+          "totalElements",
+          "totalPages",
+          "first",
+          "last",
+          "empty",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Mumbai\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"357389:IN\",\"latitude\":\"19.075987\",\"longitude\":\"72.87766\",\"cityCountry\":null,\"lastUpdated\":null},{",
+        "node": "{\"content\":[{\"type\":\"CITY\",\"title\":\"Mumbai\",\"city\":null,\"state\":\"Maharashtra\",\"country\":\"India\",\"address\":null,\"entityId\":\"357389:IN\",\"latitude\":\"19.075987\",\"longitude\":\"72.87766\",\"cityCountry\":null,\"lastUpdated\":null},{"
+      }
+    },
+    {
+      "id": "Hotel > Hotel Search",
+      "folder": "Hotel",
+      "method": "POST",
+      "path": "/v1/hotels/search",
+      "requestKeys": [
+        "checkin",
+        "checkout",
+        "entityId",
+        "nationality",
+        "type",
+        "rooms"
+      ],
+      "note": "live_city_mumbai",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 1525,
+        "topKeys": [
+          "page",
+          "size",
+          "offset",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "last",
+          "results",
+          "currency",
+          "fromCache",
+          "cacheTimeStamp",
+          "priceRangeFilter",
+          "filters",
+          "sorts",
+          "requestId",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 1211,
+        "topKeys": [
+          "page",
+          "size",
+          "offset",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "last",
+          "results",
+          "currency",
+          "fromCache",
+          "cacheTimeStamp",
+          "priceRangeFilter",
+          "filters",
+          "sorts",
+          "requestId",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":513,\"totalPages\":26,\"availableResults\":513,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"",
+        "node": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":513,\"totalPages\":26,\"availableResults\":513,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\""
+      }
+    },
+    {
+      "id": "Hotel > Hotel Detail",
+      "folder": "Hotel",
+      "method": "POST",
+      "path": "/v1/hotels/details",
+      "requestKeys": [
+        "checkin",
+        "checkout",
+        "entityId",
+        "nationality",
+        "rooms"
+      ],
+      "note": "chained_hotel_id",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 759,
+        "topKeys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "sorts",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "message",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 438,
+        "topKeys": [
+          "page",
+          "size",
+          "totalResults",
+          "totalPages",
+          "availableResults",
+          "results",
+          "sorts",
+          "fromCache",
+          "cacheTimeStamp",
+          "requestId",
+          "message",
+          "tripType",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"page\":0,\"size\":1,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC\",\"address\":\"C-57, Bandra Kurla Complex, Bandra East\",\"city\":\"Mumbai\",\"country\":\"India\",\"count",
+        "node": "{\"page\":0,\"size\":1,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC\",\"address\":\"C-57, Bandra Kurla Complex, Bandra East\",\"city\":\"Mumbai\",\"country\":\"India\",\"count"
+      }
+    },
+    {
+      "id": "Hotel > Hotel Prebook",
+      "folder": "Hotel",
+      "method": "POST",
+      "path": "/v1/hotels/prebook",
+      "requestKeys": [
+        "bookingCode",
+        "requestId"
+      ],
+      "note": "stale_collection_prebook_ids",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 186,
+        "topKeys": [
+          "code",
+          "message",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 90,
+        "topKeys": [
+          "code",
+          "message",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"code\":\"404\",\"message\":\"This room is no longer available\",\"_meta\":{\"correlation_id\":\"full-1795003643160-q7g5n\"}}",
+        "node": "{\"code\":\"404\",\"message\":\"This room is no longer available\",\"_meta\":{\"correlation_id\":\"full-1795003643346-1yg02\"}}"
+      }
+    },
+    {
+      "id": "Hotel > Hotel Finalize booking",
+      "folder": "Hotel",
+      "method": "POST",
+      "path": "/v1/hotels/finalize-booking",
+      "requestKeys": [
+        "bookingContext",
+        "checkin",
+        "checkout",
+        "requestId",
+        "rooms",
+        "contact"
+      ],
+      "note": "collection_sample",
+      "status": "SKIPPED",
+      "skipReason": "destructive_book_skipped (set ALLOW_BOOK=1 to run)"
+    },
+    {
+      "id": "Hotel > Fetch Hotel Booking status",
+      "folder": "Hotel",
+      "method": "GET",
+      "path": "/v1/hotels/bookings/BR1780927298861865/status",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 167,
+        "topKeys": [
+          "status",
+          "message",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 78,
+        "topKeys": [
+          "status",
+          "message",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795003643436-6al4j\"}}",
+        "node": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795003643603-uemsx\"}}"
+      }
+    },
+    {
+      "id": "Hotel > Fetch Hotel Booking Details",
+      "folder": "Hotel",
+      "method": "GET",
+      "path": "/v1/hotels/bookings/BR1780401783100852",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 127,
+        "topKeys": [
+          "status",
+          "message",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 76,
+        "topKeys": [
+          "status",
+          "message",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795003643681-kkvuo\"}}",
+        "node": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795003643808-5i8wu\"}}"
+      }
+    },
+    {
+      "id": "Hotel > Fetch Hotel Booking History",
+      "folder": "Hotel",
+      "method": "GET",
+      "path": "/v1/hotels/bookings/history",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 268,
+        "topKeys": [
+          "status",
+          "totalCount",
+          "page",
+          "perPage",
+          "bookings",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 500,
+        "ok": false,
+        "ms": 86,
+        "topKeys": [
+          "status",
+          "info"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": false,
+      "codeMatch": true,
+      "shapeDiffs": [
+        {
+          "path": "totalCount",
+          "issue": "missing_in_node",
+          "legacy": "number"
+        },
+        {
+          "path": "page",
+          "issue": "missing_in_node",
+          "legacy": "number"
+        },
+        {
+          "path": "perPage",
+          "issue": "missing_in_node",
+          "legacy": "number"
+        },
+        {
+          "path": "bookings",
+          "issue": "missing_in_node",
+          "legacy": "array"
+        },
+        {
+          "path": "_meta",
+          "issue": "missing_in_node",
+          "legacy": "object"
+        },
+        {
+          "path": "info",
+          "issue": "extra_in_node",
+          "node": "string"
+        }
+      ],
+      "verdict": "DIFF",
+      "sample": {
+        "legacy": "{\"status\":0,\"totalCount\":97,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1794995138101560\",\"hotelName\":\"Hiltop Hotel\",\"hotelLocation\":\"43. Sir Pochkhanwala Road\",\"checkin\":\"2026-12-11\",\"checkout\":\"2026-12-12\",\"booki",
+        "node": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      }
+    },
+    {
+      "id": "Hotel > Cancel Booking",
+      "folder": "Hotel",
+      "method": "GET",
+      "path": "/v1/hotels/bookings/BR1786362382728480/cancel",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 141,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 79,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR1786362382728480'\",\"timestamp\":\"2026-11-18T12:06:05Z\",\"request_id\":\"full-1795003565661-ekn15\"},\"duplicate\":",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR1786362382728480'\",\"timestamp\":\"2026-11-18T12:06:05Z\",\"request_id\":\"full-1795003565849-ent4t\"},\"duplicate\":"
+      }
+    },
+    {
+      "id": "Cabs > locations",
+      "folder": "Cab",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/locations",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 134,
+        "topKeys": [
+          "locations",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 86,
+        "topKeys": [
+          "locations",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"locations\":[{\"referenceId\":\"69\",\"airportCode\":\"PNQ\",\"airportName\":\"Pune International Airport (PNQ)\",\"terminalId\":\"T1\",\"name\":\"Pune International Airport\",\"city\":\"Pune\",\"address\":\"Pune International Airport\",\"displayNa",
+        "node": "{\"locations\":[{\"referenceId\":\"69\",\"airportCode\":\"PNQ\",\"airportName\":\"Pune International Airport (PNQ)\",\"terminalId\":\"T1\",\"name\":\"Pune International Airport\",\"city\":\"Pune\",\"address\":\"Pune International Airport\",\"displayNa"
+      }
+    },
+    {
+      "id": "Cabs > Cabs Search",
+      "folder": "Cab",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/search",
+      "requestKeys": [
+        "journeyType",
+        "travelType",
+        "pickup",
+        "drop",
+        "distanceKm",
+        "durationMin",
+        "pickupDatetime"
+      ],
+      "note": "live_rental",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 10705,
+        "topKeys": [
+          "currency",
+          "cabs",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 10902,
+        "topKeys": [
+          "currency",
+          "cabs",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"75f94f32-5430-4cd3-94a4-a432d951a277|e12c144cc00bfed8ab9878e84dd629f9d765d5259303f20a590b2149cdefa49e\",\"cabId\":\"d6f4ca4d-ed4c-457d-93c7-10207aead0af\",\"fareId\":\"1\",\"vehicle\":{\"type\":",
+        "node": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"fad57f75-57d0-435d-9c83-a11e86b4239d|05de1562e218f286a4a7f6d9607f3aeaa2ac7bbe0567b1106b91464f30547681\",\"cabId\":\"96ea28fd-6708-4ba2-9099-3aefd240df3f\",\"fareId\":\"1\",\"vehicle\":{\"type\":"
+      }
+    },
+    {
+      "id": "Cabs > Cabs Fare",
+      "folder": "Cab",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/fare",
+      "requestKeys": [
+        "searchId"
+      ],
+      "note": "chained_cab_searchId",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 1666,
+        "topKeys": [
+          "bookingReference",
+          "priceId",
+          "vehicle",
+          "operator",
+          "trip",
+          "inclusions",
+          "exclusions",
+          "priceDetail",
+          "cancellationFee",
+          "cancellationRules",
+          "fareExpiryTime",
+          "tags",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 231,
+        "topKeys": [
+          "bookingReference",
+          "priceId",
+          "vehicle",
+          "operator",
+          "trip",
+          "inclusions",
+          "exclusions",
+          "priceDetail",
+          "cancellationFee",
+          "cancellationRules",
+          "fareExpiryTime",
+          "tags",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"bookingReference\":\"JUU+yi2NBu8YJ7TJck+7U9KqgF5152iYej3FiSHQfwGiqCr2AU9xV3q7l10ePNc9/CUblncF18v4XDWybYK5+ls5Vq2rU4VRuGzGy1etEVOqz2CEtEP/klkCXwuEmaawqIS9h42NOoxiNGzusga7AoQAJmo/cVs5EgSOAHIaQQD5GtsFjCZz8tOT1eUiZAeIvOuwP8V",
+        "node": "{\"bookingReference\":\"JUU+yi2NBu8YJ7TJck+7U9KqgF5152iYej3FiSHQfwGiqCr2AU9xV3q7l10ePNc9/CUblncF18v4XDWybYK5+ls5Vq2rU4VRuGzGy1etEVOqz2CEtEP/klkCXwuEmaawqIS9h42NOoxiNGzusga7AoQAJmo/cVs5EgSOAHIaQQD5GtsFjCZz8tOT1eUiZAeIvOuwP8V"
+      }
+    },
+    {
+      "id": "Cabs > Book",
+      "folder": "Cab",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/finalize-booking",
+      "requestKeys": [
+        "bookingReference",
+        "priceId",
+        "passengers",
+        "contact",
+        "otherDetails"
+      ],
+      "note": "collection_sample",
+      "status": "SKIPPED",
+      "skipReason": "destructive_book_skipped (set ALLOW_BOOK=1 to run)"
+    },
+    {
+      "id": "Cabs > Fetch Booking Status",
+      "folder": "Cab",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/BR1784017077801203/status",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 404,
+        "ok": false,
+        "ms": 148,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 404,
+        "ok": false,
+        "ms": 357,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:48Z\",\"request_id\":\"full-1795003668184-8a2ct\"},\"_meta\":{\"correlation_id\":\"full-1795003668184-htwae\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:48Z\",\"request_id\":\"full-1795003668332-rmxwf\"},\"_meta\":{\"correlation_id\":\"full-1795003668332-jlu1k\"}}"
+      }
+    },
+    {
+      "id": "Cabs > Fetch Booking History",
+      "folder": "Cab",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/history",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 279,
+        "topKeys": [
+          "status",
+          "totalCount",
+          "page",
+          "perPage",
+          "bookings",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 165,
+        "topKeys": [
+          "status",
+          "totalCount",
+          "page",
+          "perPage",
+          "bookings",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":0,\"totalCount\":57,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingReferenceId\":\"BR1795001914685133\",\"status\":null,\"contact\":{\"name\":\"Pratik QaWhslxy\",\"email\":\"chaitanya@travelvip.ai\",\"countryCode\":\"+91\",\"mobile\":\"99",
+        "node": "{\"status\":0,\"totalCount\":57,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingReferenceId\":\"BR1795001914685133\",\"status\":null,\"contact\":{\"name\":\"Pratik QaWhslxy\",\"email\":\"chaitanya@travelvip.ai\",\"countryCode\":\"+91\",\"mobile\":\"99"
+      }
+    },
+    {
+      "id": "Cabs > Fetch Booking Details",
+      "folder": "Cab",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/booking/BR1783685806152267",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 404,
+        "ok": false,
+        "ms": 152,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 404,
+        "ok": false,
+        "ms": 86,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669133-w1pxm\"},\"_meta\":{\"correlation_id\":\"full-1795003669133-is7h0\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669285-06hly\"},\"_meta\":{\"correlation_id\":\"full-1795003669285-8hrao\"}}"
+      }
+    },
+    {
+      "id": "Cabs > Fetch Cab Location",
+      "folder": "Cab",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/tracking/BR1783677028336676/location",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 404,
+        "ok": false,
+        "ms": 143,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 404,
+        "ok": false,
+        "ms": 76,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669371-n38zd\"},\"_meta\":{\"correlation_id\":\"full-1795003669371-1dcx2\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669514-aoye2\"},\"_meta\":{\"correlation_id\":\"full-1795003669514-c8zct\"}}"
+      }
+    },
+    {
+      "id": "Cabs > Cancel Booking",
+      "folder": "Cab",
+      "method": "GET",
+      "path": "/v1/airportServices/cabs/bookings/BR1783955419703179/cancel",
+      "requestKeys": [],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 128,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 80,
+        "topKeys": [
+          "error",
+          "duplicate",
+          "duplicateMessage",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:29Z\",\"request_id\":\"full-1795003589665-2hbco\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:29Z\",\"request_id\":\"full-1795003589791-wfhve\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur"
+      }
+    },
+    {
+      "id": "Callbacks, ops & health > Flight booking update (backend callback)",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flight/updateBooking",
+      "requestKeys": [
+        "bookingRefId",
+        "status",
+        "pnr",
+        "onwardPNR",
+        "returnPNR",
+        "bookingId"
+      ],
+      "note": "callback_ops_sample",
+      "legacy": {
+        "status": 404,
+        "ok": false,
+        "ms": 126,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 404,
+        "ok": false,
+        "ms": 73,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669798-kvtvu\"},\"_meta\":{\"correlation_id\":\"full-1795003669798-puhso\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669924-3lkxn\"},\"_meta\":{\"correlation_id\":\"full-1795003669924-s14yk\"}}"
+      }
+    },
+    {
+      "id": "Callbacks, ops & health > Hotel booking update (backend callback)",
+      "folder": "Hotel",
+      "method": "POST",
+      "path": "/api/v1/hotels/updateHotelBooking",
+      "requestKeys": [
+        "status",
+        "ClientReferenceId",
+        "ConfirmationNumber",
+        "message"
+      ],
+      "note": "callback_ops_sample",
+      "legacy": {
+        "status": 400,
+        "ok": false,
+        "ms": 88,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "VALIDATION_ERROR",
+        "errorMessage": "Validation failed"
+      },
+      "node": {
+        "status": 400,
+        "ok": false,
+        "ms": 73,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "VALIDATION_ERROR",
+        "errorMessage": "Validation failed"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingId' is required\"],\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669998-r6ad7\"},\"_meta\":{\"correlation_id\":\"full-17950036",
+        "node": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingId' is required\"],\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003670086-47554\"},\"_meta\":{\"correlation_id\":\"full-17950036"
+      }
+    },
+    {
+      "id": "Callbacks, ops & health > Cab booking update (backend callback)",
+      "folder": "Cab",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/update-booking",
+      "requestKeys": [
+        "bookingRefId",
+        "bookingId",
+        "status",
+        "otp",
+        "assignment"
+      ],
+      "note": "callback_ops_sample",
+      "legacy": {
+        "status": 404,
+        "ok": false,
+        "ms": 132,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "node": {
+        "status": 404,
+        "ok": false,
+        "ms": 76,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "BOOKING_NOT_FOUND",
+        "errorMessage": "Booking not found"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:50Z\",\"request_id\":\"full-1795003670160-i4d9t\"},\"_meta\":{\"correlation_id\":\"full-1795003670160-vv53z\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:50Z\",\"request_id\":\"full-1795003670292-s8oeu\"},\"_meta\":{\"correlation_id\":\"full-1795003670292-2rfhl\"}}"
+      }
+    },
+    {
+      "id": "Callbacks, ops & health > Cab provider webhook",
+      "folder": "Cab",
+      "method": "POST",
+      "path": "/v1/airportServices/cabs/partner-webhook",
+      "requestKeys": [
+        "eventName",
+        "bookingId",
+        "bookingInfo"
+      ],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 401,
+        "ok": false,
+        "ms": 373,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "INVALID_WEBHOOK_CREDENTIALS",
+        "errorMessage": "Invalid webhook credentials"
+      },
+      "node": {
+        "status": 401,
+        "ok": false,
+        "ms": 87,
+        "topKeys": [
+          "error",
+          "_meta"
+        ],
+        "errorCode": "INVALID_WEBHOOK_CREDENTIALS",
+        "errorMessage": "Invalid webhook credentials"
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"error\":{\"code\":\"INVALID_WEBHOOK_CREDENTIALS\",\"message\":\"Invalid webhook credentials\",\"details\":\"Webhook Basic Auth credentials are missing or incorrect\",\"timestamp\":\"2026-11-18T12:07:50Z\",\"request_id\":\"full-17950036703",
+        "node": "{\"error\":{\"code\":\"INVALID_WEBHOOK_CREDENTIALS\",\"message\":\"Invalid webhook credentials\",\"details\":\"Webhook Basic Auth credentials are missing or incorrect\",\"timestamp\":\"2026-11-18T12:07:50Z\",\"request_id\":\"full-17950036707"
+      }
+    },
+    {
+      "id": "Callbacks, ops & health > Flight request-action: CANCEL",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/booking/request-action",
+      "requestKeys": [
+        "bookingRefId",
+        "action",
+        "refund",
+        "actorRef",
+        "remarks"
+      ],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 401,
+        "ok": false,
+        "ms": 150,
+        "topKeys": [
+          "status",
+          "info",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 401,
+        "ok": false,
+        "ms": 71,
+        "topKeys": [
+          "status",
+          "info",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003670828-rx1v9\"}}",
+        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003670978-oy74u\"}}"
+      }
+    },
+    {
+      "id": "Callbacks, ops & health > Flight supplier recovery",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/booking/supplier-recovery",
+      "requestKeys": [
+        "bookingRefId",
+        "provider",
+        "amount",
+        "providerReference",
+        "note",
+        "actorRef"
+      ],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 401,
+        "ok": false,
+        "ms": 152,
+        "topKeys": [
+          "status",
+          "info",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 401,
+        "ok": false,
+        "ms": 74,
+        "topKeys": [
+          "status",
+          "info",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671049-y4p4d\"}}",
+        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671201-czs6y\"}}"
+      }
+    },
+    {
+      "id": "Callbacks, ops & health > Flight protection action",
+      "folder": "Flight",
+      "method": "POST",
+      "path": "/v1/flights/booking/protection-action",
+      "requestKeys": [
+        "bookingRefId",
+        "bookingItemId",
+        "action",
+        "reason",
+        "actorRef"
+      ],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 401,
+        "ok": false,
+        "ms": 145,
+        "topKeys": [
+          "status",
+          "info",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 401,
+        "ok": false,
+        "ms": 73,
+        "topKeys": [
+          "status",
+          "info",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671275-6rl9h\"}}",
+        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671420-qbt78\"}}"
+      }
+    },
+    {
+      "id": "Callbacks, ops & health > Hotel request-action: CANCEL",
+      "folder": "Hotel",
+      "method": "POST",
+      "path": "/v1/hotels/booking/request-action",
+      "requestKeys": [
+        "bookingRefId",
+        "action",
+        "refund",
+        "actorRef",
+        "remarks"
+      ],
+      "note": "collection_sample",
+      "legacy": {
+        "status": 401,
+        "ok": false,
+        "ms": 143,
+        "topKeys": [
+          "status",
+          "info",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 401,
+        "ok": false,
+        "ms": 70,
+        "topKeys": [
+          "status",
+          "info",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671493-lifgx\"}}",
+        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671636-1ny9n\"}}"
+      }
+    }
+  ]
+}

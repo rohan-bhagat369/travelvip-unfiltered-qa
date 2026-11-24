@@ -1,0 +1,372 @@
+{
+  "details-empty-ids": {
+    "path": "/v1/flights/details",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": []
+      }
+    },
+    "http": 400,
+    "code": "INVALID_SELECTION",
+    "message": "ONE_WAY requires exactly 1 selectedSearchId.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "details-unknown-id": {
+    "path": "/v1/flights/details",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_00000000000000000000000000000000"
+        ]
+      }
+    },
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_00000000000000000000000000000000",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "details-html-id": {
+    "path": "/v1/flights/details",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "<script>alert(1)</script>"
+        ]
+      }
+    },
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: <script>alert(1)</script>",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "fareRules-empty-ids": {
+    "path": "/v1/flights/fareRules",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": []
+      }
+    },
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for fare rules. Please fix the listed errors and retry.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "fareRules-unknown-id": {
+    "path": "/v1/flights/fareRules",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_00000000000000000000000000000000"
+        ]
+      }
+    },
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_00000000000000000000000000000000",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "fareRules-html-id": {
+    "path": "/v1/flights/fareRules",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "<script>alert(1)</script>"
+        ]
+      }
+    },
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: <script>alert(1)</script>",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "pricing-empty-ids": {
+    "path": "/v1/flights/pricing",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": []
+      }
+    },
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "pricing-unknown-id": {
+    "path": "/v1/flights/pricing",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_00000000000000000000000000000000"
+        ]
+      }
+    },
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: srch_00000000000000000000000000000000",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "pricing-html-id": {
+    "path": "/v1/flights/pricing",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "<script>alert(1)</script>"
+        ]
+      }
+    },
+    "http": 404,
+    "code": "SEARCH_ID_NOT_FOUND",
+    "message": "No cached search context found for searchId: <script>alert(1)</script>",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "pricing-ow-id-as-RT": {
+    "path": "/v1/flights/pricing",
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_50883675b1434851b55a1d720478441c"
+        ]
+      }
+    },
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "pricing-dup-id": {
+    "path": "/v1/flights/pricing",
+    "request": {
+      "journeyType": "ONE_WAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_50883675b1434851b55a1d720478441c",
+          "srch_50883675b1434851b55a1d720478441c"
+        ]
+      }
+    },
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "pricing-bad-journeyType": {
+    "path": "/v1/flights/pricing",
+    "request": {
+      "journeyType": "ONEWAY",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_50883675b1434851b55a1d720478441c"
+        ]
+      }
+    },
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "details-omit-journeyType": {
+    "path": "/v1/flights/details",
+    "request": {
+      "selection": {
+        "selectedSearchIds": [
+          "srch_50883675b1434851b55a1d720478441c"
+        ]
+      }
+    },
+    "http": 400,
+    "code": "INVALID_REQUEST",
+    "message": "Request validation failed.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "pricing-RT-onward-only": {
+    "path": "/v1/flights/pricing",
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_64f1601dc7c843b1af61dd4580901be7"
+        ]
+      }
+    },
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight pricing. Please fix the listed errors and retry.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "pricing-RT-mixed-TBO-onward-Riya-return": {
+    "path": "/v1/flights/pricing",
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_64f1601dc7c843b1af61dd4580901be7",
+          "srch_179059ecf73144fea1a1671d64f26c74"
+        ]
+      }
+    },
+    "http": 400,
+    "code": "INVALID_COMBINATION",
+    "message": "Selected flights come from different searches and cannot be booked together. Select onward and return from the same fare type.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "fareRules-RT-mixed-vendors": {
+    "path": "/v1/flights/fareRules",
+    "request": {
+      "journeyType": "ROUND_TRIP",
+      "selection": {
+        "selectedSearchIds": [
+          "srch_64f1601dc7c843b1af61dd4580901be7",
+          "srch_179059ecf73144fea1a1671d64f26c74"
+        ]
+      }
+    },
+    "http": 400,
+    "code": "INVALID_COMBINATION",
+    "message": "Selected flights come from different searches and cannot be booked together. Select onward and return from the same fare type.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "ssr-empty-priceId": {
+    "path": "/v1/flights/ssr",
+    "request": {
+      "priceId": ""
+    },
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight SSR. Please fix the listed errors and retry.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "ssr-unknown-priceId": {
+    "path": "/v1/flights/ssr",
+    "request": {
+      "priceId": "prc_does_not_exist_000"
+    },
+    "http": 400,
+    "code": "PRICE_ID_NOT_FOUND",
+    "message": "No cached pricing context found for priceId: prc_does_not_exist_000",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "ssr-html-priceId": {
+    "path": "/v1/flights/ssr",
+    "request": {
+      "priceId": "<b>x</b>"
+    },
+    "http": 400,
+    "code": "PRICE_ID_NOT_FOUND",
+    "message": "No cached pricing context found for priceId: <b>x</b>",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "seatmap-omit-requestReference": {
+    "path": "/v1/flights/seatmap",
+    "request": {
+      "currency": "INR",
+      "passengers": [
+        {
+          "paxRefNumber": "1",
+          "passengerType": 1,
+          "gender": "Male",
+          "title": "Mr",
+          "firstName": "Aggqa",
+          "lastName": "Nobook"
+        }
+      ]
+    },
+    "http": 400,
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request payload for flight seat map. Please fix the listed errors and retry.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  },
+  "seatmap-garbage-requestReference": {
+    "path": "/v1/flights/seatmap",
+    "request": {
+      "currency": "INR",
+      "requestReference": "not-a-context,",
+      "passengers": [
+        {
+          "paxRefNumber": "1",
+          "passengerType": 1,
+          "gender": "Male",
+          "title": "Mr",
+          "firstName": "Aggqa",
+          "lastName": "Nobook"
+        }
+      ]
+    },
+    "http": 400,
+    "code": "INVALID_BOOKING_CONTEXT",
+    "message": "Invalid bookingContext provided.",
+    "keys": [
+      "error",
+      "_meta"
+    ]
+  }
+}
