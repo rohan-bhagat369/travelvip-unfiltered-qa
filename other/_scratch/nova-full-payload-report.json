@@ -1,14 +1,13 @@
 {
-  "at": "2026-11-18T12:07:51.706Z",
+  "at": "2026-11-25T09:28:25.963Z",
   "nodeBase": "https://dev-nova-api.travelvip.ai",
   "legacyBase": "https://canary-api.travelvip.ai",
   "partner": "vgm",
   "auth": {
     "node": {
       "token": 200,
-      "session": 400,
-      "msg": "Invalid tierId",
-      "productAuth": "fallback_legacy_jwt (node session 400: Invalid tierId)"
+      "session": 200,
+      "productAuth": "native"
     },
     "legacy": {
       "token": 200,
@@ -18,10 +17,10 @@
   },
   "counts": {
     "total": 43,
-    "pass": 34,
+    "pass": 38,
     "warn": 1,
     "diff": 1,
-    "skipped": 7
+    "skipped": 3
   },
   "results": [
     {
@@ -34,7 +33,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 300,
+        "ms": 356,
         "topKeys": [
           "status",
           "result",
@@ -47,7 +46,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 107,
+        "ms": 106,
         "topKeys": [
           "status",
           "result",
@@ -76,7 +75,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 155,
+        "ms": 215,
         "topKeys": [
           "status",
           "results",
@@ -88,7 +87,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 107,
+        "ms": 117,
         "topKeys": [
           "status",
           "results",
@@ -124,34 +123,56 @@
       ],
       "note": "live_dates",
       "legacy": {
-        "status": 400,
-        "ok": false,
-        "ms": 382,
+        "status": 200,
+        "ok": true,
+        "ms": 377,
         "topKeys": [
-          "error",
+          "journeyType",
+          "tripType",
+          "currency",
+          "currencyConversion",
+          "progress",
+          "timingReference",
+          "selection",
+          "results",
+          "totalResults",
+          "filters",
+          "sorts",
+          "cacheTimeStamp",
           "_meta"
         ],
-        "errorCode": "VENDOR_ERROR",
-        "errorMessage": "Search failed."
+        "errorCode": null,
+        "errorMessage": null
       },
       "node": {
-        "status": 400,
-        "ok": false,
-        "ms": 154,
+        "status": 200,
+        "ok": true,
+        "ms": 274,
         "topKeys": [
-          "error",
+          "journeyType",
+          "tripType",
+          "currency",
+          "currencyConversion",
+          "progress",
+          "timingReference",
+          "selection",
+          "results",
+          "totalResults",
+          "filters",
+          "sorts",
+          "cacheTimeStamp",
           "_meta"
         ],
-        "errorCode": "NO_FLIGHTS_FOUND",
-        "errorMessage": "No flights available for given criteria"
+        "errorCode": null,
+        "errorMessage": null
       },
       "statusMatch": true,
-      "codeMatch": false,
+      "codeMatch": true,
       "shapeDiffs": [],
-      "verdict": "WARN",
+      "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Search failed.\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:54Z\",\"request_id\":\"full-1795003614694-m83le\"},\"_meta\":{\"correlation_id\":\"full-1795003614694-7bdq5\"}}",
-        "node": "{\"error\":{\"code\":\"NO_FLIGHTS_FOUND\",\"message\":\"No flights available for given criteria\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:55Z\",\"request_id\":\"full-1795003615077-k7cg0\"},\"_meta\":{\"correlation_id\":\"full-179500361"
+        "legacy": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"INR\",\"destination\":\"INR\",\"rate\":1},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal",
+        "node": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"INR\",\"destination\":\"INR\",\"rate\":1},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal"
       }
     },
     {
@@ -163,9 +184,51 @@
         "journeyType",
         "selection"
       ],
-      "note": "collection_sample",
-      "status": "SKIPPED",
-      "skipReason": "no_flight_searchId (node search empty/failed)"
+      "note": "chained_from_node_search",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 365,
+        "topKeys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "pricing",
+          "currencyConversion",
+          "passengerOptions",
+          "itinerary",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 143,
+        "topKeys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "pricing",
+          "currencyConversion",
+          "passengerOptions",
+          "itinerary",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"timingReference\":\"/BKbgqJBOdpkEBf4ToboS6SKSGkulYV6MB8q0Jm4esDjDENona73k2zDscFvmF+EGHlVjjhYUZkEY1Fnm2GGPEzNM9xVjcUSEGD4ej+ooPnfB/nYu5vzpJIUsR5lQHWBTJbcKcP89Gs6TPcgtG7Q44XS8i",
+        "node": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"timingReference\":\"IzNgIE0BU1eLOzorDUsZALyjMIJB0o4R87vG2HDO0/7qkaUzrLBfCrquusPxoa4t82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgUcfAMtoIFW3Osla/obyD/rjvbM"
+      }
     },
     {
       "id": "Flight > Flight Fare Rules",
@@ -176,9 +239,49 @@
         "journeyType",
         "selection"
       ],
-      "note": "collection_sample",
-      "status": "SKIPPED",
-      "skipReason": "no_flight_searchId (node search empty/failed)"
+      "note": "chained_from_node_search",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 4884,
+        "topKeys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "fareRules",
+          "cancellationPolicies",
+          "reschedulePolicies",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 268,
+        "topKeys": [
+          "journeyType",
+          "tripType",
+          "timingReference",
+          "selection",
+          "fareRules",
+          "cancellationPolicies",
+          "reschedulePolicies",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"timingReference\":\"TUK0flxwkLVXn2YC5iEVnrDVVcs82nY7TsjgJQLTdA1WWp1VRVTnX088E2MaIS3MITUTQCjKm/o6aCeDoUUhMWRwGPVd3482SoHgEEiaOm5CfIdTFlaC+Pfv9SM0Ofv0eiSsVCLVzCXQ8glGies8ECPZlb",
+        "node": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"timingReference\":\"QJo9epqMS0X0we/ie9nZZsF8DoO/Q6ZmpbZIUTZontLphJj1TLWKYYu7nWQK9bf228qywO6ty6PXtdhD+MODE9rtKvc0GCYB+9LLhpg1ZnuVxjqlOdJqTYQB8lvBEM2sIM9Q9y/8A2S1dhVDv9zwUa51Pt"
+      }
     },
     {
       "id": "Flight > Flight Pricing",
@@ -189,9 +292,79 @@
         "journeyType",
         "selection"
       ],
-      "note": "collection_sample",
-      "status": "SKIPPED",
-      "skipReason": "no_flight_searchId (node search empty/failed)"
+      "note": "chained_from_node_search",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 312,
+        "topKeys": [
+          "priceId",
+          "timingReference",
+          "journeyType",
+          "tripType",
+          "fareType",
+          "passportType",
+          "addGstInfo",
+          "selection",
+          "expiresAt",
+          "pricing",
+          "currencyConversion",
+          "gstBreakup",
+          "cancellationFee",
+          "itinerary",
+          "passengerOptions",
+          "descriptions",
+          "notices",
+          "priceChange",
+          "capabilities",
+          "bookingContext",
+          "vpricingReference",
+          "refreshToken",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 136,
+        "topKeys": [
+          "priceId",
+          "timingReference",
+          "journeyType",
+          "tripType",
+          "fareType",
+          "passportType",
+          "addGstInfo",
+          "selection",
+          "expiresAt",
+          "pricing",
+          "currencyConversion",
+          "gstBreakup",
+          "cancellationFee",
+          "itinerary",
+          "passengerOptions",
+          "descriptions",
+          "notices",
+          "priceChange",
+          "capabilities",
+          "bookingContext",
+          "vpricingReference",
+          "refreshToken",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"priceId\":\"price_8072dade52654764b67d2304e9cdefc4\",\"timingReference\":\"EyepRwsy2cMeBzL+SZtjH6SKSGkulYV6MB8q0Jm4esA9y+1auorPKelJR+bO/vCwyR1XECCMdnsps2z0qTboxNPZh6b7F+Cctavukd8IdXSNwdOotJU5CKjHDmuTksw3ySF2n3fXhGwSY7vrOcPH4",
+        "node": "{\"priceId\":\"price_8072dade52654764b67d2304e9cdefc4\",\"timingReference\":\"IN9LuAbpzSM2lgI6PIxeMdnbilsl6eKXSR3R4VleDuYjrkyFj6ce6fE+Pr+utMrM82F7jI3aV8DZdnnEy3VXSWCLFwhK2Q4Cf7tKR5iDoTuagKjD2PTkwWfdGwU09TAgUcfAMtoIFW3Osla/obyD/"
+      }
     },
     {
       "id": "Flight > City Search",
@@ -203,7 +376,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 150,
+        "ms": 223,
         "topKeys": [
           "status",
           "results",
@@ -215,7 +388,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 104,
+        "ms": 116,
         "topKeys": [
           "status",
           "results",
@@ -241,9 +414,55 @@
       "requestKeys": [
         "priceId"
       ],
-      "note": "collection_sample",
-      "status": "SKIPPED",
-      "skipReason": "no_flight_searchId_for_ssr"
+      "note": "chained_priceId",
+      "legacy": {
+        "status": 200,
+        "ok": true,
+        "ms": 224,
+        "topKeys": [
+          "priceId",
+          "timingReference",
+          "journeyType",
+          "tripType",
+          "expiresAt",
+          "currencyConversion",
+          "meal",
+          "baggage",
+          "MultipleBaggageAllowed",
+          "MultipleMealsAllowed",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "node": {
+        "status": 200,
+        "ok": true,
+        "ms": 188,
+        "topKeys": [
+          "priceId",
+          "timingReference",
+          "journeyType",
+          "tripType",
+          "expiresAt",
+          "currencyConversion",
+          "meal",
+          "baggage",
+          "MultipleBaggageAllowed",
+          "MultipleMealsAllowed",
+          "_meta"
+        ],
+        "errorCode": null,
+        "errorMessage": null
+      },
+      "statusMatch": true,
+      "codeMatch": true,
+      "shapeDiffs": [],
+      "verdict": "PASS",
+      "sample": {
+        "legacy": "{\"priceId\":\"price_8072dade52654764b67d2304e9cdefc4\",\"timingReference\":\"QWBVcHeDYFfK/mHQOxvn+Pw0DzjH1k54hkaGmhx4/oUjHFxYOfewbofI39kPvecivU6OHytKZtDnskYdxXylQ3u4t88qmRz41jQVF/lcaY4HFz0gsKdSl8PcrVSGgjelHvmIxRASm1/vef+PD848V",
+        "node": "{\"priceId\":\"price_8072dade52654764b67d2304e9cdefc4\",\"timingReference\":\"WSgQJNeIZYBAFh0dkMjvDBKR6GXgU908l37fQD9bRFcjHFxYOfewbofI39kPvecivU6OHytKZtDnskYdxXylQ3u4t88qmRz41jQVF/lcaY4HFz0gsKdSl8PcrVSGgjelHvmIxRASm1/vef+PD848V"
+      }
     },
     {
       "id": "Flight > Flight SeatMap",
@@ -259,32 +478,32 @@
       "legacy": {
         "status": 400,
         "ok": false,
-        "ms": 170,
+        "ms": 209,
         "topKeys": [
           "error",
           "_meta"
         ],
-        "errorCode": "VENDOR_UNAVAILABLE",
-        "errorMessage": "Flight provider is temporarily unavailable."
+        "errorCode": "INVALID_BOOKING_CONTEXT",
+        "errorMessage": "Invalid bookingContext provided."
       },
       "node": {
         "status": 400,
         "ok": false,
-        "ms": 1991,
+        "ms": 104,
         "topKeys": [
           "error",
           "_meta"
         ],
-        "errorCode": "VENDOR_UNAVAILABLE",
-        "errorMessage": "Flight provider is temporarily unavailable."
+        "errorCode": "INVALID_BOOKING_CONTEXT",
+        "errorMessage": "Invalid bookingContext provided."
       },
       "statusMatch": true,
       "codeMatch": true,
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"VENDOR_UNAVAILABLE\",\"message\":\"Flight provider is temporarily unavailable.\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:55Z\",\"request_id\":\"full-1795003615487-czhhu\"},\"_meta\":{\"correlation_id\":\"full-179",
-        "node": "{\"error\":{\"code\":\"VENDOR_UNAVAILABLE\",\"message\":\"Flight provider is temporarily unavailable.\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:57Z\",\"request_id\":\"full-1795003615657-whyb0\"},\"_meta\":{\"correlation_id\":\"full-179"
+        "legacy": "{\"error\":{\"code\":\"INVALID_BOOKING_CONTEXT\",\"message\":\"Invalid bookingContext provided.\",\"details\":null,\"timestamp\":\"2026-11-25T09:27:22Z\",\"request_id\":\"full-1795598842258-de3e0\"},\"_meta\":{\"correlation_id\":\"full-179559884",
+        "node": "{\"error\":{\"code\":\"INVALID_BOOKING_CONTEXT\",\"message\":\"Invalid bookingContext provided.\",\"details\":null,\"timestamp\":\"2026-11-25T09:27:22Z\",\"request_id\":\"full-1795598842467-s0z0s\"},\"_meta\":{\"correlation_id\":\"full-179559884"
       }
     },
     {
@@ -316,7 +535,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 1030,
+        "ms": 595,
         "topKeys": [
           "status",
           "bookingResponse",
@@ -328,7 +547,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 667,
+        "ms": 148,
         "topKeys": [
           "status",
           "bookingResponse",
@@ -356,7 +575,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 1449,
+        "ms": 324,
         "topKeys": [
           "status",
           "bookingResponse",
@@ -368,7 +587,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 100,
+        "ms": 109,
         "topKeys": [
           "status",
           "bookingResponse",
@@ -397,26 +616,22 @@
       ],
       "note": "collection_sample",
       "legacy": {
-        "status": 200,
-        "ok": true,
-        "ms": 153,
+        "status": 404,
+        "ok": false,
+        "ms": 225,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "BOOKING_NOT_FOUND",
         "errorMessage": "Booking not found"
       },
       "node": {
-        "status": 200,
-        "ok": true,
-        "ms": 81,
+        "status": 404,
+        "ok": false,
+        "ms": 93,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "BOOKING_NOT_FOUND",
@@ -427,8 +642,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:05:39Z\",\"request_id\":\"full-1795003539698-9wprj\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:05:39Z\",\"request_id\":\"full-1795003539850-cfiil\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:27:23Z\",\"request_id\":\"full-1795598843747-4zn95\"},\"_meta\":{\"correlation_id\":\"full-1795598843747-eof6n\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:27:23Z\",\"request_id\":\"full-1795598843972-qjluq\"},\"_meta\":{\"correlation_id\":\"full-1795598843972-qy8uu\"}}"
       }
     },
     {
@@ -441,7 +656,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 8906,
+        "ms": 11282,
         "topKeys": [
           "status",
           "totalCount",
@@ -456,7 +671,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 8068,
+        "ms": 9309,
         "topKeys": [
           "status",
           "totalCount",
@@ -473,8 +688,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"status\":0,\"totalCount\":179,\"page\":1,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1795001879395163\",\"status\":\"Confirmed\",\"tripType\":\"O\",\"bookingDate\":\"2026-11-18T11:37:59\",\"travelDate\":\"2026-12-27T06:15:00\",\"itinerary\":[{\"d",
-        "node": "{\"status\":0,\"totalCount\":179,\"page\":1,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1795001879395163\",\"status\":\"Confirmed\",\"tripType\":\"O\",\"bookingDate\":\"2026-11-18T11:37:59\",\"travelDate\":\"2026-12-27T06:15:00\",\"itinerary\":[{\"d"
+        "legacy": "{\"status\":0,\"totalCount\":207,\"page\":1,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1795418741978404\",\"status\":\"Confirmed\",\"tripType\":\"O\",\"bookingDate\":\"2026-11-23T07:25:41\",\"travelDate\":\"2026-12-15T05:45:00\",\"itinerary\":[{\"d",
+        "node": "{\"status\":0,\"totalCount\":207,\"page\":1,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1795418741978404\",\"status\":\"Confirmed\",\"tripType\":\"O\",\"bookingDate\":\"2026-11-23T07:25:41\",\"travelDate\":\"2026-12-15T05:45:00\",\"itinerary\":[{\"d"
       }
     },
     {
@@ -487,7 +702,7 @@
       "legacy": {
         "status": 404,
         "ok": false,
-        "ms": 292,
+        "ms": 331,
         "topKeys": [
           "error",
           "_meta"
@@ -498,7 +713,7 @@
       "node": {
         "status": 404,
         "ok": false,
-        "ms": 79,
+        "ms": 80,
         "topKeys": [
           "error",
           "_meta"
@@ -511,8 +726,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:18Z\",\"request_id\":\"full-1795003638102-fh6nb\"},\"_meta\":{\"correlation_id\":\"full-1795003638102-n5qed\"}}",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:18Z\",\"request_id\":\"full-1795003638394-1b7ld\"},\"_meta\":{\"correlation_id\":\"full-1795003638394-k5xj5\"}}"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:27:44Z\",\"request_id\":\"full-1795598864657-6dtl5\"},\"_meta\":{\"correlation_id\":\"full-1795598864657-ng8fz\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:27:44Z\",\"request_id\":\"full-1795598864988-sf0zf\"},\"_meta\":{\"correlation_id\":\"full-1795598864988-f7lqn\"}}"
       }
     },
     {
@@ -526,26 +741,22 @@
       ],
       "note": "collection_sample",
       "legacy": {
-        "status": 200,
-        "ok": true,
-        "ms": 149,
+        "status": 404,
+        "ok": false,
+        "ms": 209,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "BOOKING_NOT_FOUND",
         "errorMessage": "Booking not found"
       },
       "node": {
-        "status": 200,
-        "ok": true,
-        "ms": 81,
+        "status": 404,
+        "ok": false,
+        "ms": 80,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "BOOKING_NOT_FOUND",
@@ -556,8 +767,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:05:57Z\",\"request_id\":\"full-1795003557415-xkv4f\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:05:58Z\",\"request_id\":\"full-1795003557582-lubyw\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:27:45Z\",\"request_id\":\"full-1795598865068-lqkud\"},\"_meta\":{\"correlation_id\":\"full-1795598865068-fo8ua\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:27:45Z\",\"request_id\":\"full-1795598865277-jckp3\"},\"_meta\":{\"correlation_id\":\"full-1795598865277-q5wb2\"}}"
       }
     },
     {
@@ -571,26 +782,22 @@
       ],
       "note": "collection_sample",
       "legacy": {
-        "status": 200,
-        "ok": true,
-        "ms": 150,
+        "status": 400,
+        "ok": false,
+        "ms": 176,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "VALIDATION_ERROR",
         "errorMessage": "Invalid or missing action. Allowed values: PENALTY, CANCEL"
       },
       "node": {
-        "status": 200,
-        "ok": true,
-        "ms": 76,
+        "status": 400,
+        "ok": false,
+        "ms": 78,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "VALIDATION_ERROR",
@@ -601,8 +808,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid or missing action. Allowed values: PENALTY, CANCEL\",\"details\":\"Field 'action' must be one of: PENALTY, CANCEL\",\"timestamp\":\"2026-11-18T12:05:58Z\",\"request_id\":\"full-",
-        "node": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid or missing action. Allowed values: PENALTY, CANCEL\",\"details\":\"Field 'action' must be one of: PENALTY, CANCEL\",\"timestamp\":\"2026-11-18T12:05:59Z\",\"request_id\":\"full-"
+        "legacy": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid or missing action. Allowed values: PENALTY, CANCEL\",\"details\":\"Field 'action' must be one of: PENALTY, CANCEL\",\"timestamp\":\"2026-11-25T09:27:45Z\",\"request_id\":\"full-",
+        "node": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Invalid or missing action. Allowed values: PENALTY, CANCEL\",\"details\":\"Field 'action' must be one of: PENALTY, CANCEL\",\"timestamp\":\"2026-11-25T09:27:45Z\",\"request_id\":\"full-"
       }
     },
     {
@@ -615,7 +822,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 182,
+        "ms": 214,
         "topKeys": [
           "content",
           "pageable",
@@ -633,7 +840,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 114,
+        "ms": 115,
         "topKeys": [
           "content",
           "pageable",
@@ -674,7 +881,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 1525,
+        "ms": 1481,
         "topKeys": [
           "page",
           "size",
@@ -684,6 +891,7 @@
           "availableResults",
           "last",
           "results",
+          "message",
           "currency",
           "fromCache",
           "cacheTimeStamp",
@@ -700,7 +908,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 1211,
+        "ms": 7131,
         "topKeys": [
           "page",
           "size",
@@ -725,11 +933,23 @@
       },
       "statusMatch": true,
       "codeMatch": true,
-      "shapeDiffs": [],
-      "verdict": "PASS",
+      "shapeDiffs": [
+        {
+          "path": "message",
+          "issue": "missing_in_node",
+          "legacy": "string"
+        },
+        {
+          "path": "filters",
+          "issue": "type_mismatch",
+          "legacy": "null",
+          "node": "array"
+        }
+      ],
+      "verdict": "WARN",
       "sample": {
-        "legacy": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":513,\"totalPages\":26,\"availableResults\":513,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"",
-        "node": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":513,\"totalPages\":26,\"availableResults\":513,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\""
+        "legacy": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels found for this date range. Please try searching different dates.\",\"currency\":\"INR\",\"fromCa",
+        "node": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":499,\"totalPages\":25,\"availableResults\":499,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\""
       }
     },
     {
@@ -744,11 +964,11 @@
         "nationality",
         "rooms"
       ],
-      "note": "chained_hotel_id",
+      "note": "collection_entity",
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 759,
+        "ms": 2474,
         "topKeys": [
           "page",
           "size",
@@ -770,7 +990,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 438,
+        "ms": 145,
         "topKeys": [
           "page",
           "size",
@@ -794,8 +1014,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"page\":0,\"size\":1,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC\",\"address\":\"C-57, Bandra Kurla Complex, Bandra East\",\"city\":\"Mumbai\",\"country\":\"India\",\"count",
-        "node": "{\"page\":0,\"size\":1,\"totalResults\":1,\"totalPages\":1,\"availableResults\":1,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC\",\"address\":\"C-57, Bandra Kurla Complex, Bandra East\",\"city\":\"Mumbai\",\"country\":\"India\",\"count"
+        "legacy": "{\"page\":0,\"size\":1,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"results\":null,\"sorts\":[{\"name\":\"Price Low to High\",\"key\":\"price_ASC\"},{\"name\":\"Price High to Low\",\"key\":\"price_DESC\"}],\"fromCache\":false,\"cacheTime",
+        "node": "{\"page\":0,\"size\":1,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"results\":null,\"sorts\":[{\"name\":\"Price Low to High\",\"key\":\"price_ASC\"},{\"name\":\"Price High to Low\",\"key\":\"price_DESC\"}],\"fromCache\":false,\"cacheTime"
       }
     },
     {
@@ -811,7 +1031,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 186,
+        "ms": 274,
         "topKeys": [
           "code",
           "message",
@@ -823,7 +1043,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 90,
+        "ms": 131,
         "topKeys": [
           "code",
           "message",
@@ -837,8 +1057,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"code\":\"404\",\"message\":\"This room is no longer available\",\"_meta\":{\"correlation_id\":\"full-1795003643160-q7g5n\"}}",
-        "node": "{\"code\":\"404\",\"message\":\"This room is no longer available\",\"_meta\":{\"correlation_id\":\"full-1795003643346-1yg02\"}}"
+        "legacy": "{\"code\":\"404\",\"message\":\"This room is no longer available\",\"_meta\":{\"correlation_id\":\"full-1795598877174-rvwrq\"}}",
+        "node": "{\"code\":\"404\",\"message\":\"This room is no longer available\",\"_meta\":{\"correlation_id\":\"full-1795598877448-cn1pb\"}}"
       }
     },
     {
@@ -868,7 +1088,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 167,
+        "ms": 195,
         "topKeys": [
           "status",
           "message",
@@ -880,7 +1100,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 78,
+        "ms": 95,
         "topKeys": [
           "status",
           "message",
@@ -894,8 +1114,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795003643436-6al4j\"}}",
-        "node": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795003643603-uemsx\"}}"
+        "legacy": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795598877579-nvx2o\"}}",
+        "node": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795598877774-tme25\"}}"
       }
     },
     {
@@ -908,7 +1128,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 127,
+        "ms": 192,
         "topKeys": [
           "status",
           "message",
@@ -920,7 +1140,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 76,
+        "ms": 74,
         "topKeys": [
           "status",
           "message",
@@ -934,8 +1154,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795003643681-kkvuo\"}}",
-        "node": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795003643808-5i8wu\"}}"
+        "legacy": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795598877869-02v00\"}}",
+        "node": "{\"status\":404,\"message\":\"Booking not found\",\"_meta\":{\"correlation_id\":\"full-1795598878061-5d8mx\"}}"
       }
     },
     {
@@ -948,7 +1168,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 268,
+        "ms": 291,
         "topKeys": [
           "status",
           "totalCount",
@@ -963,7 +1183,7 @@
       "node": {
         "status": 500,
         "ok": false,
-        "ms": 86,
+        "ms": 99,
         "topKeys": [
           "status",
           "info"
@@ -1007,7 +1227,7 @@
       ],
       "verdict": "DIFF",
       "sample": {
-        "legacy": "{\"status\":0,\"totalCount\":97,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1794995138101560\",\"hotelName\":\"Hiltop Hotel\",\"hotelLocation\":\"43. Sir Pochkhanwala Road\",\"checkin\":\"2026-12-11\",\"checkout\":\"2026-12-12\",\"booki",
+        "legacy": "{\"status\":0,\"totalCount\":135,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingId\":\"BR1795593272831470\",\"hotelName\":\"Hiltop Hotel\",\"hotelLocation\":\"43. Sir Pochkhanwala Road\",\"checkin\":\"2026-11-26\",\"checkout\":\"2026-11-27\",\"book",
         "node": "{\"status\":500,\"info\":\"Internal Server Error\"}"
       }
     },
@@ -1019,26 +1239,22 @@
       "requestKeys": [],
       "note": "collection_sample",
       "legacy": {
-        "status": 200,
-        "ok": true,
-        "ms": 141,
+        "status": 404,
+        "ok": false,
+        "ms": 204,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "BOOKING_NOT_FOUND",
         "errorMessage": "Booking not found"
       },
       "node": {
-        "status": 200,
-        "ok": true,
-        "ms": 79,
+        "status": 404,
+        "ok": false,
+        "ms": 84,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "BOOKING_NOT_FOUND",
@@ -1049,8 +1265,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR1786362382728480'\",\"timestamp\":\"2026-11-18T12:06:05Z\",\"request_id\":\"full-1795003565661-ekn15\"},\"duplicate\":",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR1786362382728480'\",\"timestamp\":\"2026-11-18T12:06:05Z\",\"request_id\":\"full-1795003565849-ent4t\"},\"duplicate\":"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR1786362382728480'\",\"timestamp\":\"2026-11-25T09:27:58Z\",\"request_id\":\"full-1795598878526-9culi\"},\"_meta\":{\"co",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":\"No booking exists for bookingId 'BR1786362382728480'\",\"timestamp\":\"2026-11-25T09:27:58Z\",\"request_id\":\"full-1795598878730-6l3v4\"},\"_meta\":{\"co"
       }
     },
     {
@@ -1063,7 +1279,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 134,
+        "ms": 192,
         "topKeys": [
           "locations",
           "_meta"
@@ -1074,7 +1290,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 86,
+        "ms": 96,
         "topKeys": [
           "locations",
           "_meta"
@@ -1109,7 +1325,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 10705,
+        "ms": 10834,
         "topKeys": [
           "currency",
           "cabs",
@@ -1121,7 +1337,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 10902,
+        "ms": 10772,
         "topKeys": [
           "currency",
           "cabs",
@@ -1135,8 +1351,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"75f94f32-5430-4cd3-94a4-a432d951a277|e12c144cc00bfed8ab9878e84dd629f9d765d5259303f20a590b2149cdefa49e\",\"cabId\":\"d6f4ca4d-ed4c-457d-93c7-10207aead0af\",\"fareId\":\"1\",\"vehicle\":{\"type\":",
-        "node": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"fad57f75-57d0-435d-9c83-a11e86b4239d|05de1562e218f286a4a7f6d9607f3aeaa2ac7bbe0567b1106b91464f30547681\",\"cabId\":\"96ea28fd-6708-4ba2-9099-3aefd240df3f\",\"fareId\":\"1\",\"vehicle\":{\"type\":"
+        "legacy": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"3bc822b4-f768-400b-bf26-71fe508682cc|8b1c24b51d4fdc940942bcebb778bb7d20df9f0f484d6326046c618a34a54798\",\"cabId\":\"756418f7-90a3-4627-a9d0-a5f42a3ccc16\",\"fareId\":\"1\",\"vehicle\":{\"type\":",
+        "node": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"dc244370-a0dd-43e5-a795-9d1e9c6a4596|503eeb11fe010fd00b4e00b24c110b271cb7aad68b46229c737164a03d137942\",\"cabId\":\"245d1448-e26e-47b4-a800-f46978dcfea2\",\"fareId\":\"1\",\"vehicle\":{\"type\":"
       }
     },
     {
@@ -1151,7 +1367,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 1666,
+        "ms": 521,
         "topKeys": [
           "bookingReference",
           "priceId",
@@ -1173,7 +1389,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 231,
+        "ms": 243,
         "topKeys": [
           "bookingReference",
           "priceId",
@@ -1197,8 +1413,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"bookingReference\":\"JUU+yi2NBu8YJ7TJck+7U9KqgF5152iYej3FiSHQfwGiqCr2AU9xV3q7l10ePNc9/CUblncF18v4XDWybYK5+ls5Vq2rU4VRuGzGy1etEVOqz2CEtEP/klkCXwuEmaawqIS9h42NOoxiNGzusga7AoQAJmo/cVs5EgSOAHIaQQD5GtsFjCZz8tOT1eUiZAeIvOuwP8V",
-        "node": "{\"bookingReference\":\"JUU+yi2NBu8YJ7TJck+7U9KqgF5152iYej3FiSHQfwGiqCr2AU9xV3q7l10ePNc9/CUblncF18v4XDWybYK5+ls5Vq2rU4VRuGzGy1etEVOqz2CEtEP/klkCXwuEmaawqIS9h42NOoxiNGzusga7AoQAJmo/cVs5EgSOAHIaQQD5GtsFjCZz8tOT1eUiZAeIvOuwP8V"
+        "legacy": "{\"bookingReference\":\"n6oPgv2Bjdnfip2BIz7asrthnJEcPM9s/9k25rYFU45Yf1jC4NPfbpTSZ82WbREk+D3RGWOs65yObfB50Tea5Vu7ozV2aNse3dg7CB5qy6UoyfIXkg5dZcvsg0GX5ahD384NSZ46hVZr8oAh2bmGZZV/cI3gUhKX3YBcmJEwnNX5GtsFjCZz8tOT1eUiZAeIvOuwP8V",
+        "node": "{\"bookingReference\":\"n6oPgv2Bjdnfip2BIz7asrthnJEcPM9s/9k25rYFU45Yf1jC4NPfbpTSZ82WbREk+D3RGWOs65yObfB50Tea5Vu7ozV2aNse3dg7CB5qy6UoyfIXkg5dZcvsg0GX5ahD384NSZ46hVZr8oAh2bmGZZV/cI3gUhKX3YBcmJEwnNX5GtsFjCZz8tOT1eUiZAeIvOuwP8V"
       }
     },
     {
@@ -1227,7 +1443,7 @@
       "legacy": {
         "status": 404,
         "ok": false,
-        "ms": 148,
+        "ms": 172,
         "topKeys": [
           "error",
           "_meta"
@@ -1238,7 +1454,7 @@
       "node": {
         "status": 404,
         "ok": false,
-        "ms": 357,
+        "ms": 94,
         "topKeys": [
           "error",
           "_meta"
@@ -1251,8 +1467,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:48Z\",\"request_id\":\"full-1795003668184-8a2ct\"},\"_meta\":{\"correlation_id\":\"full-1795003668184-htwae\"}}",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:48Z\",\"request_id\":\"full-1795003668332-rmxwf\"},\"_meta\":{\"correlation_id\":\"full-1795003668332-jlu1k\"}}"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:21Z\",\"request_id\":\"full-1795598901473-eh57v\"},\"_meta\":{\"correlation_id\":\"full-1795598901473-gwnx4\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:21Z\",\"request_id\":\"full-1795598901645-1barp\"},\"_meta\":{\"correlation_id\":\"full-1795598901645-f1weg\"}}"
       }
     },
     {
@@ -1265,7 +1481,7 @@
       "legacy": {
         "status": 200,
         "ok": true,
-        "ms": 279,
+        "ms": 431,
         "topKeys": [
           "status",
           "totalCount",
@@ -1280,7 +1496,7 @@
       "node": {
         "status": 200,
         "ok": true,
-        "ms": 165,
+        "ms": 206,
         "topKeys": [
           "status",
           "totalCount",
@@ -1297,8 +1513,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"status\":0,\"totalCount\":57,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingReferenceId\":\"BR1795001914685133\",\"status\":null,\"contact\":{\"name\":\"Pratik QaWhslxy\",\"email\":\"chaitanya@travelvip.ai\",\"countryCode\":\"+91\",\"mobile\":\"99",
-        "node": "{\"status\":0,\"totalCount\":57,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingReferenceId\":\"BR1795001914685133\",\"status\":null,\"contact\":{\"name\":\"Pratik QaWhslxy\",\"email\":\"chaitanya@travelvip.ai\",\"countryCode\":\"+91\",\"mobile\":\"99"
+        "legacy": "{\"status\":0,\"totalCount\":60,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingReferenceId\":\"BR1795086981255119\",\"status\":\"Failed\",\"contact\":{\"name\":\"Chaitu Patil\",\"email\":\"chaitanya@travelvip.ai\",\"countryCode\":\"+91\",\"mobile\":\"9",
+        "node": "{\"status\":0,\"totalCount\":60,\"page\":0,\"perPage\":10,\"bookings\":[{\"bookingReferenceId\":\"BR1795086981255119\",\"status\":\"Failed\",\"contact\":{\"name\":\"Chaitu Patil\",\"email\":\"chaitanya@travelvip.ai\",\"countryCode\":\"+91\",\"mobile\":\"9"
       }
     },
     {
@@ -1311,7 +1527,7 @@
       "legacy": {
         "status": 404,
         "ok": false,
-        "ms": 152,
+        "ms": 163,
         "topKeys": [
           "error",
           "_meta"
@@ -1322,7 +1538,7 @@
       "node": {
         "status": 404,
         "ok": false,
-        "ms": 86,
+        "ms": 108,
         "topKeys": [
           "error",
           "_meta"
@@ -1335,8 +1551,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669133-w1pxm\"},\"_meta\":{\"correlation_id\":\"full-1795003669133-is7h0\"}}",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669285-06hly\"},\"_meta\":{\"correlation_id\":\"full-1795003669285-8hrao\"}}"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:22Z\",\"request_id\":\"full-1795598902376-xorpr\"},\"_meta\":{\"correlation_id\":\"full-1795598902376-ex954\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:22Z\",\"request_id\":\"full-1795598902539-kb5lr\"},\"_meta\":{\"correlation_id\":\"full-1795598902539-fxsef\"}}"
       }
     },
     {
@@ -1349,7 +1565,7 @@
       "legacy": {
         "status": 404,
         "ok": false,
-        "ms": 143,
+        "ms": 180,
         "topKeys": [
           "error",
           "_meta"
@@ -1360,7 +1576,7 @@
       "node": {
         "status": 404,
         "ok": false,
-        "ms": 76,
+        "ms": 110,
         "topKeys": [
           "error",
           "_meta"
@@ -1373,8 +1589,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669371-n38zd\"},\"_meta\":{\"correlation_id\":\"full-1795003669371-1dcx2\"}}",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669514-aoye2\"},\"_meta\":{\"correlation_id\":\"full-1795003669514-c8zct\"}}"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:22Z\",\"request_id\":\"full-1795598902647-74n6i\"},\"_meta\":{\"correlation_id\":\"full-1795598902647-swrbt\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:22Z\",\"request_id\":\"full-1795598902827-4380d\"},\"_meta\":{\"correlation_id\":\"full-1795598902827-i1anr\"}}"
       }
     },
     {
@@ -1385,26 +1601,22 @@
       "requestKeys": [],
       "note": "collection_sample",
       "legacy": {
-        "status": 200,
-        "ok": true,
-        "ms": 128,
+        "status": 404,
+        "ok": false,
+        "ms": 187,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "BOOKING_NOT_FOUND",
         "errorMessage": "Booking not found"
       },
       "node": {
-        "status": 200,
-        "ok": true,
-        "ms": 80,
+        "status": 404,
+        "ok": false,
+        "ms": 103,
         "topKeys": [
           "error",
-          "duplicate",
-          "duplicateMessage",
           "_meta"
         ],
         "errorCode": "BOOKING_NOT_FOUND",
@@ -1415,8 +1627,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:29Z\",\"request_id\":\"full-1795003589665-2hbco\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:06:29Z\",\"request_id\":\"full-1795003589791-wfhve\"},\"duplicate\":true,\"duplicateMessage\":\"Duplicate payload — retur"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:22Z\",\"request_id\":\"full-1795598902937-civcs\"},\"_meta\":{\"correlation_id\":\"full-1795598902937-noh2k\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:23Z\",\"request_id\":\"full-1795598903124-3a7ac\"},\"_meta\":{\"correlation_id\":\"full-1795598903124-fn8to\"}}"
       }
     },
     {
@@ -1436,7 +1648,7 @@
       "legacy": {
         "status": 404,
         "ok": false,
-        "ms": 126,
+        "ms": 154,
         "topKeys": [
           "error",
           "_meta"
@@ -1447,7 +1659,7 @@
       "node": {
         "status": 404,
         "ok": false,
-        "ms": 73,
+        "ms": 83,
         "topKeys": [
           "error",
           "_meta"
@@ -1460,8 +1672,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669798-kvtvu\"},\"_meta\":{\"correlation_id\":\"full-1795003669798-puhso\"}}",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669924-3lkxn\"},\"_meta\":{\"correlation_id\":\"full-1795003669924-s14yk\"}}"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:23Z\",\"request_id\":\"full-1795598903227-fzh57\"},\"_meta\":{\"correlation_id\":\"full-1795598903227-umovl\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:23Z\",\"request_id\":\"full-1795598903381-1gxmp\"},\"_meta\":{\"correlation_id\":\"full-1795598903381-ki5y1\"}}"
       }
     },
     {
@@ -1479,7 +1691,7 @@
       "legacy": {
         "status": 400,
         "ok": false,
-        "ms": 88,
+        "ms": 132,
         "topKeys": [
           "error",
           "_meta"
@@ -1490,7 +1702,7 @@
       "node": {
         "status": 400,
         "ok": false,
-        "ms": 73,
+        "ms": 88,
         "topKeys": [
           "error",
           "_meta"
@@ -1503,8 +1715,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingId' is required\"],\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003669998-r6ad7\"},\"_meta\":{\"correlation_id\":\"full-17950036",
-        "node": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingId' is required\"],\"timestamp\":\"2026-11-18T12:07:49Z\",\"request_id\":\"full-1795003670086-47554\"},\"_meta\":{\"correlation_id\":\"full-17950036"
+        "legacy": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingId' is required\"],\"timestamp\":\"2026-11-25T09:28:23Z\",\"request_id\":\"full-1795598903464-dpwqk\"},\"_meta\":{\"correlation_id\":\"full-17955989",
+        "node": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'bookingId' is required\"],\"timestamp\":\"2026-11-25T09:28:23Z\",\"request_id\":\"full-1795598903596-f9x42\"},\"_meta\":{\"correlation_id\":\"full-17955989"
       }
     },
     {
@@ -1523,7 +1735,7 @@
       "legacy": {
         "status": 404,
         "ok": false,
-        "ms": 132,
+        "ms": 150,
         "topKeys": [
           "error",
           "_meta"
@@ -1534,7 +1746,7 @@
       "node": {
         "status": 404,
         "ok": false,
-        "ms": 76,
+        "ms": 87,
         "topKeys": [
           "error",
           "_meta"
@@ -1547,8 +1759,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:50Z\",\"request_id\":\"full-1795003670160-i4d9t\"},\"_meta\":{\"correlation_id\":\"full-1795003670160-vv53z\"}}",
-        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-18T12:07:50Z\",\"request_id\":\"full-1795003670292-s8oeu\"},\"_meta\":{\"correlation_id\":\"full-1795003670292-2rfhl\"}}"
+        "legacy": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:23Z\",\"request_id\":\"full-1795598903684-jihyn\"},\"_meta\":{\"correlation_id\":\"full-1795598903684-r9j8e\"}}",
+        "node": "{\"error\":{\"code\":\"BOOKING_NOT_FOUND\",\"message\":\"Booking not found\",\"details\":null,\"timestamp\":\"2026-11-25T09:28:23Z\",\"request_id\":\"full-1795598903834-klfsy\"},\"_meta\":{\"correlation_id\":\"full-1795598903834-i9dhg\"}}"
       }
     },
     {
@@ -1565,7 +1777,7 @@
       "legacy": {
         "status": 401,
         "ok": false,
-        "ms": 373,
+        "ms": 187,
         "topKeys": [
           "error",
           "_meta"
@@ -1576,7 +1788,7 @@
       "node": {
         "status": 401,
         "ok": false,
-        "ms": 87,
+        "ms": 79,
         "topKeys": [
           "error",
           "_meta"
@@ -1589,8 +1801,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"error\":{\"code\":\"INVALID_WEBHOOK_CREDENTIALS\",\"message\":\"Invalid webhook credentials\",\"details\":\"Webhook Basic Auth credentials are missing or incorrect\",\"timestamp\":\"2026-11-18T12:07:50Z\",\"request_id\":\"full-17950036703",
-        "node": "{\"error\":{\"code\":\"INVALID_WEBHOOK_CREDENTIALS\",\"message\":\"Invalid webhook credentials\",\"details\":\"Webhook Basic Auth credentials are missing or incorrect\",\"timestamp\":\"2026-11-18T12:07:50Z\",\"request_id\":\"full-17950036707"
+        "legacy": "{\"error\":{\"code\":\"INVALID_WEBHOOK_CREDENTIALS\",\"message\":\"Invalid webhook credentials\",\"details\":\"Webhook Basic Auth credentials are missing or incorrect\",\"timestamp\":\"2026-11-25T09:28:23Z\",\"request_id\":\"full-17955989039",
+        "node": "{\"error\":{\"code\":\"INVALID_WEBHOOK_CREDENTIALS\",\"message\":\"Invalid webhook credentials\",\"details\":\"Webhook Basic Auth credentials are missing or incorrect\",\"timestamp\":\"2026-11-25T09:28:23Z\",\"request_id\":\"full-17955989041"
       }
     },
     {
@@ -1609,7 +1821,7 @@
       "legacy": {
         "status": 401,
         "ok": false,
-        "ms": 150,
+        "ms": 171,
         "topKeys": [
           "status",
           "info",
@@ -1621,7 +1833,7 @@
       "node": {
         "status": 401,
         "ok": false,
-        "ms": 71,
+        "ms": 83,
         "topKeys": [
           "status",
           "info",
@@ -1635,8 +1847,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003670828-rx1v9\"}}",
-        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003670978-oy74u\"}}"
+        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795598904187-1asfb\"}}",
+        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795598904358-ecjes\"}}"
       }
     },
     {
@@ -1656,7 +1868,7 @@
       "legacy": {
         "status": 401,
         "ok": false,
-        "ms": 152,
+        "ms": 146,
         "topKeys": [
           "status",
           "info",
@@ -1668,7 +1880,7 @@
       "node": {
         "status": 401,
         "ok": false,
-        "ms": 74,
+        "ms": 123,
         "topKeys": [
           "status",
           "info",
@@ -1682,8 +1894,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671049-y4p4d\"}}",
-        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671201-czs6y\"}}"
+        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795598904441-cv2eg\"}}",
+        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795598904587-nhg8v\"}}"
       }
     },
     {
@@ -1702,7 +1914,7 @@
       "legacy": {
         "status": 401,
         "ok": false,
-        "ms": 145,
+        "ms": 162,
         "topKeys": [
           "status",
           "info",
@@ -1714,7 +1926,7 @@
       "node": {
         "status": 401,
         "ok": false,
-        "ms": 73,
+        "ms": 827,
         "topKeys": [
           "status",
           "info",
@@ -1728,8 +1940,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671275-6rl9h\"}}",
-        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671420-qbt78\"}}"
+        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795598904711-jcmsn\"}}",
+        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795598904873-z9w3i\"}}"
       }
     },
     {
@@ -1748,7 +1960,7 @@
       "legacy": {
         "status": 401,
         "ok": false,
-        "ms": 143,
+        "ms": 175,
         "topKeys": [
           "status",
           "info",
@@ -1760,7 +1972,7 @@
       "node": {
         "status": 401,
         "ok": false,
-        "ms": 70,
+        "ms": 88,
         "topKeys": [
           "status",
           "info",
@@ -1774,8 +1986,8 @@
       "shapeDiffs": [],
       "verdict": "PASS",
       "sample": {
-        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671493-lifgx\"}}",
-        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795003671636-1ny9n\"}}"
+        "legacy": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795598905700-5rq9r\"}}",
+        "node": "{\"status\":401,\"info\":\"Invalid API key\",\"_meta\":{\"correlation_id\":\"full-1795598905875-2pv8b\"}}"
       }
     }
   ]

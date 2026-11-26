@@ -1,0 +1,264 @@
+{
+  "at": "2026-11-25T08:08:09.256Z",
+  "baseUrl": "https://gamma-api.travelvip.ai",
+  "part": "FINAL",
+  "callback": {
+    "pid": "smt",
+    "keyPreview": "pals…"
+  },
+  "partA": {
+    "results": {
+      "A1.1": {
+        "status": "PASS",
+        "note": "cb=Booking updated successfully",
+        "br": "BR1795591661138485",
+        "before": "Pending",
+        "callbackHttp": 200,
+        "callbackMsg": "Booking updated successfully",
+        "applied": true,
+        "after": "Confirmed",
+        "amountPaid": null,
+        "partnerWebhook": "NOT TESTED"
+      },
+      "A2.1": {
+        "status": "PASS",
+        "note": "cb=Callback received; no change made to the booking",
+        "br": "BR1795591661138485",
+        "callbackHttp": 200,
+        "callbackMsg": "Callback received; no change made to the booking",
+        "ignored": true,
+        "after": "Confirmed",
+        "partnerWebhook": "NOT TESTED"
+      },
+      "A3.1": {
+        "status": "PASS",
+        "br": "BR1795591661138485",
+        "callbackMsg": "Callback received; no change made to the booking",
+        "ignored": true,
+        "after": "Confirmed",
+        "walletBefore": 891940.2,
+        "walletAfter": 891940.2
+      },
+      "A3.2": {
+        "status": "PASS",
+        "br": "BR1795591661138485",
+        "callbackMsg": "Callback received; no change made to the booking",
+        "ignored": true,
+        "after": "Confirmed"
+      },
+      "A1.2": {
+        "status": "PASS",
+        "br": "BR1795591959246223",
+        "callbackMsg": "Booking updated successfully",
+        "applied": true,
+        "after": "Failed",
+        "walletBefore": 863189.37,
+        "walletAfter": 882294.53
+      },
+      "A1.3b_REJECTED": {
+        "status": "PASS",
+        "br": "BR1795591981954529",
+        "callbackMsg": "Booking updated successfully",
+        "after": "Failed"
+      },
+      "A1.4": {
+        "status": "PASS",
+        "br": "BR1795591986777851",
+        "finalizeStatus": "Pending",
+        "callbackMsg": "Booking updated successfully",
+        "after": "Confirmed"
+      },
+      "A1.5": {
+        "status": "PASS",
+        "br": "BR1795591959246223",
+        "before": "Pending",
+        "afterInProg": "Pending",
+        "afterEmpty": "Pending",
+        "cbInProg": "Callback received; no change made to the booking",
+        "cbEmpty": "Callback received; no change made to the booking"
+      },
+      "A4.2": {
+        "status": "PASS",
+        "br": "BR1795591661138485",
+        "before": "Cancelled",
+        "callbackMsg": "Callback received; no change made to the booking",
+        "ignored": true,
+        "after": "Cancelled",
+        "walletBefore": 862950.56,
+        "walletAfter": 862950.56
+      },
+      "A4.1": {
+        "tc": "A4.1",
+        "status": "CHECK",
+        "br": "BR1795593153680194",
+        "hotel": "Hiltop Hotel",
+        "checkin": "2026-11-26",
+        "checkout": "2026-11-27",
+        "roomFlags": {
+          "refundable": false,
+          "cancellationPolicy": null
+        },
+        "confirmCb": "Booking updated successfully",
+        "confirmedStatus": "Confirmed",
+        "estimatedRefund": 0,
+        "estimatedCharge": 12130.37,
+        "cancelRefund": 0,
+        "cancelCharge": 12130.37,
+        "afterCancel": "Confirmed",
+        "callbackMsg": "Callback received; no change made to the booking",
+        "afterCallback": "Confirmed",
+        "walletBeforeCancel": 850820.19,
+        "walletAfterCancel": 850820.19,
+        "walletAfterCallback": 850820.19,
+        "walletDeltaCancel": 0,
+        "noSecondRefund": true,
+        "refundZero": true,
+        "note": "Near-date non-ref OK (refundable=false, estimatedRefund=0). Cancel API returned Cancellation Failed — status stayed Confirmed (not Cancelled). CANCELLED callback correctly ignored; wallet unchanged (no refund). Full A4.1 path needs cancel to succeed into Cancelled."
+      },
+      "A2.2": {
+        "status": "PASS",
+        "br": "BR1795591959246223",
+        "callbackMsg": "Callback received; no change made to the booking",
+        "ignored": true,
+        "after": "Failed",
+        "walletBefore": 882294.53,
+        "walletAfter": 882294.53
+      },
+      "A3.3": {
+        "status": "PASS",
+        "br": "BR1795591959246223",
+        "callbackMsg": "Callback received; no change made to the booking",
+        "ignored": true,
+        "after": "Failed",
+        "partnerWebhook": "NOT TESTED"
+      },
+      "A1.3a_CANCELLED": {
+        "status": "PASS",
+        "br": "BR1795591976921094",
+        "callbackMsg": "Booking updated successfully",
+        "after": "Failed"
+      },
+      "A1.3": {
+        "status": "PASS",
+        "br": "BR1795591976921094",
+        "callbackMsg": "Booking updated successfully",
+        "after": "Failed"
+      }
+    }
+  },
+  "partB": {
+    "results": {
+      "B1": {
+        "status": "PASS",
+        "br": "BR1795591469648138",
+        "paymentIntentId": "pi_3UfaZ8EWyGwVPuvk18GahTkw",
+        "stripeStatus": "succeeded",
+        "amountReceived": 938020,
+        "attachHttp": 200,
+        "attachMsg": "Payment verified successfully",
+        "finalStatus": "Failed",
+        "process_by": "NOT TESTED (needs DB)",
+        "expect": "process_by=book_api"
+      },
+      "B2": {
+        "status": "PASS",
+        "note": "terminal without attach — webhook likely booked",
+        "br": "BR1795591478455993",
+        "paymentIntentId": "pi_3UfaZGEWyGwVPuvk1Znee6Gg",
+        "stripeStatus": "succeeded",
+        "finalStatus": "Failed",
+        "process_by": "likely webhook (NOT TESTED in DB)"
+      },
+      "B4": {
+        "status": "PASS",
+        "note": "app-first then second attach; real Stripe webhook no-op NOT TESTED without webhook control",
+        "br": "BR1795591485405681",
+        "stripeStatus": "succeeded",
+        "attach1": {
+          "http": 200,
+          "msg": "Payment verified successfully"
+        },
+        "attach2": {
+          "http": 200,
+          "msg": "Booking already processed",
+          "alreadyProcessed": true
+        },
+        "finalStatus": "Failed"
+      },
+      "B3": {
+        "tc": "B3",
+        "status": "PASS",
+        "note": "webhook booked first; app got already processed",
+        "br": "BR1795592965464743",
+        "paymentIntentId": "pi_3UfaxGEWyGwVPuvk0lDl9uu6",
+        "stripeStatus": "succeeded",
+        "polls": [
+          "Payment in progress",
+          "Pending",
+          "Pending",
+          "Confirmed"
+        ],
+        "statusAfterWebhookWait": "Confirmed",
+        "attachHttp": 200,
+        "attachMsg": "Booking already processed",
+        "alreadyProcessed": true,
+        "attachBrief": "{\"status\":200,\"paymentStatus\":\"succeeded\",\"paymentSuccess\":true,\"bookingSuccess\":true,\"bookingStatus\":\"confirmed\",\"bookingId\":\"5961\",\"bookingReferenceId\":\"BR1795592965464743\",\"bookingItemId\":\"6096\",\"message\":\"Booking already processed\",\"_meta\":{\"correlation_id\":\"8f7acd7e-712f-4344-9bee-86d91bc5bd12\"}}",
+        "statusAfterAttach": "Confirmed",
+        "expect": "process_by=webhook (DB NOT TESTED)"
+      },
+      "B5": {
+        "status": "PASS",
+        "note": "two parallel attach calls; true app+webhook race NOT TESTED",
+        "br": "BR1795591493602762",
+        "a": {
+          "http": 200,
+          "msg": "Payment verified successfully"
+        },
+        "b": {
+          "http": 200,
+          "msg": "Booking already processed"
+        },
+        "finalStatus": "Failed"
+      },
+      "B6": {
+        "status": "PASS",
+        "br": "BR1795591502680999",
+        "paymentIntentId": "pi_3UfaZfEWyGwVPuvk1NgamFAc",
+        "stripeStatus": null,
+        "stripeError": "Your card was declined.",
+        "bookingStatus": "Payment in progress"
+      },
+      "B7": {
+        "status": "PASS",
+        "note": "Failed after pay — verify Stripe refund in Dashboard/DB",
+        "br": "BR1795591509211086",
+        "createHttp": 200,
+        "stripeStatus": "succeeded",
+        "attachHttp": 200,
+        "finalStatus": "Failed",
+        "cardRefund": "NOT TESTED (Stripe Dashboard)"
+      },
+      "B8": {
+        "status": "PASS",
+        "br": "BR1795594066600485",
+        "paymentIntentId": "pi_3UfbF1EWyGwVPuvk0n1rUgpv",
+        "eventId": "evt_3UfbF1EWyGwVPuvk0Oww3i4M",
+        "naturalStatus": "Failed",
+        "afterRetry1": "Failed",
+        "afterRetry2": "Failed",
+        "retry1Http": 200,
+        "retry2Http": 200,
+        "attachMsg": "Booking already processed",
+        "alreadyProcessed": true,
+        "note": "Used Stripe POST /v1/events/{id}/retry x2 (whsec did not validate for manual forge). Status stable; one booking.",
+        "whsecManualForge": "FAILED Invalid signature — secret may not match gamma endpoint we_1PkiZq..."
+      },
+      "B9": {
+        "status": "PASS",
+        "http": 400,
+        "body": "Invalid signature",
+        "note": "POST /api/updatePaymentStatus with invalid Stripe-Signature"
+      }
+    }
+  }
+}

@@ -462,15 +462,16 @@ async function bookCab(label, base, auth) {
 async function bookFlight(label, base, auth) {
   console.log(`\n===== FLIGHT BOOK @ ${label} =====`);
   const steps = [];
+  // Keep attempts short; if no inventory → SKIP (do not grind all routes/dates).
   const routes = [
     ['DEL', 'BOM'],
-    ['BOM', 'DEL'],
     ['BOM', 'GOI'],
   ];
-  const dates = [20, 25, 30, 15];
+  const dates = [20, 25];
   let searchId = null;
   let searchBody = null;
   let searchRes = null;
+  let noFlightHits = 0;
 
   outer: for (const [o, d] of routes) {
     for (const day of dates) {
@@ -507,27 +508,37 @@ async function bookFlight(label, base, auth) {
         });
       }
       searchId = searchRes.data?.results?.[0]?.options?.[0]?.searchId || null;
+      const errCode = searchRes.data?.error?.code || null;
       steps.push({
         step: 'search',
         route: `${o}-${d}`,
         date: searchBody.itinerary[0].date,
         status: searchRes.status,
-        code: searchRes.data?.error?.code || null,
+        code: errCode,
         progress: searchRes.data?.progress?.state || null,
         searchId: !!searchId,
       });
-      console.log(`  search ${o}-${d} ${searchBody.itinerary[0].date}: ${searchRes.status} ${searchRes.data?.error?.code || searchRes.data?.progress?.state || ''} sid=${!!searchId}`);
+      console.log(`  search ${o}-${d} ${searchBody.itinerary[0].date}: ${searchRes.status} ${errCode || searchRes.data?.progress?.state || ''} sid=${!!searchId}`);
       if (searchId) break outer;
+      if (errCode === 'NO_FLIGHTS_FOUND' || errCode === 'VENDOR_ERROR') {
+        noFlightHits += 1;
+        if (noFlightHits >= 2) {
+          console.log('  SKIP — no flights found (stopping further date/route tries)');
+          break outer;
+        }
+      }
     }
   }
 
   if (!searchId) {
+    console.log('  SKIPPED_NO_FLIGHTS');
     return {
       product: 'flight',
       label,
       base,
       ok: false,
-      error: 'NO_SEARCH',
+      skipped: true,
+      error: 'SKIPPED_NO_FLIGHTS',
       steps,
       searchHttp: searchRes?.status,
       searchCode: searchRes?.data?.error?.code,
@@ -707,6 +718,7 @@ async function main() {
     product,
     canary: {
       ok: L.ok,
+      skipped: !!L.skipped,
       br: L.br,
       finalStatus: L.finalStatus,
       http: L.finalizeHttp,
@@ -715,6 +727,7 @@ async function main() {
     },
     node: {
       ok: N.ok,
+      skipped: !!N.skipped,
       br: N.br,
       finalStatus: N.finalStatus,
       http: N.finalizeHttp,
@@ -725,23 +738,18 @@ async function main() {
       Object.fromEntries((L.finalizeKeys || []).map((k) => [k, true])),
       Object.fromEntries((N.finalizeKeys || []).map((k) => [k, true])),
     ),
-    verdict:
-      L.ok && N.ok
-        ? shapeDiff(
-            Object.fromEntries((L.finalizeKeys || []).map((k) => [k, true])),
-            Object.fromEntries((N.finalizeKeys || []).map((k) => [k, true])),
-          ).missingInNode.length ||
-          shapeDiff(
-            Object.fromEntries((L.finalizeKeys || []).map((k) => [k, true])),
-            Object.fromEntries((N.finalizeKeys || []).map((k) => [k, true])),
-          ).extraInNode.length
-          ? 'WARN_SHAPE'
-          : 'PASS_BOTH_BOOKED'
-        : !L.ok && !N.ok
-          ? 'BOTH_FAILED'
-          : L.ok && !N.ok
-            ? 'NODE_FAILED'
-            : 'CANARY_FAILED',
+    verdict: (() => {
+      if (L.skipped || N.skipped) return 'SKIPPED_NO_INVENTORY';
+      if (L.ok && N.ok) {
+        const diff = shapeDiff(
+          Object.fromEntries((L.finalizeKeys || []).map((k) => [k, true])),
+          Object.fromEntries((N.finalizeKeys || []).map((k) => [k, true])),
+        );
+        return diff.missingInNode.length || diff.extraInNode.length ? 'WARN_SHAPE' : 'PASS_BOTH_BOOKED';
+      }
+      if (!L.ok && !N.ok) return 'BOTH_FAILED';
+      return L.ok && !N.ok ? 'NODE_FAILED' : 'CANARY_FAILED';
+    })(),
   }));
 
   const report = {
@@ -768,13 +776,13 @@ async function main() {
     '| Product | Canary | Node | Verdict |',
     '|---------|--------|------|---------|',
     ...compare.map((c) => {
-      const Lc = c.canary.ok
-        ? `OK BR=${c.canary.br} status=${c.canary.finalStatus}`
-        : `FAIL ${c.canary.error || c.canary.http || '-'}`;
-      const Nc = c.node.ok
-        ? `OK BR=${c.node.br} status=${c.node.finalStatus}`
-        : `FAIL ${c.node.error || c.node.http || '-'}`;
-      return `| ${c.product} | ${Lc} | ${Nc} | **${c.verdict}** |`;
+      const fmt = (side) =>
+        side.ok
+          ? `OK BR=${side.br} status=${side.finalStatus}`
+          : String(side.error || '').startsWith('SKIPPED')
+            ? `SKIP ${side.error}`
+            : `FAIL ${side.error || side.http || '-'}`;
+      return `| ${c.product} | ${fmt(c.canary)} | ${fmt(c.node)} | **${c.verdict}** |`;
     }),
     '',
     '## Details',

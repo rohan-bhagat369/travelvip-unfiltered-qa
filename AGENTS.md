@@ -55,6 +55,14 @@ Unfiltered on purpose: raw reports live **next to each product**. If it is not u
 
 After a testing day: Activity on **ENG-290** (and **QA-24** when TBO books). New product bugs → separate ENG/QA tasks.
 
+## QA log + dashboard (all agents — mandatory)
+
+Every tested task, bug, and bug-status change is recorded in [qa-log/](qa-log/README.md) via `npm run qa:log -- entry|bug|bug-status ...` (rule: `.cursor/rules/qa-logging.mdc`). Dashboard: `qa-log/dashboard/index.html` (`npm run qa:dashboard` to rebuild). Do this **before** reporting a task as done.
+
+## Daily work log (all agents — mandatory)
+
+Single rolling file: [daily-work/LOG.md](daily-work/LOG.md). Add a `## YYYY-MM-DD` section at the top for each new day; append a row with **task id** if known, otherwise a **short summary**. Rule: `.cursor/rules/daily-work.mdc`. Manager standup is separate: [standup/](standup/).
+
 ## How to work (all API domains)
 
 1. Valid baseline payload → clone → mutate one field → call API.

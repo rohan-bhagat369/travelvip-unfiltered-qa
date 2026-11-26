@@ -1,0 +1,150 @@
+{
+  "at": "2026-11-25T07:22:08.218Z",
+  "baseUrl": "https://gamma-api.travelvip.ai",
+  "part": "ALL",
+  "callback": {
+    "pid": "vgm",
+    "keyPreview": "pals…"
+  },
+  "partA": {
+    "results": {
+      "A1.1": {
+        "status": "NOT TESTED",
+        "note": "finalize failed",
+        "detail": "undefined"
+      },
+      "A1.2": {
+        "status": "NOT TESTED",
+        "note": "finalize failed"
+      },
+      "A1.3": {
+        "status": "NOT TESTED",
+        "note": "finalize failed"
+      },
+      "A1.3b_REJECTED": {
+        "status": "NOT TESTED",
+        "note": "finalize failed"
+      },
+      "A1.4": {
+        "status": "NOT TESTED",
+        "note": "no BR",
+        "detail": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].lastName' must contain only letters and spaces\",\"'contact.panCardName' must contain only letters and spaces\"],\"timestamp\":\"2026-11-25T07:22:50Z\",\"request_id\":\"req-1795591369918\"},\"_meta\":{\"correlation_id\":\"90cb6e14-1d05-4a04-bf09-3dec6b722307\"}}"
+      },
+      "A1.5": {
+        "status": "NOT TESTED",
+        "note": "finalize failed"
+      },
+      "A4.2": {
+        "status": "NOT TESTED",
+        "note": "finalize failed"
+      },
+      "A4.1": {
+        "status": "NOT TESTED",
+        "note": "finalize failed",
+        "detail": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].lastName' must contain only letters and spaces\",\"'contact.panCardName' must contain only letters and spaces\"],\"timestamp\":\"2026-11-25T07:22:53Z\",\"request_id\":\"req-1795591373822\"},\"_meta\":{\"correlation_id\":\"90cb6e14-1d05-4a04-bf09-3dec6b722307\"}}"
+      }
+    },
+    "walletBefore": {
+      "http": 200,
+      "available": 910859.18,
+      "summary": {
+        "currency": "INR",
+        "cashBalance": 910710.22,
+        "reserved": 0,
+        "creditAvailable": 148.96,
+        "available": 910859.18
+      },
+      "rows": []
+    }
+  },
+  "partB": {
+    "results": {
+      "B1": {
+        "status": "BUG",
+        "br": null,
+        "paymentIntentId": null,
+        "stripeStatus": null,
+        "amountReceived": null,
+        "attachMsg": null,
+        "finalStatus": null,
+        "process_by": "NOT TESTED (needs DB)",
+        "expect": "process_by=book_api"
+      },
+      "B2": {
+        "status": "NOT TESTED",
+        "note": "still Pending/no terminal — Stripe webhook may not point to gamma",
+        "br": null,
+        "paymentIntentId": null,
+        "stripeStatus": null,
+        "finalStatus": null,
+        "process_by": "NOT TESTED"
+      },
+      "B3": {
+        "status": "NOT TESTED",
+        "note": "create failed",
+        "detail": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].lastName' must contain only letters and spaces\"],\"timestamp\":\"2026-11-25T07:22:58Z\",\"request_id\":\"req-1795591378612\"},\"_meta\":{\"correlation_id\":\"7f6397ca-61ff-4615-af00-2461f3e7d130\"}}"
+      },
+      "B4": {
+        "status": "NOT TESTED",
+        "note": "create failed"
+      },
+      "B5": {
+        "status": "NOT TESTED",
+        "note": "create failed",
+        "detail": "{\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Validation failed\",\"details\":[\"'rooms[0].guests[0].lastName' must contain only letters and spaces\"],\"timestamp\":\"2026-11-25T07:22:59Z\",\"request_id\":\"req-1795591379717\"},\"_meta\":{\"correlation_id\":\"3c97fdc0-ca21-49fc-a4d0-25607f3a6bf0\"}}"
+      },
+      "B6": {
+        "status": "BUG",
+        "br": null,
+        "paymentIntentId": null,
+        "stripeStatus": null,
+        "stripeError": null,
+        "bookingStatus": null
+      },
+      "B7": {
+        "status": "PASS",
+        "note": "supplier reject path unclear; card refund NOT TESTED here",
+        "br": null,
+        "createHttp": 400,
+        "stripeStatus": null,
+        "finalStatus": null,
+        "cardRefund": "NOT TESTED (Stripe Dashboard)"
+      },
+      "B8": {
+        "status": "NOT TESTED",
+        "note": "requires Stripe webhook endpoint + signing secret to replay same event to gamma"
+      },
+      "B9": {
+        "status": "NOT TESTED",
+        "note": "no known Stripe webhook path on gamma (all 404)",
+        "tried": [
+          {
+            "path": "/api/v1/payments/stripe/webhook",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          },
+          {
+            "path": "/api/payments/stripe/webhook",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          },
+          {
+            "path": "/webhooks/stripe",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          },
+          {
+            "path": "/api/stripe/webhook",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          },
+          {
+            "path": "/v1/payments/webhook/stripe",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          }
+        ]
+      }
+    }
+  }
+}

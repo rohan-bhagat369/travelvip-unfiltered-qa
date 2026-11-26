@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>TravelVIP QA Dashboard</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d23;--mute:#667085;--line:#e4e7ec;--pass:#12805c;--fail:#c4321c;--warn:#b26b00;--info:#2556c4;--pass-bg:#e3f4ec;--fail-bg:#fbe9e6;--warn-bg:#fdf1dc;--info-bg:#e6edfb;--grey-bg:#eef0f3}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#111317;--card:#1a1d23;--ink:#e8eaee;--mute:#98a1b0;--line:#2b303a;--pass:#4cc38f;--fail:#ff7b66;--warn:#f0b24a;--info:#7ea3ff;--pass-bg:#16332a;--fail-bg:#3a1f1a;--warn-bg:#3a2c12;--info-bg:#1b2a4a;--grey-bg:#242932}}
+:root[data-theme=dark]{--bg:#111317;--card:#1a1d23;--ink:#e8eaee;--mute:#98a1b0;--line:#2b303a;--pass:#4cc38f;--fail:#ff7b66;--warn:#f0b24a;--info:#7ea3ff;--pass-bg:#16332a;--fail-bg:#3a1f1a;--warn-bg:#3a2c12;--info-bg:#1b2a4a;--grey-bg:#242932;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1150px;margin:0 auto;padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:20px;margin:0}.sub{color:var(--mute);font-size:12px;margin-top:2px}
+header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi b{display:block;font-size:26px;line-height:1.1}.kpi span{color:var(--mute);font-size:12px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.filters label{color:var(--mute);font-size:12px;display:flex;gap:4px;align-items:center}
+select,input[type=date],input[type=search]{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:inherit}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:8px 14px;color:var(--mute);font:inherit;cursor:pointer}
+.tab[aria-selected=true]{color:var(--ink);border-color:var(--info);font-weight:600}
+.day{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+.day>h3{margin:0;padding:10px 14px;font-size:14px;display:flex;justify-content:space-between;background:var(--grey-bg)}
+.day>h3 small{color:var(--mute);font-weight:400}
+.row{padding:10px 14px;border-top:1px solid var(--line);display:grid;grid-template-columns:130px 1fr auto;gap:12px;align-items:start}
+.row .t{font-weight:600}.row .m{color:var(--mute);font-size:12px;margin-top:2px}
+.chip{display:inline-block;border-radius:99px;padding:1px 9px;font-size:11px;font-weight:600;white-space:nowrap}
+.Pass,.closed,.fixed{background:var(--pass-bg);color:var(--pass)}.Fail,.open,.Critical,.High{background:var(--fail-bg);color:var(--fail)}
+.Blocked,.Partial,.retest,.Medium{background:var(--warn-bg);color:var(--warn)}.Low,.wontfix{background:var(--grey-bg);color:var(--mute)}
+.bugref{cursor:pointer;border:0;font:inherit;font-size:11px;font-weight:600;border-radius:6px;padding:1px 7px;margin:2px 4px 0 0}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}th{background:var(--grey-bg);font-size:12px;color:var(--mute);border-top:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.bars{display:flex;align-items:flex-end;gap:6px;height:90px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow-x:auto}
+.bar{flex:0 0 34px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:10px;color:var(--mute)}
+.bar i{display:block;width:100%;background:var(--info);border-radius:3px 3px 0 0;min-height:2px}.bar i.f{background:var(--fail)}
+.empty{color:var(--mute);padding:30px;text-align:center}
+a{color:var(--info)}
+@media (max-width:640px){.row{grid-template-columns:1fr}table{font-size:12px}}
+@media print{.filters,.tabs{display:none}.panel{display:block!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div><h1>TravelVIP QA Dashboard</h1><div class="sub" id="gen"></div></div>
+  <div class="sub">Source: <code>qa-log/days/*.json</code> + <code>qa-log/bugs.json</code></div>
+</header>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="filters">
+  <label>From <input type="date" id="from"></label>
+  <label>To <input type="date" id="to"></label>
+  <label>Product <select id="product"></select></label>
+  <label>Result <select id="result"><option value="">All</option><option>Pass</option><option>Fail</option><option>Partial</option><option>Blocked</option></select></label>
+  <label>Bug status <select id="bstatus"><option value="">All</option><option value="pending">Pending (open + retest)</option><option>open</option><option>retest</option><option>fixed</option><option>closed</option><option>wontfix</option></select></label>
+  <input type="search" id="q" placeholder="Search task / title / bug…">
+  <button class="tab" id="reset">Reset</button>
+</div>
+
+<div class="tabs" role="tablist">
+  <button class="tab" role="tab" data-tab="daily" aria-selected="true">Daily timeline</button>
+  <button class="tab" role="tab" data-tab="bugs" aria-selected="false">Bugs</button>
+  <button class="tab" role="tab" data-tab="summary" aria-selected="false">Summary</button>
+</div>
+<div class="panel" id="p-daily"></div>
+<div class="panel" id="p-bugs" hidden></div>
+<div class="panel" id="p-summary" hidden></div>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const bugById = Object.fromEntries(DATA.bugs.map((b) => [b.id, b]));
+const SEV = {Critical:0,High:1,Medium:2,Low:3};
+const PENDING = (b) => b.status === 'open' || b.status === 'retest';
+const days = DATA.days;
+const allDates = days.map((d) => d.date);
+const products = [...new Set([...days.flatMap((d) => d.entries.map((e) => e.product)), ...DATA.bugs.map((b) => b.product)])].sort();
+$('#product').innerHTML = '<option value="">All</option>' + products.map((p) => `<option>${esc(p)}</option>`).join('');
+$('#gen').textContent = 'Generated ' + new Date(DATA.generated).toLocaleString() + ' · ' + days.length + ' day(s) logged';
+const ageDays = (d) => Math.max(0, Math.round((Date.now() - new Date(d)) / 864e5));
+
+const f = () => ({from:$('#from').value,to:$('#to').value,product:$('#product').value,result:$('#result').value,bstatus:$('#bstatus').value,q:$('#q').value.trim().toLowerCase()});
+function entryOk(e, date, x) {
+  if (x.from && date < x.from) return false; if (x.to && date > x.to) return false;
+  if (x.product && e.product !== x.product) return false; if (x.result && e.result !== x.result) return false;
+  if (x.bstatus && !(e.bugs||[]).some((id) => bugById[id] && (x.bstatus==='pending' ? PENDING(bugById[id]) : bugById[id].status===x.bstatus))) return false;
+  if (x.q && !(`${e.task} ${e.title} ${e.notes} ${(e.bugs||[]).join(' ')}`.toLowerCase().includes(x.q))) return false;
+  return true;
+}
+function bugOk(b, x) {
+  if (x.from && b.found < x.from) return false; if (x.to && b.found > x.to) return false;
+  if (x.product && b.product !== x.product) return false;
+  if (x.bstatus && (x.bstatus==='pending' ? !PENDING(b) : b.status!==x.bstatus)) return false;
+  if (x.q && !(`${b.id} ${b.title} ${b.task}`.toLowerCase().includes(x.q))) return false;
+  return true;
+}
+const bugChip = (id) => { const b = bugById[id]; return b ? `<button class="bugref chip ${b.status==='closed'||b.status==='fixed'?'closed':b.status==='retest'?'retest':'open'}" data-bug="${esc(id)}" title="${esc(b.title)} — ${b.status}">${esc(id)} · ${b.status}</button>` : `<span class="chip Low">${esc(id)}</span>`; };
+
+function render() {
+  const x = f();
+  const vis = days.map((d) => ({date:d.date, entries:d.entries.filter((e) => entryOk(e, d.date, x))})).filter((d) => d.entries.length);
+  const entries = vis.flatMap((d) => d.entries.map((e) => ({...e, date:d.date})));
+  const bugs = DATA.bugs.filter((b) => bugOk(b, x));
+  // KPIs
+  const pass = entries.filter((e) => e.result==='Pass').length;
+  const pending = DATA.bugs.filter(PENDING).length;
+  $('#kpis').innerHTML = [
+    [vis.length,'Days with testing'],[entries.length,'Tasks tested'],
+    [entries.length ? Math.round(pass*100/entries.length)+'%' : '–','Pass rate'],
+    [entries.filter((e) => e.result==='Fail').length,'Failed tasks'],
+    [pending,'Pending bugs (all time)'],[DATA.bugs.filter((b) => b.status==='retest').length,'Awaiting retest'],
+  ].map(([n,l]) => `<div class="kpi"><b>${n}</b><span>${l}</span></div>`).join('');
+
+  // Daily
+  $('#p-daily').innerHTML = vis.length ? vis.map((d) => `<div class="day"><h3><span>${esc(d.date)} <small>${new Date(d.date+'T00:00').toLocaleDateString(undefined,{weekday:'long'})}</small></span><small>${d.entries.length} task(s) · ${d.entries.filter((e)=>e.result==='Pass').length} pass · ${d.entries.filter((e)=>e.result==='Fail').length} fail</small></h3>` +
+    d.entries.map((e) => `<div class="row"><div><span class="chip ${e.result}">${e.result}</span><div class="m">${esc(e.product)}${e.agent&&e.agent!==e.product?' · '+esc(e.agent):''}</div></div>
+      <div><div class="t">${esc(e.task)? esc(e.task)+' — ':''}${esc(e.title)}</div><div class="m">Source: ${esc(e.source)}${e.notes?' · '+esc(e.notes):''}</div>
+      <div>${(e.bugs||[]).map(bugChip).join('')}</div>${(e.evidence||[]).length?`<div class="m">Evidence: ${e.evidence.map((p)=>`<code>${esc(p)}</code>`).join(', ')}</div>`:''}</div>
+      <div></div></div>`).join('') + '</div>').join('') : '<div class="empty">No tested tasks match these filters.</div>';
+
+  // Bugs
+  const sorted = [...bugs].sort((a,b) => (PENDING(b)-PENDING(a)) || (SEV[a.severity]-SEV[b.severity]) || a.found.localeCompare(b.found));
+  $('#p-bugs').innerHTML = sorted.length ? `<table><thead><tr><th>ID</th><th>Bug</th><th>Product</th><th>Severity</th><th>Status</th><th class="n">Age</th><th>Task</th><th>Report</th></tr></thead><tbody>` +
+    sorted.map((b) => `<tr id="bug-${esc(b.id)}"><td><b>${esc(b.id)}</b><div class="sub">found ${esc(b.found)}</div></td><td>${esc(b.title)}${(b.history||[]).length>1?`<div class="sub">${b.history.map((h)=>esc(h.date)+' → '+esc(h.status)).join(' · ')}</div>`:''}</td><td>${esc(b.product)}</td><td><span class="chip ${b.severity}">${b.severity}</span></td><td><span class="chip ${b.status}">${b.status}</span></td><td class="n">${PENDING(b)?ageDays(b.found)+'d':'–'}</td><td>${esc(b.task)}</td><td>${b.report?`<code>${esc(b.report)}</code>`:''}</td></tr>`).join('') + '</tbody></table>' : '<div class="empty">No bugs match these filters.</div>';
+
+  // Summary
+  const perDay = [...vis].reverse();
+  const max = Math.max(1, ...perDay.map((d) => d.entries.length));
+  const bars = `<div class="bars">${perDay.map((d) => { const fl = d.entries.filter((e)=>e.result==='Fail').length; return `<div class="bar" title="${d.date}: ${d.entries.length} tasks, ${fl} failed"><i class="${fl?'f':''}" style="height:${Math.round(d.entries.length/max*70)}px"></i>${d.date.slice(5)}</div>`; }).join('')}</div>`;
+  const byProd = products.map((p) => { const es = entries.filter((e)=>e.product===p); const bs = DATA.bugs.filter((b)=>b.product===p);
+    return {p, tested:es.length, pass:es.filter((e)=>e.result==='Pass').length, fail:es.filter((e)=>e.result==='Fail').length, open:bs.filter(PENDING).length, high:bs.filter((b)=>PENDING(b)&&SEV[b.severity]<=1).length}; }).filter((r) => r.tested || r.open);
+  $('#p-summary').innerHTML = bars + `<table><thead><tr><th>Product / agent</th><th class="n">Tested</th><th class="n">Pass</th><th class="n">Fail</th><th class="n">Pending bugs</th><th class="n">of which High+</th></tr></thead><tbody>` +
+    byProd.map((r) => `<tr><td>${esc(r.p)}</td><td class="n">${r.tested}</td><td class="n">${r.pass}</td><td class="n">${r.fail}</td><td class="n">${r.open}</td><td class="n">${r.high}</td></tr>`).join('') + '</tbody></table><p class="sub">Tested/Pass/Fail follow the filters above; pending bugs are all-time per product.</p>';
+}
+
+document.querySelectorAll('.tab[data-tab]').forEach((t) => t.onclick = () => {
+  document.querySelectorAll('.tab[data-tab]').forEach((o) => o.setAttribute('aria-selected', o===t));
+  ['daily','bugs','summary'].forEach((k) => $('#p-'+k).hidden = k !== t.dataset.tab);
+});
+document.addEventListener('click', (e) => { const b = e.target.closest('[data-bug]'); if (!b) return;
+  document.querySelector('[data-tab=bugs]').click(); const row = document.getElementById('bug-'+b.dataset.bug);
+  if (row) { row.scrollIntoView({block:'center'}); row.style.outline='2px solid var(--info)'; } });
+['from','to','product','result','bstatus','q'].forEach((id) => $('#'+id).addEventListener('input', render));
+$('#reset').onclick = () => { ['from','to','product','result','bstatus','q'].forEach((id) => $('#'+id).value=''); render(); };
+render();
+</script>
+</body>
+</html>

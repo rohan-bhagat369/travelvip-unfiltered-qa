@@ -1,6 +1,6 @@
 # Canary catalog_v1 FULL matrix
 
-**Base:** https://gamma-api.travelvip.ai · **Partner:** vgm · 2026-11-24T07:53:13.152Z
+**Base:** https://gamma-api.travelvip.ai · **Partner:** vgm · 2026-11-25T12:47:18.827Z
 
 | Case | Lounge | Fast Track | eSIM | old/other |
 |---|---|---|---|---|
@@ -49,31 +49,28 @@
 | V5 | NOT TESTED | NOT TESTED | NOT TESTED | — |
 | I1 | CHECK | CHECK | CHECK | — |
 | C1 | PASS | PASS | PASS | — |
-| C2 | PASS | PASS | PASS | — |
+| C2 | NOT TESTED | NOT TESTED | NOT TESTED | — |
 | C7 | PASS | PASS | PASS | — |
 | C8 | PASS | PASS | PASS | — |
 | C9 | PASS | PASS | PASS | — |
 | U6 | PASS | PASS | PASS | — |
 | U7 | PASS | PASS | PASS | — |
-| U1 | PASS | PASS | PASS | — |
-| L8 | PASS | — | PASS | fast_track_immigration:PASS |
-| L5 | — | — | — | PASS |
-| L1 | PASS | PASS | PASS | — |
+| U1 | NOT TESTED | NOT TESTED | NOT TESTED | — |
+| L8 | CHECK | — | CHECK | fast_track_immigration:CHECK |
+| L5 | — | — | — | CHECK |
+| L1 | CHECK | CHECK | CHECK | — |
 
 ## BRs
 ```json
 {
-  "lounge_W1": "BR1795506794185234",
-  "lounge_W2": "BR1795506812248192",
-  "lounge_C1": "BR1795506815557699",
-  "lounge_C2": "BR1795506815557699",
-  "fasttrack_W1": "BR1795506839495541",
-  "fasttrack_W2": "BR1795506859856299",
-  "fasttrack_C1": "BR1795506869472048",
-  "fasttrack_C2": "BR1795506869472048",
-  "esim_W1": "BR1795506891597424",
-  "esim_W2": "BR1795506910819133",
-  "esim_C1": "BR1795506914806511",
-  "esim_C2": "BR1795506914806511"
+  "lounge_W1": "BR1795610839130093",
+  "lounge_W2": "BR1795610845818888",
+  "lounge_C1": "BR1795610849921447",
+  "fasttrack_W1": "BR1795610852413742",
+  "fasttrack_W2": "BR1795610859690869",
+  "fasttrack_C1": "BR1795610865925724",
+  "esim_W1": "BR1795610867502945",
+  "esim_W2": "BR1795610873520605",
+  "esim_C1": "BR1795610876403909"
 }
 ```

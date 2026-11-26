@@ -1,0 +1,213 @@
+{
+  "at": "2026-11-25T07:24:06.600Z",
+  "baseUrl": "https://gamma-api.travelvip.ai",
+  "part": "ALL",
+  "callback": {
+    "pid": "vgm",
+    "keyPreview": "pals…"
+  },
+  "partA": {
+    "results": {
+      "A1.1": {
+        "status": "BUG",
+        "note": "cb={\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied p",
+        "br": "BR1795591449115816",
+        "before": "Pending",
+        "callbackHttp": 403,
+        "callbackMsg": "{\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied p",
+        "applied": false,
+        "after": "Failed",
+        "amountPaid": null,
+        "partnerWebhook": "NOT TESTED"
+      },
+      "A2.1": {
+        "status": "BUG",
+        "note": "cb={\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied p",
+        "br": "BR1795591449115816",
+        "callbackHttp": 403,
+        "callbackMsg": "{\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied p",
+        "ignored": false,
+        "after": "Failed",
+        "partnerWebhook": "NOT TESTED"
+      },
+      "A3.1": {
+        "status": "BUG",
+        "note": "cb={\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied p",
+        "br": "BR1795591449115816",
+        "callbackMsg": "{\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied p",
+        "ignored": false,
+        "after": "Failed",
+        "walletBefore": 901399.69,
+        "walletAfter": 901399.69,
+        "noRefundLikely": true
+      },
+      "A3.2": {
+        "status": "BUG",
+        "br": "BR1795591449115816",
+        "callbackMsg": "{\"error\":{\"code\":\"INVALID_PARTNER_KEY\",\"message\":\"Invalid or missing partner key\",\"details\":\"The key query parameter is missing or does not match the supplied p",
+        "ignored": false,
+        "after": "Failed"
+      },
+      "A1.2": {
+        "status": "NOT TESTED",
+        "note": "finalize failed",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A1.3": {
+        "status": "NOT TESTED",
+        "note": "finalize failed",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A1.3b_REJECTED": {
+        "status": "NOT TESTED",
+        "note": "finalize failed",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A1.4": {
+        "status": "NOT TESTED",
+        "note": "no BR",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A1.5": {
+        "status": "NOT TESTED",
+        "note": "finalize failed",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A4.2": {
+        "status": "NOT TESTED",
+        "note": "finalize failed",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A4.1": {
+        "status": "NOT TESTED",
+        "note": "finalize failed",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      }
+    },
+    "walletBefore": {
+      "http": 200,
+      "available": 901399.69,
+      "summary": {
+        "currency": "INR",
+        "cashBalance": 901250.73,
+        "reserved": 0,
+        "creditAvailable": 148.96,
+        "available": 901399.69
+      },
+      "rows": []
+    }
+  },
+  "partB": {
+    "results": {
+      "B1": {
+        "status": "PASS",
+        "br": "BR1795591469648138",
+        "paymentIntentId": "pi_3UfaZ8EWyGwVPuvk18GahTkw",
+        "stripeStatus": "succeeded",
+        "amountReceived": 938020,
+        "attachHttp": 200,
+        "attachMsg": "Payment verified successfully",
+        "finalStatus": "Failed",
+        "process_by": "NOT TESTED (needs DB)",
+        "expect": "process_by=book_api"
+      },
+      "B2": {
+        "status": "PASS",
+        "note": "terminal without attach — webhook likely booked",
+        "br": "BR1795591478455993",
+        "paymentIntentId": "pi_3UfaZGEWyGwVPuvk1Znee6Gg",
+        "stripeStatus": "succeeded",
+        "finalStatus": "Failed",
+        "process_by": "likely webhook (NOT TESTED in DB)"
+      },
+      "B4": {
+        "status": "PASS",
+        "note": "app-first then second attach; real Stripe webhook no-op NOT TESTED without webhook control",
+        "br": "BR1795591485405681",
+        "stripeStatus": "succeeded",
+        "attach1": {
+          "http": 200,
+          "msg": "Payment verified successfully"
+        },
+        "attach2": {
+          "http": 200,
+          "msg": "Booking already processed",
+          "alreadyProcessed": true
+        },
+        "finalStatus": "Failed"
+      },
+      "B3": {
+        "status": "NOT TESTED",
+        "note": "cannot force Stripe webhook before app without webhook pointing to gamma + replay control",
+        "relatedBr": "BR1795591485405681"
+      },
+      "B5": {
+        "status": "PASS",
+        "note": "two parallel attach calls; true app+webhook race NOT TESTED",
+        "br": "BR1795591493602762",
+        "a": {
+          "http": 200,
+          "msg": "Payment verified successfully"
+        },
+        "b": {
+          "http": 200,
+          "msg": "Booking already processed"
+        },
+        "finalStatus": "Failed"
+      },
+      "B6": {
+        "status": "PASS",
+        "br": "BR1795591502680999",
+        "paymentIntentId": "pi_3UfaZfEWyGwVPuvk1NgamFAc",
+        "stripeStatus": null,
+        "stripeError": "Your card was declined.",
+        "bookingStatus": "Payment in progress"
+      },
+      "B7": {
+        "status": "PASS",
+        "note": "Failed after pay — verify Stripe refund in Dashboard/DB",
+        "br": "BR1795591509211086",
+        "createHttp": 200,
+        "stripeStatus": "succeeded",
+        "attachHttp": 200,
+        "finalStatus": "Failed",
+        "cardRefund": "NOT TESTED (Stripe Dashboard)"
+      },
+      "B8": {
+        "status": "NOT TESTED",
+        "note": "requires Stripe webhook endpoint + signing secret to replay same event to gamma"
+      },
+      "B9": {
+        "status": "NOT TESTED",
+        "note": "no known Stripe webhook path on gamma (all 404)",
+        "tried": [
+          {
+            "path": "/api/v1/payments/stripe/webhook",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          },
+          {
+            "path": "/api/payments/stripe/webhook",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          },
+          {
+            "path": "/webhooks/stripe",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          },
+          {
+            "path": "/api/stripe/webhook",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          },
+          {
+            "path": "/v1/payments/webhook/stripe",
+            "http": 404,
+            "body": "{\"status\":404,\"info\":\"Page not found\"}"
+          }
+        ]
+      }
+    }
+  }
+}

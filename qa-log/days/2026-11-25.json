@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-25",
+  "entries": [
+    {
+      "task": "ENG-826",
+      "title": "catalog_v1 Lounge/FT/eSIM gamma retest",
+      "product": "Inventory",
+      "agent": "Inventory",
+      "source": "Dev changelog",
+      "result": "Pass",
+      "bugs": [],
+      "evidence": [
+        "inventory/reports/gamma-catalog-v1/GAMMA-RETEST-2026-11-25.md"
+      ],
+      "notes": "gamma-api retest 2026-11-25: happy path W1/C1-C3/C5 PASS all products; V4 fake offerId CHECK (offers not on vgm); W7 NT (wallet still enabled); 0 signoff bugs"
+    },
+    {
+      "task": "ENG-826",
+      "title": "catalog_v1 gamma remaining NT chase",
+      "product": "Inventory",
+      "agent": "Inventory",
+      "source": "Dev changelog",
+      "result": "Pass",
+      "bugs": [],
+      "evidence": [
+        "inventory/reports/gamma-catalog-v1/REMAINING-CHASE-2026-11-25.md",
+        "inventory/reports/gamma-catalog-v1/GAMMA-RETEST-2026-11-25.md"
+      ],
+      "notes": "A1/A2/A4/C6/U1/L2/L4/L7 PASS; W2 CHECK (fail-sim ignored); still NT: W3/W7/W8/C12/C13/V8/L3 (ops)"
+    },
+    {
+      "task": "ENG-826",
+      "title": "catalog_v1 W7 wallet disabled gamma",
+      "product": "Inventory",
+      "agent": "Inventory",
+      "source": "Dev changelog",
+      "result": "Pass",
+      "bugs": [],
+      "evidence": [
+        "inventory/reports/gamma-catalog-v1/W7-WALLET-DISABLED-2026-11-25.md"
+      ],
+      "notes": "W7 PASS all 3: Lounge/FT/eSIM finalize → WALLET_UNAVAILABLE; no BR; wallet off for vgm on gamma"
+    },
+    {
+      "task": "ENG-826",
+      "title": "catalog_v1 gamma PASS report API+DB",
+      "product": "Inventory",
+      "agent": "Inventory",
+      "source": "Dev changelog",
+      "result": "Pass",
+      "bugs": [],
+      "evidence": [
+        "inventory/reports/gamma-catalog-v1/PASS-REPORT-API-DB-2026-11-25.md"
+      ],
+      "notes": "Full PASS pack: W1/W4/W6/W7, C1-C11, R/U/A/V/I3/L*, DB1-5+7-10; open CHECK cancel-then-confirmed BR1795610894418515"
+    }
+  ]
+}

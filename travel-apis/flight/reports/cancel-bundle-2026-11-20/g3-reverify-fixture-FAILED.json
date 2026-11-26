@@ -1,0 +1,84 @@
+{
+  "at": "2026-11-25T11:56:16.895Z",
+  "failures": [
+    {
+      "ok": false,
+      "br": "BR1795606757600786",
+      "status": "Inprogress",
+      "error": "not confirmed",
+      "attempt": {
+        "label": "NORMAL-DEL-PNQ",
+        "origin": "DEL",
+        "destination": "PNQ",
+        "onwardDays": 48,
+        "returnDays": 55,
+        "fareType": "NORMAL"
+      },
+      "money": {
+        "totalAmount": 37302,
+        "baseFare": 28286,
+        "taxes": 8666,
+        "convenienceFee": 350,
+        "currency": "INR"
+      },
+      "airlines": [
+        "AI"
+      ]
+    },
+    {
+      "attempt": {
+        "label": "NORMAL-PNQ-DEL",
+        "origin": "PNQ",
+        "destination": "DEL",
+        "onwardDays": 50,
+        "returnDays": 57,
+        "fareType": "NORMAL"
+      },
+      "error": "Round-trip flight search did not complete after 60 attempts"
+    },
+    {
+      "attempt": {
+        "label": "SME-DEL-PNQ",
+        "origin": "DEL",
+        "destination": "PNQ",
+        "onwardDays": 52,
+        "returnDays": 59,
+        "fareType": "SME"
+      },
+      "error": "Round-trip flight search did not complete after 60 attempts"
+    },
+    {
+      "ok": false,
+      "error": "no ctx/priceId",
+      "attempt": {
+        "label": "NORMAL-PNQ-DXB",
+        "origin": "PNQ",
+        "destination": "DXB",
+        "onwardDays": 45,
+        "returnDays": 52,
+        "fareType": "NORMAL"
+      },
+      "money": {
+        "totalAmount": null,
+        "baseFare": null,
+        "taxes": null,
+        "convenienceFee": null,
+        "currency": "INR"
+      },
+      "airlines": [
+        "AI"
+      ]
+    },
+    {
+      "attempt": {
+        "label": "CORP-DEL-PNQ-altDays",
+        "origin": "DEL",
+        "destination": "PNQ",
+        "onwardDays": 60,
+        "returnDays": 67,
+        "fareType": "CORPORATE"
+      },
+      "error": "Round-trip flight search did not complete after 60 attempts"
+    }
+  ]
+}

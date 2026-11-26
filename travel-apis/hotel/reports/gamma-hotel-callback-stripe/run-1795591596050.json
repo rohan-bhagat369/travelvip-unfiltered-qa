@@ -1,0 +1,101 @@
+{
+  "at": "2026-11-25T07:26:17.870Z",
+  "baseUrl": "https://gamma-api.travelvip.ai",
+  "part": "A",
+  "callback": {
+    "pid": "smt",
+    "keyPreview": "pals…"
+  },
+  "partA": {
+    "results": {
+      "A1.1": {
+        "status": "PASS",
+        "note": "cb=Booking updated successfully",
+        "br": "BR1795591579205182",
+        "before": "Pending",
+        "callbackHttp": 200,
+        "callbackMsg": "Booking updated successfully",
+        "applied": true,
+        "after": "Confirmed",
+        "amountPaid": null,
+        "partnerWebhook": "NOT TESTED"
+      },
+      "A2.1": {
+        "status": "PASS",
+        "note": "cb=Callback received; no change made to the booking",
+        "br": "BR1795591579205182",
+        "callbackHttp": 200,
+        "callbackMsg": "Callback received; no change made to the booking",
+        "ignored": true,
+        "after": "Confirmed",
+        "partnerWebhook": "NOT TESTED"
+      },
+      "A3.1": {
+        "status": "BUG",
+        "note": "cb=Callback received; no change made to the booking",
+        "br": "BR1795591579205182",
+        "callbackMsg": "Callback received; no change made to the booking",
+        "ignored": true,
+        "after": "Failed",
+        "walletBefore": 891940.2,
+        "walletAfter": 901399.69,
+        "noRefundLikely": false
+      },
+      "A3.2": {
+        "status": "BUG",
+        "br": "BR1795591579205182",
+        "callbackMsg": "Callback received; no change made to the booking",
+        "ignored": true,
+        "after": "Failed"
+      },
+      "A1.2": {
+        "status": "NOT TESTED",
+        "note": "finalize HTTP 500",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A1.3": {
+        "status": "NOT TESTED",
+        "note": "finalize HTTP 500",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A1.3b_REJECTED": {
+        "status": "NOT TESTED",
+        "note": "finalize HTTP 500",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A1.4": {
+        "status": "NOT TESTED",
+        "note": "no BR",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A1.5": {
+        "status": "NOT TESTED",
+        "note": "finalize HTTP 500",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A4.2": {
+        "status": "NOT TESTED",
+        "note": "finalize HTTP 500",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      },
+      "A4.1": {
+        "status": "NOT TESTED",
+        "note": "finalize failed",
+        "detail": "{\"status\":500,\"info\":\"Internal Server Error\"}"
+      }
+    },
+    "walletBefore": {
+      "http": 200,
+      "available": 901399.69,
+      "summary": {
+        "currency": "INR",
+        "cashBalance": 901250.73,
+        "reserved": 0,
+        "creditAvailable": 148.96,
+        "available": 901399.69
+      },
+      "rows": []
+    }
+  },
+  "partB": null
+}

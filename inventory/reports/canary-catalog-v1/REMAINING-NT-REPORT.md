@@ -1,6 +1,6 @@
 # Canary catalog_v1 — remaining NT pass
 
-**Base:** https://gamma-api.travelvip.ai · 2026-11-24T07:55:41.398Z
+**Base:** https://gamma-api.travelvip.ai · 2026-11-25T12:48:11.170Z
 
 | Case | Lounge | Fast Track | eSIM | other |
 |---|---|---|---|---|
@@ -45,26 +45,26 @@
 ## BRs
 ```json
 {
-  "lounge_U2": "BR1795506944413961",
-  "lounge_U3": "BR1795506945730597",
-  "lounge_U4": "BR1795506946778998",
-  "lounge_U5": "BR1795506947363288",
-  "lounge_U8": "BR1795506948236905",
-  "lounge_C5": "BR1795506949140574",
-  "lounge_C3": "BR1795506953332784",
-  "fasttrack_U2": "BR1795506975749899",
-  "fasttrack_U3": "BR1795506977999259",
-  "fasttrack_U4": "BR1795506978405280",
-  "fasttrack_U5": "BR1795506980618609",
-  "fasttrack_U8": "BR1795506982510950",
-  "fasttrack_C5": "BR1795506983733986",
-  "fasttrack_C3": "BR1795506987289531",
-  "esim_U2": "BR1795507015795621",
-  "esim_U3": "BR1795507016748911",
-  "esim_U4": "BR1795507018854457",
-  "esim_U5": "BR1795507019948103",
-  "esim_U8": "BR1795507020524297",
-  "esim_C5": "BR1795507021725943",
-  "esim_C3": "BR1795507025562110"
+  "lounge_U2": "BR1795610894418515",
+  "lounge_U3": "BR1795610896447811",
+  "lounge_U4": "BR1795610897206204",
+  "lounge_U5": "BR1795610898542111",
+  "lounge_U8": "BR1795610899828152",
+  "lounge_C5": "BR1795610899787397",
+  "lounge_C3": "BR1795610903458801",
+  "fasttrack_U2": "BR1795610917140942",
+  "fasttrack_U3": "BR1795610918492288",
+  "fasttrack_U4": "BR1795610919984259",
+  "fasttrack_U5": "BR1795610921480935",
+  "fasttrack_U8": "BR1795610922802452",
+  "fasttrack_C5": "BR1795610923331772",
+  "fasttrack_C3": "BR1795610927682569",
+  "esim_U2": "BR1795610946700893",
+  "esim_U3": "BR1795610947270256",
+  "esim_U4": "BR1795610948619408",
+  "esim_U5": "BR1795610949630922",
+  "esim_U8": "BR1795610950962710",
+  "esim_C5": "BR1795610951848892",
+  "esim_C3": "BR1795610954559510"
 }
 ```

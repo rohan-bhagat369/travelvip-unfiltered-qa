@@ -26,7 +26,16 @@ import {
 import { sleep } from '../../../shared/lib/testUtils.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUT_DIR = path.join(__dirname, '..', 'reports', 'delta-hotel-wallet');
+const HOST_TAG = String(process.env.BASE_URL || process.env.REPORT_HOST || 'delta-api')
+  .replace(/^https?:\/\//, '')
+  .split('.')[0]
+  .replace(/[^a-z0-9-]/gi, '') || 'hotel';
+const OUT_DIR = path.join(
+  __dirname,
+  '..',
+  'reports',
+  process.env.REPORT_DIR || `${HOST_TAG}-hotel-wallet`,
+);
 const RUN_CANCEL = /^(1|true|yes)$/i.test(String(process.env.RUN_CANCEL || ''));
 
 const VALID_PAN = { panCardNumber: 'EUIPB1672M', panCardName: 'Rohan Bhagat' };

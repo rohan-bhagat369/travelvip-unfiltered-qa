@@ -1,11 +1,11 @@
 # W7 — wallet disabled (gamma)
 
-**Base:** https://gamma-api.travelvip.ai · **Partner:** vgm · 2026-11-24T07:57:29.784Z
+**Base:** https://gamma-api.travelvip.ai · **Partner:** vgm · 2026-11-25T13:00:39.578Z
 
 | Case | Product | Status | HTTP | code | BR | Note |
 |---|---|---|---|---|---|---|
-| W7 | lounge | BUG | 200 |  | BR1795507051941031 | wallet finalize accepted while wallet should be disabled |
-| W7 | fasttrack | BUG | 200 |  | BR1795507052647215 | wallet finalize accepted while wallet should be disabled |
-| W7 | esim | BUG | 200 |  | BR1795507053758728 | wallet finalize accepted while wallet should be disabled |
+| W7 | lounge | PASS | 503 | WALLET_UNAVAILABLE |  | {"error":{"code":"WALLET_UNAVAILABLE","message":"Wallet payments are currently unavailable. Please try again later.","details":"The partner wallet is switched off; the booking was  |
+| W7 | fasttrack | PASS | 503 | WALLET_UNAVAILABLE |  | {"error":{"code":"WALLET_UNAVAILABLE","message":"Wallet payments are currently unavailable. Please try again later.","details":"The partner wallet is switched off; the booking was  |
+| W7 | esim | PASS | 503 | WALLET_UNAVAILABLE |  | {"error":{"code":"WALLET_UNAVAILABLE","message":"Wallet payments are currently unavailable. Please try again later.","details":"The partner wallet is switched off; the booking was  |
 
-**Counts:** {"BUG":3}
+**Counts:** {"PASS":3}

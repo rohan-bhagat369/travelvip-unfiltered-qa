@@ -1,0 +1,21 @@
+{
+  "tc": "B3",
+  "status": "PASS",
+  "note": "webhook booked first; app got already processed",
+  "br": "BR1795592965464743",
+  "paymentIntentId": "pi_3UfaxGEWyGwVPuvk0lDl9uu6",
+  "stripeStatus": "succeeded",
+  "polls": [
+    "Payment in progress",
+    "Pending",
+    "Pending",
+    "Confirmed"
+  ],
+  "statusAfterWebhookWait": "Confirmed",
+  "attachHttp": 200,
+  "attachMsg": "Booking already processed",
+  "alreadyProcessed": true,
+  "attachBrief": "{\"status\":200,\"paymentStatus\":\"succeeded\",\"paymentSuccess\":true,\"bookingSuccess\":true,\"bookingStatus\":\"confirmed\",\"bookingId\":\"5961\",\"bookingReferenceId\":\"BR1795592965464743\",\"bookingItemId\":\"6096\",\"message\":\"Booking already processed\",\"_meta\":{\"correlation_id\":\"8f7acd7e-712f-4344-9bee-86d91bc5bd12\"}}",
+  "statusAfterAttach": "Confirmed",
+  "expect": "process_by=webhook (DB NOT TESTED)"
+}

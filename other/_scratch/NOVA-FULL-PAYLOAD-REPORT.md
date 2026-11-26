@@ -1,107 +1,96 @@
-# Nova vs Canary — Full Flight / Hotel / Cab payload compare
+# Nova vs Canary — Full Flight/Hotel/Cab payload compare
 
-**When:** 2026-11-18 (~17:35–17:40 IST, retested)  
-**Node:** `https://dev-nova-api.travelvip.ai`  
-**Canary:** `https://canary-api.travelvip.ai`  
-**Partner:** `vgm` · tier `10546901`  
-**Auth:** Node `POST /v1/auth/session` still **400 Invalid tierId** → product calls used Canary JWT + Node partner key  
-**Live book:** finalize / issue-ticket **not executed** (destructive; set `ALLOW_BOOK=1` to run)
+**When:** 2026-11-25T09:28:25.963Z
+**Node:** https://dev-nova-api.travelvip.ai
+**Canary:** https://canary-api.travelvip.ai
+**Partner:** vgm · tier 10546901
+**Auth:** Node session 200 (ok) · product auth: native
+**ALLOW_BOOK:** false
 
-**Coverage:** All unique Flight/Hotel/Cab (+ related callback) routes from Postman `nova-api` collection — request keys exercised, response status/`error.code`/top-level shape compared.
+**Counts:** PASS 38 · WARN 1 · DIFF 1 · SKIPPED 3 · total 43
 
-| | Count |
-|--|--|
-| PASS | 34 |
-| WARN | 1 |
-| DIFF / BUG | 1 (+ auth + extra flight mid-flow diffs below) |
-| SKIPPED | 7 (3 live-book + 4 mid-flow until searchId recovered) |
+| Domain | Method | Path | Canary | Node | Verdict | Notes |
+|--------|--------|------|--------|------|---------|-------|
+| Flight | GET | `/v1/flights/airports` | 200 | 200 | **PASS** | collection_sample |
+| Flight | GET | `/v1/flights/airlines` | 200 | 200 | **PASS** | collection_sample |
+| Flight | POST | `/v1/flights/search` | 200 | 200 | **PASS** | live_dates |
+| Flight | POST | `/v1/flights/details` | 200 | 200 | **PASS** | chained_from_node_search |
+| Flight | POST | `/v1/flights/fareRules` | 200 | 200 | **PASS** | chained_from_node_search |
+| Flight | POST | `/v1/flights/pricing` | 200 | 200 | **PASS** | chained_from_node_search |
+| Flight | GET | `/v1/flights/citySearch` | 200 | 200 | **PASS** | collection_sample |
+| Flight | POST | `/v1/flights/ssr` | 200 | 200 | **PASS** | chained_priceId |
+| Flight | POST | `/v1/flights/seatmap` | 400/INVALID_BOOKING_CONTEXT | 400/INVALID_BOOKING_CONTEXT | **PASS** | chained_requestReference |
+| Flight | POST | `/v1/flights/booking/issue-ticket` | — | — | SKIP | destructive_book_skipped (set ALLOW_BOOK=1 to run) |
+| Flight | GET | `/v1/flights/booking/BR1780899837641078/status` | 200 | 200 | **PASS** | collection_sample |
+| Flight | GET | `/v1/flights/booking/BR1780899837641078` | 200 | 200 | **PASS** | collection_sample |
+| Flight | POST | `/v1/flights/booking/BR1779781570337478/cancel` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | collection_sample |
+| Flight | GET | `/v1/flights/bookings/history` | 200 | 200 | **PASS** | collection_sample |
+| Flight | GET | `/v1/flights/booking/BR1781704967867885/status` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | collection_sample |
+| Flight | POST | `/v1/flights/booking/BR1781704967867885/cancel` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | collection_sample |
+| Flight | POST | `/v1/flights/booking/BR1781610251217353/cancel` | 400/VALIDATION_ERROR | 400/VALIDATION_ERROR | **PASS** | collection_sample |
+| Hotel | GET | `/v1/hotels/autocomplete` | 200 | 200 | **PASS** | page0_mumbai |
+| Hotel | POST | `/v1/hotels/search` | 200 | 200 | **WARN** | live_city_mumbai; shapeDiffs=2 |
+| Hotel | POST | `/v1/hotels/details` | 200 | 200 | **PASS** | collection_entity |
+| Hotel | POST | `/v1/hotels/prebook` | 200 | 200 | **PASS** | stale_collection_prebook_ids |
+| Hotel | POST | `/v1/hotels/finalize-booking` | — | — | SKIP | destructive_book_skipped (set ALLOW_BOOK=1 to run) |
+| Hotel | GET | `/v1/hotels/bookings/BR1780927298861865/status` | 200 | 200 | **PASS** | collection_sample |
+| Hotel | GET | `/v1/hotels/bookings/BR1780401783100852` | 200 | 200 | **PASS** | collection_sample |
+| Hotel | GET | `/v1/hotels/bookings/history` | 200 | 500 | **DIFF** | collection_sample; shapeDiffs=6; status mismatch |
+| Hotel | GET | `/v1/hotels/bookings/BR1786362382728480/cancel` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | collection_sample |
+| Cab | GET | `/v1/airportServices/cabs/locations` | 200 | 200 | **PASS** | collection_sample |
+| Cab | POST | `/v1/airportServices/cabs/search` | 200 | 200 | **PASS** | live_rental |
+| Cab | POST | `/v1/airportServices/cabs/fare` | 200 | 200 | **PASS** | chained_cab_searchId |
+| Cab | POST | `/v1/airportServices/cabs/finalize-booking` | — | — | SKIP | destructive_book_skipped (set ALLOW_BOOK=1 to run) |
+| Cab | GET | `/v1/airportServices/cabs/BR1784017077801203/status` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | collection_sample |
+| Cab | GET | `/v1/airportServices/cabs/booking/history` | 200 | 200 | **PASS** | collection_sample |
+| Cab | GET | `/v1/airportServices/cabs/booking/BR1783685806152267` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | collection_sample |
+| Cab | GET | `/v1/airportServices/cabs/tracking/BR1783677028336676/location` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | collection_sample |
+| Cab | GET | `/v1/airportServices/cabs/bookings/BR1783955419703179/cancel` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | collection_sample |
+| Flight | POST | `/v1/flight/updateBooking` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | callback_ops_sample |
+| Hotel | POST | `/api/v1/hotels/updateHotelBooking` | 400/VALIDATION_ERROR | 400/VALIDATION_ERROR | **PASS** | callback_ops_sample |
+| Cab | POST | `/v1/airportServices/cabs/update-booking` | 404/BOOKING_NOT_FOUND | 404/BOOKING_NOT_FOUND | **PASS** | callback_ops_sample |
+| Cab | POST | `/v1/airportServices/cabs/partner-webhook` | 401/INVALID_WEBHOOK_CREDENTIALS | 401/INVALID_WEBHOOK_CREDENTIALS | **PASS** | collection_sample |
+| Flight | POST | `/v1/flights/booking/request-action` | 401 | 401 | **PASS** | collection_sample |
+| Flight | POST | `/v1/flights/booking/supplier-recovery` | 401 | 401 | **PASS** | collection_sample |
+| Flight | POST | `/v1/flights/booking/protection-action` | 401 | 401 | **PASS** | collection_sample |
+| Hotel | POST | `/v1/hotels/booking/request-action` | 401 | 401 | **PASS** | collection_sample |
 
-Raw JSON: `other/_scratch/nova-full-payload-report.json`
+## Request payload keys checked
 
----
+- `POST /v1/flights/search`: `itinerary`, `travellers`, `cabinClass`, `journeyType`, `currency`, `language`, `preferences`, `appliedFilters`, `selection`
+- `POST /v1/flights/details`: `journeyType`, `selection`
+- `POST /v1/flights/fareRules`: `journeyType`, `selection`
+- `POST /v1/flights/pricing`: `journeyType`, `selection`
+- `POST /v1/flights/ssr`: `priceId`
+- `POST /v1/flights/seatmap`: `currency`, `requestReference`, `passengers`
+- `POST /v1/flights/booking/issue-ticket`: `type`, `currency`, `language`, `bookingReference`, `searchIds`, `journeyType`, `timezone`, `data`
+- `POST /v1/flights/booking/BR1779781570337478/cancel`: `action`, `retryCount`
+- `POST /v1/flights/booking/BR1781704967867885/cancel`: `action`, `retryCount`
+- `POST /v1/flights/booking/BR1781610251217353/cancel`: `action`, `retryCount`
+- `POST /v1/hotels/search`: `checkin`, `checkout`, `entityId`, `nationality`, `type`, `rooms`
+- `POST /v1/hotels/details`: `checkin`, `checkout`, `entityId`, `nationality`, `rooms`
+- `POST /v1/hotels/prebook`: `bookingCode`, `requestId`
+- `POST /v1/hotels/finalize-booking`: `bookingContext`, `checkin`, `checkout`, `requestId`, `rooms`, `contact`
+- `POST /v1/airportServices/cabs/search`: `journeyType`, `travelType`, `pickup`, `drop`, `distanceKm`, `durationMin`, `pickupDatetime`
+- `POST /v1/airportServices/cabs/fare`: `searchId`
+- `POST /v1/airportServices/cabs/finalize-booking`: `bookingReference`, `priceId`, `passengers`, `contact`, `otherDetails`
+- `POST /v1/flight/updateBooking`: `bookingRefId`, `status`, `pnr`, `onwardPNR`, `returnPNR`, `bookingId`
+- `POST /api/v1/hotels/updateHotelBooking`: `status`, `ClientReferenceId`, `ConfirmationNumber`, `message`
+- `POST /v1/airportServices/cabs/update-booking`: `bookingRefId`, `bookingId`, `status`, `otp`, `assignment`
+- `POST /v1/airportServices/cabs/partner-webhook`: `eventName`, `bookingId`, `bookingInfo`
+- `POST /v1/flights/booking/request-action`: `bookingRefId`, `action`, `refund`, `actorRef`, `remarks`
+- `POST /v1/flights/booking/supplier-recovery`: `bookingRefId`, `provider`, `amount`, `providerReference`, `note`, `actorRef`
+- `POST /v1/flights/booking/protection-action`: `bookingRefId`, `bookingItemId`, `action`, `reason`, `actorRef`
+- `POST /v1/hotels/booking/request-action`: `bookingRefId`, `action`, `refund`, `actorRef`, `remarks`
 
-## Short table for channel
+## DIFF / WARN detail
 
-| Domain | Method | Path | Canary | Node | Verdict |
-|--------|--------|------|--------|------|---------|
-| Auth | POST | `/v1/auth/session` | 200 | 400 `Invalid tierId` | **BUG** |
-| Flight | GET | `/v1/flights/airports` | 200 | 200 | PASS |
-| Flight | GET | `/v1/flights/airlines` | 200 | 200 | PASS |
-| Flight | GET | `/v1/flights/citySearch` | 200 | 200 | PASS |
-| Flight | POST | `/v1/flights/search` | 400 `VENDOR_ERROR` *(or 400)* | 200 / 400 `NO_FLIGHTS_FOUND` | **DIFF** |
-| Flight | POST | `/v1/flights/details` | 200 (same shape) | 200 | PASS * |
-| Flight | POST | `/v1/flights/fareRules` | 400 `VENDOR_ERROR` | 200 | **DIFF** * |
-| Flight | POST | `/v1/flights/pricing` | 400 `VENDOR_ERROR` | 404 `SEARCH_ID_NOT_FOUND` | **DIFF** * |
-| Flight | POST | `/v1/flights/ssr` | — | — | SKIP (no priceId; pricing failed) |
-| Flight | POST | `/v1/flights/seatmap` | 400 `INVALID_REQUEST` / `VENDOR_UNAVAILABLE` | same | PASS (same errors) |
-| Flight | POST | `/v1/flights/booking/issue-ticket` | — | — | SKIP (live book) |
-| Flight | GET | `/v1/flights/booking/{BR}/status` | 200 / 404 | same | PASS |
-| Flight | GET | `/v1/flights/booking/{BR}` | 200 | 200 | PASS |
-| Flight | POST | `/v1/flights/booking/{BR}/cancel` | 200 `BOOKING_NOT_FOUND` / `VALIDATION_ERROR` | same codes | PASS |
-| Flight | GET | `/v1/flights/bookings/history` | 200 | 200 | PASS |
-| Hotel | GET | `/v1/hotels/autocomplete` | 200 | 200 | PASS |
-| Hotel | POST | `/v1/hotels/search` | 200 | 200 | PASS |
-| Hotel | POST | `/v1/hotels/details` | 200 | 200 | PASS |
-| Hotel | POST | `/v1/hotels/prebook` | 200 | 200 | PASS |
-| Hotel | POST | `/v1/hotels/finalize-booking` | — | — | SKIP (live book) |
-| Hotel | GET | `/v1/hotels/bookings/{BR}/status` | 200 | 200 | PASS |
-| Hotel | GET | `/v1/hotels/bookings/{BR}` | 200 | 200 | PASS |
-| Hotel | GET | `/v1/hotels/bookings/history` | **200** | **500** `Internal Server Error` | **BUG** |
-| Hotel | GET | `/v1/hotels/bookings/{BR}/cancel` | 200 `BOOKING_NOT_FOUND` | same | PASS |
-| Cab | GET | `/v1/airportServices/cabs/locations` | 200 | 200 | PASS |
-| Cab | POST | `/v1/airportServices/cabs/search` | 200 | 200 | PASS |
-| Cab | POST | `/v1/airportServices/cabs/fare` | 200 | 200 | PASS |
-| Cab | POST | `/v1/airportServices/cabs/finalize-booking` | — | — | SKIP (live book) |
-| Cab | GET | status / details / tracking / cancel (stale BR) | 404 / 200 `BOOKING_NOT_FOUND` | same | PASS |
-| Cab | GET | `/v1/airportServices/cabs/booking/history` | 200 | 200 | PASS |
-| Ops | POST | flight/hotel/cab update + webhook + request-action | same 401/400/404 envelopes | same | PASS |
+### WARN — POST /v1/hotels/search
+- Canary: 200  
+- Node: 200  
+- Shape: message:missing_in_node, filters:type_mismatch
 
-\* Mid-flow flight calls re-run with a live Node `searchId` (DEL–BOM `2026-12-15`) after search returned 200 on Node.
-
----
-
-## Bugs / diffs to fix
-
-### 1. Auth session — BUG
-`GET /v1/tiers` → `[10546901]` but `POST /v1/auth/session` `{tierId:10546901}` → **400 Invalid tierId** on Node. Canary 200.
-
-### 2. Hotel booking history — BUG
-`GET /v1/hotels/bookings/history?lang=en&currency=INR`  
-- Canary: **200** `{status,totalCount,page,perPage,bookings,_meta}`  
-- Node: **500** `{"status":500,"info":"Internal Server Error"}` (not standard error envelope)
-
-### 3. Flight search / fareRules / pricing — DIFF
-Same DEL→BOM payload:
-| API | Canary | Node |
-|-----|--------|------|
-| search | often `VENDOR_ERROR` | 200 with results **or** `NO_FLIGHTS_FOUND` |
-| fareRules | `VENDOR_ERROR` | **200** fareRules payload |
-| pricing | `VENDOR_ERROR` | **404** `SEARCH_ID_NOT_FOUND` (even right after successful details on same `searchId`) |
-
-**Node pricing issue:** details succeeds for `searchId`, but pricing immediately says cache missing for that same id → blocks SSR (`priceId` never obtained).
-
----
-
-## Request payloads covered (keys)
-
-- Flight search: `itinerary, travellers, cabinClass, journeyType, currency, language, preferences, appliedFilters, selection`
-- Flight details/fareRules/pricing: `journeyType, selection.selectedSearchIds`
-- Flight SSR: `priceId` (blocked)
-- Flight seatmap: `currency, requestReference, passengers`
-- Hotel search/details: `checkin, checkout, entityId, nationality, type?, rooms`
-- Hotel prebook: `bookingCode, requestId`
-- Cab search: `journeyType, travelType, pickup, drop, distanceKm, durationMin, pickupDatetime`
-- Cab fare: `searchId`
-
----
-
-## Not executed (by design)
-
-| API | Reason |
-|-----|--------|
-| `POST .../issue-ticket` | live ticket / wallet |
-| `POST .../hotels/finalize-booking` | live hotel book |
-| `POST .../cabs/finalize-booking` | live cab book |
-| `POST .../ssr` | needs `priceId` from pricing |
-
-Say if you want `ALLOW_BOOK=1` live book parity next.
+### DIFF — GET /v1/hotels/bookings/history
+- Canary: 200  
+- Node: 500  
+- Shape: totalCount:missing_in_node, page:missing_in_node, perPage:missing_in_node, bookings:missing_in_node, _meta:missing_in_node, info:extra_in_node

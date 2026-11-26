@@ -1,0 +1,18 @@
+---
+description: After testing any task, record it in the QA log so the dashboard stays complete
+alwaysApply: true
+---
+
+# QA logging (mandatory, every agent, every domain)
+
+After you finish testing a task or a dev changelog item — pass, fail, or blocked — before you reply "done":
+
+1. **New bug found** → `npm run qa:log -- bug --id <ID> --title "..." --product <Hotel|Flight|Cab|Inventory|Byufuel|Other> --severity <Critical|High|Medium|Low> --task <ENG-/QA- id> --report <path to the report file>`
+2. **Log the task** (one entry per task per product) → `npm run qa:log -- entry --task <id> --title "..." --product <...> --result <Pass|Fail|Partial|Blocked> --source "Dev changelog" --bugs <ids,comma> --evidence <report paths,comma> --notes "..."`
+3. **Retest / fix state changes** → `npm run qa:log -- bug-status <ID> <fixed|retest|closed|open|wontfix>`
+
+Rules:
+- Bug ids are unique and must exist before an entry references them.
+- Never mark a bug `closed` without a passing retest recorded in an entry.
+- Use the real result. Do not log Pass for a case you did not run.
+- Details and examples: `qa-log/README.md`. The dashboard (`qa-log/dashboard/index.html`) is rebuilt by each command.

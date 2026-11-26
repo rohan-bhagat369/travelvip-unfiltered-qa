@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-25T08:08:09.255Z",
+  "webhookPath": "/api/updatePaymentStatus",
+  "B8": {
+    "status": "PASS",
+    "br": "BR1795594066600485",
+    "paymentIntentId": "pi_3UfbF1EWyGwVPuvk0n1rUgpv",
+    "eventId": "evt_3UfbF1EWyGwVPuvk0Oww3i4M",
+    "naturalStatus": "Failed",
+    "afterRetry1": "Failed",
+    "afterRetry2": "Failed",
+    "retry1Http": 200,
+    "retry2Http": 200,
+    "attachMsg": "Booking already processed",
+    "alreadyProcessed": true,
+    "note": "Used Stripe POST /v1/events/{id}/retry x2 (whsec did not validate for manual forge). Status stable; one booking.",
+    "whsecManualForge": "FAILED Invalid signature — secret may not match gamma endpoint we_1PkiZq..."
+  },
+  "B9": {
+    "status": "PASS",
+    "http": 400,
+    "body": "Invalid signature",
+    "note": "POST /api/updatePaymentStatus with invalid Stripe-Signature"
+  }
+}

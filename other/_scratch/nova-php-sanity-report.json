@@ -1,30 +1,29 @@
 {
-  "at": "2026-11-18T11:44:19.712Z",
+  "at": "2026-11-25T09:26:06.666Z",
   "nodeBase": "https://dev-nova-api.travelvip.ai",
   "legacyBase": "https://canary-api.travelvip.ai",
   "partner": "vgm",
   "authSummary": {
     "node": {
       "token": 200,
-      "session": 400,
-      "ok": false,
+      "session": 200,
+      "ok": true,
       "tokenKeys": [
         "access_token",
         "refresh_token",
         "expires_in"
       ],
       "sessionKeys": [
-        "status",
-        "code",
-        "message",
-        "details"
+        "auth_token",
+        "tier_id",
+        "expires_in"
       ],
-      "sessionMessage": "Invalid tierId",
+      "sessionMessage": null,
       "tiersStatus": 200,
       "tierIds": [
         10546901
       ],
-      "productAuth": "fallback_legacy_jwt (node session 400: Invalid tierId)"
+      "productAuth": "native_session"
     },
     "legacy": {
       "base": "https://canary-api.travelvip.ai",
@@ -54,7 +53,7 @@
       "path": "/v1/flights/airports",
       "legacy": {
         "status": 200,
-        "ms": 134,
+        "ms": 278,
         "ok": true,
         "topKeys": [
           "status",
@@ -68,7 +67,7 @@
       },
       "node": {
         "status": 200,
-        "ms": 106,
+        "ms": 114,
         "ok": true,
         "topKeys": [
           "status",
@@ -94,7 +93,7 @@
       "path": "/v1/flights/citySearch",
       "legacy": {
         "status": 200,
-        "ms": 124,
+        "ms": 244,
         "ok": true,
         "topKeys": [
           "status",
@@ -107,7 +106,7 @@
       },
       "node": {
         "status": 200,
-        "ms": 108,
+        "ms": 111,
         "ok": true,
         "topKeys": [
           "status",
@@ -132,111 +131,34 @@
       "path": "/v1/flights/search",
       "legacy": {
         "status": 400,
-        "ms": 345,
+        "ms": 26271,
         "ok": false,
         "topKeys": [
           "error",
           "_meta"
         ],
-        "errorCode": "VENDOR_ERROR",
-        "errorMessage": "Search failed.",
+        "errorCode": "NO_FLIGHTS_FOUND",
+        "errorMessage": "No flights available for given criteria",
         "errorDetails": null
       },
       "node": {
-        "status": 200,
-        "ms": 354,
-        "ok": true,
+        "status": 400,
+        "ms": 431,
+        "ok": false,
         "topKeys": [
-          "journeyType",
-          "tripType",
-          "currency",
-          "currencyConversion",
-          "progress",
-          "timingReference",
-          "selection",
-          "results",
-          "totalResults",
-          "filters",
-          "sorts",
-          "cacheTimeStamp",
+          "error",
           "_meta"
         ],
-        "errorCode": null,
-        "errorMessage": null,
+        "errorCode": "NO_FLIGHTS_FOUND",
+        "errorMessage": "No flights available for given criteria",
         "errorDetails": null
       },
-      "statusMatch": false,
+      "statusMatch": true,
       "bothOk": false,
-      "shapeDiffs": [
-        {
-          "path": "error",
-          "issue": "missing_in_node",
-          "legacyType": "object"
-        },
-        {
-          "path": "journeyType",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        },
-        {
-          "path": "tripType",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        },
-        {
-          "path": "currency",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        },
-        {
-          "path": "currencyConversion",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "progress",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "timingReference",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        },
-        {
-          "path": "selection",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "results",
-          "issue": "extra_in_node",
-          "nodeType": "array"
-        },
-        {
-          "path": "totalResults",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "filters",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "sorts",
-          "issue": "extra_in_node",
-          "nodeType": "array"
-        },
-        {
-          "path": "cacheTimeStamp",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        }
-      ],
+      "shapeDiffs": [],
       "sample": {
-        "legacySnippet": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Search failed.\",\"details\":null,\"timestamp\":\"2026-11-18T11:43:48Z\",\"request_id\":\"sanity-1795002228476-xmpljq\"},\"_meta\":{\"correlation_id\":\"sanity-1795002228476-zjjno6\"}}",
-        "nodeSnippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"INR\",\"destination\":\"INR\",\"rate\":1},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"sUElf5hs8ukjqt1"
+        "legacySnippet": "{\"error\":{\"code\":\"NO_FLIGHTS_FOUND\",\"message\":\"No flights available for given criteria\",\"details\":null,\"timestamp\":\"2026-11-25T09:25:36Z\",\"request_id\":\"sanity-1795598710356-9sap2b\"},\"_meta\":{\"correlation_id\":\"sanity-1795598710356-ce4iuq\"}}",
+        "nodeSnippet": "{\"error\":{\"code\":\"NO_FLIGHTS_FOUND\",\"message\":\"No flights available for given criteria\",\"details\":null,\"timestamp\":\"2026-11-25T09:25:36Z\",\"request_id\":\"sanity-1795598736627-tlwxft\"},\"_meta\":{\"correlation_id\":\"sanity-1795598736627-8k8fp3\"}}"
       }
     },
     {
@@ -245,7 +167,7 @@
       "path": "/v1/hotels/autocomplete",
       "legacy": {
         "status": 200,
-        "ms": 668,
+        "ms": 757,
         "ok": true,
         "topKeys": [
           "content",
@@ -264,7 +186,7 @@
       },
       "node": {
         "status": 200,
-        "ms": 470,
+        "ms": 483,
         "ok": true,
         "topKeys": [
           "content",
@@ -295,7 +217,7 @@
       "path": "/v1/hotels/search",
       "legacy": {
         "status": 200,
-        "ms": 6090,
+        "ms": 2612,
         "ok": true,
         "topKeys": [
           "page",
@@ -306,6 +228,7 @@
           "availableResults",
           "last",
           "results",
+          "message",
           "currency",
           "fromCache",
           "cacheTimeStamp",
@@ -322,7 +245,7 @@
       },
       "node": {
         "status": 200,
-        "ms": 1647,
+        "ms": 2933,
         "ok": true,
         "topKeys": [
           "page",
@@ -333,6 +256,7 @@
           "availableResults",
           "last",
           "results",
+          "message",
           "currency",
           "fromCache",
           "cacheTimeStamp",
@@ -351,8 +275,8 @@
       "bothOk": true,
       "shapeDiffs": [],
       "sample": {
-        "legacySnippet": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":511,\"totalPages\":26,\"availableResults\":511,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/4253",
-        "nodeSnippet": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":511,\"totalPages\":26,\"availableResults\":511,\"last\":false,\"results\":[{\"id\":\"39624369\",\"name\":\"Sofitel Mumbai BKC Hotel\",\"address\":\"C-57, Bandra Kurla Complex\",\"distance\":null,\"image\":\"https://i.travelapi.com/lodging/5000000/4260000/4253"
+        "legacySnippet": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels found for this date range. Please try searching different dates.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"fi",
+        "nodeSnippet": "{\"page\":0,\"size\":20,\"offset\":0,\"totalResults\":0,\"totalPages\":0,\"availableResults\":0,\"last\":true,\"results\":[],\"message\":\"No hotels found for this date range. Please try searching different dates.\",\"currency\":\"INR\",\"fromCache\":false,\"cacheTimeStamp\":null,\"priceRangeFilter\":null,\"fi"
       }
     },
     {
@@ -361,7 +285,7 @@
       "path": "/v1/airportServices/cabs/locations",
       "legacy": {
         "status": 200,
-        "ms": 137,
+        "ms": 516,
         "ok": true,
         "topKeys": [
           "locations",
@@ -373,7 +297,7 @@
       },
       "node": {
         "status": 200,
-        "ms": 96,
+        "ms": 90,
         "ok": true,
         "topKeys": [
           "locations",
@@ -397,7 +321,7 @@
       "path": "/v1/airportServices/cabs/search",
       "legacy": {
         "status": 200,
-        "ms": 10594,
+        "ms": 11213,
         "ok": true,
         "topKeys": [
           "currency",
@@ -410,7 +334,7 @@
       },
       "node": {
         "status": 200,
-        "ms": 10832,
+        "ms": 11002,
         "ok": true,
         "topKeys": [
           "currency",
@@ -425,8 +349,8 @@
       "bothOk": true,
       "shapeDiffs": [],
       "sample": {
-        "legacySnippet": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"de670bf5-8c40-4194-ad43-ea7eb3d5c3e4|c4cabb6d4c85e8df20c513658684c95613a0ab4fb22df644483bad430cf67813\",\"cabId\":\"b171af21-6625-4aae-80cd-01c045eff4a9\",\"fareId\":\"1\",\"vehicle\":{\"type\":\"HATCHBACK\",\"category\":\"ECONOMY\",\"filterTag\":\"Hatchback\",\"fi",
-        "nodeSnippet": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"63401b1e-15f7-44d0-a71f-a02509cd9334|c16f23b49a96d632ed330c49c78fe81fe40622af173165286281f5be9f247aa0\",\"cabId\":\"a195e006-9f4b-46bc-b00d-53dae91f3b1b\",\"fareId\":\"1\",\"vehicle\":{\"type\":\"HATCHBACK\",\"category\":\"ECONOMY\",\"filterTag\":\"Hatchback\",\"fi"
+        "legacySnippet": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"25b347a1-311e-4133-9257-26431422ec13|783db0966fd22d96cf343dc302fde1bfcf176234264f60ae593a96c5fe85b4c5\",\"cabId\":\"902df37e-76ae-4b40-aa85-5443425d9657\",\"fareId\":\"1\",\"vehicle\":{\"type\":\"HATCHBACK\",\"category\":\"ECONOMY\",\"filterTag\":\"Hatchback\",\"fi",
+        "nodeSnippet": "{\"currency\":\"INR\",\"cabs\":[{\"searchId\":\"924941be-df25-449e-960e-bf75a7fdb1cb|753ca289d17aef51bcf12da2b5ceaddcf1a272962b0b8edef788bcc92b3d4cbd\",\"cabId\":\"232b8709-1cd6-4f52-a1d9-e7470a7818b7\",\"fareId\":\"1\",\"vehicle\":{\"type\":\"HATCHBACK\",\"category\":\"ECONOMY\",\"filterTag\":\"Hatchback\",\"fi"
       }
     }
   ],
@@ -437,111 +361,34 @@
       "path": "/v1/flights/search",
       "legacy": {
         "status": 400,
-        "ms": 345,
+        "ms": 26271,
         "ok": false,
         "topKeys": [
           "error",
           "_meta"
         ],
-        "errorCode": "VENDOR_ERROR",
-        "errorMessage": "Search failed.",
+        "errorCode": "NO_FLIGHTS_FOUND",
+        "errorMessage": "No flights available for given criteria",
         "errorDetails": null
       },
       "node": {
-        "status": 200,
-        "ms": 354,
-        "ok": true,
+        "status": 400,
+        "ms": 431,
+        "ok": false,
         "topKeys": [
-          "journeyType",
-          "tripType",
-          "currency",
-          "currencyConversion",
-          "progress",
-          "timingReference",
-          "selection",
-          "results",
-          "totalResults",
-          "filters",
-          "sorts",
-          "cacheTimeStamp",
+          "error",
           "_meta"
         ],
-        "errorCode": null,
-        "errorMessage": null,
+        "errorCode": "NO_FLIGHTS_FOUND",
+        "errorMessage": "No flights available for given criteria",
         "errorDetails": null
       },
-      "statusMatch": false,
+      "statusMatch": true,
       "bothOk": false,
-      "shapeDiffs": [
-        {
-          "path": "error",
-          "issue": "missing_in_node",
-          "legacyType": "object"
-        },
-        {
-          "path": "journeyType",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        },
-        {
-          "path": "tripType",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        },
-        {
-          "path": "currency",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        },
-        {
-          "path": "currencyConversion",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "progress",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "timingReference",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        },
-        {
-          "path": "selection",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "results",
-          "issue": "extra_in_node",
-          "nodeType": "array"
-        },
-        {
-          "path": "totalResults",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "filters",
-          "issue": "extra_in_node",
-          "nodeType": "object"
-        },
-        {
-          "path": "sorts",
-          "issue": "extra_in_node",
-          "nodeType": "array"
-        },
-        {
-          "path": "cacheTimeStamp",
-          "issue": "extra_in_node",
-          "nodeType": "string"
-        }
-      ],
+      "shapeDiffs": [],
       "sample": {
-        "legacySnippet": "{\"error\":{\"code\":\"VENDOR_ERROR\",\"message\":\"Search failed.\",\"details\":null,\"timestamp\":\"2026-11-18T11:43:48Z\",\"request_id\":\"sanity-1795002228476-xmpljq\"},\"_meta\":{\"correlation_id\":\"sanity-1795002228476-zjjno6\"}}",
-        "nodeSnippet": "{\"journeyType\":\"ONE_WAY\",\"tripType\":\"domestic\",\"currency\":\"INR\",\"currencyConversion\":{\"source\":\"INR\",\"destination\":\"INR\",\"rate\":1},\"progress\":{\"partial\":false,\"state\":\"COMPLETE\",\"pollAfterMs\":0,\"message\":null,\"lanesTotal\":null,\"lanesReady\":null},\"timingReference\":\"sUElf5hs8ukjqt1"
+        "legacySnippet": "{\"error\":{\"code\":\"NO_FLIGHTS_FOUND\",\"message\":\"No flights available for given criteria\",\"details\":null,\"timestamp\":\"2026-11-25T09:25:36Z\",\"request_id\":\"sanity-1795598710356-9sap2b\"},\"_meta\":{\"correlation_id\":\"sanity-1795598710356-ce4iuq\"}}",
+        "nodeSnippet": "{\"error\":{\"code\":\"NO_FLIGHTS_FOUND\",\"message\":\"No flights available for given criteria\",\"details\":null,\"timestamp\":\"2026-11-25T09:25:36Z\",\"request_id\":\"sanity-1795598736627-tlwxft\"},\"_meta\":{\"correlation_id\":\"sanity-1795598736627-8k8fp3\"}}"
       }
     }
   ]

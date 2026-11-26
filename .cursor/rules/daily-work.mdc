@@ -1,0 +1,27 @@
+# Daily work log (mandatory, every agent)
+
+Path: `daily-work/LOG.md` · details: `daily-work/README.md`
+
+**One file for all days.** Do not create `days/YYYY-MM-DD.md`. Date-wise sections live in the same `LOG.md`.
+
+## When
+
+- First work of the day → if `## YYYY-MM-DD` is missing in `LOG.md`, insert that section at the **top** (newest first), under the intro.
+- After finishing (or parking) work, and at **end of day** → append a table row under today’s date.
+- Never delete older date sections.
+
+## What to write
+
+1. Prefer Tracker **task id** (`ENG-…` / `QA-…`) + short “what we did”.
+2. If there is **no task id**, still add a row with a **short summary** — do not skip logging.
+3. One row per task/topic. Result must be real: Pass / Fail / Partial / Blocked / In progress / Done / N/A.
+4. Link evidence under domain `*/reports/` when it exists.
+
+## Triggers
+
+User says “daily work”, “log my day”, “work update”, “end of day”, or you are about to reply that a testing task is done → update today’s section in `daily-work/LOG.md` (in addition to `qa:log` / standup when those apply).
+
+## Not the same as
+
+- `standup/` — manager-facing status tables
+- `qa-log/` — formal Pass/Fail/bug dashboard via `npm run qa:log`
